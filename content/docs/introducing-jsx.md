@@ -1,36 +1,38 @@
 ---
 id: introducing-jsx
-title: Introducing JSX
+title: Вступ до JSX
 permalink: docs/introducing-jsx.html
 prev: hello-world.html
 next: rendering-elements.html
 ---
 
-Consider this variable declaration:
+Розглянемо оголошення змінної:
 
 ```js
 const element = <h1>Hello, world!</h1>;
 ```
 
-This funny tag syntax is neither a string nor HTML.
+Цей кумедний синтаксис тегів не є ні рядком, ні HTML.
 
-It is called JSX, and it is a syntax extension to JavaScript. We recommend using it with React to describe what the UI should look like. JSX may remind you of a template language, but it comes with the full power of JavaScript.
+Він має назву JSX, і це розширення синтаксису для JavaScript. Ми рекомендуємо використовувати його в React, щоб описати, як повинен виглядати інтерфейс користувача (UI). JSX може нагадувати мову шаблонів, але з усіма перевагами JavaScript. 
 
-JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
+JSX створює React "елементи". Ми розглянемо їх вивід в DOM в [наступному розділі](/docs/rendering-elements.html). Нижче Ви можете знайти основи JSX, необхідні для початку роботи.
 
-### Why JSX? {#why-jsx}
+### Чому JSX? {#why-jsx}
 
-React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.
+React використовує той факт, що логіка виводу пов'язана з іншою логікою UI: як обробляються події, як змінюється стан з часом, і як дані готуються для відображення.
 
-Instead of artificially separating *technologies* by putting markup and logic in separate files, React [separates *concerns*](https://en.wikipedia.org/wiki/Separation_of_concerns) with loosely coupled units called "components" that contain both. We will come back to components in a [further section](/docs/components-and-props.html), but if you're not yet comfortable putting markup in JS, [this talk](https://www.youtube.com/watch?v=x7cQ3mrcKaY) might convince you otherwise.
+Замість того, щоб штучно відокремити *технології*, розмістивши розмітку і логіку в окремих файлах, React [розділяє *відповідальність*](https://en.wikipedia.org/wiki/Separation_of_concerns) між вільно зв'язаними одиницями, що містять обидві технології і називаються "компонентами". Ми повернемося до компонентів у [наступному розділі](/docs/components-and-props.html), але якщо Вам ще досі не комфортно розміщувати розмітку в JS, [це обговорення](https://www.youtube.com/watch?v=x7cQ3mrcKaY) може переконати Вас в протилежному.
 
-React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
+React [не вимагає](/docs/react-without-jsx.html) використання JSX, але більшість людей цінують його за візуальну допомогу при роботі з UI в коді JavaScript. Він також дозволяє React показати зрозуміліші повідомлення про помилки та попередження.
 
-With that out of the way, let's get started!
+<!---With that out of the way, let's get started!--->
+З цим розібрались, давайте почнемо!
 
-### Embedding Expressions in JSX {#embedding-expressions-in-jsx}
+### Вставка виразів у JSX {#embedding-expressions-in-jsx}
 
-In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
+<!---In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:--->
+У прикладі нижче ми оголошуємо змінну `name`, а потім використовуємо її в JSX, обертаючи її у фігурні дужки:
 
 ```js{1,2}
 const name = 'Josh Perez';
@@ -42,9 +44,11 @@ ReactDOM.render(
 );
 ```
 
-You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+<!---You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.--->
+Ви можете помістити будь-який валідний [JavaScript вираз](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) всередині фігурних дужок у JSX. Наприклад, `2 + 2`, `user.firstName`, або `formatName(user)` є валідними виразами JavaScript.
 
-In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
+<!---In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.--->
+У наведеному нижче прикладі ми вставляємо результат виклику функції JavaScript, `formatName(user)` в елемент `<h1>`.
 
 ```js{12}
 function formatName(user) {
@@ -70,13 +74,16 @@ ReactDOM.render(
 
 [](codepen://introducing-jsx)
 
-We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](http://stackoverflow.com/q/2846283).
+<!---We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](http://stackoverflow.com/q/2846283).--->
+Ми розбиваємо JSX на декілька рядків для покращення читабельності. Хоча це не потрібно, при цьому ми також рекомендуємо охоплювати його дужками, щоб уникнути проблеми, пов'язаних з [автоматичною вставкою крапки з комою](http://stackoverflow.com/q/2846283).
 
-### JSX is an Expression Too {#jsx-is-an-expression-too}
+### JSX також є виразом {#jsx-is-an-expression-too}
 
-After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
+<!---After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.--->
+Після компіляції вирази JSX стають звичайними викликами функцій JavaScript, що повертають об'єкти JavaScript.
 
-This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
+<!---This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:--->
+Це означає, що ви можете використовувати JSX всередині `if` виразів і циклів `for`, присвоювати йому змінні, приймати його як аргументи і повертати його з функцій:
 
 ```js{3,5}
 function getGreeting(user) {
@@ -87,37 +94,42 @@ function getGreeting(user) {
 }
 ```
 
-### Specifying Attributes with JSX {#specifying-attributes-with-jsx}
+### Визначення атрибутів за допомогою JSX {#specifying-attributes-with-jsx}
 
-You may use quotes to specify string literals as attributes:
+<!---You may use quotes to specify string literals as attributes:--->
+Ви можете використовувати лапки для задання рядкових літералів як атрибутів:
 
 ```js
 const element = <div tabIndex="0"></div>;
 ```
 
-You may also use curly braces to embed a JavaScript expression in an attribute:
+<!---You may also use curly braces to embed a JavaScript expression in an attribute:--->
+Ви також можете використовувати фігурні дужки, щоб вставити вираз JavaScript у атрибут:
 
 ```js
 const element = <img src={user.avatarUrl}></img>;
 ```
 
-Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.
+<!---Don't put quotes around curly braces when embedding a JavaScript expression in an attribute. You should either use quotes (for string values) or curly braces (for expressions), but not both in the same attribute.--->
+Не вставляйте лапки навколо фігурних дужок, коли вкладаєте вираз JavaScript у атрибут. Ви повинні використовувати лапки (для рядків) або фігурні дужки (для виразів), але не обидва в одному атрибуті.
 
->**Warning:**
+>**Увага:**
 >
->Since JSX is closer to JavaScript than to HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
+>Оскільки JSX ближче до JavaScript, ніж до HTML, React DOM використовує правило іменування властивостей camelCase замість імен атрибутів HTML.
 >
->For example, `class` becomes [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) in JSX, and `tabindex` becomes [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
+>Наприклад, `class` в JSX стає [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className), `tabindex` - [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
 
-### Specifying Children with JSX {#specifying-children-with-jsx}
+### Визначення дочірніх елементів JSX {#specifying-children-with-jsx}
 
-If a tag is empty, you may close it immediately with `/>`, like XML:
+<!---If a tag is empty, you may close it immediately with `/>`, like XML:--->
+Якщо тег порожній, ви можете зразу закрити його за допомогою `/>`, як XML:
 
 ```js
 const element = <img src={user.avatarUrl} />;
 ```
 
-JSX tags may contain children:
+<!---JSX tags may contain children:--->
+Теги JSX можуть мати дочірні елементи:
 
 ```js
 const element = (
@@ -128,23 +140,27 @@ const element = (
 );
 ```
 
-### JSX Prevents Injection Attacks {#jsx-prevents-injection-attacks}
+### JSX попереджає зловмисне включення коду (Injection Attack) {#jsx-prevents-injection-attacks}
 
-It is safe to embed user input in JSX:
+<!---It is safe to embed user input in JSX:--->
+Можна безпечно вставляти дані, введенні користувачем, в JSX:
 
 ```js
 const title = response.potentiallyMaliciousInput;
-// This is safe:
+// Це безпечно:
 const element = <h1>{title}</h1>;
 ```
 
-By default, React DOM [escapes](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
+<!---By default, React DOM [escapes](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.--->
+По-замовчуванню, React DOM [екранує](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) будь-які значення, які включені в JSX, перед їх відображенням. Таким чином, це гарантує, що Ви ніколи на включите в код те, що явно не написане в Вашому додатку. Перед виводом все перетворюється на рядок. Це допомагає запобігти атакам [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
-### JSX Represents Objects {#jsx-represents-objects}
+### JSX - це об'єкти по суті {#jsx-represents-objects}
 
-Babel compiles JSX down to `React.createElement()` calls.
+<!---Babel compiles JSX down to `React.createElement()` calls.--->
+Babel компілює JSX до викликів `React.createElement()`.
 
-These two examples are identical:
+<!---These two examples are identical:--->
+Ці два приклади ідентичні між собою:
 
 ```js
 const element = (
@@ -162,10 +178,11 @@ const element = React.createElement(
 );
 ```
 
-`React.createElement()` performs a few checks to help you write bug-free code but essentially it creates an object like this:
+<!---`React.createElement()` performs a few checks to help you write bug-free code but essentially it creates an object like this:--->
+`React.createElement()` виконує кілька перевірок, які допоможуть вам написати код, що не містить помилок, але, по суті, він створює об'єкт, наведений нижче:
 
 ```js
-// Note: this structure is simplified
+// Примітка: ця структура спрощена
 const element = {
   type: 'h1',
   props: {
@@ -175,10 +192,13 @@ const element = {
 };
 ```
 
-These objects are called "React elements". You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.
+<!---These objects are called "React elements". You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.--->
+Ці об'єкти називаються "React елементами". Ви можете вважати їх описами того, що ви хочете бачити на екрані. React читає ці об'єкти і використовує їх для побудови DOM і підтримки його в актуальному стані.
 
-We will explore rendering React elements to the DOM in the next section.
+<!---We will explore rendering React elements to the DOM in the next section.--->
+Ми розглянемо вивід React елементів в DOM у наступному розділі.
 
->**Tip:**
+>**Порада:**
 >
->We recommend using the ["Babel" language definition](http://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
+<!--->We recommend using the ["Babel" language definition](http://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.--->
+>Ми рекомендуємо використовувати ["Babel" language definition](http://babeljs.io/docs/editors) для свого редактора, щоб код ES6 та JSX правильно виділявся. Даний веб-сайт використовує сумісну з нею колірну схему [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/).
