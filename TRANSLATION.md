@@ -22,9 +22,9 @@
 | attribute | атрибут |
 | batch | група оновлень |
 | batching | групування |
-| bug | баг, дефект |
+| bug | помилка, дефект |
 | bundler | бандлер |
-| callback | колбек |
+| callback | функція зворотнього виклику |
 | camelCase | *camelCase* |
 | child | дочірній |
 | child component | дочірній компонент |
