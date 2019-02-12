@@ -1,6 +1,6 @@
 ---
 id: components-and-props
-title: Components and Props
+title: Компоненти і пропси
 permalink: docs/components-and-props.html
 redirect_from:
   - "docs/reusable-components.html"
@@ -16,13 +16,16 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
+<!---Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).--->
+Компоненти дозволяють розділити інтерфейс користувача на незалежні, багаторазові частини, і сприймати їх як такі, що функціонують окремо один від одного. На цій сторінці викладений вступ до ідеї компонентів. Ви можете знайти [докладний опис API компонентів тут](/docs/react-component.html).
 
-Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
+<!---Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.--->
+Концептуально компоненти є подібними до функцій JavaScript. Вони приймають довільні входи (так звані, "пропси") і повертають елементи React, що описують те, що повинно з'явитися на екрані.
 
-## Function and Class Components {#function-and-class-components}
+## Функціональні компоненти та компоненти класів {#function-and-class-components}
 
-The simplest way to define a component is to write a JavaScript function:
+<!---The simplest way to define a component is to write a JavaScript function:--->
+Найпростішим способом визначення компонента є написання функції JavaScript:
 
 ```js
 function Welcome(props) {
@@ -30,9 +33,11 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions.
+<!---This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions.--->
+Ця функція є валідним компонентом React, оскільки вона приймає один "пропс" (який є властивістю) з даними і повертає елемент React. Такі компоненти ми називаємо "функціональними компонентами", оскільки вони буквально є JavaScript функціями.
 
-You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
+<!---You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:--->
+Ви також можете використовувати [ES6 класи](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), щоб визначити компонент:
 
 ```js
 class Welcome extends React.Component {
@@ -42,27 +47,33 @@ class Welcome extends React.Component {
 }
 ```
 
-The above two components are equivalent from React's point of view.
+<!---The above two components are equivalent from React's point of view.--->
+Два компоненти, що наведені вище, є еквівалентними з точки зору React.
 
-Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use function components for their conciseness.
+<!---Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use function components for their conciseness.--->
+Класи мають деякі додаткові особливості, які ми обговоримо в [наступних розділах](/docs/state-і-lifecycle.html). До тих пір ми будемо використовувати функціональні компоненти через їх лаконічність.
 
-## Rendering a Component {#rendering-a-component}
+## Рендеринг компонентів {#rendering-a-component}
 
-Previously, we only encountered React elements that represent DOM tags:
+<!---Previously, we only encountered React elements that represent DOM tags:--->
+Раніше ми зустрічали лише React-елементи, які представляють теги DOM:
 
 ```js
 const element = <div />;
 ```
 
-However, elements can also represent user-defined components:
+<!---However, elements can also represent user-defined components:--->
+Однак елементи можуть також представляти визначені користувачем компоненти:
 
 ```js
 const element = <Welcome name="Sara" />;
 ```
 
-When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object "props".
+<!---When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object "props".--->
+Коли React бачить елемент, що представляє визначений користувачем компонент, він передає атрибути JSX цьому компоненту як єдиний об'єкт. Ми називаємо цей об'єкт "пропси".
 
-For example, this code renders "Hello, Sara" on the page:
+<!---For example, this code renders "Hello, Sara" on the page:--->
+Наприклад, код нижче виводить на сторінці "Hello, Sara":
 
 ```js{1,5}
 function Welcome(props) {
@@ -76,7 +87,7 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://components-and-props/rendering-a-component)
+[Спробуйте на CodePen](codepen://components-and-props/rendering-a-component)
 
 Let's recap what happens in this example:
 
