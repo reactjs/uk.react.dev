@@ -1,8 +1,8 @@
 ---
-title: Declarative
+title: Декларативне програмування
 order: 0
 ---
 
-React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+React спрощує створення інтерактивних інтерфейсів для кожного стану вашої програми, a також ефективно оновлює та відтворює лише потрібні компоненти під час зміни даних.
 
-Declarative views make your code more predictable and easier to debug.
+Декларативні інтерфейси роблять ваш код більш передбачуваним і його набагато легше налагоджувати.
