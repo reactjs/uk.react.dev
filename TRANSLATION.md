@@ -29,7 +29,7 @@
 | child | дочірній |
 | child component | дочірній компонент |
 | class component | класовий компонент |
-| cleanup | прибирання |
+| cleanup | скидання |
 | code splitting | розділення коду |
 | context | контекст |
 | (un)controlled component | (не)контрольований компонент |
@@ -57,7 +57,7 @@
 | lifecycle method | метод життєвого циклу |
 | lifting state up | підйом стану, піднімати стан |
 | local state | внутрішній стан |
-| lowercase | в нижньому регістрі |
+| lowercase | у нижньому регістрі |
 | mock | макет |
 | (im)mutable | (не)змінний |
 | (im)mutability | (не)змінність |
@@ -65,11 +65,11 @@
 | mutate | мутувати |
 | Note | Примітка |
 | online | онлайн |
-| online playground | онлайн-майданчик |
+| online playground | онлайн пісочниця |
 | paint | фарбування, перефарбування |
 | prop | проп |
 | props | пропси |
-| production | виробництво |
+| production | продакшн |
 | production mode | режим виробництва |
 | reducer | редуктор |
 | reuse | повторне використання |
@@ -84,7 +84,7 @@
 | refs | посилання |
 | (previous/next) section | (попередній/наступний) розділ *(тільки в розділі Основні поняття)* |
 | shallow | поверхове(а) (порівняння, рівність), поверховий (рендер) |
-| side effect | сторонній ефект |
+| side effect | побічний ефект |
 | state | стан |
 | stateful component | компонент зі станом |
 | stateless component | компонент без стану |
