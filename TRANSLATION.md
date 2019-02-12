@@ -71,7 +71,7 @@
 | props | пропси |
 | production | продакшн |
 | production mode | продакшн-режим |
-| reducer | редуктор |
+| reducer | ред'юсер |
 | reuse | повторне використання |
 | React | React |
 | React element | React-елемент, елемент React |
@@ -98,4 +98,5 @@
 | UI | UI |
 | update | оновлення |
 | user interface | інтерфейс (додавайте «користувача» тільки якщо незрозуміло з контексту) |
+| valid | валідний |
 | Warning | Попередження |
