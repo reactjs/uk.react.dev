@@ -70,7 +70,7 @@
 | prop | проп |
 | props | пропси |
 | production | продакшн |
-| production mode | режим виробництва |
+| production mode | продакшн-режим |
 | reducer | редуктор |
 | reuse | повторне використання |
 | React | React |
