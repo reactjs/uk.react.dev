@@ -1,5 +1,5 @@
 ---
-title: Оновлення стану компоненту
+title: Компонент зі станом
 order: 1
 domid: timer-example
 ---
