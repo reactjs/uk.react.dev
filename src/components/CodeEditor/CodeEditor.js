@@ -56,7 +56,7 @@ class CodeEditor extends Component {
     if (showBabelErrorMessage) {
       errorMessage = (
         <span>
-          Не вийшло завантажити Babel.
+          Не вдалося завантажити Babel.
           <br />
           <br />
           Це може бути пов'язано з блокувальником реклами. Якщо ви використовуєте один з них,
