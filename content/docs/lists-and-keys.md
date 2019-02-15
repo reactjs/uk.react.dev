@@ -50,15 +50,7 @@ ReactDOM.render(
 
 Зазвичай, ви будете рендерити списки всередині якогось [компонента](/docs/components-and-props.html).
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
-=======
-Ми можемо отрефакторити попередній приклад з використанням компонента, котрий приймає масив `numbers` та виводить невпорядкований список елементів.
->>>>>>> Translated into Ukrainian lists-and-keys.md file
-=======
 Ми можемо відрефакторити попередній приклад з використанням компонента, котрий приймає масив `numbers` та виводить невпорядкований список елементів.
->>>>>>> Fixed translation in list-and-keys.md file
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
