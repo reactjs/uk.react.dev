@@ -8,7 +8,7 @@ next: forms.html
 
 Спочатку давайте згадаємо, як перетворити списки у JavaScript.
 
-У коді наведеному нижче, ми використовуємо функцію [`map()`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/map), щоб подвоїти значення в масиві `numbers`. Ми призначаємо новий масив, що повертається з `map()` до змінної `doubled` і виводимо її в консоль:
+У коді, наведеному нижче, ми використовуємо функцію [`map()`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/map), щоб подвоїти значення в масиві `numbers`. Ми призначаємо новий масив, що повертається з `map()` до змінної `doubled` і виводимо її в консоль:
 
 ```javascript{2}
 const numbers = [1, 2, 3, 4, 5];
@@ -51,10 +51,14 @@ ReactDOM.render(
 Зазвичай, ви будете рендерить списки всередині якогось [компонента](/docs/components-and-props.html).
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
 =======
 Ми можемо отрефакторити попередній приклад з використанням компонента, котрий приймає масив `numbers` та виводить невпорядкований список елементів.
 >>>>>>> Translated into Ukrainian lists-and-keys.md file
+=======
+Ми можемо відрефакторити попередній приклад з використанням компонента, котрий приймає масив `numbers` та виводить невпорядкований список елементів.
+>>>>>>> Fixed translation in list-and-keys.md file
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
