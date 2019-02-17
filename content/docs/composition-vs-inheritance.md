@@ -105,7 +105,7 @@ function Dialog(props) {
 function WelcomeDialog() {
   return (
     <Dialog
-      title="Welcome"
+      title="Ласкаво просимо"
       message="Дякуємо, що завітали на борт нашого космічного корабля!" />
   );
 }
