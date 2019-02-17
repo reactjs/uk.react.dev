@@ -6,11 +6,6 @@ permalink: docs/code-splitting.html
 
 ## Bundling {#bundling}
 
-Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/).
-Bundling is the process of following imported files and merging them into a
-single file: a "bundle". This bundle can then be included on a webpage to load
-an entire app at once.
 Більшість React додатків мають власні розбиті за "бандлами" файли використовуючи такі інструменти, як
 [Webpack](https://webpack.js.org/) або [Browserify](http://browserify.org/).
 Бандлінг – це процес імпортування файлів та об'єднання їх в один файл – бандл (модуль).
@@ -45,13 +40,12 @@ function add(a, b) {
 console.log(add(16, 26)); // 42
 ```
 
-> Зауважте:
+> Примітка:
 >
-> Наприкінці ваші бандли будуть
-> значно відрізнятися від наведених прикладів.
+> Наприкінці ваші бандли будуть значно відрізнятися від наведених прикладів.
 >
 
-Якщо ви використовуваєте [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), чи подібний засіб, ви будете мати налаштування для розбиття вашого додатку по бандлам (модулям) за допомогою Webpack з коробки.
+Якщо ви використовуваєте [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), чи подібний інструмент, ви будете мати налаштування для розбиття вашого додатку по бандлам (модулям) за допомогою Webpack з коробки.
 
 Якщо ви не використовуваєте нічого з наведеного чи подібного, вам доведеться налаштовувати бандлінг самостійно. Для прикладів ознайомтеся з 
 [Installation](https://webpack.js.org/guides/installation/) та
@@ -80,7 +74,7 @@ console.log(add(16, 26)); // 42
 
 ## `import()` {#import}
 
-Найращим способом, щоб впровадити роздріблювання коду є синтакс динамічніх `import()`
+Найращий спосіб впровадження роздріблювання коду — це синтакс динамічніх `import()`
 
 
 **До:**
@@ -99,7 +93,7 @@ import("./math").then(math => {
 });
 ```
 
-> Зауважте:
+> Примітка:
 >
 > Синтаксис динамічніх `import()` – це  
 > [пропозиція](https://github.com/tc39/proposal-dynamic-import) ECMAScript (JavaScript),
@@ -121,7 +115,7 @@ import("./math").then(math => {
 
 ## `React.lazy` {#reactlazy}
 
-> Зауважте:
+> Примітка:
 >
 > `React.lazy` та Suspense ще не доступні для server-side рендерінгу. Якщо ви хочете використовувати
 роздріблювання коду у server rendered додатку, ми рекомендуємо [Loadable Components](https://github.com/smooth-code/loadable-components). Він має гарну [інструкцію для роздріблення на бандли, використовуючи server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
@@ -202,10 +196,10 @@ function MyComponent() {
 }
 ```
 
-### Межі помилок {#error-boundaries}
+### Запобіжник {#error-boundaries}
 
 Якщо інший модуль не завантажився (наприклад, через вімкнений інтернет), це призведе до помилки. Ви можете обробити ці
-помилки, щоб показати приємний користувальницький досвід і керувати відновленням за допомогою [Меж помилок](/docs/error-boundaries.html). Після створення Межі Помилок, її можно використати де завгодно над lazy компонентами для того, щоб
+помилки, щоб показати приємний користувальницький досвід і керувати відновленням за допомогою [Запобіжнику](/docs/error-boundaries.html). Після створення запобіжнику, її можно використати де завгодно над lazy компонентами для того, щоб
 показати стан помилки, коли виникає проблема з мережою.
 
 ```js
