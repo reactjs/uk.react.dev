@@ -2,7 +2,7 @@
 id: react-component
 title: React.Component
 layout: docs
-category: Reference
+category: Довідник
 permalink: docs/react-component.html
 redirect_from:
   - "docs/component-api.html"
@@ -15,44 +15,44 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+Ця сторінка містить API довідник для визначення класового компонента React. Ми припускаємо, що ви знайомі з фундаментальними концептами React, такими як [Компоненти та пропси](/docs/components-and-props.html), а також [Стан і життєвий цикл](/docs/state-and-lifecycle.html). Якщо ні, то спочатку ознайомтеся з ними.
 
-## Overview {#overview}
+## Огляд {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+React дозволяє вам визначати компоненти як класи чи функції. Компоненти визначені як класи, наразі надають більше можливостей, які детально описані на цій сторінці. Щоб визначити класовий React-компонент, вам потрібно розширити `React.Component`:
 
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Привіт, {this.props.name}</h1>;
   }
 }
 ```
 
-The only method you *must* define in a `React.Component` subclass is called [`render()`](#render). All the other methods described on this page are optional.
+Єдиний метод, який ви *зобов'язані* визначити в підкласі `React.Component` називається [`render()`](#render). Всі інші методи описані на цій сторінці є необов'язковими.
 
-**We strongly recommend against creating your own base component classes.** In React components, [code reuse is primarily achieved through composition rather than inheritance](/docs/composition-vs-inheritance.html).
+**Ми наполегливо рекомендуємо, щоб ви утримались від створення власних базових класів компонента.** В компонентах React, [повторне використання коду в першу чергу досягається за допомогою композиції, а не наслідування](/docs/composition-vs-inheritance.html).
 
->Note:
+>Примітка:
 >
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+>React не змушує вас використовувати синтаксис класів ES6. Якщо ви намагаєтесь уникати його, натомість ви можете використовувати `create-react-class` модуль чи схожу власну абстракцію. Перегляньте [Використання React без ES6](/docs/react-without-es6.html) щоб дізнатися більше.
 
-### The Component Lifecycle {#the-component-lifecycle}
+### Життєвий цикл компонента {#the-component-lifecycle}
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+Кожен компонент має декілька "методів життєвого циклу", які ви можете перевизначати, щоб запускати код в певний момент часу. **Ви можете використовувати [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) як шпаргалку.** В списку нижче найчастіше вживані меоди життєвого циклу виділені **напівжирним**. Решта існують лише для випадків, що трапляються відносно нечасто.
 
-#### Mounting {#mounting}
+#### Монтування {#mounting}
 
-These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
+Ці методи викликаються в наступному порядку, коли екземпляр компонента створюється і вставляється в DOM:
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
->Note:
+>Примітка:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>Ці методи вважаються застарілими і ви маєте [уникати їх](/blog/2018/03/27/update-on-async-rendering.html) в новому коді:
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
@@ -176,7 +176,7 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 >  super(props);
 >  // Don't do this!
 >  this.state = { color: props.color };
->}
+>}category
 >```
 >
 >The problem is that it's both unnecessary (you can use `this.props.color` directly instead), and creates bugs (updates to the `color` prop won't be reflected in the state).
