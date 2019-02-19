@@ -26,7 +26,7 @@ next: state-and-lifecycle.html
 
 ```js
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>Привіт, {props.name}</h1>;
 }
 ```
 
@@ -37,7 +37,7 @@ function Welcome(props) {
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Привіт, {this.props.name}</h1>;
   }
 }
 ```
@@ -57,12 +57,12 @@ const element = <div />;
 Однак елементи можуть також представляти визначені користувачем компоненти:
 
 ```js
-const element = <Welcome name="Sara" />;
+const element = <Welcome name="Василина" />;
 ```
 
 Коли React бачить елемент, що представляє визначений користувачем компонент, він передає атрибути JSX цьому компоненту як єдиний об'єкт. Ми називаємо цей об'єкт "пропси".
 
-Наприклад, код нижче виводить на сторінці "Hello, Sara":
+Наприклад, код нижче виводить на сторінці "Привіт, Василина":
 
 ```js{1,5}
 function Welcome(props) {
@@ -99,15 +99,15 @@ ReactDOM.render(
 
 ```js{8-10}
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
+  return <h1>Привіт, {props.name}</h1>;
 }
 
 function App() {
   return (
     <div>
-      <Welcome name="Sara" />
-      <Welcome name="Cahal" />
-      <Welcome name="Edite" />
+      <Welcome name="Василина" />
+      <Welcome name="Михайло" />
+      <Welcome name="Вадим" />
     </div>
   );
 }
