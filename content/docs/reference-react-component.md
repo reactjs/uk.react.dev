@@ -56,9 +56,9 @@ class Welcome extends React.Component {
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
-#### Updating {#updating}
+#### Оновлення {#updating}
 
-An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
+Оновлення може бути спричиненим зміною пропсів чи стану. Ці методи викликаються в наступному порядку, коли компонент ререндериться:
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -66,50 +66,50 @@ An update can be caused by changes to props or state. These methods are called i
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
->Note:
+>Примітка:
 >
->These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>Ці методи вважаються застарілими і ви маєте [уникати їх](/blog/2018/03/27/update-on-async-rendering.html) в новому коді:
 >
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
-#### Unmounting {#unmounting}
+#### Демонтування {#unmounting}
 
-This method is called when a component is being removed from the DOM:
+Цей метод викликається, коли компонент видаляється з DOM:
 
 - [**`componentWillUnmount()`**](#componentwillunmount)
 
-#### Error Handling {#error-handling}
+#### Обробка Помилок {#error-handling}
 
-These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+Наступні методи викликаються якщо виникла помилка під час рендерингу, в методі житєвого циклу чи конструкторі будь-якого дочірнього компонента.
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
-### Other APIs {#other-apis}
+### Інші API {#other-apis}
 
-Each component also provides some other APIs:
+Кожен компонент також надає деякі інші API:
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
 
-### Class Properties {#class-properties}
+### Властивості класу {#class-properties}
 
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
-### Instance Properties {#instance-properties}
+### Властивості екземпляру {#instance-properties}
 
   - [`props`](#props)
   - [`state`](#state)
 
 * * *
 
-## Reference {#reference}
+## Довідник {#reference}
 
-### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
+### Часто використовані методи життєвого циклу {#commonly-used-lifecycle-methods}
 
-The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+Методи в цьому розділі охоплюють переважну більшість випадків з якими ви зустрінетесь під час створення React-компонентів. **Для наглядної ілюстрації, перегляньте [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -117,23 +117,23 @@ The methods in this section cover the vast majority of use cases you'll encounte
 render()
 ```
 
-The `render()` method is the only required method in a class component.
+Метод `render()` — єдиний необхідний метод в класових компонентах.
 
-When called, it should examine `this.props` and `this.state` and return one of the following types:
+При виклику він перевіряє `this.props` та `this.state` і повертає один з наступних типів:
 
-- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
-- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
-- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
-- **String and numbers.** These are rendered as text nodes in the DOM.
-- **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **React-елементи.** Зазвичай створені за допомогою [JSX](/docs/introducing-jsx.html). Наприклад, `<div />` і `<MyComponent />` є React-елементами, які інструктують React відрендерити вузол DOM або інший компонент визначений користувачем, відповідно.
+- **Масиви та фрагменти.** Дозволяють повернути декілька елементів під час рендерингу. Перегляньте документацію для [фрагментів](/docs/fragments.html), щоб дізнатися більше.
+- **Портали**. Дозволють рендерити дочірні елементи в іншому піддереві DOM. Перегляньте документацію для [порталів](/docs/portals.html), щоб дізнатися більше.
+- **Рядки і числа.** Будуть відрендерені як текстові вузли в DOM.
+- **Логічні значення чи `null`**. Не рендерять нічого. (Існують, здебільшого, для підтримки шаблону `return test && <Child />`, де `test` — логічне значення.)
 
-The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
+Функція `render()` має бути чистою, а це означає, що вона не змінює стан компонента, повертає однаковий результат при кожному виклиці і не взаємодіє з браузером напряму.
 
-If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
+Якщо вам потрібно взаємодіяти з браузером, виконуйте необхідні дії в `componentDidMount()` чи інших методах життєвого циклу. Збереження `render()` чистим, робить компонент легшим для розуміння.
 
-> Note
+> Примітка
 >
-> `render()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> `render()` не викличеться, якщо [`shouldComponentUpdate()`](#shouldcomponentupdate) повертає false.
 
 * * *
 
@@ -143,47 +143,47 @@ If you need to interact with the browser, perform your work in `componentDidMoun
 constructor(props)
 ```
 
-**If you don't initialize state and you don't bind methods, you don't need to implement a constructor for your React component.**
+**Якщо ви не ініціалізуєте стан і не прив'язуєте методи, вам не потрібно реалізовувати конструктор у вашому React-компоненті.**
 
-The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+Конструктор для React-компонента викликається до того, як він буде примонтований. При реалізації конструктора для підкласу `React.Component`, ви маєте викликати `super(props)` перед будь-яким іншим виразом. У іншому випадку, `this.props` буде невизначеним в конструкторі, що може призвести до помилок.
 
-Typically, in React constructors are only used for two purposes:
+Як правило, у React конструктори використовуються лише для двох цілей:
 
-* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
-* Binding [event handler](/docs/handling-events.html) methods to an instance.
+* Ініціалізація [локального стану](/docs/state-and-lifecycle.html) шляхом присвоєння об'єкта `this.state`.
+* Прив'язка методів [обробника подій](/docs/handling-events.html) до екземпляру.
 
-You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
+**Не варто викликати `setState()`** в `constructor()`. Натомість, якщо компонент потребує використання локального стану, **присвойте початкове значення `this.state`** безпосередньо в конструкторі:
 
 ```js
 constructor(props) {
   super(props);
-  // Don't call this.setState() here!
+  // Не викликайте this.setState() тут!
   this.state = { counter: 0 };
   this.handleClick = this.handleClick.bind(this);
 }
 ```
 
-Constructor is the only place where you should assign `this.state` directly. In all other methods, you need to use `this.setState()` instead.
+Конструктор — єдине місце, де ви маєте присвоювати `this.state` напряму. У всіх інших методах для цього слід використовувати `this.setState()`.
 
-Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
+Уникайте додавання будь-яких побічних ефектів чи підписок в конструкторі. Для таких випадків використовуйте `componentDidMount()`.
 
->Note
+>Примітка
 >
->**Avoid copying props into state! This is a common mistake:**
+>**Уникайте копіювання пропсів в стан! Це поширена помилка:**
 >
 >```js
 >constructor(props) {
 >  super(props);
->  // Don't do this!
+>  // Не робіть цього!
 >  this.state = { color: props.color };
->}category
+>}
 >```
 >
->The problem is that it's both unnecessary (you can use `this.props.color` directly instead), and creates bugs (updates to the `color` prop won't be reflected in the state).
+>Проблема в тім, що це є і надлишковим (ви можете просто використати `this.props.color` напряму), і приводить до помилок (оновлення пропу `color` не буде зафіксоване в стані).
 >
->**Only use this pattern if you intentionally want to ignore prop updates.** In that case, it makes sense to rename the prop to be called `initialColor` or `defaultColor`. You can then force a component to "reset" its internal state by [changing its `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) when necessary.
+>**Використовуйте даний підхід лише тоді, коли ви навмисно хочете ігнорувати оновлення пропу.** В такому випадку є сенс перейменувати проп в `initialColor` чи `defaultColor`. Потім ви можете змусити компонент "скинути" його внутрішній стан, [змінивши його `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key), за необхідності.
 >
->Read our [blog post on avoiding derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html) to learn about what to do if you think you need some state to depend on the props.
+>Прочитайте нашу [статтю в блозі про уникнення похідного стану](/blog/2018/06/07/you-probably-dont-need-derived-state.html),щоб дізнатися що робити, якщо вам потрібен деякий стан, залежний від пропсів.
 
 
 * * *
@@ -194,11 +194,11 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 componentDidMount()
 ```
 
-`componentDidMount()` is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+`componentDidMount()` викликається відразу після монтування компонента (вставки в DOM-дерево). Ініціалізація яка потребує DOM-вузли має знаходитись тут. Якщо вам потрібно завантажити дані з віддаленого сервера, це гарне місце для створення мережевого запиту.
 
-This method is a good place to set up any subscriptions. If you do that, don't forget to unsubscribe in `componentWillUnmount()`.
+Також цей метод — підходяще місце для налаштування підписок. Якщо ви це зробите, то не забудьте відписатись в `componentWillUnmount()`.
 
-You **may call `setState()` immediately** in `componentDidMount()`. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the `constructor()` instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+Ви **можете негайно викликати `setState()`** в `componentDidMount()`. Це запустить додатковий рендер, але це станеться до того, як браузер оновить екран. Це гарантує те, що навіть якщо `render()` в цьому випадку буде викликаний двічі, користувач не побачить проміжного стану. Обережно використовуйте цей підхід, тому що він часто приводить до проблем з продуктивністю. В більшості випадків, замість цього у вас має бути можливість присвоїти початковий стан у `constructor()`. Однак, це може бути необхідно для таких випадків як модальні вікна і спливаючі підказки, коли вам потрібно відрендерити щось, що залежить від розмірів та позиції вузла DOM.
 
 * * *
 
