@@ -58,7 +58,7 @@ class Welcome extends React.Component {
 
 #### Оновлення {#updating}
 
-Оновлення може бути спричиненим зміною пропсів чи стану. Ці методи викликаються в наступному порядку, коли компонент ререндериться:
+Оновлення може бути спричиненим зміною пропсів чи стану. Ці методи викликаються в наступному порядку, коли компонент повторно рендериться:
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -208,26 +208,26 @@ componentDidMount()
 componentDidUpdate(prevProps, prevState, snapshot)
 ```
 
-`componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render.
+`componentDidUpdate()` викликається відразу після оновлення. Цей метод не викликається під час першого рендеру.
 
-Use this as an opportunity to operate on the DOM when the component has been updated. This is also a good place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed).
+Використовуйте це як можливість працювати з DOM при оновленні компонента. Також це хороше місце для мережевих запитів, якщо ви порівнюєте поточні пропси з попередніми (наприклад, мережевий запит може ббути не потрібним, якщо проп не змінився).
 
 ```js
 componentDidUpdate(prevProps) {
-  // Typical usage (don't forget to compare props):
+  // Типове використання (не забудьте порівняти пропси):
   if (this.props.userID !== prevProps.userID) {
     this.fetchData(this.props.userID);
   }
 }
 ```
 
-You **may call `setState()` immediately** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+Ви **можете відразу викликати `setState()`** у `componentDidUpdate()`, але зверніь увагу, що цей виклик **має бути обгорнутий в умову** як у прикладі вище, інакше можна спричинити безкінечний цикл. Крім того, це спричинить додатковий повторний рендер який, хоч і не буде видимий користувачу, може вплинути на продуктивність компонента. Якщо ви намагаєтесь "дзеркально відобразити" певний стан в пропі, що приходять зверху, розгляньте безпосереднє використання пропу. Докладніше про те, [чому копіювання пропсів в стан спричиняє помилки](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
+Якщо ваш компонент реалізує метод життєвого циклу `getSnapshotBeforeUpdate()` (що трапляється доволі рідко), значення, яке він повертає, буде передане третім "snapshot" параметром в `componentDidUpdate()`. В іншому випадку цей параметр буде невизначеним.
 
-> Note
+> Примітка
 >
-> `componentDidUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
+> `componentDidUpdate()` не викликається якщо [`shouldComponentUpdate()`](#shouldcomponentupdate) повертає false.
 
 * * *
 
@@ -237,15 +237,15 @@ If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`.
+`componentWillUnmount()` викликається безпосередньо перед тим як компонент буде демонтовано і знищено. Виконуйте будь-яку необхідну очистку в цьому методі, таку як скасування таймерів, мережевих запитів чи підписок створених у `componentDidMount()`.
 
-You **should not call `setState()`** in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again.
+Ви **не повинні викликати `setState()`** у `componentWillUnmount()`, тому що компонент не буде повторно рендеритись. Як тільки екземпляр компонента буде демонтований, він ніколи не буде примонтованим знову.
 
 * * *
 
-### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
+### Рідковживані методи життєвого циклу {#rarely-used-lifecycle-methods}
 
-The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+Методи в цьому розділі відповідають малопоширеним випадкам використання. Вони є корисними час від часу, але швидше за все, більшість ваших компонентів не потребують жодного з них. **Ви можете побачити більшість наведених нижче методів на [цій діаграмі життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) якщо натиснете прапорець "Show less common lifecycles" зверху сторінки.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -254,17 +254,17 @@ The methods in this section correspond to uncommon use cases. They're handy once
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+Використовуйте `shouldComponentUpdate()`, щоб дати знати React, чи поточна зміна стану і пропсів не впливає на виведення компонента. Поведінка за замовчуванням полягає в повторному рендері при кожній зміні стану і в переважній більшості випадків ви маєте покладатись на поведінку за замовчуванням.
 
-`shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
+`shouldComponentUpdate()` викликається перед рендерингом при отриманні нових пропсів і стану. За замовчуванням має значення `true`. Цей метод не викликається при першому рендері чи коли використовується `forceUpdate()`.
 
-This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
+Цей метод існує лише в якості **[оптимізації продуктивності](/docs/optimizing-performance.html).** Не покладайтесь на нього, щоб "запобігти" рендерингу, оскільки це може привести до помилок. **Розгляньте можливість використая вбудованого [`PureComponent`](/docs/react-api.html#reactpurecomponent)** замість написання власного `shouldComponentUpdate()`. `PureComponent` виконує поверхневе порівняння пропсів та стану і зменшує шанс того, що ви пропустите необхідне оновлення.
 
-If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
+Якщо ви впевнені, що ви хочете реалізувати його власноруч, ви можете порівняти `this.props` із `nextProps` і `this.state` із `nextState`, і повернути `false`, щоб сказати React, що це оновлення можна пропустити. Зверніть увагу на те, що повернення `false` не запобігає повторному рендерингу дочірніх компонентів, коли *їх* стан змінюється.
 
-We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+Ми не рекомендуємо робити глибокі порівняння або використовувати `JSON.stringify()` у `shouldComponentUpdate()`. Це надзвичайно неефективно і негативно вплине на продуктивність.
 
-Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
+Наразі, якщо `shouldComponentUpdate()` повертає `false`, тоді [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), і [`componentDidUpdate()`](#componentdidupdate) не будуть викликані. В майбутньому React може розглядати `shouldComponentUpdate()` як пораду, а не строгу вимогу, і повернення `false` може спричинити повторний рендеринг компоненту, як зазвичай.
 
 * * *
 
@@ -274,22 +274,22 @@ Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_component
 static getDerivedStateFromProps(props, state)
 ```
 
-`getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
+`getDerivedStateFromProps` викликається безспосередньо перед викликом методу render, як при першому рендерингу, так і при всіх наступних оновленнях. Він має повернути об'єкт для оновлення стану або null, щоб не оновлювати нічого.
 
-This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+Цей метод існує для [малопширених випадків](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) коли стан залежить від змін в пропсах з часом. Наприклад, він може бути корисним для реалізації компоненту `<Transition>` котрий порівнює свої попередні і наступні дочірні елементи, щоб вирішити котрі з них потрібно анімувати для появи і зникнення.
 
-Deriving state leads to verbose code and makes your components difficult to think about.  
-[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+Успадкування стану приводить до багатослівного коду і робить ваші компоненти важчими для розуміння.
+[Впевніться, що ви знайомі з більш простими альтернативами:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
-* If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+* Якщо вам потрібно **виконати побічний ефект** (наприклад, вибірку даних чи анімацію) у відповідь на зміну пропсів, використовуйте натомість метод [`componentDidUpdate`](#componentdidupdate).
 
-* If you want to **re-compute some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+* Якщо вам потрібно **повторно обрахувати якісь дані лише коли проп змінюється**, [використовуйте натомість допоміжний метод мемоізації](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 
-* If you want to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+* Якщо ви хочете **"скинути" деякий стан при зміні пропу**, подумайте про те, щоб натомість зробити компонент [повністю контрольованим](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) або [повністю неконтрольованим з `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key).
 
-This method doesn't have access to the component instance. If you'd like, you can reuse some code between `getDerivedStateFromProps()` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+Цей метод не має доступу до екземпляра компонента. Якщо ви бажаєте, ви можете повторно використовувати код між `getDerivedStateFromProps()` й іншими методами класу витягуючи чисті функції пропсів і стану компонента за межі класу.
 
-Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
+Зверніть увагу, що цей метод викликається при *кожному* рендеринг, незалежно від причини. На відміну від `UNSAFE_componentWillReceiveProps`, котрий запускається лиш тоді, коли батьківський компонент викликає повторний рендеринг, а не як результат локального `setState`.
 
 * * *
 
@@ -299,41 +299,41 @@ Note that this method is fired on *every* render, regardless of the cause. This 
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
+`getSnapshotBeforeUpdate()` викликається безпосередньо перед  тим, як останній відрендерений вивід буде зафіксовано, наприклад в DOM. Він дозволяє вашому компоненту захопити деяку інформацію з DOM (наприклад, позицію прокрутки) перед її можливою зміною. Будь-яке значення повернуте цим методом життєвого циклу, буде передане як параметр в `componentDidUpdate()`.
 
-This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way.
+Цей випадок не поширений, але він може бути в UI, таких як ланцюжок повідомлень в чаті, який має оброблювати позицію прокрутки особливим чином.
 
-A snapshot value (or `null`) should be returned.
+Значення знімку (або `null`) має бути повернуте.
 
-For example:
+Наприклад:
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `getSnapshotBeforeUpdate` and `componentDidUpdate`).
+В наведених вище прикладах є важливим прочитати `scrollHeight` властивість у `getSnapshotBeforeUpdate`, тому що можуть виникати затримки між "рендер" етапами життєвого циклу (таких як `render`) і етапами "фіксації" життєвого циклу (такими як `getSnapshotBeforeUpdate` і `componentDidUpdate`).
 
 * * *
 
-### Error boundaries {#error-boundaries}
+### Запобіжники {#error-boundaries}
 
-[Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+[Запобіжники](/docs/error-boundaries.html) — це React-компоненти, котрі перехоплюють помилки JavaScript будь-де в їхньому дереві дочірніх компонентів, логують їх і відображають резервний UI замість невалідного дерева компонентів. Запобіжники перехоплюють помилки протягом рендерингу, в методах життєвого циклу і конструкторах всього дерева під ними.
 
-A class component becomes an error boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Updating state from these lifecycles lets you capture an unhandled JavaScript error in the below tree and display a fallback UI.
+Класовий компонент стає запобіжником, якщо він визначає один (або обидва) з методів життєвого циклу — `static getDerivedStateFromError()` чи `componentDidCatch()`. Оновлення стану з цих методів дозволить вам перехопити необроблену помилку JavaScript в дереві нижче і відобразити резервний UI.
 
-Only use error boundaries for recovering from unexpected exceptions; **don't try to use them for control flow.**
+Використовуйте запобіжники тільки для відновлення від несподіваних виключних ситуацій; **не намагайтесь використовувати їх для управління потоком.**
 
-For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
+Щоб дізнатися більше, перегляньте [*Обробка помилок в React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
-> Note
-> 
-> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+> Примітка
+>
+> Запобіжники перехоплюють лише помилки в компонентах у дереві **нижче** за них. Запобіжник не перехоплює помилки, що виникли в ньому.
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
 static getDerivedStateFromError(error)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives the error that was thrown as a parameter and should return a value to update state.
+Цей метод життєвого циклу викликається після того, як компонент-нащадок згенерує помилку.
+Як параметр він отримує помилку, що була згенерована і повинен повернути значення, щоб оновити стан.
 
 ```js{7-10,13-16}
 class ErrorBoundary extends React.Component {
@@ -343,25 +343,25 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Оновити стан, щоб наступний рендеринг показав резервний UI.
     return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      // Ви можете рендерити будь-який власний резервний UI
+      return <h1>Щось пішло не так.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
-> Note
+> Примітка
 >
-> `getDerivedStateFromError()` is called during the "render" phase, so side-effects are not permitted.
-For those use cases, use `componentDidCatch()` instead.
+> `getDerivedStateFromError()` викликається на "render" етапі, а отже побічні ефекти не допускаються.
+Для таких випадків використовуйте `componentDidCatch()`.
 
 * * *
 
@@ -371,15 +371,15 @@ For those use cases, use `componentDidCatch()` instead.
 componentDidCatch(error, info)
 ```
 
-This lifecycle is invoked after an error has been thrown by a descendant component.
-It receives two parameters:
+Цей метод життєвого циклу викликається після того, як компонент-нащадок згенерує помилку.
+Ві отримує два параметри:
 
-1. `error` - The error that was thrown.
-2. `info` - An object with a `componentStack` key containing [information about which component threw the error](/docs/error-boundaries.html#component-stack-traces).
+1. `error` - Помилка, яка була згенерована.
+2. `info` - Об'єкт з ключем `componentStack`, який містить [інформацію про компонент, який згенерував помилку](/docs/error-boundaries.html#component-stack-traces).
 
 
-`componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
-It should be used for things like logging errors:
+`componentDidCatch()` викликається на етапі "фіксації", а отже побічні ефекти допустимі.
+Він має використовуватись для таких речей, як логування помилок:
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {
@@ -389,12 +389,12 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI.
+    // Оновити стан, щоб наступний рендеринг показав резервний UI.
     return { hasError: true };
   }
 
   componentDidCatch(error, info) {
-    // Example "componentStack":
+    // Приклад "componentStack":
     //   in ComponentThatThrows (created by App)
     //   in ErrorBoundary (created by App)
     //   in div (created by App)
@@ -404,19 +404,19 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      // Ви можете рендерити будь-який власний резервний UI
+      return <h1>Щось пішло не так.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
-> Note
-> 
-> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
-> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+> Примітка
+>
+> При виникненні помилки, ви можете рендерити резервний UI `componentDidCatch()` викликом `setState`, але така поведінка буде вважатися застарілою в наступному релізі.
+> Натомість використовуйте `static getDerivedStateFromError()` для обробки резервного рендерингу.
 
 * * *
 
