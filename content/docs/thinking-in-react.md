@@ -1,6 +1,6 @@
 ---
 id: thinking-in-react
-title: Thinking in React
+title: Філософія React
 permalink: docs/thinking-in-react.html
 redirect_from:
   - 'blog/2013/11/05/thinking-in-react.html'
@@ -8,17 +8,17 @@ redirect_from:
 prev: composition-vs-inheritance.html
 ---
 
-React is, in our opinion, the premier way to build big, fast Web apps with JavaScript. It has scaled very well for us at Facebook and Instagram.
+З нашої точки зору, React — це відмінний спосіб писати великі і швидкі JavaScript-додатки. Він дуже добре масшатабувався для нас у Facebook та Instagram.
 
-One of the many great parts of React is how it makes you think about apps as you build them. In this document, we'll walk you through the thought process of building a searchable product data table using React.
+Одна з особливостей React – це те, як він змушує думати про додатки в процесі їх створення. У цьому документі ми покажемо мисленний процес створення таблиці продуктів з пошуком за допомогою React.
 
-## Start With A Mock {#start-with-a-mock}
+## Почнемо з макета {#start-with-a-mock}
 
-Imagine that we already have a JSON API and a mock from our designer. The mock looks like this:
+Уявіть, що у нас вже є JSON API і макет дизайну сайта. Він виглядає так:
 
-![Mockup](../images/blog/thinking-in-react-mock.png)
+![Мокап](../images/blog/thinking-in-react-mock.png)
 
-Our JSON API returns some data that looks like this:
+Наш JSON API повертає дані, які виглядають наступним чином:
 
 ```
 [
@@ -31,27 +31,27 @@ Our JSON API returns some data that looks like this:
 ];
 ```
 
-## Step 1: Break The UI Into A Component Hierarchy {#step-1-break-the-ui-into-a-component-hierarchy}
+## Крок 1: Розіб'ємо інтерфейс на компоненти {#step-1-break-the-ui-into-a-component-hierarchy}
 
-The first thing you'll want to do is to draw boxes around every component (and subcomponent) in the mock and give them all names. If you're working with a designer, they may have already done this, so go talk to them! Their Photoshop layer names may end up being the names of your React components!
+Перше, що треба зробити – це уявити кордони кожного компонента (і подкомпонента) в макеті та дати їм імена. Якщо ви працюєте з дизайнерами, цілком можливо, що вони вже якось називають компоненти – вам варто поспілкуватися! Наприклад, шари Photoshop часто підказують імена для React-компонентів.
 
-But how do you know what should be its own component? Just use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
+Але як вибрати, що є компонентом, а що ні? Це схоже на те, як ви вирішуєте, чи треба оголосити функцію або об'єкт. Можна застосувати [принцип єдиного обов'язку](https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF_%D1%94%D0%B4%D0%B8%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BE%D0%B1%D0%BE%D0%B2'%D1%8F%D0%B7%D0%BA%D1%83): кожний компонент в ідеалі повинен займатися якимось одним завданням. Якщо функціонал компонента збільшується з плином часу, його слід розбити на більш дрібні подкомпоненти.
 
-Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*, which means the work of separating your UI into components is often trivial. Just break it up into components that represent exactly one piece of your data model.
+Багато інтерфейсів показують модель даних JSON. Тому добре побудована модель, як правило, вже відображає призначений для користувача інтерфейс (а значить, і структуру компонентів). Інтерфейс і моделі даних часто мають схожу інформаційну архітектуру, тому розділити інтерфейс на частини не складає труднощів. Просто розбийте його на компоненти, кожен з яких відображає частину моделі даних.
 
-![Component diagram](../images/blog/thinking-in-react-components.png)
+![Діаграма компонентів](../images/blog/thinking-in-react-components.png)
 
-You'll see here that we have five components in our simple app. We've italicized the data each component represents.
+Ви побачите, що ми маємо п'ять компонентів у нашому простому додатку. Дані, які представляє кожен компонент, виділено курсивом.
 
-  1. **`FilterableProductTable` (orange):** contains the entirety of the example
-  2. **`SearchBar` (blue):** receives all *user input*
-  3. **`ProductTable` (green):** displays and filters the *data collection* based on *user input*
-  4. **`ProductCategoryRow` (turquoise):** displays a heading for each *category*
-  5. **`ProductRow` (red):** displays a row for each *product*
+  1. **`FilterableProductTable` (помаранчевий):** містить весь приклад
+  2. **`SearchBar` (синій):** приймає всі *вхідні дані користувача*
+  3. **`ProductTable` (зелений):** відображає та фільтрує *збір даних* на основі *вхідних даних користувача*
+  4. **`ProductCategoryRow` (бірюзовий):** відображає заголовок для кожної *категорії*
+  5. **`ProductRow` (червоний):** відображає рядок для кожного *продукту*
 
-If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (i.e. if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
+Зверніть увагу, що заголовок таблиці всередині `ProductTable` не є окремим компонентом. Відокремлювати його чи ні — це питання особистих уподобань. У цьому прикладі ми залишили його як частину `ProductTable`, оскільки він є малою частиною загального *збору даних*. Проте, якщо в майбутньому заголовок поповниться новими функціями(наприклад, можливістю сортувати товар), має сенс витягти його в самостійний компонент `ProductTableHeader`.
 
-Now that we've identified the components in our mock, let's arrange them into a hierarchy. This is easy. Components that appear within another component in the mock should appear as a child in the hierarchy:
+Тепер, коли ми визначили компоненти в нашому макеті, давайте розташуємо їх по порядку підпорядкованості. Це просто. Компоненти, які є частиною інших компонентів, в ієрархії відображаються як дочірні:
 
   * `FilterableProductTable`
     * `SearchBar`
@@ -59,24 +59,24 @@ Now that we've identified the components in our mock, let's arrange them into a 
       * `ProductCategoryRow`
       * `ProductRow`
 
-## Step 2: Build A Static Version in React {#step-2-build-a-static-version-in-react}
+## Крок 2: Побудуємо статичну версію в React {#step-2-build-a-static-version-in-react}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/BwWzwm">Thinking In React: Step 2</a> on <a href="http://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="BwWzwm" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Приклад коду <a href="https://codepen.io/gaearon/pen/BwWzwm">Філософія React: Крок 2</a> на <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-Now that you have your component hierarchy, it's time to implement your app. The easiest way is to build a version that takes your data model and renders the UI but has no interactivity. It's best to decouple these processes because building a static version requires a lot of typing and no thinking, and adding interactivity requires a lot of thinking and not a lot of typing. We'll see why.
+Тепер, коли всі компоненти розташовані в ієрархічному порядку, прийшов час реалізувати наш додаток. Найлегший спосіб – створити версію, яка використовує модель даних і рендерить інтерфейс, але не передбачає ніякої інтерактивності. Це корисно розділяти ці процеси. Написання статичної версії вимагає багато друкування і зовсім небагато мислення. З іншого боку, створення інтерактивності в додатку передбачає більш глибокий розумовий процес і лише частку рутинного друку. Ми розберемося, чому так виходить.
 
-To build a static version of your app that renders your data model, you'll want to build components that reuse other components and pass data using *props*. *props* are a way of passing data from parent to child. If you're familiar with the concept of *state*, **don't use state at all** to build this static version. State is reserved only for interactivity, that is, data that changes over time. Since this is a static version of the app, you don't need it.
+Щоб побудувати статичну версію додатка, яка буде показувати модель даних, нам потрібно створити компоненти, які використовують інші компоненти і передають дані через *пропси*. *Пропси* — це спосіб передачи даних від батьків до дочірних елементів. Якщо ви знайомі з поняттям *стану*, то для статичної версії це якраз те, що вам **використовувати не потрібно**. Стан передбачає собою дані, які змінюються з часом – інтерактивність. Так як ми працюємо над статичною версією додатка, то нам це не потрібно.
 
-You can build top-down or bottom-up. That is, you can either start with building the components higher up in the hierarchy (i.e. starting with `FilterableProductTable`) or with the ones lower in it (`ProductRow`). In simpler examples, it's usually easier to go top-down, and on larger projects, it's easier to go bottom-up and write tests as you build.
+Написання коду можна почати як зверху вниз (з великого `FilterableProductTable`), так і знизу до верху (з маленького `ProductRow`). Простіші додатки зручніше починати з компонентів, що знаходяться вище за ієрархією. У більш складних додатках зручніше в першу чергу створювати і тестувати підкомпоненти.
 
-At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. It's easy to see how your UI is updated and where to make changes since there's nothing complicated going on. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+Наприкінці цього кроку ви матимете бібліотеку компонентів, які можуть бути використовувані повторно. Так як це статична версія, то компоненти матимуть тільки методи `render()`. Компонент вище за ієрархією (`FilterableProductTable`) буде передавати модель даних через пропси. Якщо ви внесете зміни в базову модель даних і знову викличите `ReactDOM.render()`, то побачите зміни в інтерфейсі. Немає нічого складного у відостеженні змін та оновленні інтерфейсу. Завдяки **односторонньому потоку даних** (або *односторонньої прив'язці*) код працює швидко, але залишається зрозумілим.
 
-Simply refer to the [React docs](/docs/) if you need help executing this step.
+Якщо у вас залишилися питання щодо виконання цього кроку, зверніться до [документації React](/docs/).
 
-### A Brief Interlude: Props vs State {#a-brief-interlude-props-vs-state}
+### Невеликий відступ: як пропси відрізняються від стану {#a-brief-interlude-props-vs-state}
 
-There are two types of "model" data in React: props and state. It's important to understand the distinction between the two; skim [the official React docs](/docs/interactivity-and-dynamic-uis.html) if you aren't sure what the difference is.
+Існує два типи "моделі" даних у React: пропси та стан. Важливо, щоб ви розуміли різницю між ними, в іншому випадку зверніться до [офіційної документації React](/docs/interactivity-and-dynamic-uis.html).
 
 ## Step 3: Identify The Minimal (but complete) Representation Of UI State {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
