@@ -70,7 +70,11 @@ ReactDOM.render(
 
 [Спробуйте на CodePen](codepen://introducing-jsx)
 
+<<<<<<< HEAD
 Ми розбиваємо JSX на декілька рядків для покращення читабельності. Хоча це не потрібно, ми також рекомендуємо охоплювати його дужками, щоб уникнути проблем, пов'язаних з [автоматичною вставкою крапки з комою](http://stackoverflow.com/q/2846283).
+=======
+We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ### JSX також є виразом {#jsx-is-an-expression-too}
 
@@ -138,7 +142,11 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
+<<<<<<< HEAD
 За замовчуванням, React DOM [екранує](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) будь-які значення, що включені в JSX, перед їх рендерингом. Таким чином, це гарантує, що ви ніколи не включите в код те, що явно не написано у вашому додатку. Перед виводом все перетворюється на рядок. Це допомагає запобігти атакам [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting).
+=======
+By default, React DOM [escapes](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ### JSX - це об'єкти по суті {#jsx-represents-objects}
 
@@ -181,4 +189,8 @@ const element = {
 
 >**Порада:**
 >
+<<<<<<< HEAD
 >Ми рекомендуємо використовувати ["Babel" language definition](http://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся. Даний веб-сайт використовує сумісну колірну схему [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/).
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a

@@ -90,7 +90,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 [**Спробуйте на CodePen**](http://codepen.io/gaearon/pen/xEmzGg?editors=0010)
+=======
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 Ви маєте бути обережним із значенням `this` у JSX функціях зворотнього виклику. У JavaScript класові методи за замовчуванням не [зв'язані](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_objects/Function/bind). Якщо ви забудете зв'язати `this.handleClick` і передати її до `onClick`, `this` буде `undefined` під час виклику функції.
 

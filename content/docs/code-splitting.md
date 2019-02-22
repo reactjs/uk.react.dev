@@ -108,9 +108,14 @@ import("./math").then(math => {
 [інструкцію з розбиття коду](https://webpack.js.org/guides/code-splitting/) від Webpack.
 Конфігурація вашого Webpack повинна мати вигляд [схожий на цей](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
+<<<<<<< HEAD
 Під час використання [Babel](http://babeljs.io/), ви маєте пересвідчитись в тому,
 що Babel може парсити Синтаксис динамічніх import, виключаючи можливість його перетворювання.
 Для цього вам знадобиться [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
+=======
+When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
+parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
+>>>>>>> d615c5b7bcceef420c7f9246035f8ae3ba8ae11a
 
 ## `React.lazy` {#reactlazy}
 
