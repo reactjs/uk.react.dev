@@ -70,7 +70,7 @@ ReactDOM.render(
 
 [Спробуйте на CodePen](codepen://introducing-jsx)
 
-Ми розбиваємо JSX на декілька рядків для покращення читабельності. Хоча це не потрібно, ми також рекомендуємо охоплювати його дужками, щоб уникнути проблем, пов'язаних з [автоматичною вставкою крапки з комою](http://stackoverflow.com/q/2846283).
+Ми розбиваємо JSX на декілька рядків для покращення читабельності. Хоча це не потрібно, ми також рекомендуємо охоплювати його дужками, щоб уникнути проблем, пов'язаних з [автоматичною вставкою крапки з комою](https://stackoverflow.com/q/2846283).
 
 ### JSX також є виразом {#jsx-is-an-expression-too}
 
@@ -138,7 +138,7 @@ const title = response.potentiallyMaliciousInput;
 const element = <h1>{title}</h1>;
 ```
 
-За замовчуванням, React DOM [екранує](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) будь-які значення, що включені в JSX, перед їх рендерингом. Таким чином, це гарантує, що ви ніколи не включите в код те, що явно не написано у вашому додатку. Перед виводом все перетворюється на рядок. Це допомагає запобігти атакам [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting).
+За замовчуванням, React DOM [екранує](https://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) будь-які значення, що включені в JSX, перед їх рендерингом. Таким чином, це гарантує, що ви ніколи не включите в код те, що явно не написано у вашому додатку. Перед виводом все перетворюється на рядок. Це допомагає запобігти атакам [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting).
 
 ### JSX - це об'єкти по суті {#jsx-represents-objects}
 
@@ -181,4 +181,4 @@ const element = {
 
 >**Порада:**
 >
->Ми рекомендуємо використовувати ["Babel" language definition](http://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся. Даний веб-сайт використовує сумісну колірну схему [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/).
+>Ми рекомендуємо використовувати ["Babel" language definition](https://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся. Даний веб-сайт використовує сумісну колірну схему [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/).
