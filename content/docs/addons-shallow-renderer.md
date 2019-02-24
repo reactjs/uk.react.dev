@@ -1,23 +1,23 @@
 ---
 id: shallow-renderer
-title: Shallow Renderer
+title: Поверховий рендер
 permalink: docs/shallow-renderer.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Імрорт**
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow'; // ES6
-var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 with npm
+var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 з використанням npm
 ```
 
-## Overview {#overview}
+## Швидкий огляд {#overview}
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+Поверховий рендер може бути корисним під час модульного тестування React. Він дозволяє відрендерити лише "один рівень глибини" компоненту і підтвердити факт того, що буде повернено його рендер методом, не турбуючись про поведінку дочірніх компонентів, які не будуть створені або відрендерені.      
 
-For example, if you have the following component:
+Наприклад, якщо ви маєте наступний компонент:
 
 ```javascript
 function MyComponent() {
@@ -30,12 +30,12 @@ function MyComponent() {
 }
 ```
 
-Then you can assert:
+Тоді ви можете стверджувати:
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-// in your test:
+// У вашому тесті:
 const renderer = new ShallowRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
@@ -47,22 +47,22 @@ expect(result.props.children).toEqual([
 ]);
 ```
 
-Shallow testing currently has some limitations, namely not supporting refs.
+Поверхове тестування наразі має деякі обмеження, а саме — немає підтримки посиланнь.
 
-> Note:
+> Примітка:
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> Ми також рекомендуємо використання Enzyme's [API для поверхового рендеру](https://airbnb.io/enzyme/docs/api/shallow.html) — це зручніший  високорівневий API зі схожою функціональністю.
 
-## Reference {#reference}
+## Довідка {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}
 
-You can think of the shallowRenderer as a "place" to render the component you're testing, and from which you can extract the component's output.
+Ви можете сприймати shallowRenderer як "місце" для відображення компоненту, який ви тестуєте, і з якого ви можете отримати вивід компоненту.
 
-`shallowRenderer.render()` is similar to [`ReactDOM.render()`](/docs/react-dom.html#render) but it doesn't require DOM and only renders a single level deep. This means you can test components isolated from how their children are implemented.
+`shallowRenderer.render()` дуже схожий на [`ReactDOM.render()`](/docs/react-dom.html#render), але не використовує DOM і рендерить лише на один рівень глибини. Це означає, що ви можете проводити тестування компонентів, незалежно від реалізації дочірних компонентів.
 
 ### `shallowRenderer.getRenderOutput()` {#shallowrenderergetrenderoutput}
 
-After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
+Ви можете побачити, що виклик `shallowRenderer.render()` повертає поверхово відрендерений вивід у `shallowRenderer.getRenderOutput()`.
 
-You can then begin to assert facts about the output.
+Тепер ви можете стверджувати факти про формат виводу.
