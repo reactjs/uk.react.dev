@@ -78,71 +78,71 @@ prev: composition-vs-inheritance.html
 
 Існує два типи "моделі" даних у React: пропси та стан. Важливо, щоб ви розуміли різницю між ними, в іншому випадку зверніться до [офіційної документації React](/docs/interactivity-and-dynamic-uis.html).
 
-## Step 3: Identify The Minimal (but complete) Representation Of UI State {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
+## Крок 3: Визначимо мінімальне (але повноцінне) відображення стану інтерфейсу {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
-To make your UI interactive, you need to be able to trigger changes to your underlying data model. React makes this easy with **state**.
+Щоб зробити інтерфейс користувача інтерактивним, потрібно, щоб модель даних могла змінюватися з часом. У React це можливо за допомогою **стану**.
 
-To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, just keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, simply take the length of the TODO items array.
+Щоб правильно побудувати додаток, спочатку потрібно подумати про мінімальний набір змінних станів, які потрібні вашому додатку. Головне тут дотримуватися принципу розробки [DRY: *Don't Repeat Yourself* (укр. не повторюй себе)](https://uk.wikipedia.org/wiki/Don%27t_repeat_yourself). Визначте мінімальну кількість необхідного стану, який потрібен вашому додатку, все інше обчислюйте за необхідності. Наприклад, якщо ви створюєте список справ, тримайте масив пунктів списку під рукою – але не варто зберігати окремий стан для кількості справ у списку. Якщо треба відобразити кількість елементів, просто використовуйте довжину існуючого масиву.
 
-Think of all of the pieces of data in our example application. We have:
+Давайте перелічимо всі дані у нашому додатку. Ми маємо:
 
-  * The original list of products
-  * The search text the user has entered
-  * The value of the checkbox
-  * The filtered list of products
+  * Початковий список товарів
+  * Пошуковий запит, введений користувачем
+  * Значення прапорця
+  * Відфільтрований список товарів
 
-Let's go through each one and figure out which one is state. Simply ask three questions about each piece of data:
+Давайте розглянемо кожну частину даних і визначимо, яка з них є станом. Задайте собі наступні три питання:
 
-  1. Is it passed in from a parent via props? If so, it probably isn't state.
-  2. Does it remain unchanged over time? If so, it probably isn't state.
-  3. Can you compute it based on any other state or props in your component? If so, it isn't state.
+  1. Передається вона від батька через пропси? Якщо так, тоді, напевно, це не стан.
+  2. Залишається вона незмінною з часом? Якщо так, тоді, напевно, це не стан.
+  3. Чи можете ви обчислити її на основі будь-якої іншої частини стану або пропсів у своєму компоненті? Якщо так, тоді, напевно, це не стан.
 
-The original list of products is passed in as props, so that's not state. The search text and the checkbox seem to be state since they change over time and can't be computed from anything. And finally, the filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+Початковий список товарів передається через пропси, так що станом він бути не може. Пошуковий запит і прапорець змінюються з часом, також їх не можна обчислити з інших даних, тому вони цілком можуть бути станом. Наостанок, відфільтрований список товарів не є станом, так як його можна обчислити з оригінального списку, пошукового запиту та значення прапорця.
 
-So finally, our state is:
+У підсумку, наш стан виглядатиме наступним чином:
 
-  * The search text the user has entered
-  * The value of the checkbox
+  * Пошуковий запит
+  * Значення прапорця
 
-## Step 4: Identify Where Your State Should Live {#step-4-identify-where-your-state-should-live}
+## Крок 4: Визначимо, де має перебувати наш стан {#step-4-identify-where-your-state-should-live}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/qPrNQZ">Thinking In React: Step 4</a> on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="qPrNQZ" data-default-tab="js" data-user="lacker" data-embed-version="2" class="codepen">Приклад коду <a href="https://codepen.io/gaearon/pen/qPrNQZ">Філософія React: Крок 4</a> на <a href="https://codepen.io">CodePen</a>.</p>
 
-OK, so we've identified what the minimal set of app state is. Next, we need to identify which component mutates, or *owns*, this state.
+Отже, ми визначили мінімальний набір станів додатку. Далі нам потрібно з'ясувати, який з компонентів *володіє* станом або змінює його.
 
-Remember: React is all about one-way data flow down the component hierarchy. It may not be immediately clear which component should own what state. **This is often the most challenging part for newcomers to understand,** so follow these steps to figure it out:
+Пам'ятайте: у React односторонній потік даних, який сходить згори вниз в ієрархичному порядку. Спочатку може бути не зовсім ясно, який з компонентів повинен володіти яким станом. **На цьому етапі новачки спотикаються найчастіше,** тому дотримуйтеся цих вказівок, щоб розібратися:
 
-For each piece of state in your application:
+Для кожної частини стану в додатку:
 
-  * Identify every component that renders something based on that state.
-  * Find a common owner component (a single component above all the components that need the state in the hierarchy).
-  * Either the common owner or another component higher up in the hierarchy should own the state.
-  * If you can't find a component where it makes sense to own the state, create a new component simply for holding the state and add it somewhere in the hierarchy above the common owner component.
+  * Визначте компоненти, які рендерять щось на основі цього стану.
+  * Знайдіть спільний чільний компонент (компонент, розташований над іншими компонентами, яким потрібен цей стан).
+  * Або спільний чільний компонент, або будь-який компонент, що стоїть вище за ієрархією, повинен містити стан.
+  * Якщо вам не вдається знайти відповідний компонент, створіть один виключно для стану та розмістить його вище за ієрархією над загальним чільним компонентом.
 
-Let's run through this strategy for our application:
+Давайте застосуємо цю стратегію на прикладі нашого додатку:
 
-  * `ProductTable` needs to filter the product list based on state and `SearchBar` needs to display the search text and checked state.
-  * The common owner component is `FilterableProductTable`.
-  * It conceptually makes sense for the filter text and checked value to live in `FilterableProductTable`
+  * Завдання `ProductTable` – відфільтрувати список товарів, базуючись на стані, а завдання `SearchBar` – відобразити стан для пошукового запиту та прапорця.
+  * Спільний чільний компонент для обох – `FilterableProductTable`.
+  * За ідеєю, є сенс утримувати текст фільтра та значення прапорця в  `FilterableProductTable`
 
-Cool, so we've decided that our state lives in `FilterableProductTable`. First, add an instance property `this.state = {filterText: '', inStockOnly: false}` to `FilterableProductTable`'s `constructor` to reflect the initial state of your application. Then, pass `filterText` and `inStockOnly` to `ProductTable` and `SearchBar` as a prop. Finally, use these props to filter the rows in `ProductTable` and set the values of the form fields in `SearchBar`.
+Отже, ми вирішили розташувати наш стан у `FilterableProductTable`. Перше, що потрібно зробити - додати властивість `this.state = {filterText: '', inStockOnly: false}` до конструктора `FilterableProductTable`, щоб відобразити початковий стан додатку. Після цього, передайте `filterText` та `inStockOnly` до `ProductTable` і `SearchBar` через пропси. Нарешті, використайте пропси для фільтрації рядків у `ProductTable` і визначення значень полів форми `SearchBar`.
 
-You can start seeing how your application will behave: set `filterText` to `"ball"` and refresh your app. You'll see that the data table is updated correctly.
+Ви помітите зміни у поведінці вашого додатку: задайте значення `"ball"` для `filterText` та обновіть сторінку.Ви побачите відповідні зміни в таблиці даних.
 
-## Step 5: Add Inverse Data Flow {#step-5-add-inverse-data-flow}
+## Крок 5: Додамо зворотний потік даних {#step-5-add-inverse-data-flow}
 
-<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">See the Pen <a href="https://codepen.io/gaearon/pen/LzWZvb">Thinking In React: Step 5</a> on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="600" data-theme-id="0" data-slug-hash="LzWZvb" data-default-tab="js,result" data-user="rohan10" data-embed-version="2" data-pen-title="Thinking In React: Step 5" class="codepen">Приклад коду <a href="https://codepen.io/gaearon/pen/LzWZvb">Філософія React: Крок 5</a> на <a href="https://codepen.io">CodePen</a>.</p>
 
-So far, we've built an app that renders correctly as a function of props and state flowing down the hierarchy. Now it's time to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
+Поки що наш додаток рендериться в залежності від пропсів і стану, що передаються вниз по ієрархії. Тепер ми забезпечимо потік даних у зворотний бік: наше завдання зробити так, щоб компоненти форми у самому низу ієрархії оновлювали стан у `FilterableProductTable`.
 
-React makes this data flow explicit to make it easy to understand how your program works, but it does require a little more typing than traditional two-way data binding.
+Потік даних у React - односторонній. Так простіше зрозуміти, як працює додаток, але нам потрібно трохи більше коду, ніж в традиційній двосторонній прив'язці даних.
 
-If you try to type or check the box in the current version of the example, you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+Якщо ви спробуєте ввести текст у поле пошуку або встановити прапорець в даній версії прикладу, то побачите, що React ігнорує будь-яке введення. Це навмисне, так як раніше ми прирівняли значення пропа `value` в `input` до `state` в `FilterableProductTable`.
 
-Let's think about what we want to happen. We want to make sure that whenever the user changes the form, we update the state to reflect the user input. Since components should only update their own state, `FilterableProductTable` will pass callbacks to `SearchBar` that will fire whenever the state should be updated. We can use the `onChange` event on the inputs to be notified of it. The callbacks passed by `FilterableProductTable` will call `setState()`, and the app will be updated.
+Давайте поміркуємо, як ми хочемо змінити поведінку. Нам потрібно, щоб при змінах пошукової форми змінювався стан введення. Так як компоненти повинні оновлювати тільки той стан, що належить їм, `FilterableProductTable` передасть функцію зворотнього виклику у `SearchBar`. У свою чергу, `SearchBar` викликатиме цю функцію зворотнього виклику кожен раз, коли треба оновити стан. Щоб отримувати повідомлення про зміни елементів форми, ми можемо використовувати подію `onChange`. Функції зворотнього виклику, передані з `FilterableProductTable` викличуть `setState()`, і додаток оновиться.
 
-Though this sounds complex, it's really just a few lines of code. And it's really explicit how your data is flowing throughout the app.
+Бодай звучить складно, але це займає всього кілька рядків коду. А головне, потік даних через додаток залишається прямим і зрозумілим.
 
-## And That's It {#and-thats-it}
+## От і все {#and-thats-it}
 
-Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's extremely easy to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+Сподіваємося, що цей приклад допоможе вам отримати краще уявлення про те, як підійти до створення компонентів і додатків у React. Хоча цей процес і використовує трохи більше коду, пам'ятайте: код читають частіше, ніж пишуть. А такий модульний та прямий код, як в нашому додатку, читається дуже легко. Коли ви почнете створювати великі бібліотеки компонентів, ви зможете по-справжньому оцінити прямолінійність і зв'язаність React, а повторно використовувані компоненти зроблять ваш код набагато менше. :)
