@@ -6,13 +6,13 @@ layout: docs
 category: Reference
 ---
 
-This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+У цьому довідковому матеріалі описана огортка `SyntheticEvent`, яка є частиною системи подій React. Дивіться інструкцію [Обробка подій](/docs/handling-events.html) для більш детальної інформації.
 
-## Overview {#overview}
+## Огляд {#overview}
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+Ваші обробники подій отримують примірник `SyntheticEvent`, це кроссбраузерна огортка над рідною подією браузеру. Вона має такий же інтерфейс, як і браузерна подія, включаючи методи `stopPropagation()` та `preventDefault()`. Ця огортка допомагає спрацьовувати різним подіям однаково у всіх браузерах.
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+Якщо ви освідомили, що вам з якоїсь причини потрібно отримати рідну браузерну подію, то ви просто можете використати атрибут `nativeEvent`. Нижче перелік атрибутів об'єкта `SyntheticEvent`:
 
 ```javascript
 boolean bubbles
@@ -31,19 +31,19 @@ number timeStamp
 string type
 ```
 
-> Note:
+> Примітка:
 >
-> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+> Починаючи з версії v0.14, повернення `false` з обробнику подій більше не зупиняє ефект спливання. Замість цього вам потрібно самотужки викликати `e.stopPropagation()` або `e.preventDefault()`.
 
-### Event Pooling {#event-pooling}
+### Пул подій {#event-pooling}
 
-The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+Події `SyntheticEvent` містяться в пулі. Це означає, що об'єкт `SyntheticEvent` буде використаний знову, а також всі його властивості будуть очищені після виклику обробника події.
+Це було зроблено з міркувань збереження продуктивності.
+Саме цьому у нас немає можливості використовувати синтетичні події асинхронно.
 
 ```javascript
 function onClick(event) {
-  console.log(event); // => nullified object.
+  console.log(event); // => очищений об'єкт.
   console.log(event.type); // => "click"
   const eventType = event.type; // => "click"
 
@@ -52,54 +52,54 @@ function onClick(event) {
     console.log(eventType); // => "click"
   }, 0);
 
-  // Won't work. this.state.clickEvent will only contain null values.
+  // Не спрацює. this.state.clickEvent зберігає тільки пусті значення.
   this.setState({clickEvent: event});
 
-  // You can still export event properties.
+  // Ви все ще можете ексопртувати властивості події.
   this.setState({eventType: event.type});
 }
 ```
 
-> Note:
+> Примітка:
 >
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+> Якщо ви всетаки хочете звернутися до властивостей події асинхронно, вам необхідно зробити виклик `event.persist()` на події. Тоді ця подія буде вилучена з пулу, в свою чергу це дозволить вашому коду утримувати посилання на цю подію.
 
-## Supported Events {#supported-events}
+## Підтримувані події {#supported-events}
 
-React normalizes events so that they have consistent properties across different browsers.
+React нормалізує події таким чином, що вони мають одинакові властивості в усіх браузерах.
 
-The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+Обробники, які перелічені нижче, викликаються на фазі спливання. Для того щоб зареєструвати подію на фазі перехоплення (capture), просто додайте `Capture` до імені події; наприклад, замість використання `onClick` використовуйте `onClickCapture`, для того щоб опрацювати подію на стадії перехоплення.
 
-- [Clipboard Events](#clipboard-events)
-- [Composition Events](#composition-events)
-- [Keyboard Events](#keyboard-events)
-- [Focus Events](#focus-events)
-- [Form Events](#form-events)
-- [Mouse Events](#mouse-events)
-- [Pointer Events](#pointer-events)
-- [Selection Events](#selection-events)
-- [Touch Events](#touch-events)
-- [UI Events](#ui-events)
-- [Wheel Events](#wheel-events)
-- [Media Events](#media-events)
-- [Image Events](#image-events)
-- [Animation Events](#animation-events)
-- [Transition Events](#transition-events)
-- [Other Events](#other-events)
+- [Події буфера обміну](#clipboard-events)
+- [Композиційні події](#composition-events)
+- [Події клавіатури](#keyboard-events)
+- [Події фокусу](#focus-events)
+- [Події форм](#form-events)
+- [Події миші](#mouse-events)
+- [Події курсору](#pointer-events)
+- [Події вибору](#selection-events)
+- [Сенсорні події](#touch-events)
+- [Події UI](#ui-events)
+- [Події коліщатка миші](#wheel-events)
+- [Події медіа-елементів](#media-events)
+- [Події зображень](#image-events)
+- [Події анімацій](#animation-events)
+- [Події переходів](#transition-events)
+- [Інші події](#other-events)
 
 * * *
 
-## Reference {#reference}
+## Довідка {#reference}
 
-### Clipboard Events {#clipboard-events}
+### Події буфера обміну {#clipboard-events}
 
-Event names:
+Назви подій:
 
 ```
 onCopy onCut onPaste
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 DOMDataTransfer clipboardData
@@ -107,15 +107,15 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events {#composition-events}
+### Композиційні події {#composition-events}
 
-Event names:
+Назви подій:
 
 ```
 onCompositionEnd onCompositionStart onCompositionUpdate
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 string data
@@ -124,15 +124,15 @@ string data
 
 * * *
 
-### Keyboard Events {#keyboard-events}
+### Події клавіатури {#keyboard-events}
 
-Event names:
+Назви подій:
 
 ```
 onKeyDown onKeyPress onKeyUp
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 boolean altKey
@@ -149,21 +149,21 @@ boolean shiftKey
 number which
 ```
 
-The `key` property can take any of the values documented in the [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values).
+Властивість `key` може приймати будь-які із задокументованих в [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values) значень.
 
 * * *
 
-### Focus Events {#focus-events}
+### Події фокусу {#focus-events}
 
-Event names:
+Назви подій:
 
 ```
 onFocus onBlur
 ```
 
-These focus events work on all elements in the React DOM, not just form elements.
+Ці події працюють зі всіма React DOM елементами, а не тільки з елементами форм.
 
-Properties:
+Властивості:
 
 ```javascript
 DOMEventTarget relatedTarget
@@ -171,21 +171,21 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events {#form-events}
+### Події форм {#form-events}
 
-Event names:
+Назви подій:
 
 ```
 onChange onInput onInvalid onSubmit
 ```
 
-For more information about the onChange event, see [Forms](/docs/forms.html).
+Для більш детальної інформації про подію onChange, відвідайте [Форми](/docs/forms.html).
 
 * * *
 
-### Mouse Events {#mouse-events}
+### Події миші {#mouse-events}
 
-Event names:
+Назви подій:
 
 ```
 onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
@@ -193,9 +193,9 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-The `onMouseEnter` and `onMouseLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+Події `onMouseEnter` та `onMouseLeave` спливають з полишеного елементу до активного, замість звичайного процесу сплиття й не мають фази перехоплення.
 
-Properties:
+Властивості:
 
 ```javascript
 boolean altKey
@@ -216,20 +216,20 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events {#pointer-events}
+### Події курсору {#pointer-events}
 
-Event names:
+Назви подій:
 
 ```
 onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+Події `onPointerEnter` та `onPointerLeave` спливають з полишеного елементу до активного, замість звичайного процесу сплиття й не мають фази перехоплення.
 
-Properties:
+Властивості:
 
-As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+Як вказано в [W3 spec](https://www.w3.org/TR/pointerevents/), події курсору наслідують [Mouse Events](#mouse-events) з наступними властивостями:
 
 ```javascript
 number pointerId
@@ -244,17 +244,17 @@ string pointerType
 boolean isPrimary
 ```
 
-A note on cross-browser support:
+Примітка з приводу кроссбраузерності:
 
-Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+Події курсору ще не є підримуваними у всіх браузерах (на момент написання цієї статті підтримуються браузери: Chrome, Firefox, Edge, and Internet Explorer). React свідомо не поліфілізує підтримку в інших браузерах тому що це значно би збільшило розмір `react-dom`.
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+Якщо вашому застосунку необхідно використовувати події курсору, то ми радимо встановити сторонній поліфіл.
 
 * * *
 
-### Selection Events {#selection-events}
+### Події вибору {#selection-events}
 
-Event names:
+Назви подій:
 
 ```
 onSelect
@@ -262,15 +262,15 @@ onSelect
 
 * * *
 
-### Touch Events {#touch-events}
+### Сенсорні події {#touch-events}
 
-Event names:
+Назви подій:
 
 ```
 onTouchCancel onTouchEnd onTouchMove onTouchStart
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 boolean altKey
@@ -285,15 +285,15 @@ DOMTouchList touches
 
 * * *
 
-### UI Events {#ui-events}
+### Події UI {#ui-events}
 
-Event names:
+Назви подій:
 
 ```
 onScroll
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 number detail
@@ -302,15 +302,15 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events {#wheel-events}
+### Події коліщатка миші {#wheel-events}
 
-Event names:
+Назви подій:
 
 ```
 onWheel
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 number deltaMode
@@ -321,9 +321,9 @@ number deltaZ
 
 * * *
 
-### Media Events {#media-events}
+### Події медіа-елементів {#media-events}
 
-Event names:
+Назви подій:
 
 ```
 onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted
@@ -334,9 +334,9 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events {#image-events}
+### Події зображень {#image-events}
 
-Event names:
+Назви подій:
 
 ```
 onLoad onError
@@ -344,15 +344,15 @@ onLoad onError
 
 * * *
 
-### Animation Events {#animation-events}
+### Події анімацій {#animation-events}
 
-Event names:
+Назви подій:
 
 ```
 onAnimationStart onAnimationEnd onAnimationIteration
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 string animationName
@@ -362,15 +362,15 @@ float elapsedTime
 
 * * *
 
-### Transition Events {#transition-events}
+### Події переходів {#transition-events}
 
-Event names:
+Назви подій:
 
 ```
 onTransitionEnd
 ```
 
-Properties:
+Властивості:
 
 ```javascript
 string propertyName
@@ -380,9 +380,9 @@ float elapsedTime
 
 * * *
 
-### Other Events {#other-events}
+### Інші події {#other-events}
 
-Event names:
+Назви подій:
 
 ```
 onToggle
