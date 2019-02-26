@@ -17,7 +17,7 @@ class ScrollingList extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     // Якщо ми маємо значення знімку, ми лише додаємо нові позиції.
     // Налаштувати прокрутку так, що ці нові позиції не зсунуть попередні з зони огляду.
-    // (snapshot тут - це значення повернуте з getSnapshotBeforeUpdate)
+    // (snapshot тут — це значення повернуте з getSnapshotBeforeUpdate)
     if (snapshot !== null) {
       const list = this.listRef.current;
       list.scrollTop = list.scrollHeight - snapshot;
