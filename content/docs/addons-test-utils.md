@@ -15,7 +15,7 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 з npm
 
 ## Огляд {#overview}
 
-`ReactTestUtils` спрощують тестування React-компонентів у вибраному вами фреймворку для тестування. У Facebook ми використовуємо [Jest](https://facebook.github.io/jest/) для безболісного JavaScript тестування. Дізнайтеся як розпочати роботу із Jest на сайті [Jest React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
+`ReactTestUtils` спрощують тестування React-компонентів в обраному вами фреймворку для тестування. У Facebook ми використовуємо [Jest](https://facebook.github.io/jest/) для безболісного JavaScript-тестування. Дізнайтеся, як розпочати роботу із Jest на сайті [Jest React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
 
 > Примітка:
 >
