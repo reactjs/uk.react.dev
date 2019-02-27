@@ -21,7 +21,7 @@
 - title: Tools
   items:
     - id: debugging-tools
-      title: Debugging
+      title: Налагодження
     - id: component-workbenches
       title: Component Workbenches
     - id: jsx-integrations
