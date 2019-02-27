@@ -50,6 +50,7 @@
 | hook | хук *(з маленької літери)* |
 | incapsulation | інкапсуляція |
 | incapsulated | інкапсульований |
+| instance | екземпляр |
 | key | ключ |
 | lazy initialization | ледача ініціалізація |
 | library | бібліотека |
