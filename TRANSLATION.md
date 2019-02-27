@@ -64,6 +64,7 @@
 | (im)mutability | (не)змінність |
 | (un)mount | (де)монтувати |
 | mutate | мутувати |
+| node | вузол |
 | Note | Примітка |
 | online | онлайн |
 | online playground | онлайн пісочниця |
