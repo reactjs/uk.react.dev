@@ -2,7 +2,7 @@
 id: react-component
 title: React.Component
 layout: docs
-category: Довідка
+category: Reference
 permalink: docs/react-component.html
 redirect_from:
   - "docs/component-api.html"
