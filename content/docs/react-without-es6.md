@@ -1,10 +1,10 @@
 ---
 id: react-without-es6
-title: React Without ES6
+title: React без ES6
 permalink: docs/react-without-es6.html
 ---
 
-Normally you would define a React component as a plain JavaScript class:
+Зазвичай, ви б оголосили React-компонент в виді JavaScript-класу:
 
 ```javascript
 class Greeting extends React.Component {
@@ -14,8 +14,7 @@ class Greeting extends React.Component {
 }
 ```
 
-If you don't use ES6 yet, you may use the `create-react-class` module instead:
-
+Якщо ви ще не використовуєте синтаксис ES6, то ви можете використати пакет `create-react-class`:
 
 ```javascript
 var createReactClass = require('create-react-class');
@@ -26,11 +25,11 @@ var Greeting = createReactClass({
 });
 ```
 
-The API of ES6 classes is similar to `createReactClass()` with a few exceptions.
+API ES6-класів схожа до `createReactClass()` з деякими виключеннями.
 
-## Declaring Default Props {#declaring-default-props}
+## Оголошення властивостей компонента {#declaring-default-props}
 
-With functions and ES6 classes `defaultProps` is defined as a property on the component itself:
+За допомогою функцій і класів ES6 `defaultProps` оголошуються як властивість самого компонента:
 
 ```javascript
 class Greeting extends React.Component {
@@ -38,17 +37,17 @@ class Greeting extends React.Component {
 }
 
 Greeting.defaultProps = {
-  name: 'Mary'
+  name: 'Марія'
 };
 ```
 
-With `createReactClass()`, you need to define `getDefaultProps()` as a function on the passed object:
+Використовуючи `createReactClass()`, вам необхідно встановити метод `getDefaultProps()` в переданному об'єкті:
 
 ```javascript
 var Greeting = createReactClass({
   getDefaultProps: function() {
     return {
-      name: 'Mary'
+      name: 'Марія'
     };
   },
 
