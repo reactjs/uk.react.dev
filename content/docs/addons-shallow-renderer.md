@@ -53,6 +53,7 @@ expect(result.props.children).toEqual([
 >
 > Ми також рекомендуємо використання Enzyme's [API для поверхового рендеру](https://airbnb.io/enzyme/docs/api/shallow.html) — це зручніший  високорівневий API зі схожою функціональністю.
 
+
 ## Довідка {#reference}
 
 ### `shallowRenderer.render()` {#shallowrendererrender}

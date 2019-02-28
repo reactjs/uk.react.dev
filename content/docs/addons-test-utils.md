@@ -1,27 +1,27 @@
 ---
 id: test-utils
-title: Test Utilities
+title: Тестові утиліти
 permalink: docs/test-utils.html
 layout: docs
 category: Reference
 ---
 
-**Importing**
+**Імпорт**
 
 ```javascript
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
-var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
+var ReactTestUtils = require('react-dom/test-utils'); // ES5 з npm
 ```
 
-## Overview {#overview}
+## Огляд {#overview}
 
-`ReactTestUtils` makes it easy to test React components in the testing framework of your choice. At Facebook we use [Jest](https://facebook.github.io/jest/) for painless JavaScript testing. Learn how to get started with Jest through the Jest website's [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
+`ReactTestUtils` спрощують тестування React-компонентів в обраному вами фреймворку для тестування. У Facebook ми використовуємо [Jest](https://facebook.github.io/jest/) для безболісного JavaScript-тестування. Дізнайтеся, як розпочати роботу із Jest на сайті [Jest React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
 
-> Note:
+> Примітка:
 >
-> We recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to enable and encourage writing tests that use your components as the end users do.
+> Ми рекомендуємо використовувати [`react-testing-library`](https://git.io/react-testing-library), котра спроектована для заохочення написання тестів та використовує ваші компоненти так, як це роблять кінцеві користувачі.
 >
-> Alternatively, Airbnb has released a testing utility called [Enzyme](http://airbnb.io/enzyme/), which makes it easy to assert, manipulate, and traverse your React Components' output.
+> Альтернативно, Airbnb випустила тестову утиліту, що називається [Enzyme](http://airbnb.io/enzyme/), котра легко дозволяє затверджувати, маніпулювати і переміщувати вихідні дані ваших React-компонентів.
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -40,17 +40,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
  - [`renderIntoDocument()`](#renderintodocument)
  - [`Simulate`](#simulate)
 
-## Reference {#reference}
+## Довідка {#reference}
 
 ### `act()` {#act}
 
-To prepare a component for assertions, wrap the code rendering it and performing updates inside an `act()` call. This makes your test run closer to how React works in the browser.
+Для того, щоб підготувати компонент до затвердження, обгорніть код, що його відображає та виконайте оновлення всередині виклику `act()`. Це робить ваш тест подібним до того, як React працює у браузері.
 
->Note
+>Примітка
 >
->If you use `react-test-renderer`, it also provides an `act` export that behaves the same way.
+>Якщо ви використовуєте `react-test-renderer`, він також експортує `act`, що працює аналогічно.
 
-For example, let's say we have this `Counter` component:
+Для прикладу, у нас є компонент `Counter`:
 
 ```js
 class App extends React.Component {
@@ -60,10 +60,10 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Ви клікнули ${this.state.count} разів`;
   }
   componentDidUpdate() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Ви клікнули ${this.state.count} разів`;
   }
   handleClick() {
     this.setState(state => ({
@@ -73,9 +73,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <p>You clicked {this.state.count} times</p>
+        <p>Ви клікнули {this.state.count} разів</p>
         <button onClick={this.handleClick}>
-          Click me
+          Натисніть на мене
         </button>
       </div>
     );
@@ -83,7 +83,7 @@ class App extends React.Component {
 }
 ```
 
-Here is how we can test it:
+Ось як ми можемо його перевірити:
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -103,26 +103,26 @@ afterEach(() => {
   container = null;
 });
 
-it('can render and update a counter', () => {
-  // Test first render and componentDidMount
+it('може відображатися та оновлювати лічильник', () => {
+  // Тестуємо перший render та componentDidMount
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
-  expect(label.textContent).toBe('You clicked 0 times');
-  expect(document.title).toBe('You clicked 0 times');
+  expect(label.textContent).toBe('Ви клікнули 0 разів');
+  expect(document.title).toBe('Ви клікнули 0 разів');
 
-  // Test second render and componentDidUpdate
+  // Тестуємо другий render та componentDidUpdate
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
-  expect(label.textContent).toBe('You clicked 1 times');
-  expect(document.title).toBe('You clicked 1 times');
+  expect(label.textContent).toBe('Ви клікнули 1 разів');
+  expect(document.title).toBe('Ви клікнули 1 разів');
 });
 ```
 
-Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a helper like [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) to reduce the boilerplate code.
+Не забувайте, що диспетчеризація подій DOM працює тільки тоді, коли до `document` додано контейнер DOM. Ви можете використовувати допоміжний пакунок на кшталт [`react-testing-library`](https://github.com/kentcdodds/react-testing-library), щоб скоротити шаблонний код.
 
 * * *
 
@@ -135,11 +135,11 @@ mockComponent(
 )
 ```
 
-Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div>` (or other tag if `mockTagName` is provided) containing any provided children.
+Передайте mock-компонент в цей метод, щоб розширити його корисними методами, які дозволяють використовувати його в якості фіктивного React-компонента. Замість звичного рендеру компонент стане простим `<div>` (або іншим тегом, якщо надано `mockTagName`), що містить всіх наданих потомків.
 
-> Note:
+> Примітка:
 >
-> `mockComponent()` is a legacy API. We recommend using [shallow rendering](/docs/shallow-renderer.html) or [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
+> `mockComponent()` — застарілий API. Ми рекомендуємо використовувати [поверховий рендер](/docs/shallow-renderer.html) або замість нього — [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
 
 * * *
 
@@ -149,7 +149,7 @@ Pass a mocked component module to this method to augment it with useful methods 
 isElement(element)
 ```
 
-Returns `true` if `element` is any React element.
+Повертає `true`, якщо `element` є будь-яким React-елементом.
 
 * * *
 
@@ -162,7 +162,7 @@ isElementOfType(
 )
 ```
 
-Returns `true` if `element` is a React element whose type is of a React `componentClass`.
+Повертає `true`, якщо `element` є React-елементом, типом якого є React `componentClass`.
 
 * * *
 
@@ -172,7 +172,7 @@ Returns `true` if `element` is a React element whose type is of a React `compone
 isDOMComponent(instance)
 ```
 
-Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
+Повертає `true`, якщо `instance` є DOM-компонентом (таким як `<div>`, або `<span>`).
 
 * * *
 
@@ -182,7 +182,7 @@ Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
 isCompositeComponent(instance)
 ```
 
-Returns `true` if `instance` is a user-defined component, such as a class or a function.
+Повертає `true`, якщо `instance` є визначеним користувачем компонентом, таким як клас, або функція.
 
 * * *
 
@@ -195,7 +195,7 @@ isCompositeComponentWithType(
 )
 ```
 
-Returns `true` if `instance` is a component whose type is of a React `componentClass`.
+Повертає `true`, якщо `instance` є компонентом, типом якого є React `componentClass`.
 
 * * *
 
@@ -208,7 +208,7 @@ findAllInRenderedTree(
 )
 ```
 
-Traverse all components in `tree` and accumulate all components where `test(component)` is `true`. This is not that useful on its own, but it's used as a primitive for other test utils.
+Проходить всі компоненти в `tree` і накопичує їх, де `test(component)` дорівнює `true`. Це не так корисно само собою, але використовується як примітив для інших тестових утиліт.
 
 * * *
 
@@ -221,7 +221,7 @@ scryRenderedDOMComponentsWithClass(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the class name matching `className`.
+Знаходить усі елементи DOM-компонентів у відрендереному дереві, що є DOM-компонентами з іменем класу, відповідним `className`.
 
 * * *
 
@@ -234,7 +234,7 @@ findRenderedDOMComponentWithClass(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+Подібний [`scryRenderedDOMComponentsWithClass()`](#scryrendereddomcomponentswithclass), але очікує, що буде один результат і поверне його або згенерує виняткову ситуацію, якщо кількість співпадінь більше одиниці.
 
 * * *
 
@@ -247,7 +247,7 @@ scryRenderedDOMComponentsWithTag(
 )
 ```
 
-Finds all DOM elements of components in the rendered tree that are DOM components with the tag name matching `tagName`.
+Знаходить усі елементи DOM-компонентів у рендер-дереві, що є DOM-компонентами з іменем тегу, відповідним `tagName`.
 
 * * *
 
@@ -260,7 +260,7 @@ findRenderedDOMComponentWithTag(
 )
 ```
 
-Like [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag) but expects there to be one result, and returns that one result, or throws exception if there is any other number of matches besides one.
+Подібний [`scryRenderedDOMComponentsWithTag()`](#scryrendereddomcomponentswithtag), але очікує, що буде один результат, і поверне його або викине виключення, якщо кількість співпадінь більше одиниці.
 
 * * *
 
@@ -273,7 +273,7 @@ scryRenderedComponentsWithType(
 )
 ```
 
-Finds all instances of components with type equal to `componentClass`.
+Знаходить усі екземпляри компонентів з типом, рівним `componentClass`.
 
 * * *
 
@@ -286,7 +286,7 @@ findRenderedComponentWithType(
 )
 ```
 
-Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) but expects there to be one result and returns that one result, or throws exception if there is any other number of matches besides one.
+Подібний [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype), але очікує, що буде один результат, і поверне його або викине виключення, якщо кількість співпадінь більше одиниці.
 
 ***
 
@@ -296,20 +296,20 @@ Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) bu
 renderIntoDocument(element)
 ```
 
-Render a React element into a detached DOM node in the document. **This function requires a DOM.** It is effectively equivalent to:
+Рендерить React-елемент в окремий вузол DOM у документі. **Ця функція вимагає DOM.** Це фактично еквівалентно:
 
 ```js
 const domContainer = document.createElement('div');
 ReactDOM.render(element, domContainer);
 ```
 
-> Note:
+> Примітка:
 >
-> You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
+> Вам потрібно, щоб `window`, `window.document` і `window.document.createElement` були глобально доступними **до того**, як ви імпортуєте `React`. Інакше React вважатиме, що не може отримати доступ до DOM, і такі методи, як `setState` не будуть працювати.
 
 * * *
 
-## Other Utilities {#other-utilities}
+## Інші утиліти {#other-utilities}
 
 ### `Simulate` {#simulate}
 
@@ -320,11 +320,11 @@ Simulate.{eventName}(
 )
 ```
 
-Simulate an event dispatch on a DOM node with optional `eventData` event data.
+Симулює розсилку подій у вузлі DOM з необов'язковими даними про подію `eventData`.
 
-`Simulate` has a method for [every event that React understands](/docs/events.html#supported-events).
+`Simulate` має метод для [кожної події, що розуміє React](/docs/events.html#supported-events).
 
-**Clicking an element**
+**Натискання елемента**
 
 ```javascript
 // <button ref={(node) => this.button = node}>...</button>
@@ -332,7 +332,7 @@ const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
 
-**Changing the value of an input field and then pressing ENTER.**
+**Зміна значення поля вводу, а потім натискання ENTER.**
 
 ```javascript
 // <input ref={(node) => this.textInput = node} />
@@ -342,8 +342,8 @@ ReactTestUtils.Simulate.change(node);
 ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 ```
 
-> Note
+> Примітка
 >
-> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc...) as React is not creating any of these for you.
+> Ви повинні надати будь-яку властивість події, що використовуєте у вашому компоненті (напр. keyCode, which, і т.д.), оскільки React не створює жодної з них для вас.
 
 * * *
