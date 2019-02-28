@@ -30,7 +30,7 @@ function MyComponent() {
 }
 ```
 
-Тоді ви можете стверджувати:
+Тоді ви можете припускати:
 
 ```javascript
 import ShallowRenderer from 'react-test-renderer/shallow';
