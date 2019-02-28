@@ -23,7 +23,7 @@ var ShallowRenderer = require('react-test-renderer/shallow'); // ES5 з вико
 function MyComponent() {
   return (
     <div>
-      <span className="heading">Title</span>
+      <span className="heading">Заголовок</span>
       <Subcomponent foo="bar" />
     </div>
   );
