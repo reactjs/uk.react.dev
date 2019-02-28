@@ -13,16 +13,16 @@ next: hello-world.html
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
-Зазначені вищє версії прізначені тільки при розробці програми, але не підходять для використання в продакшн-оточенні. Мініфіцувані та оптимізовані для продакшена версії React перераховані нижче:
+Зазначені вище версії призначені тільки при розробці програми, але не підходять для використання в продакшн-оточенні. Мініфіковані та оптимізовані для продакшн версії React перераховані нижче:
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 ```
 
-Щоб завантажити конкретну версію `react` та `react-dom`, замінить `16` на номер версії, що вам треба.
+Щоб завантажити конкретну версію `react` та `react-dom`, замініть `16` на номер версії, що вам потрібно.
 
-### Нащо атрибут `crossorigin`? {#why-the-crossorigin-attribute}
+### Для чого атрибут `crossorigin`? {#why-the-crossorigin-attribute}
 
 Якщо ви завантажуєте React з CDN, ми рекомендуємо вам скористатися атрибутом [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes):
 
@@ -34,4 +34,4 @@ next: hello-world.html
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
-Така практика дозволить поліпшити [обробку помилок](/blog/2017/07/26/error-handling-in-react-16.html) в React 16 і новіших версіях.
+Така практика дозволить покращити [обробку помилок](/blog/2017/07/26/error-handling-in-react-16.html) в React 16 і новіших версіях.
