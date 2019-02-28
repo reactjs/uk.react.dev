@@ -86,7 +86,7 @@ const divStyle = {
 };
 
 function ComponentWithTransition() {
-  return <div style={divStyle}>This should work cross-browser</div>;
+  return <div style={divStyle}>Це має працювати кросс-браузерно</div>;
 }
 ```
 
