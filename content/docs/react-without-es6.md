@@ -4,28 +4,28 @@ title: React без ES6
 permalink: docs/react-without-es6.html
 ---
 
-Зазвичай, ви б оголосили React-компонент в виді JavaScript-класу:
+Зазвичай, ви б оголосили React-компонент у вигляді JavaScript-класу:
 
 ```javascript
 class Greeting extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Привіт, {this.props.name}</h1>;
   }
 }
 ```
 
-Якщо ви ще не використовуєте синтаксис ES6, то ви можете використати пакет `create-react-class`:
+Якщо ви досі не використовуєте ES6, можете використовувати пакет `create-react-class`:
 
 ```javascript
 var createReactClass = require('create-react-class');
 var Greeting = createReactClass({
   render: function() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Привіт, {this.props.name}</h1>;
   }
 });
 ```
 
-API ES6-класів схожа до `createReactClass()` з деякими виключеннями.
+API ES6-класів схожий до `createReactClass()` з деякими виключеннями.
 
 ## Оголошення властивостей компонента {#declaring-default-props}
 
@@ -41,7 +41,7 @@ Greeting.defaultProps = {
 };
 ```
 
-Використовуючи `createReactClass()`, вам необхідно встановити метод `getDefaultProps()` в переданному об'єкті:
+Використовуючи `createReactClass()`, вам необхідно визначити метод `getDefaultProps()` як функцію в переданному об'єкті:
 
 ```javascript
 var Greeting = createReactClass({
@@ -58,7 +58,7 @@ var Greeting = createReactClass({
 
 ## Встановлення початкового стану компонента {#setting-the-initial-state}
 
-Використовуючи ES6-класи, ви можете встановити початковий стан через `this.state` в конструкторі:
+Використовуючи ES6-класи, ви можете визначити початковий стан через `this.state` в конструкторі:
 
 ```javascript
 class Counter extends React.Component {
@@ -70,7 +70,7 @@ class Counter extends React.Component {
 }
 ```
 
-З `createReactClass()`, ви маєте створити окремий метод `getInitialState` який поверне початковий стан:
+З `createReactClass()` ви маєте створити окремий метод `getInitialState`, який поверне початковий стан:
 
 ```javascript
 var Counter = createReactClass({
@@ -83,14 +83,14 @@ var Counter = createReactClass({
 
 ## Автоприв'язка {#autobinding}
 
-В React-компонентах оголошених як ES6-класи, методи слідують тій ж самій семантиці як і звичайні ES6-класи. Це означає що вони не виконують прив'язку `this` до екземпляру компонента автоматично. Вам необхідно буде явно використати `.bind(this)` в конструкторі:
+В React-компонентах оголошених як ES6-класи, методи дотримуються такої ж семантики, як і звичайні ES6-класи. Це означає що вони не виконують прив'язку `this` до екземпляру компонента автоматично. Вам необхідно буде явно використати `.bind(this)` в конструкторі:
 
 ```javascript
 class SayHello extends React.Component {
   constructor(props) {
     super(props);
     this.state = {message: 'Привіт!'};
-    // Цей рядок - дуже важливий!
+    // Цей рядок -- дуже важливий!
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -102,14 +102,14 @@ class SayHello extends React.Component {
     // Оскільки `this.handleClick` є прив'язаний в конструкторі екземпляра, то ми можемо його використати як обробник подій.
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Скажи привіт
       </button>
     );
   }
 }
 ```
 
-Якщо ви викорстовуєте `createReactClass()`, то це не є обов'язковим, оскільки цей метод прив'язує всі методи до екземпляра компонента:
+З використанням `createReactClass()` це необов'язково, оскільки цей метод звя'язує всі методи до екземпляра компонента:
 
 ```javascript
 var SayHello = createReactClass({
@@ -124,7 +124,7 @@ var SayHello = createReactClass({
   render: function() {
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Скажи привіт
       </button>
     );
   }
