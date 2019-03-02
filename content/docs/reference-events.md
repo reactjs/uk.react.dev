@@ -39,7 +39,7 @@ string type
 
 Події `SyntheticEvent` містяться в пулі. Це означає, що об'єкт `SyntheticEvent` буде використаний знову, а також всі його властивості будуть очищені після спрацювання функції зворотнього виклику події.
 Це було зроблено з міркувань збереження продуктивності.
-Саме цьому у нас немає можливості використовувати синтетичні події асинхронно.
+Таким чином, ви не можете отримати доступ до події асинхронним способом.
 
 ```javascript
 function onClick(event) {
@@ -55,7 +55,7 @@ function onClick(event) {
   // Не спрацює. this.state.clickEvent зберігає тільки пусті значення.
   this.setState({clickEvent: event});
 
-  // Ви все ще можете ексопртувати властивості події.
+  // Ви все ще можете експортувати властивості події.
   this.setState({eventType: event.type});
 }
 ```
@@ -387,3 +387,4 @@ float elapsedTime
 ```
 onToggle
 ```
+git push git@github.com:TheTonnio/uk.reactjs.org.git synthetic-event
