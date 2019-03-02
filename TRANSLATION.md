@@ -63,7 +63,7 @@
 | (im)mutable | (не)змінний |
 | (im)mutability | (не)змінність |
 | (un)mount | (де)монтувати |
-| mutate | мутувати |
+| mutate | змінювати |
 | node | вузол |
 | Note | Примітка |
 | online | онлайн |
