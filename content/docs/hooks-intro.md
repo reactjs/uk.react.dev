@@ -1,41 +1,44 @@
 ---
 id: hooks-intro
-title: Introducing Hooks
+title: Ознайомлення з Хуками
 permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Хуки* - це нововведення у React 16.8. Води дають можливість використовувати стан та інші особливості React без створення класу.
 
 ```js{4,5}
 import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
+  // Створюємо нову змінну стану, яку назвемо "count"
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Ви натиснули {count} разів</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Нитисни мене
       </button>
     </div>
   );
 }
 ```
 
-This new function `useState` is the first "Hook" we'll learn about, but this example is just a teaser. Don't worry if it doesn't make sense yet!
+Нова функція `useState` є першим "Хуком", про який ми дізнаємося більше. Але цкй приклад є лише тизером. Не хвилюйтеся якщо вам поки-що нічого не зрозуміло!
 
 **You can start learning Hooks [on the next page](/docs/hooks-overview.html).** On this page, we'll continue by explaining why we're adding Hooks to React and how they can help you write great applications.
+**Почати вивчати хуки можна [на наступній сторінці](/docs/hooks-overview.html).** А на цій ми продовжимо пояснювати чому саме ми додаємо Хуки до React та як вони можуть допомогти у написанні класних застосунків.
 
->Note
+>Примітка
 >
->React 16.8.0 is the first release to support Hooks. When upgrading, don't forget to update all packages, including React DOM. React Native will support Hooks in the next stable release.
+>React 16.8.0 є першим релізом, який підтримує Хуки. При оновленні не забудьте оновити всі пакунки, включаючи React DOM. React Native підтримуватиме Хуки в наступній стабільній версії.
 
-## Video Introduction {#video-introduction}
+## Відео ознайомлення {#video-introduction}
 
 At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
+На React Conf 2018, Sophie Alpert та Dan Abramov презентували Хуки разом з Ryan Florence, який показував як можна переписати додаток, використавши Хуки. Дивіться відео тут:
 
 <br>
 
