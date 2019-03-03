@@ -5,13 +5,12 @@ permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Хуки* - це нововведення у React 16.8. Води дають можливість використовувати стан та інші особливості React без створення класу.
+*Хуки* - це нововведення у React 16.8. Вони дають можливість використовувати стан та інші особливості React без створення класу.
 
 ```js{4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
   // Створюємо нову змінну стану, яку назвемо "count"
   const [count, setCount] = useState(0);
 
@@ -37,26 +36,25 @@ function Example() {
 
 ## Відео ознайомлення {#video-introduction}
 
-At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
-На React Conf 2018, Sophie Alpert та Dan Abramov презентували Хуки разом з Ryan Florence, який показував як можна переписати додаток, використавши Хуки. Дивіться відео тут:
+На React Conf 2018, Sophie Alpert та Dan Abramov презентували Хуки разом з Ryan Florence, який показував як можна переписати застосунок, використавши Хуки. Дивіться відео тут:
 
 <br>
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
-## No Breaking Changes {#no-breaking-changes}
+## Без змін існуючого коду {#no-breaking-changes}
 
-Before we continue, note that Hooks are:
+Перед тим як ми продовжимо, зверніть увагу що Хуки:
 
-* **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
-* **100% backwards-compatible.** Hooks don't contain any breaking changes.
-* **Available now.** Hooks are now available with the release of v16.8.0.
+* **Повністю опційні.** Можна спробувати Хуки в декількох компонентах без переписування будь-якого існуючого коду. Немає нагальної потреби у вивченні чи використанні Хуків якщо вам цього не хочеться.
+* **100% зворотна сумісність.** Хуки не містять змін, що потребують переписання існуючого коду.
+* **Доступні вже зараз.** Хуки вже доступні разом з релізом v16.8.0.
 
-**There are no plans to remove classes from React.** You can read more about the gradual adoption strategy for Hooks in the [bottom section](#gradual-adoption-strategy) of this page.
+**Ми не маємо планів видаляти класи із React.** Почитати про поступову стратегію впроваження Хуків можна у [нижній частині](#gradual-adoption-strategy) цієї сторінки.
 
-**Hooks don't replace your knowledge of React concepts.** Instead, Hooks provide a more direct API to the React concepts you already know: props, state, context, refs, and lifecycle. As we will show later, Hooks also offer a new powerful way to combine them.
+**Хуки не замінюють ваші знання концепцій React** Хуки ж навпаки впроваджуть більш прямі API до концепцій React які ви вже знаєте: пропси, стан, контекст, рефи та життєві цикли. Ми пізніше покажемо вам як Хуки cтворюють новий спосіб комбінацїй цих концепцій.
 
-**If you just want to start learning Hooks, feel free to [jump directly to the next page!](/docs/hooks-overview.html)** You can also keep reading this page to learn more about why we're adding Hooks, and how we're going to start using them without rewriting our applications.
+**Якщо вам лише кортить спробувати Хуки, просимо [перейти на наступну сторінку!](/docs/hooks-overview.html)** Також ви можете залишитися на цій сторінці щоб дізнатися більше про те, чоми ми додаємо хуки та як ми збираємося їх використовувати без переписання наших застосунків.
 
 ## Motivation {#motivation}
 
