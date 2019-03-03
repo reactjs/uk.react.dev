@@ -56,13 +56,14 @@ function Example() {
 
 **Якщо вам лише кортить спробувати Хуки, просимо [перейти на наступну сторінку!](/docs/hooks-overview.html)** Також ви можете залишитися щоб дізнатися більше про те, чоми ми додаємо хуки та як ми збираємося їх використовувати без переписання наших застосунків.
 
-## Motivation {#motivation}
+## Що нас спонувало {#motivation}
 
-Hooks solve a wide variety of seemingly unconnected problems in React that we've encountered over five years of writing and maintaining tens of thousands of components. Whether you're learning React, use it daily, or even prefer a different library with a similar component model, you might recognize some of these problems.
+Хуки вирішують великий діапазон скоріш за все непоєднаних проблем в Реакті, на які ми натрапили при написанні та підтриманні десятків тисяч компонентів протягом пʼяти років. Неважливо чи ви тільки вичаєте React, чи використовуєте його щодня, чи навіть віддаєте перевагу іншій бібліотеці зі схожою системою компонентів, можливо ви впізнаєте деякі з цих проблем.
 
-### It's hard to reuse stateful logic between components {#its-hard-to-reuse-stateful-logic-between-components}
+### Між компонентами перевикористати логіку із використанням станів вкрай важко {#its-hard-to-reuse-stateful-logic-between-components}
 
 React doesn't offer a way to "attach" reusable behavior to a component (for example, connecting it to a store). If you've worked with React for a while, you may be familiar with patterns like [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html) that try to solve this. But these patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow. If you look at a typical React application in React DevTools, you will likely find a "wrapper hell" of components surrounded by layers of providers, consumers, higher-order components, render props, and other abstractions. While we could [filter them out in DevTools](https://github.com/facebook/react-devtools/pull/503), this points to a deeper underlying problem: React needs a better primitive for sharing stateful logic.
+React не має можливості "прикріпити" до компонента поведінки, яку можна перевикористати, наприклад підключення до стору.
 
 With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. **Hooks allow you to reuse stateful logic without changing your component hierarchy.** This makes it easy to share Hooks among many components or with the community.
 
