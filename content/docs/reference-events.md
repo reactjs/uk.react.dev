@@ -10,7 +10,7 @@ category: Reference
 
 ## Огляд {#overview}
 
-Ваші обробники подій отримують екземпляр `SyntheticEvent`, це кроcбраузерна обгортка над рідною подією браузеру. Вона має такий же інтерфейс, як і браузерна подія, включаючи методи `stopPropagation()` та `preventDefault()`. Ця обгортка допомагає спрацьовувати різним подіям однаково у всіх браузерах.
+Ваші обробники подій отримують екземпляр SyntheticEvent — кроcбраузерну обгортку над нативною подією браузера. Вона має такий же інтерфейс, як і браузерна подія, включаючи методи `stopPropagation()` та `preventDefault()`. Ця обгортка допомагає спрацьовувати різним подіям однаково у всіх браузерах.
 
 Якщо ви усвідомили, що вам з якоїсь причини потрібно отримати нативну браузерну подію, то ви просто можете використати атрибут `nativeEvent`. Нижче наведено перелік атрибутів об'єкта `SyntheticEvent`:
 
@@ -149,7 +149,7 @@ boolean shiftKey
 number which
 ```
 
-Властивість `key` може приймати будь-які із задокументованих в [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values) значень.
+Властивість `key` може приймати будь-які із задокументованих у [DOM Level 3 Events spec](https://www.w3.org/TR/uievents-key/#named-key-attribute-values) значень.
 
 * * *
 
@@ -193,7 +193,7 @@ onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
 onMouseMove onMouseOut onMouseOver onMouseUp
 ```
 
-Події `onMouseEnter` та `onMouseLeave` розповсюджуються з попереднього елементу до активного, замість звичайного процесу розповсюдженню події й не мають фази перехоплення.
+Події `onMouseEnter` та `onMouseLeave` розповсюджуються з попереднього елементу до активного, замість звичайного процесу розповсюдження події, а також не мають фази перехоплення.
 
 Властивості:
 
@@ -225,11 +225,11 @@ onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
 onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
 ```
 
-Події `onPointerEnter` та `onPointerLeave` розповсюджуються з попереднього елементу до активного, замість звичайного процесу розповсюдженню події й не мають фази перехоплення.
+Події `onPointerEnter` та `onPointerLeave` розповсюджуються з попереднього елементу до активного, замість звичайного процесу розповсюдження події, а також не мають фази перехоплення.
 
 Властивості:
 
-Як вказано в [W3 spec](https://www.w3.org/TR/pointerevents/), події курсору наслідують [Mouse Events](#mouse-events) з наступними властивостями:
+Як вказано у [W3 spec](https://www.w3.org/TR/pointerevents/), події курсору наслідують [Mouse Events](#mouse-events) з наступними властивостями:
 
 ```javascript
 number pointerId
@@ -387,4 +387,3 @@ float elapsedTime
 ```
 onToggle
 ```
-git push git@github.com:TheTonnio/uk.reactjs.org.git synthetic-event
