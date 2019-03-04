@@ -31,7 +31,7 @@ permalink: docs/glossary.html
 
 ## CDN {#cdn}
 
-CDN або "мережа доправлення контенту" (Content Delivery Network) — це мережева інфраструктура, що доправляє кешований статичний контент через мережу серверів по всьому світу. 
+CDN або "мережа доправлення контенту" (Content Delivery Network) — це мережева інфраструктура, що доправляє кешований статичний контент через мережу серверів по всьому світу.
 
 ## JSX {#jsx}
 
@@ -45,7 +45,7 @@ ReactDOM.render(
   <h1 className="hello">Моє ім'я —п {name}!</h1>,
   document.getElementById('root')
 );
-```  
+```
 
 ## [Елементи](/docs/rendering-elements.html) {#elements}
 
@@ -126,41 +126,42 @@ class Welcome extends React.Component {
 
 Кожна окрема частина змінних даних має бути під керуванням єдиного компоненту, що має її в своєму стані. Не намагайтесь синхронізувати стани між двома різними компонентами. Замість цього [підійміть його](/docs/lifting-state-up.html) до найближчого батьківського компонента і передайте його через пропси до кожного дочірнього компоненту.
 
-## [Lifecycle Methods](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
+## [Методи життєвого циклу](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
 
-Lifecycle methods are custom functionality that gets executed during the different phases of a component. There are methods available when the component gets created and inserted into the DOM ([mounting](/docs/react-component.html#mounting)), when the component updates, and when the component gets unmounted or removed from the DOM.
+Методи життєвого циклу — це визначена користувачем функціональність, що виконується протягом різних фаз життя компонента. Є методи, котрі доступні коли компонент створюється і вставляється в DOM ([монтування](/docs/react-component.html#mounting)), коли компонент оновлюється і коли компонент відмонтовується і видаляється з DOM.
 
- ## [Controlled](/docs/forms.html#controlled-components) vs. [Uncontrolled Components](/docs/uncontrolled-components.html)
+ ## [Контрольовані](/docs/forms.html#controlled-components) та [неконтрольовані компоненти](/docs/uncontrolled-components.html)
 
-React has two different approaches to dealing with form inputs. 
+React має два різних підходи для керування формами.
 
-An input form element whose value is controlled by React is called a *controlled component*. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
+Елемент форми `input`, чиє значення контролюється React, називається *контрольованим компонентом*. Коли користувач вводить дані у контрольований компонент, викликається обробник події зміни і ваш код вирішує чи є ввід допустимим (`input` повторно рендериться з оновленим значенням). Якщо ви не рендерите елемент форми повторно, то він лишиться без змін.
 
-An *uncontrolled component* works like form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
+*Неконтрольований компонент* працює як звичайний елемент форми поза межами React. Коли користувач вводить дані в поле форми (поле вводу, випадаючий список і т. д.), оновлена інформація відображається без участі React. Однак це також означає, що ви не можете присвоїти полю певні значення.
 
-In most cases you should use controlled components.
+У більшості випадків використовуйте контрольовані компоненти.
 
-## [Keys](/docs/lists-and-keys.html) {#keys}
+## [Ключі](/docs/lists-and-keys.html) {#keys}
 
-A "key" is a special string attribute you need to include when creating arrays of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside an array to give the elements a stable identity.
+"Ключ" — це спеціальний рядковий атрибут, який ви маєте додавати при створенні масивів елементів. Ключі допомагають React визначати які елементи змінились, були додані чи видалені. Ключі мають бути надані елементам всередині масиву для того, щоб вони мали стійку сутність.
 
-Keys only need to be unique among sibling elements in the same array. They don't need to be unique across the whole application or even a single component.
+Ключі мають бути унікальними у сусідніх елементах одного і того ж масиву. Вони не мають бути унікальними по всьому додатку чи навіть у спільному компоненті.
 
-Don't pass something like `Math.random()` to keys. It is important that keys have a "stable identity" across re-renders so that React can determine when items are added, removed, or re-ordered. Ideally, keys should correspond to unique and stable identifiers coming from your data, such as `post.id`.
+Не вказуйте щось на кшталт `Math.random()` як ключі. Важливо, щоб ключі мали "стійку сутність" для повторних рендерингів,щоб React міг визначати коли елементи додані, видалені або їх порядок змінено. В ідеалі, ключі мають відповідати унікальним і стабільним ідентифікаторам із ваших даних, наприклад, `post.id`.
 
-## [Refs](/docs/refs-and-the-dom.html) {#refs}
+## [Рефи](/docs/refs-and-the-dom.html) {#refs}
 
-React supports a special attribute that you can attach to any component. The `ref` attribute can be an object created by [`React.createRef()` function](/docs/react-api.html#reactcreateref) or a callback function, or a string (in legacy API). When the `ref` attribute is a callback function, the function receives the underlying DOM element or class instance (depending on the type of element) as its argument. This allows you to have direct access to the DOM element or component instance.
+React підтримує спецільний атрибут, який ви можете прикріпити до будь-якого компонента. Атрибуть `ref` може бути об'єктом створеним [функцією `React.createRef()`](/docs/react-api.html#reactcreateref) або функцією зворотнього виклику, або рядком (у застарілому API). Коли атрибут `ref` є функцією зворотнього виклику, функція отримує у якості аргумента DOM-елемент, що лежить в основі компонента, або екземпляр класу (залежно від типу елемента). Це дозволяє вам мати прямий доступ до елемента DOM чи до екземпляру компонента.
 
-Use refs sparingly. If you find yourself often using refs to "make things happen" in your app, consider getting more familiar with [top-down data flow](/docs/lifting-state-up.html).
 
-## [Events](/docs/handling-events.html) {#events}
+Використовуйте рефи у виключних випадках. Якщо ви помічаєте за собою часте використання рефів у вашому додатку, ознайомтесь з [низхідним потоком даних](/docs/lifting-state-up.html).
 
-Handling events with React elements has some syntactic differences:
+## [Події](/docs/handling-events.html) {#events}
 
-* React event handlers are named using camelCase, rather than lowercase.
-* With JSX you pass a function as the event handler, rather than a string.
+Обробка подій у React-elements має деякі синтаксичні особливості:
 
-## [Reconciliation](/docs/reconciliation.html) {#reconciliation}
+* У React обробники подій іменуються в стилі camelCase, замість нижнього регістру.
+* З JSX ви передаєте функцію, а не рядок, як обробник події.
 
-When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM. This process is called "reconciliation".
+## [Узгодження](/docs/reconciliation.html) {#reconciliation}
+
+Коли пропси чи стан компонента змінюються, React порівнює тільки що повернутий і попередній відрендерений елемент та вирішує, чи потрібно оновлювати DOM. Якщо вони не рівні, то React здійснює оновлення DOM. Цей процес і називається "узгодження".
