@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Getting Started
+title: Початок роботи
 permalink: docs/getting-started.html
 next: add-react-to-a-website.html
 redirect_from:
@@ -18,60 +18,60 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-This page is an overview of the React documentation and related resources.
+В даному розділі ми оглянемо документацію React та пов'язані з ним ресурси.
 
-**React** is a JavaScript library for building user interfaces. Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
+**React** -- це JavaScript-бібліотека для створення інтерфейсу користувачів. Відвідайте [нашу головну сторінка](/) або [вступ](/tutorial/tutorial.html), аби скласти враження про React.
 
 ---
 
-- [Try React](#try-react)
-- [Learn React](#learn-react)
-- [Staying Informed](#staying-informed)
-- [Versioned Documentation](#versioned-documentation)
-- [Something Missing?](#something-missing)
+- [Спробуємо React](#try-react)
+- [Вивчаємо React](#learn-react)
+- [Новини про нові релізи](#staying-informed)
+- [Документація старих версій React](#versioned-documentation)
+- [Зворотній зв'язок](#something-missing)
 
-## Try React {#try-react}
+## Спробуємо React {#try-react}
 
-React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need.** Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
+З самого початку React був спроектований для поступового вбудовування і **ви можете використати ту частину React, яка вам потрібна.** Посилання в цьому розілі допоможуть вам дізнатися як познайомитися з React, додати трохи "інтерактивності" до простої HTML-сторінки, або почати розробку складних React-додатків.
 
-### Online Playgrounds {#online-playgrounds}
+### Онлайн-пісочниці {#online-playgrounds}
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
+Хочете погратися з React? Тоді ви можете використати онлайн-пісочниці. Спробуйте початковий шаблон на [CodePen](codepen://hello-world) або [CodeSandbox](https://codesandbox.io/s/new).
 
-If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+Віддаєте перевагу вашому редактору коду? Тоді ви можете [завантажити даний HTML-файл](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), відредагувати та відкрити його в вашому браузері. Даний шаблон під час запуску проводить трансформацію JSX в JavaScript. Однак, воно є повільним, тому ми рекомендуємо використовувати даний файл тільки для простих демонстраційних прикладів.
 
-### Add React to a Website {#add-react-to-a-website}
+### Додаємо React до сайту {#add-react-to-a-website}
 
-You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+Ви можете [додати React до HTML-сторінки лише за хвилину](/docs/add-react-to-a-website.html). За бажанням, ви зможете потім поступово поширювати React на сайті або залишити в декількох динамічних віджетах.
 
-### Create a New React App {#create-a-new-react-app}
+### Створюємо простий React-додаток {#create-a-new-react-app}
 
-When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
+Розпочинаючи розробку React-проекту, [проста HTML-сторінка з script-тегами](/docs/add-react-to-a-website.html) може бути найкращим варіантом. Лише хвилина потрібна для її створення!
 
-As your application grows, you might want to consider a more integrated setup. There are [several JavaScript toolchains](/docs/create-a-new-react-app.html) we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
+Однак для розробки більш складного додатку вам, мабуть, потрібно буде розглянути варіант використання робочого середовища, яке містить різноманітні технології. Ось [декілька наборів JavaScript-інструментів](/docs/create-a-new-react-app.html), які ми рекомендуємо для розробки більш серйозних React-додатків. Кожен із них може використовуватись майже без зміни налаштувань, а також дають змогу розкрити весь потенціал великої React-екосистеми.
 
-## Learn React {#learn-react}
+## Вивчаємо React {#learn-react}
 
-People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
+Люди приходять до React із різним досвідом і стилем навчання. Мабуть, ви віддаєте перевагу ознайомленню з теоретичною частиною або навчанню на практиці, але ми надіємось, що для вас даний розділ був корисним.
 
-* If you prefer to **learn by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
-* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
+* Віддаєте перевагу **навчанню на практиці**? Почніть з [навчального посібника](/tutorial/tutorial.html).
+* Або ж **ознайомленню з теоретичною частиною**? [Ознайомтесь з головними концептами React](/docs/hello-world.html).
 
-Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you *will* get the hang of it.
+Можливо, React може здатися для вас трохи важким, але, доклавши трохи зусилля, ви **обов'язково вивчите його**. Терпіння і праця все перемагають.
 
-### First Examples {#first-examples}
+### Перші приклади {#first-examples}
 
-The [React homepage](/) contains a few small React examples with a live editor. Even if you don't know anything about React yet, try changing their code and see how it affects the result.
+[Головна сторінка](/) містить декілька невеликих React-прикладів з можливістю їх редагування. Навіть якщо ви не знаєте нічого про React, спробуйте погратися з їх кодом, аби побачити, як впливають на результат ваші зміни.
 
-### React for Beginners {#react-for-beginners}
+### React для початківців {#react-for-beginners}
 
-If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
+Якщо ви відчуваєте те, що вивчення React за допомогою цієї документації здається важким і йде не так швидко, як вам хотілось би, тоді прочитайте [цей запис блогу Тані Раша (Tania Rascia)](https://www.taniarascia.com/getting-started-with-react/). Вона описала найбільш важливі концепти React в детальному стилі, який також доступний для новачків. Як тільки ви ознайомитесь з ним, спробуйте документацію знову!
 
-### React for Designers {#react-for-designers}
+### React для дизайнерів {#react-for-designers}
 
-If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
+Займаєтесь дизайном і хочете вивчити React? Хорошим способом для цього є [даний ресурс](https://reactfordesigners.com/).
 
-### JavaScript Resources {#javascript-resources}
+### Ресурси по JavaScript {#javascript-resources}
 
 The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
 
