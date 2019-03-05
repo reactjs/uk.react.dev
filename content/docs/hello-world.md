@@ -6,7 +6,6 @@ prev: cdn-links.html
 next: introducing-jsx.html
 ---
 
-The smallest React example looks like this:
 Найменший приклад React виглядає наступним чином:
 
 ```js

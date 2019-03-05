@@ -101,7 +101,7 @@ import("./math").then(math => {
 
 В той момент, коли Webpack стикається з таким синтаксисом, він автоматично починає розбивати код вашого додатку.
 Якщо ви вже користуєтесь Create React App, це вже налаштовано для вас
-та ви можете одразу [почати користуватися цим](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting). Це також підтримується
+та ви можете одразу [почати користуватися цим](https://facebook.github.io/create-react-app/docs/code-splitting). Це також підтримується
 у [Next.js](https://github.com/zeit/next.js/#dynamic-import) за замовчуванням.
 
 Під час самостійного налаштування Webpack, скоріш за все, у вас з'виться бажання прочитати
