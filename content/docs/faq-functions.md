@@ -6,9 +6,9 @@ layout: docs
 category: FAQ
 ---
 
-### Як передати обробник подій (наприклад, onClick) компоненту? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component}
+### Як передати обробник події (наприклад, onClick) компоненту? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component}
 
-Передавайте обробник подій та інші функції через пропси дочірнім компонентам:
+Передавайте обробник події та інші функції через пропси дочірнім компонентам:
 
 ```jsx
 <button onClick={this.handleClick}>
@@ -18,7 +18,7 @@ category: FAQ
 
 ### Як прив'язати функцію до екземпляру компонента? {#how-do-i-bind-a-function-to-a-component-instance}
 
-В залежності від того, який синтаксис і підхід до створення компонентів ви використовуєте, існує декілька способів впевнитись, що функції мають доступ до таких атрибутів компонента, як `this.props` та `this.state`.
+У залежності від того, який синтаксис і підхід до створення компонентів ви використовуєте, існує декілька способів впевнитись, що функції мають доступ до таких атрибутів компонента, як `this.props` та `this.state`.
 
 #### Прив'язка в конструкторі (ES2015) {#bind-in-constructor-es2015}
 
@@ -66,7 +66,7 @@ class Foo extends Component {
 
 >**Примітка:**
 >
->Використання `Function.prototype.bind` в render() створює нову функцію при кожному рендері компонента, що може вплинути на продуктивність (див. нижче).
+>Використання `Function.prototype.bind` у render() створює нову функцію при кожному рендері компонента, що може вплинути на продуктивність (див. нижче).
 
 #### Стрілкова функція у render() {#arrow-function-in-render}
 
@@ -108,7 +108,7 @@ method();
 
 У React, як правило, слід прив'язувати тільки ті методи, які ви плануєте *передати* іншим компонентам. Наприклад, `<button onClick={this.handleClick}>` передає `this.handleClick`, тому його слід прив'язати. Утім, метод `render` та методи життєвого циклу прив'язувати не обов'язково, так як ми не передаємо їх через інші компоненти.
 
-[Ознайомтесь зі статтею Єхуди Катц](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), в якій більш детально пояснюється, що таке прив'язка, і як працюють функції в JavaScript.
+[Ознайомтесь зі статтею Єхуди Катц](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), у якій більш детально пояснюється, що таке прив'язка і як працюють функції в JavaScript.
 
 ### Чому моя функція викликається кожного разу при рендері компонента? {#why-is-my-function-being-called-every-time-the-component-renders}
 
@@ -130,7 +130,7 @@ render() {
 }
 ```
 
-### Як передати параметри до обробника подій чи функції зворотнього виклику? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
+### Як передати параметри до обробника події чи функції зворотнього виклику? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
 
 Щоб передати параметри до обробника подій, обгорніть його у стрілкову функцію:
 
@@ -220,7 +220,7 @@ class Alphabet extends React.Component {
 
 ### Як попередити занадто швидкий чи занадто частий виклик функції? {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
 
-Якщо ви використовуєте обробники подій, такі як `onClick` чи `onScroll`, і хочете попередити швидке зпрацьовування функцій зворотнього виклику, ви можете обмежити швидкість виконання даної функції. Для цього ви можете використати:
+Якщо ви використовуєте обробники подій, такі як `onClick` чи `onScroll`, і хочете попередити швидке спрацьовування функцій зворотнього виклику, ви можете обмежити швидкість виконання даної функції. Для цього ви можете використати:
 
 - **тротлінг (throttling)**: вибіркові зміни, залежні від частоти, що базується на часі (напр. [`_.throttle`](https://lodash.com/docs#throttle))
 - **дебаунсинг (debouncing)**: зміни, задіяні після певного періоду бездіяльності (напр. [`_.debounce`](https://lodash.com/docs#debounce))
@@ -230,7 +230,7 @@ class Alphabet extends React.Component {
 
 > Примітка:
 >
-> `_.debounce`, `_.throttle` та `raf-schd` передбачають метод `cancel` для скасування відкладених функцій зворотнього виклику. Вам потрібно або викликати цей метод з `componentWillUnmount`, _або_ впевнитись, що компонент все ще вмонтований у межах функції зворотнього виклику.
+> `_.debounce`, `_.throttle` та `raf-schd` передбачають метод `cancel` для скасування відкладених функцій зворотнього виклику. Вам потрібно або викликати цей метод з `componentWillUnmount`, _або_ впевнитись, що компонент все ще примонтований у межах функції зворотнього виклику.
 
 #### Throttle {#throttle}
 
@@ -251,7 +251,7 @@ class LoadMoreButton extends React.Component {
   }
 
   render() {
-    return <button onClick={this.handleClickThrottled}>Завантажити додатково</button>;
+    return <button onClick={this.handleClickThrottled}>Завантажити більше</button>;
   }
 
   handleClick() {
@@ -292,7 +292,7 @@ class Searchbox extends React.Component {
   handleChange(e) {
     // React розташовує події в пулі, тому значення зчитується перед debounce.
     // Як альтернативу ми могли б викликати `event.persist()` і передати подію в повному обсязі.
-    // Більш детально дана тема розлядується тут: reactjs.org/docs/events.html#event-pooling
+    // Більш детально дана тема розглядається тут: reactjs.org/docs/events.html#event-pooling
     this.emitChangeDebounced(e.target.value);
   }
 
