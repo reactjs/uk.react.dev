@@ -36,7 +36,7 @@ redirect_from:
 
 ### Онлайн-пісочниці {#online-playgrounds}
 
-Хочете погратися з React? Тоді ви можете використати онлайн-пісочниці. Спробуйте початковий шаблон на [CodePen](codepen://hello-world) або [CodeSandbox](https://codesandbox.io/s/new).
+Хочете погратися з React? Тоді ви можете використати онлайн-пісочниці. Спробуйте початковий шаблон на [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new) або [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
 
 Віддаєте перевагу вашому редактору коду? Тоді ви можете [завантажити даний HTML-файл](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), відредагувати та відкрити його в вашому браузері. Даний шаблон під час запуску проводить трансформацію JSX в JavaScript. Однак, воно є повільним, тому ми рекомендуємо використовувати даний файл тільки для простих демонстраційних прикладів.
 
