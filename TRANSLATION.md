@@ -42,7 +42,7 @@
 | effect | ефект |
 | error | помилка |
 | error boundary | запобіжник |
-| event handler | обробник подій |
+| event handler | обробник події |
 | fallback | запасний |
 | feature | особливість |
 | framework | фреймворк |
