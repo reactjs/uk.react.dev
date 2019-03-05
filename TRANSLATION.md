@@ -68,7 +68,7 @@
 | Note | Примітка |
 | online | онлайн |
 | online playground | онлайн пісочниця |
-| package manager| менеджер пакунків |
+| package manager | менеджер пакунків |
 | paint | фарбування, перефарбування |
 | prop | проп |
 | props | пропси |
