@@ -99,17 +99,10 @@ import("./math").then(math => {
 > що не є частиною мовного стандарту на цей момент.
 > Очікується, що він буде прийнятий у найближчий час.
 
-<<<<<<< HEAD
 В той момент, коли Webpack стикається з таким синтаксисом, він автоматично починає розбивати код вашого додатку.
 Якщо ви вже користуєтесь Create React App, це вже налаштовано для вас
-та ви можете одразу [почати користуватися цим](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting). Це також підтримується
+та ви можете одразу [почати користуватися цим](https://facebook.github.io/create-react-app/docs/code-splitting). Це також підтримується
 у [Next.js](https://github.com/zeit/next.js/#dynamic-import) за замовчуванням.
-=======
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
->>>>>>> 8803c6375b153af39a850822d844db94ea4c9b0a
 
 Під час самостійного налаштування Webpack, скоріш за все, у вас з'виться бажання прочитати
 [інструкцію з розбиття коду](https://webpack.js.org/guides/code-splitting/) від Webpack.
