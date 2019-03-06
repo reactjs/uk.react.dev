@@ -110,11 +110,7 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 ### Порада: Виконуйте стиснення JavaScript-коду перед розгортанням {#tip-minify-javascript-for-production}
 
-<<<<<<< HEAD
 Перед публікацією вашого сайту на продакшн не забудьте про те, що нестиснений JavaScript-код може значно сповільнити швидкість завантаження сторінки для ваших користувачів.
-=======
-Before deploying your website to production, be mindful that unminified JavaScript can significantly slow down the page for your users.
->>>>>>> b50fe64c1e88489022eddf2cfff0995778827f84
 
 Якщо ви вже стискаєте скрипти вашого додатку, **то ваш сайт буде готовим для публікації на продакшн**, якщо ви впевнитесь в тому, що опублікована HTML-сторінка завантажує версії React, які закінчуються на `production.min.js`:
 
