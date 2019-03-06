@@ -60,7 +60,7 @@
     - id: portals
       title: Portals
     - id: react-without-es6
-      title: React Without ES6
+      title: React без ES6
     - id: react-without-jsx
       title: React Without JSX
     - id: reconciliation
