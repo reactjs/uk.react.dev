@@ -1,14 +1,14 @@
-- title: Installation
+- title: Установка
   items:
     - id: getting-started
-      title: Getting Started
+      title: Починаємо
     - id: add-react-to-a-website
       title: Додаємо React до вашого сайту
     - id: create-a-new-react-app
-      title: Create a New React App
+      title: Створення Нового React Додатку
     - id: cdn-links
-      title: CDN Links
-- title: Main Concepts
+      title: CDN Посилання
+- title: Основні поняття
   isOrdered: true
   items:
     - id: hello-world
