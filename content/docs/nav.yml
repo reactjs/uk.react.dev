@@ -1,11 +1,11 @@
-- title: Установка
+- title: Встановлення
   items:
     - id: getting-started
-      title: Починаємо
+      title: Початок роботи
     - id: add-react-to-a-website
       title: Додаємо React до вашого сайту
     - id: create-a-new-react-app
-      title: Створення Нового React Додатку
+      title: Створення нового React додатку
     - id: cdn-links
       title: CDN Посилання
 - title: Основні поняття
