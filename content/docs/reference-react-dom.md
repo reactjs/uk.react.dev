@@ -88,7 +88,7 @@ ReactDOM.unmountComponentAtNode(container)
 
 > Примітка:
 >
-> `findDOMNode` — це запасний спосіб, що використовувався для доступу до базової DOM-вузла. У більшості випадків, використання цього способу не рекомендується, оскільки він порушує абстракцію компоненту. [Він визнаний застарілим в `StrictMode`.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+> `findDOMNode` — це запасний спосіб, що використовувався для доступу до базового DOM-вузла. У більшості випадків, використання цього способу не рекомендується, оскільки він порушує абстракцію компоненту. [Він визнаний застарілим в `StrictMode`.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
 ```javascript
 ReactDOM.findDOMNode(component)
