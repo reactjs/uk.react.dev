@@ -1,6 +1,6 @@
 ---
 id: create-a-new-react-app
-title: Створіть новий React додаток
+title: Створюємо новий React-додаток
 permalink: docs/create-a-new-react-app.html
 redirect_from:
   - "docs/add-react-to-a-new-app.html"
@@ -13,16 +13,16 @@ next: cdn-links.html
 Ця стоінка описує декілька  популярних наборів інструментів для роботи з React, що допоможуть вам з такими задачами як:
 
 * Перерахунок великої кількості компонентів та файлів.
-* Використання сторонніх бібліотек з nmp.
+* Використання сторонніх бібліотек з npm.
 * Раннє виявлення розповсюджених помилок.
-* Миттєве відстеження змін в CSS та JS файлах.
+* Миттєве відстеження змін у CSS та JS файлах.
 * Оптимізація коду для продакшну.
 
 Набори інструментів описані на цій сторінці **не потребують додаткового налаштування для початку роботи з ними**.
 
-## Чи додакові інструменти необхідні для вас? {#you-might-not-need-a-toolchain}
+## Чи додаткові інструменти необхідні для вас? {#you-might-not-need-a-toolchain}
 
-Якщо у вас не виникає проблем з вище описаними ситуаціями, або ж якщо ви ще не відчуваєте себе достатньо впевнено для використання інструменів для роботи з JavaScript, розгляньте можливість [додання React за допомогою тегу `<script>` на HTML сторінку](/docs/add-react-to-a-website.html), при необхідності [за допомогою JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
+Якщо у вас не виникає проблем з вище описаними ситуаціями, або ж якщо ви ще не відчуваєте себе достатньо впевнено для використання інструменів для роботи з JavaScript, розгляньте можливість [додання React за допомогою тегу `<script>` на HTML-сторінку](/docs/add-react-to-a-website.html), при необхідності [за допомогою JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
 
 Також це **самий простий спосіб додати бібліотеку React до існуючого сайту.** Ви завжди можете розширити набір інструментів, за потребою!
 
@@ -71,15 +71,15 @@ Create React App не опрацьовує бекенд логіку чи лог
 
 Наступні набори пропонують більше гнучкості та вибору. Ми рекомендуємо їх для більш досвідчених розробників:
 
-- **[Neutrino](https://neutrinojs.org/)** поєднує у собі [webpack](https://webpack.js.org/) з простою його пресетів та включає в себе пресети для [React додатків](https://neutrinojs.org/packages/react/) й [React-компонентів](https://neutrinojs.org/packages/react-components/).
+- **[Neutrino](https://neutrinojs.org/)** поєднує у собі [webpack](https://webpack.js.org/) з простою його пресетів та включає в себе пресети для [React-додатків](https://neutrinojs.org/packages/react/) й [React-компонентів](https://neutrinojs.org/packages/react-components/).
 
-- **[nwb](https://github.com/insin/nwb)** чудово використовувати для [публікації React-компонентів в npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). Він [також може використовуватись для](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) для створення React додатків. 
+- **[nwb](https://github.com/insin/nwb)** чудово використовувати для [публікації React-компонентів у npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). Він [також може використовуватись для](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) для створення React-додатків. 
 
 - **[Parcel](https://parceljs.org/)** -- швидкий збиральник веб-додатків з нульовою конфігурацією, [який працює з React](https://parceljs.org/recipes.html#react).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** -- це фреймворк для серверного рендерингу, що не потребує ніякої конфігурації, але більш гнучкий ніж Next.js.
 
-## Ствопення набору інструментів з нуля {#creating-a-toolchain-from-scratch}
+## Створення набору інструментів з нуля {#creating-a-toolchain-from-scratch}
 
 Набір інструментів JavaScript зазвичай включає:
 
@@ -87,8 +87,8 @@ Create React App не опрацьовує бекенд логіку чи лог
 
 * **Збиральник**, такий як [webpack](https://webpack.js.org/) або [Parcel](https://parceljs.org/). Він надає можливість писати модульний код та збирати його у невеликі пакети, з ціллю оптимізації часу завантаження.
 
-* **Компілятор**, такий як [Babel](https://babeljs.io/). Він дозволяє писати сучасний JavaScript код, що буде працювати в старіших браузерах.
+* **Компілятор**, такий як [Babel](https://babeljs.io/). Він дозволяє писати сучасний JavaScript код, що буде працювати у старіших браузерах.
 
-Якщо ви віддаєте перевагу написанню власного набору JavaScript інструментів з нуля, [ознайомтесь з цим керівництвом](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658), в якому відтворюється деяка функціональність Create React App.
+Якщо ви віддаєте перевагу написанню власного набору JavaScript-інструментів з нуля, [ознайомтесь з цим керівництвом](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658), в якому відтворюється деяка функціональність Create React App.
 
-Не забудьте переконатись, що ваш власний набір інструментів [првильно налаштований для продакшну](/docs/optimizing-performance.html#use-the-production-build).
+Не забудьте переконатись, що ваш власний набір інструментів [правильно налаштований для продакшну](/docs/optimizing-performance.html#use-the-production-build).
