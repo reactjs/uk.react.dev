@@ -81,13 +81,14 @@ ReactDOM.render(
 
 1. Створіть клас [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) з тим же ім'ям, що продовжує `React.Component`.
 
-2. Add a single empty method to it called `render()`.
+2. Додайте до нього один порожній метод, який називається `render()`.
 
-3. Move the body of the function into the `render()` method.
+3. Перемістіть зміст функції в метод `render()`.
 
-4. Replace `props` with `this.props` in the `render()` body.
+4. Замініть `props` на` this.props` в змісті `render()`.
 
-5. Delete the remaining empty function declaration.
+Видаліть порожні оголошення функції які залишилися.
+5. Видаліть порожні оголошення функції які залишилися.
 
 ```js
 class Clock extends React.Component {
@@ -102,13 +103,13 @@ class Clock extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
-`Clock` is now defined as a class rather than a function.
+`Clock` тепер визначається як клас, а не як функція.
 
-The `render` method will be called each time an update happens, but as long as we render `<Clock />` into the same DOM node, only a single instance of the `Clock` class will be used. This lets us use additional features such as local state and lifecycle methods.
-
-## Adding Local State to a Class {#adding-local-state-to-a-class}
+Метод `render` буде викликатися кожного разу, коли відбуватиметься оновлення, але до тих пір, поки ми рендеремо `<Clock />` в той же вузол DOM, буде використано лише один екземпляр класу `Clock`. Це дозволяє нам використовувати додаткові функції, такі як методи внутрішнього стану та життєвого циклу.
+ 
+## Додавання внутрішнього стану до класу {#adding-local-state-to-a-class}
 
 We will move the `date` from props to state in three steps:
 
@@ -194,7 +195,7 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
 Next, we'll make the `Clock` set up its own timer and update itself every second.
 
@@ -303,7 +304,7 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
 Now the clock ticks every second.
 
@@ -438,7 +439,7 @@ function FormattedDate(props) {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
 This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components "below" them in the tree.
 
@@ -463,7 +464,7 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
 Each `Clock` sets up its own timer and updates independently.
 
