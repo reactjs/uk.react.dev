@@ -21,7 +21,7 @@
 - title: Tools
   items:
     - id: debugging-tools
-      title: Debugging
+      title: Налагодження
     - id: component-workbenches
       title: Component Workbenches
     - id: jsx-integrations
@@ -33,7 +33,7 @@
     - id: model-management
       title: Model Management
     - id: data-fetching
-      title: Data Fetching
+      title: Отримання даних
     - id: testing
       title: Testing
     - id: ui-components
