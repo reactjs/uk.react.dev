@@ -111,9 +111,9 @@ class Clock extends React.Component {
  
 ## Додавання внутрішнього стану до класу {#adding-local-state-to-a-class}
 
-We will move the `date` from props to state in three steps:
+Ми перемістимо `date` від пропсів до стану, в три етапи:
 
-1) Replace `this.props.date` with `this.state.date` in the `render()` method:
+1) Замінити `this.props.date` на `this.state.date` у методі `render()`:
 
 ```js{6}
 class Clock extends React.Component {
@@ -128,7 +128,7 @@ class Clock extends React.Component {
 }
 ```
 
-2) Add a [class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor) that assigns the initial `this.state`:
+2) Додайте [class constructor](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor), який призначає початковий `this.state`:
 
 ```js{4}
 class Clock extends React.Component {
@@ -148,7 +148,8 @@ class Clock extends React.Component {
 }
 ```
 
-Note how we pass `props` to the base constructor:
+Зверніть увагу на те, як ми передаємо `props`(пропси) базовому конструктору:
+
 
 ```js{2}
   constructor(props) {
@@ -156,10 +157,9 @@ Note how we pass `props` to the base constructor:
     this.state = {date: new Date()};
   }
 ```
+Компоненти класу повинні завжди викликати базовий конструктор з `props`.
 
-Class components should always call the base constructor with `props`.
-
-3) Remove the `date` prop from the `<Clock />` element:
+3) Видалити елемент `date` з елемента `<Clock />`:
 
 ```js{2}
 ReactDOM.render(
@@ -167,10 +167,9 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+Пізніше ми додамо код таймера назад до самого компонента.
 
-We will later add the timer code back to the component itself.
-
-The result looks like this:
+Результат виглядає так:
 
 ```js{2-5,11,18}
 class Clock extends React.Component {
@@ -197,17 +196,17 @@ ReactDOM.render(
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
-Next, we'll make the `Clock` set up its own timer and update itself every second.
+Далі, ми зробимо так аби `Clock` сам налаштувати свій таймер і оновлювався себе кожну секунду.
 
-## Adding Lifecycle Methods to a Class {#adding-lifecycle-methods-to-a-class}
+## Додавання методів життєвого циклу до класу {#adding-lifecycle-methods-to-a-class}
 
-In applications with many components, it's very important to free up resources taken by the components when they are destroyed.
+У додатках з багатьма компонентами дуже важливо вивільнити ресурси, що вилучаються компонентами, коли вони знищуються.
 
-We want to [set up a timer](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) whenever the `Clock` is rendered to the DOM for the first time. This is called "mounting" in React.
+Ми хочемо [налаштувати таймер](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) всякий раз, коли `Clock` буде передано DOM вперше. Це називається "монтаж" в React.
 
-We also want to [clear that timer](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval) whenever the DOM produced by the `Clock` is removed. This is called "unmounting" in React.
+Ми також хочемо [оновити цей таймер](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval), коли DOM видаляється. Це називається "розмотування" в React.
 
-We can declare special methods on the component class to run some code when a component mounts and unmounts:
+Ми можемо оголосити спеціальні методи на класі компонентів для запуску деякого коду, коли компонент монтується і розмотується:
 
 ```js{7-9,11-13}
 class Clock extends React.Component {
@@ -235,9 +234,9 @@ class Clock extends React.Component {
 }
 ```
 
-These methods are called "lifecycle methods".
+Ці методи називаються "методами життєвого циклу".
 
-The `componentDidMount()` method runs after the component output has been rendered to the DOM. This is a good place to set up a timer:
+Метод `componentDidMount()` виконується після того, як компонентний вивід був переданий DOM. Це гарне місце для налаштування таймера:
 
 ```js{2-5}
   componentDidMount() {
