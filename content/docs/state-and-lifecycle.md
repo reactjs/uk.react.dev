@@ -1,6 +1,6 @@
 ---
 id: state-and-lifecycle
-title: State and Lifecycle
+title: Стан та життєвий цикл
 permalink: docs/state-and-lifecycle.html
 redirect_from:
   - "docs/interactivity-and-dynamic-uis.html"
@@ -8,9 +8,10 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
-This page introduces the concept of state and lifecycle in a React component. You can find a [detailed component API reference here](/docs/react-component.html).
+На цій сторінці представлено поняття стану та життєвого циклу у React-компоненті. Ви можете знайти [детальньний API довідник на компонент тут](/docs/react-component.html).
 
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `ReactDOM.render()` to change the rendered output:
+Розглянемо приклад відліку годинника з [одного з попередніх розділів] (/ docs / rendering-elements.html # updating-the-rendered-element). 
+В [Рендеринг елементів] (/ docs / rendering-elements.html # rendering-an-element-into-the-dom) ми дізналися лише один спосіб оновлення UI. Ми називаємо `ReactDOM.render ()`, щоб змінити відрендерний вивід інформації:
 
 ```js{8-11}
 function tick() {
@@ -31,9 +32,9 @@ setInterval(tick, 1000);
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
-In this section, we will learn how to make the `Clock` component truly reusable and encapsulated. It will set up its own timer and update itself every second.
+У цьому розділі ми дізнаємося, як зробити компонент 'Clock' дійсно багаторазовим та інкапсульованим. Компонент сам налаштує свій таймер та оновлюватиметься кожну секунду.
 
-We can start by encapsulating how the clock looks:
+Ми можемо почати з того, як виглядає годинник:  
 
 ```js{3-6,12}
 function Clock(props) {
@@ -55,11 +56,11 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
-However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
+Однак, це пропускає важливу вимогу: той факт, що "Clock" встановлює таймер і оновлює UI кожну секунду, має бути деталлю реалізації "Clock".
 
-Ideally we want to write this once and have the `Clock` update itself:
+В ідеалі ми хочемо написати це один раз аби `Clock` оновлював себе сам:
 
 ```js{2}
 ReactDOM.render(
@@ -68,17 +69,17 @@ ReactDOM.render(
 );
 ```
 
-To implement this, we need to add "state" to the `Clock` component.
+Аби це реалізувати, нам потрібно додати "state" до компонента 'Clock'.
 
-State is similar to props, but it is private and fully controlled by the component.
+Стан - подібний до пропсів, але він приватний і повністю контролюється компонентом.
 
-We [mentioned before](/docs/components-and-props.html#functional-and-class-components) that components defined as classes have some additional features. Local state is exactly that: a feature available only to classes.
+Ми [згадували раніше](/docs/components-and-props.html#functional-and-class-components), що компоненти, визначені як класи, мають деякі додаткові функції. Внутрішній стан - це і є функція яка доступна тільки для класів.
 
-## Converting a Function to a Class {#converting-a-function-to-a-class}
+## Перетворення функції на клас {#converting-a-function-to-a-class}
 
-You can convert a function component like `Clock` to a class in five steps:
+Ви можете перетворити функцію компоненту `Clock` на клас у п'ять кроків:
 
-1. Create an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), with the same name, that extends `React.Component`.
+1. Створіть клас [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) з тим же ім'ям, що продовжує `React.Component`.
 
 2. Add a single empty method to it called `render()`.
 
