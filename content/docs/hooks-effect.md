@@ -1,14 +1,14 @@
 ---
 id: hooks-state
-title: Using the Effect Hook
+title: Використовуємо хук еффекту
 permalink: docs/hooks-effect.html
 next: hooks-rules.html
 prev: hooks-intro.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Хуки* — це новинка в React 16.8. Вони дозволяють вам використовувати стан та інші можливості React без написання класу.
 
-The *Effect Hook* lets you perform side effects in function components:
+*Хук еффекту* дозволяє вам виконувати побічні еффекти в функціональному компоненті:
 
 ```js{1,6-10}
 import React, { useState, useEffect } from 'react';
@@ -16,42 +16,42 @@ import React, { useState, useEffect } from 'react';
 function Example() {
   const [count, setCount] = useState(0);
 
-  // Similar to componentDidMount and componentDidUpdate:
+  // Подібно до componentDidMount та componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
+    // Оновлюємо заголовок документа, використовуючи API браузера
     document.title = `You clicked ${count} times`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Ви натиснули {count} разів</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Натисни мене
       </button>
     </div>
   );
 }
 ```
 
-This snippet is based on the [counter example from the previous page](/docs/hooks-state.html), but we added a new feature to it: we set the document title to a custom message including the number of clicks.
+Цей фрагмент коду базується на [прикладі лічильника з попередньої сторінки](/docs/hooks-state.html), але ми додали новий функціонал до неї: ми змінюємо заголовок документа на користувацьке повідомлення, яке містить кількість натискань.
 
-Data fetching, setting up a subscription, and manually changing the DOM in React components are all examples of side effects. Whether or not you're used to calling these operations "side effects" (or just "effects"), you've likely performed them in your components before.
+Побічними еффектами в React є завантаження даних, оформлення підписки і зміна вручну DOM в React-компонентах. Неважливо, називаєте чи ви ці операції "побічними еффектами" (або просто "еффектами") чи ні, вам скоріше за всього доводилось використовувати їх в ваших компонентах раніше.
 
->Tip
+>Порада
 >
->If you're familiar with React class lifecycle methods, you can think of `useEffect` Hook as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` combined.
+>Якщо ви знайомі з классовими методами життєвого циклу React, то уявляйте хук `useEffect`, як комбінацію `componentDidMount`, `componentDidUpdate` та `componentWillUnmount`.
 
-There are two common kinds of side effects in React components: those that don't require cleanup, and those that do. Let's look at this distinction in more detail.
+Існують два види побічних еффектів в React-компонентах: ті, які вимагають і ті, які не вимагають очистки. Давайте розглянемо обидва приклади в деталях.
 
-## Effects Without Cleanup {#effects-without-cleanup}
+## Еффекти без очистки {#effects-without-cleanup}
 
-Sometimes, we want to **run some additional code after React has updated the DOM.** Network requests, manual DOM mutations, and logging are common examples of effects that don't require a cleanup. We say that because we can run them and immediately forget about them. Let's compare how classes and Hooks let us express such side effects.
+Інколи ми хочемо **запустити додатковий код після того, як React оновив DOM.** Мережеві запити, ручні DOM-мутації та логування є прикладами еффектів, які не вимагають очистки. Це тому, що ми їх запускаємо і після цього відразу забуваємо про них, оскільки більше ніяких додаткових дій не потрібно. Давайте порівняємо, як класи та хуки дозволяють реалізовувати такі побічні еффекти.
 
-### Example Using Classes {#example-using-classes}
+### Приклад з використанням класів {#example-using-classes}
 
-In React class components, the `render` method itself shouldn't cause side effects. It would be too early -- we typically want to perform our effects *after* React has updated the DOM.
+В класових React-компонентах метод `render` не може викликати побічні еффекти сам по собі. Це нам не підходить для наших цілей, оскільки ми в основному хочемо викликати наші еффект *після того*, як React оновив DOM.
 
-This is why in React classes, we put side effects into `componentDidMount` and `componentDidUpdate`. Coming back to our example, here is a React counter class component that updates the document title right after React makes changes to the DOM:
+Ось чому в класах React ми викликаємо побічні еффекти в `componentDidMount` та `componentDidUpdate` методах життєвого циклу. Повертаючись до нашого прикладу, тут показаний лічильник, який реалізований з допомогою класового React-компонента, який оновлює заголовок документа якраз пілся того, як React внесе зміни до DOM:
 
 ```js{9-15}
 class Example extends React.Component {
@@ -63,19 +63,19 @@ class Example extends React.Component {
   }
 
   componentDidMount() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Ви натиснули ${this.state.count} разів`;
   }
 
   componentDidUpdate() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Ви натиснули ${this.state.count} разів`;
   }
 
   render() {
     return (
       <div>
-        <p>You clicked {this.state.count} times</p>
+        <p>Ви натиснули {this.state.count} разів</p>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          Click me
+          Натисни мене
         </button>
       </div>
     );
@@ -83,15 +83,15 @@ class Example extends React.Component {
 }
 ```
 
-Note how **we have to duplicate the code between these two lifecycle methods in class.**
+Зверніть увагу, що **ми продублювали код між цими двома методами життєвого циклу в класі.**
 
-This is because in many cases we want to perform the same side effect regardless of whether the component just mounted, or if it has been updated. Conceptually, we want it to happen after every render -- but React class components don't have a method like this. We could extract a separate method but we would still have to call it in two places.
+Це все тому, що в багатьох випадках ми хочемо виконати той самий побічний еффект незалжно від того чи компонент тільки змонтувався, або він оновився. Ми б хотіли, щоб ці побічні еффекти викликались після кожного рендеру, але класові React-компоненти не мають методу, який це може зробити. Ми б могли винести окремий метод, але нам все рівно би потрібно було викликати їх в двох місцях.
 
-Now let's see how we can do the same with the `useEffect` Hook.
+Тепер, давайте розглянемо те, як ми можемо реалізувати це саме, використовуючи хук `useEffect`.
 
-### Example Using Hooks {#example-using-hooks}
+### Приклад з використанням хуків {#example-using-hooks}
 
-We've already seen this example at the top of this page, but let's take a closer look at it:
+Ми уже розглядали даний приклад на початку цієї сторінки, але давайте розберемо його докладніше:
 
 ```js{1,6-8}
 import React, { useState, useEffect } from 'react';
@@ -100,14 +100,14 @@ function Example() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Ви натиснули ${count} разів`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Ви натиснули {count} разів</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Натисни мене
       </button>
     </div>
   );
