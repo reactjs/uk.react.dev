@@ -1,4 +1,4 @@
-- title: Установка
+- title: Встановлення
   items:
     - id: getting-started
       title: Початок роботи
@@ -38,7 +38,7 @@
 - title: Просунуті теми
   items:
     - id: accessibility
-      title: Доступність контента
+      title: Доступність контенту
     - id: code-splitting
       title: Розбиття коду
     - id: context
@@ -148,6 +148,6 @@
     - id: faq-structure
       title: Структура файлів
     - id: faq-versioning
-      title: Політика версіювання
+      title: Політика версіонування
     - id: faq-internals
-      title: Віртуальний DOM та деталі його реалізації в React
+      title: Віртуальний DOM та деталі його реалізації
