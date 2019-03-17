@@ -9,7 +9,7 @@
 module.exports = {
   siteMetadata: {
     title: 'React: JavaScript-бібліотека для створення користувацьких інтерфейсів',
-    siteUrl: 'https://reactjs.org',
+    siteUrl: 'https://uk.reactjs.org',
     rssFeedTitle: 'React',
     rssFeedDescription: 'JavaScript-бібліотека для створення користувацьких інтерфейсів',
   },
