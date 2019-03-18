@@ -46,7 +46,7 @@ class Columns extends React.Component {
     return (
       <div>
         <td>Привіт</td>
-        <td>Світ</td>
+        <td>Світe</td>
       </div>
     );
   }
@@ -60,7 +60,7 @@ class Columns extends React.Component {
   <tr>
     <div>
       <td>Привіт</td>
-      <td>Світ</td>
+      <td>Світe</td>
     </div>
   </tr>
 </table>
@@ -76,7 +76,7 @@ class Columns extends React.Component {
     return (
       <React.Fragment>
         <td>Привіт</td>
-        <td>Світ</td>
+        <td>Світe</td>
       </React.Fragment>
     );
   }
