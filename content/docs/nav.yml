@@ -64,7 +64,7 @@
     - id: react-without-jsx
       title: React без JSX
     - id: reconciliation
-      title: Погодження
+      title: Узгодження
     - id: refs-and-the-dom
       title: Рефи та DOM
     - id: render-props
