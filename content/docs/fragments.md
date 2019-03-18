@@ -89,7 +89,7 @@ class Columns extends React.Component {
 <table>
   <tr>
     <td>Привіт</td>
-    <td>Світ</td>
+    <td>Світe</td>
   </tr>
 </table>
 ```
