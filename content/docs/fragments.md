@@ -104,7 +104,7 @@ class Columns extends React.Component {
     return (
       <>
         <td>Привіт</td>
-        <td>Світ</td>
+        <td>Світe</td>
       </>
     );
   }
