@@ -1,6 +1,6 @@
 ---
 id: hooks-custom
-title: Створення власних хуків
+title: Створення користувацьких хуків
 permalink: docs/hooks-custom.html
 next: hooks-reference.html
 prev: hooks-rules.html
@@ -64,7 +64,6 @@ function FriendListItem(props) {
 ```
 
 Замість цього ми б хотіли, щоб `FriendStatus` і `FriendListItem` розділяли цю логіку.
-
 
 Інколи треба повторно використовувати однакову логіку стану в декількох компонентах. Традиційно використовувалися два підходи: [компоненти вищого порядку](/docs/higher-order-components.html) та [рендер-пропси](/docs/render-props.html). Зараз ми побачимо, як за допомогою хуків вирішити багато схожих проблем без додавання непотрібних компонентів у дерево.
 
@@ -194,7 +193,7 @@ function ChatRecipientPicker() {
   const isRecipientOnline = useFriendStatus(recipientID);
 ```
 
-Це дозволяє нам дізнатись, чи є *наразі обраний* друг у мережі. Якщо ми оберемо іншого друга і оновимо змінну стану `recipientID`, наш хук `useFriendStatus` відпишеться від попереднь обраного друга і підпишеться на статус тільки що обраного.
+Це дозволяє нам дізнатись, чи є *наразі обраний* друг у мережі. Якщо ми оберемо іншого друга і оновимо змінну стану `recipientID`, наш хук `useFriendStatus` відпишеться від попередньо обраного друга і підпишеться на статус щойно обраного.
 
 ## `useYourImagination()` {#useyourimagination}
 
