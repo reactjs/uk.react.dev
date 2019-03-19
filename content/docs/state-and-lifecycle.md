@@ -318,13 +318,13 @@ ReactDOM.render(
 
 Якщо компонент `Clock` коли-небудь буде видалений з DOM, React викличе метод життєвого циклу `componentWillUnmount()`, аби таймер зупинився.
 
-## Using State Correctly {#using-state-correctly}
+## Правильно використовувати стан {#using-state-correctly}
 
-There are three things you should know about `setState()`.
+Є три речі, які ви повинні знати про `setState()`.
 
-### Do Not Modify State Directly {#do-not-modify-state-directly}
+### Не змінюйте стан безпосередньо {#do-not-modify-state-directly}
 
-For example, this will not re-render a component:
+Наприклад, це не буде повторно рендерити компонент:
 
 ```js
 // Wrong
@@ -338,15 +338,15 @@ Instead, use `setState()`:
 this.setState({comment: 'Hello'});
 ```
 
-The only place where you can assign `this.state` is the constructor.
+Конструктор - це єдине місце, де можна призначити `this.state`.
 
 ### State Updates May Be Asynchronous {#state-updates-may-be-asynchronous}
 
-React may batch multiple `setState()` calls into a single update for performance.
+React може групувати кілька викликів `setState()` в одне оновлення для продуктивності.
 
-Because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state.
+Оскільки `this.props` і `this.state` можуть бути оновлені асинхронно, не варто покладатися на їх значення для обчислення наступного стану.
 
-For example, this code may fail to update the counter:
+Наприклад, цей код може не оновити лічильник:
 
 ```js
 // Wrong
@@ -355,7 +355,7 @@ this.setState({
 });
 ```
 
-To fix it, use a second form of `setState()` that accepts a function rather than an object. That function will receive the previous state as the first argument, and the props at the time the update is applied as the second argument:
+Щоб виправити це, скористайтеся другою формою `setState()`, яка приймає функцію, а не об'єкт. Ця функція отримає попередній стан як перший аргумент, а пропси в момент, коли оновлення застосовується як другий аргумент:
 
 ```js
 // Correct
@@ -364,7 +364,7 @@ this.setState((state, props) => ({
 }));
 ```
 
-We used an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) above, but it also works with regular functions:
+Вище було використано функцію [стрілкова функція](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Functions/Стрілкові_функції) але вона також працює з регулярними функціями:
 
 ```js
 // Correct
@@ -375,11 +375,11 @@ this.setState(function(state, props) {
 });
 ```
 
-### State Updates are Merged {#state-updates-are-merged}
+### Об'єднання станового оновлення {#state-updates-are-merged}
 
-When you call `setState()`, React merges the object you provide into the current state.
+Коли ви називаєте `setState()`, React об'єднує об'єкт, який ви надаєте, до поточного стану.
 
-For example, your state may contain several independent variables:
+Наприклад, ваш стан може містити кілька незалежних змінних:
 
 ```js{4,5}
   constructor(props) {
@@ -391,7 +391,7 @@ For example, your state may contain several independent variables:
   }
 ```
 
-Then you can update them independently with separate `setState()` calls:
+Тоді ви можете оновлювати їх окремо за допомогою окремих викликів `setState()`:
 
 ```js{4,10}
   componentDidMount() {
@@ -409,27 +409,27 @@ Then you can update them independently with separate `setState()` calls:
   }
 ```
 
-The merging is shallow, so `this.setState({comments})` leaves `this.state.posts` intact, but completely replaces `this.state.comments`.
+Злиття є дрібним, тому `this.setState({comments})` залишає `this.state.posts` незмінним, але повністю замінює `this.state.comments`.
 
-## The Data Flows Down {#the-data-flows-down}
+## Потік данних вниз {#the-data-flows-down}
 
-Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn't care whether it is defined as a function or a class.
+Ні батьківські, ні дочірні компоненти не можуть знати, чи є певний компонент становим або безстановим, і вони не повинні піклуватися, чи визначено це як функцію або клас.
 
-This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
+Саме тому стан часто називають внутрішнім або інкапсульованим. Він не доступний для будь-якого іншого компоненту, окрім того, який їм володіє і встановлює.
 
-A component may choose to pass its state down as props to its child components:
+Компонент може передати свій стан вниз як пропси до своїх дочірніх компонентів:
 
 ```js
 <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
-This also works for user-defined components:
+Це також працює для визначених користувачем компонентів:
 
 ```js
 <FormattedDate date={this.state.date} />
 ```
 
-The `FormattedDate` component would receive the `date` in its props and wouldn't know whether it came from the `Clock`'s state, from the `Clock`'s props, or was typed by hand:
+Компонент `FormattedDate` отримає `date` у своїх пропсів і не буде знати, чи вийшов він зі стану `Clock`, з пропсів `Clock`, або був набраний вручну:
 
 ```js
 function FormattedDate(props) {
@@ -439,7 +439,7 @@ function FormattedDate(props) {
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
-This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components "below" them in the tree.
+Це зазвичай називається "зверху вниз" або "односпрямованим" потоком даних. Будь-який стан завжди належить певному компоненту, і будь-які дані або UI, отримані з цього стану, можуть впливати лише на компоненти "нижче" їх у дереві.
 
 If you imagine a component tree as a waterfall of props, each component's state is like an additional water source that joins it at an arbitrary point but also flows down.
 
