@@ -10,8 +10,7 @@ next: handling-events.html
 
 На цій сторінці представлено поняття стану та життєвого циклу у React-компоненті. Ви можете знайти [детальньний API довідник на компонент тут](/docs/react-component.html).
 
-Розглянемо приклад відліку годинника з [одного з попередніх розділів] (/ docs / rendering-elements.html # updating-the-rendered-element). 
-В [Рендеринг елементів] (/ docs / rendering-elements.html # rendering-an-element-into-the-dom) ми дізналися лише один спосіб оновлення UI. Ми називаємо `ReactDOM.render ()`, щоб змінити відрендерний вивід інформації:
+Розглянемо приклад відліку годинника з [одного з попередніх розділів](/docs/rendering-elements.html#updating-the-rendered-element). У [Рендерингу елементів](/docs/rendering-elements.html#rendering-an-element-into-the-dom) ми дізналися лише один спосіб оновлення UI. Ми викликаємо його — `ReactDOM.render()`, щоб змінити відрендерний вивід інформації:
 
 ```js{8-11}
 function tick() {
@@ -58,7 +57,7 @@ setInterval(tick, 1000);
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
-Однак, це пропускає важливу вимогу: той факт, що "Clock" встановлює таймер і оновлює UI кожну секунду, має бути деталлю реалізації "Clock".
+Однак, це пропускає важливу вимогу: той факт, що `Clock` встановлює таймер і оновлює UI кожну секунду, має бути деталлю реалізації `Clock`.
 
 В ідеалі ми хочемо написати це один раз аби `Clock` оновлював себе сам:
 
@@ -83,11 +82,10 @@ ReactDOM.render(
 
 2. Додайте до нього один порожній метод, який називається `render()`.
 
-3. Перемістіть зміст функції в метод `render()`.
+3. Перемістіть тіло функції в метод `render()`.
 
-4. Замініть `props` на` this.props` в змісті `render()`.
+4. Замініть `props` на `this.props` в тілі `render()`.
 
-Видаліть порожні оголошення функції які залишилися.
 5. Видаліть порожні оголошення функції які залишилися.
 
 ```js
@@ -150,7 +148,6 @@ class Clock extends React.Component {
 
 Зверніть увагу на те, як ми передаємо `props`(пропси) базовому конструктору:
 
-
 ```js{2}
   constructor(props) {
     super(props);
@@ -200,9 +197,9 @@ ReactDOM.render(
 
 ## Додавання методів життєвого циклу до класу {#adding-lifecycle-methods-to-a-class}
 
-У додатках з багатьма компонентами дуже важливо вивільнити ресурси, що вилучаються компонентами, коли вони знищуються.
+У додатках з багатьма компонентами, дуже важливо вивільняти ресурси які використовуються компонентами коли вони знищуються.
 
-Ми хочемо [налаштувати таймер](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) всякий раз, коли `Clock` буде передано DOM вперше. Це називається "монтаж" в React.
+Ми хочемо [налаштувати таймер](https://developer.mozilla.org/uk/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) кожного разу, коли `Clock` буде передано DOM вперше. Це називається "монтування" в React.
 
 Ми також хочемо [оновити цей таймер](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval), коли DOM видаляється. Це називається "розмотування" в React.
 
@@ -247,9 +244,9 @@ class Clock extends React.Component {
   }
 ```
 
-Note how we save the timer ID right on `this`.
+Зверніть увагу на те, як ми зберігаємо ідентифікатор таймера прямо на `this`.
 
-While `this.props` is set up by React itself and `this.state` has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a timer ID).
+Хоча `this.props` налаштовує сам React, а` this.state` має особливе значення, ви можете додавати додаткові поля до класу вручну, якщо потрібно зберегти те, що не бере участь у потоці даних (як ідентифікатор таймера).
 
 We will tear down the timer in the `componentWillUnmount()` lifecycle method:
 
