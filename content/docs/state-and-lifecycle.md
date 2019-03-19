@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-Аби це реалізувати, нам потрібно додати "state" до компонента 'Clock'.
+Аби це реалізувати, нам потрібно додати "state" до компонента `Clock`.
 
 Стан - подібний до пропсів, але він приватний і повністю контролюється компонентом.
 
@@ -246,9 +246,9 @@ class Clock extends React.Component {
 
 Зверніть увагу на те, як ми зберігаємо ідентифікатор таймера прямо на `this`.
 
-Хоча `this.props` налаштовує сам React, а` this.state` має особливе значення, ви можете додавати додаткові поля до класу вручну, якщо потрібно зберегти те, що не бере участь у потоці даних (як ідентифікатор таймера).
+Хоча `this.props` налаштовує сам React, а `this.state` має особливе значення, ви можете додавати додаткові поля до класу вручну, якщо потрібно зберегти те, що не бере участь у потоці даних (як ідентифікатор таймера).
 
-We will tear down the timer in the `componentWillUnmount()` lifecycle method:
+У методі життєвого циклу `componentWillUnmount()`, ми розірвемо таймер:
 
 ```js{2}
   componentWillUnmount() {
@@ -256,9 +256,9 @@ We will tear down the timer in the `componentWillUnmount()` lifecycle method:
   }
 ```
 
-Finally, we will implement a method called `tick()` that the `Clock` component will run every second.
+Нарешті, ми реалізуємо метод під назвою `tick()`, що компонент `Clock` буде використовувати кожну секунду.
 
-It will use `this.setState()` to schedule updates to the component local state:
+Він буде використовувати `this.setState()` для планування оновлення внутрішнього стану компонента:
 
 ```js{18-22}
 class Clock extends React.Component {
@@ -302,19 +302,21 @@ ReactDOM.render(
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
-Now the clock ticks every second.
+Тепер годинник відстукує кожну секунду.
 
-Let's quickly recap what's going on and the order in which the methods are called:
+Давайте швидко повторимо, що відбувається, і порядок, в якому ці методи викликаються:
 
-1) When `<Clock />` is passed to `ReactDOM.render()`, React calls the constructor of the `Clock` component. Since `Clock` needs to display the current time, it initializes `this.state` with an object including the current time. We will later update this state.
+1) Коли `<Clock />` передається до `ReactDOM.render ()`, React викликає конструктор компонента `Clock`. Оскільки `Clock` має відображати поточний час, він ініціалізує `this.state` з об'єктом, включаючи поточний час. Пізніше ми оновимо цей стан.
 
-2) React then calls the `Clock` component's `render()` method. This is how React learns what should be displayed on the screen. React then updates the DOM to match the `Clock`'s render output.
+2) React потім викликає `Clock` компонентний метод `render()`. Ось як React дізнається, що саме має відображатися на екрані. Потім React оновлює DOM, щоб він відповідав виводу рендера `Clock`.
 
-3) When the `Clock` output is inserted in the DOM, React calls the `componentDidMount()` lifecycle method. Inside it, the `Clock` component asks the browser to set up a timer to call the component's `tick()` method once a second.
+3) Коли виведення інформації `Clock` вставляється в DOM, React викликає метод життєвого циклу `componentDidMount()`. Всередині методу, компонент `Clock` просить у браузера налаштувати таймер для виклику методу компонента `tick()` один раз на секунду.
 
-4) Every second the browser calls the `tick()` method. Inside it, the `Clock` component schedules a UI update by calling `setState()` with an object containing the current time. Thanks to the `setState()` call, React knows the state has changed, and calls the `render()` method again to learn what should be on the screen. This time, `this.state.date` in the `render()` method will be different, and so the render output will include the updated time. React updates the DOM accordingly.
+4) Кожну секунду браузер викликає метод `tick()`. У цьому методі, компонент `Clock` планує оновлення UI, викликаючи `setState()` з об'єктом, що містить поточний час. Завдяки виклику `setState()` React знає, що стан змінився, і знову викликає метод `render()`, щоб дізнатися, що має бути на екрані. Цього разу `this.state.date` в методі `render()` буде відрізнятися, і тому рендерний вивід інформаціі буде включати оновлений час. React оновлює DOM відповідно.
 
 5) If the `Clock` component is ever removed from the DOM, React calls the `componentWillUnmount()` lifecycle method so the timer is stopped.
+
+Якщо компонент `Clock` коли-небудь буде видалений з DOM, React викличе метод життєвого циклу `componentWillUnmount()`, аби таймер зупинився.
 
 ## Using State Correctly {#using-state-correctly}
 
