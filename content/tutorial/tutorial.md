@@ -121,22 +121,22 @@ import './index.css';
 Якщо ви застрягли, зверніться до [ресурсів підтримки спільноти](/community/support.html).
  Зокрема, [чат Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n) -- чудовий спосіб швидко знайти допомогу. Якщо ви не отримаєте належну відповідь, будь ласка, напишіть нам, і ми вам допоможемо.
 
-## Overview {#overview}
+## Огляд {#overview}
 
-Now that you're set up, let's get an overview of React!
+Тепер, коли з усіма налаштуваннями завершено, давайте уважніше розглянемо React!
 
-### What Is React? {#what-is-react}
+### Що таке React? {#what-is-react}
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
+React -- це декларативна, ефективна і гнучка JavaScript бібліотека, призначена для створення інтерфейсу користувача. Вона дозволяє компонувати складн UI з маленьких окремих частин коду -- "компонентів".
 
-React has a few different kinds of components, but we'll start with `React.Component` subclasses:
+У React існує кільки різних компонентів, але ми почнемо з підкласів `React.Component`:
 
 ```javascript
 class ShoppingList extends React.Component {
   render() {
     return (
       <div className="shopping-list">
-        <h1>Shopping List for {this.props.name}</h1>
+        <h1>Список покупок для {this.props.name}</h1>
         <ul>
           <li>Instagram</li>
           <li>WhatsApp</li>
@@ -147,14 +147,14 @@ class ShoppingList extends React.Component {
   }
 }
 
-// Example usage: <ShoppingList name="Mark" />
+// Приклад використання: <ShoppingList name="Андрій" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+Ми ще повернемося до незвичних, схожих на XML тегів. Ми використовуємо компоненти, щоб повідомити React, що саме хочемо бачити на екрані. Кожного разу, при зміні даних, React ефективно оновлює і повторно рендерить наші компоненти.
 
-Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
+Так, ShoppingList вище -- це **класовий компонент React**. Компонент приймає параметри, які називаються `props` (скорочено від "properties"), і повертає ієрархію вигляду через метод `render`.
 
-The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+Метод `render` повертає *опис* того, що ви хочете побачити на екрані. React приймає цей опис і відтворює результат. Зокрема, `render` повертає **елемент React**, що є легким описом того, що треба відрендерити. Більшість React-розробників використовує спеціальний "JSX" синтаксис, який спрощує написання даних структур. Під час компіляції синтаксис `<div />` перетворюється у `React.createElement('div')`. Тож приклад вище рівноцінний до:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -163,35 +163,35 @@ return React.createElement('div', {className: 'shopping-list'},
 );
 ```
 
-[See full expanded version.](babel://tutorial-expanded-version)
+[Дивитись повну версію.](babel://tutorial-expanded-version)
 
-If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it in this tutorial. Instead, we will keep using JSX.
+Якщо вам цікаво, детальніше про `createElement()` ви можете дізнатися в  [довіднику API](/docs/react-api.html#createelement). Ми не використовуватимемо даний синтаксис у цьому введенні, натомість ми продовжимо використання JSX.
 
-JSX comes with the full power of JavaScript. You can put *any* JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+JSX має повну силу JavaScript. У межах фігурних дужок JSX ви можете використовувати *будь-які* JavaScript-вирази. Кожен елемент React є об'єктом, який можна зберегти у змінній або використати будь-де у вашій програмі.
 
-The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+Компонент `ShoppingList` вище рендерить тільки вбудовані DOM-компоненти як `<div />` або `<li />`. Але ви також можете створювати і рендерити власні компоненти. Наприклад, тепер ми можемо послатися на весь список покупок відразу використовуючи `<ShoppingList />`. Кожен компонент React інкапсульований і може використовуватись незалежно від інших; це дозволяє створювати складні UI з простих компонентів.
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+## Розглянемо стартовий код {#inspecting-the-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+Якщо ви збираєтесь працювати над введенням **у браузері**, відкрийте **[цей стартовий код](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** у новій вкладці. Якщо ви працюватимете над введенням **на власному комп'ютері**, відкрийте `src/index.js` у папці проекту (ви вже працювали з цим файлом під час [налаштувань](#setup-option-2-local-development-environment)).
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+Цей стартовий код оснований на тому, що ми будуватимемо. Ми подбали про CSS-стиль, тож ви можете повністю сконцентруватися на вивченні React і створенні гри у хрестики-нулики.
 
-By inspecting the code, you'll notice that we have three React components:
+Розглядаючи код, ви помітите що ми вже маємо три компоненти:
 
-* Square
-* Board
-* Game
+* Square (Квадрат)
+* Board (Поле)
+* Game (Гра)
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+Компонент Square рендерить окремий `<button>`-елемент, компонент Board рендерить 9 таких квадратів. Компонент Game рендерить ігрове поле з заповнювачами, які ми змінимо пізніше. Наразі, ми не маємо жодного інтерактивного компонента.
 
-### Passing Data Through Props {#passing-data-through-props}
+### Передаємо данні через пропси {#passing-data-through-props}
 
-To get our feet wet, let's try passing some data from our Board component to our Square component.
+Для початку, давайте спробуємо передати деякі данні з компоненту Board у компонент Square.
 
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
+Ми наполегливо рекомендуємо набирати код вручну під час роботи з введенням, а не копіювати і вставляти його. Це допоможе розвити м'язову пам'ять і досягти кращого розуміння.
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+У методі `renderSquare` компонента Board змініть код, щоб передати проп `value` компоненту Square:
 
 ```js{3}
 class Board extends React.Component {
@@ -200,7 +200,7 @@ class Board extends React.Component {
   }
 ```
 
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+Щоб відобразити значення, змінимо `render` метод компонента Square замінивши {/* TODO */}` на `{this.props.value}`:
 
 ```js{5}
 class Square extends React.Component {
@@ -214,22 +214,21 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+До:
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+Після: ви маєте побачити число в середині кожного відрендереного квадрата.
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+Вітаємо! Ви щойно "передали проп" від батьківського компонента Board до дочірнього компонента Square. Передача даних через пропси від батьківського компонента до дочірнього -- це те як данні перетікають у React додатках.
 
-### Making an Interactive Component {#making-an-interactive-component}
+### Створюємо інтерактивний компонент {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
+Давайте при натисканні спробуємо заповнити компонент Square хрестиками. Спочатку замінимо тег кнопки, який повертається з методу `render()` на наступний код:
 
 ```javascript{4}
 class Square extends React.Component {
@@ -243,17 +242,17 @@ class Square extends React.Component {
 }
 ```
 
-If you click on a Square now, you should see an alert in your browser.
+Тепер, при натисканні на Square, ви побачите повідомлення у браузері.
 
->Note
+>Примітка
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>Щоб уникнути зайвого другу і [заплутаної поведінки `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), тут і далі ми використовуватимемо [синтаксис стрілкової фінкції](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Functions/%D0%A1%D1%82%D1%80%D1%96%D0%BB%D0%BA%D0%BE%D0%B2%D1%96_%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%96%D1%97) для обробників події:
 >
 >```javascript{4}
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => alert('клік')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,13 +260,13 @@ If you click on a Square now, you should see an alert in your browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+>Зверніть увагу як використовуючи `onClick={() => alert('click')}`, ми передаємо  *функцію* як проп onClick`. React викличе цю функцію тільки після натискання. Типовою помилкою є пропуск `() =>` використання синтаксису `onClick={alert('click')}`, оскільки такий код буде спрацьовувати при кожному рендері компонента.
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+Наступним кроком, ми хочемо щоб компонент Square "запам'ятав", що на нього клікнули і відобразив позначку "X". Для "запам'ятовування" компоненти використовують **стан**.
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+Щоб налаштувати стан у компоненті React, вам потрібно вписати `this.state` у його конструктор. `this.state` варто розглядати як особисту властивість компонента, у якому його визначено. Давайте збережемо поточне значення у `this.state` компонента Square, і змінюватимемо його при кожному натисканні.
 
-First, we'll add a constructor to the class to initialize the state:
+Спершу, додамо конструктор до класу, щоб ініціалізувати стан:
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -280,7 +279,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => alert('клік')}>
         {this.props.value}
       </button>
     );
@@ -288,17 +287,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>Примітка
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start it with a `super(props)` call.
+>У [класах JavaScript](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Classes) при визначенні конструктора підкласу ви завжди повинні викликати `super`. Класові компоненти React, що мають `constructor`, повинні починатися з виклику `super(props)`.
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+Тепер змінимо метод `render` компонента Square, щоб відобразити значення поточного стану під час натискання:
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* Замініть `this.props.value` на `this.state.value` усередині тегу `<button>`.
+* Замініть обробник події `onClick={...}` на `onClick={() => this.setState({value: 'X'})}`.
+* Для кращої читабельності розташуйте пропси `className` та `onClick` на окремих рядках.
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+Після цих змін, тег `<button>`, повернений з метода `render` компонента Square має виглядати наступним чином:
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -322,7 +321,7 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+Викликаючи  `this.setState` з обробника `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
 
 When you call `setState` in a component, React automatically updates the child components inside of it too.
 
