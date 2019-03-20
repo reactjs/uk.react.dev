@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "Введення: Вступ до React"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -12,97 +12,97 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-This tutorial doesn't assume any existing React knowledge.
+Дане введення не потребує попереднього ознайомлення з React.
 
-## Before We Start the Tutorial {#before-we-start-the-tutorial}
+## Перед початком роботи {#before-we-start-the-tutorial}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React apps, and mastering it will give you a deep understanding of React.
+У цьому введенні ми працюватимемо над створенням маленької гри. **Вам це може здатися непотрібним, оскільки ви не плануєте створювати ігри, але ми рекомендуємо спробувати.** Методи, які ви вивчите у даному введенні є основоположними для створення будь-яких React-додатків, і освоєння цих методів допоможе вам глибше зрозуміти React.
 
->Tip
+>Порада
 >
->This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
+> Дане введення призначене для людей, які надають перевагу **практичному навчанню**. Якщо вам більше подобається вчитися з нуля, зверніться до нашого [покрокового довідника](/docs/hello-world.html). Ви можете виявити для себе, що обидва чудово доповнюють одне одного.
 
-The tutorial is divided into several sections:
+Вступ розбито на декілька розділів:
 
-* [Setup for the Tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-* [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-* [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
-* [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+* [Налаштування](#setup-for-the-tutorial) допоможе встановити **відправну точку** для роботи над грою.
+* [Огляд](#overview) ознайомить вас з **основами** React: компоненти, пропси, стан.
+* [Створення гри](#completing-the-game) ознайомить вас з **найпоширенішими методами** у розробці React-додатків.
+* [Додання подорожі у часі](#adding-time-travel) допоможе **глибше осягнути** сильні сторони React.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+Ви не мусите опрацьовувати усі розділи відразу, щоб отримати користь від введення. Продовжуйте працювати стільки, скільки вважаєте за потрібне, навіть якщо це один чи два розділи.
 
-### What Are We Building? {#what-are-we-building}
+### Що ми створюємо? {#what-are-we-building}
 
-In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
+У даному введенні ми розглянемо як створити інтерактивну гру в хрестики-нулики за допомогою React.
 
-You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Кінцевий результат ви можете розглянути за наступним посиланням: **[Завершена гра ](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. Не хвилюйтесь, якщо код здається вам незрозумілим, або ви не знайомі з синтаксисом! Мета даного введення -- допомогти вам зрозуміти React і його синтаксис.
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and is updated as the game progresses.
+Ми радимо розглянути гру перед тим, як продовжити працювати над введенням. Одна з її помітних властивостей -- пронумеровани список з правої сторони ігрового поля. Цей список відображає історію всіх ходів і оновлюється по ходу гри.
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Ви можете закрити гру в хрестики-нулики, коли закінчите ознайомлення з нею. Ми почнемо з простішого зразка. Наш натсупний крок -- підготуватись до створення гри.
 
-### Prerequisites {#prerequisites}
+### Передумови {#prerequisites}
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+Ми припускаємо, що ви вже трохи знайомі з HTML і JavaScript. Але навіть якщо в повсякденному житті ви використовуєте іншу мову програмування, проходження даного введення не має скласти труднощів. Ми також припустимо, що ви знайомі з  функціями, об'єктами, масивами і, меншою мірою, класами.
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+Якщо вам потрібно повторити основи JavaScript, ми рекомендуємо проглянути [цей довідник](https://developer.mozilla.org/uk/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Зверніть увагу, що ми також використовуємо деякі особливості ES6 -- нещодавньої версії JavaScript. У введенні ми використовуємо [стрілкові функції](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Functions/%D0%A1%D1%82%D1%80%D1%96%D0%BB%D0%BA%D0%BE%D0%B2%D1%96_%D1%84%D1%83%D0%BD%D0%BA%D1%86%D1%96%D1%97), [класи](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), та [`const`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Statements/const). Ви можете скористатися [Babel REPL](babel://es5-syntax-example), щоб дізнатися у що компілюється код ES6.
 
-## Setup for the Tutorial {#setup-for-the-tutorial}
+## Налаштування {#setup-for-the-tutorial}
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+Існує два способи проходження даного введення: ви можете писати код у браузері, або налаштувати локальне середовище розробки на комп'ютері.
 
-### Setup Option 1: Write Code in the Browser {#setup-option-1-write-code-in-the-browser}
+### Варіант налаштування 1: Пишемо код у браузері {#setup-option-1-write-code-in-the-browser}
 
-This is the quickest way to get started!
+Це найшвидший спосіб для початку!
 
-First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+Спершу, відкрийте **[початковий код](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** у новій вкладці. Ви побачите пусте поле для гри в хрестики-нулики і React-код. У даному розділі ми поступово змінюватимемо цей код.
 
-You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
+Ви можете пропустити другий варіант налаштування і перейти до [Огляду](#overview) React.
 
-### Setup Option 2: Local Development Environment {#setup-option-2-local-development-environment}
+### Варіант налаштування 2: Локальне середовище розробки {#setup-option-2-local-development-environment}
 
-This is completely optional and not required for this tutorial!
+Цей крок не є обов'язковим і не потрібний для проходження введення!
 
 <br>
 
 <details>
 
-<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
+<summary><b>Необов'язково: інструкції для написання коду в улюбленому текстовому редакторі</b></summary>
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+Дане налаштування вимагає трохи більше роботи, але дозволяє працювати над введенням у власному редакторі. Ось що вам потрібно зробити:
 
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
+1. Упевніться, що на вашому комп'ютері встановлено останню версію [Node.js](https://nodejs.org/en/).
+2. Слідуйте [інструкціям налаштування Create React App](/docs/create-a-new-react-app.html#create-react-app) для створення нового проекту.
 
 ```bash
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Видаліть усі файли з папки `src/` нового проекту. 
 
-> Note:
+> Примітка:
 >
->**Don't delete the entire `src` folder, just the original source files inside it.** We'll replace the default source files with examples for this project in the next step.
+>**Не видаляйте саму папку `src`, тільки вихідні файли що містяться в ній.** Ми замінимо ці файли власними прикладами у наступному кроці.
 
 ```bash
 cd my-app
 cd src
 
-# If you're using a Mac or Linux:
+# Якщо ви використовуєте Mac або Linux:
 rm -f *
 
-# Or, if you're on Windows:
+# Або, якщо використовуєте Windows:
 del *
 
-# Then, switch back to the project folder
+# Після цього, поверніться до папки проекту
 cd ..
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. Створіть файл `index.css` у папці `src/` з [цим CSS кодом](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. Створіть файл `index.js` у папці `src/` з [цим JS кодом](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
-6. Add these three lines to the top of `index.js` in the `src/` folder:
+6. Впишіть наступні три рядки на початку `index.js` у папці `src/`:
 
 ```js
 import React from 'react';
@@ -110,15 +110,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
+Тепер, якщо ви запустите `npm start` у папці проекту і відкриєте `http://localhost:3000` у браузері, перед вами має відкритися пусте поле для гри в хрестики-нулики.
 
-We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
+Ми рекомендуємо слідувати [цим інструкціям](https://babeljs.io/docs/editors/), щоб налаштувати підсвічування синтаксису у вашому редакторі.
 
 </details>
 
-### Help, I'm Stuck! {#help-im-stuck}
+### Допоможіть, я застряг! {#help-im-stuck}
 
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/0ZcbPKXt5bZjGY5n) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+Якщо ви застрягли, зверніться до [ресурсів підтримки спільноти](/community/support.html).
+ Зокрема, [чат Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n) -- чудовий спосіб швидко знайти допомогу. Якщо ви не отримаєте належну відповідь, будь ласка, напишіть нам, і ми вам допоможемо.
 
 ## Overview {#overview}
 
