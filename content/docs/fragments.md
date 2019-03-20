@@ -139,4 +139,4 @@ function Glossary(props) {
 
 ### Живий приклад {#live-demo}
 
-Новий синтаксис JSX фрагментів можна спробувати на [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+Новий синтаксис JSX-фрагментів можна спробувати на [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
