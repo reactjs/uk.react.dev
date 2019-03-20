@@ -75,7 +75,7 @@
 | props | пропси |
 | production | продакшн |
 | production mode | продакшн-режим |
-| reducer | ред'юсер |
+| reducer | редюсер |
 | reuse | повторне використання |
 | React | React |
 | React element | React-елемент, елемент React |
