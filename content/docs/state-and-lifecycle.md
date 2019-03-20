@@ -29,7 +29,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
 У цьому розділі ми дізнаємося, як зробити компонент 'Clock' дійсно багаторазовим та інкапсульованим. Компонент сам налаштує свій таймер та оновлюватиметься кожну секунду.
 
@@ -126,7 +126,7 @@ class Clock extends React.Component {
 }
 ```
 
-2) Додайте [конструктор класу](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes#Constructor), який присвоює `this.state` початкове значення:
+2) Додайте [конструктор класу](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Classes), який присвоює `this.state` початкове значення:
 
 ```js{4}
 class Clock extends React.Component {
@@ -314,9 +314,7 @@ ReactDOM.render(
 
 4) Кожну секунду браузер викликає метод `tick()`. У цьому методі компонент `Clock` планує оновлення UI, викликаючи `setState()` з об'єктом, що містить поточний час. Завдяки виклику `setState()` React знає, що стан змінився, і знову викликає метод `render()`, щоб дізнатися, що має бути на екрані. Цього разу `this.state.date` в методі `render()` буде відрізнятися і тому вивід рендера буде включати оновлений час. React оновлює DOM відповідно.
 
-5) If the `Clock` component is ever removed from the DOM, React calls the `componentWillUnmount()` lifecycle method so the timer is stopped.
-
-Якщо компонент `Clock` коли-небудь буде видалений з DOM, React викличе метод життєвого циклу `componentWillUnmount()`, аби таймер зупинився.
+5) Якщо компонент `Clock` коли-небудь буде видалений з DOM, React викличе метод життєвого циклу `componentWillUnmount()`, аби таймер зупинився.
 
 ## Правильно використовувати стан {#using-state-correctly}
 
@@ -340,7 +338,7 @@ this.setState({comment: 'Hello'});
 
 Конструктор — це єдине місце, де можна присвоїти `this.state`.
 
-### State Updates May Be Asynchronous {#state-updates-may-be-asynchronous}
+### Станові оновлення можуть бути асинхронними {#state-updates-may-be-asynchronous}
 
 React може групувати кілька викликів `setState()` в одне оновлення для продуктивності.
 
@@ -441,9 +439,9 @@ function FormattedDate(props) {
 
 Це зазвичай називається "зверху вниз" або "односпрямованим" потоком даних. Будь-який стан завжди належить певному компоненту і будь-які дані або UI, отримані з цього стану, можуть впливати лише на компоненти, що знаходяться "нижче" у дереві.
 
-If you imagine a component tree as a waterfall of props, each component's state is like an additional water source that joins it at an arbitrary point but also flows down.
+Уявіть дерево компонентів як водоспад пропсів, де стан кожного компонента подібний до додаткового джерела води, який приєднується до нього в довільній точці, але тече й вниз.
 
-To show that all components are truly isolated, we can create an `App` component that renders three `<Clock>`s:
+Щоб показати, що всі компоненти є дійсно ізольованими, ми можемо створити компонент `App`, який рендерить три `<Clock>`:
 
 ```js{4-6}
 function App() {
@@ -464,6 +462,6 @@ ReactDOM.render(
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
-Each `Clock` sets up its own timer and updates independently.
+Кожен `Clock` встановлює свій власний таймер і оновлюється самостійно.
 
-In React apps, whether a component is stateful or stateless is considered an implementation detail of the component that may change over time. You can use stateless components inside stateful components, and vice versa.
+У додатках React, незалежно від того, чи є компонент зі станом або без без нього, він вважається деталлю реалізації компонента, який може змінюватися з часом. Можна використовувати компоненти без стану всередині компонентів зі станом та навпаки.
