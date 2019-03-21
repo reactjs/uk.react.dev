@@ -1,16 +1,16 @@
 ---
 id: portals
-title: Portals
+title: Портали
 permalink: docs/portals.html
 ---
 
-Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+Портали дозволяють рендерити дочірні елементи в DOM-вузол, який знаходиться поза DOM-ієрархії батьківського компонента.
 
 ```js
 ReactDOM.createPortal(child, container)
 ```
 
-The first argument (`child`) is any [renderable React child](/docs/react-component.html#render), such as an element, string, or fragment. The second argument (`container`) is a DOM element.
+Перший аргумент (`child`) — це [будь-який React-компонент, який може бути ](/docs/react-component.html#render), such as an element, string, or fragment. The second argument (`container`) is a DOM element.
 
 ## Usage {#usage}
 
