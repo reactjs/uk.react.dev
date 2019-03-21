@@ -1,10 +1,10 @@
 ---
 id: fragments
-title: Fragments
+title: Фрагменти
 permalink: docs/fragments.html
 ---
 
-A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
+Повернення кількох елементів з компонента є поширеною практикою в React. Фрагменти дозволяють формувати список дочірніх елементів, не створюючи зайвих вузлів в DOM.
 
 ```js
 render() {
@@ -18,11 +18,11 @@ render() {
 }
 ```
 
-There is also a new [short syntax](#short-syntax) for declaring them, but it isn't supported by all popular tools yet.
+Також існує [скорочений запис](#short-syntax), проте ще не всі популярні інструменти підтримують його.
 
-## Motivation {#motivation}
+## Мотивація {#motivation}
 
-A common pattern is for a component to return a list of children. Take this example React snippet:
+Повернення списку дочірніх елементів з компонента є поширеною практикою. Розглянемо приклад на React:
 
 ```jsx
 class Table extends React.Component {
@@ -38,93 +38,93 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />`, then the resulting HTML will be invalid.
+`<Columns />` повинен повернути кілька елементів `<td>`, щоб HTML вийшов валідним. Якщо використовувати div як батьківський елемент всередині методу `render()` компонента `<Columns />`, то HTML виявиться невалідним.
 
 ```jsx
 class Columns extends React.Component {
   render() {
     return (
       <div>
-        <td>Hello</td>
-        <td>World</td>
+        <td>Привіт</td>
+        <td>Світe</td>
       </div>
     );
   }
 }
 ```
 
-results in a `<Table />` output of:
+Результатом виводу `<Table />` буде:
 
 ```jsx
 <table>
   <tr>
     <div>
-      <td>Hello</td>
-      <td>World</td>
+      <td>Привіт</td>
+      <td>Світe</td>
     </div>
   </tr>
 </table>
 ```
 
-Fragments solve this problem.
+Фрагменти вирішують цю проблему.
 
-## Usage {#usage}
+## Використання {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <td>Hello</td>
-        <td>World</td>
+        <td>Привіт</td>
+        <td>Світe</td>
       </React.Fragment>
     );
   }
 }
 ```
 
-which results in a correct `<Table />` output of:
+Результатом буде правильний вивід `<Table />`:
 
 ```jsx
 <table>
   <tr>
-    <td>Hello</td>
-    <td>World</td>
+    <td>Привіт</td>
+    <td>Світe</td>
   </tr>
 </table>
 ```
 
-### Short Syntax {#short-syntax}
+### Скорочений запис {#short-syntax}
 
-There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
+Існує скорочений запис оголошення фрагментів. Він виглядає як порожні теги:
 
 ```jsx{4,7}
 class Columns extends React.Component {
   render() {
     return (
       <>
-        <td>Hello</td>
-        <td>World</td>
+        <td>Привіт</td>
+        <td>Світe</td>
       </>
     );
   }
 }
 ```
 
-You can use `<></>` the same way you'd use any other element except that it doesn't support keys or attributes.
+Ви можете використовувати `<></>` так само, як і будь-який інший елемент, проте такий запис не підтримує ключі або атрибути.
 
-Note that **[many tools don't support it yet](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)** so you might want to explicitly write `<React.Fragment>` until the tooling catches up.
+Зверніть увагу, що **[більшість інструментів ще не підтримують скорочений запис](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)**, тому можна явно писати `<React.Fragment>`, поки не з'явиться підтримка.
 
-### Keyed Fragments {#keyed-fragments}
+### Фрагменти з ключами {#keyed-fragments}
 
-Fragments declared with the explicit `<React.Fragment>` syntax may have keys. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
+Фрагменти, які оголошені за допомогою  `<React.Fragment>` можуть мати ключі. Наприклад, їх можна використовувати при створенні списку визначень, перетворивши колекцію в масив фрагментів.
 
 ```jsx
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Without the `key`, React will fire a key warning
+        // Без атрибута `key`, React видасть попередження про його відсутність
         <React.Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -135,8 +135,8 @@ function Glossary(props) {
 }
 ```
 
-`key` is the only attribute that can be passed to `Fragment`. In the future, we may add support for additional attributes, such as event handlers.
+`key` — це єдиний атрибут, який можна передати у `Fragment`. В майбутньому планується додати підтримку додаткових атрибутів, наприклад, обробників подій.
 
-### Live Demo {#live-demo}
+### Живий приклад {#live-demo}
 
-You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+Новий синтаксис JSX фрагментів можна спробувати на [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
