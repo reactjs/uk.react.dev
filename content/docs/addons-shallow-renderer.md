@@ -1,6 +1,6 @@
 ---
 id: shallow-renderer
-title: Поверховий рендер
+title: Поверховий рендерер
 permalink: docs/shallow-renderer.html
 layout: docs
 category: Reference
