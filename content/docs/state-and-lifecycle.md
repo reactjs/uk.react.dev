@@ -17,7 +17,7 @@ function tick() {
   const element = (
     <div>
       <h1>Привіт, світе!</h1>
-      <h2>Це є {new Date().toLocaleTimeString()}.</h2>
+      <h2>Зараз {new Date().toLocaleTimeString()}.</h2>
     </div>
   );
   ReactDOM.render(
@@ -40,7 +40,7 @@ function Clock(props) {
   return (
     <div>
       <h1>Привіт, світе!</h1>
-      <h2>Це є {props.date.toLocaleTimeString()}.</h2>
+      <h2>Зараз {props.date.toLocaleTimeString()}.</h2>
     </div>
   );
 }
@@ -94,7 +94,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Привіт, світе!</h1>
-        <h2>Це є {this.props.date.toLocaleTimeString()}.</h2>
+        <h2>Зараз {this.props.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -119,7 +119,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Привіт, світе!</h1>
-        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
+        <h2>Зараз {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -139,7 +139,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Привіт, світе!</h1>
-        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
+        <h2>Зараз {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -181,7 +181,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Привіт, світе!</h1>
-        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
+        <h2>Зараз {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -226,7 +226,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Привіт, світе!</h1>
-        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
+        <h2>Зараз {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -290,7 +290,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Привіт, світе!</h1>
-        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
+        <h2>Зараз {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -420,7 +420,7 @@ this.setState(function(state, props) {
 Компонент може передати свій стан вниз у якості пропсів до своїх дочірніх компонентів:
 
 ```js
-<h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
+<h2>Зараз {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
 Це також працює для визначених користувачем компонентів:
@@ -433,7 +433,7 @@ this.setState(function(state, props) {
 
 ```js
 function FormattedDate(props) {
-  return <h2>Це є {props.date.toLocaleTimeString()}.</h2>;
+  return <h2>Зараз {props.date.toLocaleTimeString()}.</h2>;
 }
 ```
 
