@@ -321,44 +321,44 @@ class Square extends React.Component {
 }
 ```
 
-Викликаючи  `this.setState` з обробника `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+Викликаючи  `this.setState` з обробника `onClick` у `render` методі компонента Square, ми наказуємо React перерендерити компонент під час натиску. Після оновлення, `this.state.value` компонента Square стане `'X'`, що ми також побачимо на ігровому полі. При натиску на будь-який Square-компонент, відповідний квадрат заповниться хрестиком.
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+Під час виклику `setState` у компоненті, React також автоматично оновлює його дочірні компоненти.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
-### Developer Tools {#developer-tools}
+### Інструменти розробки {#developer-tools}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+Розширення React Devtools для [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) та [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) дозволяє вам інспектувати дерево React-компонентів у панелі інструметів розробника вашого браузера.
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+React DevTools дозволяють перевірити пропси і стан вашого React-компонента.
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
+Після встановлення React DevTools, натисніть на будь-який елемент на сторінці, виберіть "Inspect", і у панелі інструментів розробника крайньою справа ви побачите нову вкладку React.
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**Зауважте, що для коректної роботи інструментів розробника на CodePen, вам слід зробити декілька додаткових кроків:**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. Увійдіть або зареєструйтесь і підтвердіть вашу електронну пошту (необхідно для запобігання спаму).
+2. Натисніть кнопку "Fork".
+3. Натисніть  "Change View" і виберіть "Debug mode".
+4. У новій вкладці, яка щойно відкрилась, інструменти розробника тепер мають також містити вкладку React.
 
-## Completing the Game {#completing-the-game}
+## Закінчуємо гру {#completing-the-game}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+Тепер у нашому розпорядженні ми маємо базові елементи для створення гри у хрестики-нулики. Щоб гра набула завершеного вигляду, нам потрібно всановити почерговість "X" та "O" на ігровому полі і відобразити переможця по завешенню гри.
 
-### Lifting State Up {#lifting-state-up}
+### Підйом стану {#lifting-state-up}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+На даний момент, кожен Square-компонент зберігає у собі стан гри. Для визначення переможця нам потрібно утримувати значення кожного з 9 квадратів в одному місці.
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+На перший погляд здається, що Board має надсилати запит до кожного Square-компонента за його станом. Хоча такий підхід і можливий, ми не рекомендуємо звертатися до нього, оскільки це робить код важким для розуміння, вразливим до помилок та ускладнює рефакторинг. Замість цього, найкраще було б зберегти стан гри у батьківському Board компоненті замість кожного окремого Square компонента. Компонент Board може вказувати, що відображати Square компонентам передаючи стан через пропси. [Схожим чином ми передали число до кожного Square компонента](#passing-data-through-props).
 
-**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**Щоб зібрати данні з кількох дочірніх компонентів, чи дати можливість двом дочірнім компонентам контактувати один з одним, вам потрібно визначити спільний стан у батьківському компоненті. Батьківський компонент може передавати стан до дочірніх компонентів через пропси. Цей спосіб підтримує синхронізацію дочірніх компонентів один з одним і з батьківським компонентом.**
 
-Lifting state into a parent component is common when React components are refactored -- let's take this opportunity to try it out.
+Підйом стану до батьківського компонента -- звична справа при рефакторингу React компонентів,  тож давайте скористаємося нагодою і спробуємо цей спосіб.
 
-Add a constructor to the Board and set the Board's initial state to contain an array of 9 nulls corresponding to the 9 squares:
+Добавте конструктор до Board-компонента і визначте початковий стан, який містить масив з 9 null-елементами, що відповідають 9 квадратам:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -374,7 +374,7 @@ class Board extends React.Component {
   }
 ```
 
-When we fill the board in later, the `this.state.squares` array will look something like this:
+Пізніше, коли ми заповнимо поле, масив `this.state.squares`виглядатиме так:
 
 ```javascript
 [
@@ -384,7 +384,7 @@ When we fill the board in later, the `this.state.squares` array will look someth
 ]
 ```
 
-The Board's `renderSquare` method currently looks like this:
+Метод `renderSquare` компонента Board зараз виглядає так:
 
 ```javascript
   renderSquare(i) {
@@ -392,9 +392,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
+На початку, з компонента Board ми [передали проп `value`](#passing-data-through-props), щоб відобразити числа від 0 до 8 у кожному Square. На попередньому кроці ми замінили числа на "X"-позначку, [що визначалась власним станом компонента Square](#making-an-interactive-component). Саме тому на даному етапі компонент Square ігнорує проп `value` переданий компонентом Board.
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+Ми знову скористаємося способом передачі пропсів. Ми модифікуємо Board щоб передати кожному Square-компонету його поточні значення (`'X'`, `'O'`, або `null`). Ми вже визначили масив `squares` у конструкторі Board, і тепер модифікуємо `renderSquare` метод цього компонента, щоб мати змогу читати данні з цього масиву:
 
 ```javascript{2}
   renderSquare(i) {
@@ -402,13 +402,13 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[Поглянути повний код цього кроку](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Кожен компонент Square тепер отримуватиме проп `value`, який відповідатиме `'X'`, `'O'`, або `null` для пустої клітинки.
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+Наступним кроком нам потрібно налаштувати подію при натиску компонента Square. Компонент Board тепер зберігає інформацію про натиснуті клітинки. Оскільки стан є приватним для компонента у якому його визначено, ми не можемо оновити стан Board з дочірнього Square.
 
-Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
+Замість цього, ми передамо функцію від батьківського Board до дочірнього Square, і налаштуємо виклик цієї функції зі Square, коли його натиснуто. Змінимо метод `renderSquare` компонента Board на наступний код:
 
 ```javascript{5}
   renderSquare(i) {
@@ -421,17 +421,18 @@ Instead, we'll pass down a function from the Board to the Square, and we'll have
   }
 ```
 
->Note
+>Примітка
 >
->We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>Ми розбили код вище для кращої читабельності і додали дужки, щоб JavaScript не зруйнував код, вставляючи крапку з комою після `return`.
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
+Тепер ми передаємо два пропса вниз від Board до Square: `value` та `onClick`. Проп `onClick` -- функція, що спрацьовує коли клікнуто на клітинку компонента Square. Внесемо наступні зміни до Square:
 
-* Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because Square no longer keeps track of the game's state
+* Замініть `this.state.value` на `this.props.value` у методі `render` компонента Square
+* Замініть `this.setState()` на `this.props.onClick()` у методі `render` компонента Square
+* Видаліть `constructor` зі Square тому що цей компонент більше не відслідковує стан гри
 
-After these changes, the Square component looks like this:
+
+Після цих змін компонент Square має виглядати так:
 
 ```javascript{1,2,6,8}
 class Square extends React.Component {
@@ -448,19 +449,19 @@ class Square extends React.Component {
 }
 ```
 
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+При натисканні компонента Square з компонента Board викликається функція `onClick`. Розглянемо, чому так відбувається:
 
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
-3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+1. Проп `onClick` на вбудованому DOM-компоненті `<button>` наказує React налаштувати прослуховувач події натиску.
+2. Коли кнопку натиснуто, React викличе обробник події `onClick`, який визначено у методі `render()` компонента Square.
+3. Цей обробник події викличе `this.props.onClick()`. Проп onClick для Square визначено у компоненті Board.
+4. Оскільки Board передає `onClick={() => this.handleClick(i)}` до Square, Square при натиску викличе `this.handleClick(i)`.
+5. Ми ще не визначили метод `handleClick()`, тож наш код не працюватиме як слід. Якщо ви натисните на клітинку, то побачите червоний екран з помилкою, яка зазначає: "this.handleClick is not a function".
 
->Note
+>Примітка
 >
->The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` method, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>Атрибут `onClick` DOM-елемента `<button>` має для React особливе значення, оскільки це вбудований компонент. Для звичайних компонентів, як Square, найменування пропсів може бути довільним. Ми можемо назвати проп `onClick` компонента Square чи метод  `handleClick` компонента Board будь-яким іменем, і код працюватиме так само. У React загальноприйнятим вважається використання `on[Event]` імен для пропсів, що представляють події, і `handle[Event]` для методів цю подію обробляють.
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+Якщо ми натиснемо клітинку Square, то отримаємо помілку, оскільки ми ще не визначили `handleClick`. Додамо цей метод до класу Board:
 
 ```javascript{9-13}
 class Board extends React.Component {
@@ -513,63 +514,63 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
-After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
+Після цих змін, ми як і раніше знову можемо натискати клітинки щоб заповнити їх. Однак, тепер стан зберігається у компоненті Board замість кожного індивідуального компонента Square. Коли стан Board змінюється, Square відрендериться автоматично. Збереження стану усіх клітинок у компоненті Board в майбутньому дозволить визначити переможця.
 
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+Оскільки компоненти Square більше не зберігають стан, вони отримують значення від компорента Board і інформують його при кожному натиску. Згідно з термінологією React, компоненти Square є **контрольованими компонентами**, оскільки Board тепер має повний контроль над ними.
 
-Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
+Зверніть увагу, як всередині `handleClick` ми  використали метод `.slice()`, щоб створити копію масива `squares`, яку ми змінюватимемо замість оригінального масива. Ми пояснимо навіщо ми створили цю копію у наступному розділі.
 
-### Why Immutability Is Important {#why-immutability-is-important}
+### Чому незмінність важлива? {#why-immutability-is-important}
 
-In the previous code example, we suggested that you use the `.slice()` operator to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+У попередньому прикладі коду ми запропонували використовувати метод `.slice()` для створення копії масиву `squares`, щоб у подальшому модифікувати цю копію, не чіпаючи оригінальний масив. Тепер ми обговоримо що таке незмінність, і чому важливо її вивчати.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+Вцілому існує два загальних підходи до зміни данних. Перший підхід -- *мутувати(змінити)* данні напряму встановлюючи нові значення.Другий підхід -- замінити данні копією з уже включеними змінами.
 
-#### Data Change with Mutation {#data-change-with-mutation}
+#### Зміна данних з використанням мутування {#data-change-with-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 player.score = 2;
-// Now player is {score: 2, name: 'Jeff'}
+// Тепер черга гравця {score: 2, name: 'Jeff'}
 ```
 
-#### Data Change without Mutation {#data-change-without-mutation}
+#### Зміна данних без використання мутації {#data-change-without-mutation}
 ```javascript
 var player = {score: 1, name: 'Jeff'};
 
 var newPlayer = Object.assign({}, player, {score: 2});
-// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+// У цьому прикладі player залишився незмінним, а newPlayer тепер {score: 2, name: 'Jeff'}
 
-// Or if you are using object spread syntax proposal, you can write:
+// Або якщо ж ви використовуєте синтаксис розширення, ви можете написати:
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
+Кінцевий результат залишиться таким самим, але без прямої мутації (змін базових даних). Нижче розглянуті переваги даного способу.
 
-#### Complex Features Become Simple {#complex-features-become-simple}
+#### Складні властивості спрощуються {#complex-features-become-simple}
 
-Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a "time travel" feature that allows us to review the tic-tac-toe game's history and "jump back" to previous moves. This functionality isn't specific to games -- an ability to undo and redo certain actions is a common requirement in applications. Avoiding direct data mutation lets us keep previous versions of the game's history intact, and reuse them later.
+Незмінність робить складні властивості набагато простішими. Пізніше у цьому введенні ми реалізуємо функціональність "подорожі у часі", що дозволить нам переглянути історію гри у хрестики-нулики і "повернутися" до попередніх ходів. Дана функціональність не обмежена іграми, можливість відмінити і повторити певні дії знову є необхідною умовою багатьох додатків. Уникаючи прямої зміни даних, ми можемо звертатись до попередніх версій історії гри і повторно використовувати їх..
 
-#### Detecting Changes {#detecting-changes}
+#### Виявлення змін {#detecting-changes}
 
-Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+Виявити зміни у мутованих об'єктах досить важко, оскільки вони модифіковані напряму. У цьому випадку нав доведеться порівнювати мутований об'єкт як зі своїми попередніми копіями, так і з усім деревом об'єктів.
 
-Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
+Виявити зміни в незмінних об'єктах набагато легше. Якщо незмінний об'єкт відрізняється від попереднього, тоді він змінився.
 
-#### Determining When to Re-Render in React {#determining-when-to-re-render-in-react}
+#### Коли потрібно відрендерити повторно у React {#determining-when-to-re-render-in-react}
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
+Головною перевагою незмінності є те, що це допомагає вам створити _чисті компоненти_ у React. Незмінні дані дозволяють легко виявити наявність змін, що дозволяє виявити необхідність повторного рендерингу.
 
-You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
+Більше про `shouldComponentUpdate()` і як створювати *чисті компоненти* ви можете дізнатись прочитавши розділ [Оптимізація продуктивності](/docs/optimizing-performance.html#examples).
 
-### Function Components {#function-components}
+### Функціональні компоненти {#function-components}
 
-We'll now change the Square to be a **function component**.
+Змінимо Square на **функціональний компонент**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+У React, **функціональні компоненти** -- це спрощений спосіб написання компонентів, що складаються тільки з `render`-метода і не мають власного стану. Замість  визначення класу, який поширює `React.Component`, ми можемо створити функцію, яка приймає пропси і повертає те, що треба відрендерити. Функціональні компоненти менш довгі у написання, і багато з компонентів можна оформити таким чином.
 
-Replace the Square class with this function:
+Замінимо клас Square на функцію:
 
 ```javascript
 function Square(props) {
@@ -581,19 +582,19 @@ function Square(props) {
 }
 ```
 
-We have changed `this.props` to `props` both times it appears.
+Ми замінили `this.props` на `props` обидва рази.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
+**[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
+>Примітка
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
+>Коли ми перетворили Square у функціональний компонент, ми також змінили `onClick={() => this.props.onClick()}` на коротший `onClick={props.onClick}` (зверніть увагу на відсутність дужок з *обох* сторін).
 
-### Taking Turns {#taking-turns}
+### Встановлюємо почерговість {#taking-turns}
 
-We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
+Тепер нам треба виправити один очевидний дефект у нашій грі -- на полі неможна поставити "O".
 
-We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+За замовчуванням встановимо перший хід за "X". Зробити це ми можемо модифікувавши початкови стан у конструкторі компонента Board:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -606,7 +607,8 @@ class Board extends React.Component {
   }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
+Кожного разу, як гравець робить хід, `xIsNext`()
+Each time a player moves, `xIsNext` (логічний (булевий) тип даних) змінюватиме значення на протилежне, щоб визначити який гравець ходить наступним, а стан гри збережеться. Ми оновимо функцію `handleClick` компонента Board для інверсії значення `xIsNext`:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -619,19 +621,19 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   }
 ```
 
-With this change, "X"s and "O"s can take turns. Try it!
+Після цих змін, "X"s та "O"s матимуть можливість чергуватися. Спробуйте!
 
-Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
+Давайте також змінимо текст "статусу" у методі `render` компонента Board таким чином, щоб він відображав який гравець ходить наступним:
 
 ```javascript{2}
   render() {
     const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
-      // the rest has not changed
+      // решта не змінилася
 ```
 
-After applying these changes, you should have this Board component:
+Після застосування цих змін, компонент Board має виглядати так:
 
 ```javascript{6,11-16,29}
 class Board extends React.Component {
@@ -688,11 +690,11 @@ class Board extends React.Component {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
+**[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
-### Declaring a Winner {#declaring-a-winner}
+### Визначення переможця {#declaring-a-winner}
 
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. Copy this helper function and paste it at the end of the file:
+Тепер, коли ми показуємо, який гравець ходить наступним, ми також маємо показати переможця у кінці гри і зробити неможливим наступні ходи. Скопіюйте цю допоміжну функцію і вставте  її в кінці файлу:
 
 ```javascript
 function calculateWinner(squares) {
@@ -716,9 +718,9 @@ function calculateWinner(squares) {
 }
 ```
 
-Given an array of 9 squares, this function will check for a winner and return `'X'`, `'O'`, or `null` as appropriate.
+Маючи мачив з 9 клітинок, ця функція перевірятиме переможця і поверне 'X'`, `'O'`, або `null`.
 
-We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
+Ми викличемо `calculateWinner(squares)` в методі `render` компонента Board, щоб перевірити чи виграв гравець. Якщо гравець виграв, ми можемо відобразити текст: "Переможець: X" or "Переможець: O". Ми замінимо оголошення `status` у `render`-методі компонента Board наступним кодом:
 
 ```javascript{2-8}
   render() {
@@ -731,10 +733,10 @@ We will call `calculateWinner(squares)` in the Board's `render` function to chec
     }
 
     return (
-      // the rest has not changed
+      // решта не змінилась
 ```
 
-We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+Тепер ми можемо змінити метод `handleClick` у Board для завершення функції і ігнорування натиску, якщо хтось переміг, або поле повністю заповнене:
 
 ```javascript{3-5}
   handleClick(i) {
@@ -750,9 +752,9 @@ We can now change the Board's `handleClick` function to return early by ignoring
   }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
+**[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
+Вітаємо! Тепер ви маєте повністю робочу гру у хрестики-нулики. І ви щойно освоїли основи React. Схоже, справжній переможець тут це *ви*.
 
 ## Adding Time Travel {#adding-time-travel}
 
@@ -1185,24 +1187,24 @@ If we click on any step in the game's history, the tic-tac-toe board should imme
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
-### Wrapping Up {#wrapping-up}
+### Підіб'ємо підсумки {#wrapping-up}
 
-Congratulations! You've created a tic-tac-toe game that:
+Вітаємо! Ви щойно створили гру у хрестики-нулики яка:
 
-* Lets you play tic-tac-toe,
-* Indicates when a player has won the game,
-* Stores a game's history as a game progresses,
-* Allows players to review a game's history and see previous versions of a game's board.
+* Дозволяє грати у хрестики-нулики,
+* Визначає переможця,
+* Зберігає історію гри,
+* Дозволяє гравцеві проглянути історію і попередні модифікації ігрової дошки.
 
-Nice work! We hope you now feel like you have a decent grasp on how React works.
+Чудова робота! Ми сподіваємося, що тепер ви почуваєтеся впевненіше у роботі з React.
 
-Check out the final result here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
+Продивитися фінальний результат ви можете за наступним посиланням: **[Завершена гра](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game which are listed in order of increasing difficulty:
+Якщо ви маєте додатковий час або хочете попрактикувати нові навички в React, ось кілька ідей, які допоможуть покращити гру у хрестики-нулики. Ідеї розташовані за зростанням важкості:
 
-1. Display the location for each move in the format (col, row) in the move history list.
-2. Bold the currently selected item in the move list.
-3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
+1. Відобразіть позицію для кожного ходу у форматі (колонка, радок) в списку історії ходів.
+2. Виділіть вибраний елемент у спику ходів.
+3. Перепишіть компонент Board, використовуючи цикли для створення квадратів, замість написання вручну.
 4. Add a toggle button that lets you sort the moves in either ascending or descending order.
 5. When someone wins, highlight the three squares that caused the win.
 6. When no one wins, display a message about the result being a draw.
