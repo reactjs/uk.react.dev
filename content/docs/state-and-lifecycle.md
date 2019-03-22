@@ -16,8 +16,8 @@ next: handling-events.html
 function tick() {
   const element = (
     <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      <h1>Привіт, світе!</h1>
+      <h2>Це є {new Date().toLocaleTimeString()}.</h2>
     </div>
   );
   ReactDOM.render(
@@ -39,8 +39,8 @@ setInterval(tick, 1000);
 function Clock(props) {
   return (
     <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {props.date.toLocaleTimeString()}.</h2>
+      <h1>Привіт, світе!</h1>
+      <h2>Це є {props.date.toLocaleTimeString()}.</h2>
     </div>
   );
 }
@@ -57,7 +57,7 @@ setInterval(tick, 1000);
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
-Однак, це пропускає важливу вимогу: той факт, що `Clock` встановлює таймер і оновлює UI кожну секунду, має бути деталлю реалізації `Clock`.
+Однак, ми порушаємо важливу вимогу: той факт, що `Clock` встановлює таймер і оновлює UI кожну секунду, має бути деталлю реалізації `Clock`.
 
 В ідеалі ми хочемо написати це один раз аби `Clock` оновлював себе сам:
 
@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-Аби це реалізувати, нам потрібно додати "state" до компонента `Clock`.
+Аби це реалізувати, нам потрібно додати "стан"("state") до компонента `Clock`.
 
 Стан подібний до пропсів, але він приватний і повністю контролюється компонентом.
 
@@ -76,7 +76,7 @@ ReactDOM.render(
 
 ## Перетворення функції на клас {#converting-a-function-to-a-class}
 
-Ви можете перетворити функцію компоненту `Clock` на клас у п'ять кроків:
+Ви можете перетворити функцію компонента `Clock` на клас у п'ять кроків:
 
 1. Створіть клас [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) з тим же ім'ям, що наслідує `React.Component`.
 
@@ -93,8 +93,8 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+        <h1>Привіт, світе!</h1>
+        <h2>Це є {this.props.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -105,7 +105,7 @@ class Clock extends React.Component {
 
 `Clock` тепер визначається як клас, а не як функція.
 
-Метод `render` буде викликатися кожного разу, коли відбуватиметься оновлення. Але до тих пір, поки ми рендеремо `<Clock />` в той же вузол DOM, буде використано лише один екземпляр класу `Clock`. Це дозволяє нам використовувати додаткові функції, такі як методи внутрішнього стану та життєвого циклу.
+Метод `render` буде викликатися кожного разу, коли відбуватиметься оновлення. Але до тих пір, поки ми рендеремо `<Clock />` в тому ж DOM-вузлі, буде використано лише один екземпляр класу `Clock`. Це дозволяє нам використовувати додаткові функції, такі як методи внутрішнього стану та життєвого циклу.
  
 ## Додавання внутрішнього стану до класу {#adding-local-state-to-a-class}
 
@@ -118,8 +118,8 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <h1>Привіт, світе!</h1>
+        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -138,8 +138,8 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <h1>Привіт, світе!</h1>
+        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -180,8 +180,8 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <h1>Привіт, світе!</h1>
+        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -195,15 +195,15 @@ ReactDOM.render(
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
-Далі ми зробимо так, аби `Clock` сам налаштував свій таймер і оновлювався себе кожну секунду.
+Далі ми зробимо так, аби `Clock` сам налаштував свій таймер і оновлював себе кожну секунду.
 
 ## Додавання методів життєвого циклу до класу {#adding-lifecycle-methods-to-a-class}
 
-У додатках з багатьма компонентами, дуже важливо при знищенні компонентів вивільняти ресурси, що використовуються.
+У додатках з багатьма компонентами, дуже важливо при знищенні компонентів звільняти ресурси, що використовуються.
 
 Ми хочемо [налаштувати таймер](https://developer.mozilla.org/uk/docs/Web/API/WindowOrWorkerGlobalScope/setInterval) кожного разу, коли `Clock` буде передано DOM вперше. У React це називається "монтування".
 
-Ми також хочемо [очистити цей таймер](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval), коли створений компонентом Clock DOM видаляється. У React це називається "демонтування".
+Ми також хочемо [очистити цей таймер](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/clearInterval), коли DOM, створений компонентом Clock, видаляється. У React це називається "демонтування".
 
 Ми можемо оголосити спеціальні методи в класі компонента, які будуть викликані тоді, коли компонент монтується і демонтується:
 
@@ -225,8 +225,8 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <h1>Привіт, світе!</h1>
+        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -235,7 +235,7 @@ class Clock extends React.Component {
 
 Ці методи називаються "методами життєвого циклу".
 
-Метод `componentDidMount()` виконується після того, як компонентний вивід був переданий DOM. Це гарне місце для налаштування таймера:
+Метод `componentDidMount()` виконується після того, як вивід компонента був відрендерений у DOM. Це гарне місце для налаштування таймера:
 
 ```js{2-5}
   componentDidMount() {
@@ -289,8 +289,8 @@ class Clock extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <h1>Привіт, світе!</h1>
+        <h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
       </div>
     );
   }
@@ -304,15 +304,15 @@ ReactDOM.render(
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
-Тепер годинник відстукує кожну секунду.
+Тепер годинник тікає кожну секунду.
 
 Давайте швидко повторимо, що відбувається, і порядок, в якому ці методи викликаються:
 
-1) Коли `<Clock />` передається до `ReactDOM.render ()`, React викликає конструктор компонента `Clock`. Оскільки `Clock` має відображати поточний час, він ініціалізує `this.state` з з об'єктом, що включає поточний час. Пізніше ми оновимо цей стан.
+1) Коли `<Clock />` передається до `ReactDOM.render ()`, React викликає конструктор компонента `Clock`. Оскільки `Clock` має відображати поточний час, він ініціалізує `this.state` з об'єктом, що включає поточний час. Пізніше ми оновимо цей стан.
 
 2) React потім викликає `Clock` метод `render()` компонента. Ось як React дізнається, що саме має відображатися на екрані. Потім React оновлює DOM, щоб він відповідав виводу рендера `Clock`.
 
-3) Коли виведення інформації `Clock` вставляється в DOM, React викликає метод життєвого циклу `componentDidMount()`. Всередині нього компонент `Clock` просить у браузера налаштувати таймер для виклику методу компонента `tick()` один раз на секунду.
+3) Коли виведення інформації `Clock` вставляється в DOM, React викликає метод життєвого циклу `componentDidMount()`. Всередині нього компонент `Clock` просить браузер налаштувати таймер для виклику методу компонента `tick()` один раз на секунду.
 
 4) Кожну секунду браузер викликає метод `tick()`. У цьому методі компонент `Clock` планує оновлення UI, викликаючи `setState()` з об'єктом, що містить поточний час. Завдяки виклику `setState()` React знає, що стан змінився, і знову викликає метод `render()`, щоб дізнатися, що має бути на екрані. Цього разу `this.state.date` в методі `render()` буде відрізнятися і тому вивід рендера буде включати оновлений час. React оновлює DOM відповідно.
 
@@ -328,14 +328,14 @@ ReactDOM.render(
 
 ```js
 // Wrong
-this.state.comment = 'Hello';
+this.state.comment = 'Привіт';
 ```
 
 Instead, use `setState()`:
 
 ```js
 // Correct
-this.setState({comment: 'Hello'});
+this.setState({comment: 'Привіт'});
 ```
 
 Конструктор — це єдине місце, де можна присвоїти `this.state`.
@@ -391,7 +391,7 @@ this.setState(function(state, props) {
   }
 ```
 
-Тоді ви можете оновлювати їх окремо за допомогою окремих викликів `setState()`:
+Тоді ви можете оновлювати їх окремо за допомогою викликів `setState()`:
 
 ```js{4,10}
   componentDidMount() {
@@ -420,7 +420,7 @@ this.setState(function(state, props) {
 Компонент може передати свій стан вниз у якості пропсів до своїх дочірніх компонентів:
 
 ```js
-<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+<h2>Це є {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
 Це також працює для визначених користувачем компонентів:
@@ -433,7 +433,7 @@ this.setState(function(state, props) {
 
 ```js
 function FormattedDate(props) {
-  return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
+  return <h2>Це є {props.date.toLocaleTimeString()}.</h2>;
 }
 ```
 
@@ -441,7 +441,7 @@ function FormattedDate(props) {
 
 Це зазвичай називається "зверху вниз" або "односпрямованим" потоком даних. Будь-який стан завжди належить певному компоненту і будь-які дані або UI, отримані з цього стану, можуть впливати лише на компоненти, що знаходяться "нижче" у дереві.
 
-Уявіть дерево компонентів як водоспад пропсів, де стан кожного компонента подібний до додаткового джерела води, який приєднується до нього в довільній точці, але тече й вниз.
+Уявіть дерево компонентів як водоспад пропсів, де стан кожного компонента подібний до додаткового джерела води, який приєднується до нього в довільній точці, але тече вниз.
 
 Щоб показати, що всі компоненти є дійсно ізольованими, ми можемо створити компонент `App`, який рендерить три `<Clock>`:
 
