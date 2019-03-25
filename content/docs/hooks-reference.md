@@ -1,22 +1,22 @@
 ---
 id: hooks-reference
-title: Hooks API Reference
+title: API-довідник хуків
 permalink: docs/hooks-reference.html
 prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Хуки* — це новинка в React 16.8. Вони дозволяють вам використовувати стан та інші можливості React без написання класу.
 
-This page describes the APIs for the built-in Hooks in React.
+Ця сторінка описує API для вбудованих у React хуків.
 
-If you're new to Hooks, you might want to check out [the overview](/docs/hooks-overview.html) first. You may also find useful information in the [frequently asked questions](/docs/hooks-faq.html) section.
+Якщо ви новачок у хуках, ви можете спочатку переглянути [огляд](/docs/hooks-overview.html). Також ви можете знайти корисну інформацію у розділі [часто задаваних питань](/docs/hooks-faq.html).
 
-- [Basic Hooks](#basic-hooks)
+- [Базові Хуки](#basic-hooks)
   - [`useState`](#usestate)
   - [`useEffect`](#useeffect)
   - [`useContext`](#usecontext)
-- [Additional Hooks](#additional-hooks)
+- [Додаткові Хуки](#additional-hooks)
   - [`useReducer`](#usereducer)
   - [`useCallback`](#usecallback)
   - [`useMemo`](#usememo)
@@ -25,7 +25,7 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useLayoutEffect`](#uselayouteffect)
   - [`useDebugValue`](#usedebugvalue)
 
-## Basic Hooks {#basic-hooks}
+## Базові хуки {#basic-hooks}
 
 ### `useState` {#usestate}
 
@@ -33,25 +33,25 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
 const [state, setState] = useState(initialState);
 ```
 
-Returns a stateful value, and a function to update it.
+Повертає значення стану та функцію, що оновлює його.
 
-During the initial render, the returned state (`state`) is the same as the value passed as the first argument (`initialState`).
+Під час початкового рендеру повернутий стан (`state`) співпадає зі значенням, переданим у першому аргументі (`initialState`).
 
-The `setState` function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
+Функція `setState` використовується для оновлення стану. Вона приймає значення нового стану і ставить у чергу повторний рендер компонента.
 
 ```js
 setState(newState);
 ```
 
-During subsequent re-renders, the first value returned by `useState` will always be the most recent state after applying updates.
+Упродовж наступних повторних рендерів, перше значення, повернуте `useState`, завжди буде у актуальному стані при здійсненні оновлень.
 
->Note
+>Примітка
 >
->React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React гарантує, що функція `setState` зберігає ідентичність і не змінюється під час повторних рендерів. Саме тому, ви можете безпечно пропускати її включення до списків залежностей хуків `useEffect` чи `useCallback`.
 
-#### Functional updates {#functional-updates}
+#### Функціональні оновлення {#functional-updates}
 
-If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
+Якщо наступний стан обчислюється з використанням попереднього, ви можете передати функцію до `setState`. Функція отримає попереднє значення і поверне оновлене. Ось приклад компонента лічильника, що використовує обидві форми `setState`:
 
 ```js
 function Counter({initialCount}) {
@@ -59,7 +59,7 @@ function Counter({initialCount}) {
   return (
     <>
       Count: {count}
-      <button onClick={() => setCount(initialCount)}>Reset</button>
+      <button onClick={() => setCount(initialCount)}>Скинути</button>
       <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
     </>
@@ -67,24 +67,24 @@ function Counter({initialCount}) {
 }
 ```
 
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to 0.
+Кнопки "+" та "-" використовують функціональну форму, тому що оновлене значення базується на попередньому. В той же час кнопка "Скинути" використовує нормальну форму, тому що вона завжди скидає значення назад до 0.
 
-> Note
+> Примітка
 >
-> Unlike the `setState` method found in class components, `useState` does not automatically merge update objects. You can replicate this behavior by combining the function updater form with object spread syntax:
+> На відміну від методу `setState` у класових компонентах, `useState` не об'єднує оновлювані об'єкти автоматично. Ви можете відтворити таку поведінку, комбінуючи функціональну форму оновлення і синтаксис розширення об'єктів:
 >
 > ```js
 > setState(prevState => {
->   // Object.assign would also work
+>   // Object.assign також спрацює
 >   return {...prevState, ...updatedValues};
 > });
 > ```
 >
-> Another option is `useReducer`, which is more suited for managing state objects that contain multiple sub-values.
+> Іншим варіантом може бути хук `useReducer`, котрий більш підходть для керування об'єктами стану, що містять багато інших значень.
 
-#### Lazy initial state {#lazy-initial-state}
+#### Лінива ініціалізація стану {#lazy-initial-state}
 
-The `initialState` argument is the state used during the initial render. In subsequent renders, it is disregarded. If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render:
+Аргумент `initialState` — це стан, що використовується протягом початкового рендеру. При наступних рендерах воно не враховується. Якщо початковий стан є результатом вартісних обчислень, ви можете замість нього надати функцію, що буде виконана лише під час початкового рендеру:
 
 ```js
 const [state, setState] = useState(() => {
@@ -93,11 +93,11 @@ const [state, setState] = useState(() => {
 });
 ```
 
-#### Bailing out of a state update {#bailing-out-of-a-state-update}
+#### Припинення оновлення стану {#bailing-out-of-a-state-update}
 
-If you update a State Hook to the same value as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+Якщо ви оновите стан хука значенням, що дорівнює поточному, React вийде з хука без рендерингу дочірніх елементів чи запуску ефектів. (React використовує [алгоритм порівняння `Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
 
-Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+Зверніть увагу, що React може знадобитись відрендерити конкретний компонент перед припиненням оновлення. Це не повинно викликати занепокоєння, тому що React необов'язково опуститься "глибше" в дерево. Якщо ви здійснюєте вартісні обчислення під час рендерингу, ви можете оптимізувати їх, використавши `useMemo`.
 
 ### `useEffect` {#useeffect}
 
@@ -105,45 +105,45 @@ Note that React may still need to render that specific component again before ba
 useEffect(didUpdate);
 ```
 
-Accepts a function that contains imperative, possibly effectful code.
+Приймає функцію, що містить імперативний, можливо з ефектами, код.
 
-Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React's _render phase_). Doing so will lead to confusing bugs and inconsistencies in the UI.
+Зміни, підписки, таймери, логування та інші побічні ефекти не дозволяються всередині основного тіла функціонального компонента (яке ми називаємо _етап рендеру_). Це призводить до заплутаних помилок та невідповідностям у користувацькому інтерфейсі.
 
-Instead, use `useEffect`. The function passed to `useEffect` will run after the render is committed to the screen. Think of effects as an escape hatch from React's purely functional world into the imperative world.
+Натомість застосовуйте `useEffect`. Функція, передана в `useEffect`, буде запущена після того, як вивід рендеру з'явиться на екрані. Думайте про ефекти як про засіб втечі з чисто функціонального світу React до світу імперативів.
 
-By default, effects run after every completed render, but you can choose to fire it [only when certain values have changed](#conditionally-firing-an-effect).
+За замовчуванням ефекти запускаються після кожного завершеного рендеру, але ви можете запускати їх, наприклад, коли [змінились тільки певні значення](#conditionally-firing-an-effect).
 
-#### Cleaning up an effect {#cleaning-up-an-effect}
+#### Очищення ефектів {#cleaning-up-an-effect}
 
-Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to `useEffect` may return a clean-up function. For example, to create a subscription:
+Ефекти часто створюють ресурси, пам'ять після використання яких, має бути звільнена перед тим, як компонент зникне з екрану, наприклад, підписка або ідентифікатор таймера. Щоб це зробити, функція, передана у `useEffect`, може повернути функцію очищення. Наприклад, щоб створити підписку:
 
 ```js
 useEffect(() => {
   const subscription = props.source.subscribe();
   return () => {
-    // Clean up the subscription
+    // Очистити підписку
     subscription.unsubscribe();
   };
 });
 ```
 
-The clean-up function runs before the component is removed from the UI to prevent memory leaks. Additionally, if a component renders multiple times (as they typically do), the **previous effect is cleaned up before executing the next effect**. In our example, this means a new subscription is created on every update. To avoid firing an effect on every update, refer to the next section.
+Функція очищення буде запущена перед видаленням компонента з інтерфейсу користувача, щоб запобігти витокам пам'яті. Крім цього, якщо компонент рендериться багато разів (що доволі типово), **попередній ефект буде очищено до виконання наступного**. У нашому прикладі це означає, що нова підписка створюється на кожному оновленні. Зверніться до наступного розділу, щоб дізнатися, як цього можна уникнути.
 
-#### Timing of effects {#timing-of-effects}
+#### Порядок спрацювання ефектів {#timing-of-effects}
 
-Unlike `componentDidMount` and `componentDidUpdate`, the function passed to `useEffect` fires **after** layout and paint, during a deferred event. This makes it suitable for the many common side effects, like setting up subscriptions and event handlers, because most types of work shouldn't block the browser from updating the screen.
+На відміну від `componentDidMount` і `componentDidUpdate`, функція передана в `useEffect` запускається **після** розмітки та рендеру, протягом відкладеної події. Це робить хук підходящим для багатьох поширених побічних ефектів, таких як налаштування підписок та обробників подій, оскільки більшість типів роботи не повинні блокувати оновлення екрану браузером.
 
-However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides one additional Hook called [`useLayoutEffect`](#uselayouteffect). It has the same signature as `useEffect`, and only differs in when it is fired.
+Проте не всі ефекти можуть бути відкладені. Наприклад, зміна DOM, що видима користувачу, має запуститись синхронно перед наступним рендером, щоб користувач не помічав візуальної невідповідності. (Ця відмінність концептально подібна до відмінності між пасивними та активними слухачами подій.) Для таких різновидів ефектів React надає додатковий хук, що зветься [`useLayoutEffect`](#uselayouteffect). Він має таку ж сигнатуру, як і `useEffect`, але відрізняється умовою запуску.
 
-Although `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
+Незважаючи на те, що `useEffect` відкладається допоки браузер не виконає відображення, він гарантовано спрацює перед кожним новим рендером. React завжди застосовує ефекти попереднього рендеру перед початком нового оновлення.
 
-#### Conditionally firing an effect {#conditionally-firing-an-effect}
+#### Умовне спрацювання ефекту {#conditionally-firing-an-effect}
 
-The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its dependencies changes.
+За замовчуванням ефекти спрацьовуються після кожного завершеного рендеру. Таким чином, ефект завжди створюється повторно при зміні одної з його залежностей.
 
-However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` props has changed.
+Проте, у деяких випадках, це може бути надлишковим, так само як у прикладі з підпискою у попередньому розділі. Нам не потрібно створювати нову підписку для кожного оновлення, а лише тоді, коли змінився проп `source`.
 
-To implement this, pass a second argument to `useEffect` that is the array of values that the effect depends on. Our updated example now looks like this:
+Щоб реалізувати це, передайте другим аргументом до `useEffect` масив значень, від яких залежить ефект. Наш оновлений ефект тепер виглядає так:
 
 ```js
 useEffect(
@@ -157,20 +157,20 @@ useEffect(
 );
 ```
 
-Now the subscription will only be recreated when `props.source` changes.
+Зараз підписка буде створена повторно лише при зміні `props.source`.
 
->Note
+>Примітка
 >
->If you use this optimization, make sure the array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**. Otherwise, your code will reference stale values from previous renders. Learn more about [how to deal with functions](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) and what to do when the [array values change too often](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
+>Якщо ви використовуєте цю оптимізацію, впевніться, що масив включає **всі значення з області видимості компонента (такі як пропси чи стан), що можуть змінюватись протягом часу і використовуються ефектом**. Інакше, ваш код буде посилатись на застарілі значення з попередніх рендерів. Дізнайтеся більше про те, [як мати справу з функціями](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) та що робити, коли [значення масиву змінюються надто часто](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often).
 >
->If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
+>Якщо ви хочете запустити ефект і очистити його лише раз (при монтуванні і розмонтуванні), ви можете передати другим аргументом порожній масив (`[]`). React буде вважати, що ваш ефект не залежить від *жодного* із значень пропсів чи стану, а тому не потребує повторного запуску. Це не оброблюється як особливий випадок, а напряму випливає з роботи масиву залежностей.
 >
->If you pass an empty array (`[]`), the props and state as inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>Якщо ви передаєте порожній масив (`[]`), пропси і стан усередині ефекту будуть завжди мати їх початкові значення. Передача другим аргументом `[]`, нагадує модель роботи вже знайомих `componentDidMount` та `componentWillUnmount`, але зазвичай є [кращі](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [рішення](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) для уникнення частих повторних викликів ефектів. Також не забудьте, що React відкладає виконання `useEffect` до моменту відображення вмісту браузером, а отже можливість виконання додаткової роботи не є істотною проблемою.
 >
 >
->We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>Ми радимо використовувати правило [`exhaustive-deps`](https://github.com/facebook/react/issues/14920), як частину нашого пакунку [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Воно попереджує про те, що залежності вказані невірно і пропонує рішення.
 
-The array of dependencies is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+Масив залежностей не передається у якості аргументів до функції ефекту. Концептуально, проте, це те, що вони представляють: кожне значення, на яке посилається функція ефекту, також має з'являтись у масиві залежностей. У майбутньому, достатньо просунутий компілятор зможе створити цей масив автоматично.
 
 ### `useContext` {#usecontext}
 
