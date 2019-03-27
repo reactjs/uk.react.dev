@@ -1,26 +1,26 @@
-# reactjs.org
+# uk.reactjs.org
 
-This repo contains the source code and documentation powering [reactjs.org](https://reactjs.org/).
+Цей репозиторій містить вихідний код та документацію для сайту [uk.reactjs.org](https://uk.reactjs.org/).
 
-## Getting started
+## Початок
 
-### Prerequisites
+### Передумови
 
 1. Git
-1. Node: any 8.x version starting with 8.4.0 or greater
-1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
-1. A fork of the repo (for any contributions)
-1. A clone of the [reactjs.org repo](https://github.com/reactjs/reactjs.org) on your local machine
+1. Node: будь-яка версія 8.x починаючи з 8.4.0 або вище
+1. Yarn: Див. [сайт Yarn з інструкціями по встановленню](https://yarnpkg.com/uk/docs/install)
+1. Зробити форк цього репозиторію (для пропозицій змін)
+1. Клонувати [uk.reactjs.org repo](https://github.com/reactjs/uk.reactjs.org) на ваш компьютер
 
-### Installation
+### Встановлення
 
-1. `cd reactjs.org` to go into the project root
-1. `yarn` to install the website's npm dependencies
+1. `cd uk.reactjs.org` для переходу в кореневу директорію проекту
+1. `yarn` для встановлення npm-залежностей проекту
 
-### Running locally
+### Запуск проекта локально
 
-1. `yarn dev` to start the hot-reloading development server (powered by [Gatsby](https://www.gatsbyjs.org))
-1. `open http://localhost:8000` to open the site in your favorite browser
+1. `yarn dev` для запуску сервера розробки з підтримкою гарячого перезавантаження (на основі [Gatsby](https://www.gatsbyjs.org))
+1. `open http://localhost:8000` щоб відкрити сайт в браузері за замовченням
 
 ## Contributing
 
