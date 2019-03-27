@@ -22,38 +22,38 @@
 1. `yarn dev` для запуску сервера розробки з підтримкою гарячого перезавантаження (на основі [Gatsby](https://www.gatsbyjs.org))
 1. `open http://localhost:8000` щоб відкрити сайт в браузері за замовченням
 
-## Contributing
+## Допомога проекту
 
-### Guidelines
+### Рекомендації
 
-The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/reactjs.org/blob/master/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
+Ця документація поділена на декілька частин з різними стилями та цілями. Якщо ви плануєте написати більше ніж декілька речень вам може бути корисним ознайомитись з [допоміжними вказівками (англ.)](https://github.com/reactjs/uk.reactjs.org/blob/master/CONTRIBUTING.md#guidelines-for-text) для відповідних розділів.
 
-### Create a branch
+### Створення гілки
 
-1. `git checkout master` from any folder in your local `reactjs.org` repository
-1. `git pull origin master` to ensure you have the latest main code
-1. `git checkout -b the-name-of-my-branch` (replacing `the-name-of-my-branch` with a suitable name) to create a branch
+1. `git checkout master` в будь-якій директорії вашої локальної копії проекту `uk.reactjs.org`
+1. `git pull origin master`, щоб пересвідчитись що у вас сама остання версія коду
+1. `git checkout -b the-name-of-my-branch` (замініть `the-name-of-my-branch` на підходяще ім'я) для створення гілки
 
-### Make the change
+### Внесення змін
 
-1. Follow the "Running locally" instructions
-1. Save the files and check in the browser
-  1. Changes to React components in `src` will hot-reload
-  1. Changes to markdown files in `content` will hot-reload
-  1. If working with plugins, you may need to remove the `.cache` directory and restart the server
+1. Слідуйте інструкціям з розділу "Запуск проекта локально"
+1. Збережіть файли і перевірте зміни в браузері
+  1. Зміни до React-компонентів всередині `src` застосовуються одразу
+  1. Зміни до файлів markdown всередині `content` застосовуються одразу
+  1. При роботі з плагінами можливо знадобиться видалити директорію `.cache` та перезавантажити сервер
 
-### Test the change
+### Перевірка змін
 
-1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-1. Run `yarn check-all` from the project root. (This will run Prettier, ESLint, and Flow.)
+1. При можливості перевіряйте всі візуальні зміни в усіх останніх версіях розповсюджених браузерів: настільних та мобільних.
+1. Виконайте `yarn check-all` з кореневої директорії проекту. (Це виконає Prettier, ESLint, та Flow.)
 
-### Push it
+### Публікація змін
 
-1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fixed header logo on Android`) to stage and commit your changes
+1. `git add -A && git commit -m "My message"` (замініть `My message` на назву коміту, наприклад `Fixed header logo on Android`) для збереження ваших змін
 1. `git push my-fork-name the-name-of-my-branch`
-1. Go to the [reactjs.org repo](https://github.com/reactjs/reactjs.org) and you should see recently pushed branches.
-1. Follow GitHub's instructions.
-1. If possible, include screenshots of visual changes. A Netlify build will also be automatically created once you make your PR so other people can see your change.
+1. Перейдіть на [сторінку репозиторію uk.reactjs.org](https://github.com/reactjs/uk.reactjs.org) і ви повинні побачити нещодавно оновлені гілки.
+1. Слідуйте інструкціям на GitHub.
+1. По можливості додайте знімок екрану ваших візуальних змін. Білд Netlify щоб інші люди змогли бачити ваші зміни буде створений автоматично як тільки ви створите PR.
 
 ## Translation
 
