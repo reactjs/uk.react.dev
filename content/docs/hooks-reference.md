@@ -178,27 +178,27 @@ useEffect(
 const value = useContext(MyContext);
 ```
 
-Accepts a context object (the value returned from `React.createContext`) and returns the current context value for that context. The current context value is determined by the `value` prop of the nearest `<MyContext.Provider>` above the calling component in the tree.
+Приймає об'єкт контексту (значення, повернуте з `React.createContext`) і повертає поточне значення контексту для нього. Поточне значення контексту визначається пропом `value` найближчого `<MyContext.Provider>`, що знаходиться вище у дереві компонентів.
 
-When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider.
+Коли найближчий `<MyContext.Provider>`, що знаходиться вище поточного компонента, оновлюється, цей хук викличе повторний рендер з актуальним `value` контексту, переданим до провайдера `MyContext`.
 
-Don't forget that the argument to `useContext` must be the *context object itself*:
+Не забудьте про те, що аргумент переданий у `useContext`, повиен бути *власне об'єктом контексту*:
 
- * **Correct:** `useContext(MyContext)`
- * **Incorrect:** `useContext(MyContext.Consumer)`
- * **Incorrect:** `useContext(MyContext.Provider)`
+ * **Правильно:** `useContext(MyContext)`
+ * **Неправильно:** `useContext(MyContext.Consumer)`
+ * **Неправильно:** `useContext(MyContext.Provider)`
 
-A component calling `useContext` will always re-render when the context value changes. If re-rendering the component is expensive, you can [optimize it by using memoization](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
+Компонент, що викликає `useContext`, завжди повторно відрендериться при зміні значення контексту. Якщо повторний рендер є вартісною операцією, ви можете [оптимізувати його, використавши мемоізацію](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
 
->Tip
+>Порада
 >
->If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `static contextType = MyContext` in a class, or to `<MyContext.Consumer>`.
+>Якщо ви ознайомились з API контексту до хуків, `useContext(MyContext)` є еквівалентним `static contextType = MyContext` у класі чи `<MyContext.Consumer>`.
 >
->`useContext(MyContext)` only lets you *read* the context and subscribe to its changes. You still need a `<MyContext.Provider>` above in the tree to *provide* the value for this context.
+>`useContext(MyContext)` дозволяє лише *читати* контекст і підписуватись на його зміни. Вам і досі необхідно мати `<MyContext.Provider>` вище у дереві, щоб *надати* цьому контексту значення.
 
-## Additional Hooks {#additional-hooks}
+## Додаткові хуки {#additional-hooks}
 
-The following Hooks are either variants of the basic ones from the previous section, or only needed for specific edge cases. Don't stress about learning them up front.
+Наступні хуки є або варіантами базових із розділу вище, або потрібні у вкрай специфічних випадках. Не потрібно вивчати їх наперед.
 
 ### `useReducer` {#usereducer}
 
@@ -206,11 +206,11 @@ The following Hooks are either variants of the basic ones from the previous sect
 const [state, dispatch] = useReducer(reducer, initialArg, init);
 ```
 
-An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
+Є альтернативою [`useState`](#usestate). Приймає редюсер типу `(state, action) => newState` і повертає поточний стан у парі з методом `dispatch`. (Якщо ви знайомі з Redux, ви вже знаєте як це працює.)
 
-`useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because [you can pass `dispatch` down instead of callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
+Слід віддати перевагу `useReducer` над `useState`, коли ви маєте складну логіку стану, що включає багато значень чи ваш наступний стан залежить від попереднього. Крім того, `useReducer` дозволяє вам оптимізувати продуктивність для компонентів, що викликають глибокі оновлення, тому що [ви можете передати вниз `dispatch`, замість функцій повторного виклику](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
 
-Here's the counter example from the [`useState`](#usestate) section, rewritten to use a reducer:
+Ось приклад лічильника із розділу [`useState`](#usestate), переписаний із використанням редюсера:
 
 ```js
 const initialState = {count: 0};
@@ -238,13 +238,13 @@ function Counter({initialState}) {
 }
 ```
 
->Note
+>Примітка
 >
->React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React гарантує, що функція `dispatch` зберігає ідентичність і не змінюється під час повторних рендерів. Саме тому, ви можете безпечно пропускати її включення до списків залежностей хуків `useEffect` чи `useCallback`.
 
-#### Specifying the initial state {#specifying-the-initial-state}
+#### Визначення початкового стану {#specifying-the-initial-state}
 
-There’s two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way to pass the initial state as a second argument:
+Є два різних шляхи ініціалізації стану `useReducer`. Ви можете обрати будь-який, залежно від ситуації. Найпростіши м варіантом є передача початкового стану другим аргументом:
 
 ```js{3}
   const [state, dispatch] = useReducer(
@@ -253,15 +253,15 @@ There’s two different ways to initialize `useReducer` state. You may choose ei
   );
 ```
 
->Note
+>Примітка
 >
->React doesn’t use the `state = initialState` argument convention popularized by Redux. The initial value sometimes needs to depend on props and so is specified from the Hook call instead. If you feel strongly about this, you can call `useReducer(reducer, undefined, reducer)` to emulate the Redux behavior, but it's not encouraged.
+>React не використовує `state = initialState` конвенцію про аргументи, популяризовану в Redux. Початкове значення часом залежить від пропсів, а тому вказується безпосередньо у виклиці хука. Якщо ви впевнені щодо цього, ви можете викликати `useReducer(reducer, undefined, reducer)`, щоб земулювати поведінку Redux, але робити так не рекомендується.
 
-#### Lazy initialization {#lazy-initialization}
+#### Лінива ініціалізація {#lazy-initialization}
 
-You can also create the initial state lazily. To do this, you can pass an `init` function as the third argument. The initial state will be set to `init(initialArg)`.
+Ви також можете ліниво створити початковий стан. Щоб зробити це, ви можете передати функцію `init` третім аргументом. Початковий стан буде встановлений у `init(initialArg)`.
 
-It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting the state later in response to an action:
+Це дозволить винести логіку обчислення початкового стану з редюсера. Також це може бути корисним при скиданні стану пізніше у відповідь на дію:
 
 ```js{1-3,11-12,19,24}
 function init(initialCount) {
@@ -285,10 +285,10 @@ function Counter({initialCount}) {
   const [state, dispatch] = useReducer(reducer, initialCount, init);
   return (
     <>
-      Count: {state.count}
+      Лічильник: {state.count}
       <button
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
-        Reset
+        Скинути
       </button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
@@ -297,11 +297,11 @@ function Counter({initialCount}) {
 }
 ```
 
-#### Bailing out of a dispatch {#bailing-out-of-a-dispatch}
+#### Припинення дії dispatch {#bailing-out-of-a-dispatch}
 
-If you return the same value from a Reducer Hook as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+Якщо ви повернете з хука редюсера значення, що дорівнює поточному стану, React вийде з нього без рендерингу дочірніх елементів чи запуску ефектів. (React використовує [алгоритм порівняння `Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
 
-Note that React may still need to render that specific component again before bailing out. That shouldn't be a concern because React won't unnecessarily go "deeper" into the tree. If you're doing expensive calculations while rendering, you can optimize them with `useMemo`.
+Зверніть увагу, що React може знадобитись відрендерити конкретний компонент перед припиненням оновлення. Це не повинно викликати занепокоєння, тому що React необов'язково опуститься "глибше" в дерево. Якщо ви здійснюєте вартісні обчислення під час рендерингу, ви можете оптимізувати їх, використавши `useMemo`.
 
 ### `useCallback` {#usecallback}
 
@@ -314,17 +314,17 @@ const memoizedCallback = useCallback(
 );
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) callback.
+Повертає [мемоізовану](https://en.wikipedia.org/wiki/Memoization) функцію зворотнього виклику.
 
-Pass an inline callback and an array of dependencies. `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
+Передайте вбудовану функцію зворотнього виклику і масив залежностей. `useCallback` поверне мемоізовану версію функції зворотнього виклику, котра змінюється лише тоді, коли одна з її залежностей змінюється. Це корисно при передачі фукцій зворотнього виклику до оптимізоваих дочірніх компонентів, що покладаються на рівність посилань задля уникнення непотрібних рендерів (наприклад, `shouldComponentUpdate`).
 
-`useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
+`useCallback(fn, deps)` є еквівалентом `useMemo(() => fn, deps)`.
 
-> Note
+> Примітка
 >
-> The array of dependencies is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+> Масив залежностей не передається у якості аргументів до функції зворотнього виклику. Концептуально, проте, це те, що вони представляють: кожне значення, на яке посилається функція зворотнього виклику, також має з'являтись у масиві залежностей. У майбутньому, достатньо просунутий компілятор зможе створити цей масив автоматично.
 >
-> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+> Ми радимо використовувати правило [`exhaustive-deps`](https://github.com/facebook/react/issues/14920), як частину нашого пакунку [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Воно попереджує про те, що залежності вказані невірно і пропонує рішення.
 
 ### `useMemo` {#usememo}
 
@@ -332,21 +332,21 @@ Pass an inline callback and an array of dependencies. `useCallback` will return 
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
+Повертає [мемоізоване](https://en.wikipedia.org/wiki/Memoization) значення.
 
-Pass a "create" function and an array of dependencies. `useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
+Передайте функцію "створення" та масив залежностей. `useMemo` повторно обчислить мемоізоване значення лише при зміні однієї з залежностей. Така оптимізація допомагає уникнути вартісних обчислень при кожному рендері.
 
-Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+Пам'ятайте, що функція, передана до `useMemo`, запускається під час рендерингу. Не робіть у ній нічого, що ви зазвичай не робите під час рендерингу. Наприклад, побічні ефекти мають бути в `useEffect`, а не `useMemo`.
 
-If no array is provided, a new value will be computed on every render.
+Якщо масив не наданий, нове значення буде обчислене при кожному рендері.
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
+**Ви можете покластись на `useMemo` як на оптимізацію продуктивності, а не на семантичу гарантію.** У майбутньому React може вирішити "забути" деякі попередньо мемоізовані значення і переобчислити їх при наступному рендері, наприклад, для звілбнення пам'яті для компонентів поза областю видимості екрана. Напишіть ваш код так, щоб він працював без `useMemo`, а потім додайте його для оптимізації продуктивності.
 
-> Note
+> Примітка
 >
-> The array of dependencies is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
+> Масив залежностей не передається у якості аргументів до функції. Концептуально, проте, це те, що вони представляють: кожне значення, на яке посилається функція, також має з'являтись у масиві залежностей. У майбутньому, достатньо просунутий компілятор зможе створити цей масив автоматично.
 >
-> We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+> Ми радимо використовувати правило [`exhaustive-deps`](https://github.com/facebook/react/issues/14920), як частину нашого пакунку [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Воно попереджує про те, що залежності вказані невірно і пропонує рішення.
 
 ### `useRef` {#useref}
 
@@ -354,35 +354,35 @@ If no array is provided, a new value will be computed on every render.
 const refContainer = useRef(initialValue);
 ```
 
-`useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (`initialValue`). The returned object will persist for the full lifetime of the component.
+`useRef` поверне змінний об'єкт рефу, властивість `.current` якого ініціалізується переданим аргументом (`initialValue`). Повернутий об'єкт буде зберігатись протягом всього часу життя компонента.
 
-A common use case is to access a child imperatively:
+Поширеним випадком використання є імперативний доступ до потомків:
 
 ```js
 function TextInputWithFocusButton() {
   const inputEl = useRef(null);
   const onButtonClick = () => {
-    // `current` points to the mounted text input element
+    // `current` вказує на примонтований елемент поля вводу тексту
     inputEl.current.focus();
   };
   return (
     <>
       <input ref={inputEl} type="text" />
-      <button onClick={onButtonClick}>Focus the input</button>
+      <button onClick={onButtonClick}>Фокусуватись на полі вводу</button>
     </>
   );
 }
 ```
 
-Essentially, `useRef` is like a "box" that can hold a mutable value in its `.current` property.
+По суті, `useRef` — це "коробка", що може містити змінне значення у власній властивості `.current`.
 
-You might be familiar with refs primarily as a way to [access the DOM](/docs/refs-and-the-dom.html). If you pass a ref object to React with `<div ref={myRef} />`, React will set its `.current` property to the corresponding DOM node whenever that node changes.
+Рефи можуть бути вам знайомими перш за все як [засіб доступу до DOM](/docs/refs-and-the-dom.html). Якщо ви передасте об'єкт рефу у React як `<div ref={myRef} />`, React встановить його властивість `.current` рівною значенню відповідного DOM вузла при будь-якій зміні цього вузла.
 
-However, `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
+Проте `useRef()` є корисним не тільки для простого атрибута `ref`. Він [згодиться для постійного збереження будь-якого змінного значення](/docs/hooks-faq.html#is-there-something-like-instance-variables) подібно до використання полей екземпляра класу.
 
-This works because `useRef()` creates a plain JavaScript object. The only difference between `useRef()` and creating a `{current: ...}` object yourself is that `useRef` will give you the same ref object on every render.
+Це можливо, тому що `useRef()` створює простий JavaScript-об'єкт. Єдина різниця між `useRef()` і створенням об'єкта `{current: ...}` власноруч полягає в тому, що `useRef` поверне один і той самий реф-об'єкт при кожному рендері.
 
-Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutating the `.current` property doesn't cause a re-render. If you want to run some code when React attaches or detaches a ref to a DOM node, you may want to use a [callback ref](/docs/hooks-faq.html#how-can-i-measure-a-dom-node) instead.
+Пам'ятайте, що `useRef` *не* повідомляє вас про зміну свого вмісту. Зміна властивості `.current` не спричинить повторний рендер. Якщо ви хочете запустити деякий код під час того, як React прикріплює чи від'єднує реф до вузла DOM, то вам краще використати [реф зворотнього виклику](/docs/hooks-faq.html#how-can-i-measure-a-dom-node).
 
 
 ### `useImperativeHandle` {#useimperativehandle}
@@ -391,7 +391,7 @@ Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutati
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
-`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:
+`useImperativeHandle` налаштовує значення екземпляра, яке надається батьківським компонентам при використанні `ref`. Як і зазвичай, у більшості випадків ви маєте уникати імперативного коду з використанням рефів. `useImperativeHandle` має використовуватись разом з `forwardRef`:
 
 ```js
 function FancyInput(props, ref) {
@@ -406,7 +406,7 @@ function FancyInput(props, ref) {
 FancyInput = forwardRef(FancyInput);
 ```
 
-In this example, a parent component that renders `<FancyInput ref={fancyInputRef} />` would be able to call `fancyInputRef.current.focus()`.
+У цьому прикладі батьківський компонент, що рендерить `<FancyInput ref={fancyInputRef} />`, матиме змогу викликати `fancyInputRef.current.focus()`.
 
 ### `useLayoutEffect` {#uselayouteffect}
 
