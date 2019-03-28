@@ -55,16 +55,16 @@
 1. Слідуйте інструкціям на GitHub.
 1. По можливості додайте знімок екрану ваших візуальних змін. Білд Netlify щоб інші люди змогли бачити ваші зміни буде створений автоматично як тільки ви створите PR.
 
-## Translation
+## Переклад
 
-If you are interested in translating `reactjs.org`, please see the current translation efforts at [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
+Якщо ви зацікавлені з перекладі `reactjs.org`, будь-ласка ознайомтесь з поточним прогресом перекладу на сторінці [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
 
 
-If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
+Якщо переклад на вашу мову наразі не існує і ви б хотіли його створити то слідуйте інструкціям [Перекладу reactjs.org](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
 
-## Troubleshooting
+## Рішення проблем
 
-- `yarn reset` to clear the local cache
+- `yarn reset` для очищення локального кешу
 
-## License
-Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/open-source-explorer/reactjs.org/blob/master/LICENSE-DOCS.md) file.
+## Ліцензія
+Контент, наданий на [uk.reactjs.org](https://uk.reactjs.org/), надається по ліцензії CC-BY-4.0, як описано в файлі [LICENSE-DOCS.md](https://github.com/open-source-explorer/reactjs.org/blob/master/LICENSE-DOCS.md).
