@@ -50,7 +50,7 @@ class Home extends Component {
     return (
       <Layout location={location}>
         <TitleAndMetaTags
-          title="React &ndash; A JavaScript library for building user interfaces"
+          title="React &ndash; JavaScript-бібліотека для створення користувацьких інтерфейсів"
           ogUrl={createOgUrl('index.html')}
         />
         <div css={{width: '100%'}}>
@@ -133,7 +133,7 @@ class Home extends Component {
                         fontSize: 30,
                       },
                     }}>
-                    A JavaScript library for building user interfaces
+                    JavaScript-бібліотека для створення користувацьких інтерфейсів
                   </p>
                   <Flex
                     valign="center"
@@ -148,12 +148,12 @@ class Home extends Component {
                       <ButtonLink
                         to="/docs/getting-started.html"
                         type="primary">
-                        Get Started
+                        Початок роботи
                       </ButtonLink>
                     </CtaItem>
                     <CtaItem>
                       <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                        Take the Tutorial
+                        Перейти до введення
                       </ButtonLink>
                     </CtaItem>
                   </Flex>
@@ -348,7 +348,7 @@ export const pageQuery = graphql`
         }
       }
     }
-
+    
     examples: allMarkdownRemark(
       filter: {fileAbsolutePath: {regex: "//home/examples//"}}
       sort: {fields: [frontmatter___order], order: ASC}
