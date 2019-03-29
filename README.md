@@ -57,12 +57,12 @@
 
 ## Переклад
 
-Якщо ви зацікавлені з перекладі `reactjs.org`, будь-ласка ознайомтесь з поточним прогресом перекладу на сторінці [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
+Якщо ви зацікавлені у перекладі `reactjs.org`, будь-ласка ознайомтесь з поточним прогресом перекладу на сторінці [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
 
 
-Якщо переклад на вашу мову наразі не існує і ви б хотіли його створити то слідуйте інструкціям [Перекладу reactjs.org](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
+Якщо переклад на вашу мову наразі не існує і ви б хотіли його створити, то дотримуйтесь інструкцій [Перекладу reactjs.org](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
 
-## Рішення проблем
+## Вирішення проблем
 
 - `yarn reset` для очищення локального кешу
 
