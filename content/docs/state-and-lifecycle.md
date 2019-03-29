@@ -72,9 +72,13 @@ ReactDOM.render(
 
 Стан подібний до пропсів, але він приватний і повністю контролюється компонентом.
 
+<<<<<<< HEAD
 Ми [згадували раніше](/docs/components-and-props.html#functional-and-class-components), що компоненти, визначені як класи, мають деякі додаткові функції. Внутрішній стан — це і є функція яка доступна тільки для класів.
 
 ## Перетворення функції на клас {#converting-a-function-to-a-class}
+=======
+## Converting a Function to a Class {#converting-a-function-to-a-class}
+>>>>>>> d0f2db967a38e358bd59c65e981862cdf38f3d0b
 
 Ви можете перетворити функцію компонента `Clock` на клас у п'ять кроків:
 
