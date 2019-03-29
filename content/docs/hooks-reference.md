@@ -410,17 +410,17 @@ FancyInput = forwardRef(FancyInput);
 
 ### `useLayoutEffect` {#uselayouteffect}
 
-The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
+Сигнатура хука є ідентичною `useEffect`, але він запускається синхронно після всіх змін DOM. Використовуйте це для читання розмітки з DOM і синхронних повторних рендерів. Оновлення, заплановані всередині `useLayoutEffect`, будуть виконані синхронно перед тим, як браузер відобразить їх.
 
-Prefer the standard `useEffect` when possible to avoid blocking visual updates.
+Віддайте перевагу використанню `useEffect`, коли це можливо, щоб уникнути блокування візуальних оновлень.
 
-> Tip
+> Порада
 >
-> If you're migrating code from a class component, note `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`. However, **we recommend starting with `useEffect` first** and only trying `useLayoutEffect` if that causes a problem.
+> Якщо ви переробляєте код класового компонента, зверніть увагу, що `useLayoutEffect` запускається на тому ж етапі, що й `componentDidMount` та `componentDidUpdate`. Однак **ми рекомендуємо розпочати з використання `useEffect`** і спробувати `useLayoutEffect` тільки при виникненні проблем.
 >
->If you use server rendering, keep in mind that *neither* `useLayoutEffect` nor `useEffect` can run until the JavaScript is downloaded. This is why React warns when a server-rendered component contains `useLayoutEffect`. To fix this, either move that logic to `useEffect` (if it isn't necessary for the first render), or delay showing that component until after the client renders (if the HTML looks broken until `useLayoutEffect` runs).
+>Якщо ви використовуєте серверний рендеринг, пам'ятайте, що *ані* `useLayoutEffect`, ні `useEffect` не можуть бути запущені допоки JavaScript не завантажився. Саме тому React попереджує про те, що компонент, який рендериться на сервері, містить `useLayoutEffect`. Щоб виправити це, ви можете помістити цю логіку в `useEffect` (якщо вона не потрібна при першому рендері) або відкласти відображення цього компонента до моменту, коли відрендериться клієнт (якщо HTML виглядає невалідним до запуску `useLayoutEffect`).
 >
->To exclude a component that needs layout effects from the server-rendered HTML, render it conditionally with `showChild && <Child />` and defer showing it with `useEffect(() => { setShowChild(true); }, [])`. This way, the UI doesn't appear broken before hydration.
+>Щоб виключити компонент, що потребує ефектів розмітки, із відрендереного на сервері HTML, відрендеріть його умовно з допомогою `showChild && <Child />` і відкладіть його відображення, використавши `useEffect(() => { setShowChild(true); }, [])`. Таким чином, інтерфейс користувача не буде виглядати неправильно перед гідратацією.
 
 ### `useDebugValue` {#usedebugvalue}
 
@@ -428,9 +428,9 @@ Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 useDebugValue(value)
 ```
 
-`useDebugValue` can be used to display a label for custom hooks in React DevTools.
+`useDebugValue` може бути використаний для відображення мітки користувацьких хуків у інструментах розробника React.
 
-For example, consider the `useFriendStatus` custom Hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+Наприклад, ми маємо користувацький хук `useFriendStatus` описаний у розділі ["Створення користувацьких хуків"](/docs/hooks-custom.html):
 
 ```js{6-8}
 function useFriendStatus(friendID) {
@@ -438,25 +438,25 @@ function useFriendStatus(friendID) {
 
   // ...
 
-  // Show a label in DevTools next to this Hook
-  // e.g. "FriendStatus: Online"
-  useDebugValue(isOnline ? 'Online' : 'Offline');
+  // Показує мітку у інструментах розробника поруч з цим хуком
+  // наприклад, "FriendStatus: В мережі"
+  useDebugValue(isOnline ? 'В мережі' : 'Не в мережі');
 
   return isOnline;
 }
 ```
 
-> Tip
+> Порада
 >
-> We don't recommend adding debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries.
+> Ми не радимо додавати значення для налагодження до кожного користувацького хука. Вони найбільш цінні для користувацьких хуків, що є частиною загальнодоступних бібліотек.
 
-#### Defer formatting debug values {#defer-formatting-debug-values}
+#### Відкладення форматування значень для налагодження {#defer-formatting-debug-values}
 
-In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a Hook is actually inspected.
+У певних випадках, форматування значення для відображення може бути вартісною операцією. Також воно не потрібне у випадку, коли хук не перевіряється безпосередньо.
 
-For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the Hooks are inspected. It receives the debug value as a parameter and should return a formatted display value.
+З цієї причини `useDebugValue` приймає функцію форматування у якості необов'язкового другого параметра. Ця функція викликається лише при перевірці хуків. Вона отримує налагоджувальне значення у якості параметра і повинна повертати форматоване значення для відображення.
 
-For example a custom Hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+Для прикладу, користувацький хук, що повертає значення `Date`, може уникнути викликання функції `toDateString`, передавши наступну функцію форматування:
 
 ```js
 useDebugValue(date, date => date.toDateString());
