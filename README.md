@@ -10,7 +10,7 @@
 1. Node: будь-яка версія 8.x починаючи з 8.4.0 або вище
 1. Yarn: Див. [сайт Yarn з інструкціями по встановленню](https://yarnpkg.com/uk/docs/install)
 1. Зробити форк цього репозиторію (для пропозицій змін)
-1. Клонувати [uk.reactjs.org repo](https://github.com/reactjs/uk.reactjs.org) на ваш компьютер
+1. Клонувати [uk.reactjs.org repo](https://github.com/reactjs/uk.reactjs.org) на ваш комп'ютер
 
 ### Встановлення
 
