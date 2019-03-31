@@ -1,6 +1,6 @@
 ---
 id: jsx-in-depth
-title: JSX In Depth
+title: Детальніше про JSX
 permalink: docs/jsx-in-depth.html
 redirect_from:
   - "docs/jsx-spread.html"
@@ -13,7 +13,7 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-Fundamentally, JSX just provides syntactic sugar for the `React.createElement(component, props, ...children)` function. The JSX code:
+JSX - синтаксичний цукор над функцією `React.createElement(component, props, ...children)`. Наступний JSX-код:
 
 ```js
 <MyButton color="blue" shadowSize={2}>
@@ -21,7 +21,7 @@ Fundamentally, JSX just provides syntactic sugar for the `React.createElement(co
 </MyButton>
 ```
 
-compiles into:
+скомпіюється в:
 
 ```js
 React.createElement(
@@ -31,13 +31,13 @@ React.createElement(
 )
 ```
 
-You can also use the self-closing form of the tag if there are no children. So:
+Також ви можете використати самозакриваючийся тег, якщо відсутні дочірні елементи. Тому код:
 
 ```js
 <div className="sidebar" />
 ```
 
-compiles into:
+скомпілюється в:
 
 ```js
 React.createElement(
@@ -47,7 +47,7 @@ React.createElement(
 )
 ```
 
-If you want to test out how some specific JSX is converted into JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+Якщо ви бажаєте перевірити як JSX-код компілюється в JavaScript, спробуйте [онлайн-компілятор Babel](babel://jsx-simple-example).
 
 ## Specifying The React Element Type {#specifying-the-react-element-type}
 
@@ -268,7 +268,7 @@ const App = () => {
 In the example above, the `kind` prop is safely consumed and *is not* passed on to the `<button>` element in the DOM.
 All other props are passed via the `...other` object making this component really flexible. You can see that it passes an `onClick` and `children` props.
 
-Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.  
+Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.
 
 ## Children in JSX {#children-in-jsx}
 
