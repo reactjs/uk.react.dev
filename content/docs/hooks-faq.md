@@ -1,16 +1,16 @@
 ---
 id: hooks-faq
-title: Hooks FAQ
+title: FAQ по хуках
 permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Хуки* — це новинка в React 16.8. Вони дозволяють вам використовувати стан та інші можливості React без написання класу.
 
-This page answers some of the frequently asked questions about [Hooks](/docs/hooks-overview.html).
+На цій сторінці ви знайдете відповіді на деякі поширені питання щодо [хуків](/docs/hooks-overview.html).
 
 <!--
-  if you ever need to regenerate this, this snippet in the devtools console might help:
+  якщо вам доведеться колись згенерувати це наново, наступний уривок коду введений у інструменти розробника може вам допомогти:
 
   $$('.anchor').map(a =>
     `${' '.repeat(2 * +a.parentNode.nodeName.slice(1))}` +
@@ -18,44 +18,44 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   ).join('\n')
 -->
 
-* **[Adoption Strategy](#adoption-strategy)**
-  * [Which versions of React include Hooks?](#which-versions-of-react-include-hooks)
-  * [Do I need to rewrite all my class components?](#do-i-need-to-rewrite-all-my-class-components)
-  * [What can I do with Hooks that I couldn't with classes?](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
-  * [How much of my React knowledge stays relevant?](#how-much-of-my-react-knowledge-stays-relevant)
-  * [Should I use Hooks, classes, or a mix of both?](#should-i-use-hooks-classes-or-a-mix-of-both)
-  * [Do Hooks cover all use cases for classes?](#do-hooks-cover-all-use-cases-for-classes)
-  * [Do Hooks replace render props and higher-order components?](#do-hooks-replace-render-props-and-higher-order-components)
-  * [What do Hooks mean for popular APIs like Redux connect() and React Router?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
-  * [Do Hooks work with static typing?](#do-hooks-work-with-static-typing)
-  * [How to test components that use Hooks?](#how-to-test-components-that-use-hooks)
-  * [What exactly do the lint rules enforce?](#what-exactly-do-the-lint-rules-enforce)
-* **[From Classes to Hooks](#from-classes-to-hooks)**
-  * [How do lifecycle methods correspond to Hooks?](#how-do-lifecycle-methods-correspond-to-hooks)
-  * [How can I do data fetching with Hooks?](#how-can-i-do-data-fetching-with-hooks)
-  * [Is there something like instance variables?](#is-there-something-like-instance-variables)
-  * [Should I use one or many state variables?](#should-i-use-one-or-many-state-variables)
-  * [Can I run an effect only on updates?](#can-i-run-an-effect-only-on-updates)
-  * [How to get the previous props or state?](#how-to-get-the-previous-props-or-state)
-  * [Why am I seeing stale props or state inside my function?](#why-am-i-seeing-stale-props-or-state-inside-my-function)
-  * [How do I implement getDerivedStateFromProps?](#how-do-i-implement-getderivedstatefromprops)
-  * [Is there something like forceUpdate?](#is-there-something-like-forceupdate)
-  * [Can I make a ref to a function component?](#can-i-make-a-ref-to-a-function-component)
-  * [How can I measure a DOM node?](#how-can-i-measure-a-dom-node)
-  * [What does const [thing, setThing] = useState() mean?](#what-does-const-thing-setthing--usestate-mean)
-* **[Performance Optimizations](#performance-optimizations)**
-  * [Can I skip an effect on updates?](#can-i-skip-an-effect-on-updates)
-  * [Is it safe to omit functions from the list of dependencies?](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
-  * [What can I do if my effect dependencies change too often?](#what-can-i-do-if-my-effect-dependencies-change-too-often)
-  * [How do I implement shouldComponentUpdate?](#how-do-i-implement-shouldcomponentupdate)
-  * [How to memoize calculations?](#how-to-memoize-calculations)
-  * [How to create expensive objects lazily?](#how-to-create-expensive-objects-lazily)
-  * [Are Hooks slow because of creating functions in render?](#are-hooks-slow-because-of-creating-functions-in-render)
-  * [How to avoid passing callbacks down?](#how-to-avoid-passing-callbacks-down)
-  * [How to read an often-changing value from useCallback?](#how-to-read-an-often-changing-value-from-usecallback)
-* **[Under the Hood](#under-the-hood)**
-  * [How does React associate Hook calls with components?](#how-does-react-associate-hook-calls-with-components)
-  * [What is the prior art for Hooks?](#what-is-the-prior-art-for-hooks)
+* **[Стратегія впровадження хуків](#adoption-strategy)**
+  * [Які версії React включають хуки?](#which-versions-of-react-include-hooks)
+  * [Чи маю я переписувати всі мої класові компоненти?](#do-i-need-to-rewrite-all-my-class-components)
+  * [Що я можу зробити з хуками такого, чого не можу з класами?](#what-can-i-do-with-hooks-that-i-couldnt-with-classes)
+  * [Яка частина моїх знань React залишиться актуальною?](#how-much-of-my-react-knowledge-stays-relevant)
+  * [Що я маю використовувати: хуки, класи чи їх комбінацію?](#should-i-use-hooks-classes-or-a-mix-of-both)
+  * [Чи покривають хуки всі варіанти використання класів?](#do-hooks-cover-all-use-cases-for-classes)
+  * [Чи замінять хуки рендер пропси та компоненти вищого порядку?](#do-hooks-replace-render-props-and-higher-order-components)
+  * [Що означають хуки для популярних API, таких як Redux connect() чи React Router?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
+  * [Чи працюють хуки зі статичною типізацією?](#do-hooks-work-with-static-typing)
+  * [Як тестувати компоненти, які використовують хуки?](#how-to-test-components-that-use-hooks)
+  * [Що саме перевіряють правила лінтера у хуках?](#what-exactly-do-the-lint-rules-enforce)
+* **[Від класів до хуків](#from-classes-to-hooks)**
+  * [Як методи життлєвого циклу співвідносяться з хуками?](#how-do-lifecycle-methods-correspond-to-hooks)
+  * [Як я можу робити вибірку даних з допомогою хуків?](#how-can-i-do-data-fetching-with-hooks)
+  * [Чи є щось подібне до змінних екземпляра класу?](#is-there-something-like-instance-variables)
+  * [Скільки змінних стану мені слід використовувати — одну чи декілька?](#should-i-use-one-or-many-state-variables)
+  * [Чи можна запускати ефект лише при оновленні?](#can-i-run-an-effect-only-on-updates)
+  * [Як отримати попередні пропси чи стан?](#how-to-get-the-previous-props-or-state)
+  * [Чому я бачу застарілі значення пропсів чи стану всередині моєї функції?](#why-am-i-seeing-stale-props-or-state-inside-my-function)
+  * [Як я можу реалізувати getDerivedStateFromProps?](#how-do-i-implement-getderivedstatefromprops)
+  * [Чи є щось схоже на forceUpdate?](#is-there-something-like-forceupdate)
+  * [Чи можу я зробити реф на функціональий компонент?](#can-i-make-a-ref-to-a-function-component)
+  * [Як я можу обмежити вузол DOM?](#how-can-i-measure-a-dom-node)
+  * [Що означає const [thing, setThing] = useState()?](#what-does-const-thing-setthing--usestate-mean)
+* **[Оптимізація продуктивності](#performance-optimizations)**
+  * [Чи можу я пропустити ефект при оновленні?](#can-i-skip-an-effect-on-updates)
+  * [Чи безпечно не вказувати в списку залежностей функції?](#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
+  * [Що я можу зробити, якщо залежності мого ефекту змінюються надто часто?](#what-can-i-do-if-my-effect-dependencies-change-too-often)
+  * [Як я можу реалізувати shouldComponentUpdate?](#how-do-i-implement-shouldcomponentupdate)
+  * [Як запам'ятати обчислення?](#how-to-memoize-calculations)
+  * [Як ліниво обчислити вартісні об'єкти?](#how-to-create-expensive-objects-lazily)
+  * [Чи є хуки повільними через створення функцій у рендері?](#are-hooks-slow-because-of-creating-functions-in-render)
+  * [Як уникнути передачі функцій зворотнього виклику вниз?](#how-to-avoid-passing-callbacks-down)
+  * [Як прочитати часто змінюване значення з useCallback?](#how-to-read-an-often-changing-value-from-usecallback)
+* **[Деталі реалізації](#under-the-hood)**
+  * [Як React асоціює виклики хуків з компонентами?](#how-does-react-associate-hook-calls-with-components)
+  * [Що лежить в основі дизайну хуків?](#what-is-the-prior-art-for-hooks)
 
 ## Adoption Strategy {#adoption-strategy}
 
