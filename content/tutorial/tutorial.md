@@ -431,7 +431,6 @@ class Board extends React.Component {
 * Замініть `this.setState()` на `this.props.onClick()` у методі `render` компонента Square
 * Видаліть `constructor` зі Square, тому що цей компонент більше не відслідковує стан гри
 
-
 Після цих змін компонент Square має виглядати так:
 
 ```javascript{1,2,6,8}
