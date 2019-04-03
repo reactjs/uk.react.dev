@@ -234,7 +234,7 @@ class Square extends React.Component {
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('клік'); }}>
+      <button className="square" onClick={function() { alert('click'); }}>
         {this.props.value}
       </button>
     );
@@ -252,7 +252,7 @@ class Square extends React.Component {
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('клік')}>
+>      <button className="square" onClick={() => alert('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -279,7 +279,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('клік')}>
+      <button className="square" onClick={() => alert('click')}>
         {this.props.value}
       </button>
     );
@@ -488,7 +488,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Наступний гравець: X';
+    const status = 'Next player: X';
 
     return (
       <div>
@@ -626,7 +626,7 @@ class Board extends React.Component {
 
 ```javascript{2}
   render() {
-    const status = 'Наступний гравець: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       // решта не змінилася
@@ -663,7 +663,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Наступний гравець: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
@@ -726,9 +726,9 @@ function calculateWinner(squares) {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Переможець: ' + winner;
+      status = 'Winner: ' + winner;
     } else {
-      status = 'Наступний гравець: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -870,9 +870,9 @@ class Board extends React.Component {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Переможець: ' + winner;
+      status = 'Winner: ' + winner;
     } else {
-      status = 'Наступний гравець: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -908,9 +908,9 @@ class Board extends React.Component {
 
     let status;
     if (winner) {
-      status = 'Переможець: ' + winner;
+      status = 'Winner: ' + winner;
     } else {
-      status = 'Наступний гравець: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -1095,8 +1095,8 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 ```js{6}
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Перейти до ходу #' + move :
-        'Почати спочатку';
+        'Go to move #' + move :
+        'Go to game start';
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
