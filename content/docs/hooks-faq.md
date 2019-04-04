@@ -1,6 +1,6 @@
 ---
 id: hooks-faq
-title: FAQ по хуках
+title: Хуки: FAQ
 permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
@@ -57,87 +57,87 @@ prev: hooks-reference.html
   * [Як React асоціює виклики хуків з компонентами?](#how-does-react-associate-hook-calls-with-components)
   * [Що лежить в основі дизайну хуків?](#what-is-the-prior-art-for-hooks)
 
-## Adoption Strategy {#adoption-strategy}
+## Стратегія впровадження хуків {#adoption-strategy}
 
-### Which versions of React include Hooks? {#which-versions-of-react-include-hooks}
+### Які версії React включають хуки? {#which-versions-of-react-include-hooks}
 
-Starting with 16.8.0, React includes a stable implementation of React Hooks for:
+Починаючи з версії 16.8.0, React включає стабільну реалізацію хуків для:
 
 * React DOM
-* React DOM Server
-* React Test Renderer
-* React Shallow Renderer
+* React DOM Сервер
+* Тестовий рендерер React
+* Поверхневий рендерер React
 
-Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
+Зверніть увагу на те, **що всі пакунки React мають бути версії 16.8.0 або вище, щоб підтримувати хуки**. Хуки не будуть працювати, якщо ви забудете оновити, наприклад, React DOM.
 
-React Native will fully support Hooks in its next stable release.
+React Native отримає повну підтримку хуків у наступному стабільному релізі.
 
-### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
+### Чи маю я переписувати всі мої класові компоненти? {#do-i-need-to-rewrite-all-my-class-components}
 
-No. There are [no plans](/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React -- we all need to keep shipping products and can't afford rewrites. We recommend trying Hooks in new code.
+Ні. Ми [не плануємо](/docs/hooks-intro.html#gradual-adoption-strategy) видаляти класи з React -- нам потрібно поставляти програмні продукти і ми не можемо дозволити собі переписувати кодову базу. Ми рекомендуємо спробувати хуки у новому коді.
 
-### What can I do with Hooks that I couldn't with classes? {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
+### Що я можу зробити з хуками такого, чого не можу з класами? {#what-can-i-do-with-hooks-that-i-couldnt-with-classes}
 
-Hooks offer a powerful and expressive new way to reuse functionality between components. ["Building Your Own Hooks"](/docs/hooks-custom.html) provides a glimpse of what's possible. [This article](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889) by a React core team member dives deeper into the new capabilities unlocked by Hooks.
+Хуки пропонують новий, потужний і виразний шлях для повторного використання функціональності між компонентами. ["Створення користувацьких хуків"](/docs/hooks-custom.html) надає уявлення того, що ви можете реалізувати. [Ця стаття](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889), написана членом основної команди розробників React, детально розповідає про нові можливості, які відкривають хуки.
 
-### How much of my React knowledge stays relevant? {#how-much-of-my-react-knowledge-stays-relevant}
+### Яка частина моїх знань React залишиться актуальною? {#how-much-of-my-react-knowledge-stays-relevant}
 
-Hooks are a more direct way to use the React features you already know -- such as state, lifecycle, context, and refs. They don't fundamentally change how React works, and your knowledge of components, props, and top-down data flow is just as relevant.
+Хуки — це більш прямий спосіб використання особливостей React про які ви вже знаєте: стан, життєвий цикл, контекст і рефи. Хуки не змінюють основні принципи роботи React і ваші знання компонентів, пропсів та низхідного потоку даних залишаться актуальними.
 
-Hooks do have a learning curve of their own. If there's something missing in this documentation, [raise an issue](https://github.com/reactjs/reactjs.org/issues/new) and we'll try to help.
+Хуки самі по собі мають криву вивчення. Якщо у цій документації чогось не вистачає, [підніміть питання](https://github.com/reactjs/reactjs.org/issues/new) і ми спробуємо допомогти вам.
 
-### Should I use Hooks, classes, or a mix of both? {#should-i-use-hooks-classes-or-a-mix-of-both}
+### Що я маю використовувати: хуки, класи чи їх комбінацію? {#should-i-use-hooks-classes-or-a-mix-of-both}
 
-When you're ready, we'd encourage you to start trying Hooks in new components you write. Make sure everyone on your team is on board with using them and familiar with this documentation. We don't recommend rewriting your existing classes to Hooks unless you planned to rewrite them anyway (e.g. to fix bugs).
+Коли ви будете готові, ми заохочуємо вас почати використовувати хуки у ваших нових компонентах. Впевніться, що кожен член вашої команди підтримує їх використання і ознайомлений з документацією. Ми не рекомендуємо переписувати існуючі класи з використанням хуків, якщо ви не плануєте їх переписувати у будь-якому випадку (наприклад, щоб виправити помилку).
 
-You can't use Hooks *inside* of a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
+Ви не можете використовувати хуки *всередині* класового компонента, але ви безумовно можете комбінувати класи і функціональні компоненти з хуками в одному дереві. Чи є компонент класом, чи функцією — неважливо, оскільки це лише деталь реалізації цього компонента. Ми очікуємо, що в майбутньому хуки будуть основним методом написання React-компонентів.
 
-### Do Hooks cover all use cases for classes? {#do-hooks-cover-all-use-cases-for-classes}
+### Чи покривають хуки всі варіанти використання класів? {#do-hooks-cover-all-use-cases-for-classes}
 
-Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
+Нашоє метою є покриття всіх можливостей класів хуками якнайшвидше. Наразі немає альтернативи у вигляді хуків для таких рідковживаних методів життєвого циклу як `getSnapshotBeforeUpdate` та `componentDidCatch`, але ми плануємо скоро їх додати.
 
-It is an early time for Hooks, and some third-party libraries might not be compatible with Hooks at the moment.
+Оскільки хуки з'явились зовсім нещодавно, то не всі сторонні бібліотеки можуть бути сумісними з ними.
 
-### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
+### Чи замінять хуки рендер пропси та компоненти вищого порядку? {#do-hooks-replace-render-props-and-higher-order-components}
 
-Often, render props and higher-order components render only a single child. We think Hooks are a simpler way to serve this use case. There is still a place for both patterns (for example, a virtual scroller component might have a `renderItem` prop, or a visual container component might have its own DOM structure). But in most cases, Hooks will be sufficient and can help reduce nesting in your tree.
+Часто рендер пропси та компоненти вищого порядку рендерять лише одного нащадка. Ми вважаємо, що хуки є простішим шляхом для того, щоб зробити це. Все ще ми можемо використовувати обидва шаблони (наприклад, віртуальний компонент скролінгу може мати проп `renderItem` чи візуальний контейнер може мати власну структуру DOM). Але у більшості випадків, хуків буде достатньо для зменшення кількості вкладень у ващому дереві.
 
-### What do Hooks mean for popular APIs like Redux `connect()` and React Router? {#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
+### Що означають хуки для популярних API, таких як Redux connect() чи React Router?{#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router}
 
-You can continue to use the exact same APIs as you always have; they'll continue to work.
+Ви можете використовувати ті ж самі API, що і завжди — вони продовжують працювати.
 
-In the future, new versions of these libraries might also export custom Hooks such as `useRedux()` or `useRouter()` that let you use the same features without needing wrapper components.
+У майбутньому, нові версії цих бібліотек можуть експортувати користувацькі хуки на кшталт `useRedux()` чи `useRouter()` і це дозволить вам використовувати той же функціонал без необхідності у компонентах-обгортках.
 
-### Do Hooks work with static typing? {#do-hooks-work-with-static-typing}
+### Чи працюють хуки зі статичною типізацією? {#do-hooks-work-with-static-typing}
 
-Hooks were designed with static typing in mind. Because they're functions, they are easier to type correctly than patterns like higher-order components. The latest Flow and TypeScript React definitions include support for React Hooks.
+Хуки були спроектовані з урахуванням статичної типізації. Оскільки вони є функціями, то їх легше правильно типізувати, аніж, скажімо, компоненти вищого порядку. Найновіші версії Flow і TypeScript для React вже включають підтримку хуків.
 
-Importantly, custom Hooks give you the power to constrain React API if you'd like to type them more strictly in some way. React gives you the primitives, but you can combine them in different ways than what we provide out of the box.
+Не менш важливо і те, що користувацькі хуки надають вам можливість накласти обмеження на React API, якщо вам потрібно типізувати їх більш строго певним чином. React надає вам примітиви, які ви можете комбінувати іншими способами, котрі ми передбачили у бібліотеці безпосередньо.
 
-### How to test components that use Hooks? {#how-to-test-components-that-use-hooks}
+### Як тестувати компоненти, які використовують хуки? {#how-to-test-components-that-use-hooks}
 
-From React's point of view, a component using Hooks is just a regular component. If your testing solution doesn't rely on React internals, testing components with Hooks shouldn't be different from how you normally test components.
+З точки зору React, компонент, що використовує хуки, є цілком звичайним компонентом. Якщо ваш спосіб тестування не покладається на деталі реалізації React, тестування компонентів з хуками не має відрізнятись від тестування будь-яких інших компонентів.
 
-For example, let's say we have this counter component:
+Наприклад, ми маємо такий компонент лічильника:
 
 ```js
 function Example() {
   const [count, setCount] = useState(0);
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Ви натиснули ${count} разів`;
   });
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Ви натиснули {count} разів</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Натисни мене
       </button>
     </div>
   );
 }
 ```
 
-We'll test it using React DOM. To make sure that the behavior matches what happens in the browser, we'll wrap the code rendering and updating it into [`ReactTestUtils.act()`](/docs/test-utils.html#act) calls:
+Ми протестуємо його з використанням React DOM. Щоб впевнитись у тому, що поведінка співпадає з браузерною, ми обгорнемо код для рендерингу й оновлення у виклики [`ReactTestUtils.act()`](/docs/test-utils.html#act):
 
 ```js{3,20-22,29-31}
 import React from 'react';
@@ -158,40 +158,40 @@ afterEach(() => {
 });
 
 it('can render and update a counter', () => {
-  // Test first render and effect
+  // Тестуємо перший рендер і ефект
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
-  expect(label.textContent).toBe('You clicked 0 times');
-  expect(document.title).toBe('You clicked 0 times');
+  expect(label.textContent).toBe('Ви натиснули 0 разів');
+  expect(document.title).toBe('Ви натиснули 0 разів');
 
-  // Test second render and effect
+  // Тестуємо другий рендер і ефект
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });
-  expect(label.textContent).toBe('You clicked 1 times');
-  expect(document.title).toBe('You clicked 1 times');
+  expect(label.textContent).toBe('Ви натиснули 1 разів');
+  expect(document.title).toBe('Ви натиснули 1 разів');
 });
 ```
 
-The calls to `act()` will also flush the effects inside of them.
+Виклики `act()` також миттєво запустять вкладені в них ефекти.
 
-If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
+Якщо вам потрібно протестувати користувацький хук, ви можете зробити це, створивши компонент у вашому тесті і використати хук у ньому. Після цього ви можете протестувати щойно написаний компонент.
 
-To reduce the boilerplate, we recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to encourage writing tests that use your components as the end users do.
+Щоб зменшити об'єм шаблонного коду, ми рекомендуємо використовувати [`react-testing-library`](https://git.io/react-testing-library), яка спроектована з метою заохочення написання тестів, що використовують ваші компоненти так, як це будуть робити кінцеві користувачі.
 
-### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
+### Що саме перевіряють [правила лінтера](https://www.npmjs.com/package/eslint-plugin-react-hooks) у хуках? {#what-exactly-do-the-lint-rules-enforce}
 
-We provide an [ESLint plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces [rules of Hooks](/docs/hooks-rules.html) to avoid bugs. It assumes that any function starting with "`use`" and a capital letter right after it is a Hook. We recognize this heuristic isn't perfect and there may be some false positives, but without an ecosystem-wide convention there is just no way to make Hooks work well -- and longer names will discourage people from either adopting Hooks or following the convention.
+Ми надаємо [плагін для ESLint](https://www.npmjs.com/package/eslint-plugin-react-hooks), котрий змушує дотримуватись [правил хуків](/docs/hooks-rules.html) для уникнення помилок. Він припускає, що кожна функція, яка починається з "`use`" і великої літери після нього, є хуком. Ми розуміємо, що це припущення не ідеальне і може привести до хибних спрацювань, але без подібної домовленості на рівні екосистеми просто неможливо змусити хуки працювати коректно, а довші імена можуть завадити людям впроваджувати хуки або ж дотримуватись домовленості.
 
-In particular, the rule enforces that:
+У деталях правила вимагають, щоб:
 
-* Calls to Hooks are either inside a `PascalCase` function (assumed to be a component) or another `useSomething` function (assumed to be a custom Hook).
-* Hooks are called in the same order on every render.
+* Виклики хуків знаходяться всередині `PascalCase`-функції (тобто компонента) чи іншої `useSomething` функції (тобто користувацького хука).
+* Хуки викликаються у однаковому порядку при кожному рендері.
 
-There are a few more heuristics, and they might change over time as we fine-tune the rule to balance finding bugs with avoiding false positives.
+Існує ще кілька правил, що можуть змінитись відповідно до того, як ми змінюємо правила для балансування між пошуком помилок і уникненням хибних спрацювань.
 
 ## From Classes to Hooks {#from-classes-to-hooks}
 
