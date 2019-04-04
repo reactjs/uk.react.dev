@@ -37,7 +37,7 @@ React.createElement(
 <div className="sidebar" />
 ```
 
-скомпілюється в:
+скомпілюється у:
 
 ```js
 React.createElement(
@@ -47,7 +47,7 @@ React.createElement(
 )
 ```
 
-Якщо ви бажаєте перевірити, як JSX-вираз компілюється в JavaScript, спробуйте [онлайн-компілятор Babel](babel://jsx-simple-example).
+Якщо ви бажаєте перевірити, як JSX-вираз компілюється у JavaScript, спробуйте [онлайн-компілятор Babel](babel://jsx-simple-example).
 
 ## Визначення типу React-елемента {#specifying-the-react-element-type}
 
