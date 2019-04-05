@@ -13,7 +13,7 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-JSX - синтаксичний цукор над функцією `React.createElement(component, props, ...children)`. Наступний JSX-вираз:
+JSX — синтаксичний цукор над функцією `React.createElement(component, props, ...children)`. Наступний JSX-вираз:
 
 ```js
 <MyButton color="blue" shadowSize={2}>
@@ -75,7 +75,7 @@ function WarningButton() {
 
 ### Використання запису через крапку {#using-dot-notation-for-jsx-type}
 
-Ви також можете посилатися на React-компонент, використовуючи запис через крапку. Це зручно, коли у вас наявний модуль, що експортує багато React-компонентів. Наприклад, якщо `MyComponents.DatePicker` - компонент, то ви можете посилатися на нього напряму:
+Ви також можете посилатися на React-компонент, використовуючи запис через крапку. Це зручно, коли у вас наявний модуль, що експортує багато React-компонентів. Наприклад, якщо `MyComponents.DatePicker` — компонент, то ви можете посилатися на нього напряму:
 
 ```js{10}
 import React from 'react';
@@ -104,7 +104,7 @@ import React from 'react';
 
 // Невірно! Цей компонент має починатися з великої літери:
 function hello(props) {
-  // Вірно! Використання <div> тут правомірне тому, що div - валідний HTML тег:
+  // Вірно! Використання <div> тут правомірне тому, що div — валідний HTML тег:
   return <div>Привіт {props.toWhat}</div>;
 }
 
@@ -121,7 +121,7 @@ import React from 'react';
 
 // Вірно! Цей компонент має починатися з великої літери:
 function Hello(props) {
-  // Вірно! Використання <div> тут правомірне тому, що div - валідний HTML тег:
+  // Вірно! Використання <div> тут правомірне тому, що div — валідний HTML тег:
   return <div>Привіт {props.toWhat}</div>;
 }
 
@@ -174,7 +174,7 @@ function Story(props) {
 
 ### JavaScript вирази як пропси {#javascript-expressions-as-props}
 
-Ви можете передавати будь-які Javascript вирази як пропси, обгорнувши їх у фігурні дужки `{}`. Наприклад, як в цьому JSX:
+Ви можете передавати будь-які Javascript вирази як пропси, записавши їх у фігурні дужки `{}`. Наприклад, як в цьому JSX:
 
 ```js
 <MyComponent foo={1 + 2 + 3 + 4} />
@@ -192,7 +192,7 @@ function NumberDescriber(props) {
   } else {
     description = <i>непарне</i>;
   }
-  return <div>{props.number} - {description} число</div>;
+  return <div>{props.number} — {description} число</div>;
 }
 ```
 
@@ -456,6 +456,6 @@ function ListOfTenThings() {
 
 ```js{2}
 <div>
-  Моя Javascript змінна - {String(myVariable)}.
+  Моя Javascript змінна — {String(myVariable)}.
 </div>
 ```
