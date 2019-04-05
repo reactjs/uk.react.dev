@@ -121,16 +121,16 @@ MyComponent.propTypes = {
 };
 ```
 
-### Requiring Single Child {#requiring-single-child}
+### Вимога єдиного дочірнього елемента {#requiring-single-child}
 
-With `PropTypes.element` you can specify that only a single child can be passed to a component as children.
+З `PropTypes.element` ви можете вказати, що лише один елементможе бути переданий компоненту в якості дочірнього.
 
 ```javascript
 import PropTypes from 'prop-types';
 
 class MyComponent extends React.Component {
   render() {
-    // This must be exactly one element or it will warn.
+    // Це повинен бути саме один елемент бо інакше з'явиться попередження.
     const children = this.props.children;
     return (
       <div>
@@ -145,45 +145,45 @@ MyComponent.propTypes = {
 };
 ```
 
-### Default Prop Values {#default-prop-values}
+### Значення пропсів за замовчуванням {#default-prop-values}
 
-You can define default values for your `props` by assigning to the special `defaultProps` property:
+Ви можете задати значення за замовчуванням для ваших пропсів присвоївши спеціальну властивість `defaultProps`:
 
 ```javascript
 class Greeting extends React.Component {
   render() {
     return (
-      <h1>Hello, {this.props.name}</h1>
+      <h1>Привіт, {this.props.name}</h1>
     );
   }
 }
 
-// Specifies the default values for props:
+// Задає значення пропсів за замовчуванням:
 Greeting.defaultProps = {
-  name: 'Stranger'
+  name: 'Незнайомець'
 };
 
-// Renders "Hello, Stranger":
+// Реднерить "Привіт, Незнайомець":
 ReactDOM.render(
   <Greeting />,
   document.getElementById('example')
 );
 ```
 
-If you are using a Babel transform like [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
+Якщо ви використовуєте Babel-плагін по трансформації коду [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/), то ви можете задати `defaultProps` як статичну властивість класу React-компонента. Цей синтаксис ще поки не затверджено, і він потребує компіцяцію для того, щоб ваш компонент працював у браузері. Щоб дізнатись більше, дивіться  [пропозицію про поля класу](https://github.com/tc39/proposal-class-fields).
 
 ```javascript
 class Greeting extends React.Component {
   static defaultProps = {
-    name: 'stranger'
+    name: 'Незнайомець'
   }
 
   render() {
     return (
-      <div>Hello, {this.props.name}</div>
+      <div>Привіт, {this.props.name}</div>
     )
   }
 }
 ```
 
-The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+Властивість `defaultProps` гарантує, що `this.props.name` матиме значення навіть якщо воно не було задане батьківським компонентом. Перевірка типів `propTypes` відбувається після застосування `defaultProps`, тобто вона також приміненяється для `defaultProps`.
