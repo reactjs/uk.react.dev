@@ -34,85 +34,87 @@ Greeting.propTypes = {
 
 ### PropTypes {#proptypes}
 
-Here is an example documenting the different validators provided:
+Приклад використання наявних валідаторів:
 
 ```javascript
 import PropTypes from 'prop-types';
 
 MyComponent.propTypes = {
-  // You can declare that a prop is a specific JS type. By default, these
-  // are all optional.
+  // Ви можете декларувати, що проп має вказаний JS тип.
+  // Ці типи за замовченням дозволяють відсутність значення.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,
-  optionalFunc: PropTypes.func,
+  optionalFunc: PropTypes.func, // наприклад, приймає функцію або відсутнє значення
   optionalNumber: PropTypes.number,
   optionalObject: PropTypes.object,
   optionalString: PropTypes.string,
   optionalSymbol: PropTypes.symbol,
 
-  // Anything that can be rendered: numbers, strings, elements or an array
-  // (or fragment) containing these types.
+  // Все, що може бути відрендерено:
+  // числа, рядки, елементи чи
+  // масив (або фрагмент), що містить вищезгадані типи.
   optionalNode: PropTypes.node,
 
-  // A React element.
+  // React-елемент.
   optionalElement: PropTypes.element,
 
-  // You can also declare that a prop is an instance of a class. This uses
-  // JS's instanceof operator.
+  // Ви можете вказати, що проп має бути екземпляром вказаного класу.
+  // Для перевірки буде використано оператор instanceof.
   optionalMessage: PropTypes.instanceOf(Message),
 
-  // You can ensure that your prop is limited to specific values by treating
-  // it as an enum.
+  // Ви можете впевнитись, що проп може мати тільки певні значення
+  // за допомогою перерахування.
   optionalEnum: PropTypes.oneOf(['News', 'Photos']),
 
-  // An object that could be one of many types
+  // Об'єкт, одного з перерахованих типів
   optionalUnion: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.instanceOf(Message)
   ]),
 
-  // An array of a certain type
+  // Масив елементів певного типу
   optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
 
-  // An object with property values of a certain type
+  // Об'єкт з властивостями вказаного типу
   optionalObjectOf: PropTypes.objectOf(PropTypes.number),
 
-  // An object taking on a particular shape
+  // Об'єкт вказаної форми
   optionalObjectWithShape: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
 
-  // You can chain any of the above with `isRequired` to make sure a warning
-  // is shown if the prop isn't provided.
+  // Ви можете додати `isRequired` після будь-якого з наведених вище типів.
+  // В цьому випадку буде показано попередження, якщо проп не надано.
   requiredFunc: PropTypes.func.isRequired,
 
-  // A value of any data type
+  // Значення будь-якого типу
   requiredAny: PropTypes.any.isRequired,
 
-  // You can also specify a custom validator. It should return an Error
-  // object if the validation fails. Don't `console.warn` or throw, as this
-  // won't work inside `oneOfType`.
+  // Ви також можете вказати власну функцію-валідатор.
+  // Вона повинна повернути об'єкт Error, якщо валідація не пройшла.
+  // Не викликайте `console.warn` і не кидайте виключення,
+  // так як це не працюватиме в середині конструкції `oneOfType`.
   customProp: function(props, propName, componentName) {
     if (!/matchme/.test(props[propName])) {
       return new Error(
-        'Invalid prop `' + propName + '` supplied to' +
-        ' `' + componentName + '`. Validation failed.'
+        'Проп `' + propName + '` переданий компоненту ' +
+        ' `' + componentName + '` має не вірне значення.'
       );
     }
   },
 
-  // You can also supply a custom validator to `arrayOf` and `objectOf`.
-  // It should return an Error object if the validation fails. The validator
-  // will be called for each key in the array or object. The first two
-  // arguments of the validator are the array or object itself, and the
-  // current item's key.
+  // Ви також можете вказати власну функцію-валідатор для `arrayOf` та `objectOf`.
+  // Вона повинна повернути об'єкт Error, якщо валідація не пройшла.
+  // Вказана функція буде викликана для кожного ключа об'єкта або індексу масиву.
+  // Першим аргументом в функцію-валідатор буде передано сам об'єкт або масив,
+  // а другим — ключ/індекс поточного елементу.
   customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
     if (!/matchme/.test(propValue[key])) {
       return new Error(
-        'Invalid prop `' + propFullName + '` supplied to' +
-        ' `' + componentName + '`. Validation failed.'
+        'Проп `' + propFullName + '` переданий компоненту ' +
+        ' `' + componentName + '` має не вірне значення.'
       );
     }
   })
