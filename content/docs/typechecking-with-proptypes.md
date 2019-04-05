@@ -1,18 +1,18 @@
 ---
 id: typechecking-with-proptypes
-title: Typechecking With PropTypes
+title: Перевірка типів за допомогою PropTypes
 permalink: docs/typechecking-with-proptypes.html
 redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
 ---
 
-> Note:
+> Примітка:
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
+> `React.PropTypes` переміщено в інший пакет починаючи з React версії 15.5. Будь-ласка надалі замість нього використовуйте [бібліотеку `prop-types`](https://www.npmjs.com/package/prop-types).
 >
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) to automate the conversion.
+>Ми надаємо [codemod-скрипт](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) для автоматизації міграції коду.
 
-As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. To run typechecking on the props for a component, you can assign the special `propTypes` property:
+По мірі зростання вашого застосунка ви зможете піймати багато помилок з використанням перевірки типів. Для деяких застосунків ви можете використовувати розширення JavaScript, такі як [Flow](https://flow.org/) чи [TypeScript](https://www.typescriptlang.org/), щоб перевірити типи у всьому застосунку. Але, навіть якщо ви ними не користуєтесь, React надає вбудовані можливості перевірки типів. Для виконання перевірки типів пропсів ви можете присвоїти спеціальну властивість `propTypes` компоненту:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -30,7 +30,7 @@ Greeting.propTypes = {
 };
 ```
 
-`PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
+`PropTypes` експортує ряд валідаторів, які можуть бути використані щоб впевнетись, що ви отримали вірні дані. В наведеному вище прикладі ми викостивуємо `PropTypes.string`. Якщо якийсь проп отримає невірне значення, в консолі  JavaScript буде показано попередження. З міркувань продуктивності `propTypes` перевіряються лише в режимі розробки.
 
 ### PropTypes {#proptypes}
 
