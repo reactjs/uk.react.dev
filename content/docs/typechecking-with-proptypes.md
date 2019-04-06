@@ -123,7 +123,7 @@ MyComponent.propTypes = {
 
 ### Вимога єдиного дочірнього елемента {#requiring-single-child}
 
-З `PropTypes.element` ви можете вказати, що лише один елементможе бути переданий компоненту в якості дочірнього.
+З `PropTypes.element` ви можете вказати, що лише один елемент може бути переданий компоненту в якості дочірнього.
 
 ```javascript
 import PropTypes from 'prop-types';
