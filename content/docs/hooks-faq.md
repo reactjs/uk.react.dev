@@ -31,7 +31,7 @@ prev: hooks-reference.html
   * [Як тестувати компоненти, які використовують хуки?](#how-to-test-components-that-use-hooks)
   * [Що саме перевіряють правила лінтера у хуках?](#what-exactly-do-the-lint-rules-enforce)
 * **[Від класів до хуків](#from-classes-to-hooks)**
-  * [Як методи життлєвого циклу співвідносяться з хуками?](#how-do-lifecycle-methods-correspond-to-hooks)
+  * [Як методи життєвого циклу співвідносяться з хуками?](#how-do-lifecycle-methods-correspond-to-hooks)
   * [Як я можу робити вибірку даних з допомогою хуків?](#how-can-i-do-data-fetching-with-hooks)
   * [Чи є щось подібне до змінних екземпляра класу?](#is-there-something-like-instance-variables)
   * [Скільки змінних стану мені слід використовувати — одну чи декілька?](#should-i-use-one-or-many-state-variables)
@@ -193,31 +193,31 @@ it('can render and update a counter', () => {
 
 Існує ще кілька правил, що можуть змінитись відповідно до того, як ми змінюємо правила для балансування між пошуком помилок і уникненням хибних спрацювань.
 
-## From Classes to Hooks {#from-classes-to-hooks}
+## Від класів до хуків {#from-classes-to-hooks}
 
-### How do lifecycle methods correspond to Hooks? {#how-do-lifecycle-methods-correspond-to-hooks}
+### Як методи життєвого циклу співвідносяться з хуками? {#how-do-lifecycle-methods-correspond-to-hooks}
 
-* `constructor`: Function components don't need a constructor. You can initialize the state in the [`useState`](/docs/hooks-reference.html#usestate) call. If computing the initial state is expensive, you can pass a function to `useState`.
+* `constructor`: Функціональні компоненти не потребують конструктора. Ви можете ініціалізувати стан при виклику [`useState`](/docs/hooks-reference.html#usestate). Якщо обчислення початкового стану є вартісною операцію, можна передати функцію до `useState`.
 
-* `getDerivedStateFromProps`: Schedule an update [while rendering](#how-do-i-implement-getderivedstatefromprops) instead.
+* `getDerivedStateFromProps`: Натомість заплануйте оновлення [при рендерингу](#how-do-i-implement-getderivedstatefromprops).
 
-* `shouldComponentUpdate`: See `React.memo` [below](#how-do-i-implement-shouldcomponentupdate).
+* `shouldComponentUpdate`: Зверніть увагу на `React.memo` [нижче](#how-do-i-implement-shouldcomponentupdate).
 
-* `render`: This is the function component body itself.
+* `render`: Це тіло функціонального компонента.
 
-* `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: The [`useEffect` Hook](/docs/hooks-reference.html#useeffect) can express all combinations of these (including [less](#can-i-skip-an-effect-on-updates) [common](#can-i-run-an-effect-only-on-updates) cases).
+* `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: Хук [`useEffect`](/docs/hooks-reference.html#useeffect) може замінити всі їхні комбінації (включно з [менш](#can-i-skip-an-effect-on-updates) [частими](#can-i-run-an-effect-only-on-updates) випадками).
 
-* `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+* `componentDidCatch` і `getDerivedStateFromError`: Поки що немає хуків, еквівалентних цим методам, але вони будуть додані найближчим часом.
 
-### How can I do data fetching with Hooks?
+### Як я можу робити вибірку даних з допомогою хуків?
 
-Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) about data fetching with Hooks.
+Ось [невелике демо](https://codesandbox.io/s/jvvkoo8pq3), що допоможе вам розпочати. Щоб дізнатися більше, ознайомтесь з [цією статтею](https://www.robinwieruch.de/react-hooks-fetch-data/) про вибірку даних з допомогою хуків.
 
-### Is there something like instance variables? {#is-there-something-like-instance-variables}
+### Чи є щось подібне до змінних екземпляра класу? {#is-there-something-like-instance-variables}
 
-Yes! The [`useRef()`](/docs/hooks-reference.html#useref) Hook isn't just for DOM refs. The "ref" object is a generic container whose `current` property is mutable and can hold any value, similar to an instance property on a class.
+Так! Хук [`useRef()`](/docs/hooks-reference.html#useref) може використовуватись не лише для рефів DOM. Об'єкт "ref" є загальним контейнером, властивість `current` якого, є змінною і може містити будь-яке значення, подібно до властивості екземпляра класу.
 
-You can write to it from inside `useEffect`:
+Ви можете записати значення всередині `useEffect`:
 
 ```js{2,8}
 function Timer() {
@@ -237,7 +237,7 @@ function Timer() {
 }
 ```
 
-If we just wanted to set an interval, we wouldn't need the ref (`id` could be local to the effect), but it's useful if we want to clear the interval from an event handler:
+Якщо б ми лише хотіли встановити інтервал, реф був би непотрібний (`id` може бути локальним для ефекту), але він міг бути корисним для очищення інтервалу з обробника події:
 
 ```js{3}
   // ...
@@ -247,11 +247,11 @@ If we just wanted to set an interval, we wouldn't need the ref (`id` could be lo
   // ...
 ```
 
-Conceptually, you can think of refs as similar to instance variables in a class. Unless you're doing [lazy initialization](#how-to-create-expensive-objects-lazily), avoid setting refs during rendering -- this can lead to surprising behavior. Instead, typically you want to modify refs in event handlers and effects.
+У загальному випадку ви можете вважати рефи схожими на змінні екземпляра класу. Уникайте встановлення рефів під час рендерингу, якщо ви не реалізовуєте [ліниву ініціалізацію](#how-to-create-expensive-objects-lazily) -- це може привести до неочікуваної поведінки. Як правило, ви захочете змінювати значення рефів у обробниках подій та ефектах.
 
-### Should I use one or many state variables? {#should-i-use-one-or-many-state-variables}
+### Скільки змінних стану мені слід використовувати — одну чи декілька? {#should-i-use-one-or-many-state-variables}
 
-If you're coming from classes, you might be tempted to always call `useState()` once and put all state into a single object. You can do it if you'd like. Here is an example of a component that follows the mouse movement. We keep its position and size in the local state:
+Якщо ви звикли до класів, ви скоріш за все звикли викликати `useState()` один раз і зберігати весь стан у одному об'єкті. І якщо ви хочете, то ви можете так вчинити і з хуками. Ось приклад компонента, що слідує за рухами мишки. Ми зберігаємо його позицію і розмір у локальному стані:
 
 ```js
 function Box() {
@@ -260,27 +260,27 @@ function Box() {
 }
 ```
 
-Now let's say we want to write some logic that changes `left` and `top` when the user moves their mouse. Note how we have to merge these fields into the previous state object manually:
+Скажімо, що ми хочемо написати деяку логіку, яка змінить значення `left` і `top`, коли користувач рухає мишкою. Зверніть увагу, що ми маємо об'єднувати ці поля з попереднім об'єктом стану вручну:
 
 ```js{4,5}
   // ...
   useEffect(() => {
     function handleWindowMouseMove(e) {
-      // Spreading "...state" ensures we don't "lose" width and height
+      // Розпакування "...state" гарантує, що ми не "втратимо" width and height
       setState(state => ({ ...state, left: e.pageX, top: e.pageY }));
     }
-    // Note: this implementation is a bit simplified
+    // Примітка: ця реалізація дещо спрощена
     window.addEventListener('mousemove', handleWindowMouseMove);
     return () => window.removeEventListener('mousemove', handleWindowMouseMove);
   }, []);
   // ...
 ```
 
-This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
+Об'єднання потрібне оскільки при оновленні змінною стану ми *замінюємо* її значення. Дана поведінка відрізняється від методу `this.setState` у класі, який *об'єднує* оновлені поля в об'єкт.
 
-If you miss automatic merging, you can write a custom `useLegacyState` Hook that merges object state updates. However, instead **we recommend to split state into multiple state variables based on which values tend to change together.**
+Якщо вам не вистачає автоматичного об'єднання, ви можете написати користувацький `useLegacyState` хук, що об'єднує оновлення об'єкта стану. Проте **ми радимо розділити стан на декілька змінних з урахуванням того, які значення скоріше за все будуть змінюватися разом.**
 
-For example, we could split our component state into `position` and `size` objects, and always replace the `position` with no need for merging:
+Наприклад, ми могли розділити стан нашого компонента на об'єкти `position` та `size` і завжди замінювати `position` без необхідності в об'єднанні:
 
 ```js{2,7}
 function Box() {
@@ -294,7 +294,7 @@ function Box() {
     // ...
 ```
 
-Separating independent state variables also has another benefit. It makes it easy to later extract some related logic into a custom Hook, for example:
+Крім того, розділення стану на незалежні змінні має ще одну перевагу. Це допоможе легко виокремити спільну логіку у користувацький хук пізніше, наприклад:
 
 ```js{2,7}
 function Box() {
@@ -312,17 +312,17 @@ function useWindowPosition() {
 }
 ```
 
-Note how we were able to move the `useState` call for the `position` state variable and the related effect into a custom Hook without changing their code. If all state was in a single object, extracting it would be more difficult.
+Зверніть увагу на те, як ми змогли винести виклик `useState` для змінної стану `position` і відповідний ефект у користувацький хук без зміни їхнього коду. Якби весь стан був одним об'єктом, то зробити це було б значно складніше.
 
-Both putting all state in a single `useState` call, and having a `useState` call per each field can work. Components tend to be most readable when you find a balance between these two extremes, and group related state into a few independent state variables. If the state logic becomes complex, we recommend [managing it with a reducer](/docs/hooks-reference.html#usereducer) or a custom Hook.
+Чи зерігаєте ви весь стан з використанням одного виклику `useState`, чи викликаєте `useState` для кожного поля окремо — обидва підходи будуть працювати. Але компоненти буде легше читати, якщо ви знайдете баланс між підходами і будете групувати пов'язані між собою змінні стану. Якщо логіка стану стає складною, ми радимо [керувати нею з допомогою редюсера](/docs/hooks-reference.html#usereducer) чи користувацького хука.
 
-### Can I run an effect only on updates? {#can-i-run-an-effect-only-on-updates}
+### Чи можна запускати ефект лише при оновленні? {#can-i-run-an-effect-only-on-updates}
 
-This is a rare use case. If you need it, you can [use a mutable ref](#is-there-something-like-instance-variables) to manually store a boolean value corresponding to whether you are on the first or a subsequent render, then check that flag in your effect. (If you find yourself doing this often, you could create a custom Hook for it.)
+Це доволі нечастий випадок. Якщо вам це потрібно, ви можете [використати змінний реф](#is-there-something-like-instance-variables), щоб вручну зберегти логічне значення, що вказує на те чи відбувся, а потім перевірити його значення у вашому ефекті. (Якщо вам потрібно робити це часто, можете створити для цього користувацький хук.)
 
-### How to get the previous props or state? {#how-to-get-the-previous-props-or-state}
+### Як отримати попередні пропси чи стан? {#how-to-get-the-previous-props-or-state}
 
-Currently, you can do it manually [with a ref](#is-there-something-like-instance-variables):
+Наразі ви можете зробити це вручну, [використавши реф](#is-there-something-like-instance-variables):
 
 ```js{6,8}
 function Counter() {
@@ -334,17 +334,17 @@ function Counter() {
   });
   const prevCount = prevCountRef.current;
 
-  return <h1>Now: {count}, before: {prevCount}</h1>;
+  return <h1>Зараз: {count}, а до цього: {prevCount}</h1>;
 }
 ```
 
-This might be a bit convoluted but you can extract it into a custom Hook:
+Це може виглядати дещо ускладненим, але ви можете виокремити логіку в користувацький хук:
 
 ```js{3,7}
 function Counter() {
   const [count, setCount] = useState(0);
   const prevCount = usePrevious(count);
-  return <h1>Now: {count}, before: {prevCount}</h1>;
+  return <h1>Зараз: {count}, а до цього: {prevCount}</h1>;
 }
 
 function usePrevious(value) {
@@ -356,7 +356,7 @@ function usePrevious(value) {
 }
 ```
 
-Note how this would work for props, state, or any other calculated value.
+Зверніть увагу, що це спрацює для пропсів, стану чи будь-якого іншого обчисленого значення.
 
 ```js{5}
 function Counter() {
@@ -367,13 +367,13 @@ function Counter() {
   // ...
 ```
 
-It's possible that in the future React will provide a `usePrevious` Hook out of the box since it's a relatively common use case.
+Цілком можливо, що у майбутньому у React буде реалізовано хук `usePrevious`, оскільки це потрібно відносно часто.
 
-See also [the recommended pattern for derived state](#how-do-i-implement-getderivedstatefromprops).
+Також дивіться [рекомендований шаблон для похідного стану](#how-do-i-implement-getderivedstatefromprops).
 
-### Why am I seeing stale props or state inside my function? {#why-am-i-seeing-stale-props-or-state-inside-my-function}
+### Чому я бачу застарілі значення пропсів чи стану всередині моєї функції? {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 
-Any function inside a component, including event handlers and effects, "sees" the props and state from the render it was created in. For example, consider code like this:
+Кожна функція в компоненті, включно з обробниками подій та ефектами, "бачить" значення пропсів та стану того рендеру, під час якого вони були створені. Наприклад, розглянемо такий код:
 
 ```js
 function Example() {
@@ -381,33 +381,33 @@ function Example() {
 
   function handleAlertClick() {
     setTimeout(() => {
-      alert('You clicked on: ' + count);
+      alert('Ви натиснули на: ' + count);
     }, 3000);
   }
 
   return (
     <div>
-      <p>You clicked {count} times</p>
+      <p>Ви натиснули {count} раз</p>
       <button onClick={() => setCount(count + 1)}>
-        Click me
+        Натисни на мене
       </button>
       <button onClick={handleAlertClick}>
-        Show alert
+        Показати попередження
       </button>
     </div>
   );
 }
 ```
 
-If you first click "Show alert" and then increment the counter, the alert will show the `count` variable **at the time you clicked the "Show alert" button**. This prevents bugs caused by the code assuming props and state don't change.
+Якщо ви спочатку натиснента "Показати попередженняt", а потім інкрементуєте лічильник, попередження покаже значення змінної `count` **на момент натискання кнопки "Показати попередження"**. Це виключає помилки в коді, що припускає незмінність стану чи пропсів.
 
-If you intentionally want to read the *latest* state from some asynchronous callback, you could keep it in [a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables), mutate it, and read from it.
+Якщо ви навмисно хочете зчитати *найновіший* стан з деякої асинхронної функції зворотнього виклику, ви можете зберегти його в [рефі](/docs/hooks-faq.html#is-there-something-like-instance-variables), змінити його і прочитати його значення.
 
-Finally, another possible reason you're seeing stale props or state is if you use the "dependency array" optimization but didn't correctly specify all the dependencies. For example, if an effect specifies `[]` as the second argument but reads `someProp` inside, it will keep "seeing" the initial value of `someProp`. The solution is to either remove the dependency array, or to fix it. Here's [how you can deal with functions](#is-it-safe-to-omit-functions-from-the-list-of-dependencies), and here's [other common strategies](#what-can-i-do-if-my-effect-dependencies-change-too-often) to run effects less often without incorrectly skipping dependencies.
+Окрім цього, іншою можливою причиною того, що ви бачите застарілі пропси чи стан можуть бути неправильно вказані значення залежностей при використанні оптимізації за допомогою "масиву залежностей". Наприклад, в ефекті другим аргументом вказано значення `[]`, але при цьому він зчитує значення `someProp`, він продовжить "бачити" початкове значення `someProp`. Рішенням може бути вказання правильного масиву залежностей або відмова від нього взагалі. Ось тут можна дізнатись [як вести себе з функціями](#is-it-safe-to-omit-functions-from-the-list-of-dependencies), а тут [інші відомі способи](#what-can-i-do-if-my-effect-dependencies-change-too-often) зниження частоти запуску ефектів без пропускання передачі залежностей.
 
->Note
+>Примітка
 >
->We provide an [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
+>Ми надаємо правило [`exhaustive-deps`](https://github.com/facebook/react/issues/14920), як частину нашого пакунку [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Воно попереджує про те, що залежності вказані невірно і пропонує рішення.
 
 ### How do I implement `getDerivedStateFromProps`? {#how-do-i-implement-getderivedstatefromprops}
 
@@ -921,7 +921,9 @@ function Form() {
     <>
       <input value={text} onChange={e => updateText(e.target.value)} />
       <ExpensiveTree onSubmit={handleSubmit} />
-    </>
+    </>Can I run an effect only on updates? {#can-i-run-an-effect-only-on-updates}
+
+Th
   );
 }
 ```
