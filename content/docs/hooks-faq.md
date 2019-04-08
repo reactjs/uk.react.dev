@@ -409,11 +409,11 @@ function Example() {
 >
 >Ми надаємо правило [`exhaustive-deps`](https://github.com/facebook/react/issues/14920), як частину нашого пакунку [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Воно попереджує про те, що залежності вказані невірно і пропонує рішення.
 
-### How do I implement `getDerivedStateFromProps`? {#how-do-i-implement-getderivedstatefromprops}
+### Як я можу реалізувати `getDerivedStateFromProps`? {#how-do-i-implement-getderivedstatefromprops}
 
-While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), in rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
+Незважаючи на те, що скоріш за все [він вам не потрібен](/blog/2018/06/07/you-probably-dont-need-derived-state.html), у випадку потреби (наприклад реалізації компонента `<Transition>`), ви можете оновити стан прямо під час рендерингу. React негайно зробить повторний рендер компонента з оновленим станом після виходу з першого рендеру без особливих накладних витрат.
 
-Here, we store the previous value of the `row` prop in a state variable so that we can compare:
+У наступному прикладі ми зберігаємо попереднє значення пропу `row` у змінній стану для порівняння:
 
 ```js
 function ScrollView({row}) {
@@ -421,22 +421,22 @@ function ScrollView({row}) {
   let [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
-    // Row changed since last render. Update isScrollingDown.
+    // Row змінився після останнього рендеру. Оновлюємо isScrollingDown.
     setIsScrollingDown(prevRow !== null && row > prevRow);
     setPrevRow(row);
   }
 
-  return `Scrolling down: ${isScrollingDown}`;
+  return `Гортаємо вниз: ${isScrollingDown}`;
 }
 ```
 
-This might look strange at first, but an update during rendering is exactly what `getDerivedStateFromProps` has always been like conceptually.
+Спочатку це може виглядати дивно, але оновлення під час рендеру це, по суті, і є те чим завжди концептуально був `getDerivedStateFromProps`.
 
-### Is there something like forceUpdate? {#is-there-something-like-forceupdate}
+### Чи є щось схоже на forceUpdate? {#is-there-something-like-forceupdate}
 
-Both `useState` and `useReducer` Hooks [bail out of updates](/docs/hooks-reference.html#bailing-out-of-a-state-update) if the next value is the same as the previous one. Mutating state in place and calling `setState` will not cause a re-render.
+Хуки `useState` та `useReducer` [припиняють оновлення](/docs/hooks-reference.html#bailing-out-of-a-state-update) якщо наступне значення дорівнює попередньому. Зміна стану на місці і виклик `setState` не спричинять повторного рендеру.
 
-Normally, you shouldn't mutate local state in React. However, as an escape hatch, you can use an incrementing counter to force a re-render even if the state has not changed:
+Як правило, ви не повинні змінювати локальний стан у React. Проте, у якості запасного виходу, ви можете використати збільшення лічильника, щоб спричинити повторний рендер, навіть якщо стан не змінився:
 
 ```js
   const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
@@ -446,15 +446,15 @@ Normally, you shouldn't mutate local state in React. However, as an escape hatch
   }
 ```
 
-Try to avoid this pattern if possible.
+По можливості намагайтесь уникати такого підходу.
 
-### Can I make a ref to a function component? {#can-i-make-a-ref-to-a-function-component}
+### Чи можу я зробити реф на функціональий компонент? {#can-i-make-a-ref-to-a-function-component}
 
-While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
+Хоча це і не потрібно надто часто, ви можете надати деякі імперативні методи батьківському компоненту, використавши хук [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle).
 
-### How can I measure a DOM node? {#how-can-i-measure-a-dom-node}
+### Як я можу обмежити вузол DOM? {#how-can-i-measure-a-dom-node}
 
-In order to measure the position or size of a DOM node, you can use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+Для обмеження положення чи розміру вузла DOM, ви можете використати [реф зворотнього виклику](/docs/refs-and-the-dom.html#callback-refs). React викличе функцію зворотнього виклику кожного разу, коли реф прикріплюється до іншого вузла. Ось [невеличка демонстрація](https://codesandbox.io/s/l7m0v5x4v9):
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -469,17 +469,17 @@ function MeasureExample() {
   return (
     <>
       <h1 ref={measuredRef}>Hello, world</h1>
-      <h2>The above header is {Math.round(height)}px tall</h2>
+      <h2>Заголовок вище має висоту {Math.round(height)} пікселів</h2>
     </>
   );
 }
 ```
 
-We didn't choose `useRef` in this example because an object ref doesn't notify us about *changes* to the current ref value. Using a callback ref ensures that [even if a child component displays the measured node later](https://codesandbox.io/s/818zzk8m78) (e.g. in response to a click), we still get notified about it in the parent component and can update the measurements.
+У цьому прикладі ми не використали `useRef`, оскільки об'єкт рефу не повідомляє нас про *зміни* поточного значення рефу. Використання рефу зворотнього виклику гарантує, що [навіть якщо дочірній компонент відображає обмежений вузол пізніше](https://codesandbox.io/s/818zzk8m78) (наприклад, у відповідь на натискання), ми все рівно отримаємо повідомлення про це у батьківському компоненті і зможемо оновити обмеження.
 
-Note that we pass `[]` as a dependency array to `useCallback`. This ensures that our ref callback doesn't change between the re-renders, and so React won't call it unnecessarily.
+Зверніть увагу на передачу `[]` у якості масива залежностей `useCallback`. Вона гарантує, що наж реф зворотнього виклику не зміниться між повторними рендерами, а отже React не буде викликати його без необхідності.
 
-If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
+За бажанням можна [виокремити цю логіку](https://codesandbox.io/s/m5o42082xy) у повторно використовуваний хук:
 
 ```js{2}
 function MeasureExample() {
@@ -488,7 +488,7 @@ function MeasureExample() {
     <>
       <h1 ref={ref}>Hello, world</h1>
       {rect !== null &&
-        <h2>The above header is {Math.round(rect.height)}px tall</h2>
+        <h2>Заголовок вище має висоту {Math.round(rect.height)} пікселів</h2>
       }
     </>
   );
@@ -506,9 +506,9 @@ function useClientRect() {
 ```
 
 
-### What does `const [thing, setThing] = useState()` mean? {#what-does-const-thing-setthing--usestate-mean}
+### Що означає const [thing, setThing] = useState()? {#what-does-const-thing-setthing--usestate-mean}
 
-If you're not familiar with this syntax, check out the [explanation](/docs/hooks-state.html#tip-what-do-square-brackets-mean) in the State Hook documentation.
+Якщо ви не знайомі з цим синтаксисом, прочитайте [пояснення](/docs/hooks-state.html#tip-what-do-square-brackets-mean) у документації для хука стану.
 
 
 ## Performance Optimizations {#performance-optimizations}
