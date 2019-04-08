@@ -40,7 +40,7 @@ Greeting.propTypes = {
 import PropTypes from 'prop-types';
 
 MyComponent.propTypes = {
-  // Ви можете оголосити, що проп має вказаний JS тип.
+  // Ви можете оголосити, що проп має вказаний JS-тип.
   // Ці типи за замовчуванням дозволяють відсутність значення.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,
