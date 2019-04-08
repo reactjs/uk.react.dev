@@ -44,14 +44,13 @@ MyComponent.propTypes = {
   // Ці типи за замовченням дозволяють відсутність значення.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,
-  optionalFunc: PropTypes.func, // наприклад, приймає функцію або відсутнє значення
+  optionalFunc: PropTypes.func,
   optionalNumber: PropTypes.number,
   optionalObject: PropTypes.object,
   optionalString: PropTypes.string,
   optionalSymbol: PropTypes.symbol,
 
-  // Все, що може бути відрендерено:
-  // числа, рядки, елементи чи
+  // Все, що може бути відрендерено: числа, рядки, елементи чи
   // масив (або фрагмент), що містить вищезгадані типи.
   optionalNode: PropTypes.node,
 
@@ -92,10 +91,9 @@ MyComponent.propTypes = {
   // Значення будь-якого типу
   requiredAny: PropTypes.any.isRequired,
 
-  // Ви також можете вказати власну функцію-валідатор.
-  // Вона повинна повернути об'єкт Error, якщо валідація не пройшла.
-  // Не викликайте `console.warn` і не кидайте виключення,
-  // так як це не працюватиме в середині конструкції `oneOfType`.
+  // Ви також можете вказати власну функцію-валідатор. Вона повинна повернути об'єкт
+  // Error, якщо валідація не пройшла. Не викликайте `console.warn` і не кидайте
+  // виключення, так як це не працюватиме в середині конструкції `oneOfType`.
   customProp: function(props, propName, componentName) {
     if (!/matchme/.test(props[propName])) {
       return new Error(
