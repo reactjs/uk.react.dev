@@ -976,7 +976,7 @@ React відслідковує, який компонент рендеритьс
 Хуки об'єднують у собі ідеї кількох різних концепцій:
 
 * Наші старі експерименти з функціаональними API у репозиторії [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State).
-* Експерименти спільноти React з API рендер пропсів, включно з [Reactions Component] [Раяна Флоренса (Ryan Florence)](https://github.com/ryanflorence)(https://github.com/reactions/component).
+* Експерименти спільноти React з API рендер пропсів, включно з [Reactions Component](https://github.com/reactions/component) [Раяна Флоренса (Ryan Florence)](https://github.com/ryanflorence).
 * Пропозиція [ключового слова `adopt`](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067), як синтаксичного цукру для рендер пропсів, запропонована [Домініком Ґенневеєм (Dominic Gannaway)](https://github.com/trueadm).
 * Змінні стану і комірки стану в [DisplayScript](http://displayscript.org/introduction.html).
 * [Компоненти-редюсери](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) у ReasonReact.
