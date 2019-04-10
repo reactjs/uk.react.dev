@@ -1,6 +1,6 @@
 ---
 id: hooks-faq
-title: Хуки: FAQ
+title: "Хуки: FAQ"
 permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
