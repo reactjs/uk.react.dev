@@ -43,7 +43,7 @@
 | effect | ефект |
 | error | помилка |
 | error boundary | запобіжник |
-| error log | журнал помилок |
+| error log | лог помилок |
 | event handler | обробник події |
 | fallback | запасний |
 | feature | особливість |
@@ -61,7 +61,8 @@
 | lifecycle method | метод життєвого циклу |
 | lifting state up | підйом стану, піднімати стан |
 | local state | внутрішній стан |
-| log | журнал; *to log (an error) – записати (помилку) в журнал*; |
+| log | лог; *to log an error – вивести помилку* |
+| logging | логування |
 | lowercase | у нижньому регістрі |
 | mock | макет |
 | (im)mutable | (не)змінний |
