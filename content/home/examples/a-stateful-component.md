@@ -1,7 +1,7 @@
 ---
-title: A Stateful Component
+title: Компонент зі станом
 order: 1
 domid: timer-example
 ---
 
-In addition to taking input data (accessed via `this.props`), a component can maintain internal state data (accessed via `this.state`). When a component's state data changes, the rendered markup will be updated by re-invoking `render()`.
+У доповнення до прийняття вхідних даних (доступ до яких здійснюється через `this.props`), компонент може зберігати дані внутрішнього стану (доступні через `this.state`). Коли дані стану компонента змінюються, відбувається повторне відрендерення розмітки з використанням функції `render()`.

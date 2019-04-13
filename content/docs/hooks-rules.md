@@ -1,38 +1,38 @@
 ---
 id: hooks-rules
-title: Rules of Hooks
+title: Правила хуків
 permalink: docs/hooks-rules.html
 next: hooks-custom.html
 prev: hooks-effect.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Хуки* — це нововведення в React 16.8. Вони дозволяють вам використовувати стан та інші можливості React без написання класів.
 
-Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically:
+Хуки — звичайні JavaScript функції, але ви маєте дотримуватися двох правил, використовуючи їх. Ми зробили [плагін для лінтеру](https://www.npmjs.com/package/eslint-plugin-react-hooks), щоб автоматично дотримуватися цих правил:
 
-### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
+### Використовуйте хуки тільки на вищому рівні {#only-call-hooks-at-the-top-level}
 
-**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+**Не використовуйте хуки усередині циклів, умовних операторів або вкладених функцій.** Замість цього завжди використовуйте хуки на вищому рівні React-функцій. Дотримуючись цього правила, ви будете певні, що хуки викликаються в однаковій послідовності кожного разу, коли рендериться компонент. Це дозволяє React коректно зберігати стан хуків між численними викликами `useState` та `useEffect`. (Якщо вам цікаво, то ми пояснимо це більш детально [нижче](#explanation).)
 
-### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
+### Викликайте хуки лише з React-функцій {#only-call-hooks-from-react-functions}
 
-**Don't call Hooks from regular JavaScript functions.** Instead, you can:
+**Не викликайте хуки зі звичайних JavaScript-функцій.** Натомість, ви можете:
 
-* ✅ Call Hooks from React function components.
-* ✅ Call Hooks from custom Hooks (we'll learn about them [on the next page](/docs/hooks-custom.html)).
+* ✅ Викликати хуки з функціонального компоненту React.
+* ✅ Викликати хуки з користувацьких хуків (ми навчимося це робити [на наступній сторінці](/docs/hooks-custom.html)).
 
-By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
+Дотримуючись цього правила, ви можете бути певні, що вся логіка компоненту зі станом чітко проглядається в його вихідному коді.
 
-## ESLint Plugin {#eslint-plugin}
+## Плагін для ESLint {#eslint-plugin}
 
-We released an ESLint plugin called [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces these two rules. You can add this plugin to your project if you'd like to try it:
+Ми випустили плагін для ESLint [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks), який примушує дотримуватися цих двох правил. Ви можете додати цей плагін до вашого проекту, якщо ви хочете його спробувати:
 
 ```bash
 npm install eslint-plugin-react-hooks
 ```
 
 ```js
-// Your ESLint configuration
+// Ваша конфігурація ESLint
 {
   "plugins": [
     // ...
@@ -40,33 +40,34 @@ npm install eslint-plugin-react-hooks
   ],
   "rules": {
     // ...
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error", // Перевіряє правила хуків
+    "react-hooks/exhaustive-deps": "warn" // Перевіряє ефект залежностей
   }
 }
 ```
 
-In the future, we intend to include this plugin by default into Create React App and similar toolkits.
+У майбутньому ми плануємо додати цей плагін за замовчуванням до Create React App та подібних інструментів.
 
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
+**Ви можете пропустити залишок сторінки та перейти до наступної, яка пояснює як писати [користувацькі хуки](/docs/hooks-custom.html).** На цій сторінці ми продовжимо і надамо пояснення необхідності цих правил.
 
-## Explanation {#explanation}
+## Пояснення {#explanation}
 
-As we [learned earlier](/docs/hooks-state.html#tip-using-multiple-state-variables), we can use multiple State or Effect Hooks in a single component:
+Як ми [дізналися раніше](/docs/hooks-state.html#tip-using-multiple-state-variables), в одному компоненті можна багаторазово використовувати хуки стану або ефектів:
 
 ```js
 function Form() {
-  // 1. Use the name state variable
-  const [name, setName] = useState('Mary');
+  // 1. Використовуємо змінну стану name
+  const [name, setName] = useState('Ліна');
 
-  // 2. Use an effect for persisting the form
+  // 2. Використовуємо ефект для збереження стану форми
   useEffect(function persistForm() {
     localStorage.setItem('formData', name);
   });
 
-  // 3. Use the surname state variable
-  const [surname, setSurname] = useState('Poppins');
+  // 3. Використовуємо змінну стану state
+  const [surname, setSurname] = useState('Костенко');
 
-  // 4. Use an effect for updating the title
+  // 4. Використовуємо ефект, щоб оновити заголовок сторінки
   useEffect(function updateTitle() {
     document.title = name + ' ' + surname;
   });
@@ -75,32 +76,32 @@ function Form() {
 }
 ```
 
-So how does React know which state corresponds to which `useState` call? The answer is that **React relies on the order in which Hooks are called**. Our example works because the order of the Hook calls is the same on every render:
+Отже, як React дізнається який стан відповідає певному виклику `useState`? Відповідь наступна: **React покладається на послідовність викликів хуків**. Наш приклад працює тому, що послідовність викликів хуків є сталою для кожного рендеру:
 
 ```js
 // ------------
-// First render
+// Перший рендер
 // ------------
-useState('Mary')           // 1. Initialize the name state variable with 'Mary'
-useEffect(persistForm)     // 2. Add an effect for persisting the form
-useState('Poppins')        // 3. Initialize the surname state variable with 'Poppins'
-useEffect(updateTitle)     // 4. Add an effect for updating the title
+useState('Ліна')           // 1. Ініціюємо змінну name зі значенням 'Ліна'
+useEffect(persistForm)     // 2. Додаємо ефект, щоб зберегти данні форми
+useState('Костенко')        // 3. Ініціюємо змінну surname зі значенням 'Костенко'
+useEffect(updateTitle)     // 4. Додаємо ефект, щоб оновити заголовок сторінки
 
 // -------------
-// Second render
+// Другий рендер
 // -------------
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-useEffect(persistForm)     // 2. Replace the effect for persisting the form
-useState('Poppins')        // 3. Read the surname state variable (argument is ignored)
-useEffect(updateTitle)     // 4. Replace the effect for updating the title
+useState('Ліна')           // 1. Зчитуємо змінну стану name (аргумент ігнорується)
+useEffect(persistForm)     // 2. Змінюємо ефект, щоб зберегти данні форми
+useState('Костенко')        // 3. Зчитуємо змінну стану surname (аргумент ігнорується)
+useEffect(updateTitle)     // 4. Змінюємо ефект, щоб оновити заголовок сторінки
 
 // ...
 ```
 
-As long as the order of the Hook calls is the same between renders, React can associate some local state with each of them. But what happens if we put a Hook call (for example, the `persistForm` effect) inside a condition?
+Доки послідовність викликів хуків залишається сталою між рендерами, React може співвідносити локальний стан між кожним з них. Але, що трапиться, якщо ми розмістимо виклик хуку (наприклад, ефект `persistForm`) всередину умовного оператору?
 
 ```js
-  // 🔴 We're breaking the first rule by using a Hook in a condition
+  // 🔴 Ми порушуємо перше правило, розміщуючи хук всередині умовного оператору
   if (name !== '') {
     useEffect(function persistForm() {
       localStorage.setItem('formData', name);
@@ -108,30 +109,30 @@ As long as the order of the Hook calls is the same between renders, React can as
   }
 ```
 
-The `name !== ''` condition is `true` on the first render, so we run this Hook. However, on the next render the user might clear the form, making the condition `false`. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
+Умова `name !== ''` дорівнює `true` при першому рендері, тому цей хук буде виконано. Хай там що, та в наступному рендері користувач може очистити форму і таким чином змінити цю умову на `false`. Тепер, оскільки ми пропускаємо цей хук під час рендеру, послідовність викликів хуків стає іншою:
 
 ```js
-useState('Mary')           // 1. Read the name state variable (argument is ignored)
-// useEffect(persistForm)  // 🔴 This Hook was skipped!
-useState('Poppins')        // 🔴 2 (but was 3). Fail to read the surname state variable
-useEffect(updateTitle)     // 🔴 3 (but was 4). Fail to replace the effect
+useState('Ліна')           // 1. Зчитуємо змінну стану name (аргумент ігнорується)
+// useEffect(persistForm)  // 🔴 Цей хук пропущено!
+useState('Костенко')        // 🔴 2 (але був 3). Помилка при зчитуванні змінної стану surname
+useEffect(updateTitle)     // 🔴 3 (but was 4). Помилка при зміні ефекту
 ```
 
-React wouldn't know what to return for the second `useState` Hook call. React expected that the second Hook call in this component corresponds to the `persistForm` effect, just like during the previous render, but it doesn't anymore. From that point, every next Hook call after the one we skipped would also shift by one, leading to bugs.
+React не знатиме, що повернути для другого виклику хуку `useState`. React очікував, що другий виклик хуку в цьому компоненті відповідає ефекту `persistForm` так само як і під час попереднього рендеру, але це більше не так. З цього моменту кожен наступний виклик хуку після того, що ми пропустили, також зміститься на один, що призведе до помилок.
 
-**This is why Hooks must be called on the top level of our components.** If we want to run an effect conditionally, we can put that condition *inside* our Hook:
+**Ось чому хуки мають викликатися на вищому рівні наших компонентів.** Якщо ми хочемо викликати ефект за певної умови, то ми можемо розмістити цю умову *всередину* нашого хуку:
 
 ```js
   useEffect(function persistForm() {
-    // 👍 We're not breaking the first rule anymore
+    // 👍 Більше ми не порушимо перше правило
     if (name !== '') {
       localStorage.setItem('formData', name);
     }
   });
 ```
 
-**Note that you don't need to worry about this problem if you use the [provided lint rule](https://www.npmjs.com/package/eslint-plugin-react-hooks).** But now you also know *why* Hooks work this way, and which issues the rule is preventing.
+**Зауважте, що вам не потрібно буде піклуватися про цю проблему, якщо ви додасте до вашого проекту [запропоноване правило для лінтера](https://www.npmjs.com/package/eslint-plugin-react-hooks).** Але тепер ви знаєте, *чому* хуки працюють таким чином, та які проблеми можна запобігти використовуючи це правило.
 
-## Next Steps {#next-steps}
+## Наступні кроки {#next-steps}
 
-Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+Нарешті ми можемо почати вчитися тому, [як писати користувацькі хуки](/docs/hooks-custom.html)! Хуки користувача дозволять вам комбінувати хуки впроваджені React з вашими власними абстракціями та повторно використовувати загальну логіку стану між різними компонентами.

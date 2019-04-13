@@ -1,6 +1,6 @@
 ---
 id: handling-events
-title: Handling Events
+title: Обробка подій
 permalink: docs/handling-events.html
 prev: state-and-lifecycle.html
 next: conditional-rendering.html
@@ -8,57 +8,56 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-Handling events with React elements is very similar to handling events on DOM elements. There are some syntactic differences:
+Обробка подій для React-елементів дуже схожа до обробки подій для DOM-елементів. Але є деякі синтаксичні відмінності:
+* Події React іменуються в camelCase, а не в нижньому регістрі.
+* З JSX ви передаєте функцію як обробник події замість рядка.
 
-* React events are named using camelCase, rather than lowercase.
-* With JSX you pass a function as the event handler, rather than a string.
-
-For example, the HTML:
+Наприклад, HTML:
 
 ```html
 <button onclick="activateLasers()">
-  Activate Lasers
+  Активувати лазери
 </button>
 ```
 
-is slightly different in React:
+дещо відрізняється в React:
 
 ```js{1}
 <button onClick={activateLasers}>
-  Activate Lasers
+  Активувати лазери
 </button>
 ```
 
-Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:
+Інша відмінність полягає в тому, що ви не можете повернути `false` для того, щоб запобігти поведінці за замовчуванням у React. Ви маєте явно викликати `preventDefault`. Наприклад, для звичайного HTML, щоб запобігти поведінці посилання за замовчуванням (відкриття нової сторінки) ви можете написати:
 
 ```html
-<a href="#" onclick="console.log('The link was clicked.'); return false">
-  Click me
+<a href="#" onclick="console.log('Посилання було натиснуте.'); return false">
+  Натисни на мене
 </a>
 ```
 
-In React, this could instead be:
+У React це може виглядати так:
 
 ```js{2-5,8}
 function ActionLink() {
   function handleClick(e) {
     e.preventDefault();
-    console.log('The link was clicked.');
+    console.log('Посилання було натиснуте.');
   }
 
   return (
     <a href="#" onClick={handleClick}>
-      Click me
+      Натисни на мене
     </a>
   );
 }
 ```
 
-Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+Тут `e` - це синтетична подія. React визначає ці синтетичні події відповідно до [специфікації W3C](https://www.w3.org/TR/DOM-Level-3-Events/), тому вам не потрібно турбуватися про сумісніть між браузерами. Перегляньте довідник по [`SyntheticEvent`](/docs/events.html), щоб дізнатися більше.
 
-When using React you should generally not need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
+Зазвичай, коли ви використовуєте React, вам не потрібно викликати `addEventListener`, щоб додати обробник до DOM-елементу після його створення. Натомість, просто вкажіть обробник, коли елемент вперше відрендерився.
 
-When you define a component using an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), a common pattern is for an event handler to be a method on the class. For example, this `Toggle` component renders a button that lets the user toggle between "ON" and "OFF" states:
+Коли ви визначаєте компонент як [клас ES6](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Classes), поширеною практикою є оголошення обробника подій як методу цього класу. Наприклад, цей `Toggle` компонент рендерить кнопку, котра дозволяє користувачу перемикатись між станами "ON" і "OFF":
 
 ```js{6,7,10-14,18}
 class Toggle extends React.Component {
@@ -66,7 +65,7 @@ class Toggle extends React.Component {
     super(props);
     this.state = {isToggleOn: true};
 
-    // This binding is necessary to make `this` work in the callback
+    // Ця прив'язка необхідна, щоб `this` працював у функції зворотнього виклику
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -91,64 +90,64 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/xEmzGg?editors=0010)
+[**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
 
-You have to be careful about the meaning of `this` in JSX callbacks. In JavaScript, class methods are not [bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) by default. If you forget to bind `this.handleClick` and pass it to `onClick`, `this` will be `undefined` when the function is actually called.
+Ви маєте бути обережним із значенням `this` у JSX функціях зворотнього виклику. У JavaScript класові методи за замовчуванням не [зв'язані](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_objects/Function/bind). Якщо ви забудете зв'язати `this.handleClick` і передати її до `onClick`, `this` буде `undefined` під час виклику функції.
 
-This is not React-specific behavior; it is a part of [how functions work in JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). Generally, if you refer to a method without `()` after it, such as `onClick={this.handleClick}`, you should bind that method.
+Така поведінка не є особливою лише для React - вона є частиною того, [як функції працюють в JavaScript](https://www.smashingmagazine.com/2014/01/understanding-javascript-function-prototype-bind/). В загальному випадку, якщо ви посилаєтесь на метод без `()` після нього, як наприклад `onClick={this.handleClick}`, ви маєте зв'язати цей метод.
 
-If calling `bind` annoys you, there are two ways you can get around this. If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use class fields to correctly bind callbacks:
+Якщо виклики `bind` дратують вас - є два шляхи обійти їх. Якщо ви використовуєте експериментальний [синтаксих відкритих полей класу](https://babeljs.io/docs/plugins/transform-class-properties/), то ви можете використовувати поля класу, щоб правильно прив'язатувати функції зворотнього виклику:
 
 ```js{2-6}
 class LoggingButton extends React.Component {
-  // This syntax ensures `this` is bound within handleClick.
-  // Warning: this is *experimental* syntax.
+  // Цей синтаксис забезпечує прив'язку `this` всередині handleClick.
+  // Попередження: це *експериментальний* синтаксис.
   handleClick = () => {
-    console.log('this is:', this);
+    console.log('this це:', this);
   }
 
   render() {
     return (
       <button onClick={this.handleClick}>
-        Click me
+        Натисни на мене
       </button>
     );
   }
 }
 ```
 
-This syntax is enabled by default in [Create React App](https://github.com/facebookincubator/create-react-app).
+За замовчуванням, цей синтаксис включено до [Create React App](https://github.com/facebookincubator/create-react-app).
 
-If you aren't using class fields syntax, you can use an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) in the callback:
+Якщо ви не використовуєте синтаксис полей класу, ви можете використати [стрілкову функцію](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Functions/Arrow_functions) в функції зворотнього виклику:
 
 ```js{7-9}
 class LoggingButton extends React.Component {
   handleClick() {
-    console.log('this is:', this);
+    console.log('this це:', this);
   }
 
   render() {
-    // This syntax ensures `this` is bound within handleClick
+    // Цей синтаксис забезпечує прив'язку `this` всередині handleClick.
     return (
       <button onClick={(e) => this.handleClick(e)}>
-        Click me
+        Натисни на мене
       </button>
     );
   }
 }
 ```
 
-The problem with this syntax is that a different callback is created each time the `LoggingButton` renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem.
+Проблема цього синтаксису полягає в тому, що при кожному рендері `LoggingButton` створюється нова функція зворотнього виклику. У більшості випадків це не створює додаткових проблем. Але, якщо ця функція зворотнього виклику передається в якості пропу в компоненти нижче - вони можуть здійснити додатковий ререндеринг. Як правило, ми рекомендуємо зв'язувати в конструкторі або використувати синтаксис полей класу, щоб уникнути подібних проблем з продуктивністю.
 
-## Passing Arguments to Event Handlers {#passing-arguments-to-event-handlers}
+## Передача аргументів до обробників подій {#passing-arguments-to-event-handlers}
 
-Inside a loop it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
+Всередині циклу доволі часто потрібно передати додатковий параметр до обробника події. Наприклад, якщо `id` це ID рядка, можна застосувати один з нижченаведених прикладів:
 
 ```js
-<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
-<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
+<button onClick={(e) => this.deleteRow(id, e)}>Видалити рядок</button>
+<button onClick={this.deleteRow.bind(this, id)}>Видалити рядок</button>
 ```
 
-The above two lines are equivalent, and use [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) and [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) respectively.
+Обидва приклади є еквівалентними і використовують [стрілкові функції](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Functions/Arrow_functions) та [`Function.prototype.bind`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_objects/Function/bind) відповідно.
 
-In both cases, the `e` argument representing the React event will be passed as a second argument after the ID. With an arrow function, we have to pass it explicitly, but with `bind` any further arguments are automatically forwarded.
+В обох випадках аргумент `e`, який відповідає події React, буде переданий другим аргументом після ID. Для стрілкової функції ми маємо зробити передачу явною, але для `bind` будь-які наступні аргументи будуть передані автоматично.

@@ -1,36 +1,36 @@
 ---
 id: react-without-es6
-title: React Without ES6
+title: React без ES6
 permalink: docs/react-without-es6.html
 ---
 
-Normally you would define a React component as a plain JavaScript class:
+Зазвичай, ви б оголосили React-компонент у вигляді JavaScript-класу:
 
 ```javascript
 class Greeting extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Привіт, {this.props.name}</h1>;
   }
 }
 ```
 
-If you don't use ES6 yet, you may use the `create-react-class` module instead:
+Якщо ви досі не використовуєте ES6, ви можете використати пакет `create-react-class`:
 
 
 ```javascript
 var createReactClass = require('create-react-class');
 var Greeting = createReactClass({
   render: function() {
-    return <h1>Hello, {this.props.name}</h1>;
+    return <h1>Привіт, {this.props.name}</h1>;
   }
 });
 ```
 
-The API of ES6 classes is similar to `createReactClass()` with a few exceptions.
+API ES6-класів схожий до `createReactClass()` за деякими виключеннями.
 
-## Declaring Default Props {#declaring-default-props}
+## Оголошення властивостей компонента {#declaring-default-props}
 
-With functions and ES6 classes `defaultProps` is defined as a property on the component itself:
+За допомогою функцій та класів ES6 `defaultProps` оголошуються як властивість самого компонента:
 
 ```javascript
 class Greeting extends React.Component {
@@ -38,17 +38,17 @@ class Greeting extends React.Component {
 }
 
 Greeting.defaultProps = {
-  name: 'Mary'
+  name: 'Марія'
 };
 ```
 
-With `createReactClass()`, you need to define `getDefaultProps()` as a function on the passed object:
+Використовуючи `createReactClass()`, вам необхідно визначити метод `getDefaultProps()` як функцію в переданому об'єкті:
 
 ```javascript
 var Greeting = createReactClass({
   getDefaultProps: function() {
     return {
-      name: 'Mary'
+      name: 'Марія'
     };
   },
 
@@ -57,9 +57,9 @@ var Greeting = createReactClass({
 });
 ```
 
-## Setting the Initial State {#setting-the-initial-state}
+## Встановлення початкового стану компонента {#setting-the-initial-state}
 
-In ES6 classes, you can define the initial state by assigning `this.state` in the constructor:
+Використовуючи ES6-класи, ви можете визначити початковий стан через `this.state` у конструкторі:
 
 ```javascript
 class Counter extends React.Component {
@@ -71,7 +71,7 @@ class Counter extends React.Component {
 }
 ```
 
-With `createReactClass()`, you have to provide a separate `getInitialState` method that returns the initial state:
+З `createReactClass()` ви маєте створити окремий метод `getInitialState`, який поверне початковий стан:
 
 ```javascript
 var Counter = createReactClass({
@@ -82,16 +82,16 @@ var Counter = createReactClass({
 });
 ```
 
-## Autobinding {#autobinding}
+## Автоприв'язка {#autobinding}
 
-In React components declared as ES6 classes, methods follow the same semantics as regular ES6 classes. This means that they don't automatically bind `this` to the instance. You'll have to explicitly use `.bind(this)` in the constructor:
+У React-компонентах оголошених як ES6-класи, методи дотримуються такої ж семантики, як і звичайні ES6-класи. Це означає, що вони не виконують прив'язку `this` до екземпляру компонента автоматично. Вам необхідно буде явно використати `.bind(this)` у конструкторі:
 
 ```javascript
 class SayHello extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {message: 'Hello!'};
-    // This line is important!
+    this.state = {message: 'Привіт!'};
+    // Цей рядок -- дуже важливий!
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -100,22 +100,22 @@ class SayHello extends React.Component {
   }
 
   render() {
-    // Because `this.handleClick` is bound, we can use it as an event handler.
+    // Оскільки `this.handleClick` є прив'язаним у конструкторі екземпляра, то ми можемо його використати як обробник події.
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Скажи "привіт"
       </button>
     );
   }
 }
 ```
 
-With `createReactClass()`, this is not necessary because it binds all methods:
+З використанням `createReactClass()` це необов'язково, оскільки цей метод прив'язує всі методи до екземпляра компонента:
 
 ```javascript
 var SayHello = createReactClass({
   getInitialState: function() {
-    return {message: 'Hello!'};
+    return {message: 'Привіт!'};
   },
 
   handleClick: function() {
@@ -125,26 +125,26 @@ var SayHello = createReactClass({
   render: function() {
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Скажи "привіт"
       </button>
     );
   }
 });
 ```
 
-This means writing ES6 classes comes with a little more boilerplate code for event handlers, but the upside is slightly better performance in large applications.
+Це означає, що ES6-класи пишуться із трохи більш універсальним кодом для обробників подій, але при цьому продуктивність величезних додатків є трохи вищою.
 
-If the boilerplate code is too unattractive to you, you may enable the **experimental** [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) syntax proposal with Babel:
+Якщо універсальний код для вас не занадто привабливий, ви можете увімкнути **експериментальну** пропозицію синтаксису [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) з Babel:
 
 
 ```javascript
 class SayHello extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {message: 'Hello!'};
+    this.state = {message: 'Привіт!'};
   }
-  // WARNING: this syntax is experimental!
-  // Using an arrow here binds the method:
+  // УВАГА: цей синтаксис є експериментальним!
+  // Тут стрілкова функція виконує прив'язку:
   handleClick = () => {
     alert(this.state.message);
   }
@@ -152,34 +152,34 @@ class SayHello extends React.Component {
   render() {
     return (
       <button onClick={this.handleClick}>
-        Say hello
+        Скажи "привіт"
       </button>
     );
   }
 }
 ```
 
-Please note that the syntax above is **experimental** and the syntax may change, or the proposal might not make it into the language.
+Зверніть увагу, що синтаксис, описаний вище, є **експериментальним** і він може змінитися, або пропозиція не буде внесена в стандарт мови.
 
-If you'd rather play it safe, you have a few options:
+Якщо ви за безпечний варіант, то ось ще варіанти:
 
-* Bind methods in the constructor.
-* Use arrow functions, e.g. `onClick={(e) => this.handleClick(e)}`.
-* Keep using `createReactClass`.
+* Прив'язуйте методи в конструкторі.
+* Використовуйте стрілкові функції, наприклад, `onClick={(e) => this.handleClick(e)}`.
+* Використовуйте `createReactClass` і далі.
 
-## Mixins {#mixins}
+## Міксини {#mixins}
 
->**Note:**
+>**Примітка:**
 >
->ES6 launched without any mixin support. Therefore, there is no support for mixins when you use React with ES6 classes.
+>ES6 був випущений без підтримки міксинів. Тому немає ніякої підтримки міксинів, коли ви використовуєте React з ES6-класами.
 >
->**We also found numerous issues in codebases using mixins, [and don't recommend using them in the new code](/blog/2016/07/13/mixins-considered-harmful.html).**
+>**Ми також знайшли безліч проблем у кодових базах, що використовують міксини, [і не рекомендуємо використовувати їх у розробці](/blog/2016/07/13/mixins-considered-harmful.html).**
 >
->This section exists only for the reference.
+>Цей розділ існує тільки для довідки.
 
-Sometimes very different components may share some common functionality. These are sometimes called [cross-cutting concerns](https://en.wikipedia.org/wiki/Cross-cutting_concern). `createReactClass` lets you use a legacy `mixins` system for that.
+Інколи дуже різні компоненти можуть мати спільну функціональність. Вони інколи називаються [наскрізна відповідальність](https://uk.wikipedia.org/wiki/Cross-cutting_concern). `createReactClass` дозволяє вам використовувати застарілу систему `mixins`.
 
-One common use case is a component wanting to update itself on a time interval. It's easy to use `setInterval()`, but it's important to cancel your interval when you don't need it anymore to save memory. React provides [lifecycle methods](/docs/react-component.html#the-component-lifecycle) that let you know when a component is about to be created or destroyed. Let's create a simple mixin that uses these methods to provide an easy `setInterval()` function that will automatically get cleaned up when your component is destroyed.
+Одним із поширених варіантів використання **є** компонент, який бажає оновити себе через деякий проміжок часу. Можна просто використовувати `setInterval()`, але важливо скасувати даний процес, коли вам він не потрібен та для економії пам'яті. React надає [методи життєвого циклу](/docs/react-component.html#the-component-lifecycle), які дозволяють дізнатися, коли компонент буде створений або знищений. Давайте створимо простий міксин, який використовує дані методи для простої функції `setInterval()`, яка автоматично "прибере за собою", коли компонент буде знищений.
 
 ```javascript
 var SetIntervalMixin = {
@@ -197,12 +197,12 @@ var SetIntervalMixin = {
 var createReactClass = require('create-react-class');
 
 var TickTock = createReactClass({
-  mixins: [SetIntervalMixin], // Use the mixin
+  mixins: [SetIntervalMixin], // Використовуємо міксин
   getInitialState: function() {
     return {seconds: 0};
   },
   componentDidMount: function() {
-    this.setInterval(this.tick, 1000); // Call a method on the mixin
+    this.setInterval(this.tick, 1000); // Викликаємо метод на міксині
   },
   tick: function() {
     this.setState({seconds: this.state.seconds + 1});
@@ -210,7 +210,7 @@ var TickTock = createReactClass({
   render: function() {
     return (
       <p>
-        React has been running for {this.state.seconds} seconds.
+        React працював {this.state.seconds} секунд.
       </p>
     );
   }
@@ -222,4 +222,4 @@ ReactDOM.render(
 );
 ```
 
-If a component is using multiple mixins and several mixins define the same lifecycle method (i.e. several mixins want to do some cleanup when the component is destroyed), all of the lifecycle methods are guaranteed to be called. Methods defined on mixins run in the order mixins were listed, followed by a method call on the component.
+Якщо компонент використовує декілька міксинів і вони визначають одинакові методи життєвого циклу (наприклад, декілька міксинів хочуть виконати очистку коли компонент буде знищеним), всі методи життєвого циклу будуть гарантовано викликані. Методи, визначені на міксинах, запускаються в порядку перерахування міксинів після виклику методу на компоненті.
