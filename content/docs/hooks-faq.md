@@ -783,7 +783,7 @@ function Table(props) {
 
 ```js
 function Table(props) {
-  // ✅ createRows() викличеться лише раз
+  // ✅ createRows() буде викликана лише раз
   const [rows, setRows] = useState(() => createRows(props.count));
   // ...
 }
