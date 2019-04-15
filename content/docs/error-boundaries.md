@@ -7,7 +7,7 @@ permalink: docs/error-boundaries.html
 Раніше помилки JavaScript всередині компонентів призводили до пошкодження внутрішнього стану бібліотеки React та спричиняли [видачу](https://github.com/facebook/react/issues/4026) [незрозумілих](https://github.com/facebook/react/issues/6895) [помилок](https://github.com/facebook/react/issues/8579) під час наступних рендерів. Ці помилки були завжди спричинені попереднью помилкою в коді програми. React не надавав можливості вчасно їх опрацювати в компонентах та не міг відновитися після них.
 
 
-## Представляєм запобіжники {#introducing-error-boundaries}
+## Представляємо запобіжники {#introducing-error-boundaries}
 
 Помилка JavaScript в деякій частині UI не повинна ламати весь додаток. Для вирішення цієї проблеми React версії 16 вводить для користувачів новий концепт – «запобіжник» (error boundary).
 
