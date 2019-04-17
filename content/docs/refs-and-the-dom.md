@@ -11,33 +11,33 @@ redirect_from:
 permalink: docs/refs-and-the-dom.html
 ---
 
-Refs provide a way to access DOM nodes or React elements created in the render method.
+Рефи надають доступ до DOM-вузлів чи React-елементів, що створюються під час рендеру.
 
 In the typical React dataflow, [props](/docs/components-and-props.html) are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.
 
-### When to Use Refs {#when-to-use-refs}
+### Коли використовувати рефи {#when-to-use-refs}
 
-There are a few good use cases for refs:
+Існує декілька ситуацій доцільного використання рефів:
 
-* Managing focus, text selection, or media playback.
-* Triggering imperative animations.
-* Integrating with third-party DOM libraries.
+* Контроль фокуса, виділення тексту чи media playback.
+* Виклик імперативної анімації.
+* Інтеграція зі сторонніми DOM-бібліотеками.
 
-Avoid using refs for anything that can be done declaratively.
+Уникайте використання рефів для будь-чого, що можна зробити декларативно.
 
-For example, instead of exposing `open()` and `close()` methods on a `Dialog` component, pass an `isOpen` prop to it.
+Наприклад, замість виклику методів `open()` та `close()` компоненту `Dialog`, передайте йому проп `isOpen`.
 
 ### Don't Overuse Refs {#dont-overuse-refs}
 
-Your first inclination may be to use refs to "make things happen" in your app. If this is the case, take a moment and think more critically about where state should be owned in the component hierarchy. Often, it becomes clear that the proper place to "own" that state is at a higher level in the hierarchy. See the [Lifting State Up](/docs/lifting-state-up.html) guide for examples of this.
+Мабуть першим бажанням буде використання рефів для того, щоб "все працювало" у вашому додатку. Якщо це так, зупиніться та подумайте більш критично про те, який з компонентів з ієрархії має контролювати стан. Зазвичай, стає зрозуміло, що відповідне місце для контролю стану лежить на верхніх рівнях ієрархії. Ознайомтеся з розділом [Підняття стану](/docs/lifting-state-up.html) для прикладів такої поведінки.
 
-> Note
+> Примітка
 >
-> The examples below have been updated to use the `React.createRef()` API introduced in React 16.3. If you are using an earlier release of React, we recommend using [callback refs](#callback-refs) instead.
+> Приклади нижче були оновлені для використання `React.createRef()` API, що з'явилося у React 16.3. Якщо ви користуєтеся більш ранньою версією React, ми рекомендуємо використувати [рефи як функції зворотнього викливку](#callback-refs).
 
-### Creating Refs {#creating-refs}
+### Створення рефів {#creating-refs}
 
-Refs are created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the component.
+Рефи створюються за допомогою виклику методу `React.createRef()` та приєднюються до React-елемента через атрибут `ref`. Рефи визначаються як властивість Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the component.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -59,36 +59,36 @@ When a ref is passed to an element in `render`, a reference to the node becomes 
 const node = this.myRef.current;
 ```
 
-The value of the ref differs depending on the type of the node:
+Значення рефа може відрізнятися в залежності від типу вузла:
 
-- When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `current` property.
-- When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `current`.
+- Коли атрибут `ref` визначений у HTML-елемента, тоді `ref`, що створений у конструкторі за допомогою методу `React.createRef()`, отримає доступ до відповідого DOM-елемента через свою властивість `current`.
+- Коли атрибут `ref` визначений у компонента користувача, тоді об'єкт `ref` отримає посилання на вмонтований через його властивіть `current`. object receives the mounted instance of the component as its `current`.
 - **You may not use the `ref` attribute on function components** because they don't have instances.
 
-The examples below demonstrate the differences.
+На прикладах нижче можна побачити різницю.
 
-#### Adding a Ref to a DOM Element {#adding-a-ref-to-a-dom-element}
+#### Застосування рефу до DOM-елемента {#adding-a-ref-to-a-dom-element}
 
-This code uses a `ref` to store a reference to a DOM node:
+Код нижче використовує `ref`, щоб отримати посилання на DOM-вузол:
 
 ```javascript{5,12,22}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    // create a ref to store the textInput DOM element
+    // створимо реф, щоб отримати посилання на DOM-елемент поля введення
     this.textInput = React.createRef();
     this.focusTextInput = this.focusTextInput.bind(this);
   }
 
   focusTextInput() {
-    // Explicitly focus the text input using the raw DOM API
-    // Note: we're accessing "current" to get the DOM node
+    // Переведемо фокус на текстове поле введення, використовуючи нативне DOM API
+    // Примітка: ми використовуємо "current", щоб отримати DOM-вузол
     this.textInput.current.focus();
   }
 
   render() {
-    // tell React that we want to associate the <input> ref
-    // with the `textInput` that we created in the constructor
+    // вкажемо React, що ми хочемо зв'язати реф елементу <input>
+    // з `textInput`, що був визначений в конструкторі
     return (
       <div>
         <input
@@ -96,7 +96,7 @@ class CustomTextInput extends React.Component {
           ref={this.textInput} />
         <input
           type="button"
-          value="Focus the text input"
+          value="Перенести фокус на текстове поле введення"
           onClick={this.focusTextInput}
         />
       </div>
@@ -105,11 +105,11 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle methods.
+React зв'яже властисть `current` з DOM-елементом, коли компонент буде вмонтований, та встановить назад в `null`, коли компонент буде прибрано з DOM. Оновлення `ref` відбувається перед `componentDidMount` або `componentDidUpdate`.
 
-#### Adding a Ref to a Class Component {#adding-a-ref-to-a-class-component}
+#### Застосування рефу до компонента {#adding-a-ref-to-a-class-component}
 
-If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref to get access to the custom input and call its `focusTextInput` method manually:
+Якби ми захотіли обернути передній `CustomTextInput`, щоб симулювати натискання по ньому одразу після вмонтування, ми могли б використати реф, щоб отримати доступ до користувацького поля введення та виклакати його метод `focusTextInput` напряму:
 
 ```javascript{4,8,13}
 class AutoFocusTextInput extends React.Component {
@@ -130,7 +130,7 @@ class AutoFocusTextInput extends React.Component {
 }
 ```
 
-Note that this only works if `CustomTextInput` is declared as a class:
+Зауважте, що це працює тільки, якщо `CustomTextInput` визначений як клас:
 
 ```js{1}
 class CustomTextInput extends React.Component {
@@ -138,7 +138,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-#### Refs and Function Components {#refs-and-function-components}
+#### Рефи та функціональні компоненти {#refs-and-function-components}
 
 **You may not use the `ref` attribute on function components** because they don't have instances:
 
@@ -153,7 +153,7 @@ class Parent extends React.Component {
     this.textInput = React.createRef();
   }
   render() {
-    // This will *not* work!
+    // Це *не* буде працювати!
     return (
       <MyFunctionComponent ref={this.textInput} />
     );
@@ -161,13 +161,13 @@ class Parent extends React.Component {
 }
 ```
 
-You should convert the component to a class if you need a ref to it, just like you do when you need lifecycle methods or state.
+Ви маєте перетворити компонент в клас, якщо ви хочете використовувати реф для нього, так само як ви б робили, коли вам потрібні методи життєвого циклу або стан.
 
-You can, however, **use the `ref` attribute inside a function component** as long as you refer to a DOM element or a class component:
+Проте ви можете **використовувати атрибут `ref` в середині функціональних компонентів** за умови, що ви визначаєте їх на DOM-елементах або класових компонентах:
 
 ```javascript{2,3,6,13}
 function CustomTextInput(props) {
-  // textInput must be declared here so the ref can refer to it
+  // textInput повинен бути визначений тут, щоб реф міг посилатися на нього
   let textInput = React.createRef();
 
   function handleClick() {
@@ -181,7 +181,7 @@ function CustomTextInput(props) {
         ref={textInput} />
       <input
         type="button"
-        value="Focus the text input"
+        value="Перенести фокус на текстове поле введення"
         onClick={handleClick}
       />
     </div>
@@ -205,7 +205,7 @@ When possible, we advise against exposing DOM nodes, but it can be a useful esca
 
 React also supports another way to set refs called "callback refs", which gives more fine-grain control over when refs are set and unset.
 
-Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
+Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere.
 
 The example below implements a common pattern: using the `ref` callback to store a reference to a DOM node in an instance property.
 
@@ -279,7 +279,7 @@ In the example above, `Parent` passes its ref callback as an `inputRef` prop to 
 
 ### Legacy API: String Refs {#legacy-api-string-refs}
 
-If you worked with React before, you might be familiar with an older API where the `ref` attribute is a string, like `"textInput"`, and the DOM node is accessed as `this.refs.textInput`. We advise against it because string refs have [some issues](https://github.com/facebook/react/pull/8333#issuecomment-271648615), are considered legacy, and **are likely to be removed in one of the future releases**. 
+If you worked with React before, you might be familiar with an older API where the `ref` attribute is a string, like `"textInput"`, and the DOM node is accessed as `this.refs.textInput`. We advise against it because string refs have [some issues](https://github.com/facebook/react/pull/8333#issuecomment-271648615), are considered legacy, and **are likely to be removed in one of the future releases**.
 
 > Note
 >
