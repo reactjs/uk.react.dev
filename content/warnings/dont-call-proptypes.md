@@ -6,7 +6,7 @@ permalink: warnings/dont-call-proptypes.html
 
 > Примітка:
 >
-> `React.PropTypes` був переміщений в окремий пакет, починаючи з React v15.5. Будь ласка, використовуйте натомість [бібліотеку `prop-types`](https://www.npmjs.com/package/prop-types).
+> `React.PropTypes` був переміщений в окремий пакунок, починаючи з React v15.5. Будь ласка, використовуйте натомість [бібліотеку `prop-types`](https://www.npmjs.com/package/prop-types).
 >
 >Ви можете використовувати [codemod-скрипт](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) для автоматизації переходу.
 
@@ -38,7 +38,7 @@ var apiShape = PropTypes.shape({
 var error = apiShape(json, 'response');
 ```
 
-Якщо ви звикли використовувати PropTypes, як показано вище, ми рекомендуємо вам використовувати або створити форк PropTypes (по прикладу [цих](https://github.com/aackerman/PropTypes) [двох](https://github.com/developit/proptypes) пакетів).
+Якщо ви звикли використовувати PropTypes, як показано вище, ми рекомендуємо вам використовувати або створити форк PropTypes (по прикладу [цих](https://github.com/aackerman/PropTypes) [двох](https://github.com/developit/proptypes) пакунків).
 
 Якщо ви не виправите це попередження, ваш код не буде працювати в продакшн при використанні React 16.
 
