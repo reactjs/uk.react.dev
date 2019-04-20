@@ -1,30 +1,30 @@
 ---
 id: faq-ajax
-title: AJAX and APIs
+title: AJAX та звертання до API
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call? {#how-can-i-make-an-ajax-call}
+### Як виконати AJAX-запит до сервера? {#how-can-i-make-an-ajax-call}
 
-You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+Ви можете використовувати вбудований в браузер метод [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API), або будь-яку AJAX-бібліотеку, наприклад [Axios](https://github.com/axios/axios) чи [jQuery AJAX](https://api.jquery.com/jQuery.ajax/).
 
-### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
+### Де в життєвому циклі компонента краще робити запит? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+Ви можете зробити AJAX-запит в [`componentDidMount`](/docs/react-component.html#mounting). Коли ви отримаєте дані, викличте `setState`, щоб передати їх компоненту.
 
-### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
+### Приклад: Встановлюємо стан з AJAX-запиту {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+Компонент нижче показує, як в `componentDidMount` задати внутрішній стан з результату AJAX-запиту. 
 
-The example API returns a JSON object like this:
+Припустимо, наш API повертає наступний JSON-об'єкт:
 
 ```
 {
   "items": [
-    { "id": 1, "name": "Apples",  "price": "$2" },
-    { "id": 2, "name": "Peaches", "price": "$5" }
+    { "id": 1, "name": "Яблука",  "price": "$2" },
+    { "id": 2, "name": "Персики", "price": "$5" }
   ] 
 }
 ```
@@ -50,9 +50,9 @@ class MyComponent extends React.Component {
             items: result.items
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
+        // Примітка: важливо обробляти помилки саме тут,
+        // а не в блоці catch (), щоб не перехоплювати
+        // виключення з помилок в самих компонентах.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -65,9 +65,9 @@ class MyComponent extends React.Component {
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div>Помилка: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div>Завантаження...</div>;
     } else {
       return (
         <ul>
