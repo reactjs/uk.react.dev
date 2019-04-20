@@ -1,32 +1,32 @@
 ---
 id: faq-build
-title: Babel, JSX, and Build Steps
+title: Babel, JSX, та етапи збірки
 permalink: docs/faq-build.html
 layout: docs
 category: FAQ
 ---
 
-### Do I need to use JSX with React? {#do-i-need-to-use-jsx-with-react}
+### Чи необхідно використовувати JSX у React? {#do-i-need-to-use-jsx-with-react}
 
-No! Check out ["React Without JSX"](/docs/react-without-jsx.html) to learn more.
+Ні! Прочитайте ["React без JSX"](/docs/react-without-jsx.html), щоб дізнатися докладніше.
 
-### Do I need to use ES6 (+) with React? {#do-i-need-to-use-es6--with-react}
+### Чи необхідно в React використовувати ES6 (+)? {#do-i-need-to-use-es6--with-react}
 
-No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
+Ні! Прочитайте ["React без ES6"](/docs/react-without-es6.html), щоб дізнатися докладніше.
 
-### How can I write comments in JSX? {#how-can-i-write-comments-in-jsx}
+### Як писати коментарі в JSX? {#how-can-i-write-comments-in-jsx}
 
 ```jsx
 <div>
-  {/* Comment goes here */}
-  Hello, {name}!
+  {/* Це коментар */}
+  Привіт, {name}!
 </div>
 ```
 
 ```jsx
 <div>
-  {/* It also works 
-  for multi-line comments. */}
-  Hello, {name}! 
+  {/* А це 
+  багатостроковий коментар. */}
+  Привіт, {name}! 
 </div>
 ```
