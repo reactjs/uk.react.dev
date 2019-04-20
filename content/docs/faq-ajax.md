@@ -1,6 +1,6 @@
 ---
 id: faq-ajax
-title: AJAX та звертання до API
+title: AJAX та запити до API
 permalink: docs/faq-ajax.html
 layout: docs
 category: FAQ
