@@ -9,7 +9,7 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
-В React HTML-елементи форм працюють дещо інакше ніж інші DOM-елементи, тому що елементи форм від початку мають певний внутрішній стан. Наприклад, в цю HTML-форму можна ввести ім'я:
+У React HTML-елементи форм працюють дещо інакше ніж інші DOM-елементи, тому що елементи форм від початку мають певний внутрішній стан. Наприклад, в цю HTML-форму можна ввести ім'я:
 
 ```html
 <form>
@@ -25,9 +25,9 @@ redirect_from:
 
 ## Керовані компоненти {#controlled-components}
 
-В HTML елементи форми, такі як `<input>`, `<textarea>` і `<select>`, зазвичай самі керують своїм станом і оновлюють його коли користувач вводить дані. В React змінний стан зазвичай міститься у властивості стану компонентів і оновлюється тільки через виклик [`setState()`](/docs/react-component.html#setstate)
+В HTML елементи форми, такі як `<input>`, `<textarea>` і `<select>`, зазвичай самі керують своїм станом і оновлюють його коли користувач вводить дані. У React змінний стан зазвичай міститься у властивості стану компонентів і оновлюється тільки через виклик [`setState()`](/docs/react-component.html#setstate)
 
-Ми можемо скомбінувати обидва підходи і зробити стан React-компоненту "єдиним джерелом правди". Тоді React-компонент, який буде рендерити форму, також буде контролювати її поведінку у відповідь введення даних користувача. Значення елемента форми в цьому випадку буде контролювати React, а сам елемент буде називатися "керований компонент".
+Ми можемо скомбінувати обидва підходи і зробити стан React-компоненту "єдиним джерелом правди". Тоді React-компонент, який буде рендерити форму, також буде контролювати її поведінку у відповідь на введення даних користувача. Значення елемента форми в цьому випадку буде контролювати React, а сам елемент буде називатися "керований компонент".
 
 Наприклад, якщо ми хочемо щоб у прикладі вище після відправлення форми передані дані виводилися у консолі, то ми можемо переписати форму як "керований компонент":
 
@@ -78,7 +78,7 @@ handleChange(event) {
 
 ## Тег textarea {#the-textarea-tag}
 
-HTML-елемент `<textarea>` визначає введений текст я дочірній елемент:
+HTML-елемент `<textarea>` визначає текстові дані безпосередньо як текст, введений між відкриваючим та закриваючим тегами:
 
 ```html
 <textarea>
@@ -93,7 +93,7 @@ class EssayForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Будь ласка, напишіть есе про ваш улюблений елемент DOM.'
+      value: 'Будь ласка, напишіть твір про ваш улюблений елемент DOM.'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -105,7 +105,7 @@ class EssayForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Есе, що було надіслано: ' + this.state.value);
+    alert('Твір, що було надіслано: ' + this.state.value);
     event.preventDefault();
   }
 
@@ -138,13 +138,13 @@ class EssayForm extends React.Component {
 </select>
 ```
 
-Зверніть увагу на те, що опція "Кокос" обрана за замовчуванням за допомогою атрибуту `selected`. Замість того, щоб використовувати атрибут `selected`, React використовує атрибут `value` кореневого тегу `select`. Це зручніше в контрольованому компоненті, тому що потрібно оновити його лише в одному місці. Наприклад:
+Зверніть увагу на те, що опція "Кокос" обрана за замовчуванням за допомогою атрибуту `selected`. Замість того, щоб використовувати атрибут `selected`, React використовує атрибут `value` кореневого тегу `select`. У контрольованому компоненті так зручніше, тому що потрібно оновити його лише в одному місці. Наприклад:
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'coconut'};
+    this.state = {value: 'кокос'};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -165,10 +165,10 @@ class FlavorForm extends React.Component {
         <label>
           Оберіть ваш улюблений аромат:
           <select value={this.state.value} onChange={this.handleChange}>
-            <option value="grapefruit">Грейпфрут</option>
-            <option value="lime">Лайм</option>
-            <option value="coconut">Кокос</option>
-            <option value="mango">Манго</option>
+            <option value="грейпфрут">Грейпфрут</option>
+            <option value="лайм">Лайм</option>
+            <option value="кокос">Кокос</option>
+            <option value="манго">Манго</option>
           </select>
         </label>
         <input type="submit" value="Надіслати" />
@@ -198,7 +198,7 @@ class FlavorForm extends React.Component {
 <input type="file" />
 ```
 
-Оскільки його значення доступне лише для читання, це **неконтрольований** компонент в React. Це обговорюється разом з іншими неконтрольованими компонентами [пізніше в документації](/docs/uncontrolled-components.html#the-file-input-tag).
+Оскільки його значення доступне лише для читання, це **неконтрольований** компонент у React. Це обговорюється разом з іншими неконтрольованими компонентами [пізніше в документації](/docs/uncontrolled-components.html#the-file-input-tag).
 
 ## Обробка кількох полів введення даних {#handling-multiple-inputs}
 
@@ -256,7 +256,7 @@ class Reservation extends React.Component {
 
 [**Спробуйте це на CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
-Зауважте як ми використали ES6 синтаксис для [розрахованих імен властивостей](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names), щоб оновити стан за ключами які співпадають зі значенням атрибуту `name` відповідних полів введення:
+Зауважте як ми використали ES6-синтаксис для [розрахованих імен властивостей](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names), щоб оновити стан за ключами які співпадають зі значенням атрибуту `name` відповідних полів введення:
 
 ```js{2}
 this.setState({
@@ -264,7 +264,7 @@ this.setState({
 });
 ```
 
-Це те ж саме що й такий ES5 код:
+Це те ж саме що й такий ES5-код:
 
 ```js{2}
 var partialState = {};
@@ -281,7 +281,7 @@ this.setState(partialState);
 Наступний код демонструє це. (Поле вводу спочатку заблоковане, але стає доступним для редагування після невеликої затримки.)
 
 ```javascript
-ReactDOM.render(<input value="hi" />, mountNode);
+ReactDOM.render(<input value="привіт" />, mountNode);
 
 setTimeout(function() {
   ReactDOM.render(<input value={null} />, mountNode);
