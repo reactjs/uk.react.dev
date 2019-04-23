@@ -1,18 +1,18 @@
 ---
 id: faq-structure
-title: File Structure
+title: Структура файлів
 permalink: docs/faq-structure.html
 layout: docs
 category: FAQ
 ---
 
-### Is there a recommended way to structure React projects? {#is-there-a-recommended-way-to-structure-react-projects}
+### Чи існують рекомендації по структуруванню React-проектів? {#is-there-a-recommended-way-to-structure-react-projects}
 
-React doesn't have opinions on how you put files into folders. That said there are a few common approaches popular in the ecosystem you may want to consider.
+Немає одностайної думки. Однак, є кілька популярних підходів, які ви можете розглянути.
 
-#### Grouping by features or routes {#grouping-by-features-or-routes}
+#### Групування по функціональності або маршруту {#grouping-by-features-or-routes}
 
-One common way to structure projects is locate CSS, JS, and tests together inside folders grouped by feature or route.
+Один з популярних підходів — це розміщення файлів CSS, JS і тестів у папках, згрупованих за функціональністю або маршруту.
 
 ```
 common/
@@ -35,11 +35,11 @@ profile/
   ProfileAPI.js
 ```
 
-The definition of a "feature" is not universal, and it is up to you to choose the granularity. If you can't come up with a list of top-level folders, you can ask the users of your product what major parts it consists of, and use their mental model as a blueprint.
+Визначення «функціональність» не є універсальним, тому вибір рівня деталізації залишається за вами. Якщо у вас не виходить скласти список папок верхнього рівня, ви можете запитати у користувачів вашого продукту, з яких основних частин він складається, і взяти модель мислення користувачів за зразок.
 
-#### Grouping by file type {#grouping-by-file-type}
+#### Групування по типу файла {#grouping-by-file-type}
 
-Another popular way to structure projects is to group similar files together, for example:
+Іншим популярним способом структурування проектів є угруповання схожих файлів, наприклад:
 
 ```
 api/
@@ -59,16 +59,16 @@ components/
   ProfileHeader.css
 ```
 
-Some people also prefer to go further, and separate components into different folders depending on their role in the application. For example, [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) is a design methodology built on this principle. Remember that it's often more productive to treat such methodologies as helpful examples rather than strict rules to follow.
+Деякі розробники вважають за краще йти ще далі і розміщувати компоненти в різні папки в залежності від їх ролі в додатку. Наприклад, методологія розробки [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) побудована на цьому принципі. Пам'ятайте, що дані методології слід розглядати як корисні приклади, а не як строгі правила.
 
-#### Avoid too much nesting {#avoid-too-much-nesting}
+#### Уникайте надмірної вкладеності{#avoid-too-much-nesting}
 
-There are many pain points associated with deep directory nesting in JavaScript projects. It becomes harder to write relative imports between them, or to update those imports when the files are moved. Unless you have a very compelling reason to use a deep folder structure, consider limiting yourself to a maximum of three or four nested folders within a single project. Of course, this is only a recommendation, and it may not be relevant to your project.
+Проблем, пов'язаних з надмірною вкладеністю папок у JavaScript-проектах, може виникнути досить багато.  Одна з них - це складність контролю щодо імпорту або поновлення цих імпортів при переміщенні файлів. Якщо у вас немає вагомих підстав використовувати глибоку вкладеність папок, подумайте про те, щоб обмежити себе максимум трьома або чотирма рівнями укладення у межах одного проекта.  Звісно, це всього лише рекомендація і вона може бути не актуальна в разі вашого проекту.
 
-#### Don't overthink it {#dont-overthink-it}
+#### Не перестарайтеся {#dont-overthink-it}
 
-If you're just starting a project, [don't spend more than five minutes](https://en.wikipedia.org/wiki/Analysis_paralysis) on choosing a file structure. Pick any of the above approaches (or come up with your own) and start writing code! You'll likely want to rethink it anyway after you've written some real code.
+Якщо ви тільки починаєте проект, [не витрачайте більше 5 хвилин](https://en.wikipedia.org/wiki/Analysis_paralysis) на вибір структури проекту. Виберіть будь-який з перерахованих вище підходів (або придумайте свій власний) і почніть писати код! Є велика ймовірність, що ви повернетеся до переосмислення структури проекту після написання певної кількості коду.
 
-If you feel completely stuck, start by keeping all files in a single folder. Eventually it will grow large enough that you will want to separate some files from the rest. By that time you'll have enough knowledge to tell which files you edit together most often. In general, it is a good idea to keep files that often change together close to each other. This principle is called "colocation".
+Якщо ви відчуваєте що остаточно застрягли, починайте з однієї папки. Згодом, коли вона стане занадто великою, що вам захочеться відокремити деякі файли від інших, у вас буде достатньо знань, щоб визначити, які файли ви редагуєте найчастіше. Як правило, файли, які часто змінюються разом, слід тримати ближче один до одного. Цей принцип називається «спільне розміщення».
 
-As projects grow larger, they often use a mix of both of the above approaches in practice. So choosing the "right" one in the beginning isn't very important.
+На практиці проекти часто використовують поєднання декількох вищезгаданих підходів. Тому вибір «правильного» підходу на самому початку проекту не надто важливий.
