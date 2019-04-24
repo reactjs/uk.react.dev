@@ -53,7 +53,11 @@ npm start
 
 Create React App не опрацьовує бекенд логіку чи логіку баз данних, а лише надає команди для побудови фронтенду, тому ви можете використовувати його з будь-яким бекендом. Під капотом він використовує [Babel](https://babeljs.io/) та [webpack](https://webpack.js.org/), але вам не треба нічого знати про них.
 
+<<<<<<< HEAD
 Коли ваш додаток буде готовий для розгортання на продакшн, запустіть команду `npm run build`, це створить оптимізовану версію вашого додатку у папці `build`. Ви можете дізнатись більше про Create React App [з його README](https://github.com/facebookincubator/create-react-app#create-react-app-) та [його керівництва користувача](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
+=======
+When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app--) and the [User Guide](https://facebook.github.io/create-react-app/).
+>>>>>>> 6bc6e7b1411d4befc3ecfbe45b898ca474116020
 
 ### Next.js {#nextjs}
 
@@ -69,7 +73,11 @@ Create React App не опрацьовує бекенд логіку чи лог
 
 ### Більш гнучкі набори інструментів {#more-flexible-toolchains}
 
+<<<<<<< HEAD
 Наступні набори пропонують більше гнучкості та вибору. Ми рекомендуємо їх для більш досвідчених розробників:
+=======
+The following toolchains offer more flexibility and choice. We recommend them to more experienced users:
+>>>>>>> 6bc6e7b1411d4befc3ecfbe45b898ca474116020
 
 - **[Neutrino](https://neutrinojs.org/)** поєднує у собі [webpack](https://webpack.js.org/) з простотою його пресетів та включає в себе пресети для [React-додатків](https://neutrinojs.org/packages/react/) й [React-компонентів](https://neutrinojs.org/packages/react-components/).
 
