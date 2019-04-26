@@ -83,7 +83,7 @@ redirect_from:
 
 ### Практичний посібник {#practical-tutorial}
 
-Якщо ви віддаєте перевагу **навчанню через практику,** почніть з нашого [практичного посібника](/tutorial/tutorial.html). У ньому описано процес розробки гри в хрестики-нулики. Якщо ви не плануєте програмувати ігри, все одно приділіть увагу цьому розділу документації. Прийоми, які ви освоїте — фундамент для розробки будь-якого додатка на React. Введення дасть вам більш глибоке розуміння React.
+Якщо ви віддаєте перевагу **навчанню через практику,** почніть з нашого [практичного посібника](/tutorial/tutorial.html). У ньому описано процес розробки гри в хрестики-нулики. Якщо ви не плануєте програмувати ігри, все одно приділіть увагу цьому розділу документації. Прийоми, які ви освоїте — фундамент для розробки будь-якого додатка на React. Посібник дасть вам більш глибоке розуміння React.
 
 ### Покрокова інструкція {#step-by-step-guide}
 
@@ -115,11 +115,7 @@ redirect_from:
 
 Ви також можете підписатись на [профіль @reactjs](https://twitter.com/reactjs) у Twitter, однак ви не пропустите нічого важливого, якщо будете слідкувати тільки за блогом.
 
-<<<<<<< HEAD
-У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/master/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react).
-=======
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
->>>>>>> 4244fc646618de6bae934686f93dd04c9000d9ae
+У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/master/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react/releases).
 
 ## Документація старих версій React {#versioned-documentation}
 
