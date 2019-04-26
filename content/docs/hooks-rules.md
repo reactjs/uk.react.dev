@@ -28,7 +28,7 @@ prev: hooks-effect.html
 Ми випустили плагін для ESLint [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks), який примушує дотримуватися цих двох правил. Ви можете додати цей плагін до вашого проекту, якщо ви хочете його спробувати:
 
 ```bash
-npm install eslint-plugin-react-hooks
+npm install eslint-plugin-react-hooks --save-dev
 ```
 
 ```js
