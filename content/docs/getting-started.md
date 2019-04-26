@@ -115,7 +115,7 @@ redirect_from:
 
 Ви також можете підписатись на [профіль @reactjs](https://twitter.com/reactjs) у Twitter, однак ви не пропустите нічого важливого, якщо будете слідкувати тільки за блогом.
 
-У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/master/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react).
+У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/master/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react/releases).
 
 ## Документація старих версій React {#versioned-documentation}
 
