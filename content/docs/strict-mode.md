@@ -1,65 +1,65 @@
 ---
 id: strict-mode
-title: Strict Mode
+title: Суворий режим
 permalink: docs/strict-mode.html
 ---
 
-`StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It activates additional checks and warnings for its descendants.
+`StrictMode` – це інструмент для виявлення потенційних проблем у додатку. `StrictMode` не рендерить видимого UI так само як `Fragment`. Він активує додаткові перевірки та попередження для своїх нащадків.
 
-> Note:
+> Примітка:
 >
-> Strict mode checks are run in development mode only; _they do not impact the production build_.
+> Перевірки суворого режиму виконуються лише в режимі розробки; _вони не впливають на продакшн-збірку_.
 
-You can enable strict mode for any part of your application. For example:
+Ви можете увімкнути суворий режим для будь-якої частини вашого додатку. Наприклад:
 `embed:strict-mode/enabling-strict-mode.js`
 
-In the above example, strict mode checks will *not* be run against the `Header` and `Footer` components. However, `ComponentOne` and `ComponentTwo`, as well as all of their descendants, will have the checks.
+У наведеному вище прикладі перевірки суворого режиму *не* будуть виконуватись для компонентів `Header` та `Footer`. Проте компоненти `ComponentOne` та `ComponentTwo`, а також всі їхні нащадки матимуть перевірки.
 
-`StrictMode` currently helps with:
-* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
-* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
-* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
-* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
-* [Detecting legacy context API](#detecting-legacy-context-api)
+`StrictMode` наразі допомагає в:
+* [Ідентифікації компонентів з небезпечними методами життєвого циклу](#identifying-unsafe-lifecycles)
+* [Попередженні про використання застарілого API строкових рефів](#warning-about-legacy-string-ref-api-usage)
+* [Попередженні про використання застарілого виклику findDOMNode](#warning-about-deprecated-finddomnode-usage)
+* [Виявленні несподіваних побічних ефектів](#detecting-unexpected-side-effects)
+* [Виявленні застарілого контекстного API](#detecting-legacy-context-api)
 
-Additional functionality will be added with future releases of React.
+Додаткова функціональність буде додана в майбутніх релізах React.
 
-### Identifying unsafe lifecycles {#identifying-unsafe-lifecycles}
+### Ідентифікація небезпечних методів життєвого циклу {#identifying-unsafe-lifecycles}
 
-As explained [in this blog post](/blog/2018/03/27/update-on-async-rendering.html), certain legacy lifecycle methods are unsafe for use in async React applications. However, if your application uses third party libraries, it can be difficult to ensure that these lifecycles aren't being used. Fortunately, strict mode can help with this!
+[В цій статті](/blog/2018/03/27/update-on-async-rendering.html) пояснюється, чому деякі застарілі методи життєвого циклу є небезбечними для використання в асинхронних React-додатках. Проте може бути важко проконтролювати використання цих методів життєвого циклу, якщо ваш додаток використовує сторонні бібліотеки. На щастя, суворий режим може допомогти в цьому випадку!
 
-When strict mode is enabled, React compiles a list of all class components using the unsafe lifecycles, and logs a warning message with information about these components, like so:
+Коли увімкнено суворий режим, то React створює список всіх класових компонентів, які використовують небезпечні методи життєвого циклу, та виводить попередження з інформацією про ці компоненти, наприклад:
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
-Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of async rendering in future releases of React.
+Вирішення проблем, знайдених суворим режимом _сьогодні_ спростить для вас отримання вигоди від асинхронного рендеру в майбутніх релізах React.
 
-### Warning about legacy string ref API usage {#warning-about-legacy-string-ref-api-usage}
+### Попередження про використання застарілого API строкових рефів {#warning-about-legacy-string-ref-api-usage}
 
-Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recommendation was to [use the callback form instead](/docs/refs-and-the-dom.html#legacy-api-string-refs).
+Раніше React надавав два способи управління рефами: застарілий API строкових рефів та API функцій зворотнього виклику. Незважаючи на те, що API строкових рефів був більш зручний в використанні, він мав [декілька недоліків](https://github.com/facebook/react/issues/1373) і тому ми офіційно рекомендували [використовувати форму функції зворотнього виклику](/docs/refs-and-the-dom.html#legacy-api-string-refs).
 
-React 16.3 added a third option that offers the convenience of a string ref without any of the downsides:
+React версії 16.3 вводить третій варіант, який пропонує зручність строкових рефів але без їхніх недоліків:
 `embed:16-3-release-blog-post/create-ref-example.js`
 
-Since object refs were largely added as a replacement for string refs, strict mode now warns about usage of string refs.
+Оскільки об'єкти-рефи були додані значною мірою як заміна строкових рефів, то суворий режим тепер попереджує про використання строкових рефів.
 
-> **Note:**
+> **Примітка:**
 >
-> Callback refs will continue to be supported in addition to the new `createRef` API.
+> Рефи-функції зворотнього виклику продовжують підтримуватись на додачу до нового API-виклику `createRef`.
 >
-> You don't need to replace callback refs in your components. They are slightly more flexible, so they will remain as an advanced feature.
+> Вам не потрібно заміняти рефи-функції зворотнього виклику у ваших компонентах. Вони трохи більш гнучкі і тому залишаться як просунута можливість.
 
-[Learn more about the new `createRef` API here.](/docs/refs-and-the-dom.html)
+[Дізнатись більше про новий API-виклик `createRef` можна тут.](/docs/refs-and-the-dom.html)
 
-### Warning about deprecated findDOMNode usage {#warning-about-deprecated-finddomnode-usage}
+### Попередження про використання застарілого виклику findDOMNode {#warning-about-deprecated-finddomnode-usage}
 
-React used to support `findDOMNode` to search the tree for a DOM node given a class instance. Normally you don't need this because you can [attach a ref directly to a DOM node](/docs/refs-and-the-dom.html#creating-refs).
+Колись React підтримував виклик `findDOMNode` для пошуку DOM-вузла в дереві по вказаному екзепляру класу. Зазвичай вам це не потрібно, тому що ви можете [прикріпити реф безпосередньо до DOM-вузла](/docs/refs-and-the-dom.html#creating-refs).
 
-`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children was rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
+`findDOMNode` також може бути примінений до класових компонентів, але це порушувало рівні абстракції, дозволяючи батьківському компоненту вимагати щоб відбувся рендер певного дочірнього елементу. Це створює небезпеку рефакторингу, коли ви не можете змінити деталі реалізації компонента тому що батьківський компонент може використовувати його DOM-вузол. `findDOMNode` повертає лише перший дочірній елемент, але з використанням фрагментів компонент може рендерити декілька DOM-вузлів. `findDOMNode` — це API одноразового читання, він повертає вам результат лише на момент, коли ви його викликаєте. Якщо дочірній компонент відрендерить інший вузол то немає жодної можливості опрацювати цю зміну. Внаслідок цього `findDOMNode` працював лише якщо компоненти завжди повертали єдиний DOM-вузол що ніколи не змінювався.
 
-You can instead make this explicit by passing a ref to your custom component and pass that along to the DOM using [ref forwarding](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+Замість цього ви можете зробити це явно, передавши реф у ваш компонент та далі в DOM з використанням [перенаправлення рефів](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
-You can also add a wrapper DOM node in your component and attach a ref directly to it.
+Ви також можете додати DOM-вузол обгортку у ваш компонент і прикріпити реф прямо до нього.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -73,19 +73,19 @@ class MyComponent extends React.Component {
 }
 ```
 
-> Note:
+> Примітка:
 >
-> In CSS, the [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) attribute can be used if you don't want the node to be part of the layout.
+> Можна використати CSS атрибут [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) якщо ви не хочете, щоб вузол був частиною розмітки.
 
-### Detecting unexpected side effects {#detecting-unexpected-side-effects}
+### Виявлення несподіваних побічних ефектів {#detecting-unexpected-side-effects}
 
-Conceptually, React does work in two phases:
-* The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
-* The **commit** phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
+По суті, React виконує роботу в два етапи:
+* Стадія **рендеру** визначає, які саме зміни потрібно зробити, наприклад в DOM. На цій стадії React викликає метод `render` і потім порівнює результат з попереднім рендером.
+* Стадія **фіксації** — це коли React застосовує будь-які зміни. У випадку React DOM — це стадія, коли React вставляє, оновлює та видаляє вузли DOM. На цій стадії React також викликає методи життєвого циклу, такі як `componentDidMount` та `componentDidUpdate`.
 
-The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming async mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+Стадія фіксації зазвичай дуже швидка, але рендер може бути повільним. З цієї причини майбутній асинхронний режим (який поки ще не увімкнений за замовчуванням) розбиває обсяг роботи рендеру на частини, призупиняючись і продовжуючи роботу щоб запобігти блокуванню браузера. Це означає, що React перед фіксацією може викликати методи життєвого циклу стадії рендеру більше ніж один раз, або викликати їх та взагалі не зафіксувати зміни (через помилку або переривання вищого пріоритету).
 
-Render phase lifecycles include the following class component methods:
+Методи життєвого циклу стадії рендеру включають наступні методи класового компоненту:
 * `constructor`
 * `componentWillMount`
 * `componentWillReceiveProps`
@@ -93,32 +93,32 @@ Render phase lifecycles include the following class component methods:
 * `getDerivedStateFromProps`
 * `shouldComponentUpdate`
 * `render`
-* `setState` updater functions (the first argument)
+* функції-оновлювачі стану компонента, що передаються першим аргументом в `setState`
 
-Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they can often be [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
+Оскільки наведені вище методи можуть бути викликані більше ніж один раз, то важливо щоб вони не містили побічних ефектів.  Ігнорування цього правила може привести до ряду проблем, включаючи витік пам'яті або недійсний стан додатку. На жаль виявити ці проблеми може бути важко оскільки вони часто бувають [недетермінованими](https://uk.wikipedia.org/wiki/Детермінований_алгоритм).
 
-Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
+Суворий режим не може автоматично виявити побічні ефекти за вас але він може допомогти їх помітити, роблячи їх більш детермінованими. Це досягається завдяки навмисному викликлу наступних методів двічі:
 
-* Class component `constructor` method
-* The `render` method
-* `setState` updater functions (the first argument)
-* The static `getDerivedStateFromProps` lifecycle
+* метод `constructor` класового компоненту
+* метод `render`
+* функції-оновлювачі стану компонента, що передаються першим аргументом в `setState`
+* статичний метод життєвого циклу `getDerivedStateFromProps`
 
-> Note:
+> Примітка:
 >
-> This only applies to development mode. _Lifecycles will not be double-invoked in production mode._
+> Це застосовується лиже в режимі розробки. _Методи життєвого циклу ніколи не будуть викликані двічі в продакшн-режимі._
 
-For example, consider the following code:
+Для прикладу розглянемо наступний код:
 `embed:strict-mode/side-effects-in-constructor.js`
 
-At first glance, this code might not seem problematic. But if `SharedApplicationState.recordEvent` is not [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), then instantiating this component multiple times could lead to invalid application state. This sort of subtle bug might not manifest during development, or it might do so inconsistently and so be overlooked.
+На перший погляд він не здається проблематичним. Але якщо метод `SharedApplicationState.recordEvent` не [ідемпотентний](https://uk.wikipedia.org/wiki/Ідемпотентність), то створення багатьох екземплярів цього компонента може призвести до недійсного стану додатку. Такий тип subtle помилок може не проявляти себе під час розробки або робити це непослідовно, і тому може залишитися не поміченим.
 
-By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.
+Суворий режим робить подібні патерни більш помітними навмисно двічі викликаючи методи, такі як конструктор компонента.
 
-### Detecting legacy context API {#detecting-legacy-context-api}
+### Виявлення застарілого контекстного API {#detecting-legacy-context-api}
 
-The legacy context API is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show this warning message in strict mode:
+Використання застарілого контекстного API часто призводило до помилок, тому він буде видалений в майбутній мажорній версії React. Він все ще працює в усіх релізах версії 16.x але показуватиме це попередження у суворому режимі:
 
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
-Read the [new context API documentation](/docs/context.html) to help migrate to the new version.
+Ознайомтесь з [документацією нового контекстного API](/docs/context.html) для спрощення переходу на нову версію.
