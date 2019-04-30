@@ -209,7 +209,7 @@ it('can render and update a counter', () => {
 
 * `componentDidCatch` і `getDerivedStateFromError`: Поки що немає хуків, еквівалентних цим методам, але вони будуть додані найближчим часом.
 
-### Як я можу робити вибірку даних з допомогою хуків?
+### Як я можу робити вибірку даних з допомогою хуків? {#how-can-i-do-data-fetching-with-hooks}
 
 Ось [невелике демо](https://codesandbox.io/s/jvvkoo8pq3), що допоможе вам розпочати. Щоб дізнатися більше, ознайомтесь з [цією статтею](https://www.robinwieruch.de/react-hooks-fetch-data/) про вибірку даних з допомогою хуків.
 
