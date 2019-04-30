@@ -99,11 +99,7 @@ redirect_from:
 
 ### Поглиблені концепції {#advanced-concepts}
 
-<<<<<<< HEAD
-Як тільки ви зрозумієте [основні концепції](#main-concepts) і трішки пограєтесь з React, вас можуть зацікавити більш складні питання. Цей розділ ознайомить вас з потужними, але менш вживаними властивостями React, такими як [контекст](/docs/context.html) і [рефи](/docs/refs-and-the-dom.html).
-=======
-Once you're comfortable with the [main concepts](/docs/hello-world.html) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
->>>>>>> b8b3db7acbba117addeea8a7fb86957eb046d7ce
+Як тільки ви зрозумієте [основні концепції](/docs/hello-world.html) і трішки пограєтесь з React, вас можуть зацікавити більш складні питання. Цей розділ ознайомить вас з потужними, але менш вживаними властивостями React, такими як [контекст](/docs/context.html) і [рефи](/docs/refs-and-the-dom.html).
 
 ### API-довідник {#api-reference}
 

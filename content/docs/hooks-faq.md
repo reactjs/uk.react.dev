@@ -209,11 +209,7 @@ it('can render and update a counter', () => {
 
 * `componentDidCatch` і `getDerivedStateFromError`: Поки що немає хуків, еквівалентних цим методам, але вони будуть додані найближчим часом.
 
-<<<<<<< HEAD
-### Як я можу робити вибірку даних з допомогою хуків?
-=======
-### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
->>>>>>> b8b3db7acbba117addeea8a7fb86957eb046d7ce
+### Як я можу робити вибірку даних з допомогою хуків? {#how-can-i-do-data-fetching-with-hooks}
 
 Ось [невелике демо](https://codesandbox.io/s/jvvkoo8pq3), що допоможе вам розпочати. Щоб дізнатися більше, ознайомтесь з [цією статтею](https://www.robinwieruch.de/react-hooks-fetch-data/) про вибірку даних з допомогою хуків.
 
@@ -658,11 +654,7 @@ function ProductDetails({ fetchProduct })
 
 Зверніть увагу, що у прикладі вище, ми **повинні** вказати функцію у списку залежностей. Це гарантує, що зміна пропу `productId` компонента `ProductPage` автоматично запустить повторну вибірку даних у компоненті `ProductDetails`.
 
-<<<<<<< HEAD
 ### Що я можу зробити, якщо залежності мого ефекту змінюються надто часто? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
-=======
-### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
->>>>>>> b8b3db7acbba117addeea8a7fb86957eb046d7ce
 
 Часом ваш ефект може залежати від стану, що змінюється надто часто. У вас може виникнути бажання пропустити цей стан із списку залежностей, але зазвичай це приводить до помилок:
 
