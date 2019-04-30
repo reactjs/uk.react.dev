@@ -33,6 +33,7 @@
 | code splitting | розділення коду |
 | context | контекст |
 | (un)controlled component | (не)контрольований компонент |
+| crash | збій |
 | custom hooks | хуки користувача |
 | debugging | налагодження |
 | development | розробка |
@@ -42,6 +43,7 @@
 | effect | ефект |
 | error | помилка |
 | error boundary | запобіжник |
+| error log | лог помилок |
 | event handler | обробник події |
 | fallback | запасний |
 | feature | особливість |
@@ -59,6 +61,8 @@
 | lifecycle method | метод життєвого циклу |
 | lifting state up | підйом стану, піднімати стан |
 | local state | внутрішній стан |
+| log | лог; *to log an error – вивести помилку* |
+| logging | логування |
 | lowercase | у нижньому регістрі |
 | mock | макет |
 | (im)mutable | (не)змінний |
@@ -106,3 +110,6 @@
 | user interface | інтерфейс (додавайте «користувача» тільки якщо незрозуміло з контексту) |
 | valid | валідний |
 | Warning | Попередження |
+| wrap(ping) | огортати |
+| wrapper | обгортка |
+

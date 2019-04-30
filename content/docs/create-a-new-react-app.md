@@ -53,7 +53,7 @@ npm start
 
 Create React App не опрацьовує бекенд логіку чи логіку баз данних, а лише надає команди для побудови фронтенду, тому ви можете використовувати його з будь-яким бекендом. Під капотом він використовує [Babel](https://babeljs.io/) та [webpack](https://webpack.js.org/), але вам не треба нічого знати про них.
 
-Коли ваш додаток буде готовий для розгортання на продакшн, запустіть команду `npm run build`, це створить оптимізовану версію вашого додатку у папці `build`. Ви можете дізнатись більше про Create React App [з його README](https://github.com/facebookincubator/create-react-app#create-react-app-) та [його керівництва користувача](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
+Коли ваш додаток буде готовий для розгортання на продакшн, запустіть команду `npm run build`, це створить оптимізовану версію вашого додатку у папці `build`. Ви можете дізнатись більше про Create React App [з його README](https://github.com/facebookincubator/create-react-app#create-react-app--) та [його керівництва користувача](https://facebook.github.io/create-react-app/).
 
 ### Next.js {#nextjs}
 
