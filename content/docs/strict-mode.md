@@ -75,7 +75,7 @@ class MyComponent extends React.Component {
 
 > Примітка:
 >
-> Можна використати CSS-атрибут [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) якщо ви не хочете, щоб вузол був частиною розмітки.
+> Можна використати CSS-атрибут [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents), якщо ви не хочете, щоб вузол був частиною розмітки.
 
 ### Виявлення несподіваних побічних ефектів {#detecting-unexpected-side-effects}
 
