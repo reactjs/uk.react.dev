@@ -252,14 +252,10 @@ const App = () => (
 
 ## Іменовані Експорти {#named-exports}
 
-<<<<<<< HEAD
 Наразі `React.lazy` підтримує тількі експорти за замовчуванням.
 Якщо модуль, який ви імпортуєте використовуючи іменовані експорти, можна створити проміжний модуль, який повторно експортуватиме його за замовчуванням. Це гарантує,
-що [treeshaking](https://webpack.js.org/guides/tree-shaking/)
+що [tree shaking](https://webpack.js.org/guides/tree-shaking/)
 продовжить працювати та ви не підвантажуєте компоненти, які не будуть використовуватись.
-=======
-`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that tree shaking keeps working and that you don't pull in unused components.
->>>>>>> a211417f6680cce5b4e4f036dc1492c03bc588c7
 
 ```js
 // ManyComponents.js
