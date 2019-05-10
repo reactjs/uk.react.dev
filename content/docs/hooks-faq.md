@@ -740,11 +740,7 @@ const Button = React.memo((props) => {
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-<<<<<<< HEAD
 Цей код викликає `computeExpensiveValue(a, b)`. Але якщо аргументи `[a, b]` не змінились у порівнянні з їх попередніми значеннями, `useMemo` пропустить повторний виклик і просто перевикористає останнє повернуте значення.
-=======
-This code calls `computeExpensiveValue(a, b)`. But if the dependencies `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
->>>>>>> b91049c05702b53445367e54a1652053b6081c1d
 
 Пам'ятайте, що функція, передана до `useMemo`, запускається під час рендерингу. Не робіть у ній нічого, що ви зазвичай не робите під час рендерингу. Наприклад, побічні ефекти мають бути в `useEffect`, а не `useMemo`.
 
@@ -771,11 +767,7 @@ function Parent({ a, b }) {
 
 ### Як ліниво обчислити вартісні об'єкти? {#how-to-create-expensive-objects-lazily}
 
-<<<<<<< HEAD
 `useMemo` дозволяє [запам'ятати вартісне обчислення](#how-to-memoize-calculations) для однакових вхідних даних. Проте він відіграє лише роль підказки для React і *не гарантує*, що повторні обчислення не будуть виконані знову. Але часом ви маєте бути впевнені, що об'єкт був створений лише раз.
-=======
-`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the dependencies are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
->>>>>>> b91049c05702b53445367e54a1652053b6081c1d
 
 **Першим поширеним випадком є вартісне створення початкового стану:**
 
