@@ -1,44 +1,44 @@
 ---
 id: static-type-checking
-title: Static Type Checking
+title: Статична типізація
 permalink: docs/static-type-checking.html
 prev: typechecking-with-proptypes.html
 next: refs-and-the-dom.html
 ---
 
-Static type checkers like [Flow](https://flow.org/) and [TypeScript](https://www.typescriptlang.org/) identify certain types of problems before you even run your code. They can also improve developer workflow by adding features like auto-completion. For this reason, we recommend using Flow or TypeScript instead of `PropTypes` for larger code bases.
+Статичні типізатори, такі як [Flow](https://flow.org/) і [TypeScript](https://www.typescriptlang.org/), розпізнають певні типи проблем навіть до запуску вашого коду. Вони також можуть покращити робочий процес розробника додаючи функції, такі як автозавершення З цієї причини для великих кодових баз ми рекомендуємо використовувати Flow або TypeScript замість `PropTypes`.
 
 ## Flow {#flow}
 
-[Flow](https://flow.org/) is a static type checker for your JavaScript code. It is developed at Facebook and is often used with React. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early. You can read an [introduction to Flow](https://flow.org/en/docs/getting-started/) to learn its basics.
+[Flow](https://flow.org/) — це статичний типізатор для вашого JavaScript-коду. Він розроблюється Facebook і часто використовується разом з React. Він дозволяє вам анотувати змінні, функції та React-компоненти спеціальним синтаксисом типу і рано піймати помилки. Щоб вивчити його основи ви можете прочитати [введення у Flow](https://flow.org/en/docs/getting-started/).
 
-To use Flow, you need to:
+Щоб використовувати Flow вам необхідно:
 
-* Add Flow to your project as a dependency.
-* Ensure that Flow syntax is stripped from the compiled code.
-* Add type annotations and run Flow to check them.
+* Додати Flow як залежність до вашого проекту.
+* Забезпечити вилучення синтаксису Flow зі скомпільованого коду.
+* Додати анотації типів та запустити Flow для їх перевірки.
 
-We will explain these steps below in detail.
+Ми пояснимо ці кроки більш детально нижче.
 
-### Adding Flow to a Project {#adding-flow-to-a-project}
+### Додавання Flow у проект {#adding-flow-to-a-project}
 
-First, navigate to your project directory in the terminal. You will need to run the following command:
+Спочатку в терміналі перейдіть у директорію вашого проекту. Вам потрібно буде запустити наступну команду:
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
 
 ```bash
 yarn add --dev flow-bin
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Якщо ви користуєтесь [npm](https://www.npmjs.com/):
 
 ```bash
 npm install --save-dev flow-bin
 ```
 
-This command installs the latest version of Flow into your project.
+Ця команда встановить останню версію Flow у ваш проект.
 
-Now, add `flow` to the `"scripts"` section of your `package.json` to be able to use this from the terminal:
+Тепер додайте `flow` у відділення `"scripts"` вашого `package.json` щоб ви змогли використовувати його з терміналу:
 
 ```js{4}
 {
@@ -51,53 +51,53 @@ Now, add `flow` to the `"scripts"` section of your `package.json` to be able to 
 }
 ```
 
-Finally, run one of the following commands:
+Нарешті виконайте одну з наступних команд:
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
 
 ```bash
 yarn run flow init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Якщо ви користуєтесь [npm](https://www.npmjs.com/):
 
 ```bash
 npm run flow init
 ```
 
-This command will create a Flow configuration file that you will need to commit.
+Ця команда створить конфігурацію Flow, яку вам потрібно буде закомітити.
 
-### Stripping Flow Syntax from the Compiled Code {#stripping-flow-syntax-from-the-compiled-code}
+### Вилучення синтаксису Flow зі скомпільованого коду {#stripping-flow-syntax-from-the-compiled-code}
 
-Flow extends the JavaScript language with a special syntax for type annotations. However, browsers aren't aware of this syntax, so we need to make sure it doesn't end up in the compiled JavaScript bundle that is sent to the browser.
+Flow розширяє мову JavaScript спеціальним синтаксисом для анотацій типів. Проте браузери не знають про цей синтаксис, тому нам потрібно переконатися, що він не з'явиться у скомпільованому JavaScript-пакеті, який надсилається браузеру.
 
-The exact way to do this depends on the tools you use to compile JavaScript.
+Як саме це зробити залежить від інструментів, якими ви компілюєте JavaScript.
 
 #### Create React App {#create-react-app}
 
-If your project was set up using [Create React App](https://github.com/facebookincubator/create-react-app), congratulations! The Flow annotations are already being stripped by default so you don't need to do anything else in this step.
+Якщо ваш проект був налаштований з використанням [Create React App](https://github.com/facebookincubator/create-react-app), то ми вас вітаємо! Flow-анотації вже вилучаються за замовчуванням, тому вам не потрібно більше нічого робити на цьому кроці.
 
 #### Babel {#babel}
 
->Note:
+>Примітка:
 >
->These instructions are *not* for Create React App users. Even though Create React App uses Babel under the hood, it is already configured to understand Flow. Only follow this step if you *don't* use Create React App.
+>Ці інструкції *не* для користувачів Create React App. Незважаючи на те, що Create React App використовує Babel в реалізації, він вже налаштований на розуміння Flow. Виконайте це крок лише коли ви *не* використовуєте Create React App.
 
-If you manually configured Babel for your project, you will need to install a special preset for Flow.
+Якщо ви налаштували Babel для вашого проекту вручну, то вам потрібно буде встановити спеціальний пресет для Flow.
 
-If you use Yarn, run:
+Якщо ви користуєтесь Yarn то запустіть:
 
 ```bash
 yarn add --dev babel-preset-flow
 ```
 
-If you use npm, run:
+Якщо ви користуєтесь npm то запустіть:
 
 ```bash
 npm install --save-dev babel-preset-flow
 ```
 
-Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
+І потім додайте пресет `flow` до вашої [конфігурації Babel](https://babeljs.io/docs/usage/babelrc/). Наприклад, якщо ви налаштовуєте Babel через файл `.babelrc`, то він може виглядати так:
 
 ```js{3}
 {
@@ -108,101 +108,101 @@ Then add the `flow` preset to your [Babel configuration](https://babeljs.io/docs
 }
 ```
 
-This will let you use the Flow syntax in your code.
+Це дозволить вам використовувати синтаксис Flow у вашому коді.
 
->Note:
+>Примітка:
 >
->Flow does not require the `react` preset, but they are often used together. Flow itself understands JSX syntax out of the box.
+>Flow не потребує пресет `react`, але вони часто використовуються разом. Flow сам по собі розуміє синтаксис JSX.
 
-#### Other Build Setups {#other-build-setups}
+#### Інші варіанти збірки {#other-build-setups}
 
-If you don't use either Create React App or Babel, you can use [flow-remove-types](https://github.com/flowtype/flow-remove-types) to strip the type annotations.
+Якщо ви не використовуєте Create React App і Babel, то ви можете використати [flow-remove-types](https://github.com/flowtype/flow-remove-types) для видалення анотацій типів.
 
-### Running Flow {#running-flow}
+### Запуск Flow {#running-flow}
 
-If you followed the instructions above, you should be able to run Flow for the first time.
+Якщо ви слідували наведеним вище інструкціям, то ви повинні мати можливість вперше запустити Flow.
 
 ```bash
 yarn flow
 ```
 
-If you use npm, run:
+Якщо ви користуєтесь npm то запустіть:
 
 ```bash
 npm run flow
 ```
 
-You should see a message like:
+Ви маєте побачити подібне повідомлення:
 
 ```
 No errors!
 ✨  Done in 0.17s.
 ```
 
-### Adding Flow Type Annotations {#adding-flow-type-annotations}
+### Додавання анотацій типів Flow {#adding-flow-type-annotations}
 
-By default, Flow only checks the files that include this annotation:
+За замовчуванням Flow перевіряє лише файли, що включають таку анотацію:
 
 ```js
 // @flow
 ```
 
-Typically it is placed at the top of a file. Try adding it to some files in your project and run `yarn flow` or `npm run flow` to see if Flow already found any issues.
+Зазвичай вона розміщується на початку файлу. Спробуйте додати її до деяких файлів у вашому проекті і запустити `yarn flow` чи `npm run flow` щоб побачити чи Flow вже знайшов якісь проблеми.
 
-There is also [an option](https://flow.org/en/docs/config/options/#toc-all-boolean) to force Flow to check *all* files regardless of the annotation. This can be too noisy for existing projects, but is reasonable for a new project if you want to fully type it with Flow.
+Також існує [опція](https://flow.org/en/docs/config/options/#toc-all-boolean), що дозволяє примусити Flow перевіряти *всі* файли незалежно від наявності вищевказаної анотації. Це може бути надто шумним для існуючих проектів, але є прийнятним для нових проектів якщо ви хочете повністю типізувати його з Flow.
 
-Now you're all set! We recommend to check out the following resources to learn more about Flow:
+Тепер у вас все налаштовано! Ми рекомендуємо ознайомитись з наступними ресурсами щоб дізнатися більше про Flow:
 
-* [Flow Documentation: Type Annotations](https://flow.org/en/docs/types/)
-* [Flow Documentation: Editors](https://flow.org/en/docs/editors/)
-* [Flow Documentation: React](https://flow.org/en/docs/react/)
-* [Linting in Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
+* [Документація Flow: анотації типів](https://flow.org/en/docs/types/)
+* [Документація Flow: редактори](https://flow.org/en/docs/editors/)
+* [Документація Flow: React](https://flow.org/en/docs/react/)
+* [Linting у Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
 
 ## TypeScript {#typescript}
 
-[TypeScript](https://www.typescriptlang.org/) is a programming language developed by Microsoft. It is a typed superset of JavaScript, and includes its own compiler. Being a typed language, TypeScript can catch errors and bugs at build time, long before your app goes live. You can learn more about using TypeScript with React [here](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
+[TypeScript](https://www.typescriptlang.org/) — це мова програмування розроблена Microsoft. Вона є типізованою надмножиною мови JavaScript, і включає власний компілятор. Статична типізація дозволяє мові TypeScript ловити помилки та дефекти під час збірки, набагато раніше ніж ваш додаток буде випущено. Ви можете дізнатися більше про використання TypeScript з React [тут](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
-To use TypeScript, you need to:
-* Add TypeScript as a dependency to your project
-* Configure the TypeScript compiler options
-* Use the right file extensions
-* Add definitions for libraries you use
+Для використання TypeScript вам потрібно:
+* Додати TypeScript як залежність до вашого проекту
+* Налаштувати опції TypeScript-компілятора
+* Використовувати правильні розширення файлів
+* Додати файли оголошень для бібліотек, якими ви користуєтесь
 
-Let's go over these in detail.
+Давайте пройдемо по списку детальніше.
 
-### Using TypeScript with Create React App {#using-typescript-with-create-react-app}
+### Використання TypeScript з Create React App {#using-typescript-with-create-react-app}
 
-Create React App supports TypeScript out of the box.
+Create React App сам по собі підтримує TypeScript.
 
-To create a **new project** with TypeScript support, run:
+Щоб створити **новий проект** з підтримкою TypeScript запустіть:
 
 ```bash
 npx create-react-app my-app --typescript
 ```
 
-You can also add it to an **existing Create React App project**, [as documented here](https://facebook.github.io/create-react-app/docs/adding-typescript).
+Ви також зможете додати його до **існуючого проекту Create React App** [як описано тут](https://facebook.github.io/create-react-app/docs/adding-typescript).
 
->Note:
+>Примітка:
 >
->If you use Create React App, you can **skip the rest of this page**. It describes the manual setup which doesn't apply to Create React App users.
+>Якщо ви користуєтесь Create React App, то ви можете **пропустити решту цієї сторінки**. Вона описує налаштування вручну, що не відноситься до користувачів Create React App.
 
 
-### Adding TypeScript to a Project {#adding-typescript-to-a-project}
-It all begins with running one command in your terminal.
+### Додавання TypeScript в проект {#adding-typescript-to-a-project}
+Все починається з запуску однієї команди в вашому терміналі.
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
 
 ```bash
 yarn add --dev typescript
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Якщо ви користуєтесь [npm](https://www.npmjs.com/):
 
 ```bash
 npm install --save-dev typescript
 ```
 
-Congrats! You've installed the latest version of TypeScript into your project. Installing TypeScript gives us access to the `tsc` command. Before configuration, let's add `tsc` to the "scripts" section in our `package.json`:
+Вітаємо! Ви встановили останню версію TypeScript у ваш проект. Встановлення TypeScript надає вам доступ до команди `tsc`. Давайте додамо `tsc` у відділення "scripts" вашого `package.json` перед його налаштуванням:
 
 ```js{4}
 {
@@ -215,27 +215,27 @@ Congrats! You've installed the latest version of TypeScript into your project. I
 }
 ```
 
-### Configuring the TypeScript Compiler {#configuring-the-typescript-compiler}
-The compiler is of no help to us until we tell it what to do. In TypeScript, these rules are defined in a special file called `tsconfig.json`. To generate this file:
+### Налаштування компілятора TypeScript {#configuring-the-typescript-compiler}
+Компілятор нам не допоможе поки ми не вкажемо що йому робити. В TypeScript ці правила задаються в спеціальному файлі під назвою `tsconfig.json`. Щоб згенерувати цей файл запустіть наступне:
 
-If you use [Yarn](https://yarnpkg.com/), run:
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
 
 ```bash
 yarn run tsc --init
 ```
 
-If you use [npm](https://www.npmjs.com/), run:
+Якщо ви користуєтесь [npm](https://www.npmjs.com/):
 
 ```bash
 npx tsc --init
 ```
 
-Looking at the now generated `tsconfig.json`, you can see that there are many options you can use to configure the compiler. For a detailed description of all the options, check [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
+Поглянувши на щойно створений файл `tsconfig.json` ви побачите, що існує багато опцій для налаштyвання компілятора. Детальний опис всіх опцій доступний за [цим посиланням](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
 
-Of the many options, we'll look at `rootDir` and `outDir`. In its true fashion, the compiler will take in typescript files and generate javascript files. However we don't want to get confused with our source files and the generated output.
+Ми розглянемо `rootDir` та `outDir` із багатьох опцій. По суті компілятор братиме файли TypeScript та генеруватиме файли JavaScript. Проте нам важливо не сплутати вихідні файли та згенерований результат.
 
-We'll address this in two steps:
-* Firstly, let's arrange our project structure like this. We'll place all our source code in the `src` directory.
+Ми вирішимо це у два етапи:
+* Спочатку організуємо структуру нашого проекту таким чином: ми розмістимо весь вихідний код в директорії `src`.
 
 ```
 ├── package.json
@@ -244,7 +244,7 @@ We'll address this in two steps:
 └── tsconfig.json
 ```
 
-* Next, we'll tell the compiler where our source code is and where the output should go.
+* Потім вкажимо компілятору де знаходиться наш вихідний код і куди повинен виводитись результат.
 
 ```js{6,7}
 // tsconfig.json
@@ -259,40 +259,40 @@ We'll address this in two steps:
 }
 ```
 
-Great! Now when we run our build script the compiler will output the generated javascript to the `build` folder. The [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) provides a `tsconfig.json` with a good set of rules to get you started.
+Чудово! Тепер при запуску скрипту збірки компілятор виведе згенеровані файли JavaScript в папку `build`. [TypeScript React Starter](https://github.com/Microsoft/TypeScript-React-Starter/blob/master/tsconfig.json) надає `tsconfig.json` з гарним набором правил для початку.
 
-Generally, you don't want to keep the generated javascript in your source control, so be sure to add the build folder to your `.gitignore`.
+Зазвичай згенерований JavaScript-код не варто зберігати в системі керування версіями, тому не забудьте додати папку `build` до вашого `.gitignore`.
 
-### File extensions {#file-extensions}
-In React, you most likely write your components in a `.js` file. In TypeScript we have 2 file extensions:
+### Розширення файлів {#file-extensions}
+При роботі з React ви, скоріше за все, створювали свої компоненти у файлах `.js`. В TypeScript ми маємо два різних файлових розширення:
 
-`.ts` is the default file extension while `.tsx` is a special extension used for files which contain `JSX`.
+`.ts`— це розширення файлів за замовчуванням, а `.tsx`— це спеціальне розширення для файлів, що містять `JSX`.
 
-### Running TypeScript {#running-typescript}
+### Запуск TypeScript {#running-typescript}
 
-If you followed the instructions above, you should be able to run TypeScript for the first time.
+Якщо ви слідували інструкціям вище, то ви повинні мати можливість вперше запустити TypeScript.
 
 ```bash
 yarn build
 ```
 
-If you use npm, run:
+Якщо ви користуєтесь npm то запустіть:
 
 ```bash
 npm run build
 ```
 
-If you see no output, it means that it completed successfully.
+Якщо ви не побачили ніяких повідомлень, то це означає, що компіляція завершилася успішно.
 
 
-### Type Definitions {#type-definitions}
-To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project. 
+### Оголошення типів {#type-definitions}
+Компілятор покладається на файли оголошень щоб показувати помилки та підказки з інших пакетів. Файл оголошень надає всю інформацію про типи в бібліотеці. Це дозволяє використовувати в нашому проекті бібліотеки JavaScript як ті, що доступні в npm. 
 
-There are two main ways to get declarations for a library:
+Існує два основних шляхи отримати оголошення для бібліотеки:
 
-__Bundled__ - The library bundles its own declaration file. This is great for us, since all we need to do is install the library, and we can use it right away. To check if a library has bundled types, look for an `index.d.ts` file in the project. Some libraries will have it specified in their `package.json` under the `typings` or `types` field.
+__Укомплектовані__ – це коли бібліотека включає свій власний файл оголошень. Це чудово для нас, оскільки все що нам потрібно зробити – це встановити бібліотеку і ми можемо одразу її використовувати. Щоб перевірити чи бібліотека укомплектована інформацією про типи погляньте чи в проекті є файл `index.d.ts`. Деякі бібліотеки вказують його в своїх `package.json` в полі `typings` або `types`.
 
-__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped is a huge repository of declarations for libraries that don't bundle a declaration file. The declarations are crowd-sourced and managed by Microsoft and open source contributors. React for example doesn't bundle its own declaration file. Instead we can get it from DefinitelyTyped. To do so enter this command in your terminal.
+__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ – це величезний репозиторій оголошень для бібліотек, що не включають власні файли оголошень. Ці оголошення створюються через краудсорсинг та контролюються Microsoft та учасниками відкритого програмного забезпечення. Наприклад, React не включає власний файл оголошень. Замість цього ми можем його отримати з DefinitelyTyped. Для цього введіть таку команду в вашому терміналі.
 
 ```bash
 # yarn
@@ -302,8 +302,8 @@ yarn add --dev @types/react
 npm i --save-dev @types/react
 ```
 
-__Local Declarations__
-Sometimes the package that you want to use doesn't bundle declarations nor is it available on DefinitelyTyped. In that case, we can have a local declaration file. To do this, create a `declarations.d.ts` file in the root of your source directory. A simple declaration could look like this:
+__Локальні оголошення__
+Інколи пакет, який би ви хотіли використовувати не включає оголошень і їх також немає в DefinitelyTyped. В цьому випадку ми можемо завести локальний файл оголошень. Для цього створіть файл `declarations.d.ts` в корені вашої директорії з вихідним кодом. Просте оголошення може виглядати наступним чином:
 
 ```typescript
 declare module 'querystring' {
@@ -312,24 +312,24 @@ declare module 'querystring' {
 }
 ```
 
-You are now ready to code! We recommend to check out the following resources to learn more about TypeScript:
+Тепер ви готові до кодингу! Ми рекомендуємо ознайомитись з наступними ресурсами щоб дізнатися більше про TypeScript:
 
-* [TypeScript Documentation: Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
-* [TypeScript Documentation: Migrating from Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
-* [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+* [Документація TypeScript: базові типи](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+* [Документація TypeScript: міграція з JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [Документація TypeScript: React та Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
 ## Reason {#reason}
 
-[Reason](https://reasonml.github.io/) is not a new language; it's a new syntax and toolchain powered by the battle-tested language, [OCaml](https://ocaml.org/). Reason gives OCaml a familiar syntax geared toward JavaScript programmers, and caters to the existing NPM/Yarn workflow folks already know.
+[Reason](https://reasonml.github.io/uk/) – це не нова мова а новий синтаксис та інструментарій, працюючі на випробуваній в боях мові [OCaml](https://ocaml.org/). Reason надає OCaml знайомий синтаксис пристосований для програмістів JavaScript та використовує знайомий всім робочий процес NPM/Yarn.
 
-Reason is developed at Facebook, and is used in some of its products like Messenger. It is still somewhat experimental but it has [dedicated React bindings](https://reasonml.github.io/reason-react/) maintained by Facebook and a [vibrant community](https://reasonml.github.io/docs/en/community.html).
+Reason розробляється компанією Facebook і використовується в деяких її продуктах, таких як Messenger. Він поки є дещо експериментальною технологією, але для нього існують [спеціалізовані прив’язки з React](https://reasonml.github.io/reason-react/ru/), що підтримуються Facebook та [активна спільнота](https://reasonml.github.io/docs/uk/community.html).
 
 ## Kotlin {#kotlin}
 
-[Kotlin](https://kotlinlang.org/) is a statically typed language developed by JetBrains. Its target platforms include the JVM, Android, LLVM, and [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
+[Kotlin](https://kotlinlang.org/) – це статично типізована мова розроблена JetBrains. Її цільові платформи включають JVM, Android, LLVM, та [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
 
-JetBrains develops and maintains several tools specifically for the React community: [React bindings](https://github.com/JetBrains/kotlin-wrappers) as well as [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). The latter helps you start building React apps with Kotlin with no build configuration.
+JetBrains розробляє та підтримує декілька інструментів спеціально для спільноти користувачів React: [React-прив’язки](https://github.com/JetBrains/kotlin-wrappers) а також [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). Останній допомагає почати будувати React-додатки з Kotlin без потреби в налаштуванні збірки.
 
-## Other Languages {#other-languages}
+## Інші мови {#other-languages}
 
-Note there are other statically typed languages that compile to JavaScript and are thus React compatible. For example, [F#/Fable](https://fable.io/) with [elmish-react](https://elmish.github.io/react). Check out their respective sites for more information, and feel free to add more statically typed languages that work with React to this page!
+Зверніть увагу, що існують інші статично типізовані мови які компілюються в JavaScript і таким чином сумісні з React. Наприклад, [F#/Fable](https://fable.io/) з [elmish-react](https://elmish.github.io/react). Ознайомтесь з їх відповідними сайтами щоб дізнатися більше інформації, також не вагаючись додавайте до цієї сторінки інші статично типізовані мови, що працюють з React!
