@@ -24,13 +24,13 @@ next: refs-and-the-dom.html
 
 Спочатку в терміналі перейдіть у директорію вашого проекту. Вам потрібно буде запустити наступну команду:
 
-Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/), то запустіть:
 
 ```bash
 yarn add --dev flow-bin
 ```
 
-Якщо ви користуєтесь [npm](https://www.npmjs.com/):
+Якщо ви користуєтесь [npm](https://www.npmjs.com/), то запустіть:
 
 ```bash
 npm install --save-dev flow-bin
@@ -53,13 +53,13 @@ npm install --save-dev flow-bin
 
 Нарешті виконайте одну з наступних команд:
 
-Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/), то запустіть:
 
 ```bash
 yarn run flow init
 ```
 
-Якщо ви користуєтесь [npm](https://www.npmjs.com/):
+Якщо ви користуєтесь [npm](https://www.npmjs.com/), то запустіть:
 
 ```bash
 npm run flow init
@@ -190,13 +190,13 @@ npx create-react-app my-app --typescript
 ### Додавання TypeScript в проект {#adding-typescript-to-a-project}
 Все починається з запуску однієї команди в вашому терміналі.
 
-Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/), то запустіть:
 
 ```bash
 yarn add --dev typescript
 ```
 
-Якщо ви користуєтесь [npm](https://www.npmjs.com/):
+Якщо ви користуєтесь [npm](https://www.npmjs.com/), то запустіть:
 
 ```bash
 npm install --save-dev typescript
@@ -218,13 +218,13 @@ npm install --save-dev typescript
 ### Налаштування компілятора TypeScript {#configuring-the-typescript-compiler}
 Компілятор нам не допоможе поки ми не вкажемо що йому робити. В TypeScript ці правила задаються в спеціальному файлі під назвою `tsconfig.json`. Щоб згенерувати цей файл запустіть наступне:
 
-Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/):
+Якщо ви користуєтесь [Yarn](https://yarnpkg.com/uk/), то запустіть:
 
 ```bash
 yarn run tsc --init
 ```
 
-Якщо ви користуєтесь [npm](https://www.npmjs.com/):
+Якщо ви користуєтесь [npm](https://www.npmjs.com/), то запустіть:
 
 ```bash
 npx tsc --init
