@@ -83,7 +83,11 @@ class Foo extends Component {
 
 >**Примітка:**
 >
+<<<<<<< HEAD
 >Використання стрілкової функції створює нову функцію при кожному рендері компонента, що може вплинути на продуктивність (див. нижче).
+=======
+>Using an arrow function in render creates a new function each time the component renders, which may break optimizations based on strict identity comparison.
+>>>>>>> d2d2ee420de13803fa3f02dca55e2020d42a411f
 
 ### Чи можна використовувати стрілкові функції у методі render()? {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
