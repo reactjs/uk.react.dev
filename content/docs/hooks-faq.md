@@ -844,9 +844,15 @@ function Image(props) {
     }, [a, b]);
     ```
 
+<<<<<<< HEAD
 * Використання [хука `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) полегшує контроль оновлення індивідуальних потомків, зменшуючи потребу в чистих компонентах.
 
 * Нарешті, хук `useReducer` зменшує потребу глибокої передачі функцій зворотнього виклику, як пояснюється нижче.
+=======
+* The [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) Hook makes it easier to control when individual children update, reducing the need for pure components.
+
+* Finally, the [`useReducer`](/docs/hooks-reference.html#usereducer) Hook reduces the need to pass callbacks deeply, as explained below.
+>>>>>>> 7b217c701075b1af7ddabd6a237ed847df98853c
 
 ### Як уникнути передачі функцій зворотнього виклику вниз? {#how-to-avoid-passing-callbacks-down}
 

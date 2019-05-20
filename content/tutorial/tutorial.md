@@ -523,7 +523,11 @@ class Board extends React.Component {
 
 ### Чому незмінність важлива? {#why-immutability-is-important}
 
+<<<<<<< HEAD
 У попередньому прикладі коду ми запропонували використати метод `.slice()` для створення копії масиву `squares`, щоб у подальшому модифікувати цю копію замість оригінального масиву. Тепер ми обговоримо, що таке незмінність, і чому важливо її вивчати.
+=======
+In the previous code example, we suggested that you use the `.slice()` method to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> 7b217c701075b1af7ddabd6a237ed847df98853c
 
 Загалом існує два загальних підходи до зміни данних. Перший підхід — *змінити* дані напряму, встановлюючи нові значення. Другий підхід — замінити дані копією з уже включеними змінами.
 
