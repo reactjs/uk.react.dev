@@ -694,11 +694,7 @@ function Counter() {
 
 У більш складних випадках (наприклад, коли стан залежить від іншого стану), спробуйте винести логіку оновлення стану з ефекта, використавши [хук `useReducer`](/docs/hooks-reference.html#usereducer). [Ця стаття](https://adamrackis.dev/state-and-use-reducer/) прпопонує приклад того, як це можна зробити. **Ідентичність функції `dispatch`, хука `useReducer`, завжди незмінна** — навіть якщо функція-редюсер оголошена всередині компонента і читає його пропси.
 
-<<<<<<< HEAD
 У крайньому випадку, якщо ви хочете щось схоже на `this` у класі, ви можете [використати реф](/docs/hooks-faq.html#is-there-something-like-instance-variables) для збереження змінної, яку ви можете зчитувати і перезаписувати. Наприклад:
-=======
-As a last resort, if you want something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
->>>>>>> 1f27bba9484f26ec6dab383b09730ad7ed59f732
 
 ```js{2-6,10-11,16}
 function Example(props) {
