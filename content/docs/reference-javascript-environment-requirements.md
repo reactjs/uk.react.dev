@@ -11,8 +11,8 @@ React 16 залежить від типів колекцій [Map](https://devel
 JavaScript середовище з поліфілом для React 16, що використовує core-js для підтримки старих браузерів може виглядати так:
 
 ```js
-import 'core-js/es6/map';
-import 'core-js/es6/set';
+import 'core-js/es/map';
+import 'core-js/es/set';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
