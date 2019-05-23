@@ -1,14 +1,14 @@
 ---
 id: uncontrolled-components
-title: Uncontrolled Components
+title: Неконтрольовані компоненти
 permalink: docs/uncontrolled-components.html
 ---
 
-In most cases, we recommend using [controlled components](/docs/forms.html) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
+У більшості ситуацій, ми рекомендуємо використовувати [контрольовані компоненти](/docs/forms.html) для реалізації форм. У контрольованому компоненті, дані форми котролюються React-компонентом. Альтернативним підходом є використання неконтрольованих компонентів, де дані форми контрольюються самим DOM.
 
-To write an uncontrolled component, instead of writing an event handler for every state update, you can [use a ref](/docs/refs-and-the-dom.html) to get form values from the DOM.
+Замість того, щоб писати обробник подій для кожного оновлення стану, ви можете використати некотрольований компонент та отримувати значення з DOM через [реф](/docs/refs-and-the-dom.html).
 
-For example, this code accepts a single name in an uncontrolled component:
+Наприклад, код нижче отримує ім'я з неконтрольованого компонента:
 
 ```javascript{5,9,18}
 class NameForm extends React.Component {
@@ -37,15 +37,15 @@ class NameForm extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
-Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
+Оскільки неконтрольовані компоненти спираються на DOM як на джерело даних, часом використання неконтрольованих компонентів дозволяє простіше інтегрувати React з кодом, що пов'язаний з React. Даний підхід може потребувати менше коду, якщо ви хочете отримати швидкий результати за рахунок "брудного" коду. Тому зазвичай ми наполягаємо на використані контрольованих компонентів.
 
-If it's still not clear which type of component you should use for a particular situation, you might find [this article on controlled versus uncontrolled inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) to be helpful.
+Якщо досі не зрозуміло, який тип компонентів використовувати в тій чи іншій ситуацій, можливо ви знайдете [статтю про порівняння контрольованих та неконтрольованих полів введення](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/) корисною.
 
-### Default Values {#default-values}
+### Значення за замовчуванням {#default-values}
 
-In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`.
+При рендеренгу значення атрибуту `value` на елементі форми буде переписувати значення, що визначено в DOM. При використанні неконтрольованих компонентів часом необхідно, щоб React встановив початкове значення, але надалі не контролював оновлення значення. У даному випадку необхідно встановити атрибут `defaultValue` замість `value`.
 
 ```javascript{7}
 render() {
@@ -64,19 +64,19 @@ render() {
 }
 ```
 
-Likewise, `<input type="checkbox">` and `<input type="radio">` support `defaultChecked`, and `<select>` and `<textarea>` supports `defaultValue`.
+Аналогічно, `<input type="checkbox">` та `<input type="radio">` підтримують `defaultChecked`, `<select>` та `<textarea>` — `defaultValue`.
 
-## The file input Tag {#the-file-input-tag}
+## Тег поля завантаження файла {#the-file-input-tag}
 
-In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+HTML-тег `<input type="file">` дає можливість користувачу вибрати один чи декілька файлів зі свого дискового сховища, щоб завантажити їх на сервер, або керувати ними за допомогою JavaScript через [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
 
 ```html
 <input type="file" />
 ```
 
-In React, an `<input type="file" />` is always an uncontrolled component because its value can only be set by a user, and not programmatically.
+В React `<input type="file" />` завжди є неконтрольованим компонентом тому, що його значення може бути встановлено тільки користувачем, а не програмним шляхом.
 
-You should use the File API to interact with the files. The following example shows how to create a [ref to the DOM node](/docs/refs-and-the-dom.html) to access file(s) in a submit handler:
+Для взаємодії з файлами ви маєте використувати File API. Наступний приклад демонструє як додати [реф до DOM-вузла](/docs/refs-and-the-dom.html), щоб отримати доступ до файла під час обробки відправлення форми:
 
 `embed:uncontrolled-components/input-type-file.js`
 
