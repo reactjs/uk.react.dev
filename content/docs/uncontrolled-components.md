@@ -19,7 +19,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.current.value);
+    alert("Ім'я, що було надіслано: " + this.input.current.value);
     event.preventDefault();
   }
 
@@ -27,10 +27,10 @@ class NameForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
+          Ім'я:
           <input type="text" ref={this.input} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Надіслати" />
       </form>
     );
   }
@@ -52,13 +52,13 @@ render() {
   return (
     <form onSubmit={this.handleSubmit}>
       <label>
-        Name:
+        Ім'я:
         <input
-          defaultValue="Bob"
+          defaultValue="Іван"
           type="text"
           ref={this.input} />
       </label>
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Надіслати" />
     </form>
   );
 }
@@ -81,4 +81,3 @@ HTML-тег `<input type="file">` дає можливість користува
 `embed:uncontrolled-components/input-type-file.js`
 
 [](codepen://uncontrolled-components/input-type-file)
-
