@@ -81,3 +81,4 @@ HTML-тег `<input type="file">` дає можливість користува
 `embed:uncontrolled-components/input-type-file.js`
 
 [](codepen://uncontrolled-components/input-type-file)
+
