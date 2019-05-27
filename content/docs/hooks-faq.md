@@ -656,7 +656,11 @@ function ProductDetails({ fetchProduct })
 
 ### Що я можу зробити, якщо залежності мого ефекту змінюються надто часто? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
+<<<<<<< HEAD
 Часом ваш ефект може залежати від стану, що змінюється надто часто. У вас може виникнути бажання пропустити цей стан із списку залежностей, але зазвичай це приводить до помилок:
+=======
+Sometimes, your effect may be using state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
+>>>>>>> 23b242edc4c7eeee5798953ba205e36cc71016b8
 
 ```js{6,9}
 function Counter() {
