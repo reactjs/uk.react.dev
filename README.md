@@ -49,7 +49,7 @@
 
 ### Публікація змін
 
-1. `git add -A && git commit -m "My message"` (замініть `My message` на назву коміту, наприклад `Fixed header logo on Android`), для збереження ваших змін
+1. `git add -A && git commit -m "My message"` (замініть `My message` на назву коміту, наприклад `Fix header logo on Android`), для збереження ваших змін
 1. `git push my-fork-name the-name-of-my-branch`
 1. Перейдіть на [сторінку репозиторію uk.reactjs.org](https://github.com/reactjs/uk.reactjs.org) і ви повинні побачити нещодавно оновлені гілки.
 1. Дотримуйтесь інструкцій на GitHub.
