@@ -329,7 +329,7 @@ ReactDOM.render(
 this.state.comment = 'Привіт';
 ```
 
-Instead, use `setState()`:
+Натомість використовуйте `setState()`:
 
 ```js
 // Correct
