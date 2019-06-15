@@ -46,7 +46,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Ім'я, що було надіслано: ' + this.state.value);
+    alert('Ім\'я, що було надіслано: ' + this.state.value);
     event.preventDefault();
   }
 
