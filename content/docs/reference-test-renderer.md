@@ -38,11 +38,7 @@ console.log(testRenderer.toJSON());
 //   children: [ 'Facebook' ] }
 ```
 
-<<<<<<< HEAD
-Ви можете використовувати функцію тестування знімків у Jest, щоб автоматично зберегти копію JSON-дерева в файл і перевірити в тестах, що вона не змінилася: [детальніше про це](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
-=======
-You can use Jest's snapshot testing feature to automatically save a copy of the JSON tree to a file and check in your tests that it hasn't changed: [Learn more about it](https://jestjs.io/docs/en/snapshot-testing).
->>>>>>> 899411236d5b1520ab8b8e7fad7d48c681abc69b
+Ви можете використовувати функцію тестування знімків у Jest, щоб автоматично зберегти копію JSON-дерева в файл і перевірити в тестах, що вона не змінилася: [детальніше про це](https://jestjs.io/docs/en/snapshot-testing).
 
 Ви також можете обійти вихідні дані, щоб переконатися у наявності конкретних вузлів.
 
