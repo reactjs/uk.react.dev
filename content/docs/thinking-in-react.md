@@ -35,13 +35,23 @@ prev: composition-vs-inheritance.html
 
 Перше, що треба зробити – це уявити кордони кожного компонента (і підкомпонента) в макеті та дати їм імена. Якщо ви працюєте з дизайнерами, цілком можливо, що вони вже якось називають компоненти – вам варто поспілкуватися! Наприклад, шари Photoshop часто підказують імена для React-компонентів.
 
+<<<<<<< HEAD
 Але як вибрати, що є компонентом, а що ні? Це схоже на те, як ви вирішуєте, чи треба оголосити функцію або об'єкт. Можна застосувати [принцип єдиного обов'язку](https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF_%D1%94%D0%B4%D0%B8%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BE%D0%B1%D0%BE%D0%B2'%D1%8F%D0%B7%D0%BA%D1%83): кожний компонент в ідеалі повинен займатися якимось одним завданням. Якщо функціонал компонента збільшується з плином часу, його слід розбити на більш дрібні підкомпоненти.
 
 Багато інтерфейсів показують модель даних JSON. Тому добре побудована модель, як правило, вже відображає призначений для користувача інтерфейс (а значить, і структуру компонентів). Інтерфейс і моделі даних часто мають схожу інформаційну архітектуру, тому розділити інтерфейс на частини не складає труднощів. Просто розбийте його на компоненти, кожен з яких відображає частину моделі даних.
+=======
+But how do you know what should be its own component? Use the same techniques for deciding if you should create a new function or object. One such technique is the [single responsibility principle](https://en.wikipedia.org/wiki/Single_responsibility_principle), that is, a component should ideally only do one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
+
+Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*, which means the work of separating your UI into components is often trivial. Break it up into components that represent exactly one piece of your data model.
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 ![Діаграма компонентів](../images/blog/thinking-in-react-components.png)
 
+<<<<<<< HEAD
 Ви побачите, що ми маємо п'ять компонентів у нашому простому додатку. Дані, які представляє кожен компонент, виділено курсивом.
+=======
+You'll see here that we have five components in our app. We've italicized the data each component represents.
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
   1. **`FilterableProductTable` (помаранчевий):** містить весь приклад
   2. **`SearchBar` (синій):** приймає всі *вхідні дані користувача*
@@ -51,7 +61,11 @@ prev: composition-vs-inheritance.html
 
 Зверніть увагу, що заголовок таблиці всередині `ProductTable` не є окремим компонентом. Відокремлювати його чи ні — це питання особистих уподобань. У цьому прикладі ми залишили його як частину `ProductTable`, оскільки він є малою частиною загального *збору даних*. Проте, якщо в майбутньому заголовок поповниться новими функціями (наприклад, можливістю сортувати товар), є сенс витягти його в самостійний компонент `ProductTableHeader`.
 
+<<<<<<< HEAD
 Тепер, коли ми визначили компоненти в нашому макеті, давайте розташуємо їх в порядку підпорядкованості. Це просто. Компоненти, які є частиною інших компонентів, в ієрархії відображаються як дочірні:
+=======
+Now that we've identified the components in our mock, let's arrange them into a hierarchy. Components that appear within another component in the mock should appear as a child in the hierarchy:
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
   * `FilterableProductTable`
     * `SearchBar`
@@ -70,9 +84,15 @@ prev: composition-vs-inheritance.html
 
 Написання коду можна почати як зверху вниз (з великого `FilterableProductTable`), так і знизу до верху (з маленького `ProductRow`). Простіші додатки зручніше починати з компонентів, що знаходяться вище за ієрархією. У більш складних додатках зручніше в першу чергу створювати і тестувати підкомпоненти.
 
+<<<<<<< HEAD
 Наприкінці цього кроку ви матимете бібліотеку компонентів, які можуть бути використані повторно. Так як це статична версія, то компоненти матимуть тільки методи `render()`. Компонент вище за ієрархією (`FilterableProductTable`) буде передавати модель даних через пропси. Якщо ви внесете зміни в базову модель даних і знову викличите `ReactDOM.render()`, то побачите зміни в інтерфейсі. Немає нічого складного у відостеженні змін та оновленні інтерфейсу. Завдяки **односторонньому потоку даних** (або *односторонній прив'язці*) код працює швидко, але залишається зрозумілим.
 
 Якщо у вас залишилися запитання щодо виконання цього кроку, зверніться до [документації React](/docs/).
+=======
+At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+
+Refer to the [React docs](/docs/) if you need help executing this step.
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 ### Невеликий відступ: як пропси відрізняються від стану {#a-brief-interlude-props-vs-state}
 
@@ -80,9 +100,15 @@ prev: composition-vs-inheritance.html
 
 ## Крок 3: Визначимо мінімальне (але повноцінне) відображення стану інтерфейсу {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
+<<<<<<< HEAD
 Щоб зробити інтерфейс користувача інтерактивним, потрібно, щоб модель даних могла змінюватися з часом. У React це можливо за допомогою **стану**.
 
 Щоб правильно побудувати додаток, спочатку потрібно подумати про мінімальний набір змінних станів, які потрібні вашому додатку. Головне тут дотримуватися принципу розробки [DRY: *Don't Repeat Yourself* (укр. не повторюй себе)](https://uk.wikipedia.org/wiki/Don%27t_repeat_yourself). Визначте мінімальну кількість необхідного стану, який потрібен вашому додатку, все інше обчислюйте за необхідності. Наприклад, якщо ви створюєте список справ, тримайте масив пунктів списку під рукою – але не варто зберігати окремий стан для кількості справ у списку. Якщо треба відобразити кількість елементів, просто використовуйте довжину існуючого масиву.
+=======
+To make your UI interactive, you need to be able to trigger changes to your underlying data model. React achieves this with **state**.
+
+To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, take the length of the TODO items array.
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 Давайте перелічимо всі дані у нашому додатку. Ми маємо:
 
@@ -91,7 +117,11 @@ prev: composition-vs-inheritance.html
   * Значення прапорця
   * Відфільтрований список товарів
 
+<<<<<<< HEAD
 Давайте розглянемо кожну частину даних і визначимо, яка з них є станом. Задайте собі наступні три питання:
+=======
+Let's go through each one and figure out which one is state. Ask three questions about each piece of data:
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
   1. Передається вона від батька через пропси? Якщо так, тоді, напевно, це не стан.
   2. Залишається вона незмінною з часом? Якщо так, тоді, напевно, це не стан.
@@ -114,10 +144,17 @@ prev: composition-vs-inheritance.html
 
 Для кожної частини стану в додатку:
 
+<<<<<<< HEAD
   * Визначте компоненти, які рендерять щось на основі цього стану.
   * Знайдіть спільний батьківський компонент (компонент, розташований над іншими компонентами, яким потрібен цей стан).
   * Або спільний батьківський компонент, або будь-який компонент, що стоїть вище за ієрархією, повинен містити стан.
   * Якщо вам не вдається знайти відповідний компонент, створіть один виключно для стану та розмістить його вище за ієрархією над загальним спільним батьківським компонентом.
+=======
+  * Identify every component that renders something based on that state.
+  * Find a common owner component (a single component above all the components that need the state in the hierarchy).
+  * Either the common owner or another component higher up in the hierarchy should own the state.
+  * If you can't find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common owner component.
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 Давайте застосуємо цю стратегію на прикладі нашого додатку:
 
@@ -135,14 +172,24 @@ prev: composition-vs-inheritance.html
 
 Поки що наш додаток рендериться в залежності від пропсів і стану, що передаються вниз по ієрархії. Тепер ми забезпечимо потік даних у зворотний бік: наше завдання зробити так, щоб компоненти форми у самому низу ієрархії оновлювали стан у `FilterableProductTable`.
 
+<<<<<<< HEAD
 Потік даних у React - односторонній. Так простіше зрозуміти, як працює додаток, але нам потрібно трохи більше коду, ніж в традиційній двосторонній прив'язці даних.
+=======
+React makes this data flow explicit to help you understand how your program works, but it does require a little more typing than traditional two-way data binding.
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
 
 Якщо ви спробуєте ввести текст у поле пошуку або встановити прапорець в даній версії прикладу, то побачите, що React ігнорує будь-яке введення. Це навмисне, так як раніше ми прирівняли значення пропа `value` в `input` до `state` в `FilterableProductTable`.
 
 Давайте поміркуємо, як ми хочемо змінити поведінку. Нам потрібно, щоб при змінах пошукової форми змінювався стан введення. Так як компоненти повинні оновлювати тільки той стан, що належить їм, `FilterableProductTable` передасть функцію зворотнього виклику у `SearchBar`. У свою чергу, `SearchBar` викликатиме цю функцію зворотнього виклику кожен раз, коли треба оновити стан. Щоб отримувати повідомлення про зміни елементів форми, ми можемо використовувати подію `onChange`. Функції зворотнього виклику, передані з `FilterableProductTable` викличуть `setState()`, і додаток оновиться.
 
+<<<<<<< HEAD
 Бодай звучить складно, але це займає всього кілька рядків коду. А головне, потік даних через додаток залишається прямим і зрозумілим.
 
 ## От і все {#and-thats-it}
 
 Сподіваємося, що цей приклад допоможе вам отримати краще уявлення про те, як підійти до створення компонентів і додатків у React. Хоча цей процес і використовує трохи більше коду, пам'ятайте: код читають частіше, ніж пишуть. А такий модульний та прямий код, як в нашому додатку, читається дуже легко. Коли ви почнете створювати великі бібліотеки компонентів, ви зможете по-справжньому оцінити прямолінійність і зв'язаність React, а повторно використовувані компоненти зроблять ваш код набагато коротшим. :)
+=======
+## And That's It {#and-thats-it}
+
+Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+>>>>>>> 92ad9c2f7abb36a306f563fe48b7f52649929608
