@@ -37,7 +37,11 @@ prev: composition-vs-inheritance.html
 
 Але як вибрати, що є компонентом, а що ні? Це схоже на те, як ви вирішуєте, чи треба оголосити функцію або об'єкт. Можна застосувати [принцип єдиного обов'язку](https://uk.wikipedia.org/wiki/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF_%D1%94%D0%B4%D0%B8%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BE%D0%B1%D0%BE%D0%B2'%D1%8F%D0%B7%D0%BA%D1%83): кожний компонент в ідеалі повинен займатися якимось одним завданням. Якщо функціонал компонента збільшується з плином часу, його слід розбити на більш дрібні підкомпоненти.
 
+<<<<<<< HEAD
 Багато інтерфейсів показують модель даних JSON. Тому добре побудована модель, як правило, вже відображає призначений для користувача інтерфейс (а значить, і структуру компонентів). Інтерфейс і моделі даних часто мають схожу інформаційну архітектуру, тому розділити інтерфейс на частини не складає труднощів. Розбийте інтерфейс користувача на компоненти, кожен з яких відображає частину моделі даних.
+=======
+Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
+>>>>>>> cb5a61cdbfa5e72646cfb954056c6a4fde490a8c
 
 ![Діаграма компонентів](../images/blog/thinking-in-react-components.png)
 
