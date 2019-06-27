@@ -610,7 +610,7 @@ function ProductPage({ productId }) {
 
 Крім того, це дозволяє вам обробляти невпорядковані відповіді, використавши локальну змінну всередині ефекту:
 
-```js{2,6,8}
+```js{2,6,10}
   useEffect(() => {
     let ignore = false;
     async function fetchProduct() {
@@ -618,6 +618,8 @@ function ProductPage({ productId }) {
       const json = await response.json();
       if (!ignore) setProduct(json);
     }
+    
+    fetchProduct();
     return () => { ignore = true };
   }, [productId]);
 ```
