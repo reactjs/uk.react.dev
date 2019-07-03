@@ -83,6 +83,12 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
+  
+  // An object with warnings on extra properties
+  optionalObjectWithStrictShape: PropTypes.exact({
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  }),   
 
   // Ви можете додати `isRequired` після будь-якого з наведених вище типів.
   // В цьому випадку буде показано попередження, якщо проп не надано.

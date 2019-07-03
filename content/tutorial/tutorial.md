@@ -16,7 +16,11 @@ redirect_from:
 
 ## Перед початком роботи {#before-we-start-the-tutorial}
 
+<<<<<<< HEAD
 У цьому посібнику ми працюватимемо над створенням маленької гри. **Вам це може здатися непотрібним, оскільки ви не плануєте створювати ігри, але ми рекомендуємо спробувати.** Методи, які ви вивчите у даному посібнику, є основоположними для створення будь-яких React-додатків, і освоєння цих методів допоможе вам глибше зрозуміти React.
+=======
+We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+>>>>>>> ed9d73105a93239f94d84c619e84ae8adec43483
 
 >Порада
 >
