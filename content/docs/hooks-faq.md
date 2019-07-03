@@ -675,13 +675,9 @@ function Counter() {
 }
 ```
 
-<<<<<<< HEAD
-Вказання `[count]` у якості списка залежностей виправить помилку, але спричинить скидання інтервалу на кожному оновленні. Така поведінка може бути небажаною. Щоб виправити це, ми можемо використати [функціональну форму оновлення `setState`](/docs/hooks-reference.html#functional-updates). Вона дозволить нам вказати *як* стан має змінитись, при цьому не посилаючись на *поточний* стан:
-=======
-The empty set of dependencies, `[]`, means that the effect will only run once when the component mounts, and not on every re-render. The problem is that inside the `setInterval` callback, the value of `count` does not change, because we've created a closure with the value of `count` set to `0` as it was when the effect callback ran. Every second, this callback then calls `setCount(0 + 1)`, so the count never goes above 1.
+Порожній набір залежностей `[]` означає, що ефект буде виконуватися тільки один раз коли компонент монтується, а не на кожну повторну візуалізацію. Проблема полягає в тому, що всередині функції зворотнього виклику `setInterval`, значення` count` не змінюється, тому що ми створили замикання зі значенням `count`, встановленим на` 0`, як це було при запуску ефекту callback. Кожну секунду ця функція зворотнього виклику потім викликає `setCount (0 + 1)`, тому кількість ніколи не перевищує 1.
 
-Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
->>>>>>> ed9d73105a93239f94d84c619e84ae8adec43483
+Вказання `[count]` у якості списка залежностей виправить помилку, але спричинить скидання інтервалу на кожному оновленні. Фактично, кожен `setInterval` отримав би шанс бути виконаним перед очищенням (подібно до `setTimout`.) Така поведінка може бути небажаною. Щоб виправити це, ми можемо використати [функціональну форму оновлення `setState`](/docs/hooks-reference.html#functional-updates). Вона дозволить нам вказати *як* стан має змінитись, при цьому не посилаючись на *поточний* стан:
 
 ```js{6,9}
 function Counter() {
@@ -700,13 +696,9 @@ function Counter() {
 
 (Ідентичність функції `setCount` гарантована, а тому її можна безпечно пропустити.)
 
-<<<<<<< HEAD
-У більш складних випадках (наприклад, коли стан залежить від іншого стану), спробуйте винести логіку оновлення стану з ефекта, використавши [хук `useReducer`](/docs/hooks-reference.html#usereducer). [Ця стаття](https://adamrackis.dev/state-and-use-reducer/) прпопонує приклад того, як це можна зробити. **Ідентичність функції `dispatch`, хука `useReducer`, завжди незмінна** — навіть якщо функція-редюсер оголошена всередині компонента і читає його пропси.
-=======
-Now, the `setInterval` callback executes once a second, but each time the inner call to `setCount` can use an up-to-date value for `count` (called `c` in the callback here.)
+Тепер функція зворотнього виклику `setInterval` виконується раз на секунду, але кожен раз, коли внутрішній виклик` setCount` може використовувати оновлене значення для `count` (що називається `c` у зворотному виклику).
 
-In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is always stable** — even if the reducer function is declared inside the component and reads its props.
->>>>>>> ed9d73105a93239f94d84c619e84ae8adec43483
+У більш складних випадках (наприклад, коли стан залежить від іншого стану), спробуйте винести логіку оновлення стану з ефекта, використавши [хук `useReducer`](/docs/hooks-reference.html#usereducer). [Ця стаття](https://adamrackis.dev/state-and-use-reducer/) пропопонує приклад того, як це можна зробити. **Ідентичність функції `dispatch`, хука `useReducer`, завжди незмінна** — навіть якщо функція-редюсер оголошена всередині компонента і читає його пропси.
 
 У крайньому випадку, якщо ви хочете щось схоже на `this` у класі, ви можете [використати реф](/docs/hooks-faq.html#is-there-something-like-instance-variables) для збереження змінної, яку ви можете зчитувати і перезаписувати. Наприклад:
 

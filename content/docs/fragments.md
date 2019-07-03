@@ -18,11 +18,7 @@ render() {
 }
 ```
 
-<<<<<<< HEAD
-Також існує [скорочений запис](#short-syntax), проте ще не всі популярні інструменти підтримують його.
-=======
-There is also a new [short syntax](#short-syntax) for declaring them.
->>>>>>> ed9d73105a93239f94d84c619e84ae8adec43483
+Також існує [скорочений запис](#short-syntax).
 
 ## Мотивація {#motivation}
 
