@@ -51,7 +51,7 @@ npm run build
 
 ### Brunch {#brunch}
 
-Для найефективнішої продакшн-збірки з використанням Brunch, встановіть плагін [`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch):
+Для найефективнішої продакшн-збірки з використанням Brunch, встановіть плагін [`terser-brunch`](https://github.com/brunch/terser-brunch):
 
 ```
 # Якщо ви користуєтесь npm
@@ -75,17 +75,17 @@ brunch build -p
 
 ```
 # Якщо ви користуєтесь npm
-npm install --save-dev envify uglify-js uglifyify
+npm install --save-dev envify terser uglifyify
 
 # Якщо ви користуєтесь Yarn
-yarn add --dev envify uglify-js uglifyify
+yarn add --dev envify terser uglifyify
 ```
 
 Щоб створити продакшн-збірку, впевніться, що ви додали наступні перетворення **(у представленому порядку)**:
 
 * Плагін [`envify`](https://github.com/hughsk/envify) гарантує правильність встановленого середовища для збірки. Зробіть його глобальним (`-g`).
 * Плагін [`uglifyify`](https://github.com/hughsk/uglifyify) видаляє необхідні для розробки імпорти. Зробіть його глобальним також (`-g`).
-* Нарешті, отримана збірка передається до [`uglify-js`](https://github.com/mishoo/UglifyJS2) для мініфікації ([прочитайте навіщо](https://github.com/hughsk/uglifyify#motivationusage)).
+* Нарешті, отримана збірка передається до [`terser`](https://github.com/terser-js/terser) для мініфікації ([прочитайте навіщо](https://github.com/hughsk/uglifyify#motivationusage)).
 
 Наприклад:
 
@@ -93,13 +93,8 @@ yarn add --dev envify uglify-js uglifyify
 browserify ./index.js \
   -g [ envify --NODE_ENV production ] \
   -g uglifyify \
-  | uglifyjs --compress --mangle > ./bundle.js
+  | terser --compress --mangle > ./bundle.js
 ```
-
->**Примітка:**
->
->Пакунок називається `uglify-js`, але виконуваний файл, котрий він надає, зветься `uglifyjs`.<br>
->Це не одрук.
 
 Пам'ятайте, що це потрібно робити лише для продакшн-збірок. Ви не повинні використовувати ці плагіни під час розробки, тому що це приховає корисні попередження від React та сповільнить процес збірки.
 
@@ -107,19 +102,19 @@ browserify ./index.js \
 
 Для найефективнішої продакшн-збірки з використанням Rollup, встановіть декілька плагінів:
 
-```
+```bash
 # Якщо ви користуєтесь npm
-npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
+npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 
 # Якщо ви користуєтесь Yarn
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
+yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 ```
 
 Щоб створити продакшн-збірку, впевніться, що ви додали наступні плагіни **(у представленому порядку)**:
 
 * Плагін [`replace`](https://github.com/rollup/rollup-plugin-replace) гарантує правильність встановленого середовища для збірки.
 * Плагін [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) надає підтримку CommonJS у Rollup.
-* Плагін [`uglify`](https://github.com/TrySound/rollup-plugin-uglify) стискає та мініфікує фінальну збірку.
+* Плагін [`terser`](https://github.com/TrySound/rollup-plugin-terser) стискає та мініфікує фінальну збірку.
 
 ```js
 plugins: [
@@ -128,14 +123,14 @@ plugins: [
     'process.env.NODE_ENV': JSON.stringify('production')
   }),
   require('rollup-plugin-commonjs')(),
-  require('rollup-plugin-uglify')(),
+  require('rollup-plugin-terser')(),
   // ...
 ]
 ```
 
 Для більш повного зразку налаштування [перегляньте цей gist](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0).
 
-Пам'ятайте, що це потрібно робити лише для продакшн-збірок. Ви не повинні використовувати плагін `uglify` чи `replace` із значенням `'production'` під час розробки, тому що це приховає корисні попередження від React та сповільнить процес збірки.
+Пам'ятайте, що це потрібно робити лише для продакшн-збірок. Ви не повинні використовувати плагін `terser` чи `replace` із значенням `'production'` під час розробки, тому що це приховає корисні попередження від React та сповільнить процес збірки.
 
 ### webpack {#webpack}
 
@@ -144,18 +139,22 @@ plugins: [
 >Якщо ви використовуєте Create React App, то використовуйте [інструкції вище](#create-react-app).<br>
 >Цей розділ потрібен, якщо ви самі налаштовуєте webpack.
 
-Для найефективнішої продакшн-збірки з використанням Rollup, додайте наступні плагіни до вашої продакшн-конфігурації:
+Webpack версії 4, або вище, за замовчуванням мінімізує ваш код у продакшн-режимі.
 
 ```js
-new webpack.DefinePlugin({
-  'process.env.NODE_ENV': JSON.stringify('production')
-}),
-new webpack.optimize.UglifyJsPlugin()
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  mode: 'production'
+  optimization: {
+    minimizer: [new TerserPlugin({ /* additional options here */ })],
+  },
+};
 ```
 
 Ви можете дізнатися про це більше у [документації webpack](https://webpack.js.org/guides/production/).
 
-Пам'ятайте, що це потрібно робити лише для продакшн-збірок. Ви не повинні використовувати `UglifyJsPlugin` чи `DefinePlugin` із значенням `'production'` під час розробки, тому що це приховає корисні попередження від React та сповільнить процес збірки.
+Пам'ятайте, що це потрібно робити лише для продакшн-збірок. Ви не повинні використовувати `UglifyJsPlugin` чи `TerserPlugin` під час розробки, тому що це приховає корисні попередження від React та сповільнить процес збірки.
 
 ## Профілювання компонентів з використанням вкладки Chrome "Performance" {#profiling-components-with-the-chrome-performance-tab}
 
