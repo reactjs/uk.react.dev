@@ -57,6 +57,9 @@ MyComponent.propTypes = {
   // React-елемент.
   optionalElement: PropTypes.element,
 
+  // Тип React-елемента (тобто MyComponent).
+  optionalElementType: PropTypes.elementType,
+
   // Ви можете вказати, що проп має бути екземпляром вказаного класу.
   // Для перевірки буде використано оператор instanceof.
   optionalMessage: PropTypes.instanceOf(Message),
