@@ -567,11 +567,7 @@ useEffect(() => {
 
 Давайте глянемо, чому це важливо.
 
-<<<<<<< HEAD
 Якщо ви вкажете [список залежностей](/docs/hooks-reference.html#conditionally-firing-an-effect) в якості останнього аргумента `useEffect`, `useMemo`, `useCallback` чи `useImperativeHandle`, він має містити всі значення, що використовуються у потоці даних React, включно з пропсами, станом і їх похідними.
-=======
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.
->>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
 
 Можна безпечно пропустити функцію з списку залежностей **лише** тоді, коли вона (чи функції, які вона викликає) не посилається на пропси, стан чи їх похідні. У цьому прикладі є помилка:
 
@@ -681,11 +677,7 @@ function Counter() {
 
 Порожній набір залежностей `[]` означає, що ефект буде виконуватися тільки один раз коли компонент монтується, а не на кожну повторну візуалізацію. Проблема полягає в тому, що всередині функції зворотнього виклику `setInterval`, значення` count` не змінюється, тому що ми створили замикання зі значенням `count`, встановленим на` 0`, як це було при запуску ефекту callback. Кожну секунду ця функція зворотнього виклику потім викликає `setCount (0 + 1)`, тому кількість ніколи не перевищує 1.
 
-<<<<<<< HEAD
-Вказання `[count]` у якості списка залежностей виправить помилку, але спричинить скидання інтервалу на кожному оновленні. Фактично, кожен `setInterval` отримав би шанс бути виконаним перед очищенням (подібно до `setTimout`.) Така поведінка може бути небажаною. Щоб виправити це, ми можемо використати [функціональну форму оновлення `setState`](/docs/hooks-reference.html#functional-updates). Вона дозволить нам вказати *як* стан має змінитись, при цьому не посилаючись на *поточний* стан:
-=======
-Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimeout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
->>>>>>> 5dca78b7e3b078df79615cfa6e8cf8464f8b397a
+Вказання `[count]` у якості списка залежностей виправить помилку, але спричинить скидання інтервалу на кожному оновленні. Фактично, кожен `setInterval` отримав би шанс бути виконаним перед очищенням (подібно до `setTimeout`.) Така поведінка може бути небажаною. Щоб виправити це, ми можемо використати [функціональну форму оновлення `setState`](/docs/hooks-reference.html#functional-updates). Вона дозволить нам вказати *як* стан має змінитись, при цьому не посилаючись на *поточний* стан:
 
 ```js{6,9}
 function Counter() {
