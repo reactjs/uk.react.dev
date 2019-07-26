@@ -76,7 +76,7 @@ prev: composition-vs-inheritance.html
 
 ### Невеликий відступ: як пропси відрізняються від стану {#a-brief-interlude-props-vs-state}
 
-Існує два типи "моделі" даних у React: пропси та стан. Важливо, щоб ви розуміли різницю між ними, в іншому випадку зверніться до [офіційної документації React](/docs/interactivity-and-dynamic-uis.html).
+Існує два типи "моделі" даних у React: пропси та стан. Важливо, щоб ви розуміли різницю між ними, в іншому випадку зверніться до [офіційної документації React](/docs/state-and-lifecycle.html). Також див. [FAQ: У чому полягає різниця між state та props?](/docs/faq-state.html#what-is-the-difference-between-state-and-props)
 
 ## Крок 3: Визначимо мінімальне (але повноцінне) відображення стану інтерфейсу {#step-3-identify-the-minimal-but-complete-representation-of-ui-state}
 
