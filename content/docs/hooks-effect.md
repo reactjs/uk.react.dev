@@ -39,7 +39,7 @@ function Example() {
 
 >Порада
 >
->Якщо ви знайомі з классовими методами життєвого циклу React, то уявляйте хук `useEffect`, як комбінацію `componentDidMount`, `componentDidUpdate` та `componentWillUnmount`.
+>Якщо ви знайомі з класовими методами життєвого циклу React, то уявляйте хук `useEffect`, як комбінацію `componentDidMount`, `componentDidUpdate` та `componentWillUnmount`.
 
 Існують два види побічних еффектів в React-компонентах: ті, які вимагають і ті, які не вимагають очистки. Давайте розглянемо обидва приклади в деталях.
 
