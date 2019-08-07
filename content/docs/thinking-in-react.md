@@ -49,7 +49,11 @@ prev: composition-vs-inheritance.html
   4. **`ProductCategoryRow` (бірюзовий):** відображає заголовок для кожної *категорії*
   5. **`ProductRow` (червоний):** відображає рядок для кожного *продукту*
 
+<<<<<<< HEAD
 Зверніть увагу, що заголовок таблиці всередині `ProductTable` не є окремим компонентом. Відокремлювати його чи ні — це питання особистих уподобань. У цьому прикладі ми залишили його як частину `ProductTable`, оскільки він є малою частиною загального *збору даних*. Проте, якщо в майбутньому заголовок поповниться новими функціями (наприклад, можливістю сортувати товар), є сенс витягти його в самостійний компонент `ProductTableHeader`.
+=======
+If you look at `ProductTable`, you'll see that the table header (containing the "Name" and "Price" labels) isn't its own component. This is a matter of preference, and there's an argument to be made either way. For this example, we left it as part of `ProductTable` because it is part of rendering the *data collection* which is `ProductTable`'s responsibility. However, if this header grows to be complex (e.g., if we were to add affordances for sorting), it would certainly make sense to make this its own `ProductTableHeader` component.
+>>>>>>> 986381c56879983269c52863d9c205c7a7ba0174
 
 Тепер, коли ми визначили компоненти в нашому макеті, давайте розташуємо їх в порядку підпорядкованості. Компоненти, які є частиною інших компонентів, в ієрархії відображаються як дочірні:
 
