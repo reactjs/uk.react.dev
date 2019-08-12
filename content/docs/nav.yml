@@ -58,13 +58,9 @@
     - id: optimizing-performance
       title: Оптимізація продуктивності
     - id: portals
-<<<<<<< HEAD
       title: Портали
-=======
-      title: Portals
     - id: profiler
-      title: Profiler
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
+      title: Профайлер
     - id: react-without-es6
       title: React без ES6
     - id: react-without-jsx

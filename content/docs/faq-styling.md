@@ -50,8 +50,4 @@ _Зауважте, що цей функціонал не є частиною Rea
 
 ### Чи можу я робити анімації в React? {#can-i-do-animations-in-react}
 
-<<<<<<< HEAD
-React може використовуватися для роботи з анімаціями. Для прикладів, дивіться [React Transition Group](https://reactcommunity.org/react-transition-group/) та [React Motion](https://github.com/chenglou/react-motion)
-=======
-React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion) or [React Spring](https://github.com/react-spring/react-spring), for example.
->>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
+React може використовуватися для роботи з анімаціями. Для прикладів, дивіться [React Transition Group](https://reactcommunity.org/react-transition-group/) та [React Spring](https://github.com/react-spring/react-spring).
