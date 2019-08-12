@@ -106,7 +106,13 @@ React Native версії 0.59 та вище підтримують хуки.
 
 Ви можете використовувати ті ж самі API, що і завжди — вони продовжують працювати.
 
+<<<<<<< HEAD
 У майбутньому, нові версії цих бібліотек можуть експортувати користувацькі хуки на кшталт `useRedux()` чи `useRouter()` і це дозволить вам використовувати той же функціонал без необхідності у компонентах-обгортках.
+=======
+React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
+
+Libraries like React Router might support hooks in the future.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 ### Чи працюють хуки зі статичною типізацією? {#do-hooks-work-with-static-typing}
 
@@ -118,7 +124,15 @@ React Native версії 0.59 та вище підтримують хуки.
 
 З точки зору React, компонент, що використовує хуки, є цілком звичайним компонентом. Якщо ваш спосіб тестування не покладається на деталі реалізації React, тестування компонентів з хуками не має відрізнятись від тестування будь-яких інших компонентів.
 
+<<<<<<< HEAD
 Наприклад, ми маємо такий компонент лічильника:
+=======
+>Note
+>
+>[Testing Recipes](/docs/testing-recipes.html) include many examples that you can copy and paste.
+
+For example, let's say we have this counter component:
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 ```js
 function Example() {
@@ -180,7 +194,13 @@ it('can render and update a counter', () => {
 
 Якщо вам потрібно протестувати користувацький хук, ви можете зробити це, створивши компонент у вашому тесті і використати хук у ньому. Після цього ви можете протестувати щойно написаний компонент.
 
+<<<<<<< HEAD
 Щоб зменшити об'єм шаблонного коду, ми рекомендуємо використовувати [`react-testing-library`](https://git.io/react-testing-library), яка спроектована з метою заохочення написання тестів, що використовують ваші компоненти так, як це будуть робити кінцеві користувачі.
+=======
+To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
+
+For more information, check out [Testing Recipes](/docs/testing-recipes.html).
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 ### Що саме перевіряють [правила лінтера](https://www.npmjs.com/package/eslint-plugin-react-hooks) у хуках? {#what-exactly-do-the-lint-rules-enforce}
 
@@ -563,7 +583,11 @@ useEffect(() => {
 
 >Примітка
 >
+<<<<<<< HEAD
 >Ми надаємо правило [`exhaustive-deps`](https://github.com/facebook/react/issues/14920), як частину нашого пакунку [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Воно допоможе знайти компоненти, які не оброблюють оновлення належним чином.
+=======
+>We provide the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) ESLint rule as a part of the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It helps you find components that don't handle updates consistently.
+>>>>>>> ddbd064d41d719f9ec0c2f6a4227f797a5828310
 
 Давайте глянемо, чому це важливо.
 
