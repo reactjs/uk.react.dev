@@ -7,7 +7,7 @@ permalink: docs/code-splitting.html
 ## Розбиття по модулям {#bundling}
 
 Більшість React додатків мають власні розбиті за "бандлами" файли використовуючи такі інструменти, як
-[Webpack](https://webpack.js.org/) або [Browserify](http://browserify.org/).
+[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) або [Browserify](http://browserify.org/).
 Бандлінг – це процес імпортування файлів та об'єднання їх в один файл – бандл (модуль).
 Цей бандл може потім бути включений до веб-сторінки для завантаження всього додатку
 одночасно.

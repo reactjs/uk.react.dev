@@ -122,7 +122,9 @@ it('може відображатися та оновлювати лічильн
 });
 ```
 
-Не забувайте, що диспетчеризація подій DOM працює тільки тоді, коли до `document` додано контейнер DOM. Ви можете використовувати допоміжний пакунок на кшталт [`react-testing-library`](https://github.com/kentcdodds/react-testing-library), щоб скоротити шаблонний код.
+- Не забувайте, що диспетчеризація подій DOM працює тільки тоді, коли до `document` додано контейнер DOM. Ви можете використовувати допоміжний пакунок на кшталт [React Testing Library](https://testing-library.com/react), щоб скоротити шаблонний код.
+
+- Стаття [`recipes`](/docs/testing-recipes.html) містить більше подробиць про те, як працює `act()`, із прикладами використання.
 
 * * *
 
@@ -139,7 +141,7 @@ mockComponent(
 
 > Примітка:
 >
-> `mockComponent()` — застарілий API. Ми рекомендуємо використовувати [поверховий рендер](/docs/shallow-renderer.html) або замість нього — [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+> `mockComponent()` — застарілий API. Ми рекомендуємо використовувати [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
 
 * * *
 

@@ -59,6 +59,8 @@
       title: Оптимізація продуктивності
     - id: portals
       title: Портали
+    - id: profiler
+      title: Профайлер
     - id: react-without-es6
       title: React без ES6
     - id: react-without-jsx
@@ -123,6 +125,14 @@
         title: Довідка API хуків
       - id: hooks-faq
         title: FAQ хуків
+- title: Тестування
+  items:
+    - id: testing 
+      title: Огляд тестування
+    - id: testing-recipes
+      title: Рецепти тестування
+    - id: testing-environments
+      title: Середовища тестування
 - title: Участь в проекті
   items:
   - id: how-to-contribute
