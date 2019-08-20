@@ -5,6 +5,6 @@ const FancyButton = React.forwardRef((props, ref) => (
   </button>
 ));
 
-// You can now get a ref directly to the DOM button:
+// Тепер ви можете отримати реф беспосередньо на DOM button
 const ref = React.createRef();
 <FancyButton ref={ref}>Click me!</FancyButton>;
