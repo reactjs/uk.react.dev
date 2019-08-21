@@ -423,11 +423,7 @@ function ListOfTenThings() {
 <div>{true}</div>
 ```
 
-<<<<<<< HEAD
 Це може бути корисним при умовному рендерингу React-елементів. Наступний JSX-вираз відрендерить `<Header />` за умови, що `showHeader` дорівнює `true`:
-=======
-This can be useful to conditionally render React elements. This JSX renders the `<Header />` component only if `showHeader` is `true`:
->>>>>>> de497e250340ff597ce4964279369f16315b8b4b
 
 ```js{2}
 <div>

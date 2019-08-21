@@ -124,11 +124,7 @@ it('може відображатися та оновлювати лічильн
 
 - Не забувайте, що диспетчеризація подій DOM працює тільки тоді, коли до `document` додано контейнер DOM. Ви можете використовувати допоміжний пакунок на кшталт [React Testing Library](https://testing-library.com/react), щоб скоротити шаблонний код.
 
-<<<<<<< HEAD
 - Стаття [`recipes`](/docs/testing-recipes.html) містить більше подробиць про те, як працює `act()`, із прикладами використання.
-=======
-- The [`recipes`](/docs/testing-recipes.html) document contains more details on how `act()` behaves, with examples and usage.
->>>>>>> de497e250340ff597ce4964279369f16315b8b4b
 
 * * *
 
