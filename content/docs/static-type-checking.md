@@ -88,13 +88,13 @@ Flow розширяє мову JavaScript спеціальним синтакс�
 Якщо ви користуєтесь Yarn, то запустіть:
 
 ```bash
-yarn add --dev babel-preset-flow
+yarn add --dev @babel/preset-flow
 ```
 
 Якщо ви користуєтесь npm, то запустіть:
 
 ```bash
-npm install --save-dev babel-preset-flow
+npm install --save-dev @babel/preset-flow
 ```
 
 І потім додайте пресет `flow` до вашої [конфігурації Babel](https://babeljs.io/docs/usage/babelrc/). Наприклад, якщо ви налаштовуєте Babel через файл `.babelrc`, то він може виглядати так:
@@ -102,7 +102,7 @@ npm install --save-dev babel-preset-flow
 ```js{3}
 {
   "presets": [
-    "flow",
+    "@babel/preset-flow",
     "react"
   ]
 }

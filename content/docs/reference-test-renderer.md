@@ -103,7 +103,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Під']
 TestRenderer.create(element, options);
 ```
 
-Створює екземпляр `TestRenderer` з переданим елементом React. Він не використовує реальний DOM, але він все ще повністю рендерить дерево компоненту в пам'яті, щоб ви могли переконатися в його наявності. Повернутий екземпляр має наступні методи і властивості.
+Створює екземпляр `TestRenderer` з переданим елементом React. Він не використовує реальний DOM, але він все ще повністю рендерить дерево компоненту в пам'яті, щоб ви могли переконатися в його наявності. Повертає [екземпляр TestRenderer](#testrenderer-instance).
 
 ### `TestRenderer.act()` {#testrendereract}
 
