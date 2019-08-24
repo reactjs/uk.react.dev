@@ -9,7 +9,6 @@ permalink: docs/forwarding-refs.html
 ## Перенаправлення рефів у DOM-компоненти {#forwarding-refs-to-dom-components}
 
 Розглянемо компонент `FancyButton`, який рендерить нативний DOM-елемент `button`:
-
 `embed:forwarding-refs/fancy-button-simple.js`
 
 React-компоненти приховують деталі своєї реалізації та результат рендеренгу. Також іншим компонентам, які використовують `FancyButton`, **зазвичай не потрібен** [доступ до рефа](/docs/refs-and-the-dom.html) його внутрішньому DOM-елементу `button`. І це добре тим, що це запобігає надмірній залежності компонентів від структури DOM-у один одного.
