@@ -119,7 +119,11 @@ redirect_from:
 
 ## Документація старих версій React {#versioned-documentation}
 
+<<<<<<< HEAD
 Ця документація завжди відображає останню стабільну версію React. Починаючи з версії React 16, ви можете знайти старі версії документації [на окремій сторінці](/versions). Зверніть увагу, що документація попередніх версій являє собою знімок на момент релізу і більше не оновлюється.
+=======
+This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation on a [separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+>>>>>>> 941f54180ef5e652221f54ef6d1f6f2e9e063597
 
 ## Зворотній зв'язок {#something-missing}
 
