@@ -2,8 +2,6 @@
 id: static-type-checking
 title: Статична типізація
 permalink: docs/static-type-checking.html
-prev: typechecking-with-proptypes.html
-next: refs-and-the-dom.html
 ---
 
 Статичні типізатори, такі як [Flow](https://flow.org/) і [TypeScript](https://www.typescriptlang.org/), розпізнають певні типи проблем навіть до запуску вашого коду. Вони також можуть покращити робочий процес розробника додаючи функції, такі як автозавершення. З цієї причини для великих кодових баз ми рекомендуємо використовувати Flow або TypeScript замість `PropTypes`.

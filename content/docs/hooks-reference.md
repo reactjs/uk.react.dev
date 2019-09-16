@@ -165,7 +165,11 @@ useEffect(
 >
 >Якщо ви хочете запустити ефект і очистити його лише раз (при монтуванні і розмонтуванні), ви можете передати другим аргументом порожній масив (`[]`). React буде вважати, що ваш ефект не залежить від *жодного* із значень пропсів чи стану, а тому не потребує повторного запуску. Це не оброблюється як особливий випадок, а напряму випливає з роботи масиву залежностей.
 >
+<<<<<<< HEAD
 >Якщо ви передаєте порожній масив (`[]`), пропси і стан усередині ефекту будуть завжди мати їх початкові значення. Передача другим аргументом `[]`, нагадує модель роботи вже знайомих `componentDidMount` та `componentWillUnmount`, але зазвичай є [кращі](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [рішення](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) для уникнення частих повторних викликів ефектів. Також не забудьте, що React відкладає виконання `useEffect` до моменту відображення вмісту браузером, а отже можливість виконання додаткової роботи не є істотною проблемою.
+=======
+>If you pass an empty array (`[]`), the props and state inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
 >
 >
 >Ми радимо використовувати правило [`exhaustive-deps`](https://github.com/facebook/react/issues/14920), як частину нашого пакунку [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation). Воно попереджує про те, що залежності вказані невірно і пропонує рішення.

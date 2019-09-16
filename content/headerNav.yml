@@ -1,4 +1,5 @@
 items:
+<<<<<<< HEAD
   - title: Документація
     to: /docs/getting-started.html
     activeSelector: /docs/
@@ -9,5 +10,17 @@ items:
     to: /blog/
     activeSelector: /blog
   - title: Спільнота
+=======
+  - title: Docs
+    to: /docs/getting-started.html
+    activeSelector: /docs/
+  - title: Tutorial
+    to: /tutorial/tutorial.html
+    activeSelector: /tutorial
+  - title: Blog
+    to: /blog/
+    activeSelector: /blog
+  - title: Community
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
     to: /community/support.html
     activeSelector: /community

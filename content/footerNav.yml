@@ -1,4 +1,5 @@
 community:
+<<<<<<< HEAD
   title: Спільнота
 
 docs:
@@ -12,20 +13,42 @@ more:
     - title: Блог
       to: /blog
     - title: Подяки
+=======
+  title: Community
+
+docs:
+  title: Docs
+
+more:
+  title: More
+  items:
+    - title: Tutorial
+      to: /tutorial/tutorial.html
+    - title: Blog
+      to: /blog
+    - title: Acknowledgements
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
       to: /acknowledgements.html
     - title: React Native
       to: https://facebook.github.io/react-native/
       external: true
 
 channels:
+<<<<<<< HEAD
   title: Канали
   items:
     - title: Github
+=======
+  title: Channels
+  items:
+    - title: GitHub
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
       to: https://github.com/facebook/react
       external: true
     - title: Stack Overflow
       to: https://stackoverflow.com/questions/tagged/reactjs
       external: true
+<<<<<<< HEAD
     - title: Форум
       to: https://reactjs.org/community/support.html#popular-discussion-forums
       external: true
@@ -33,6 +56,15 @@ channels:
       to: https://discord.gg/0ZcbPKXt5bZjGY5n
       external: true
     - title: Спільнота на DEV
+=======
+    - title: Discussion Forums
+      to: https://reactjs.org/community/support.html#popular-discussion-forums
+      external: true
+    - title: Reactiflux Chat
+      to: https://discord.gg/0ZcbPKXt5bZjGY5n
+      external: true
+    - title: DEV Community
+>>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
       to: https://dev.to/t/react
       external: true
     - title: Facebook
