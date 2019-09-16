@@ -84,11 +84,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
             <ExternalFooterLink
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
-<<<<<<< HEAD
               Кодекс поведінки
-=======
-              Code of Conduct
->>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
             </ExternalFooterLink>
             {sectionListCommunity.map(section => (
               <FooterLink

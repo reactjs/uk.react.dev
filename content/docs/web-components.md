@@ -58,10 +58,5 @@ customElements.define('x-search', XSearch);
 
 >Примітка:
 >
-<<<<<<< HEAD
 >Цей код **не буде** працювати, якщо ви перетворюєте класи за допомогою Babel. Див. [це питання](https://github.com/w3c/webcomponents/issues/587) з обговоренням.
->Додайте [custom-elements-es5-adapter](https://github.com/webcomponents/webcomponentsjs#custom-elements-es5-adapterjs) перед завантаженням веб-компонентів, щоб вирішити цю проблему.
-=======
->This code **will not** work if you transform classes with Babel. See [this issue](https://github.com/w3c/webcomponents/issues/587) for the discussion.
->Include the [custom-elements-es5-adapter](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs) before you load your web components to fix this issue.
->>>>>>> 6dcb963479953586f462ce31fddf35158c0598a0
+>Додайте [custom-elements-es5-adapter](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs) перед завантаженням веб-компонентів, щоб вирішити цю проблему.
