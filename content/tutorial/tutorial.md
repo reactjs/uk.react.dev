@@ -118,11 +118,7 @@ import './index.css';
 
 ### Допоможіть, я застряг! {#help-im-stuck}
 
-<<<<<<< HEAD
-Якщо ви застрягли, зверніться до [ресурсів підтримки спільноти](/community/support.html). Зокрема, [чат Reactiflux](https://discord.gg/0ZcbPKXt5bZjGY5n) — чудовий спосіб швидко знайти допомогу. Якщо ви не отримали належну відповідь і все ще не знаєте, як вирішити проблему, будь ласка, напишіть нам, і ми вам допоможемо.
-=======
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
->>>>>>> 647b639259919f96e9b667bf41ec16621e1b84dc
+Якщо ви застрягли, зверніться до [ресурсів підтримки спільноти](/community/support.html). Зокрема, [чат Reactiflux](https://discord.gg/reactiflux) — чудовий спосіб швидко знайти допомогу. Якщо ви не отримали належну відповідь і все ще не знаєте, як вирішити проблему, будь ласка, напишіть нам, і ми вам допоможемо.
 
 ## Огляд {#overview}
 
