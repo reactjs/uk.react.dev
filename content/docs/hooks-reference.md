@@ -59,12 +59,7 @@ function Counter({initialCount}) {
   return (
     <>
       Count: {count}
-<<<<<<< HEAD
       <button onClick={() => setCount(initialCount)}>Скинути</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
-=======
-      <button onClick={() => setCount(initialCount)}>Reset</button>
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
       <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </>
@@ -116,11 +111,7 @@ useEffect(didUpdate);
 
 Натомість застосовуйте `useEffect`. Функція, передана в `useEffect`, буде запущена після того, як вивід рендеру з'явиться на екрані. Думайте про ефекти як про засіб втечі з чисто функціонального світу React до світу імперативів.
 
-<<<<<<< HEAD
 За замовчуванням ефекти запускаються після кожного завершеного рендеру, але ви можете запускати їх, наприклад, коли [змінились тільки певні значення](#conditionally-firing-an-effect).
-=======
-By default, effects run after every completed render, but you can choose to fire them [only when certain values have changed](#conditionally-firing-an-effect).
->>>>>>> 5c371e5e3fd8f92e1d06dfdf1f28edc50fb5d83f
 
 #### Очищення ефектів {#cleaning-up-an-effect}
 
