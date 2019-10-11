@@ -1,22 +1,22 @@
 ---
-title: React Element Factories and JSX Warning
+title: Фабрики React-елементів та JSX-попередження
 layout: single
 permalink: warnings/legacy-factories.html
 ---
 
-You probably came here because your code is calling your component as a plain function call. This is now deprecated:
+Напевно, ви попали сюди, тому що ваш код викликає компонент, як функцію. Наступний код тепер є застарілим:
 
 ```javascript
 var MyComponent = require('MyComponent');
 
 function render() {
-  return MyComponent({ foo: 'bar' });  // WARNING
+  return MyComponent({ foo: 'bar' });  // ПОПЕРЕДЖЕННЯ
 }
 ```
 
 ## JSX {#jsx}
 
-React components can no longer be called directly like this. Instead [you can use JSX](/docs/jsx-in-depth.html).
+React-компоненти більше не можуть викликатися таким чином. Замість цього [ви можете використовувати JSX](/docs/jsx-in-depth.html).
 
 ```javascript
 var React = require('react');
@@ -27,9 +27,9 @@ function render() {
 }
 ```
 
-## Without JSX {#without-jsx}
+## Без JSX {#without-jsx}
 
-If you don't want to, or can't use JSX, then you'll need to wrap your component in a factory before calling it:
+Якщо ви не хочете або не можете використовувати JSX, тоді перед викликом компонента вам необхідно перевести його у фабрику:
 
 ```javascript
 var React = require('react');
@@ -40,11 +40,11 @@ function render() {
 }
 ```
 
-This is an easy upgrade path if you have a lot of existing function calls.
+Це простий шлях оновлення, якщо у вас багато викликів функцій.
 
-## Dynamic components without JSX {#dynamic-components-without-jsx}
+## Динамічні компоненти без JSX {#dynamic-components-without-jsx}
 
-If you get a component class from a dynamic source, then it might be unnecessary to create a factory that you immediately invoke. Instead you can just create your element inline:
+Якщо ви отримуєте клас компонента з динамічного джерела, то необов'язково створювати фабрику, на яку ви негайно посилаєтеся. Замість цього ви можете безпосередньо створити елемент:
 
 ```javascript
 var React = require('react');
@@ -54,6 +54,6 @@ function render(MyComponent) {
 }
 ```
 
-## In Depth {#in-depth}
+## Докладніше {#in-depth}
 
-[Read more about WHY we're making this change.](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)
+[Дізнайтеся докладніше, ЧОМУ ми робимо цю зміну.](https://gist.github.com/sebmarkbage/d7bce729f38730399d28)
