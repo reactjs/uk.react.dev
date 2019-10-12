@@ -4,6 +4,6 @@ layout: single
 permalink: warnings/special-props.html
 ---
 
-Most props on a JSX element are passed on to the component, however, there are two special props (`ref` and `key`) which are used by React, and are thus not forwarded to the component.
+Більшість пропсів JSX-елемента передаються компоненту напряму. Однак, є два спеціальних пропса (`ref` та `key`), які React використовує напряму, і тому компонент їх не отримує.
 
-For instance, attempting to access `this.props.key` from a component (i.e., the render function or [propTypes](/docs/typechecking-with-proptypes.html#proptypes)) is not defined. If you need to access the same value within the child component, you should pass it as a different prop (ex: `<ListItemWrapper key={result.id} id={result.id} />`). While this may seem redundant, it's important to separate app logic from reconciling hints.
+Наприклад, отримати доступ до `this.props.key` з компонента (тобто, функції рендерингу чи [propTypes](/docs/typechecking-with-proptypes.html#proptypes)) не вийде. Якщо дочірньому компоненту потрібне це значення, передайте його під іншим ім'ям (наприклад, `<ListItemWrapper key={result.id} id={result.id} />`). Це може здатися незручним, але допомогає розділяти логіку додатку від спеціальних інструкцій для самого React.
