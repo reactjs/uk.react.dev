@@ -196,10 +196,7 @@ const value = useContext(MyContext);
 >
 >`useContext(MyContext)` дозволяє лише *читати* контекст і підписуватись на його зміни. Вам і досі необхідно мати `<MyContext.Provider>` вище у дереві, щоб *надати* цьому контексту значення.
 
-<<<<<<< HEAD
-## Додаткові хуки {#additional-hooks}
-=======
-**Putting it together with Context.Provider**
+**Давайте використаємо Context.Provider**
 ```js{31-36}
 const themes = {
   light: {
@@ -240,11 +237,10 @@ function ThemedButton() {
   );
 }
 ```
-This example is modified for hooks from a previous example in the [Context Advanced Guide](/docs/context.html), where you can find more information about when and how to use Context.
+Цей приклад – версія прикладу з [документації контекста](/docs/context.html), адаптована под хуки. Там ви зможете знайти більше інформації про те, як і коли використовувати контекст.
 
 
-## Additional Hooks {#additional-hooks}
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
+## Додаткові хуки {#additional-hooks}
 
 Наступні хуки є або варіантами базових із розділу вище, або потрібні у вкрай специфічних випадках. Не потрібно вивчати їх наперед.
 

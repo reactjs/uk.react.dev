@@ -324,11 +324,7 @@ class Calculator extends React.Component {
 
 Якщо щось може бути обчислено або з пропсів, або з стану, це, ймовірно, не повинно бути в стані. Наприклад, замість того, щоб зберігати і `celsiusValue`, і `fahrenheitValue`, ми зберігаємо тільки останню редаговану `temperature` і її `scale`. Значення інших вхідних даних завжди може бути обчислено на їх основі у методі `render()`. Це дозволяє очистити або застосувати округлення до іншого поля без втрати будь-якої точності введених даних користувачем.
 
-<<<<<<< HEAD
-Коли ви бачите якусь помилку в UI, ви можете скористатися [React Developer Tools](https://github.com/facebook/react-devtools) для перевірки пропсів і переміщуватися вгору по дереву, поки не знайдете компонент, відповідальний за оновлення стану. Це дозволяє відслідковувати джерело помилок:
-=======
-When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
->>>>>>> 81124465ac68335b2e3fdf21952a51265de6877f
+Коли ви бачите якусь помилку в UI, ви можете скористатися [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) для перевірки пропсів і переміщуватися вгору по дереву, поки не знайдете компонент, відповідальний за оновлення стану. Це дозволяє відслідковувати джерело помилок:
 
 <img src="../images/docs/react-devtools-state.gif" alt="Контроль стану в React DevTools" max-width="100%" height="100%">
 
