@@ -196,6 +196,50 @@ const value = useContext(MyContext);
 >
 >`useContext(MyContext)` дозволяє лише *читати* контекст і підписуватись на його зміни. Вам і досі необхідно мати `<MyContext.Provider>` вище у дереві, щоб *надати* цьому контексту значення.
 
+**Давайте використаємо Context.Provider**
+```js{31-36}
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
+Цей приклад – версія прикладу з [документації контекста](/docs/context.html), адаптована под хуки. Там ви зможете знайти більше інформації про те, як і коли використовувати контекст.
+
+
 ## Додаткові хуки {#additional-hooks}
 
 Наступні хуки є або варіантами базових із розділу вище, або потрібні у вкрай специфічних випадках. Не потрібно вивчати їх наперед.
