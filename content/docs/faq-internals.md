@@ -6,18 +6,18 @@ layout: docs
 category: FAQ
 ---
 
-### What is the Virtual DOM? {#what-is-the-virtual-dom}
+### Що таке віртуальний DOM? {#what-is-the-virtual-dom}
 
-The virtual DOM (VDOM) is a programming concept where an ideal, or "virtual", representation of a UI is kept in memory and synced with the "real" DOM by a library such as ReactDOM. This process is called [reconciliation](/docs/reconciliation.html).
+Віртуальний DOM (VDOM)  - це концепція програмування, в якій ідеальне чи «віртуальне» представлення інтерфейсу користувача зберігається в пам'яті і синхронізується зі «справжнім» DOM за допомогою бібліотеки, такої як ReactDOM. Цей процес називається [узгодженням](/docs/reconciliation.html).
 
-This approach enables the declarative API of React: You tell React what state you want the UI to be in, and it makes sure the DOM matches that state. This abstracts out the attribute manipulation, event handling, and manual DOM updating that you would otherwise have to use to build your app.
+Власне такий підхід і робить API React декларативним: ви вказуєте React, у якому стані повинен знаходитись інтерфейс користувача, а React, у свою чергу, вже домагається того, щоб DOM відповідав цьому стану. Це абстрагує маніпуляції з атрибутами, обробку подій та оновлення DOM вручну, які, в іншому випадку, довелося б використовувати при розробці додатків.
 
-Since "virtual DOM" is more of a pattern than a specific technology, people sometimes say it to mean different things. In React world, the term "virtual DOM" is usually associated with [React elements](/docs/rendering-elements.html) since they are the objects representing the user interface. React, however, also uses internal objects called "fibers" to hold additional information about the component tree. They may also be considered a part of "virtual DOM" implementation in React.
+Оскільки "віртуальний DOM" - це швидше патерн, ніж конкретна технологія, цим терміном іноді позначають різні поняття. У світі React термін "віртуальний DOM" зазвичай асоціюється з [React елементами](/docs/rendering-elements.html), оскільки вони є об'єктами, що представляють інтерфейс користувача. Однак, React також використовує внутрішні об'єкти, так звані «волокна» (fibers) для зберігання додаткової інформації про дерево компонентів. Вони також можуть вважатися частиною реалізації "віртуального DOM" в React.
 
-### Is the Shadow DOM the same as the Virtual DOM? {#is-the-shadow-dom-the-same-as-the-virtual-dom}
+### Чи схожий тіньовий DOM на віртуальний DOM? {#is-the-shadow-dom-the-same-as-the-virtual-dom}
 
-No, they are different. The Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components. The virtual DOM is a concept implemented by libraries in JavaScript on top of browser APIs.
+Ні, вони є зовсім різними. Тіньовий DOM (Shadow DOM) - це браузерна технологія, призначена, головним чином, для визначення області видимості змінних та CSS у веб-компонентах. Віртуальний DOM - це концепція, реалізована бібліотеками в JavaScript поверх API браузера.
 
-### What is "React Fiber"? {#what-is-react-fiber}
+### Що таке "React Fiber"? {#what-is-react-fiber}
 
-Fiber is the new reconciliation engine in React 16. Its main goal is to enable incremental rendering of the virtual DOM. [Read more](https://github.com/acdlite/react-fiber-architecture).
+Fiber - це новий механізм узгодження в React 16, його основна мета полягає в тому, щоб зробити рендеринг віртуального DOM поступовим. [Довідатись більше про це](https://github.com/acdlite/react-fiber-architecture).
