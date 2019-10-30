@@ -4,11 +4,7 @@ title: Неконтрольовані компоненти
 permalink: docs/uncontrolled-components.html
 ---
 
-<<<<<<< HEAD
-У більшості ситуацій, ми рекомендуємо використовувати [контрольовані компоненти](/docs/forms.html) для реалізації форм. У контрольованому компоненті, дані форми котролюються React-компонентом. Альтернативним підходом є використання неконтрольованих компонентів, де дані форми контрольюються самим DOM.
-=======
-In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
+У більшості ситуацій, ми рекомендуємо використовувати [контрольовані компоненти](/docs/forms.html#controlled-components) для реалізації форм. У контрольованому компоненті, дані форми котролюються React-компонентом. Альтернативним підходом є використання неконтрольованих компонентів, де дані форми контрольюються самим DOM.
 
 Замість того, щоб писати обробник подій для кожного оновлення стану, ви можете використати некотрольований компонент та отримувати значення з DOM через [реф](/docs/refs-and-the-dom.html).
 

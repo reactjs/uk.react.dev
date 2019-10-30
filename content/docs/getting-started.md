@@ -46,11 +46,7 @@ redirect_from:
 
 ### Створюємо новий React-додаток {#create-a-new-react-app}
 
-<<<<<<< HEAD
 Коли стартуєте React-проект, [проста HTML-сторінка з script-тегами](/docs/add-react-to-a-website.html) , можливо, є найкращим варіантом. Її створення займе лише одну хвилину!
-=======
-When starting a React project, a [simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
 
 Однак для розробки більш складного додатку, можливо, доцільніше розглянути більш інтегрований варіант установки. Ось [декілька наборів JavaScript-інструментів](/docs/create-a-new-react-app.html), які ми рекомендуємо для розробки більш серйозних React-додатків. Кожен із них є готовим до використання з мінімальними змінами, і дозволяє скористатися всіма перевагами багатої React-екосистеми.
 
@@ -119,11 +115,7 @@ When starting a React project, a [simple HTML page with script tags](/docs/add-r
 
 Ви також можете підписатись на [профіль @reactjs](https://twitter.com/reactjs) у Twitter, однак ви не пропустите нічого важливого, якщо будете слідкувати тільки за блогом.
 
-<<<<<<< HEAD
 У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/master/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react/releases).
-=======
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
->>>>>>> 081bb31226919062938ef924472ba1b4170facfc
 
 ## Документація старих версій React {#versioned-documentation}
 
