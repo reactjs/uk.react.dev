@@ -106,7 +106,7 @@
       title: Вимоги до середовища JavaScript
     - id: glossary
       title: Словник термінів React
-- title: Хуки (Нове)
+- title: Хуки
   isOrdered: true
   items:
       - id: hooks-intro
@@ -133,6 +133,19 @@
       title: Рецепти тестування
     - id: testing-environments
       title: Середовища тестування
+- title: Concurrent Mode (Experimental)
+  isOrdered: true
+  items:
+    - id: concurrent-mode-intro
+      title: Introducing Concurrent Mode
+    - id: concurrent-mode-suspense
+      title: Suspense for Data Fetching
+    - id: concurrent-mode-patterns
+      title: Concurrent UI Patterns
+    - id: concurrent-mode-adoption
+      title: Adopting Concurrent Mode
+    - id: concurrent-mode-reference
+      title: Concurrent Mode API Reference
 - title: Участь в проекті
   items:
   - id: how-to-contribute
