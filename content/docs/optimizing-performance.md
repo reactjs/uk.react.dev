@@ -176,7 +176,11 @@ module.exports = {
 
 6. Події React будуть згруповані під міткою **User Timing**.
 
+<<<<<<< HEAD
 Для більш детальних інструкцій перегляньте [цю статтю Бена Шварца (Ben Schwarz)](https://calibreapp.com/blog/2017-11-28-debugging-react/).
+=======
+For a more detailed walkthrough, check out [this article by Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
+>>>>>>> bbea52211971834d041e76871df8981066c42a3b
 
 Зверніть увагу на те, **що ці значення відносні і компоненти в продакшні будуть рендеритись швидше**. Проте це допоможе вам зрозуміти, коли не пов'язані між собою частини інтерфейсу оновлюються через помилку та як глибоко і часто ці оновлення вібдуваються.
 
