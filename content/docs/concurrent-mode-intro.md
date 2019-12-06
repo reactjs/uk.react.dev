@@ -14,44 +14,58 @@ next: concurrent-mode-suspense.html
 
 <div class="scary">
 
->Caution:
+>Увага:
 >
->This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+>На сторінці описані **експериментальні функції, [яких ще немає](/docs/concurrent-mode-adoption.html) в стабільній версії**. Не використовуйте експериментальні збірки React в продакшн додатках. Ці функції можуть значно змінитися без попередження перед тим, як потрапити в React.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
-
+>Ця документація орієнтована на першопрохідців та зацікавлених користувачів. **Якщо ви новачок в React, не турбуйтеся про ці функції**, не потрібно вивчати їх прямо зараз.
 </div>
 
-This page provides a theoretical overview of Concurrent Mode. **For a more practical introduction, you might want to check out the next sections:**
+На цій сторінці подано теоретичний огляд "Конкурентного Режиму". **Для більш практичного застосування ви можете ознайомитись з наступними розділами:**
 
 * [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) describes a new mechanism for fetching data in React components.
 * [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) shows some UI patterns made possible by Concurrent Mode and Suspense.
 * [Adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) explains how you can try Concurrent Mode in your project.
 * [Concurrent Mode API Reference](/docs/concurrent-mode-reference.html) documents the new APIs available in experimental builds.
 
-## What Is Concurrent Mode? {#what-is-concurrent-mode}
+## Що таке конкурентный режим? {#what-is-concurrent-mode}
 
-Concurrent Mode is a set of new features that help React apps stay responsive and gracefully adjust to the user's device capabilities and network speed.
+Конкурентный режим - це набір нових функцій які допомагають React додаткам залишатися чутливими та плавно підлаштовується під можливості пристрою користувача та швидкість мережі.
+Ці особливості досі експериментальні і можуть змінюватися. Вони ще не є частиною стабільної версії React, але ви можете спробувати їх в експериментальній збірці.
 
-These features are still experimental and are subject to change. They are not yet a part of a stable React release, but you can try them in an experimental build.
 
-## Blocking vs Interruptible Rendering {#blocking-vs-interruptible-rendering}
+## Блокування проти переривання рендерингу {#blocking-vs-interruptible-rendering} 
 
-**To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into master so that other people can pull it.
+**Щоб пояснити конкурентний режим, ми будемо використовувати керування версіями як метафору.**
+Якщо ви працюєте в команді, ви, ймовірно, використовуєте систему контролю версій на зразок Git і працюєте на гілках. Коли гілка готова, ви можете злити свою роботу в master, щоб інші люди могли її витягнути.
 
 Before version control existed, the development workflow was very different. There was no concept of branches. If you wanted to edit some files, you had to tell everyone not to touch those files until you've finished your work. You couldn't even start working on them concurrently with that person — you were literally *blocked* by them.
 
+До того, як існував контроль версій, робочий процес розвитку був дуже різним. Там не було поняття гілок. Якщо ви хотіли відредагувати деякі файли, вам доводилося сказати всім не торкатися цих файлів, поки ви не закінчите роботу. Ви навіть не могли почати працювати над ними одночасно з цією людиною - вас вони буквально *заблокували*.
+
 This illustrates how UI libraries, including React, typically work today. Once they start rendering an update, including creating new DOM nodes and running the code inside components, they can't interrupt this work. We'll call this approach "blocking rendering".
+
+Це ілюструє, як типово сьогодні працюють UI бібліотеки включаючи React. Як тільки вони починають рендерить оновлення, включаючи створення нових вузлів DOM та запуск коду всередині компонентів, вони не можуть перервати цю роботу. Цей підхід ми будемо називати "блокуванням рендеренгу".
 
 In Concurrent Mode, rendering is not blocking. It is interruptible. This improves the user experience. It also unlocks new features that weren't possible before. Before we look at concrete examples in the [next](/docs/concurrent-mode-suspense.html) [chapters](/docs/concurrent-mode-patterns.html), we'll do a high-level overview of new features.
 
-### Interruptible Rendering {#interruptible-rendering}
+У конкурентному режимі рендеринг не блокується. Він переривається. Це покращує зручність в користуванні. Він також розблоковує нові функції, які раніше були неможливі. Перш ніж ми розглянемо конкретні приклади в [наступних](/docs/concurrent-mode-suspense.html) [главах](/docs/concurrent-mode-patterns.html), ми зробимо загальний огляд нових функцій.
+
+
+### Interruptible Rendering {#interruptible-rendering} Переривання рендерингу
 
 Consider a filterable product list. Have you ever typed into a list filter and felt that it stutters on every key press? Some of the work to update the product list might be unavoidable, such as creating new DOM nodes or the browser performing layout. However, *when* and *how* we perform that work plays a big role.
 
+Розглянемо список продуктів, що фільтруються. Ви коли-небудь фільтрували список та відчували, що він заїкається при кожному натисканні клавіш? Деяка робота над оновленням списку продуктів може бути неминучою, наприклад, створення нових вузлів DOM або "веб-переглядача, що виконує макет". Однак * коли * і * як * ми виконуємо цю роботу, грає велику роль.
+
 A common way to work around the stutter is to "debounce" the input. When debouncing, we only update the list *after* the user stops typing. However, it can be frustrating that the UI doesn't update while we're typing. As an alternative, we could "throttle" the input, and update the list with a certain maximum frequency. But then on lower-powered devices we'd still end up with stutter. Both debouncing and throttling create a suboptimal user experience.
 
+Поширений спосіб обійти заїкання - "debounce" введення. Під час дебаунсингу ми лише оновлюємо список *після* того як користувач перестає друкувати. Однак може бути неприємно, що інтерфейс користувача не оновлюється під час введення тексту. Як альтернатива, ми могли б "throttle" введення та оновити список з певною максимальною частотою. Але потім на пристроях з меншою потужністю ми все-таки почнемо затинатися. Як дебаунсинг, так і тротлинг створюють неоптимальну зручність для користувача.
+
 The reason for the stutter is simple: once rendering begins, it can't be interrupted. So the browser can't update the text input right after the key press. No matter how good a UI library (such as React) might look on a benchmark, if it uses blocking rendering, a certain amount of work in your components will always cause stutter. And, often, there is no easy fix.
+
+Причина затинання проста: після початку рендеринга, він не може бути перерван. Тому браузер не може оновити введення тексту відразу після натискання клавіші. Незалежно від того, наскільки добре може виглядати бібліотека користувальницького інтерфейсу (наприклад, React) на еталоні, якщо він використовує блокування візуалізації, певна кількість роботи у ваших компонентах завжди призведе до заїкання
+
 
 **Concurrent Mode fixes this fundamental limitation by making rendering interruptible.** This means when the user presses another key, React doesn't need to block the browser from updating the text input. Instead, it can let the browser paint an update to the input, and then continue rendering the updated list *in memory*. When the rendering is finished, React updates the DOM, and changes are reflected on the screen.
 
