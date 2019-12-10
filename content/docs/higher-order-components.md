@@ -1,32 +1,32 @@
 ---
 id: higher-order-components
-title: Higher-Order Components
+title: Компоненти вищого порядку
 permalink: docs/higher-order-components.html
 ---
 
-A higher-order component (HOC) is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React's compositional nature.
+Компонент вищого порядку (Higher-Order Component, HOC) — це просунута техніка для повторного використання логіки компоненту. Сам по собі HOC не є частиною React API, але через композиційну природу компонентів він є розповсюдженним патерном проектування.
 
-Concretely, **a higher-order component is a function that takes a component and returns a new component.**
+Тобто, **компонент вищого порядку — це функція, яка приймає компонент та повертає новий компонент.**
 
 ```js
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
-Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
+Якщо звичайний компонент перетворює props у UI, то компонент вищого порядку перетворює один компонент на інший.
 
-HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html).
+HOC поширені у сторонніх бібліотеках, як [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) у Redux або [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) у Relay.
 
-In this document, we'll discuss why higher-order components are useful, and how to write your own.
+У цьому розділі мі обговоримо чому компоненти вищого порядку корисні та як створювати власні.
 
-## Use HOCs For Cross-Cutting Concerns {#use-hocs-for-cross-cutting-concerns}
+## Використання HOC для перехресної функціональності {#use-hocs-for-cross-cutting-concerns}
 
-> **Note**
+> **Примітка**
 >
-> We previously recommended mixins as a way to handle cross-cutting concerns. We've since realized that mixins create more trouble than they are worth. [Read more](/blog/2016/07/13/mixins-considered-harmful.html) about why we've moved away from mixins and how you can transition your existing components.
+> Раніше ми рекомендували міксині для реалізації перехресної функціональности. Але с часом ми з’ясували, що від них більше клопоту, ніж користі. [Дізнайтеся більше](/blog/2016/07/13/mixins-considered-harmful.html) про те, чому ми відмовилися від міксинів та як ви можете переписати існуючі компоненти.
 
-Components are the primary unit of code reuse in React. However, you'll find that some patterns aren't a straightforward fit for traditional components.
+Зазвичай компоненти є основною одиницею повторного використання коду у React. Однак ви побачите, що вони не є відповідним рішенням для ряду проблем.
 
-For example, say you have a `CommentList` component that subscribes to an external data source to render a list of comments:
+Наприклад, ви маєте компонент `CommentList`, який підписується на зовнішнє джерело даних, щоб відобразити список коментарів:
 
 ```js
 class CommentList extends React.Component {
@@ -34,23 +34,23 @@ class CommentList extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
-      // "DataSource" is some global data source
+      // "DataSource" є деяким глобальним джерелом даних
       comments: DataSource.getComments()
     };
   }
 
   componentDidMount() {
-    // Subscribe to changes
+    // Підписка на зміни
     DataSource.addChangeListener(this.handleChange);
   }
 
   componentWillUnmount() {
-    // Clean up listener
+    // Відписка
     DataSource.removeChangeListener(this.handleChange);
   }
 
   handleChange() {
-    // Update component state whenever the data source changes
+    // Оновлення стану компонента, коли у джерелі даних відбулись зміни
     this.setState({
       comments: DataSource.getComments()
     });
@@ -68,7 +68,7 @@ class CommentList extends React.Component {
 }
 ```
 
-Later, you write a component for subscribing to a single blog post, which follows a similar pattern:
+Пізніше, ви описуєте компонент `BlogPost` для підписки на одну публікацію блогу, який реалізується за схожою логікою:
 
 ```js
 class BlogPost extends React.Component {
@@ -100,15 +100,15 @@ class BlogPost extends React.Component {
 }
 ```
 
-`CommentList` and `BlogPost` aren't identical — they call different methods on `DataSource`, and they render different output. But much of their implementation is the same:
+`CommentList` та `BlogPost` не є ідентичними — вони викликають різні методи `DataSource` та вони відображають різний UI. Однак значна частина їх реалізації збігається:
 
-- On mount, add a change listener to `DataSource`.
-- Inside the listener, call `setState` whenever the data source changes.
-- On unmount, remove the change listener.
+- Після монтування вони підписуються на зміни у `DataSource`.
+- Викликають `setState`, коли у джерелі даних відбуваються зміни.
+- При розмонтуванні відписуються від `DataSource`.
 
-You can imagine that in a large app, this same pattern of subscribing to `DataSource` and calling `setState` will occur over and over again. We want an abstraction that allows us to define this logic in a single place and share it across many components. This is where higher-order components excel.
+Чи можете Ви уявити, що у великому додатку ця схема підписки буде виникати знову й знову? Нам потрібна абстракція, яка дозволить визначити цю логіку в одному місці та звертатися до неї у багатьох компонентах. Саме тут доречні компоненти вищого порядку.
 
-We can write a function that creates components, like `CommentList` and `BlogPost`, that subscribe to `DataSource`. The function will accept as one of its arguments a child component that receives the subscribed data as a prop. Let's call the function `withSubscription`:
+Ми можемо написати функцію, що створює компоненти, як `CommentList` чи `BlogPost`, які підписуються на `DataSource`. В якості одного з аргументів функція буде приймати дочірній компонент, який отримає дані з підписки у якості власного prop. Назвімо цю функцію `withSubscription`:
 
 ```js
 const CommentListWithSubscription = withSubscription(
@@ -122,14 +122,14 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-The first parameter is the wrapped component. The second parameter retrieves the data we're interested in, given a `DataSource` and the current props.
+Перший параметр це обгорнутий компонент, а другий — функція, що отримує `DataSource` й props, та вилучає потрібні нам дані.
 
-When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, `CommentList` and `BlogPost` will be passed a `data` prop with the most current data retrieved from `DataSource`:
+Коли `CommentListWithSubscription` і `BlogPostWithSubscription` відображаються, у `CommentList` і `BlogPost` буде переданий параметр `data` у якості prop з найактуальнішими даними отриманими від `DataSource`:
 
 ```js
-// This function takes a component...
+// Ця функція отримує компонент ...
 function withSubscription(WrappedComponent, selectData) {
-  // ...and returns another component...
+  // ... та повертає інший компонент ...
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -140,7 +140,7 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     componentDidMount() {
-      // ... that takes care of the subscription...
+      // ... тут відбувається підписка ...
       DataSource.addChangeListener(this.handleChange);
     }
 
@@ -155,25 +155,25 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      // ... and renders the wrapped component with the fresh data!
-      // Notice that we pass through any additional props
+      // ... та відображується обгорнутий компонент зі свіжими даними!
+      // Зверніть увагу, що ми перадаємо усі props
       return <WrappedComponent data={this.state.data} {...this.props} />;
     }
   };
 }
 ```
 
-Note that a HOC doesn't modify the input component, nor does it use inheritance to copy its behavior. Rather, a HOC *composes* the original component by *wrapping* it in a container component. A HOC is a pure function with zero side-effects.
+Зверніть увагу на те, що HOC не модифікує отриманий компонент та не наслідує його поведінку. Швидше, HOC створює *композицію*, *обгортаючи* оригінальний компонент у контейнер. HOC є чистою функцією без побічних ефектів.
 
-And that's it! The wrapped component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the wrapped component isn't concerned with where the data came from.
+От і все! Обгорнутий компонент отримує всі props, що були передані до контейнера, разом з новим prop — `data`, який він використовує для відображення UI. Для компонента вищого порядку не має значення, як саме дані будуть використані, а для обгорнутого компонента не має значення, звідки вони з'явились.
 
-Because `withSubscription` is a normal function, you can add as many or as few arguments as you like. For example, you may want to make the name of the `data` prop configurable, to further isolate the HOC from the wrapped component. Or you could accept an argument that configures `shouldComponentUpdate`, or one that configures the data source. These are all possible because the HOC has full control over how the component is defined.
+Оскільки `withSubscription` це звичайна функція, ви можете додати стільки аргументів, скільки забажаєте. Наприклад, ви вирішили зробити ім’я параметру `data` конфігуруємим, щоби додатково ізолювати HOC від обгорнутого компонента. Або Ви можете прийняти аргумент, що налаштує `shouldComponentUpdate` чи джерело даних. Це все можливо тому, що HOC має повний контроль над тим, як компонент буде визначений.
 
-Like components, the contract between `withSubscription` and the wrapped component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the wrapped component. This may be useful if you change data-fetching libraries, for example.
+Як і між звичайними компонентами, взаємодія між `withSubscription` і обгорнутим компонентом здійснюється лише за допомогою props. Це дозволяє легко замінити один HOC на інший, якщо вони забезпечують однакові props для обгорнутого компонента. Це може бути корисним, наприклад, якщо ви зміните бібліотеки для отримання даних.
 
-## Don't Mutate the Original Component. Use Composition. {#dont-mutate-the-original-component-use-composition}
+## Не мутуйте обгорнутий компонент. Використовуйте композицію. {#dont-mutate-the-original-component-use-composition}
 
-Resist the temptation to modify a component's prototype (or otherwise mutate it) inside a HOC.
+Втримайтеся від бажання змінити прототип компонента (або мутуваті його іншим чином) всередині HOC.
 
 ```js
 function logProps(InputComponent) {
@@ -181,20 +181,19 @@ function logProps(InputComponent) {
     console.log('Current props: ', this.props);
     console.log('Next props: ', nextProps);
   };
-  // The fact that we're returning the original input is a hint that it has
-  // been mutated.
+  // Якщо ми повертаємо лише той самий отриманий компонент - це натяк, що він був мутований
   return InputComponent;
 }
 
-// EnhancedComponent will log whenever props are received
+// EnhancedComponent буде щоразу друкувати в консоль, коли отримає новий prop
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentWillReceiveProps`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
+З цим пов'язано кілька проблем. Одна полягає у тому, що `InputComponent` не може бути використаний знову окремо від `EnhancedComponent`. Більш важливо, якщо Ви застосуєте інший HOC до `EnhancedComponent`, який, наприклад, у свою чергу мутує `componentWillReceiveProps`, функціональність першого HOC буде перезаписана! Цей HOC також не буде працювати з функціональними компонентами, які не мають методів життєвого циклу.
 
-Mutating HOCs are a leaky abstraction—the consumer must know how they are implemented in order to avoid conflicts with other HOCs.
+Мутуючи HOC є крихкою абстракцією — споживач повинен знати, як вони реалізуються, щоб уникнути конфліктів з іншими HOC.
 
-Instead of mutation, HOCs should use composition, by wrapping the input component in a container component:
+Замість мутації, HOC мають реалізовувати композицію, обгортаючи переданий компонент у контейнер:
 
 ```js
 function logProps(WrappedComponent) {
@@ -204,34 +203,33 @@ function logProps(WrappedComponent) {
       console.log('Next props: ', nextProps);
     }
     render() {
-      // Wraps the input component in a container, without mutating it. Good!
+      // Обгорайте переданий компонент у контейнер, не мутуючи його!
       return <WrappedComponent {...this.props} />;
     }
   }
 }
 ```
 
-This HOC has the same functionality as the mutating version while avoiding the potential for clashes. It works equally well with class and function components. And because it's a pure function, it's composable with other HOCs, or even with itself.
+Цей HOC має таку ж функціональність, як і мутована версія, уникаючи при цьому можливих проблем. Він однаково добре працює з класовими та функціональними компонентами. А тому, що це чиста функція, вона може бути поєднана з іншим HOC, або навіть сама с собою.
 
-You may have noticed similarities between HOCs and a pattern called **container components**. Container components are part of a strategy of separating responsibility between high-level and low-level concerns. Containers manage things like subscriptions and state, and pass props to components that handle things like rendering UI. HOCs use containers as part of their implementation. You can think of HOCs as parameterized container component definitions.
+Можливо, Ви вже помітили схожість між HOC та патерном, що називається компонент-контейнер. Нагадаємо, що **компонент-контейнер** є частиною політики відокремлення відповідальности між високорівневими та низькорівневими задачами. Контейнери керують такими речами, як підписка на зовнішні ресурси й внутрішній стан, та передають props у компоненти, що у свою чергу відповідають за відображення UI. HOC використовують контейнери, як частину власної реалізації. Ви можете вважати HOC параметризованим визначенням компонента-контейнера.
 
-## Convention: Pass Unrelated Props Through to the Wrapped Component {#convention-pass-unrelated-props-through-to-the-wrapped-component}
+## Конвенція: передавайте сторонні props обгорненому компоненту {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
-HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the wrapped component.
+HOC додає компоненту функціональність. Він не повинен змінювати його початкове призначення. Очікується, що повернений HOC компонент буде мати інтерфейс аналогічний обгорнутому.
 
-HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
+HOC повинні передавати ті props, що не пов'язані з їх функціональністю, у незмінному стані. Більшість компонентів вищого порядку мають рендер-метод, схожий на цей:
 
 ```js
 render() {
-  // Filter out extra props that are specific to this HOC and shouldn't be
-  // passed through
+  // Відфільтруйте зайві props, що характерні для HOC та не мають потрапити до компонента
   const { extraProp, ...passThroughProps } = this.props;
 
-  // Inject props into the wrapped component. These are usually state values or
-  // instance methods.
+  // Створіть ін’єкцію для обгорнутого компонента.
+  // Зазвичай це значення стану або методи екземпляра
   const injectedProp = someStateOrInstanceMethod;
 
-  // Pass props to wrapped component
+  // Передайте props до обгорнутого компонента
   return (
     <WrappedComponent
       injectedProp={injectedProp}
@@ -241,65 +239,65 @@ render() {
 }
 ```
 
-This convention helps ensure that HOCs are as flexible and reusable as possible.
+Ця конвенція допомагає забезпечити максимальну гнучкість та можливість повторного використання HOC.
 
-## Convention: Maximizing Composability {#convention-maximizing-composability}
+## Конвенція: максимізація композиційності {#convention-maximizing-composability}
 
-Not all HOCs look the same. Sometimes they accept only a single argument, the wrapped component:
+Не всі HOC виглядають однаково. Іноді вони приймають лише один аргумент — компонент, що буде обгорнений:
 
 ```js
 const NavbarWithRouter = withRouter(Navbar);
 ```
 
-Usually, HOCs accept additional arguments. In this example from Relay, a config object is used to specify a component's data dependencies:
+Зазвичай HOC приймає додаткові аргументи. У цьому прикладі з Relay об’єкт конфігурації використовується для визначення залежностей даних компонента:
 
 ```js
 const CommentWithRelay = Relay.createContainer(Comment, config);
 ```
 
-The most common signature for HOCs looks like this:
+Найбільш поширений спосіб виклику HOC виглядає так:
 
 ```js
-// React Redux's `connect`
+// Функція `connect` у React та Redux
 const ConnectedComment = connect(commentSelector, commentActions)(CommentList);
 ```
 
-*What?!* If you break it apart, it's easier to see what's going on.
+*Що?!* Якщо розділити цей на частини, то легше буде побачити, що відбувається.
 
 ```js
-// connect is a function that returns another function
+// `connect` це фунція, що повертає іншу функцію
 const enhance = connect(commentListSelector, commentListActions);
-// The returned function is a HOC, which returns a component that is connected
-// to the Redux store
+// Повернена функція є HOC, який поверне компонент підключенний до складу Redux
 const ConnectedComment = enhance(CommentList);
 ```
-In other words, `connect` is a higher-order function that returns a higher-order component!
 
-This form may seem confusing or unnecessary, but it has a useful property. Single-argument HOCs like the one returned by the `connect` function have the signature `Component => Component`. Functions whose output type is the same as its input type are really easy to compose together.
+Іншими словами, `connect` - це функція вищого порядку, яка повертає компонент вищого порядку!
+
+Ця форма може здатися заплутаною або непотрібною, але вона має корисну властивість. Одноаргументні HOC, як і той, який повертається функцією `connect`, мають підпис `Component => Component`. Функції, з однаковим типом результату та єдиного аргументу, легко поєднуються у композицію.
 
 ```js
-// Instead of doing this...
+// Замість цього ...
 const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
 
-// ... you can use a function composition utility
-// compose(f, g, h) is the same as (...args) => f(g(h(...args)))
+// ... Ви можете використати композиційну функцію
+// compose(f, g, h) теж саме, що (...args) => f(g(h(...args)))
 const enhance = compose(
-  // These are both single-argument HOCs
+  // Обидва параметра є HOC та приймають лише один аргумент
   withRouter,
   connect(commentSelector)
 )
 const EnhancedComponent = enhance(WrappedComponent)
 ```
 
-(This same property also allows `connect` and other enhancer-style HOCs to be used as decorators, an experimental JavaScript proposal.)
+(Саме ця властивість дозволяє використовувати `connect` та інші поширюючи функціональність HOC у якості експериментальних JavaScript декораторів.)
 
-The `compose` utility function is provided by many third-party libraries including lodash (as [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), and [Ramda](https://ramdajs.com/docs/#compose).
+Ви можете знайти допоміжну функцію `compose` у багатьох сторонніх бібліотеках, включаючи lodash (під назвою [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose) та [Ramda](https://ramdajs.com/docs/#compose).
 
-## Convention: Wrap the Display Name for Easy Debugging {#convention-wrap-the-display-name-for-easy-debugging}
+## Конвенція: повертайте ім’я обгорнутого компонента для полегшення процессу {#convention-wrap-the-display-name-for-easy-debugging}
 
-The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+Створений HOC компонент-контейнер відображається в [React Develper Tools](https://github.com/facebook/react-devtools), як і будь-який інший компонент. Для того, щоб полегшити процес налагодження, визначте відображуване ім’я, яке повідомляє, що це результат HOC.
 
-The most common technique is to wrap the display name of the wrapped component. So if your higher-order component is named `withSubscription`, and the wrapped component's display name is `CommentList`, use the display name `WithSubscription(CommentList)`:
+Найпоширеніший прийом - обгортати відображуване ім’я загорнутого компонента. Отже, якщо ваш компонент вищого порядку названий `withSubscription`, а відображене ім’я загорнутого компонента - `CommentList`, визначте відображуване ім'я як `WithSubscription(CommentList)`:
 
 ```js
 function withSubscription(WrappedComponent) {
@@ -314,60 +312,61 @@ function getDisplayName(WrappedComponent) {
 ```
 
 
-## Caveats {#caveats}
+## Застереження {#caveats}
 
-Higher-order components come with a few caveats that aren't immediately obvious if you're new to React.
+Якщо Ви лише починаєте використовувати React, то варто повідомити, що компоненти вищого порядку можуть стати причиною неочевидних проблем.
 
-### Don't Use HOCs Inside the render Method {#dont-use-hocs-inside-the-render-method}
+### Не використовуйте HOC у середині рендер-методів {#dont-use-hocs-inside-the-render-method}
 
-React's diffing algorithm (called reconciliation) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+Алгоритм порівняння React, що відомий як reconciliation (або узгодження), використовує перевірку на тотожність компонента, щоб визначити, чи слід оновити існуюче піддерево компонентів або слід знищити його та змонтувати нове. Якщо компонент, що був повернений рендер-методом, ідентичний (`===`) попередньому результату, React рекурсивно оновлює піддерева, порівнюючи його з новим. Якщо вони не тотожні, то попереднє піддерево буде повністю розмонтовано.
 
-Normally, you shouldn't need to think about this. But it matters for HOCs because it means you can't apply a HOC to a component within the render method of a component:
+Зазвичай Вам не потрібно думати про це. Однак, це важливо для компонента вищого порядку, оскільки це означає, що Ви не можете застосувати HOC до компонента в рендер-методі іншого компонента:
 
 ```js
 render() {
-  // A new version of EnhancedComponent is created on every render
+  // Під час кожного виклику рендер-методу створюється новий екземпляр EnhancedComponent
   // EnhancedComponent1 !== EnhancedComponent2
   const EnhancedComponent = enhance(MyComponent);
-  // That causes the entire subtree to unmount/remount each time!
+  // Це призводить до того, що все піддерево щоразу перераховується!
   return <EnhancedComponent />;
 }
 ```
 
-The problem here isn't just about performance — remounting a component causes the state of that component and all of its children to be lost.
+Проблема тут полягає не лише в продуктивності — повторне перерахування компонента втрачає стан цього компонента та всіх його потомків.
 
-Instead, apply HOCs outside the component definition so that the resulting component is created only once. Then, its identity will be consistent across renders. This is usually what you want, anyway.
+Замість цього застосовуйте HOC за межами визначення компонента, щоб отриманий компонент був створений лише один раз. У цьому випадку React буде порівнювати один і той же компонент при повторному виклику рендер-метода.
 
-In those rare cases where you need to apply a HOC dynamically, you can also do it inside a component's lifecycle methods or its constructor.
+У тих рідкісних випадках, коли вам потрібно динамічно застосовувати HOC, Ви можете зробити це в методах життєвого циклу компонента або в його конструкторі.
 
-### Static Methods Must Be Copied Over {#static-methods-must-be-copied-over}
 
-Sometimes it's useful to define a static method on a React component. For example, Relay containers expose a static method `getFragment` to facilitate the composition of GraphQL fragments.
+### Копіюйте статичні методи {#static-methods-must-be-copied-over}
 
-When you apply a HOC to a component, though, the original component is wrapped with a container component. That means the new component does not have any of the static methods of the original component.
+Іноді буває корисно визначити статичні методи компонента. Наприклад, статичний метод `getFragment` у бібліотеці Relay дає можливість визначити композицію з фрагментів даних GraphQL.
+
+Якщо Ви застосовуєте HOC, то обгортаєте оригінальний компонент контейнером. Це означає, що новий компонент не матиме статичних методів оригінального компонента.
 
 ```js
-// Define a static method
+// Визначте статичний метод
 WrappedComponent.staticMethod = function() {/*...*/}
-// Now apply a HOC
+// Тепер застосуйте HOC
 const EnhancedComponent = enhance(WrappedComponent);
 
-// The enhanced component has no static method
+// EnhancedComponent не має статичного методу
 typeof EnhancedComponent.staticMethod === 'undefined' // true
 ```
 
-To solve this, you could copy the methods onto the container before returning it:
+Вам необхідно скопіювати методи до того, як повернути новий компонент, щоб вирішити цю проблему:
 
 ```js
 function enhance(WrappedComponent) {
   class Enhance extends React.Component {/*...*/}
-  // Must know exactly which method(s) to copy :(
+  // Потрібно точно знати, який метод(и) скопіювати :(
   Enhance.staticMethod = WrappedComponent.staticMethod;
   return Enhance;
 }
 ```
 
-However, this requires you to know exactly which methods need to be copied. You can use [hoist-non-react-statics](https://github.com/mridgway/hoist-non-react-statics) to automatically copy all non-React static methods:
+На жаль для цього необхідно точно знати, які методи потрібно скопіювати. Для автоматичного копіювання всіх статичних методів Ви можете використати [`hoist-non-react-statics`](https://github.com/mridgway/hoist-non-react-statics):
 
 ```js
 import hoistNonReactStatic from 'hoist-non-react-statics';
@@ -378,22 +377,22 @@ function enhance(WrappedComponent) {
 }
 ```
 
-Another possible solution is to export the static method separately from the component itself.
+Ще одне можливе рішення — експортувати статичні методи окремо від компонента.
 
 ```js
-// Instead of...
+// Замість цього ...
 MyComponent.someFunction = someFunction;
 export default MyComponent;
 
-// ...export the method separately...
+// ... експортуйте метод окремо ...
 export { someFunction };
 
-// ...and in the consuming module, import both
+// ... в модулі-споживачі ми можемо імпортувати обидва
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
-### Refs Aren't Passed Through {#refs-arent-passed-through}
+### Refs не передаються {#refs-arent-passed-through}
 
-While the convention for higher-order components is to pass through all props to the wrapped component, this does not work for refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
+Попри те, що попередня конвенція наполягає на тому, щоб передавати всі props до обгорнутого компонента, це не стосується refs. Річ у тому, що `ref` насправді не є prop, як, наприклад, `key`, й тому інакше оброблюється React. Якщо Ви додасте `ref` до компонента, що був повернений HOC, він буде вказувати на екземпляр зовнішнього контейнера, а не на обгорнутий компонент.
 
-The solution for this problem is to use the `React.forwardRef` API (introduced with React 16.3). [Learn more about it in the forwarding refs section](/docs/forwarding-refs.html).
+Розв’язання цієї проблеми є використання API `React.forwardRef` (введений з React 16.3). [Дізнайтеся більше про це в розділі Переадресація рефів](/docs/forwarding-refs.html).
