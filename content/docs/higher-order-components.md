@@ -173,7 +173,7 @@ function withSubscription(WrappedComponent, selectData) {
 
 ## Не мутуйте обгорнутий компонент. Використовуйте композицію. {#dont-mutate-the-original-component-use-composition}
 
-Втримайтеся від бажання змінити прототип компонента (чи мутуваті його) всередині HOC.
+Втримайтеся від бажання змінити прототип компонента (чи мутувати його) всередині HOC.
 
 ```js
 function logProps(InputComponent) {
