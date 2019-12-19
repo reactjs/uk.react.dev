@@ -1,39 +1,39 @@
 ---
-title: Unknown Prop Warning
+title: Попередження про Невідомий Prop
 layout: single
 permalink: warnings/unknown-prop.html
 ---
-The unknown-prop warning will fire if you attempt to render a DOM element with a prop that is not recognized by React as a legal DOM attribute/property. You should ensure that your DOM elements do not have spurious props floating around.
+Попередження про наявність невідомого prop з'являються, коли Ви намагаєтесь відобразити DOM-елемент з prop, що не може бути визначений React, як валідний атрибут або властивість. Ви повинні переконатись у тому, що DOM-елемент помилково не отримав props.
 
-There are a couple of likely reasons this warning could be appearing:
+Існує декілька можливих причин, через які це попередження може з'явитись:
 
-1. Are you using `{...this.props}` or `cloneElement(element, this.props)`? Your component is transferring its own props directly to a child element (eg. [transferring props](/docs/transferring-props.html)). When transferring props to a child component, you should ensure that you are not accidentally forwarding props that were intended to be interpreted by the parent component.
+1. Можливо Ви використовуєте `{...this.props}` або `cloneElement(element, this.props)`? Ваш компонент передає власні props безпосередньо до дочірнього компонента (див. [Компоненти і пропси](/docs/transferring-props.html)). У цьому випадку потрібно переконатись у тому, що props, призначенні лише для батьківського компонента, не потрапляють до дочірнього.
 
-2. You are using a non-standard DOM attribute on a native DOM node, perhaps to represent custom data. If you are trying to attach custom data to a standard DOM element, consider using a custom data attribute as described [on MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes).
+2. Ви використовуєте нестандартний DOM-атрибут на нативному DOM-вузлі, наприклад, для представлення власних даних. Якщо Ви намагаєтесь додати власні дані до стандартного елементу DOM, розгляньте можливість використання спеціального data-атрибуту, як описано [на MDN](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_data_attributes).
 
-3. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React. However, React currently strips all unknown attributes, so specifying them in your React app will not cause them to be rendered.
+3. React не може розпізнати зазначений Вами атрибут. Ймовірно, це буде виправлено у наступних версіях React. Однак наразі React ігнорує усі невідомі атрибути й тому їх визначення у вашому додатку не призведе до їх відображення.
 
-4. You are using a React component without an upper case. React interprets it as a DOM tag because [React JSX transform uses the upper vs. lower case convention to distinguish between user-defined components and DOM tags](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized).
+4. Ім'я вашого React-компонента починається з малої літери. У цьому випадку React інтерпретує його у якості DOM-тегу тому, що [для трансформації JSX використовується верхній та нижній регістри](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized), щоб розрізняти React-компоненти та нативні елементи DOM.
 
 ---
 
-To fix this, composite components should "consume" any prop that is intended for the composite component and not intended for the child component. Example:
+Для того, щоби розв'язати цю проблему, складові компоненти мають отримувати всі props, призначені лише для них, та не передавати їх дочірнім компонентам. Наприклад:
 
-**Bad:** Unexpected `layout` prop is forwarded to the `div` tag.
+**Погано:** Неочікуваний prop `layout` був переданий до тегу `div`.
 
 ```js
 function MyDiv(props) {
   if (props.layout === 'horizontal') {
-    // BAD! Because you know for sure "layout" is not a prop that <div> understands.
+    // Погано! Тому що Ви впевнені, що "layout" не є prop, який <div> зрозуміє
     return <div {...props} style={getHorizontalStyle()} />
   } else {
-    // BAD! Because you know for sure "layout" is not a prop that <div> understands.
+    // Погано! Тому що Ви впевнені, що "layout" не є prop, який <div> зрозуміє
     return <div {...props} style={getVerticalStyle()} />
   }
 }
 ```
 
-**Good:** The spread operator can be used to pull variables off props, and put the remaining props into a variable.
+**Добре:** Spread-оператор може бути використаний для поля об'єкту і визначення його в окрему змінну.  The spread operator can be used to pull variables off props, and put the remaining props into a variable.
 
 ```js
 function MyDiv(props) {
@@ -46,7 +46,7 @@ function MyDiv(props) {
 }
 ```
 
-**Good:** You can also assign the props to a new object and delete the keys that you're using from the new object. Be sure not to delete the props from the original `this.props` object, since that object should be considered immutable.
+**Good:** Також Ви можете скопіювати усі props до нового об'єкту та видалити зайві ключі. Майте на увазі, що видаляти ключі потрібно лише у новому об'єкті, оскільки об'єкт `this.props` відповідає концепції іммутабельності, тобто має бути незмінним.
 
 ```js
 function MyDiv(props) {
