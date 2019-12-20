@@ -1,60 +1,60 @@
 ---
-title: Invalid Hook Call Warning
+title: Попередження про Некоректний Виклик Хуку
 layout: single
 permalink: warnings/invalid-hook-call-warning.html
 ---
 
- You are probably here because you got the following error message:
+Можливо Ви тут тому, що отримали наступне попередження:
 
- > Hooks can only be called inside the body of a function component.
+> Hooks can only be called inside the body of a function component.
 
-There are three common reasons you might be seeing it:
+Існує три поширених причини, через які Ви могли побачити це:
 
-1. You might have **mismatching versions** of React and React DOM.
-2. You might be **breaking the [Rules of Hooks](/docs/hooks-rules.html)**.
-3. You might have **more than one copy of React** in the same app.
+1. **Невідповідність версій** React і React DOM у вашому додатку.
+2. Ви **порушили [Правила хуків](/docs/hooks-rules.html)**
+3. Ви маєте **більш ніж одну копію React** в одному додатку.
 
-Let's look at each of these cases.
+Розгляньмо кожний з цих випадків.
 
-## Mismatching Versions of React and React DOM {#mismatching-versions-of-react-and-react-dom}
+## Невідповідність версій React і React DOM {#mismatching-versions-of-react-and-react-dom}
 
-You might be using a version of `react-dom` (< 16.8.0) or `react-native` (< 0.59) that doesn't yet support Hooks. You can run `npm ls react-dom` or `npm ls react-native` in your application folder to check which version you're using. If you find more than one of them, this might also create problems (more on that below).
+Можливо Ви використовуєте версії `react-dom` (< 16.8.0) або `react-native` (< 0.59), які ще не підтримують Хуки. Виконайте у терміналі команду `npm ls react-dom` або `npm ls react-native` в директорії вашого додатку, щоб перевірити які версії встановлено. Якщо їх виявиться більше, ніж одна, це також може становити проблему (докладніше про це далі).
 
-## Breaking the Rules of Hooks {#breaking-the-rules-of-hooks}
+## Порушення правил використання Хуків {#breaking-the-rules-of-hooks}
 
-You can only call Hooks **while React is rendering a function component**:
+Ви можете викликати Хуки лише тоді, **коли React відображує функціональний компонент**:
 
-* ✅ Call them at the top level in the body of a function component.
-* ✅ Call them at the top level in the body of a [custom Hook](/docs/hooks-custom.html).
+* ✅ Викликайте їх на верхньому рівні в тілі функціонального компонента.
+* ✅ Викликайте їх на верхньому рівні в тілі [користувацького Хука](/docs/hooks-custom.html).
 
-**Learn more about this in the [Rules of Hooks](/docs/hooks-rules.html).**
+**Дізнайтесь більше про це в [Правилах хуків](/docs/hooks-rules.html).**
 
 ```js{2-3,8-9}
 function Counter() {
-  // ✅ Good: top-level in a function component
+  // ✅ Добре: на верхньому рівні функціонального компонента
   const [count, setCount] = useState(0);
   // ...
 }
 
 function useWindowWidth() {
-  // ✅ Good: top-level in a custom Hook
+  // ✅ Добре: на верхньому рівні користувацького Хука
   const [width, setWidth] = useState(window.innerWidth);
   // ...
 }
 ```
 
-To avoid confusion, it’s **not** supported to call Hooks in other cases:
+Щоб уникнути непорозуміння, використання Хуки **не** підтримується у наступних випадках:
 
-* 🔴 Do not call Hooks in class components.
-* 🔴 Do not call in event handlers.
-* 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
+* 🔴 Не викликайте Хуки у класових компонентах
+* 🔴 Не викликайте Хуки в обробниках подій
+* 🔴 Не викликайте Хуки всередині функцій, переданих до `useMemo`, `useReducer`, або `useEffect`.
 
-If you break these rules, you might see this error.
+Якщо Ви порушуєте ці правила, то повинні побачити цю помилку.
 
 ```js{3-4,11-12,20-21}
 function Bad1() {
   function handleClick() {
-    // 🔴 Bad: inside an event handler (to fix, move it outside!)
+    // 🔴 Погано: всередині обробника події (щоб виправити, винесіть виклик назовні!)
     const theme = useContext(ThemeContext);
   }
   // ...
@@ -62,7 +62,7 @@ function Bad1() {
 
 function Bad2() {
   const style = useMemo(() => {
-    // 🔴 Bad: inside useMemo (to fix, move it outside!)
+    // 🔴 Погано: всередині useMemo (щоб виправити, винесіть виклик назовні!)
     const theme = useContext(ThemeContext);
     return createStyle(theme);
   });
@@ -71,52 +71,51 @@ function Bad2() {
 
 class Bad3 extends React.Component {
   render() {
-    // 🔴 Bad: inside a class component
+    // 🔴 Погано: всередині класового компонента
     useEffect(() => {})
     // ...
   }
 }
 ```
 
-You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to catch some of these mistakes.
+Ви можете використати [плагін `eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) для того, щоб відловити деякі з цих помилок.
 
->Note
+>Примітка
 >
->[Custom Hooks](/docs/hooks-custom.html) *may* call other Hooks (that's their whole purpose). This works because custom Hooks are also supposed to only be called while a function component is rendering.
+>[Користувацькі Хуки](/docs/hooks-custom.html) *можуть* викликати інші Хуки (у тому й полягає їх призначення). Це не викликає проблем, бо користувацькі Хуки також мають викликатися лише тоді, коли відображується функціональний компонент.
 
+## Дублювання React {#duplicate-react}
 
-## Duplicate React {#duplicate-react}
+Для того, щоб Хуки працювали, у вашому додатку потрібно імпортувати той самий модуль `react`, що імпортується всередині пакету `react-dom`.
 
-In order for Hooks to work, the `react` import from your application code needs to resolve to the same module as the `react` import from inside the `react-dom` package.
+Якщо під час імпорту `react` Ви звертаєтесь до двох різних джерел, то побачите попередження. Це станеться, коли Ви **випадково матимете дві копії** пакету `react`.
 
-If these `react` imports resolve to two different exports objects, you will see this warning. This may happen if you **accidentally end up with two copies** of the `react` package.
-
-If you use Node for package management, you can run this check in your project folder:
+Якщо Ви використовуєте Node для керування пакетами, то в корені Вашого проекту можливо запустити перевірку наступним чином:
 
     npm ls react
 
-If you see more than one React, you'll need to figure out why this happens and fix your dependency tree. For example, maybe a library you're using incorrectly specifies `react` as a dependency (rather than a peer dependency). Until that library is fixed, [Yarn resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) is one possible workaround.
+У тому випадку, якщо побачите більше ніж один пакет React, вам потрібно з'ясувати, як це трапилось, та виправити це. Наприклад, бібліотека, яку Ви використовуєте, неправильно визначила `react` як залежність (а не peer-залежність). До того часу, як це буде виправлено, [вирішення Yarn](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) може стати одним з можливих тимчасових рішень.
 
-You can also try to debug this problem by adding some logs and restarting your development server:
+Також Ви можете спробувати розібратися с цією проблемою, використовуючи режим налагодження й перезапустивши сервер розробки:
 
 ```js
-// Add this in node_modules/react-dom/index.js
+// Додайте це до node_modules/react-dom/index.js
 window.React1 = require('react');
 
-// Add this in your component file
+// Додайте це до файлу з вашим компонентом
 require('react-dom');
 window.React2 = require('react');
 console.log(window.React1 === window.React2);
 ```
 
-If it prints `false` then you might have two Reacts and need to figure out why that happened. [This issue](https://github.com/facebook/react/issues/13991) includes some common reasons encountered by the community.
+Якщо у консолі Ви побачите `false`, це означає, що Ви використовуєте два різних екземпляра React. [Обговорення цього питання](https://github.com/facebook/react/issues/13991) може підказати вам деякі загальні причини, з якими вже зіткнулась спільнота, та рішення.
 
-This problem can also come up when you use `npm link` or an equivalent. In that case, your bundler might "see" two Reacts — one in application folder and one in your library folder. Assuming `myapp` and `mylib` are sibling folders, one possible fix is to run `npm link ../myapp/node_modules/react` from `mylib`. This should make the library use the application's React copy.
+Ця проблема також може з'явитись, якщо Ви використовуєте команду `npm link` чи щось подібне. У цьому разі бандлер може "побачити" два React - один у директорії додатку та другий у директорії Вашої бібліотеки. Припускаючи, що папки `myapp` і `mylib` знаходяться на одному рівні, виконання команди `npm link ../myapp/node_modules/react` з `mylib` може розв'язати проблему. Це має змусити бібліотеку використовувати копію React з додатка.
 
->Note
+>Примітка
 >
->In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if `require('react')` resolves differently between the component and the `react-dom` copy it was rendered with.
+>Взагалі, React підтримує можливість використання декількох незалежних копій на одній сторінці (наприклад, якщо їх використовують додаток і сторонній віджет). Проблемою це стає лише у тому випадку, коли в рамках однієї програми компонент імпортує одну пакет React, а `react-dom` іншу його копію.
 
-## Other Causes {#other-causes}
+## Інші причини {#other-causes}
 
-If none of this worked, please comment in [this issue](https://github.com/facebook/react/issues/13991) and we'll try to help. Try to create a small reproducing example — you might discover the problem as you're doing it.
+Якщо жодне із запропонованих рішень не спрацювало, будь ласка, залиште коментар у цьому [обговоренні](https://github.com/facebook/react/issues/13991) та ми спробуємо допомогти. Також спробуйте зробити невеликий приклад, здатний відтворити проблему у тому вигляді, у якому Ви з нею зіткнулись.
