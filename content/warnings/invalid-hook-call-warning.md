@@ -14,7 +14,7 @@ permalink: warnings/invalid-hook-call-warning.html
 2. Ви **порушили [Правила хуків](/docs/hooks-rules.html)**
 3. Ви маєте **більш ніж одну копію React** в одному додатку.
 
-Розгляньмо кожний з цих випадків.
+Розглянемо кожний з цих випадків.
 
 ## Невідповідність версій React і React DOM {#mismatching-versions-of-react-and-react-dom}
 
