@@ -18,7 +18,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 У цьому розділі ми обговоримо чому компоненти вищого порядку корисні та як створювати їх власноруч.
 
-## Використання HOC для перехресної функціональності {#use-hocs-for-cross-cutting-concerns}
+## Використання КВП для перехресної функціональності {#use-hocs-for-cross-cutting-concerns}
 
 > **Примітка**
 >
