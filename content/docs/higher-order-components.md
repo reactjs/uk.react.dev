@@ -14,7 +14,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Якщо звичайний компонент трасформує пропси у UI, то компонент вищого порядку трасформує один компонент у інший.
 
-HOC поширені у таких сторонніх бібліотеках, як [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) у Redux, або [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) у Relay.
+КВП поширені у таких сторонніх бібліотеках, як [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) у Redux, або [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) у Relay.
 
 У цьому розділі ми обговоримо чому компоненти вищого порядку корисні та як створювати їх власноруч.
 
