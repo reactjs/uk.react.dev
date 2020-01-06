@@ -428,8 +428,8 @@ function Example() {
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row змінився після останнього рендеру. Оновлюємо isScrollingDown.
@@ -465,7 +465,11 @@ function ScrollView({row}) {
 
 ### Як я можу обмежити вузол DOM? {#how-can-i-measure-a-dom-node}
 
+<<<<<<< HEAD
 Для обмеження положення чи розміру вузла DOM, ви можете використати [реф зворотнього виклику](/docs/refs-and-the-dom.html#callback-refs). React викличе функцію зворотнього виклику кожного разу, коли реф прикріплюється до іншого вузла. Ось [невеличка демонстрація](https://codesandbox.io/s/l7m0v5x4v9):
+=======
+One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -490,7 +494,13 @@ function MeasureExample() {
 
 Зверніть увагу на передачу `[]` у якості масива залежностей `useCallback`. Вона гарантує, що наш реф зворотнього виклику не зміниться між повторними рендерами, а отже React не буде викликати його без необхідності.
 
+<<<<<<< HEAD
 За бажанням можна [виокремити цю логіку](https://codesandbox.io/s/m5o42082xy) у повторно використовуваний хук:
+=======
+In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
+
+If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 ```js{2}
 function MeasureExample() {
@@ -715,8 +725,13 @@ function Counter() {
 
 ```js{2-6,10-11,16}
 function Example(props) {
+<<<<<<< HEAD
   // Зберегти останні пропси у рефі.
   let latestProps = useRef(props);
+=======
+  // Keep latest props in a ref.
+  const latestProps = useRef(props);
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
   useEffect(() => {
     latestProps.current = props;
   });

@@ -69,7 +69,13 @@ function Counter({initialCount}) {
 
 Кнопки "+" та "-" використовують функціональну форму, тому що оновлене значення базується на попередньому. В той же час кнопка "Скинути" використовує нормальну форму, тому що вона завжди скидає значення назад до початкового значення.
 
+<<<<<<< HEAD
 > Примітка
+=======
+If your update function returns the exact same value, the subsequent rerender will be skipped completely.
+
+> Note
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 >
 > На відміну від методу `setState` у класових компонентах, `useState` не об'єднує оновлювані об'єкти автоматично. Ви можете відтворити таку поведінку, комбінуючи функціональну форму оновлення і синтаксис розширення об'єктів:
 >
@@ -180,7 +186,11 @@ const value = useContext(MyContext);
 
 Приймає об'єкт контексту (значення, повернуте з `React.createContext`) і повертає поточне значення контексту для нього. Поточне значення контексту визначається пропом `value` найближчого `<MyContext.Provider>`, що знаходиться вище у дереві компонентів.
 
+<<<<<<< HEAD
 Коли найближчий `<MyContext.Provider>`, що знаходиться вище поточного компонента, оновлюється, цей хук викличе повторний рендер з актуальним `value` контексту, переданим до провайдера `MyContext`.
+=======
+When the nearest `<MyContext.Provider>` above the component updates, this Hook will trigger a rerender with the latest context `value` passed to that `MyContext` provider. Even if an ancestor uses [`React.memo`](/docs/react-api.html#reactmemo) or [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate), a rerender will still happen starting at the component itself using `useContext`.
+>>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
 
 Не забудьте про те, що аргумент переданий у `useContext`, повиен бути *власне об'єктом контексту*:
 
