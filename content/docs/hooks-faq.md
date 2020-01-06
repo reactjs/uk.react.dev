@@ -428,8 +428,8 @@ function Example() {
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row змінився після останнього рендеру. Оновлюємо isScrollingDown.
@@ -465,7 +465,7 @@ function ScrollView({row}) {
 
 ### Як я можу обмежити вузол DOM? {#how-can-i-measure-a-dom-node}
 
-Для обмеження положення чи розміру вузла DOM, ви можете використати [реф зворотнього виклику](/docs/refs-and-the-dom.html#callback-refs). React викличе функцію зворотнього виклику кожного разу, коли реф прикріплюється до іншого вузла. Ось [невеличка демонстрація](https://codesandbox.io/s/l7m0v5x4v9):
+Один рудиментарний спосіб для виміру положення чи розміру вузла DOM, ви можете використати [реф зворотнього виклику](/docs/refs-and-the-dom.html#callback-refs). React викличе функцію зворотнього виклику кожного разу, коли реф прикріплюється до іншого вузла. Ось [невеличка демонстрація](https://codesandbox.io/s/l7m0v5x4v9):
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -489,6 +489,8 @@ function MeasureExample() {
 У цьому прикладі ми не використали `useRef`, оскільки об'єкт рефу не повідомляє нас про *зміни* поточного значення рефу. Використання рефу зворотнього виклику гарантує, що [навіть якщо дочірній компонент відображає обмежений вузол пізніше](https://codesandbox.io/s/818zzk8m78) (наприклад, у відповідь на натискання), ми все рівно отримаємо повідомлення про це у батьківському компоненті і зможемо оновити обмеження.
 
 Зверніть увагу на передачу `[]` у якості масива залежностей `useCallback`. Вона гарантує, що наш реф зворотнього виклику не зміниться між повторними рендерами, а отже React не буде викликати його без необхідності.
+
+Також, реф зворотнього виклику буде викликано лише коли компоненту монтується та демонтується, так як відрендерений `<h1>` компонент залишається присутнім протягом всіх ререндерів.  Якщо ви хочете отримувати повідомлення, коли компонент змінює розмір, ви можете скористатися [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) або користувацьким хуком.
 
 За бажанням можна [виокремити цю логіку](https://codesandbox.io/s/m5o42082xy) у повторно використовуваний хук:
 
@@ -716,7 +718,7 @@ function Counter() {
 ```js{2-6,10-11,16}
 function Example(props) {
   // Зберегти останні пропси у рефі.
-  let latestProps = useRef(props);
+  const latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
   });

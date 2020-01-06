@@ -36,7 +36,7 @@ React підтримує всі популярні браузери, в тому
 ReactDOM.render(element, container[, callback])
 ```
 
-Рендерить React-елемент у наданий `container` у DOM-і і повертає [реф](/docs/more-about-refs.html) на компонент (або повертає `null` для [компонентів без стану](/docs/components-and-props.html#functional-and-class-components)).
+Рендерить React-елемент у наданий `container` у DOM-і і повертає [реф](/docs/more-about-refs.html) на компонент (або повертає `null` для [компонентів без стану](/docs/components-and-props.html#function-and-class-components)).
 
 Якщо React-елемент був попередньо відрендерений у `container`, цей метод виконає його оновлення і змінить DOM за необхідністю, щоб відобразити останній варіант React-елемента.
 

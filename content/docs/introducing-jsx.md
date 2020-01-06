@@ -181,4 +181,4 @@ const element = {
 
 >**Порада:**
 >
->Ми рекомендуємо використовувати ["Babel" language definition](https://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся. Даний веб-сайт використовує сумісну колірну схему [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/).
+>Ми рекомендуємо використовувати ["Babel" language definition](https://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся.
