@@ -48,11 +48,7 @@ redirect_from:
 
 Коли стартуєте React-проект, [проста HTML-сторінка з script-тегами](/docs/add-react-to-a-website.html) , можливо, є найкращим варіантом. Її створення займе лише одну хвилину!
 
-<<<<<<< HEAD
-Однак для розробки більш складного додатку, можливо, доцільніше розглянути більш інтегрований варіант установки. Ось [декілька наборів JavaScript-інструментів](/docs/create-a-new-react-app.html), які ми рекомендуємо для розробки більш серйозних React-додатків. Кожен із них є готовим до використання з мінімальними змінами, і дозволяє скористатися всіма перевагами багатої React-екосистеми.
-=======
-As your application grows, you might want to consider a more integrated setup. There are several JavaScript toolchains we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem. [Learn how.](/docs/create-a-new-react-app.html)
->>>>>>> 071f5b0e1622465fb6fe5cf6c1cbd2aaef7c5ef4
+Однак для розробки більш складного додатку, можливо, доцільніше розглянути більш інтегрований варіант установки. Ось [декілька наборів JavaScript-інструментів](/docs/create-a-new-react-app.html), які ми рекомендуємо для розробки більш серйозних React-додатків. Кожен із них є готовим до використання з мінімальними змінами, і дозволяє скористатися всіма перевагами багатої React-екосистеми. [Дізнайтесь як.](/docs/create-a-new-react-app.html)
 
 ## Вивчаємо React {#learn-react}
 
