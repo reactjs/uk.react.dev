@@ -137,7 +137,7 @@
   isOrdered: true
   items:
     - id: concurrent-mode-intro
-      title: Introducing Concurrent Mode
+      title: Знайомство з паралельним режимом
     - id: concurrent-mode-suspense
       title: Suspense for Data Fetching
     - id: concurrent-mode-patterns
