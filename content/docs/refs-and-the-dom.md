@@ -140,7 +140,11 @@ class CustomTextInput extends React.Component {
 
 #### Рефи та функціональні компоненти {#refs-and-function-components}
 
+<<<<<<< HEAD
 **Заборонено застосовувати атрибут `ref` до функціональних компонентів**, тому що у них немає екзеплярів:
+=======
+By default, **you may not use the `ref` attribute on function components** because they don't have instances:
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {
@@ -161,7 +165,11 @@ class Parent extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Ви маєте перетворити компонент у клас, якщо ви хочете скористатися рефом, так само як ви робили б, коли вам потрібні методи життєвого циклу або стан.
+=======
+If you want to allow people to take a `ref` to your function component, you can use [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) (possibly in conjunction with [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)), or you can convert the component to a class.
+>>>>>>> 99a18287c163e328f87709cb224742ccac3e113a
 
 Проте ви можете **використовувати атрибут `ref` в середині функціональних компонентів** за умови, що ви визначаєте їх на DOM-елементах або класових компонентах:
 
