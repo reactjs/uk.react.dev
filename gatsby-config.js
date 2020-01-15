@@ -8,12 +8,10 @@
 
 module.exports = {
   siteMetadata: {
-    title:
-      'React – JavaScript-бібліотека для створення користувацьких інтерфейсів',
+    title: 'React – JavaScript-бібліотека для створення користувацьких інтерфейсів',
     siteUrl: 'https://uk.reactjs.org',
     rssFeedTitle: 'React',
-    rssFeedDescription:
-      'JavaScript-бібліотека для створення користувацьких інтерфейсів',
+    rssFeedDescription: 'JavaScript-бібліотека для створення користувацьких інтерфейсів',
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
