@@ -133,7 +133,7 @@
       title: Рецепти тестування
     - id: testing-environments
       title: Середовища тестування
-- title: Concurrent Mode (Experimental)
+- title: Паралельний режим (Експериментальний)
   isOrdered: true
   items:
     - id: concurrent-mode-intro
