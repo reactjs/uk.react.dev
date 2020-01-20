@@ -181,7 +181,8 @@ function logProps(InputComponent) {
     console.log('Current props: ', this.props);
     console.log('Next props: ', nextProps);
   };
-  // Якщо ми повертаємо лише той самий отриманий компонент - це натяк, що він був мутований
+  // Якщо ми повертаємо лише той самий отриманий компонент - це натяк, що він
+  // був мутований
   return InputComponent;
 }
 
