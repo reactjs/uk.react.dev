@@ -185,7 +185,7 @@ function logProps(InputComponent) {
   return InputComponent;
 }
 
-// EnhancedComponent буде щоразу друкувати в консоль, коли отримає новий prop
+// EnhancedComponent буде щоразу друкувати в консоль, коли отримає новий проп
 const EnhancedComponent = logProps(InputComponent);
 ```
 
