@@ -124,7 +124,7 @@ const BlogPostWithSubscription = withSubscription(
 
 Перший параметр це обгорнутий компонент, а другий — функція, що отримує `DataSource` та пропси, і вилучає потрібні нам дані.
 
-Коли `CommentListWithSubscription` і `BlogPostWithSubscription` відображаються, у `CommentList` і `BlogPost` буде переданий параметр `data` у якості prop з найактуальнішими даними, отриманими від `DataSource`:
+Коли `CommentListWithSubscription` і `BlogPostWithSubscription` відображаються, у `CommentList` і `BlogPost` буде переданий параметр `data` у якості пропа з актуальними даними, отриманими від `DataSource`:
 
 ```js
 // Ця функція отримує компонент ...
