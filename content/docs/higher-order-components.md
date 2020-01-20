@@ -156,7 +156,7 @@ function withSubscription(WrappedComponent, selectData) {
 
     render() {
       // ... та відображується обгорнутий компонент зі свіжими даними!
-      // Зверніть увагу, що ми передаємо усі props
+      // Зверніть увагу, що ми передаємо усі пропси
       return <WrappedComponent data={this.state.data} {...this.props} />;
     }
   };
