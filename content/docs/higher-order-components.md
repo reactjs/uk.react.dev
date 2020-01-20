@@ -327,7 +327,7 @@ render() {
   // Під час кожного виклику рендер-методу створюється новий екземпляр EnhancedComponent
   // EnhancedComponent1 !== EnhancedComponent2
   const EnhancedComponent = enhance(MyComponent);
-  // Це призводить до того, що все піддерево щоразу перераховується!
+  // Це призводить до того, що все піддерево щоразу монтується/демонтується!
   return <EnhancedComponent />;
 }
 ```
