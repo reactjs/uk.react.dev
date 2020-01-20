@@ -230,7 +230,7 @@ render() {
   // Зазвичай це значення стану або методи екземпляра
   const injectedProp = someStateOrInstanceMethod;
 
-  // Передайте props до обгорнутого компонента
+  // Передайте пропси до обгорнутого компонента
   return (
     <WrappedComponent
       injectedProp={injectedProp}
