@@ -295,7 +295,7 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 Ви можете знайти допоміжну функцію `compose` у багатьох сторонніх бібліотеках, включаючи lodash (під назвою [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose) та [Ramda](https://ramdajs.com/docs/#compose).
 
-## Угода: повертайте ім’я обгорнутого компонента для легшого дебагу {#convention-wrap-the-display-name-for-easy-debugging}
+## Конвенція: повертайте ім’я обгорнутого компонента для легшого дебагу {#convention-wrap-the-display-name-for-easy-debugging}
 
 Створений КВП компонент-контейнер відображається в [React Developer Tools](https://github.com/facebook/react-devtools), як і будь-який інший компонент. Для того, щоб полегшити процес налагодження, визначте відображуване ім’я, яке повідомляє, що це результат КВП.
 
