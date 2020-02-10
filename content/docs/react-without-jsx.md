@@ -40,7 +40,11 @@ ReactDOM.render(
 
 Якщо ви зацікавлені в інших прикладах того, як JSX компілюється в JavaScript-код, спробуйте [онлайн Babel-компілятор](babel://jsx-simple-example).
 
+<<<<<<< HEAD
 Компонент може бути представлений у вигляді рядку, як підклас `React.Component` або у вигляді звичайної функції для компонентів без стану.
+=======
+The component can either be provided as a string, as a subclass of `React.Component`, or a plain function.
+>>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Якщо вас втомлює написання `React.createElement`, поширеною практикою є призначення "скорочення":
 
