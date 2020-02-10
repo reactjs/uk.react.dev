@@ -184,7 +184,7 @@ const value = useContext(MyContext);
 
 Коли найближчий `<MyContext.Provider>`, що знаходиться вище поточного компонента, оновлюється, цей хук викличе повторний рендер з актуальним `value` контексту, переданим до провайдера `MyContext`. Навіть якщо предок використовує [`React.memo`](/docs/react-api.html#reactmemo) або [`shouldComponentUpdate`](/docs/react-component.html#shouldcomponentupdate), ререндер все одно відбудеться, починаючи з поточного компонента та використовуючи `useContext`.
 
-Не забудьте про те, що аргумент переданий у `useContext`, повиен бути *власне об'єктом контексту*:
+Не забудьте про те, що аргумент переданий у `useContext`, повинен бути *власне об'єктом контексту*:
 
  * **Правильно:** `useContext(MyContext)`
  * **Неправильно:** `useContext(MyContext.Consumer)`
