@@ -37,11 +37,7 @@ redirect_from:
 
 Кінцевий результат ви можете розглянути за наступним посиланням: **[Завершена гра ](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. Не хвилюйтесь, якщо код здається вам незрозумілим, або ви не знайомі з синтаксисом! Мета даного посібника — допомогти вам зрозуміти React і його синтаксис.
 
-<<<<<<< HEAD
 Ми радимо уважно роздивитися гру перед тим як продовжувати працювати над посібником. Одна з її помітних властивостей — пронумеровани список з правої сторони ігрового поля. Цей список відображає історію всіх ходів і оновлюється по ходу гри.
-=======
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
->>>>>>> 4367566bddd06ed9dfbd6b1c3f45f9925e60b2c3
 
 Ви можете закрити гру, коли закінчите ознайомлюватись. Ми почнемо з простішого зразка. Наш наступний крок — підготуватись до створення гри.
 
