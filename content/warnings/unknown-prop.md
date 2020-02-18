@@ -1,5 +1,5 @@
 ---
-title: Попередження про Невідомий Проп
+title: Попередження: невідомий проп
 layout: single
 permalink: warnings/unknown-prop.html
 ---
