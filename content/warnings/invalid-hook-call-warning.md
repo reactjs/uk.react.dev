@@ -27,7 +27,7 @@ permalink: warnings/invalid-hook-call-warning.html
 * ✅ Викликайте їх на верхньому рівні в тілі функціонального компонента.
 * ✅ Викликайте їх на верхньому рівні в тілі [користувацького хука](/docs/hooks-custom.html).
 
-**Дізнайтесь більше про це в [Правилах хуків](/docs/hooks-rules.html).**
+**Дізнайтесь більше про це в [правилах хуків](/docs/hooks-rules.html).**
 
 ```js{2-3,8-9}
 function Counter() {
