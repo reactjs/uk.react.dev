@@ -4,7 +4,7 @@ layout: single
 permalink: warnings/invalid-hook-call-warning.html
 ---
 
-Можливо ви тут тому, що отримали наступне попередження:
+Швидше за все, ви перейшли на цю сторінку, тому що отримали наступне повідомлення про помилку:
 
 > Hooks can only be called inside the body of a function component.
 
