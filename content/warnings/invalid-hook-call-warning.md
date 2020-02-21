@@ -37,7 +37,7 @@ function Counter() {
 }
 
 function useWindowWidth() {
-  // ✅ Добре: на верхньому рівні користувацького Хука
+  // ✅ Добре: на верхньому рівні користувацького хука
   const [width, setWidth] = useState(window.innerWidth);
   // ...
 }
