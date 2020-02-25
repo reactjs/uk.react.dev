@@ -32,11 +32,7 @@ permalink: docs/strict-mode.html
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
-<<<<<<< HEAD
-Вирішення проблем, знайдених суворим режимом, _сьогодні_ спростить для вас отримання вигоди від асинхронного рендеру в майбутніх релізах React.
-=======
-Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of concurrent rendering in future releases of React.
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
+Вирішення проблем, знайдених суворим режимом, _сьогодні_ спростить для вас отримання вигоди від паралельного рендеру у майбутніх релізах React.
 
 ### Попередження про використання застарілого API рядкових рефів {#warning-about-legacy-string-ref-api-usage}
 
@@ -87,11 +83,7 @@ class MyComponent extends React.Component {
 * Стадія **рендеру** визначає, які саме зміни потрібно зробити, наприклад в DOM. На цій стадії React викликає метод `render` і потім порівнює результат з попереднім рендером.
 * Стадія **фіксації** — це коли React застосовує будь-які зміни. У випадку React DOM — це стадія, коли React вставляє, оновлює та видаляє вузли DOM. На цій стадії React також викликає методи життєвого циклу, такі як `componentDidMount` та `componentDidUpdate`.
 
-<<<<<<< HEAD
-Стадія фіксації зазвичай дуже швидка, але рендер може бути повільним. З цієї причини майбутній асинхронний режим (який поки ще не увімкнений за замовчуванням) розбиває обсяг роботи рендеру на частини, призупиняючись і продовжуючи роботу, щоб запобігти блокуванню браузера. Це означає, що React перед фіксацією може викликати методи життєвого циклу стадії рендеру більше ніж один раз, або викликати їх та взагалі не зафіксувати зміни (через помилку або переривання вищого пріоритету).
-=======
-The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming concurrent mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
->>>>>>> 821e20726266bc8113353d0c2b6d885f82e584a8
+Стадія фіксації зазвичай дуже швидка, але рендер може бути повільним. З цієї причини майбутній паралельний режим (який поки ще не увімкнений за замовчуванням) розбиває обсяг роботи рендеру на частини, призупиняючись і продовжуючи роботу, щоб запобігти блокуванню браузера. Це означає, що React перед фіксацією може викликати методи життєвого циклу стадії рендеру більше ніж один раз, або викликати їх та взагалі не зафіксувати зміни (через помилку або переривання вищого пріоритету).
 
 Методи життєвого циклу стадії рендеру включають наступні методи класового компоненту:
 * `constructor`
