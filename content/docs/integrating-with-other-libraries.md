@@ -6,13 +6,13 @@ permalink: docs/integrating-with-other-libraries.html
 
 React може бути використаний в будь-якому веб додатку. Його можна вбудовувати в інші додатки, та й з невеликими зусиллями інші додатки можуть бути вбудовані в React. В цій статті будуть розглядатися деякі з найпоширеніших випадків використання React, а саме, ми сфокусуємося на інтеграції з [jQuery](https://jquery.com/) та [Backbone](https://backbonejs.org/), але ці ж ідеї можна застосувати до інтеграції компонентів в будь-який існуючий код.
 
-## Integrating with DOM Manipulation Plugins {#integrating-with-dom-manipulation-plugins}
+## Інтеграція з плагінами, які змінюють DOM {#integrating-with-dom-manipulation-plugins}
 
-React is unaware of changes made to the DOM outside of React. It determines updates based on its own internal representation, and if the same DOM nodes are manipulated by another library, React gets confused and has no way to recover.
+React не знає про зміни в DOM, які були внесені поза React. Він визначає оновлення на основі свого внутрішнього представлення і якщо один і той самий DOM вузол зазнає змін від іншої бібліотеки, то React плутається і не має можливості розібратися.
 
-This does not mean it is impossible or even necessarily difficult to combine React with other ways of affecting the DOM, you just have to be mindful of what each is doing.
+Але це не означає, що не можливо або, навіть обов'язково, важко об'єднати React з іншими способами впливу на DOM, ви просто повинні пам’ятати про те, що кожен спосіб робить.
 
-The easiest way to avoid conflicts is to prevent the React component from updating. You can do this by rendering elements that React has no reason to update, like an empty `<div />`.
+Найлегше не допустити конфліктів — це запобігти оновленню React компонента. Ви можете зробити це через рендер елементів, які React не має причин оновлювати, наприклад, порожній`<div />`.
 
 ### How to Approach the Problem {#how-to-approach-the-problem}
 
