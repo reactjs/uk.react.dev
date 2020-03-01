@@ -14,13 +14,13 @@ React не знає про зміни в DOM, які були внесені п�
 
 Найлегше не допустити конфліктів — це запобігти оновленню React компонента. Ви можете зробити це через рендер елементів, які React не має причин оновлювати, наприклад, порожній`<div />`.
 
-### How to Approach the Problem {#how-to-approach-the-problem}
+### Як підійти до вирішення проблеми {#how-to-approach-the-problem}
 
-To demonstrate this, let's sketch out a wrapper for a generic jQuery plugin.
+Для демонстрації створимо базову обгортку для узагальненого jQuery плагіна.
 
-We will attach a [ref](/docs/refs-and-the-dom.html) to the root DOM element. Inside `componentDidMount`, we will get a reference to it so we can pass it to the jQuery plugin.
+Ми прикріпино [реф](/docs/refs-and-the-dom.html) до кореневого DOM елементу. Всередині `componentDidMount`, ми отримаємо посилання на цей елемент, і таким чином ми можемо використати його в jQuery плагіні.
 
-To prevent React from touching the DOM after mounting, we will return an empty `<div />` from the `render()` method. The `<div />` element has no properties or children, so React has no reason to update it, leaving the jQuery plugin free to manage that part of the DOM:
+Щоб React не оновлював DOM після монтування ми повернемо порожній `<div />` з функції `render()`. Елемент `<div />` не має жодних пропсів чи дочірніх компонентів, отже React немає жодних причин для його оновлення, таким чином jQuery плагін має повний контроль над цією частиною DOM:
 
 ```js{3,4,8,12}
 class SomePlugin extends React.Component {
@@ -39,7 +39,7 @@ class SomePlugin extends React.Component {
 }
 ```
 
-Note that we defined both `componentDidMount` and `componentWillUnmount` [lifecycle methods](/docs/react-component.html#the-component-lifecycle). Many jQuery plugins attach event listeners to the DOM so it's important to detach them in `componentWillUnmount`. If the plugin does not provide a method for cleanup, you will probably have to provide your own, remembering to remove any event listeners the plugin registered to prevent memory leaks.
+Зауважте, що ми визначили два [методи життєвого циклу](/docs/react-component.html#the-component-lifecycle): `componentDidMount` та `componentWillUnmount`. Багато jQuery плагінів додають обробники подій до DOM, а отже дуже важливо видаляти їх всередині методу `componentWillUnmount`. Якщо плагін не забезпечує спосіб очищення, то вам, ймовірно, потрібно буде створити його самостійно, пам'ятаючи про видалення всіх обробників подій, які плагін додав щоб запобігти витоку пам'яті.
 
 ### Integrating with jQuery Chosen Plugin {#integrating-with-jquery-chosen-plugin}
 
