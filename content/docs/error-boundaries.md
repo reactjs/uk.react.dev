@@ -152,7 +152,11 @@ class MyComponent extends React.Component {
     if (this.state.error) {
       return <h1>Сталася помилка.</h1>
     }
+<<<<<<< HEAD
     return <div onClick={this.handleClick}>Натисни на мене</div>
+=======
+    return <button onClick={this.handleClick}>Click Me</button>
+>>>>>>> 2ab1ca5007a37ca509863a212293f1c6b26d0afc
   }
 }
 ```
