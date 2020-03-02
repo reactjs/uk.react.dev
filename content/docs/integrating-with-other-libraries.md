@@ -20,7 +20,7 @@ React не знає про зміни в DOM, які були внесені п�
 
 Ми прикріпино [реф](/docs/refs-and-the-dom.html) до кореневого DOM елементу. Всередині `componentDidMount`, ми отримаємо посилання на цей елемент, і таким чином ми можемо використати його в jQuery плагіні.
 
-Щоб React не оновлював DOM після монтування ми повернемо порожній `<div />` з функції `render()`. Елемент `<div />` не має жодних пропсів чи дочірніх компонентів, отже React немає жодних причин для його оновлення, таким чином jQuery плагін має повний контроль над цією частиною DOM:
+Щоб React не оновлював DOM після монтування ми повернемо порожній `<div />` з методу `render()`. Елемент `<div />` не має жодних пропсів чи дочірніх компонентів, отже React немає жодних причин для його оновлення, таким чином jQuery плагін має повний контроль над цією частиною DOM:
 
 ```js{3,4,8,12}
 class SomePlugin extends React.Component {
@@ -39,21 +39,21 @@ class SomePlugin extends React.Component {
 }
 ```
 
-Зауважте, що ми визначили два [методи життєвого циклу](/docs/react-component.html#the-component-lifecycle): `componentDidMount` та `componentWillUnmount`. Багато jQuery плагінів додають обробники подій до DOM, а отже дуже важливо видаляти їх всередині методу `componentWillUnmount`. Якщо плагін не забезпечує спосіб очищення, то вам, ймовірно, потрібно буде створити його самостійно, пам'ятаючи про видалення всіх обробників подій, які плагін додав щоб запобігти витоку пам'яті.
+Зауважте, що ми визначили два [методи життєвого циклу](/docs/react-component.html#the-component-lifecycle): `componentDidMount` та `componentWillUnmount`. Багато jQuery плагінів додають обробники подій до DOM, а отже дуже важливо видаляти їх всередині методу `componentWillUnmount`. Якщо плагін не забезпечує спосіб очищення, то вам, ймовірно, потрібно буде створити його самостійно, пам'ятаючи про видалення всіх обробників подій, які плагін додав, щоб запобігти витоку пам'яті.
 
-### Integrating with jQuery Chosen Plugin {#integrating-with-jquery-chosen-plugin}
+### Інтеграці з jQuery плагіном Chosen {#integrating-with-jquery-chosen-plugin}
 
-For a more concrete example of these concepts, let's write a minimal wrapper for the plugin [Chosen](https://harvesthq.github.io/chosen/), which augments `<select>` inputs.
+Щоб краще проілюструвати вищезазначені поняття, давайте напишемо мінімальний фрагмент коду, який огортає плагін [Chosen](https://harvesthq.github.io/chosen/), який розширює можливості поля вводу `<select>`.
 
->**Note:**
+>**Примітка:**
 >
->Just because it's possible, doesn't mean that it's the best approach for React apps. We encourage you to use React components when you can. React components are easier to reuse in React applications, and often provide more control over their behavior and appearance.
+>Навіть якщо це можливо, це не означає, що це найкращий підхід для React додатків. Ми радимо використовувати компоненти React, якщо це можливо. Вони простіші у використанні у React додатках, а також дають більший контроль над своєю поведінкою та зовнішнім виглядом.
 
-First, let's look at what Chosen does to the DOM.
+Для початку розглянемо що Chosen робить з DOM.
 
-If you call it on a `<select>` DOM node, it reads the attributes off of the original DOM node, hides it with an inline style, and then appends a separate DOM node with its own visual representation right after the `<select>`. Then it fires jQuery events to notify us about the changes.
+Якщо ви викликаєте його на DOM вузлі `<select>`, він зчитує атрибути з даного вузла DOM, ховає його за допомогою вбудованих стилів та потім вставляє окремий DOM вузол зі своїм власними візуальним представленням одразу після `<select>`. Потім він запускає події jQuery щоб повідомити нас про зміни.
 
-Let's say that this is the API we're striving for with our `<Chosen>` wrapper React component:
+Скажімо, що ми прагнемо надати такий API для обгортки `<Chosen>` React компонентом:
 
 ```js
 function Example() {
@@ -67,9 +67,9 @@ function Example() {
 }
 ```
 
-We will implement it as an [uncontrolled component](/docs/uncontrolled-components.html) for simplicity.
+Для простоти ми будемо робити це за допомогою [неконтрольованого компоненту](/docs/uncontrolled-components.html).
 
-First, we will create an empty component with a `render()` method where we return `<select>` wrapped in a `<div>`:
+По-перше, з методу `render()` ми будемо повертати компонент `<div>` всередині якого буде `<select>`:
 
 ```js{4,5}
 class Chosen extends React.Component {
@@ -85,9 +85,9 @@ class Chosen extends React.Component {
 }
 ```
 
-Notice how we wrapped `<select>` in an extra `<div>`. This is necessary because Chosen will append another DOM element right after the `<select>` node we passed to it. However, as far as React is concerned, `<div>` always only has a single child. This is how we ensure that React updates won't conflict with the extra DOM node appended by Chosen. It is important that if you modify the DOM outside of React flow, you must ensure React doesn't have a reason to touch those DOM nodes.
+Зверніть увагу, що ми загорнули `<select>` в додатковий `<div>`. Це необхідно, тому що Chosen додасть новий елемент одразу після `<select>`. Однак, з точки зору React `<div>` завжди має лише один дочірній елемент. Таким чином оновлення React не будуть конфліктувати з Chosen елементами. Важливо розуміти, що якщо ви змінюєте DOM поза React, то ви маєте впевнитися що React не має жодних причин оновлювати ті DOM вузли.
 
-Next, we will implement the lifecycle methods. We need to initialize Chosen with the ref to the `<select>` node in `componentDidMount`, and tear it down in `componentWillUnmount`:
+Далі, ми створимо методи життєвого циклу. Нам потрібно ініціалізувати Chosen з рефом на вузлі `<select>` в методі `componentDidMount`, та прибрати його в `componentWillUnmount`:
 
 ```js{2,3,7}
 componentDidMount() {
@@ -100,17 +100,17 @@ componentWillUnmount() {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/qmqeQx?editors=0010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/qmqeQx?editors=0010)
 
-Note that React assigns no special meaning to the `this.el` field. It only works because we have previously assigned this field from a `ref` in the `render()` method:
+Зауважте, що React не надає якогось особливого значення полю `this.el`. Це працює лише тому, що ми попередньо присвоїли цьому полю значення `ref` в методі `render()`:
 
 ```js
 <select className="Chosen-select" ref={el => this.el = el}>
 ```
 
-This is enough to get our component to render, but we also want to be notified about the value changes. To do this, we will subscribe to the jQuery `change` event on the `<select>` managed by Chosen.
+Цього цілком достатньо щоб рендерити наш компонент, але ми також хочемо бути поінформовані про зміни значень. Для цього ми підпишемося на jQuery подію `change` у елемента `<select>`, який керується Chosen.
 
-We won't pass `this.props.onChange` directly to Chosen because component's props might change over time, and that includes event handlers. Instead, we will declare a `handleChange()` method that calls `this.props.onChange`, and subscribe it to the jQuery `change` event:
+Ми не будемо напряму передавати `this.props.onChange` у Chosen, тому що пропси компонента можуть з часом змінюватися, включаючи й обробники подій. Натомість, ми створимо метод `handleChange()`, який буде викликати `this.props.onChange` та підпишемо його на jQuery подію `change`:
 
 ```js{5,6,10,14-16}
 componentDidMount() {
@@ -131,11 +131,11 @@ handleChange(e) {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
-Finally, there is one more thing left to do. In React, props can change over time. For example, the `<Chosen>` component can get different children if parent component's state changes. This means that at integration points it is important that we manually update the DOM in response to prop updates, since we no longer let React manage the DOM for us.
+Залишилося ще одне питання. В React пропси можуть змінюватися з часом. Наприклад, компонент `<Chosen>` може отримати різні дочірні компоненти якщо у батьківського компонента зміниться стан. Це означає, що в місцях інтеграції необхідно вручну оновити DOM у відповідь на зміни властивостей, оскільки в цих місцях React не зробить це для нас.
 
-Chosen's documentation suggests that we can use jQuery `trigger()` API to notify it about changes to the original DOM element. We will let React take care of updating `this.props.children` inside `<select>`, but we will also add a `componentDidUpdate()` lifecycle method that notifies Chosen about changes in the children list:
+Документація Chosen пропонує нам використовувати jQuery метод `trigger()` для сповіщення про зміни в оригінальному елементі DOM. Ми дозволимо React піклуватися про зміни `this.props.children` в `<select>`, але ми також додамо метод життєвого циклу `componentDidUpdate()`, який буде повідомляти Chosen про зміни в списку дочірніх компонентів:
 
 ```js{2,3}
 componentDidUpdate(prevProps) {
@@ -145,9 +145,9 @@ componentDidUpdate(prevProps) {
 }
 ```
 
-This way, Chosen will know to update its DOM element when the `<select>` children managed by React change.
+В такий спосіб, Chosen буде знати що необхідно змінити свої DOM елементи, якщо React змінив дочірні елементи `<select>`.
 
-The complete implementation of the `Chosen` component looks like this:
+Повна реалізація `Chosen` компонента виглядає так:
 
 ```js
 class Chosen extends React.Component {
@@ -186,7 +186,7 @@ class Chosen extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
 
 ## Integrating with Other View Libraries {#integrating-with-other-view-libraries}
 
