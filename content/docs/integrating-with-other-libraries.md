@@ -1,6 +1,6 @@
 ---
 id: integrating-with-other-libraries
-title: Integrating with Other Libraries
+title: Взаємодія зі сторонніми бібліотеками
 permalink: docs/integrating-with-other-libraries.html
 ---
 
@@ -188,19 +188,19 @@ class Chosen extends React.Component {
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
 
-## Integrating with Other View Libraries {#integrating-with-other-view-libraries}
+## Інтеграція з іншими візуальними бібліотеками Integrating with Other View Libraries {#integrating-with-other-view-libraries}
 
-React can be embedded into other applications thanks to the flexibility of [`ReactDOM.render()`](/docs/react-dom.html#render).
+Вбудовування React у інші програми можливе завдяки гнучкості функції [`ReactDOM.render()`](/docs/react-dom.html#render)
 
-Although React is commonly used at startup to load a single root React component into the DOM, `ReactDOM.render()` can also be called multiple times for independent parts of the UI which can be as small as a button, or as large as an app.
+Хоча React широко використовується для вставлення єдиниго кореневого компоненту в DOM, метод `ReactDOM.render()` також може бути викликаний багато разів для незалежних частин користувацького інтерфейсу, які можуть бути малими як кнопка й великими як окремий великий додаток.
 
-In fact, this is exactly how React is used at Facebook. This lets us write applications in React piece by piece, and combine them with our existing server-generated templates and other client-side code.
+Насправді саме так ми використовуємо React у Facebook. Такий підхід дозволяє нам писати програми по частинах і комбінувати їх із існуючими шаблонами, створеними на стороні сервера або з іншим клієнтським кодом.
 
-### Replacing String-Based Rendering with React {#replacing-string-based-rendering-with-react}
+### Заміна рядкових шаблонів за допомогою React {#replacing-string-based-rendering-with-react}
 
-A common pattern in older web applications is to describe chunks of the DOM as a string and insert it into the DOM like so: `$el.html(htmlString)`. These points in a codebase are perfect for introducing React. Just rewrite the string based rendering as a React component.
+Поширений підхід в старих веб-додатках - опис і вставка частин DOM за допомогою рядків, наприклад: `$el.html(htmlString)`. Ці місця в кодовій базі ідеально підходять для заміни їх за допомогою React. Просто перепишіть рендер на основі рядку через компонент React.
 
-So the following jQuery implementation...
+Отже наступний jQuery код...
 
 ```js
 $('#container').html('<button id="btn">Say Hello</button>');
@@ -209,7 +209,7 @@ $('#btn').click(function() {
 });
 ```
 
-...could be rewritten using a React component:
+...може бути переписаний за допомогою React компонента:
 
 ```js
 function Button() {
@@ -227,7 +227,7 @@ ReactDOM.render(
 );
 ```
 
-From here you could start moving more logic into the component and begin adopting more common React practices. For example, in components it is best not to rely on IDs because the same component can be rendered multiple times. Instead, we will use the [React event system](/docs/handling-events.html) and register the click handler directly on the React `<button>` element:
+З цього моменту ви можете починати передавати все більше логіки самому компоненту і застосовувати все більше і більше React підходів до насписання коду. Наприклад, в компенентах не варто використовувати ідентифікатори тому, що один і той самий компонент може бути відрендерений декілька разів. Натомість, ми будемо використовувати [систему подій React](/docs/handling-events.html) та зареєструємо метод обробник події click безпосередньо на React елементі `<button>`:
 
 ```js{2,6,9}
 function Button(props) {
@@ -247,15 +247,15 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-You can have as many such isolated components as you like, and use `ReactDOM.render()` to render them to different DOM containers. Gradually, as you convert more of your app to React, you will be able to combine them into larger components, and move some of the `ReactDOM.render()` calls up the hierarchy.
+Ви можете написати скільки завгодно ізольованих компонентів, а також рендерити їх у різних DOM контейнерах за допомогою функції `ReactDOM.render()`. Поступово, коли ви трансформуєте все більше коду програми, деякі з цих компонентів можна об'єднати у більші компоненти, а виклики до `ReactDOM.render()` можна перемістити вгору за ієрархією.
 
-### Embedding React in a Backbone View {#embedding-react-in-a-backbone-view}
+### Вставка React в Backbone {#embedding-react-in-a-backbone-view}
 
-[Backbone](https://backbonejs.org/) views typically use HTML strings, or string-producing template functions, to create the content for their DOM elements. This process, too, can be replaced with rendering a React component.
+[Backbone](https://backbonejs.org/) пердставлення зазвичай використовують HTML рядки або функції, які генерують рядкові шаблони, для створення вмісту їх DOM елементів. Цей процес також може бути замінений за допомого рендеру компонентів React.
 
-Below, we will create a Backbone view called `ParagraphView`. It will override Backbone's `render()` function to render a React `<Paragraph>` component into the DOM element provided by Backbone (`this.el`). Here, too, we are using [`ReactDOM.render()`](/docs/react-dom.html#render):
+Нижче ми створимо Backbone представлення `ParagraphView`. Воно перевизначить метод `render()` з Backbone для рендерингу React компоненту `<Paragraph>`  в елемент DOM, наданий Backbone (`this.el`). Також ми використовуємо метод [`ReactDOM.render()`](/docs/react-dom.html#render):
 
 ```js{1,5,8,12}
 function Paragraph(props) {
@@ -275,23 +275,23 @@ const ParagraphView = Backbone.View.extend({
 });
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-It is important that we also call `ReactDOM.unmountComponentAtNode()` in the `remove` method so that React unregisters event handlers and other resources associated with the component tree when it is detached.
+Варто особливо відміти, що ми викликаємо метод `ReactDOM.unmountComponentAtNode()` в середині методу `remove`. Таким чином React видаляє зареєстровані обробники подій та інші ресурси, які пов'язані з деревом компонентів в момент коли воно видаляється.
 
-When a component is removed *from within* a React tree, the cleanup is performed automatically, but because we are removing the entire tree by hand, we must call this method.
+Коли компонент видаляється з дерева React *зсередини*, очищення проводиться автоматично, але оскільки ми видаляємо усе дерево вручну, то зобов'язані викликати цей метод.
 
-## Integrating with Model Layers {#integrating-with-model-layers}
+## Інтеграція з рівнем моделей {#integrating-with-model-layers}
 
-While it is generally recommended to use unidirectional data flow such as [React state](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/), or [Redux](https://redux.js.org/), React components can use a model layer from other frameworks and libraries.
+Зазвичай рекомендується використовувати односпрямований потік даних, на кшталт [React стан](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/) або [Redux](https://redux.js.org/). Але компоненти React можуть також використовувати шар даних з інших бібліотек і фреймворків.
 
-### Using Backbone Models in React Components {#using-backbone-models-in-react-components}
+### Використання Backbone моделей в React компонентах {#using-backbone-models-in-react-components}
 
-The simplest way to consume [Backbone](https://backbonejs.org/) models and collections from a React component is to listen to the various change events and manually force an update.
+Прослуховування різних подій та вручну форсування оновлень — найпростіший спосіб використання [Backbone](https://backbonejs.org/) моделей та колекцій всередині React компонентів.
 
-Components responsible for rendering models would listen to `'change'` events, while components responsible for rendering collections would listen for `'add'` and `'remove'` events. In both cases, call [`this.forceUpdate()`](/docs/react-component.html#forceupdate) to rerender the component with the new data.
+Компоненти, що відповідають за рендеринг моделей, будуть обробляти події типу `'change'`, а компоненти, що відповідають за рендеринг колекцій, будуть обробляти події типів `'add'` та `'remove'`. В обох випадках для відображення нових даних потрібно викликати [`this.forceUpdate()`](/docs/react-component.html#forceupdate)
 
-In the example below, the `List` component renders a Backbone collection, using the `Item` component to render individual items.
+У наведеному нижче прикладі компонент `List` рендерить Backbone колекцію, а окремі елементи цього списку відображаються за допомогою компонента `Item`.
 
 ```js{1,7-9,12,16,24,30-32,35,39,46}
 class Item extends React.Component {
@@ -347,19 +347,19 @@ class List extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/GmrREm?editors=0010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/GmrREm?editors=0010)
 
-### Extracting Data from Backbone Models {#extracting-data-from-backbone-models}
+### Отримання даних з моделей Backbone {#extracting-data-from-backbone-models}
 
-The approach above requires your React components to be aware of the Backbone models and collections. If you later plan to migrate to another data management solution, you might want to concentrate the knowledge about Backbone in as few parts of the code as possible.
+Вищеописаний підхід вимагає, щоб ваші React компоненти були обізнані про використання Backbone моделей та колекцій у вашій програмі. Однак якщо ви плануєте пізніше перейти на інше рішення для управління даними, варто концентрувати використання коду який стосується Backbone.
 
-One solution to this is to extract the model's attributes as plain data whenever it changes, and keep this logic in a single place. The following is [a higher-order component](/docs/higher-order-components.html) that extracts all attributes of a Backbone model into state, passing the data to the wrapped component.
+Один з підходів — коли при кожній зміні моделі, ви отримуєте її атрибути у вигляді простих даних і зберігайте всю логіку в одному місці. Наступний [компонент вищого порядку](/docs/higher-order-components.html) отримує всі атрибути Backbone моделі та передає їх до компоненту який огортає.
 
-This way, only the higher-order component needs to know about Backbone model internals, and most components in the app can stay agnostic of Backbone.
+В такий спосіб, тільки компонент вищого порядку має знати про модель Backbone, а більшість компонентів в додатку можуть нічого й не знати про Backbone.
 
-In the example below, we will make a copy of the model's attributes to form the initial state. We subscribe to the `change` event (and unsubscribe on unmounting), and when it happens, we update the state with the model's current attributes. Finally, we make sure that if the `model` prop itself changes, we don't forget to unsubscribe from the old model, and subscribe to the new one.
+В прикладі нижче, ми зробимо копію атрибутів моделі для утворення початкового стану. Ми підпишемось на подію `change` (та відпишемось від неї при демонтуванні), і коли ця подія спрацює ми оновимо стан поточними атрибутами моделі. Нарешті, ми переконаємось, що будь-яка зміна властивостей `model` призведе до видалення підписки зі старої моделі та підключення до нових змін.
 
-Note that this example is not meant to be exhaustive with regards to working with Backbone, but it should give you an idea for how to approach this in a generic way:
+Зауважте, що цей приклад охоплює не всі способи взаємодії з Backbone. Але його має бути достатньо, щоб проілюструвати, загальний ідею цього підходу:
 
 ```js{1,5,10,14,16,17,22,26,32}
 function connectToBackboneModel(WrappedComponent) {
@@ -399,7 +399,7 @@ function connectToBackboneModel(WrappedComponent) {
 }
 ```
 
-To demonstrate how to use it, we will connect a `NameInput` React component to a Backbone model, and update its `firstName` attribute every time the input changes:
+Для демонстрації використання ми з'єднаємо React компонент `NameInput` з Backbone моделлю і будемо оновлювати її атрибут `firstName` при кожній зміні поля введення:
 
 ```js{4,6,11,15,19-21}
 function NameInput(props) {
@@ -434,6 +434,6 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
+[**Спробувати на CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
 
-This technique is not limited to Backbone. You can use React with any model library by subscribing to its changes in the lifecycle methods and, optionally, copying the data into the local React state.
+Ця методика не обмежується лише Backbone. Ви можете використовувати будь-яку бібліотеку для роботи з даними разом з React. Просто підпишіться на зміни методів життєвого циклу компонентів і, при необхідності, скопіюйте дані в локальний стан React.
