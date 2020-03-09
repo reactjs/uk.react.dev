@@ -74,7 +74,7 @@ function FriendListItem(props) {
 **Користувацький хук — це JavaScript-функція, ім'я якої починається з "`use`", і яка може викликати інші хуки.** Наприклад, `useFriendStatus` нижче -- наш перший користувацький хук:
 
 ```js{3}
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);

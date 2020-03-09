@@ -99,10 +99,18 @@ class MyComponent extends React.Component {
 
 Суворий режим не може автоматично виявити побічні ефекти за вас, але він може допомогти їх помітити, роблячи їх більш детермінованими. Це досягається завдяки навмисному викликлу наступних методів двічі:
 
+<<<<<<< HEAD
 * Метод `constructor` класового компоненту
 * Метод `render`
 * Функції-оновлювачі стану компонента, що передаються першим аргументом в `setState`
 * Статичний метод життєвого циклу `getDerivedStateFromProps`
+=======
+* Class component `constructor` method
+* The `render` method
+* `setState` updater functions (the first argument)
+* The static `getDerivedStateFromProps` lifecycle
+* The `shouldComponentUpdate` method
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 > Примітка:
 >

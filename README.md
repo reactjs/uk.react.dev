@@ -36,11 +36,19 @@
 
 ### Внесення змін
 
+<<<<<<< HEAD
 1. Дотримуйтесь інструкцій з розділу "Запуск проекта локально"
 1. Збережіть файли і перевірте зміни в браузері
   1. Зміни до React-компонентів всередині `src` застосовуються відразу
   1. Зміни до файлів markdown всередині `content` застосовуються відразу
   1. При роботі з плагінами можливо знадобиться видалити директорію `.cache` та перезавантажити сервер
+=======
+1. Follow the ["Running locally"](#running-locally) instructions
+1. Save the files and check in the browser
+  1. Changes to React components in `src` will hot-reload
+  1. Changes to markdown files in `content` will hot-reload
+  1. If working with plugins, you may need to remove the `.cache` directory and restart the server
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### Перевірка змін
 

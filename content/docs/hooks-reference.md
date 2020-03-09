@@ -69,7 +69,11 @@ function Counter({initialCount}) {
 
 Кнопки "+" та "-" використовують функціональну форму, тому що оновлене значення базується на попередньому. В той же час кнопка "Скинути" використовує нормальну форму, тому що вона завжди скидає значення назад до початкового значення.
 
+<<<<<<< HEAD
 Якщо ваша функція для оновлення повертає таке саме  значення, то наступний ререндер буде пропущено.
+=======
+If your update function returns the exact same value as the current state, the subsequent rerender will be skipped completely.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 > Примітка
 >
@@ -437,7 +441,11 @@ function TextInputWithFocusButton() {
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
+<<<<<<< HEAD
 `useImperativeHandle` налаштовує значення екземпляра, яке надається батьківським компонентам при використанні `ref`. Як і зазвичай, у більшості випадків ви маєте уникати імперативного коду з використанням рефів. `useImperativeHandle` має використовуватись разом з `forwardRef`:
+=======
+`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with [`forwardRef`](/docs/react-api.html#reactforwardref):
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ```js
 function FancyInput(props, ref) {

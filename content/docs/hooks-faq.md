@@ -91,11 +91,19 @@ prev: hooks-reference.html
 
 Коли ви будете готові, ми заохочуємо вас почати використовувати хуки у ваших нових компонентах. Впевніться, що кожен член вашої команди підтримує їх використання і ознайомлений з документацією. Ми не рекомендуємо переписувати існуючі класи з використанням хуків, якщо ви не плануєте їх переписувати у будь-якому випадку (наприклад, щоб виправити помилку).
 
+<<<<<<< HEAD
 Ви не можете використовувати хуки *всередині* класового компонента, але ви безумовно можете комбінувати класи і функціональні компоненти з хуками в одному дереві. Чи є компонент класом, чи функцією — неважливо, оскільки це лише деталь реалізації цього компонента. Ми очікуємо, що в майбутньому хуки будуть основним методом написання React-компонентів.
+=======
+You can't use Hooks *inside* a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### Чи покривають хуки всі варіанти використання класів? {#do-hooks-cover-all-use-cases-for-classes}
 
+<<<<<<< HEAD
 Нашою метою є покриття всіх можливостей класів хуками якнайшвидше. Наразі немає альтернативи у вигляді хуків для таких рідковживаних методів життєвого циклу як `getSnapshotBeforeUpdate` та `componentDidCatch`, але ми плануємо скоро їх додати.
+=======
+Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate`, `getDerivedStateFromError` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Оскільки хуки з'явились зовсім нещодавно, то не всі сторонні бібліотеки можуть бути сумісними з ними.
 
@@ -218,7 +226,11 @@ it('can render and update a counter', () => {
 
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: Хук [`useEffect`](/docs/hooks-reference.html#useeffect) може замінити всі їхні комбінації (включно з [менш](#can-i-skip-an-effect-on-updates) [частими](#can-i-run-an-effect-only-on-updates) випадками).
 
+<<<<<<< HEAD
 * `componentDidCatch` і `getDerivedStateFromError`: Поки що немає хуків, еквівалентних цим методам, але вони будуть додані найближчим часом.
+=======
+* `getSnapshotBeforeUpdate`, `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 ### Як я можу робити вибірку даних з допомогою хуків? {#how-can-i-do-data-fetching-with-hooks}
 
@@ -289,7 +301,11 @@ function Box() {
 
 Об'єднання потрібне оскільки при оновленні змінної стану ми *замінюємо* її значення. Дана поведінка відрізняється від методу `this.setState` у класі, який *об'єднує* оновлені поля в об'єкт.
 
+<<<<<<< HEAD
 Якщо вам не вистачає автоматичного об'єднання, ви можете написати користувацький `useLegacyState` хук, що об'єднує оновлення об'єкта стану. Проте **ми радимо розділити стан на декілька змінних з урахуванням того, які значення скоріше за все будуть змінюватися разом.**
+=======
+If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Наприклад, ми могли розділити стан нашого компонента на об'єкти `position` та `size` і завжди замінювати `position` без необхідності в об'єднанні:
 
@@ -580,7 +596,11 @@ useEffect(() => {
 
 Давайте глянемо, чому це важливо.
 
+<<<<<<< HEAD
 Якщо ви вкажете [список залежностей](/docs/hooks-reference.html#conditionally-firing-an-effect) в якості останнього аргумента `useEffect`, `useMemo`, `useCallback` чи `useImperativeHandle`, він має містити всі значення, що використовуються у потоці даних React, включно з пропсами, станом і їх похідними.
+=======
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values that are used inside the callback and participate in the React data flow. That includes props, state, and anything derived from them.
+>>>>>>> fb382ccb13e30e0d186b88ec357bb51e91de6504
 
 Можна безпечно пропустити функцію з списку залежностей **лише** тоді, коли вона (чи функції, які вона викликає) не посилається на пропси, стан чи їх похідні. У цьому прикладі є помилка:
 
