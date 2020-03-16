@@ -177,9 +177,9 @@ function withSubscription(WrappedComponent, selectData) {
 
 ```js
 function logProps(InputComponent) {
-  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+  InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Current props: ', this.props);
-    console.log('Next props: ', nextProps);
+    console.log('Previous props: ', prevProps);
   };
   // Якщо ми повертаємо лише той самий отриманий компонент - це натяк, що він
   // був мутований
@@ -190,7 +190,11 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
+<<<<<<< HEAD
 З цим пов'язано кілька проблем. Одна полягає у тому, що `InputComponent` не може бути використаний знову окремо від `EnhancedComponent`. Більш важливо, якщо ви застосуєте інший КВП до `EnhancedComponent`, який, наприклад, у свою чергу мутує `componentWillReceiveProps`, функціональність першого КВП буде перезаписана! Цей КВП також не буде працювати з функціональними компонентами, які не мають методів життєвого циклу.
+=======
+There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentDidUpdate`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 Мутуючий КВП є крихкою абстракцією — споживач повинен знати, як вони реалізуються, щоб уникнути конфліктів з іншими КВП.
 
@@ -199,9 +203,9 @@ const EnhancedComponent = logProps(InputComponent);
 ```js
 function logProps(WrappedComponent) {
   return class extends React.Component {
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Next props: ', nextProps);
+      console.log('Previous props: ', prevProps);
     }
     render() {
       // Обгорайте переданий компонент у контейнер, не мутуючи його!

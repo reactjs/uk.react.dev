@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -62,6 +63,7 @@ function onClick(event) {
 
 > Примітка:
 >
+<<<<<<< HEAD
 > Якщо ви все-таки хочете звернутися до властивостей події асинхронно, вам необхідно зробити виклик `event.persist()` на події. Тоді ця подія буде вилучена з пулу, в свою чергу це дозволить вашому коду утримувати посилання на цю подію.
 
 ## Підтримувані події {#supported-events}
@@ -86,6 +88,33 @@ React нормалізує події таким чином, що вони ма�
 - [Події анімацій](#animation-events)
 - [Події переходів](#transition-events)
 - [Інші події](#other-events)
+=======
+> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+
+## Supported Events {#supported-events}
+
+React normalizes events so that they have consistent properties across different browsers.
+
+The event handlers below are triggered by an event in the bubbling phase. To register an event handler for the capture phase, append `Capture` to the event name; for example, instead of using `onClick`, you would use `onClickCapture` to handle the click event in the capture phase.
+
+- [Clipboard Events](#clipboard-events)
+- [Composition Events](#composition-events)
+- [Keyboard Events](#keyboard-events)
+- [Focus Events](#focus-events)
+- [Form Events](#form-events)
+- [Generic Events](#generic-events)
+- [Mouse Events](#mouse-events)
+- [Pointer Events](#pointer-events)
+- [Selection Events](#selection-events)
+- [Touch Events](#touch-events)
+- [UI Events](#ui-events)
+- [Wheel Events](#wheel-events)
+- [Media Events](#media-events)
+- [Image Events](#image-events)
+- [Animation Events](#animation-events)
+- [Transition Events](#transition-events)
+- [Other Events](#other-events)
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 * * *
 
@@ -176,14 +205,28 @@ DOMEventTarget relatedTarget
 Назви подій:
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 Для більш детальної інформації про подію onChange, відвідайте [Форми](/docs/forms.html).
 
 * * *
 
+<<<<<<< HEAD
 ### Події миші {#mouse-events}
+=======
+### Generic Events {#generic-events}
+
+Event names:
+
+```
+onError onLoad
+```
+
+* * *
+
+### Mouse Events {#mouse-events}
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 Назви подій:
 

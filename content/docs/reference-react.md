@@ -128,7 +128,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 Якщо ваш компонент-функція відображає той самий результат з тими самими пропсами та станом, ви можете обгорнути його у виклик `React.memo` для підвищення продуктивності в деяких випадках шляхом запам'ятовування результату. Це означає, що React пропустить рендеринг компоненту та повторно використає останній результат рендерингу.
 
+<<<<<<< HEAD
 `React.memo` тільки впливає на зміну пропсів. Якщо ваша функція, згорнута у `React.memo`, має [`useState`](/docs/hooks-state.html) або [`useContext`](/docs/hooks-reference.html#usecontext) хуки в своїй імплементації, вона все ще буду ререндеритися при зміні стана або контекста.
+=======
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 За замовчуванням він тільки поверхово порівнює складні об'єкти, що знаходяться в об'єкті пропсів. Якщо ви хочете контролювати процес порівняння, ви також можете надати користувальницьку функцію для порівняння помістивши її другим аргументом.
 

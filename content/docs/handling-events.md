@@ -8,9 +8,13 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<<<<<<< HEAD
 Обробка подій для React-елементів дуже схожа до обробки подій для DOM-елементів. Але є деякі синтаксичні відмінності:
 * Події React іменуються в camelCase, а не в нижньому регістрі.
 * З JSX ви передаєте функцію як обробник події замість рядка.
+=======
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 Наприклад, HTML:
 
@@ -129,8 +133,13 @@ class LoggingButton extends React.Component {
   render() {
     // Цей синтаксис забезпечує прив'язку `this` всередині handleClick.
     return (
+<<<<<<< HEAD
       <button onClick={(e) => this.handleClick(e)}>
         Натисни на мене
+=======
+      <button onClick={() => this.handleClick()}>
+        Click me
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
       </button>
     );
   }

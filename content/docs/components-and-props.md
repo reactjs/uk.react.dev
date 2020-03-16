@@ -44,7 +44,11 @@ class Welcome extends React.Component {
 
 Два компоненти, що наведені вище, є еквівалентними з точки зору React.
 
+<<<<<<< HEAD
 Класи мають деякі додаткові особливості, які ми обговоримо в [наступних розділах](/docs/state-і-lifecycle.html). До тих пір ми будемо використовувати функціональні компоненти через їх лаконічність.
+=======
+Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ## Рендеринг компонентів {#rendering-a-component}
 
@@ -60,7 +64,11 @@ const element = <div />;
 const element = <Welcome name="Василина" />;
 ```
 
+<<<<<<< HEAD
 Коли React бачить елемент, що представляє визначений користувачем компонент, він передає атрибути JSX цьому компоненту як єдиний об'єкт. Ми називаємо цей об'єкт "пропси".
+=======
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
+>>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 Наприклад, код нижче виводить на сторінці "Привіт, Василина":
 
