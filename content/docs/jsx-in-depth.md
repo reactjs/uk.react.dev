@@ -42,8 +42,7 @@ React.createElement(
 ```js
 React.createElement(
   'div',
-  {className: 'sidebar'},
-  null
+  {className: 'sidebar'}
 )
 ```
 
@@ -228,7 +227,7 @@ function NumberDescriber(props) {
 <MyTextBox autocomplete={true} />
 ```
 
-Здебільшого, ми не рекомендуємо робити так, тому що цей запис може бути сплутаний зі [скороченням імен властивостей з ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) Наприклад, `{foo}` — короткий запис `{foo: foo}`, а не `{foo: true}`. Ця поведінка існує, тому що відповідає поведінці HTML.
+Здебільшого, ми не рекомендуємо не передавати значення пропу, так як цей запис може бути сплутаний зі [скороченням імен властивостей з ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) Наприклад, `{foo}` — короткий запис `{foo: foo}`, а не `{foo: true}`. Ця поведінка існує, тому що відповідає поведінці HTML.
 
 ### Розпакування атрибутів {#spread-attributes}
 

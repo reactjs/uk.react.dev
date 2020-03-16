@@ -177,9 +177,9 @@ function withSubscription(WrappedComponent, selectData) {
 
 ```js
 function logProps(InputComponent) {
-  InputComponent.prototype.componentWillReceiveProps = function(nextProps) {
+  InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Current props: ', this.props);
-    console.log('Next props: ', nextProps);
+    console.log('Previous props: ', prevProps);
   };
   // Якщо ми повертаємо лише той самий отриманий компонент - це натяк, що він
   // був мутований
@@ -190,7 +190,7 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-З цим пов'язано кілька проблем. Одна полягає у тому, що `InputComponent` не може бути використаний знову окремо від `EnhancedComponent`. Більш важливо, якщо ви застосуєте інший КВП до `EnhancedComponent`, який, наприклад, у свою чергу мутує `componentWillReceiveProps`, функціональність першого КВП буде перезаписана! Цей КВП також не буде працювати з функціональними компонентами, які не мають методів життєвого циклу.
+З цим пов'язано кілька проблем. Одна полягає у тому, що `InputComponent` не може бути використаний знову окремо від `EnhancedComponent`. Більш важливо, якщо ви застосуєте інший КВП до `EnhancedComponent`, який, наприклад, у свою чергу *також* мутує `componentDidUpdate`, функціональність першого КВП буде перезаписана! Цей КВП також не буде працювати з функціональними компонентами, які не мають методів життєвого циклу.
 
 Мутуючий КВП є крихкою абстракцією — споживач повинен знати, як вони реалізуються, щоб уникнути конфліктів з іншими КВП.
 
@@ -199,9 +199,9 @@ const EnhancedComponent = logProps(InputComponent);
 ```js
 function logProps(WrappedComponent) {
   return class extends React.Component {
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Next props: ', nextProps);
+      console.log('Previous props: ', prevProps);
     }
     render() {
       // Обгорайте переданий компонент у контейнер, не мутуючи його!

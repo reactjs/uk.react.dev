@@ -27,6 +27,8 @@ prev: hooks-effect.html
 
 Ми випустили плагін для ESLint [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks), який примушує дотримуватися цих двох правил. Ви можете додати цей плагін до вашого проекту, якщо ви хочете його спробувати:
 
+This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+
 ```bash
 npm install eslint-plugin-react-hooks --save-dev
 ```
@@ -45,8 +47,6 @@ npm install eslint-plugin-react-hooks --save-dev
   }
 }
 ```
-
-Цей плагін включений за замовчуванням до [Create React App](/docs/create-a-new-react-app.html#create-react-app).
 
 **Ви можете пропустити залишок сторінки та перейти до наступної, яка пояснює як писати [користувацькі хуки](/docs/hooks-custom.html).** На цій сторінці ми продовжимо і надамо пояснення необхідності цих правил.
 

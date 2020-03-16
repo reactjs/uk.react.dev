@@ -71,7 +71,7 @@ prev: hooks-reference.html
 
 Зверніть увагу на те, **що всі пакунки React мають бути версії 16.8.0 або вище, щоб підтримувати хуки**. Хуки не будуть працювати, якщо ви забудете оновити, наприклад, React DOM.
 
-[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) версії 0.59 та вище підтримує хуки.
+[React Native 0.59](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) версії 0.59 та вище підтримує хуки.
 
 ### Чи маю я переписувати всі мої класові компоненти? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -95,7 +95,7 @@ prev: hooks-reference.html
 
 ### Чи покривають хуки всі варіанти використання класів? {#do-hooks-cover-all-use-cases-for-classes}
 
-Нашою метою є покриття всіх можливостей класів хуками якнайшвидше. Наразі немає альтернативи у вигляді хуків для таких рідковживаних методів життєвого циклу як `getSnapshotBeforeUpdate` та `componentDidCatch`, але ми плануємо скоро їх додати.
+Нашою метою є покриття всіх можливостей класів хуками якнайшвидше. Наразі немає альтернативи у вигляді хуків для таких рідковживаних методів життєвого циклу як `getSnapshotBeforeUpdate`, `getDerivedStateFromError` та `componentDidCatch`, але ми плануємо скоро їх додати.
 
 Оскільки хуки з'явились зовсім нещодавно, то не всі сторонні бібліотеки можуть бути сумісними з ними.
 
@@ -218,7 +218,7 @@ it('can render and update a counter', () => {
 
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: Хук [`useEffect`](/docs/hooks-reference.html#useeffect) може замінити всі їхні комбінації (включно з [менш](#can-i-skip-an-effect-on-updates) [частими](#can-i-run-an-effect-only-on-updates) випадками).
 
-* `componentDidCatch` і `getDerivedStateFromError`: Поки що немає хуків, еквівалентних цим методам, але вони будуть додані найближчим часом.
+* `getSnapshotBeforeUpdate`, `componentDidCatch` і `getDerivedStateFromError`: Поки що немає хуків, еквівалентних цим методам, але вони будуть додані найближчим часом.
 
 ### Як я можу робити вибірку даних з допомогою хуків? {#how-can-i-do-data-fetching-with-hooks}
 
@@ -289,7 +289,7 @@ function Box() {
 
 Об'єднання потрібне оскільки при оновленні змінної стану ми *замінюємо* її значення. Дана поведінка відрізняється від методу `this.setState` у класі, який *об'єднує* оновлені поля в об'єкт.
 
-Якщо вам не вистачає автоматичного об'єднання, ви можете написати користувацький `useLegacyState` хук, що об'єднує оновлення об'єкта стану. Проте **ми радимо розділити стан на декілька змінних з урахуванням того, які значення скоріше за все будуть змінюватися разом.**
+Якщо вам не вистачає автоматичного об'єднання, ви можете створити користувацький `useLegacyState` хук, що об'єднує оновлення об'єкта стану. Проте **ми радимо розділити стан на декілька змінних з урахуванням того, які значення скоріше за все будуть змінюватися разом.**
 
 Наприклад, ми могли розділити стан нашого компонента на об'єкти `position` та `size` і завжди замінювати `position` без необхідності в об'єднанні:
 
@@ -580,7 +580,7 @@ useEffect(() => {
 
 Давайте глянемо, чому це важливо.
 
-Якщо ви вкажете [список залежностей](/docs/hooks-reference.html#conditionally-firing-an-effect) в якості останнього аргумента `useEffect`, `useMemo`, `useCallback` чи `useImperativeHandle`, він має містити всі значення, що використовуються у потоці даних React, включно з пропсами, станом і їх похідними.
+Якщо ви вкажете [список залежностей](/docs/hooks-reference.html#conditionally-firing-an-effect) в якості останнього аргумента `useEffect`, `useMemo`, `useCallback` чи `useImperativeHandle`, він має містити всі значення, що використовуються у тілі функції зворотнього виклику та беруть участь у потоці даних React, включно з пропсами, станом і їх похідними.
 
 Можна безпечно пропустити функцію з списку залежностей **лише** тоді, коли вона (чи функції, які вона викликає) не посилається на пропси, стан чи їх похідні. У цьому прикладі є помилка:
 
@@ -589,7 +589,7 @@ function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
-    const response = await fetch('http://myapi/product' + productId); // Використовує проп productId
+    const response = await fetch('http://myapi/product/' + productId); // Використовує проп productId
     const json = await response.json();
     setProduct(json);
   }
@@ -610,7 +610,7 @@ function ProductPage({ productId }) {
   useEffect(() => {
     // Перемістивши функцію всередину ефекту, ми можемо відразу помітити, які значення він використовує.
     async function fetchProduct() {
-      const response = await fetch('http://myapi/product' + productId);
+      const response = await fetch('http://myapi/product/' + productId);
       const json = await response.json();
       setProduct(json);
     }

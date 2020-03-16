@@ -103,6 +103,7 @@ class MyComponent extends React.Component {
 * Метод `render`
 * Функції-оновлювачі стану компонента, що передаються першим аргументом в `setState`
 * Статичний метод життєвого циклу `getDerivedStateFromProps`
+* Метод `shouldComponentUpdate`
 
 > Примітка:
 >

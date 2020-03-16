@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -75,6 +76,7 @@ React нормалізує події таким чином, що вони ма�
 - [Події клавіатури](#keyboard-events)
 - [Події фокусу](#focus-events)
 - [Події форм](#form-events)
+- [Загальні Events](#generic-events)
 - [Події миші](#mouse-events)
 - [Події курсору](#pointer-events)
 - [Події вибору](#selection-events)
@@ -176,10 +178,20 @@ DOMEventTarget relatedTarget
 Назви подій:
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 Для більш детальної інформації про подію onChange, відвідайте [Форми](/docs/forms.html).
+
+* * *
+
+### Загальні Події {#generic-events}
+
+Назви подій:
+
+```
+onError onLoad
+```
 
 * * *
 

@@ -139,6 +139,8 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 Ледачий компонент потім повинен відрендеритися у тілі компонента `Suspense`. Це дозволить нам показати резервний контент (наприклад, індикатор завантаження), поки ми чекаємо коли ледачий компонент завантажиться.
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 function MyComponent() {
@@ -155,6 +157,8 @@ function MyComponent() {
 `fallback` приймає будь-який React елемент, поки чекає повного завантаження компонента. Компонент `Suspense` можна розмістити де завгодно над "ледачим" компонентом. Ви навіть можете обернути кілька "ледачих" компонентів за допомогою одного `Suspense` компонента
 
 ```js
+import React, { Suspense } from 'react';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -178,7 +182,9 @@ function MyComponent() {
 показати стан помилки, коли виникає проблема з мережою.
 
 ```js
+import React, { Suspense } from 'react';
 import MyErrorBoundary from './MyErrorBoundary';
+
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
@@ -211,8 +217,8 @@ const MyComponent = () => (
 бібліотеку [React Router](https://reacttraining.com/react-router/) за допомогою `React.lazy`.
 
 ```js
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));

@@ -32,7 +32,7 @@ function Example() {
 >Примітка
 >
 >React 16.8.0 — це перший реліз, який підтримує хуки. При оновленні не забудьте оновити всі бібліотеки, включаючи React DOM.
->React Native підтримує хуки з релізу версії [0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059).
+>React Native підтримує хуки з релізу версії [0.59](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059).
 
 ## Відео ознайомлення {#video-introduction}
 
