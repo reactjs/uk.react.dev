@@ -48,13 +48,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-<<<<<<< HEAD
-Цей плагін включений за замовчуванням до [Create React App](/docs/create-a-new-react-app.html#create-react-app).
-
 **Ви можете пропустити залишок сторінки та перейти до наступної, яка пояснює як писати [користувацькі хуки](/docs/hooks-custom.html).** На цій сторінці ми продовжимо і надамо пояснення необхідності цих правил.
-=======
-**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ## Пояснення {#explanation}
 

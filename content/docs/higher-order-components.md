@@ -190,11 +190,7 @@ function logProps(InputComponent) {
 const EnhancedComponent = logProps(InputComponent);
 ```
 
-<<<<<<< HEAD
-З цим пов'язано кілька проблем. Одна полягає у тому, що `InputComponent` не може бути використаний знову окремо від `EnhancedComponent`. Більш важливо, якщо ви застосуєте інший КВП до `EnhancedComponent`, який, наприклад, у свою чергу мутує `componentWillReceiveProps`, функціональність першого КВП буде перезаписана! Цей КВП також не буде працювати з функціональними компонентами, які не мають методів життєвого циклу.
-=======
-There are a few problems with this. One is that the input component cannot be reused separately from the enhanced component. More crucially, if you apply another HOC to `EnhancedComponent` that *also* mutates `componentDidUpdate`, the first HOC's functionality will be overridden! This HOC also won't work with function components, which do not have lifecycle methods.
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
+З цим пов'язано кілька проблем. Одна полягає у тому, що `InputComponent` не може бути використаний знову окремо від `EnhancedComponent`. Більш важливо, якщо ви застосуєте інший КВП до `EnhancedComponent`, який, наприклад, у свою чергу *також* мутує `componentDidUpdate`, функціональність першого КВП буде перезаписана! Цей КВП також не буде працювати з функціональними компонентами, які не мають методів життєвого циклу.
 
 Мутуючий КВП є крихкою абстракцією — споживач повинен знати, як вони реалізуються, щоб уникнути конфліктів з іншими КВП.
 

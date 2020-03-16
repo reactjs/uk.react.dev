@@ -227,11 +227,7 @@ function NumberDescriber(props) {
 <MyTextBox autocomplete={true} />
 ```
 
-<<<<<<< HEAD
-Здебільшого, ми не рекомендуємо робити так, тому що цей запис може бути сплутаний зі [скороченням імен властивостей з ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) Наприклад, `{foo}` — короткий запис `{foo: foo}`, а не `{foo: true}`. Ця поведінка існує, тому що відповідає поведінці HTML.
-=======
-In general, we don't recommend *not* passing a value for a prop, because it can be confused with the [ES6 object shorthand](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` which is short for `{foo: foo}` rather than `{foo: true}`. This behavior is just there so that it matches the behavior of HTML.
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
+Здебільшого, ми не рекомендуємо не передавати значення пропу, так як цей запис може бути сплутаний зі [скороченням імен властивостей з ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) Наприклад, `{foo}` — короткий запис `{foo: foo}`, а не `{foo: true}`. Ця поведінка існує, тому що відповідає поведінці HTML.
 
 ### Розпакування атрибутів {#spread-attributes}
 

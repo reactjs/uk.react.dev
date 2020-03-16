@@ -36,11 +36,7 @@ redirect_from:
 
 ### Онлайн-пісочниці {#online-playgrounds}
 
-<<<<<<< HEAD
-Хочете погратися з React? Скористайтеся онлайн-пісочницями. Спробуйте початковий шаблон на [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new) або [Glitch](https://glitch.com/edit/#!/remix/starter-react-template).
-=======
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template), or [Stackblitz](https://stackblitz.com/fork/react).
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
+Хочете погратися з React? Скористайтеся онлайн-пісочницями. Спробуйте початковий шаблон на [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) або [Stackblitz](https://stackblitz.com/fork/react).
 
 Віддаєте перевагу вашому улюбленому редактору коду? Тоді ви можете [завантажити даний HTML-файл](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), відредагувати та відкрити його у вашому браузері. Даний шаблон трансформує JSX у JavaScript під час запуску . Однак, доволі повільно, тому ми рекомендуємо використовувати даний файл тільки для простих демонстраційних прикладів.
 
@@ -87,11 +83,7 @@ If you're interested in playing around with React, you can use an online code pl
 
 ### Практичний посібник {#practical-tutorial}
 
-<<<<<<< HEAD
 Якщо ви віддаєте перевагу **навчанню через практику,** почніть з нашого [практичного посібника](/tutorial/tutorial.html). У ньому описано процес розробки гри в хрестики-нулики (tic-tac-toe). У вас, можливо, з'явиться спокуса пропустити цей розділ, бо ви не плануєте розробку ігор, але зачекайте. Прийоми, які ви опануєте — фундамент для розробки _будь-якого_ додатка на React. Завдяки посібнику, ви отримаєте більш глибоке розуміння React.
-=======
-If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not into building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
 
 ### Покрокова інструкція {#step-by-step-guide}
 

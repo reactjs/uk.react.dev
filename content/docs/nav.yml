@@ -97,13 +97,7 @@
     - id: events
       title: SyntheticEvent
     - id: test-utils
-<<<<<<< HEAD
       title: Тестові утиліти
-    - id: shallow-renderer
-      title: Поверховий рендерер
-=======
-      title: Test Utilities
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
     - id: test-renderer
       title: Тестовий рендерер
     - id: javascript-environment-requirements
@@ -177,8 +171,4 @@
     - id: faq-versioning
       title: Політика версіонування
     - id: faq-internals
-<<<<<<< HEAD
       title: Віртуальний DOM та деталі його реалізації
-=======
-      title: Virtual DOM and Internals
->>>>>>> 2ef0ee1e4fc4ce620dce1f3e0530471195dc64d1
