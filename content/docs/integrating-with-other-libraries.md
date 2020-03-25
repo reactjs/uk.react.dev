@@ -285,7 +285,7 @@ const ParagraphView = Backbone.View.extend({
 
 Зазвичай рекомендується використовувати односпрямований потік даних, на кшталт [React-стану](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/) або [Redux](https://redux.js.org/). Проте React-компоненти можуть також використовувати шар даних з інших бібліотек і фреймворків.
 
-### Використання Backbone моделей в React компонентах {#using-backbone-models-in-react-components}
+### Використання моделей Backbone у React-компонентах {#using-backbone-models-in-react-components}
 
 Обробка різних `change`-подій та форсування оновлень вручну — найпростіший спосіб використання [Backbone](https://backbonejs.org/)-моделей та колекцій всередині React-компонентів.
 
