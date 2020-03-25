@@ -41,7 +41,7 @@ class SomePlugin extends React.Component {
 
 Зауважте, що ми визначили два [методи життєвого циклу](/docs/react-component.html#the-component-lifecycle): `componentDidMount` та `componentWillUnmount`. Багато jQuery-плагінів додають обробники подій до DOM, тож дуже важливо видаляти їх всередині методу `componentWillUnmount`. Якщо плагін не забезпечує метод очищення, то Вам, скоріш за все, потрібно буде створити його самостійно, пам’ятаючи про видалення всіх обробників подій, які плагін додав, щоб запобігти витоку пам’яті.
 
-### Інтеграція з jQuery плагіном Chosen {#integrating-with-jquery-chosen-plugin}
+### Інтеграція з jQuery-плагіном Chosen {#integrating-with-jquery-chosen-plugin}
 
 Щоб краще проілюструвати вищезазначені поняття, давайте напишемо мінімальний фрагмент коду, який огортає плагін [Chosen](https://harvesthq.github.io/chosen/), що розширює можливості поля вводу `<select>`.
 
