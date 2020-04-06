@@ -68,6 +68,7 @@ class NameForm extends React.Component {
 
 Оскільки ми встановили атрибут `value` для нашого елементу форми, відображене значення завжди буде `this.state.value`, що робить стан React "джерелом правди". Оскільки `handleChange` працює при кожному натисканні клавіші для оновлення стану React, відображуване значення оновиться разом з вводом користувача.
 
+<<<<<<< HEAD
 З контрольованим компонентом кожна зміна стану матиме відповідну функцію обробник. Це дозволяє просто змінювати або перевіряти дані вводу користувача. Наприклад, якщо ми б хотіли встановити примусове правило, щоб імена були написані лише великими літерами, ми могли б написати `handleChange` так:
 
 ```javascript{2}
@@ -75,6 +76,9 @@ handleChange(event) {
   this.setState({value: event.target.value.toUpperCase()});
 }
 ```
+=======
+With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
+>>>>>>> fa5e6e7a988b4cb465601e4c3beece321edeb812
 
 ## Тег textarea {#the-textarea-tag}
 

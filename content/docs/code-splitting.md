@@ -98,10 +98,17 @@ import("./math").then(math => {
 });
 ```
 
+<<<<<<< HEAD
 В той момент, коли Webpack стикається з таким синтаксисом, він автоматично починає розбивати код вашого додатку.
 Якщо ви вже користуєтесь Create React App, це вже налаштовано для вас
 та ви можете одразу [почати користуватися цим](https://facebook.github.io/create-react-app/docs/code-splitting). Це також підтримується
 у [Next.js](https://github.com/zeit/next.js/#dynamic-import) за замовчуванням.
+=======
+When Webpack comes across this syntax, it automatically starts code-splitting
+your app. If you're using Create React App, this is already configured for you
+and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
+out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
+>>>>>>> fa5e6e7a988b4cb465601e4c3beece321edeb812
 
 Під час самостійного налаштування Webpack, скоріш за все, у вас з'явиться бажання прочитати
 [інструкцію з розбиття коду](https://webpack.js.org/guides/code-splitting/) від Webpack.
