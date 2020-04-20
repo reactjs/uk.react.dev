@@ -97,6 +97,7 @@ class MyComponent extends React.Component {
 
 Оскільки наведені вище методи можуть бути викликані більше ніж один раз, то важливо, щоб вони не містили побічних ефектів. Ігнорування цього правила може привести до ряду проблем, включаючи витік пам'яті або недійсний стан додатку. На жаль, виявити ці проблеми може бути важко, оскільки вони часто бувають [недетермінованими](https://uk.wikipedia.org/wiki/Детермінований_алгоритм).
 
+<<<<<<< HEAD
 Суворий режим не може автоматично виявити побічні ефекти за вас, але він може допомогти їх помітити, роблячи їх більш детермінованими. Це досягається завдяки навмисному викликлу наступних методів двічі:
 
 * Метод `constructor` класового компоненту
@@ -104,6 +105,15 @@ class MyComponent extends React.Component {
 * Функції-оновлювачі стану компонента, що передаються першим аргументом в `setState`
 * Статичний метод життєвого циклу `getDerivedStateFromProps`
 * Метод `shouldComponentUpdate`
+=======
+Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following functions:
+
+* Class component `constructor`, `render`, and `shouldComponentUpdate` methods
+* Class component static `getDerivedStateFromProps` method
+* Function component bodies
+* State updater functions (the first argument to `setState`)
+* Functions passed to `useState`, `useMemo`, or `useReducer`
+>>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
 
 > Примітка:
 >
