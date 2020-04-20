@@ -7,7 +7,8 @@ permalink: docs/code-splitting.html
 ## Розбиття по модулям {#bundling}
 
 Більшість React додатків мають власні розбиті за "бандлами" файли використовуючи такі інструменти, як
-[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) або [Browserify](http://browserify.org/).
+[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) або 
+[Browserify](http://browserify.org/).
 Бандлінг – це процес імпортування файлів та об'єднання їх в один файл – бандл (модуль).
 Цей бандл може потім бути включений до веб-сторінки для завантаження всього додатку
 одночасно.
@@ -44,11 +45,13 @@ console.log(add(16, 26)); // 42
 >
 > Наприкінці ваші бандли будуть значно відрізнятися від наведених прикладів.
 
-Якщо ви використовуєте [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) чи подібний інструмент, ви матимете налаштування Webpack за замовчуванням для бандлінгу вашого додатку.
+Якщо ви використовуєте [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) чи подібний інструмент, ви матимете налаштування Webpack за замовчуванням для бандлінгу вашого 
+додатку.
 
 Якщо ви не використовуєте нічого з наведеного чи подібного, вам доведеться налаштовувати бандлінг самостійно. Для прикладів ознайомтеся зі
 [Встановленням](https://webpack.js.org/guides/installation/) та
-[Початком роботи](https://webpack.js.org/guides/getting-started/). Це офіційна документація Webpack.
+[Початком роботи](https://webpack.js.org/guides/getting-started/) на офіційній 
+документації Webpack.
 
 ## Розбиття Коду {#code-splitting}
 
@@ -64,13 +67,6 @@ console.log(add(16, 26)); // 42
 [factor-bundle](https://github.com/browserify/factor-bundle)), що можуть створювати
 декілька бандлів та завантажувати їх у разі потреби.
 
-Щоб уникнути проблем з великим бандлом, було б добре почати "розбиття" вашого бандла.
-[Розбиття Коду](https://webpack.js.org/guides/code-splitting/) – це функція, яку підтримують
-такі бандлери як Webpack та Browserify (за допомогою
-[factor-bundle](https://github.com/browserify/factor-bundle). Цей інструмент може створити кілька модулів
-з одного, які можна динамічно завантажувати під час виконання вашого основного бандлу.
-
-
 Розбиття коду вашого додатку може допомогти поступово завантажити тільки те,
 що необхідно користувачеві в цей момент. Це може значно покращити продуктивність вашого
 додатку. Хоча ви не скоротили кількість коду вашого додатку, ви уникнули завантаження
@@ -79,8 +75,8 @@ console.log(add(16, 26)); // 42
 
 ## `import()` {#import}
 
-Найращий спосіб впровадження розбиття коду — це синтаксис динамічних `import()`
-
+Найращий спосіб впровадження розбиття коду — через синтаксис 
+динамічних `import()`
 
 **До:**
 
@@ -98,21 +94,13 @@ import("./math").then(math => {
 });
 ```
 
-<<<<<<< HEAD
 В той момент, коли Webpack стикається з таким синтаксисом, він автоматично починає розбивати код вашого додатку.
 Якщо ви вже користуєтесь Create React App, це вже налаштовано для вас
 та ви можете одразу [почати користуватися цим](https://facebook.github.io/create-react-app/docs/code-splitting). Це також підтримується
-у [Next.js](https://github.com/zeit/next.js/#dynamic-import) за замовчуванням.
-=======
-When Webpack comes across this syntax, it automatically starts code-splitting
-your app. If you're using Create React App, this is already configured for you
-and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
-out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
->>>>>>> dea4f329ea3a7bba116e07adf67eb5c8b6c528cd
+у [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import) за замовчуванням.
 
 Під час самостійного налаштування Webpack, скоріш за все, у вас з'явиться бажання прочитати
-[інструкцію з розбиття коду](https://webpack.js.org/guides/code-splitting/) від Webpack.
-Конфігурація вашого Webpack повинна мати вигляд, [схожий на цей](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+[інструкцію з розбиття коду](https://webpack.js.org/guides/code-splitting/) від Webpack. Конфігурація вашого Webpack повинна мати вигляд, [схожий на цей](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
 Під час використання [Babel](https://babeljs.io/), ви маєте пересвідчитись в тому, що Babel може парсити синтаксис динамічних import, виключаючи можливість його перетворення.
 Для цього вам знадобиться [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
@@ -121,8 +109,7 @@ out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-im
 
 > Примітка:
 >
-> `React.lazy` та Suspense ще не доступні для рендерингу на стороні сервера. Якщо ви хочете використовувати
-розбиття коду в додатках відрендерених на сервері, ми рекомендуємо [Loadable Components](https://github.com/gregberge/loadable-components). Він має гарну [інструкцію для розбиття на бандли, використовуючи рендеринг на стороні сервера](https://loadable-components.com/docs/server-side-rendering/).
+> `React.lazy` та Suspense ще не доступні для рендерингу на стороні сервера. Якщо ви хочете використовувати розбиття коду в додатках відрендерених на сервері, ми рекомендуємо [Loadable Components](https://github.com/gregberge/loadable-components). Він має гарну [інструкцію для розбиття на бандли, використовуючи серверний рендеринг](https://loadable-components.com/docs/server-side-rendering/).
 
 Функція `React.lazy` дозволяє вам рендерити динамічний import, як звичайний компонент
 
@@ -140,8 +127,7 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 Цей код автоматично завантажить бандл, що містить `OtherComponent` коли цей компонент відрендеритися вперше.
 
-`React.lazy` приймає функцію, яка має викликати динамічний `import()`. Потім повертається `Promise`, який при успішному
-виконанні поверне модуль з `default` експортом, а у цьому модулі у свою чергу знаходитиметься React-компонент.
+`React.lazy` приймає функцію, яка має викликати динамічний `import()`. Потім повертається `Promise`, який при успішному виконанні поверне модуль з `default` експортом, а у цьому модулі у свою чергу знаходитиметься React-компонент.
 
 Ледачий компонент потім повинен відрендеритися у тілі компонента `Suspense`. Це дозволить нам показати резервний контент (наприклад, індикатор завантаження), поки ми чекаємо коли ледачий компонент завантажиться.
 
@@ -183,10 +169,9 @@ function MyComponent() {
 }
 ```
 
-### Запобіжник {#error-boundaries}
+### Запобіжники {#error-boundaries}
 
-Якщо інший модуль не завантажився (наприклад, через виключений інтернет) — це призведе до помилки. Ви можете обробити ці помилки, щоб створити гарний досвід користування і керувати відновленням за допомогою [Запобіжника](/docs/error-boundaries.html). Після створення запобіжника, його можна використати де завгодно над "ледачим" компонентами для того, щоб
-показати стан помилки, коли виникає проблема з мережою.
+Якщо інший модуль не завантажився (наприклад, через виключений інтернет) — це призведе до помилки. Ви можете обробити ці помилки, щоб створити гарний досвід користування і керувати відновленням за допомогою [Запобіжників](/docs/error-boundaries.html). Після створення запобіжника, його можна використати де завгодно над "ледачим" компонентами для того, щоб показати стан помилки, коли виникає проблема з мережою.
 
 ```js
 import React, { Suspense } from 'react';
@@ -244,10 +229,7 @@ const App = () => (
 
 ## Іменовані Експорти {#named-exports}
 
-Наразі `React.lazy` підтримує тількі експорти за замовчуванням.
-Якщо модуль, який ви імпортуєте використовуючи іменовані експорти, можна створити проміжний модуль, який повторно експортуватиме його за замовчуванням. Це гарантує,
-що [tree shaking](https://webpack.js.org/guides/tree-shaking/)
-продовжить працювати та ви не підвантажуєте компоненти, які не будуть використовуватись.
+Наразі `React.lazy` підтримує тількі експорти за замовчуванням. Якщо модуль, який ви імпортуєте використовує іменовані експорти, можна створити проміжний модуль, який повторно експортуватиме його за замовчуванням. Це гарантує працездатність tree shaking - механізма усунення невикористаного коду.
 
 ```js
 // ManyComponents.js
