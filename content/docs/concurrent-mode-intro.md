@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-intro
-title: Introducing Concurrent Mode (Experimental)
+title: Знайомство з паралельним режимом (Експериментальний)
 permalink: docs/concurrent-mode-intro.html
 next: concurrent-mode-suspense.html
 ---
@@ -14,87 +14,87 @@ next: concurrent-mode-suspense.html
 
 <div class="scary">
 
->Caution:
+>Увага:
 >
->This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+>На сторінці описані **експериментальні функції, [яких ще немає](/docs/concurrent-mode-adoption.html) в стабільній версії**. Не використовуйте експериментальні збірки React в продакшн додатках. Ці функції можуть суттєво змінитися та без попередження потрапити в React.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+>Ця документація орієнтована на першопрохідців та зацікавлених користувачів. **Якщо ви новачок в React, не турбуйтеся про ці функції**, немає необхідності вивчати їх прямо зараз.
 
 </div>
 
-This page provides a theoretical overview of Concurrent Mode. **For a more practical introduction, you might want to check out the next sections:**
+На цій сторінці представлений теоретичний огляд "Паралельного Режиму". **Для більш практичного застосування ви можете ознайомитись з наступними розділами:**
 
-* [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) describes a new mechanism for fetching data in React components.
-* [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) shows some UI patterns made possible by Concurrent Mode and Suspense.
-* [Adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) explains how you can try Concurrent Mode in your project.
-* [Concurrent Mode API Reference](/docs/concurrent-mode-reference.html) documents the new APIs available in experimental builds.
+* [Затримка при запиті даних](/docs/concurrent-mode-suspense.html) описує новий механізм запиту даних у React-компонентах.
+* [Патерни паралельного UI](/docs/concurrent-mode-patterns.html) показує деякі патерни UI, які стали можливими завдяки паралельному режиму та затримці.
+* [Використання паралельного режиму](/docs/concurrent-mode-adoption.html) пояснює, як ви можете спробувати паралельний режим у своєму проекті.
+* [Довідник API паралельного режиму](/docs/concurrent-mode-reference.html) документує нові API, доступні в експериментальних версіях.
 
-## What Is Concurrent Mode? {#what-is-concurrent-mode}
+## Що таке паралельний режим? {#what-is-concurrent-mode}
 
-Concurrent Mode is a set of new features that help React apps stay responsive and gracefully adjust to the user's device capabilities and network speed.
+Паралельний режим — набір нових функцій, які допомагають React додаткам залишатися чутливими та плавно підлаштовується під можливості пристрою користувача та швидкість мережі.
 
-These features are still experimental and are subject to change. They are not yet a part of a stable React release, but you can try them in an experimental build.
+Ці особливості досі експериментальні й можуть змінюватися. Вони ще не є частиною стабільної версії React, але ви можете спробувати їх в експериментальній збірці.
 
-## Blocking vs Interruptible Rendering {#blocking-vs-interruptible-rendering}
+## Блокування проти переривання рендерингу {#blocking-vs-interruptible-rendering} 
 
-**To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into master so that other people can pull it.
+**Щоб пояснити паралельний режим, ми будемо використовувати контроль версій як метафору.** Якщо ви працюєте в команді, ви, ймовірно, використовуєте систему контролю версій на зразок Git й працюєте з гілками. Коли гілка готова, ви можете злити свою роботу в master, щоб інші люди могли її витягнути.
 
-Before version control existed, the development workflow was very different. There was no concept of branches. If you wanted to edit some files, you had to tell everyone not to touch those files until you've finished your work. You couldn't even start working on them concurrently with that person — you were literally *blocked* by them.
+До того, як створили контроль версій, робочий процес розробки дуже відрізнявся. Там не було поняття гілок. Якщо ви хотіли відредагувати якісь файли, вам доводилося говорити всім не торкатися цих файлів, поки ви не закінчите роботу. Ви навіть не могли почати працювати над ними одночасно з іншою людиною - ви були буквально *заблоковані*.
 
-This illustrates how UI libraries, including React, typically work today. Once they start rendering an update, including creating new DOM nodes and running the code inside components, they can't interrupt this work. We'll call this approach "blocking rendering".
+Це ілюструє як типово сьогодні працюють UI-бібліотеки, включаючи React. Як тільки вони починають рендерити оновлення, включаючи створення нових вузлів DOM та запуск коду всередині компонентів, вони не можуть перервати цю роботу. Цей підхід ми будемо називати "блокуванням рендеренгу".
 
-In Concurrent Mode, rendering is not blocking. It is interruptible. This improves the user experience. It also unlocks new features that weren't possible before. Before we look at concrete examples in the [next](/docs/concurrent-mode-suspense.html) [chapters](/docs/concurrent-mode-patterns.html), we'll do a high-level overview of new features.
+У паралельному режимі рендеринг не блокується. Він переривається. Це робить користування додатком зручнішим. Він також розблоковує нові функції, які раніше були неможливі. Перш ніж ми розглянемо конкретні приклади в [наступних](/docs/concurrent-mode-suspense.html) [розділах](/docs/concurrent-mode-patterns.html), ми зробимо загальний огляд нових функцій.
 
-### Interruptible Rendering {#interruptible-rendering}
+### Переривання рендерингу
 
-Consider a filterable product list. Have you ever typed into a list filter and felt that it stutters on every key press? Some of the work to update the product list might be unavoidable, such as creating new DOM nodes or the browser performing layout. However, *when* and *how* we perform that work plays a big role.
+Розглянемо список продуктів, що фільтруються. Ви коли-небудь фільтрували список та відчували, що він затиняїться при кожному натисканні клавіш? Деяка робота над оновленням списку продуктів може бути неминучою, наприклад, створення нових вузлів DOM або будування макета браузером. Однак *коли* і *як* ми виконуємо цю роботу, грає велику роль.
 
-A common way to work around the stutter is to "debounce" the input. When debouncing, we only update the list *after* the user stops typing. However, it can be frustrating that the UI doesn't update while we're typing. As an alternative, we could "throttle" the input, and update the list with a certain maximum frequency. But then on lower-powered devices we'd still end up with stutter. Both debouncing and throttling create a suboptimal user experience.
+Поширений спосіб обійти запинання — не обробляти вхідні дані при кожній зміні (debounce). У такому разі ми оновлюємо список лише *після* того, як користувач перестає друкувати. Однак, може бути неприємно, що інтерфейс користувача не оновлюється під час введення тексту. Як альтернатива, ми могли б "гальмувати" (throttle) введення даних та оновлювати список з певною максимальною частотою. Але потім на пристроях з меншою потужністю ми все-таки почнемо затинатися. Обидва підходи створюють неоптимальний UI.
 
-The reason for the stutter is simple: once rendering begins, it can't be interrupted. So the browser can't update the text input right after the key press. No matter how good a UI library (such as React) might look on a benchmark, if it uses blocking rendering, a certain amount of work in your components will always cause stutter. And, often, there is no easy fix.
+Причина затинання проста: після початку рендеринга, він не може бути перерваний. Тому браузер не може оновити введення тексту відразу після натискання клавіши. Незалежно від того, наскільки добре може виглядати UI-бібліотека (наприклад, React) у порівнянні з іншими, якщо він використовує блокування рендерингу, певна кількість роботи у ваших компонентах завжди призведе до затинання. І найчастіше це не так просто виправити.
 
-**Concurrent Mode fixes this fundamental limitation by making rendering interruptible.** This means when the user presses another key, React doesn't need to block the browser from updating the text input. Instead, it can let the browser paint an update to the input, and then continue rendering the updated list *in memory*. When the rendering is finished, React updates the DOM, and changes are reflected on the screen.
+**Паралельний режим усуває це фундаментальне обмеження, роблячи рендеринг переривчастим.** Це означає, що коли користувач натискає іншу клавішу, React-у не потрібно блокувати браузер для оновлення введення тексту. Натомість він може дозволити браузеру відобразити оновлення вводу, а потім продовжити оновлювати список *у пам'яті*. Коли рендеринг закінчений, React оновлює DOM, а зміни відображаються на екрані.
 
-Conceptually, you can think of this as React preparing every update "on a branch". Just like you can abandon work in branches or switch between them, React in Concurrent Mode can interrupt an ongoing update to do something more important, and then come back to what it was doing earlier. This technique might also remind you of [double buffering](https://wiki.osdev.org/Double_Buffering) in video games.
+Концептуально ви можете думати про це так, що React готує кожне оновлення "на гілці". Так само, як ви можете відмовитися від роботи у гілках або перемикатися між ними, React у паралельному режимі може перервати постійне оновлення, щоб зробити щось важливіше, а потім повернутися до того, що він робив раніше. Ця методика може також нагадувати вам про [подвійну буферизацію](https://wiki.osdev.org/Double_Buffering) у відеоіграх.
 
-Concurrent Mode techniques reduce the need for debouncing and throttling in UI. Because rendering is interruptible, React doesn't need to artificially *delay* work to avoid stutter. It can start rendering right away, but interrupt this work when needed to keep the app responsive.
+Паралельний режим зменьшує потребу в очікуванні (debouncing) та гальмуванні (throttling) в інтерфейсі користувача. Оскільки рендеринг переривається, React не потрібно штучно *затримувати* рендеринг, щоб уникнути затинання. Він може почати рендеринг відразу, але перервати цю роботу, коли це необхідно, щоб додаток завжди був в змозі реагувати на запити.
 
-### Intentional Loading Sequences {#intentional-loading-sequences}
+### Навмисні послідовності завантаження {#intentional-loading-sequences}
 
-We've said before that Concurrent Mode is like React working "on a branch". Branches are useful not only for short-term fixes, but also for long-running features. Sometimes you might work on a feature, but it could take weeks before it's in a "good enough state" to merge into master. This side of our version control metaphor applies to rendering too.
+Ми вже говорили, що паралельний режим у React — це ніби працювання "на гілці". Гілки корисні не тільки для короткочасних виправлень, але і для довготривалих змін. Іноді ви можете працювати над функцією, але може пройти кілька тижнів, перш ніж вона виявиться в «досить хорошому стані», щоб злитися з master. Цей аспект метафори про управління версіями стосується і рендерингу. 
 
-Imagine we're navigating between two screens in an app. Sometimes, we might not have enough code and data loaded to show a "good enough" loading state to the user on the new screen. Transitioning to an empty screen or a large spinner can be a jarring experience. However, it's also common that the necessary code and data doesn't take too long to fetch. **Wouldn't it be nicer if React could stay on the old screen for a little longer, and "skip" the "bad loading state" before showing the new screen?**
+Уявіть, що ми пересуваємося між двома екранами в додатку. Іноді у нас може не вистачати завантаженого коду і даних, щоб показати користувачеві «досить добрий» стан завантаження на новому екрані. Перехід на порожній екран або на великий спінер може бути неприємним досвідом. Проте найчастіше, щоб отримати необхідний код та дані непотрібно занадто багато часу. **Чи не було б приємніше, якби React міг залишитися на старому екрані трохи довше і "пропустити" "поганий стан завантаження" перед тим, як показати новий екран?**
 
-While this is possible today, it can be difficult to orchestrate. In Concurrent Mode, this feature is built-in. React starts preparing the new screen in memory first — or, as our metaphor goes, "on a different branch". So React can wait before updating the DOM so that more content can load. In Concurrent Mode, we can tell React to keep showing the old screen, fully interactive, with an inline loading indicator. And when the new screen is ready, React can take us to it.
+Незважаючи на те, що це можно робити і сьогодні, це важко організувати. У паралельному режимі ця функція вбудована. React спочатку починає готувати новий екран в пам'яті - або, як йдеться у нашій метафорі, "на іншій гілці". Тож React може зачекати, перш ніж оновити DOM, щоб завантажувати більше контенту. У паралельному режимі ми можемо сказати React продовжувати показувати старий екран, повністю інтерактивний, із вбудованим індикатором завантаження. І коли новий екран буде готовий, React може перевести нас до нього.
 
-### Concurrency {#concurrency}
+### Паралельність {#concurrency}
 
-Let's recap the two examples above and see how Concurrent Mode unifies them. **In Concurrent Mode, React can work on several state updates *concurrently*** — just like branches let different team members work independently:
+Давайте резюмуємо два приклади, наведені вище, і подивимося, як паралельний режим об'єднує їх: **У паралельному режимі React може працювати над кількома оновленнями стану *паралельно*** - так само, як гілки дозволяють різним членам команди працювати самостійно:
 
-* For CPU-bound updates (such as creating DOM nodes and running component code), concurrency means that a more urgent update can "interrupt" rendering that has already started.
-* For IO-bound updates (such as fetching code or data from the network), concurrency means that React can start rendering in memory even before all the data arrives, and skip showing jarring empty loading states.
+* Для  оновлень пов'язаних до ЦП (наприклад, створення вузлів DOM та запуску коду компонента) паралельність означає, що більш термінове оновлення може «перервати» рендеринг, що вже розпочався.
+* Для оновлень пов'язаних до вводу-виводу (таких як отримання кода або даних з мережі), паралельність означає, що React може почати візуалізацію в пам'яті ще до того, як всі дані надійдуть, і пропустити показ порожніх станів завантаження.
 
-Importantly, the way you *use* React is the same. Concepts like components, props, and state fundamentally work the same way. When you want to update the screen, you set the state.
+Важливо, те, що ви *використовуєте* React так само. Поняття, такі як компоненти, реквізити та стан, принципово працюють однаково. Коли ви хочете оновити екран, ви встановлюєте стан.
 
-React uses a heuristic to decide how "urgent" an update is, and lets you adjust it with a few lines of code so that you can achieve the desired user experience for every interaction.
+React використовує евристику, щоб вирішити, наскільки "терміновим" є оновлення, і дозволяє вам налаштувати його за допомогою декількох рядків коду, щоб ви могли досягти бажаного досвіду користувача для кожної взаємодії.
 
-## Putting Research into Production {#putting-research-into-production}
+## Досвід впровадження у продакшн {#putting-research-into-production}
 
-There is a common theme around Concurrent Mode features. **Its mission is to help integrate the findings from the Human-Computer Interaction research into real UIs.**
+Існує загальна тема щодо можливості паралельного режиму. **Його місія полягає в тому, щоб допомогти інтегрувати результати від дослідження взаємодії людини і комп'ютера в реальному UI.**
 
-For example, research shows that displaying too many intermediate loading states when transitioning between screens makes a transition feel *slower*. This is why Concurrent Mode shows new loading states on a fixed "schedule" to avoid jarring and too frequent updates.
+Наприклад, дослідження показують, що відображення занадто багатьох станів проміжного завантаження при переході між екранами робить відчуття перехіду *повільніше*. Ось чому паралельний режим показує нові стани завантаження за фіксованим "графіком", щоб уникнути нестабільності та занадто частого оновлення.
 
-Similarly, we know from research that interactions like hover and text input need to be handled within a very short period of time, while clicks and page transitions can wait a little longer without feeling laggy. The different "priorities" that Concurrent Mode uses internally roughly correspond to the interaction categories in the human perception research.
+Аналогічно, з досліджень ми знаємо, що з такі взаємодії, як наведення курсора та введення тексту, потрібно обробляти за дуже короткий проміжок часу, тоді як кліки та переходи сторінок можуть зачекати трохи довше, не відчуваючи лага. Різні "пріоритети", які використовує паралельний режим, приблизно відповідають категоріям взаємодії в дослідженні людського сприйняття.
 
-Teams with a strong focus on user experience sometimes solve similar problems with one-off solutions. However, those solutions rarely survive for a long time, as they're hard to maintain. With Concurrent Mode, our goal is to bake the UI research findings into the abstraction itself, and provide idiomatic ways to use them. As a UI library, React is well-positioned to do that.
+Команди з сильним фокусом на досвіді користувачів іноді вирішують подібні проблеми одноразовими рішеннями. Однак ці рішення рідко виживають довгий час, оскільки їх важко підтримувати. У паралельному режимі наша мета полягає в тому, щоб визначити результати досліджень інтерфейсу в самій абстракції та надати ідіоматичні способи їх використання. Як UI-бібліотека, React чудово підходить для цього.
 
-## Next Steps {#next-steps}
+## Наступні кроки {#next-steps}
 
-Now you know what Concurrent Mode is all about!
+Тепер ви знаєте, що таке паралельний режим!
 
-On the next pages, you'll learn more details about specific topics:
+На наступних сторінках ви дізнаєтесь більше деталей щодо конкретних тем:
 
-* [Suspense for Data Fetching](/docs/concurrent-mode-suspense.html) describes a new mechanism for fetching data in React components.
-* [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html) shows some UI patterns made possible by Concurrent Mode and Suspense.
-* [Adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) explains how you can try Concurrent Mode in your project.
-* [Concurrent Mode API Reference](/docs/concurrent-mode-reference.html) documents the new APIs available in experimental builds.
+* [Затримка при запиті даних](/docs/concurrent-mode-suspense.html) описує новий механізм запиту даних у React-компонентах.
+* [Патерни паралельного UI](/docs/concurrent-mode-patterns.html) показує деякі патерни UI, які стали можливими завдяки паралельному режиму та затримці.
+* [Використання паралельного режиму](/docs/concurrent-mode-adoption.html) пояснює, як ви можете спробувати паралельний режим у своєму проекті.
+* [Довідник API паралельного режиму](/docs/concurrent-mode-reference.html) документує нові API, доступні в експериментальних версіях.
