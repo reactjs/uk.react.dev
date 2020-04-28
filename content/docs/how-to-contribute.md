@@ -1,6 +1,6 @@
 ---
 id: how-to-contribute
-title: How to Contribute
+title: Як внести зміни? 
 layout: contributing
 permalink: docs/how-to-contribute.html
 next: codebase-overview.html
@@ -9,130 +9,133 @@ redirect_from:
   - "tips/introduction.html"
 ---
 
-React is one of Facebook's first open source projects that is both under very active development and is also being used to ship code to everybody on [facebook.com](https://www.facebook.com). We're still working out the kinks to make contributing to this project as easy and transparent as possible, but we're not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
+ React являється одним з перших opensource [facebook.com](https://www.facebook.com). проєктів, який дуже активно розвивається, а також використовується в facebook.com. Ми все ще працюємо над тим, щоб зробити свій внесок у цей проєкт було максимально легким та прозорим. Сподіваємося цей документ зробить для вас процес внесення прозорим, та дасть чіткі  відповіді на деякі запитання, які могли виникнути у вас.
 
-### [Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
+### [Норми поведінки](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
-Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Facebook прийняв договір [Contributor Covenant](https://www.contributor-covenant.org/) як - норми поведінки, і ми очікуємо, що всі учасники проєкту будуть його дотримуватися. Будь ласка, прочитайте [повний текст](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md), щоб зрозуміти, які дії будуть толеруватися, а які ні.
 
-### Open Development {#open-development}
+### Відкрита Розробка {#open-development}
 
-All work on React happens directly on [GitHub](https://github.com/facebook/react). Both core team members and external contributors send pull requests which go through the same review process.
+Вся робота над React відбувається безпосередньо на [GitHub](https://github.com/facebook/react). Як і основні члени команди, так і зовнішні учасники надсилають свій запит на внесок, який проходить одинаковий процес огляду.
 
-### Semantic Versioning {#semantic-versioning}
+### Семантичне Версіонування {#semantic-versioning}
 
-React follows [semantic versioning](https://semver.org/). We release patch versions for critical bugfixes, minor versions for new features or non-essential changes, and major versions for any breaking changes. When we make breaking changes, we also introduce deprecation warnings in a minor version so that our users learn about the upcoming changes and migrate their code in advance. Learn more about our commitment to stability and incremental migration in [our versioning policy](/docs/faq-versioning.html).
+React слідує за  [семантичним версіонуванням](https://semver.org/). Ми випускаємо версії патчів для виправлення критичних помилок, мінорні версії для нових функцій або не суттєвих змін, а також мажорні версії для будь-яких невід'ємних змін. Коли ми вносимо невід'ємні зміни, ми також вносимо попередження про анулювання мінорної версії, щоб наші користувачі заздалегідь дізналися про майбутні зміни та мігрували свій код наперед. Дізнайтеся більше про нашу прихильність щодо стабільності та поступової міграції в нашій [політиці версіонування.](/docs/faq-versioning.html)
 
-Every significant change is documented in the [changelog file](https://github.com/facebook/react/blob/master/CHANGELOG.md).
+Кожна суттєва зміна задокументована у [файлі змін](https://github.com/facebook/react/blob/master/CHANGELOG.md).
 
-### Branch Organization {#branch-organization}
+### Організація гілок {#branch-organization}
 
-Submit all changes directly to the [`master branch`](https://github.com/facebook/react/tree/master). We don't use separate branches for development or for upcoming releases. We do our best to keep `master` in good shape, with all tests passing.
+Подайте всі зміни безпосередньо в [`основну гілку.`](https://github.com/facebook/react/tree/master). Ми не використовуємо окремі гілки для розробки або для майбутніх випусків версій. Проходячи всі тести, ми робимо все можливе, щоб `основна гілка` 
+була у хорошій формі, пройшовши всі тести.
 
-Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+Код, який потрапляє в `основну гілку` повинен бути сумісний з останньою стабільною версією. Він може містити додаткові функції, але без невід'ємних змін. Ми мусимо мати можливість випустити нову мінорну версію з `основної гілки` в будь який час.
 
-### Feature Flags {#feature-flags}
+### Прапори особливостей {#feature-flags}
 
-To keep the `master` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+Щоб утримувати `основну гілку` у хорошому стані, невід'ємні зміни та експериментальні функції повинні бути закріплені за прапором особливостей.
 
-Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
+Прапори особливостей визначені у [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/master/packages/shared/ReactFeatureFlags.js). Деякі збірки React можуть включати різні набори правил для прапорів особливостей; для прикладу, збірка React Native може бути налаштована інакше, ніж React DOM. Ці прапори особливостей знаходяться в [`packages/shared/forks`](https://github.com/facebook/react/tree/master/packages/shared/forks). Прапори особливостей статично вносяться потоком, тому ви можете запустити `yarn flow`, для підтвердження, що ви оновили всі необхідні файли.
 
-React's build system will strip out disabled feature branches before publishing. A continuous integration job runs on every commit to check for changes in bundle size. You can use the change in size as a signal that a feature was gated correctly.
+Система побудови React видалить відключені гілки особливостей перед публікацією. 
+Завдання безперервної інтеграції полягає в тому, щоб перевірити кожен коміт на зміни розміру пакету. Ви можете використовувати зміну розміру як сигнал про те,  що функція була закріплена правильно.
 
-### Bugs {#bugs}
+### Помилки {#bugs}
 
-#### Where to Find Known Issues {#where-to-find-known-issues}
+#### Де знайти уже відомі помилки {#where-to-find-known-issues}
 
-We are using [GitHub Issues](https://github.com/facebook/react/issues) for our public bugs. We keep a close eye on this and try to make it clear when we have an internal fix in progress. Before filing a new task, try to make sure your problem doesn't already exist.
+Ми використовуємо [GitHub Issues](https://github.com/facebook/react/issues) для наших публічних помилок. Ми уважно стежимо за цим і намагаємося зрозуміти, коли ми дійсно маємо їх виправляти, і чи це виправлення вже не є в процесі. Перш ніж подавати нову помилку, спробуйте переконатися, що вона ще не існує.
 
-#### Reporting New Issues {#reporting-new-issues}
+#### Повідомлення про нові помилки {#reporting-new-issues}
 
-The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/Luktwrdm/) is a great starting point.
+Найкращим способом для виправлення повідомленої вами помилки, - це надання її зменшеної копії (тестового випадку). Цей щаблон [JSFiddle template](https://jsfiddle.net/Luktwrdm/) є не поганою стартовою точкою.
 
-#### Security Bugs {#security-bugs}
+#### Помилки безпеки {#security-bugs}
 
-Facebook has a [bounty program](https://www.facebook.com/whitehat/) for the safe disclosure of security bugs. With that in mind, please do not file public issues; go through the process outlined on that page.
+Facebook має  [програму винагороди](https://www.facebook.com/whitehat/) для безпечного викриття помилок безпеки. Зважаючи на це, будь ласка, не подавайте публічних запитів, а пройдіть процес, описаний на цій сторінці.
 
-### How to Get in Touch {#how-to-get-in-touch}
+### Як зв’язатися {#how-to-get-in-touch}
 
-* IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
-* [Discussion forums](/community/support.html#popular-discussion-forums)
+* IRC: [#reactjs на freenode](https://webchat.freenode.net/?channels=reactjs)
+* [Обговорити на форумах](/community/support.html#popular-discussion-forums)
 
-There is also [an active community of React users on the Discord chat platform](https://www.reactiflux.com/) in case you need help with React.
+Також є [активною спільнота користуваів React на платформі Discord](https://www.reactiflux.com/) У випадку коли вам потрібна буде допомога з React.
 
-### Proposing a Change {#proposing-a-change}
+### Запропонувати зміни {#proposing-a-change}
 
-If you intend to change the public API, or make any non-trivial changes to the implementation, we recommend [filing an issue](https://github.com/facebook/react/issues/new). This lets us reach an agreement on your proposal before you put significant effort into it.
+Якщо ви маєте намір змінити публічний API або внести будь-які не значні зміни з вашою реалізацію, радимо [подати проблему](https://github.com/facebook/react/issues/new). Це дозволить нам досягти згоди щодо вашої пропозиції, перш ніж ви докладете до неї значних зусиль.
 
-If you're only fixing a bug, it's fine to submit a pull request right away but we still recommend to file an issue detailing what you're fixing. This is helpful in case we don't accept that specific fix but want to keep track of the issue.
+Якщо ж ви тільки виправляєте помилки, то тоді добре подати запит на внесок одразу після цього, але ми все-таки рекомендуємо подати проблему з детальним описом того, що ви виправляєте. Це досить корисно, у випадку якщо ми не приймаємо конкретні дії щодо виправлення, але хочемо відслідковувати цю проблему.
 
-### Your First Pull Request {#your-first-pull-request}
+### Ваш перший запит на внесок {#your-first-pull-request}
 
-Working on your first Pull Request? You can learn how from this free video series:
+Працюєте над вашим першим запитом на внесок ? Ви можете навчитися цьому з цих безкоштовних відео серій:
+**[Як робити внески open source на GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
-**[How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
+Щоб допомогти вам влитись та ознайомитись з нашим процесом внеску, у нас є список  **[хороших перших проблем](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** які містять доволі легкі помилки, і мають відносно малий обсяг. Це чудове місце для розуміння з чого починати.
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** that contain bugs that have a relatively limited scope. This is a great place to get started.
+Якщо ви вирішили виправити проблему, на сам перед переконайтеся, чи хтось вже не працює над її виправленням. Для цього перевірте спочатку коментарі,  якщо ніхто не працює над нею, будь ласка, залиште коментар, що ви маєте намір працювати над виправленням, щоб інші люди випадково не дублювали ваші зусилля.
 
-If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don't accidentally duplicate your effort.
+Якщо хтось запропонував вирішити проблему, але не є про це знати, більше двох тижнів. То цілком можливо починати роботу над нею, але все ж таки варто залишити коментар наперед.
 
-If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take it over but you should still leave a comment.
+### Надсилання запиту на внесок {#sending-a-pull-request}
 
-### Sending a Pull Request {#sending-a-pull-request}
+Основна команда здійснює моніторинг запитів на внесок. Ми розглянемо ваш запит на внесок і або об'єднаємо його, або вимагатимемо деякі його зміни, або закриємо з поясненням. 
 
-The core team is monitoring for pull requests. We will review your pull request and either merge it, request changes to it, or close it with an explanation. For API changes we may need to fix our internal uses at Facebook.com, which could cause some delay. We'll do our best to provide updates and feedback throughout the process.
+Для змін API нам може знадобитися виправити внутрішнє використання на Facebook.com, що може спричинити деяку затримку.  Але ми зробимо все можливе, щоб тримати вас вкурсі оновлень та відгуків протягом усього процесу.
 
-**Before submitting a pull request,** please make sure the following is done:
+**Перед наданням запиту на отримання,** будь ласка впевніться що наступні пункти є виконаними:
 
-1. Fork [the repository](https://github.com/facebook/react) and create your branch from `master`.
-2. Run `yarn` in the repository root.
-3. If you've fixed a bug or added code that should be tested, add tests!
-4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
-5. Run `yarn test-prod` to test in the production environment. It supports the same options as `yarn test`.
-6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
-7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
-8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
-9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
-10. If you haven't already, complete the CLA.
+1. Добавте [вилку репозиторію](https://github.com/facebook/react) і клонуйте з `основної гілки`
+2. Виконайте `yarn` з кореневої директорії.
+3. Якщо ви виправили помилку, або добавили код який має пройти тести, добавте тести також !
+4. Переконайтесь у проходженні тесту (`yarn test`). Підказка: `yarn test --watch TestName` є корисною командою в розробці.
+5. Виконайте `yarn test-prod` для тестування продакшн середовища. Воно підтримує такі ж самі опціїї як `yarn test`.
+6. Якщо вам потрібен  налагоджувач, виконайте `yarn debug-test --watch TestName`, відкрийте `chrome://inspect`, і натисніть "Inspect".
+7. Відформатуйте свій код з допомогою [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+8. Переконайтесь що ваш код підсвічується (`yarn lint`). Підказка: `yarn linc` для перевірки тільки змінених файлів.
+9. Виконайте [Потік](https://flowtype.org/) перевірки типів (`yarn flow`).
+10. І якщо ви ще цього не зробили, заповніть CLA.
 
-### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
+### Ліцензійний договір для учасників (CLA) {#contributor-license-agreement-cla}
 
-In order to accept your pull request, we need you to submit a CLA. You only need to do this once, so if you've done this for another Facebook open source project, you're good to go. If you are submitting a pull request for the first time, just let us know that you have completed the CLA and we can cross-check with your GitHub username.
+Щоб прийняти ваш запит на отримання, нам потрібно надіслати вам CLA. Це потрібно зробити лише один раз, отож якщо ви зробили це для іншого проєкту з open source у Facebook, ви кваліфіковані. Якщо ви подаєте запит на отримання, просто повідомте нам, що ви заповнили CLA, і ми можемо перевірити ваше ім'я користувача GitHub.
 
-**[Complete your CLA here.](https://code.facebook.com/cla)**
+**[Заповніть свій (CLA) тут.](https://code.facebook.com/cla)**
 
-### Contribution Prerequisites {#contribution-prerequisites}
+### Передумови для внеску {#contribution-prerequisites}
 
-* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
-* You have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.
-* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
-* You are familiar with Git.
+* Ви повинні мати [Node](https://nodejs.org) встановлено версії v8.0.0+ and [Yarn](https://yarnpkg.com/en/) версії v1.2.0+.
+* Ви повинні мати [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) встановлено.
+* Ви повинні мати `gcc` встановлено, або для вас повинно бути зручним встановити будь який компілятор, якщо це буде необхідно. Деякі з наших залежностей можуть вимагати компіляцію. На OS X, Xcode Command Line Tools допоможе вам. На Ubuntu,  `apt-get install build-essential` встановить необхідні пакети. Подібні команди повинні працювати і в інших дистрибутивах Linux. Windows знадобиться кілька додаткових кроків, за детальною інформацію дивіться [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) 
+* Ви повинні бути ознайомлені з Git.
 
-### Development Workflow {#development-workflow}
+### Розвиток робочого процесу {#development-workflow}
 
-After cloning React, run `yarn` to fetch its dependencies.
-Then, you can run several commands:
+Після клонування React, виконайте `yarn` щоб додати собі всі залежності. Пізніше,  можете виконати кілька цих команд.
 
-* `yarn lint` checks the code style.
-* `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
-* `yarn test` runs the complete test suite.
-* `yarn test --watch` runs an interactive test watcher.
-* `yarn test <pattern>` runs tests with matching filenames.
-* `yarn test-prod` runs tests in the production environment. It supports all the same options as `yarn test`.
-* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
-* `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
-* `yarn build` creates a `build` folder with all the packages.
-* `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
+* `yarn lint`  для перевірки написання стиля коду.
+* `yarn linc` таке саме як `yarn lint`але швидше, тому що він перевіряє файли які відрізняються лише на вашій гілці.
+* `yarn test` виконує повний цикл тестів.
+* `yarn test --watch` виконує інтерактивний оглядач тестів.
+* `yarn test <pattern>`  виконує тести з відповідними іменами файлів.
+* `yarn test-prod` виконує тести в продакшн середовищі. Підтримує всі ті самі опції що і `yarn test`.
+* `yarn debug-test` таке саме як `yarn test` але з налагоджувачем. Відкрийте `chrome://inspect` і натисніть "Inspect".
+* `yarn flow` виконує [Потік](https://flowtype.org/) перевірки типів.
+* `yarn build` створює `build` директорію із всіма пакетами.
+* `yarn build react/index,react-dom/index --type=UMD` створює UMD builds з React і ReactDOM
 
-We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
 
-First, run `yarn build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
+Ми рекомендуємо виконати `yarn test` (або його варіанти вище), щоб переконатися, що ви не робите жодної кривди, під час роботи над зміною. Але і можна спробувати побудувати React у реальному проєкті.
 
-The easiest way to try your changes is to run `yarn build react/index,react-dom/index --type=UMD` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.development.js` from the `build` folder so it will pick up your changes.
+Спочатку виконайте `yarn build`. Це дозволить створити заздалегідь вбудовані пакети у `build` директорії, а також підготувати npm-пакети всередині`build/packages`.
 
-If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+Найпростіший спосіб спробувати зміни - це виконати `yarn build react/index,react-dom/index --type=UMD`  пізніше відкрити `fixtures/packaging/babel-standalone/dev.html`. Цей файл вже використовує `react.development.js` з `build` директорї, отож він помітить ваші зміни.
 
-If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder. Note that **instead of `--type=UMD` you'll want to pass `--type=NODE` when building**. You'll also need to build the `scheduler` package:
+Якщо ви хочете спробувати зміни в існуючому проєкті React, ви можете скопіювати  `build/dist/react.development.js`, `build/dist/react-dom.development.js`, або будь-який інший build у вашу програму та використовувати його замість стабільної версії.
+
+Якщо ваш проєкт використовує React від npm, ви можете видалити `react` і `react-dom` у його залежностях і скористатися `yarn link`  щоб вказати їх на локальну `build` директорію. Зауважте що **замість `--type=UMD` ви повинні передати параметр `--type=NODE` коли будуєте**. Вам також потрібно буде побудувати `scheduler` пакет:
 
 ```sh
 cd ~/path_to_your_react_clone/
@@ -147,34 +150,32 @@ cd ~/path/to/your/project
 yarn link react react-dom
 ```
 
-Every time you run `yarn build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
+Кожен раз коли ви виконуєте `yarn build` в React директорії, оновлені версії будуть відображатися в імені вашого проєкту `node_modules`. ізніше ви можете перебудувати проєкт, щоб спробувати зміни.
 
-If some package is still missing (e.g. maybe you use `react-dom/server` in your project), you can always do a full build with `yarn build`. Note that running `yarn build` without options takes a long time.
+Якщо якийсь пакет все ще відсутній (наприклад, ви використовуєте `react-dom/server` in your project), у своєму проєкті), ви завжди можете виконати повний бідл з допомогою `yarn build`. Зауважте, що виконання `yarn build` без параметрів займає багато часу.
 
-We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
+Ми все ще вимагаємо, щоб ваш запит на внесок містив одиничні тести на будь-які нові функції. Таким чином ми можемо гарантувати, що ми не зіпсуємо ваш код у майбутньому.
 
-### Style Guide {#style-guide}
+### Посібник зі стилів  {#style-guide}
 
-We use an automatic code formatter called [Prettier](https://prettier.io/).
-Run `yarn prettier` after making any changes to the code.
+Ми використовуємо автоматичний форматор коду під назвою [Prettier](https://prettier.io/). Виконайте `yarn prettier`після внесення змін до коду.
 
-Then, our linter will catch most issues that may exist in your code.
-You can check the status of your code styling by simply running `yarn linc`.
+Тоді наш лінтер розпізнає більшість проблем, які можуть існувати у вашому коді. Ви можете перевірити стан стилізації коду, просто виконавши `yarn linc`.
 
-However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at [Airbnb's Style Guide](https://github.com/airbnb/javascript) will guide you in the right direction.
+Але все ж таки є деякі стилі, які лінтер не може підібрати. Якщо ви в чомусь не впевнені, перегляньте посібник із стилів [Airbnb's Style Guide](https://github.com/airbnb/javascript) щоб він направив вас у правильне русло.
 
-### Request for Comments (RFC) {#request-for-comments-rfc}
+### Запит на коментарі (RFC) {#request-for-comments-rfc}
 
-Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow.
+Багато змін, включаючи виправлення помилок та вдосконалення документації, можуть бути реалізовані та переглянуті через звичайний робочий процес запиту на внесок в GitHub.
 
-Some changes though are "substantial", and we ask that these be put through a bit of a design process and produce a consensus among the React core team.
+Хоч і деякі зміни є  суттєвими, для досягнення згоди серед основної команди React, ми просимо подавати їх через процес запиту на внесок.
 
-The "RFC" (request for comments) process is intended to provide a consistent and controlled path for new features to enter the project. You can contribute by visiting the [rfcs repository](https://github.com/reactjs/rfcs).
+Процес "RFC" (запит на коментарі) process is intended to provide a consistent and controlled path for new features to enter the project. покликаний забезпечити послідовний і контрольований шлях для розвитку нових функцій в проєкті. Ви зможете зробити свій внесок, відвідавши [rfcs repository](https://github.com/reactjs/rfcs).
 
-### License {#license}
+### Ліцензія {#license}
 
-By contributing to React, you agree that your contributions will be licensed under its MIT license.
+Роблячи свій внесок React, ви погоджуєтесь, що ваші внески будуть ліцензовані відповідно до ліцензії MIT.
 
-### What Next? {#what-next}
+### Що далі ? {#what-next}
 
-Read the [next section](/docs/codebase-overview.html) to learn how the codebase is organized.
+Прочитайте [наступний розділ](/docs/codebase-overview.html), щоб дізнатися, як організована база коду.
