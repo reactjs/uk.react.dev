@@ -382,11 +382,11 @@ class BlurExample extends React.Component {
 
 ## На що ще потрібно звернути увагу {#other-points-for-consideration}
 
-### Встановлення язика сторінки {#setting-the-language}
+### Встановлення мови сторінки {#setting-the-language}
 
 Вкажіть мову текстів сторінки, оскільки програмне забезпечення для читання з екрану використовує цей параметр для вибору правильних голосових налаштувань:
 
-- [WebAIM - язик документу](https://webaim.org/techniques/screenreader/#language)
+- [WebAIM - мова документу](https://webaim.org/techniques/screenreader/#language)
 
 ### Встановлення заголовку документу {#setting-the-document-title}
 
