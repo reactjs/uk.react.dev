@@ -112,7 +112,9 @@ const MarkdownPage = ({
                   <div css={{marginTop: 80}}>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/reactjs/uk.reactjs.org/tree/master/${markdownRemark.fields.path}`}>
+                      href={`https://github.com/reactjs/uk.reactjs.org/tree/master/${
+                        markdownRemark.fields.path
+                      }`}>
                       Редагувати цю сторінку
                     </a>
                   </div>

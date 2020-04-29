@@ -30,10 +30,9 @@
 
 ### Створення гілки
 
-1. `git checkout master` в будь-якій директорії вашої локальної копії проекту `uk.reactjs.org`.
-1. `git pull origin master`, щоб пересвідчитись що у вас остання версія коду.
-1. `git branch the-name-of-my-branch`,  для створення вашої гілки.
-1. `git checkout -b the-name-of-my-branch` (замініть `the-name-of-my-branch` на підходяще ім'я) для переходу на вашу гілку коду.
+1. `git checkout master` в будь-якій директорії вашої локальної копії проекту `uk.reactjs.org`
+1. `git pull origin master`, щоб пересвідчитись що у вас остання версія коду
+1. `git checkout -b the-name-of-my-branch` (замініть `the-name-of-my-branch` на підходяще ім'я) для створення гілки
 
 ### Внесення змін
 
