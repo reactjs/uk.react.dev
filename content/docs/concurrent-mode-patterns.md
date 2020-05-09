@@ -1,6 +1,6 @@
 ---
 id: concurrent-mode-patterns
-title: Паралельні UI патерни (Експериментальні)
+title: Патерни паралельного UI (Експериментальні)
 permalink: docs/concurrent-mode-patterns.html
 prev: concurrent-mode-suspense.html
 next: concurrent-mode-adoption.html
