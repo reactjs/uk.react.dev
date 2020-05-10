@@ -35,7 +35,7 @@ next: concurrent-mode-adoption.html
   - [Переходи — повсюду](#transitions-are-everywhere)
   - [Застосування переходів у дизайн-системі](#baking-transitions-into-the-design-system)
 - [Три кроки](#the-three-steps)
-  - [По замовчуванню: Відступ → Кістяк → Завершений](#default-receded-skeleton-complete)
+  - [За замовчуванням: Відступ → Кістяк → Завершення](#default-receded-skeleton-complete)
   - [Вдосконалений: Очікування → Кістяк → Завершений](#preferred-pending-skeleton-complete)
   - [Огортання ледачих особливостей в `<Suspense>`](#wrap-lazy-features-in-suspense)
   - ["Поїзд" з затримок](#suspense-reveal-train)
