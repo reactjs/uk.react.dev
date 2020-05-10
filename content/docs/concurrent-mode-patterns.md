@@ -36,9 +36,9 @@ next: concurrent-mode-adoption.html
   - [Застосування переходів у дизайн-системі](#baking-transitions-into-the-design-system)
 - [Три кроки](#the-three-steps)
   - [За замовчуванням: Відступ → Кістяк → Завершення](#default-receded-skeleton-complete)
-  - [Вдосконалений: Очікування → Кістяк → Завершений](#preferred-pending-skeleton-complete)
-  - [Огортання ледачих особливостей в `<Suspense>`](#wrap-lazy-features-in-suspense)
-  - ["Поїзд" з затримок](#suspense-reveal-train)
+  - [Вдосконалений підхід: Очікування → Кістяк → Завершення](#preferred-pending-skeleton-complete)
+  - [Огортання ледачих особливостей у `<Suspense>`](#wrap-lazy-features-in-suspense)
+  - ["Поїзд" із затримок](#suspense-reveal-train)
   - [Відкладання індикатору завантаження](#delaying-a-pending-indicator)
   - [Підсумок](#recap)
 - [Інші патерни](#other-patterns)
@@ -57,15 +57,15 @@ next: concurrent-mode-adoption.html
 
 Його можна використати у три троки.
 
-Спершу, давайте впевнимося, що ми використовуємо Паралельний режим. Більше про [застосування Паралельного режиму](/docs/concurrent-mode-adoption.html) ми поговоримо пізніше, наразі нам достатньо знати, що нам потрібно використовувати `ReactDOM.createRoot()` замість `ReactDOM.render()`, щоб ця властивість запрацювала:
+Спершу, давайте впевнимося, що ми використовуємо паралельний режим. Більше про [застосування паралельного режиму](/docs/concurrent-mode-adoption.html) ми поговоримо пізніше, наразі нам достатньо знати, що нам потрібно використовувати `ReactDOM.createRoot()` замість `ReactDOM.render()`, щоб ця властивість запрацювала:
 
 ```js
 const rootElement = document.getElementById("root");
-// Використовуємо Паралельний режим
+// Використовуємо паралельний режим
 ReactDOM.createRoot(rootElement).render(<App />);
 ```
 
-Тепер імпортуємо хук `useTransition` з React:
+Тепер імпортуємо хук `useTransition` із React:
 
 ```js
 import React, { useState, useTransition, Suspense } from "react";
@@ -82,7 +82,7 @@ function App() {
   // ...
 ```
 
-**Сам по собі, цей код поки що нічого не виконує.** Нам необхідно використати значення, повертаєме даним хуком, щоб налаштувати наші переходи стану. `useTransition` повертає два значення:
+**Сам по собі, цей код поки ще нічого не робить.** Нам необхідно використати значення, повертаєме даним хуком, щоб налаштувати наші переходи стану. `useTransition` повертає два значення:
 
 * `startTransition`, що є функцією. За допомогою неї ми повідомлятимемо React оновлення *якого* стану ми хочемо відкласти.
 * `isPending`, що є булевим значенням. Цим значенням React повідомляє нас про те, чи відбувається наразі перехід.
