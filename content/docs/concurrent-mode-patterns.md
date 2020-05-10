@@ -33,7 +33,7 @@ next: concurrent-mode-adoption.html
   - [Перегляд змін](#reviewing-the-changes)
   - [Де стається оновлення?](#where-does-the-update-happen)
   - [Переходи — повсюду](#transitions-are-everywhere)
-  - [Застосування переходів в дизайн-системі](#baking-transitions-into-the-design-system)
+  - [Застосування переходів у дизайн-системі](#baking-transitions-into-the-design-system)
 - [Три кроки](#the-three-steps)
   - [По замовчуванню: Відступ → Кістяк → Завершений](#default-receded-skeleton-complete)
   - [Вдосконалений: Очікування → Кістяк → Завершений](#preferred-pending-skeleton-complete)
