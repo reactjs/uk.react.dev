@@ -1,6 +1,6 @@
 ---
 id: codebase-overview
-title: Codebase Overview
+title: Оляд бази коду
 layout: contributing
 permalink: docs/codebase-overview.html
 prev: how-to-contribute.html
@@ -8,34 +8,33 @@ next: implementation-notes.html
 redirect_from:
   - "contributing/codebase-overview.html"
 ---
+У цьому розділі ви отримаєте огляд організації бази коду React, її конвенцій та здійснення.
 
-This section will give you an overview of the React codebase organization, its conventions, and the implementation.
+Якщо ви бажаєте [зробити внесок в React](/docs/how-to-contribute.html) ми сподіваємось, що цей посібник допоможе вам відчувати себе комфортніше вносячи зміни.
 
-If you want to [contribute to React](/docs/how-to-contribute.html) we hope that this guide will help you feel more comfortable making changes.
+Ми не обов'язково рекомендуємо будь-яку з цих конвенцій у аплікаціях React. Багато з них існують лише з історичних причин і можуть змінюватися з часом.
 
-We don't necessarily recommend any of these conventions in React apps. Many of them exist for historical reasons and might change with time.
+### Директорії вищого рівня {#top-level-folders}
 
-### Top-Level Folders {#top-level-folders}
+Після клонування [React репозиторію](https://github.com/facebook/react), в ньому ви побачите декілька директорій вищого рівня:
 
-After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
+* [`packets`](https://github.com/facebook/react/tree/master/packages) містить метадату (таку як `package.json`) і вихідний код (`src` під-директорії) для всіх
+packets в React репозиторію. **Якщо ваша зміна пов'язана з кодом, `src` під-директорія кожного пакету - це те, де ви будете проводити більшу частину свого часу.**
+* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) містить кілька невеликих тестових програм React, для тих хто вносить зміни.
+* `build` результат побудованого React. Він не знаходиться в репозиторію, але він з'явиться у вашому клонованому React репозиторію, після того [як ви збудуєте його](/docs/how-to-contribute.html#development-workflow) вперше.
 
-* [`packages`](https://github.com/facebook/react/tree/master/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
-* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) contains a few small React test applications for contributors.
-* `build` is the build output of React. It is not in the repository but it will appear in your React clone after you [build it](/docs/how-to-contribute.html#development-workflow) for the first time.
+Документація розміщена [у окремому від React репозиторію](https://github.com/reactjs/reactjs.org).
 
-The documentation is hosted [in a separate repository from React](https://github.com/reactjs/reactjs.org).
+Є декілька інших директорій вищого рівня, але вони в основному використовуються для інструментів, і ви ймовірно, ніколи не зіткнетеся з ними під час внесення змін.
 
-There are a few other top-level folders but they are mostly used for the tooling and you likely won't ever encounter them when contributing.
+### Colocated тести {#colocated-tests}
 
-### Colocated Tests {#colocated-tests}
+Ми не маємо директорій вищого рівня для тестів. Замість цього, ми записуємо їх у директорію під назвою `__tests__` відносно до файлів які вони тестують.
+Для прикладу, тест для [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) буде розміщено в [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js) одразу поруч.
 
-We don't have a top-level directory for unit tests. Instead, we put them into a directory called `__tests__` relative to the files that they test.
+### Попередження та Invariants {#warnings-and-invariants}
 
-For example, a test for [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) is located in [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js) right next to it.
-
-### Warnings and Invariants {#warnings-and-invariants}
-
-The React codebase uses the `warning` module to display warnings:
+База коду React використовує `warning` модуль для відображення попереджень:
 
 ```js
 var warning = require('warning');
@@ -46,11 +45,11 @@ warning(
 );
 ```
 
-**The warning is shown when the `warning` condition is `false`.**
+**Попередження показано коли `warning` умовою є `false`.**
 
-One way to think about it is that the condition should reflect the normal situation rather than the exceptional one.
+Один із способів подумати над цим, є те що умова повинна відображати швидше за все нормальну ситуацію, а не виняткову.
 
-It is a good idea to avoid spamming the console with duplicate warnings:
+Хорошою ідеєю є, уникати спаму в консолі з повторюваними попередженнями:
 
 ```js
 var warning = require('warning');
@@ -65,7 +64,7 @@ if (!didWarnAboutMath) {
 }
 ```
 
-Warnings are only enabled in development. In production, they are completely stripped out. If you need to forbid some code path from executing, use `invariant` module instead:
+Попередження лише включені в девелопменті. В продакшині, вони повністю відсутні. Якщо вам потрібно заборонити виконувати якийсь шлях до коду, використовуйте замість цього `invariant` модуль:
 
 ```js
 var invariant = require('invariant');
@@ -76,31 +75,31 @@ invariant(
 );
 ```
 
-**The invariant is thrown when the `invariant` condition is `false`.**
+**invariant викидається коли `invariant` умовою є `false`.**
 
-"Invariant" is just a way of saying "this condition always holds true". You can think about it as making an assertion.
+"Invariant" це лише спосіб сказати, що "ця умова завжди виконується". Ви можете думати про це як про ствердження.
 
-It is important to keep development and production behavior similar, so `invariant` throws both in development and in production. The error messages are automatically replaced with error codes in production to avoid negatively affecting the byte size.
+Важливо підтримувати поведінку девелопмента і продакшина схожою, тож `invariant` викидатиме помилки і в девелопменті, і в продакшині. Повідомлення про помилки автоматично замінюються кодами помилок у продакшині, щоб уникнути негативного впливу на розмір байта.
 
-### Development and Production {#development-and-production}
+### Девелопмент і Продакшин {#development-and-production}
 
-You can use `__DEV__` pseudo-global variable in the codebase to guard development-only blocks of code.
+Ви можете використовувати `__DEV__` псевдо-глобальну зміну в базі коду, щоб захистити блок коду, який є призначений лише для девелопменту.
 
-It is inlined during the compile step, and turns into `process.env.NODE_ENV !== 'production'` checks in the CommonJS builds.
+Він inlined під час етапу компіляції, та перетворюється на `process.env.NODE_ENV !== 'production'` перевіряє в CommonJS builds.
 
-For standalone builds, it becomes `true` in the unminified build, and gets completely stripped out with the `if` blocks it guards in the minified build.
+Для одиночних builds, воно стає `true` в unminified build, і повністю забирається з блоками `if`, які він охороняє у мінімізованій build.
 
 ```js
 if (__DEV__) {
-  // This code will only run in development.
+  // Цей код буде виконуватися лише в девелопменті.
 }
 ```
 
-### Flow {#flow}
+### Потік {#flow}
 
-We recently started introducing [Flow](https://flow.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
+Ми нещодавно почали представляти [Потік](https://flow.org/) перевірки на кодову базу. Файли помічені з `@flow` анотацією перевіряються в коментарях заголовка ліцензії.
 
-We accept pull requests [adding Flow annotations to existing code](https://github.com/facebook/react/pull/7600/files). Flow annotations look like this:
+Ми приймаємо запити на внесок [додаючи примітки Потоку до існуючого коду](https://github.com/facebook/react/pull/7600/files). Примітки Потоку виглядають ось так:
 
 ```js
 ReactRef.detachRefs = function(
@@ -110,21 +109,20 @@ ReactRef.detachRefs = function(
   // ...
 }
 ```
+Коли це можливо, новий код повинен використовувати примітки Потоку.
+Ви можете виконати `yarn flow` локально для переверки вашого коду з Потоком.
 
-When possible, new code should use Flow annotations.
-You can run `yarn flow` locally to check your code with Flow.
+### Динамічне впорскування {#dynamic-injection}
 
-### Dynamic Injection {#dynamic-injection}
+В деяких модулях React використовує динамічне впорскування. Хоча це завжди зрозуміло, але досі прикро, оскільки перешкоджає розумінню коду. Основна причина, що це досі існує, полягає в тому, що з самого початку React підтримував DOM як ціль. А React Native починався як форк з React. Нам довелося додати динамічне впорскування, щоб React Native перекрив деякі види поведінки React.
 
-React uses dynamic injection in some modules. While it is always explicit, it is still unfortunate because it hinders understanding of the code. The main reason it exists is because React originally only supported DOM as a target. React Native started as a React fork. We had to add dynamic injection to let React Native override some behaviors.
-
-You may see modules declaring their dynamic dependencies like this:
+Можливо, ви побачите модулі, що декларують свої динамічні залежності ось так:
 
 ```js
-// Dynamically injected
+// Динамічно впорскнуто
 var textComponentClass = null;
 
-// Relies on dynamically injected value
+// Залежить від значення динамічного впорскування
 function createInstanceForText(text) {
   return new textComponentClass(text);
 }
@@ -132,7 +130,7 @@ function createInstanceForText(text) {
 var ReactHostComponent = {
   createInstanceForText,
 
-  // Provides an opportunity for dynamic injection
+  // Забезпечує можливіть для динамічного впорскування
   injection: {
     injectTextComponentClass: function(componentClass) {
       textComponentClass = componentClass;
@@ -143,78 +141,80 @@ var ReactHostComponent = {
 module.exports = ReactHostComponent;
 ```
 
-The `injection` field is not handled specially in any way. But by convention, it means that this module wants to have some (presumably platform-specific) dependencies injected into it at runtime.
+`injection` це поле жодним чином не обробляється. Але за умовою це означає, що цей модуль хоче мати деякі (імовірно, залежні від платформи) залежності, що вводяться в нього під час виконання.
 
-There are multiple injection points in the codebase. In the future, we intend to get rid of the dynamic injection mechanism and wire up all the pieces statically during the build.
+У базі коду є декілька точок впорскування. В майбутньому ми маємо намір позбутися динамічного механізму впорскування та статично з'єднати всі шматки під час будування.
 
-### Multiple Packages {#multiple-packages}
+### Кілька пакетів {#multiple-packages}
 
-React is a [monorepo](https://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
+React є [monorepo](https://danluu.com/monorepo/). Його репозиторій містить декілька окремих пакетів, щоб їх зміни могли бути узгоджені разом, а проблемні розташовані в одному місці.
 
-### React Core {#react-core}
+### React ядро {#react-core}
 
-The "core" of React includes all the [top-level `React` APIs](/docs/top-level-api.html#react), for example:
+"Ядро" React включає всі [вищого рівня `React` APIs](/docs/top-level-api.html#react), для прикладу:
 
 * `React.createElement()`
 * `React.Component`
 * `React.Children`
 
-**React core only includes the APIs necessary to define components.** It does not include the [reconciliation](/docs/reconciliation.html) algorithm or any platform-specific code. It is used both by React DOM and React Native components.
+**React ядро включає лише API, необхідні для визначення компонентів.** Воно не включає [reconciliation](/docs/reconciliation.html) алгоритми, або ж будь який специфічний для платформи код. Воно використовується двома компонентами React DOM і React Native.
 
-The code for React core is located in [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) in the source tree. It is available on npm as the [`react`](https://www.npmjs.com/package/react) package. The corresponding standalone browser build is called `react.js`, and it exports a global called `React`.
+Код для ярда React розміщений в [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) в дереві джерела. Воно також доступно в npm як [`react`](https://www.npmjs.com/package/react) package. Відповідна окрема збірка браузера називається `react.js`, і вона експортується глобально під назвою` React`.
 
-### Renderers {#renderers}
+### Рендери {#renderers}
 
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://reactnative.dev/). This introduced the concept of "renderers" to React internals.
+Спочатку React був створений для DOM, але пізніше він був адаптований також для підтримки нативної платформи [React Native](https://reactnative.dev/). Це ввело поняття "рендерів" в React 
+internals.
 
-**Renderers manage how a React tree turns into the underlying platform calls.**
+**Рендери керують як дерево React дерево перетворюється на основні виклики платформи.**
 
-Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/master/packages/):
+Рендери також розміщені в [`packages/`](https://github.com/facebook/react/tree/master/packages/):
 
-* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
-* [React Native Renderer](https://github.com/facebook/react/tree/master/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
-* [React Test Renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) renders React components to JSON trees. It is used by the [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) feature of [Jest](https://facebook.github.io/jest) and is available as [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm package.
+* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) рендерить React компоненти в DOM. Це реалізує [вищого-рівня `ReactDOM` APIs](/docs/react-dom.html) і є доступним як в[`react-dom`](https://www.npmjs.com/package/react-dom) npm пакеті. Його також можна використовувати як окремий набір в браузері під назвою `react-dom.js` що експортує `ReactDOM` глобально.
+* [React Native Renderer](https://github.com/facebook/react/tree/master/packages/react-native-renderer) рендерить React компоненти до нативного виду. Він використовується внутрішньо в React Native.
+* [React Test Renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) рендерить React компоненти до JSON дерев. Він використовується для [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) особливість в [Jest](https://facebook.github.io/jest) і є доступним в [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm пакеті.
 
-The only other officially supported renderer is [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). It used to be in a separate [GitHub repository](https://github.com/reactjs/react-art) but we moved it into the main source tree for now.
+Єдиний інший офіційно підтримуваний рендер є [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). Раніше був у окремому [GitHub репозиторії](https://github.com/reactjs/react-art) але ми зараз ми перенесли його до головного дерева коду.
 
->**Note:**
+>**Примітка:**
 >
->Technically the [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) is a very thin layer that teaches React to interact with React Native implementation. The real platform-specific code managing the native views lives in the [React Native repository](https://github.com/facebook/react-native) together with its components.
+>Технічно [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) це дуже тонкий шар, який вчить React взаємодіяти з реалізацією React Native. Справжній специфічний для платформи код, що керує нативними уявленнями, знайти можна в [React Native репозиторії](https://github.com/facebook/react-native) разом із всіма компонентами.
 
-### Reconcilers {#reconcilers}
+### Примирення {#reconcilers}
 
-Even vastly different renderers like React DOM and React Native need to share a lot of logic. In particular, the [reconciliation](/docs/reconciliation.html) algorithm should be as similar as possible so that declarative rendering, custom components, state, lifecycle methods, and refs work consistently across platforms.
+Навіть дуже різні рендери, такі як React DOM та React Native, повинні ділити багато спільної логіки. Зокрема, алгоритм [примирення](/docs/reconciliation.html) повинен бути максимально схожим, щоб декларативні рендери, впорядковані користувацькі компоненти, стан, методи життєвого циклу та референтні роботи послідовно працювали на всіх платформах.
 
-To solve this, different renderers share some code between them. We call this part of React a "reconciler". When an update such as `setState()` is scheduled, the reconciler calls `render()` on components in the tree and mounts, updates, or unmounts them.
+Щоб вирішити це, різні рендери ділять між собою певний код. Ми називаємо цю частину React "примиренням". Коли оновлення, таке як `setState()` заплановано, примирення викликає `render()` на компоненти в дереві і монтує, оновлює або відключає їх.
 
-Reconcilers are not packaged separately because they currently have no public API. Instead, they are exclusively used by renderers such as React DOM and React Native.
+Примирювачі не запаковані окремо, оскільки в них зараз немає публічного API. Натомість вони використовуються виключно рендерами, такими як React DOM та React Native.
 
-### Stack Reconciler {#stack-reconciler}
+### Stack Примирювач  {#stack-reconciler}
 
-The "stack" reconciler is the implementation powering React 15 and earlier. We have since stopped using it, but it is documented in detail in the [next section](/docs/implementation-notes.html).
+"Stack" примирювач це реалізація приведена в дію з React 15 і раніших версія. Ми з цього часу перестали його використовувати, але це детально задокументовано у [наступному розділі](/docs/implementation-notes.html).
 
-### Fiber Reconciler {#fiber-reconciler}
+### Fiber Примирювач {#fiber-reconciler}
 
-The "fiber" reconciler is a new effort aiming to resolve the problems inherent in the stack reconciler and fix a few long-standing issues. It has been the default reconciler since React 16.
+"Fiber" примирювач це нове зусилля, спрямоване на вирішення проблем, притаманних для "stack", та усуненню кількох давніх проблем. Це примирення за замовчуванням з часів React 16 версії.
 
-Its main goals are:
+Його основними цілями є:
 
-* Ability to split interruptible work in chunks.
-* Ability to prioritize, rebase and reuse work in progress.
-* Ability to yield back and forth between parents and children to support layout in React.
-* Ability to return multiple elements from `render()`.
-* Better support for error boundaries.
+* Можливість розділяти роботу що переривається на шматки.
+* Можливість розставляти пріоритети, перезавантажити та повторно використовувати робочий процес.
+* Можливість поступатися між батьками та дітьми, щоб підтримувати компонування в React.
+* Можливіть повертати декілька компонентів з `render()`. 
+* Краща підтримка меж помилок.
 
-You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). While it has shipped with React 16, the async features are not enabled by default yet.
+Ви можете прочитати більше про React Fiber Архітектуру [ось тут](https://github.com/acdlite/react-fiber-architecture) і [тут](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). Незважаючи на те, що він поставляється з React 16, функції асинхронізації за замовчуванням ще не включені.
 
-Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
+Його вихідний код знаходиться в [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 
-### Event System {#event-system}
+### Система подій {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events).
+React реалізує синтетичну систему подій, яка є агностичною для рендерів і працює як з React DOM, так і з React Native. ЇЇ код розміщений у [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events).
 
-There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
+Існує [відео для поглибленого вивчення коду](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 хв).
 
-### What Next? {#what-next}
+### Що далі? {#what-next}
 
-Read the [next section](/docs/implementation-notes.html) to learn about the pre-React 16 implementation of reconciler in more detail. We haven't documented the internals of the new reconciler yet.
+Прочитайте [наступний розділ](/docs/implementation-notes.html) для делального вивчення про реалізацію примирення в React до 16 версії. 
+Поки що, ми не задокументували внутрішні правила нового примирення.
