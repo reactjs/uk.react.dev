@@ -3,7 +3,7 @@ id: cdn-links
 title: Посилання на CDN
 permalink: docs/cdn-links.html
 prev: create-a-new-react-app.html
-next: hello-world.html
+next: release-channels.html
 ---
 
 Як React, так і ReactDOM доступні через CDN.
