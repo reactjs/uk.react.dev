@@ -1045,11 +1045,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-<<<<<<< HEAD
 Для кожного ходу в історії гри ми створюємо пункт списку `<li>`, який містить кнопку `<button>`. Кнопка має обробник `onClick`, який викликає метод `this.jumpTo()`. Ми ще не запровадили метод `jumpTo()`. На даний момент ми маємо бачити список ходів, зроблених під час гри, та попередження в інструментах розробника, що перекладається наступним чином:
-=======
-For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
->>>>>>> bc91fe4101420f98454a59ac34c1cf1d4d4f4476
 
 >  Попередження:
 >  Кожен дочірній компонент у масиві або ітераторі повинен мати унікальний проп "key". Перевірте метод render у "Game".
