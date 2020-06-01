@@ -73,7 +73,13 @@ Create React App не опрацьовує бекенд логіку чи лог
 
 - **[Neutrino](https://neutrinojs.org/)** поєднує у собі [webpack](https://webpack.js.org/) з простотою його пресетів та включає в себе пресети для [React-додатків](https://neutrinojs.org/packages/react/) й [React-компонентів](https://neutrinojs.org/packages/react-components/).
 
+<<<<<<< HEAD
 - **[Parcel](https://parceljs.org/)** -- швидкий бандлер веб-додатків з нульовою конфігурацією, [який працює з React](https://parceljs.org/recipes.html#react).
+=======
+- **[Nx](https://nx.dev/react)** is a toolkit for full-stack monorepo development, with built-in support for React, Next.js, [Express](https://expressjs.com/), and more.
+
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
+>>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** -- це фреймворк для серверного рендерингу, що не потребує ніякої конфігурації, але більш гнучкий ніж Next.js.
 

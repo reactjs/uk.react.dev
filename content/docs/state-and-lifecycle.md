@@ -418,12 +418,15 @@ this.setState(function(state, props) {
 Компонент може передати свій стан вниз у якості пропсів до своїх дочірніх компонентів:
 
 ```js
+<<<<<<< HEAD
 <h2>Зараз {this.state.date.toLocaleTimeString()}.</h2>
 ```
 
 Це також працює для визначених користувачем компонентів:
 
 ```js
+=======
+>>>>>>> b4b59062e59d56da37274c6de1fa4a134d2d8f49
 <FormattedDate date={this.state.date} />
 ```
 
