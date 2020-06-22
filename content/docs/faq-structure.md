@@ -12,7 +12,11 @@ category: FAQ
 
 #### Групування по функціональності або маршруту {#grouping-by-features-or-routes}
 
+<<<<<<< HEAD
 Один з популярних підходів — це розміщення файлів CSS, JS і тестів у папках, згрупованих за функціональністю або маршруту.
+=======
+One common way to structure projects is to locate CSS, JS, and tests together inside folders grouped by feature or route.
+>>>>>>> e548bd7e65086a8206fee46bd9e24b18b68bf045
 
 ```
 common/
