@@ -371,7 +371,11 @@ function updateColorMap(colormap) {
 
 `updateColorMap` тепер повертає новий об'єкт, а не змінює старий. `Object.assign` — це ES6 і для його роботи потрібен поліфіл.
 
+<<<<<<< HEAD
 Існує пропозиція щодо внесення в JavaScript [розпакування властивостей об'єкта](https://github.com/sebmarkbage/ecmascript-rest-spread), щоб зробити простішим оновлення об'єктів без їхньої зміни:
+=======
+[Object spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) makes it easier to update objects without mutation as well:
+>>>>>>> dea363ed7d8ce06b7ecc1ccfe43c888217827a64
 
 ```js
 function updateColorMap(colormap) {
@@ -379,6 +383,12 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Якщо ви використовуєте Create React App, то `Object.assign` та розпакування об'єктів доступні за замовчуванням.
+=======
+This feature was added to JavaScript in ES2018. 
+
+If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
+>>>>>>> dea363ed7d8ce06b7ecc1ccfe43c888217827a64
 
 Коли ви працюєте з глибоко вкладеними об'єктами, то постійне іх оновлення може заплутати вас. Якщо ви зіткнулися з такою проблемою, зверніть увагу на [Immer](https://github.com/mweststrate/immer) або [immutability-helper](https://github.com/kolodny/immutability-helper). Ці бібліотеки допомогають писати читабельний код, не втрачаючи переваг незмінності.
