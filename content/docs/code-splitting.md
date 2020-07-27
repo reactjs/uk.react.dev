@@ -45,8 +45,13 @@ console.log(add(16, 26)); // 42
 >
 > Наприкінці ваші бандли будуть значно відрізнятися від наведених прикладів.
 
+<<<<<<< HEAD
 Якщо ви використовуєте [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/) чи подібний інструмент, ви матимете налаштування Webpack за замовчуванням для бандлінгу вашого 
 додатку.
+=======
+If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
+app.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 Якщо ви не використовуєте нічого з наведеного чи подібного, вам доведеться налаштовувати бандлінг самостійно. Для прикладів ознайомтеся зі
 [Встановленням](https://webpack.js.org/guides/installation/) та

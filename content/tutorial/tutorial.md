@@ -560,7 +560,11 @@ var newPlayer = Object.assign({}, player, {score: 2});
 
 #### Визначення повторного рендерингу у React {#determining-when-to-re-render-in-react}
 
+<<<<<<< HEAD
 Головною перевагою незмінності у React є те, що вона допомагає створити _чисті компоненти_. Незмінні дані дозволяють легко виявити наявність змін, що дозволяє встановити необхідність повторного рендерингу.
+=======
+The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made, which helps to determine when a component requires re-rendering.
+>>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 Більше про `shouldComponentUpdate()` і як створювати *чисті компоненти* ви можете дізнатись прочитавши розділ [Оптимізація продуктивності](/docs/optimizing-performance.html#examples).
 
