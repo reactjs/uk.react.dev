@@ -371,13 +371,15 @@ function updateColorMap(colormap) {
 
 `updateColorMap` тепер повертає новий об'єкт, а не змінює старий. `Object.assign` — це ES6 і для його роботи потрібен поліфіл.
 
-Існує пропозиція щодо внесення в JavaScript [розпакування властивостей об'єкта](https://github.com/sebmarkbage/ecmascript-rest-spread), щоб зробити простішим оновлення об'єктів без їхньої зміни:
+[Оператор розкладу](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Operators/Spread_syntax) дозволяє оновлювати об'єкти, не мутуючи їх:
 
 ```js
 function updateColorMap(colormap) {
   return {...colormap, right: 'blue'};
 }
 ```
+
+Ця функція була додана до JavaScript у ES2018. 
 
 Якщо ви використовуєте Create React App, то `Object.assign` та розпакування об'єктів доступні за замовчуванням.
 
