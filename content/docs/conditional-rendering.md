@@ -122,11 +122,7 @@ ReactDOM.render(
 
 ### Вбудовані умови if з логічним оператором && {#inline-if-with-logical--operator}
 
-<<<<<<< HEAD
 Ви можете [вставляти будь-який вираз у JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) охопивши його у фігурні дужки. Це правило поширюється і на логічний оператор `&&` JavaScript, яким можно зручно вставити елемент в залежності від умови:
-=======
-You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
->>>>>>> 63332462bb5afa18ac7a716975b679f4c23cc8a1
 
 ```js{6-10}
 function Mailbox(props) {
