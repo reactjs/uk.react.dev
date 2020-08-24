@@ -43,8 +43,12 @@ render() {
 
 ### Що таке CSS-in-JS? {#what-is-css-in-js}
 
+<<<<<<< HEAD
 "CSS-in-JS" відносяться до патерну, де CSS описується з використанням JavaScript замість описування у зовнішніх файлах.
 Ви можете ознайомитись з бібліотеками CSS-in-JS [тут](https://github.com/MicheleBertoli/css-in-js).
+=======
+"CSS-in-JS" refers to a pattern where CSS is composed using JavaScript instead of defined in external files.
+>>>>>>> d16f1ee7958b5f80ef790265ba1b8711d4f228d6
 
 _Зауважте, що цей функціонал не є частиною React, але надається сторонніми бібліотеками._ React не має чіткої точки зору стосовно визначення стилів; якщо ви маєте сумнів, гарним початком може бути визначення ваших стилів в окремому `*.css` файлі з посиланням на них використовуючи [`className`](/docs/dom-elements.html#classname).
 
