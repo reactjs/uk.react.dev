@@ -2,6 +2,8 @@
 id: uncontrolled-components
 title: Неконтрольовані компоненти
 permalink: docs/uncontrolled-components.html
+prev: refs-and-the-dom.html
+next: optimizing-performance.html
 ---
 
 У більшості ситуацій, ми рекомендуємо використовувати [контрольовані компоненти](/docs/forms.html#controlled-components) для реалізації форм. У контрольованому компоненті, дані форми котролюються React-компонентом. Альтернативним підходом є використання неконтрольованих компонентів, де дані форми контрольюються самим DOM.

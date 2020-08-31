@@ -2,6 +2,8 @@
 id: react-without-jsx
 title: React без JSX
 permalink: docs/react-without-jsx.html
+prev: react-without-es6.html
+next: reconciliation.html
 ---
 
 JSX не є вимогою для роботи з React. Використання React без JSX є найзручнішим тоді, коли ви не бажаєте налаштовувати компіляцію у вашому середовищі збірки.

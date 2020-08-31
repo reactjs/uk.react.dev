@@ -580,7 +580,11 @@ useEffect(() => {
 
 Давайте глянемо, чому це важливо.
 
+<<<<<<< HEAD
 Якщо ви вкажете [список залежностей](/docs/hooks-reference.html#conditionally-firing-an-effect) в якості останнього аргумента `useEffect`, `useMemo`, `useCallback` чи `useImperativeHandle`, він має містити всі значення, що використовуються у тілі функції зворотнього виклику та беруть участь у потоці даних React, включно з пропсами, станом і їх похідними.
+=======
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useLayoutEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values that are used inside the callback and participate in the React data flow. That includes props, state, and anything derived from them.
+>>>>>>> 25cc703d1f23f1782ff96c5c7882a806f8741ec4
 
 Можна безпечно пропустити функцію з списку залежностей **лише** тоді, коли вона (чи функції, які вона викликає) не посилається на пропси, стан чи їх похідні. У цьому прикладі є помилка:
 
