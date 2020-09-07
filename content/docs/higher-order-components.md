@@ -2,6 +2,8 @@
 id: higher-order-components
 title: Компоненти вищого порядку
 permalink: docs/higher-order-components.html
+prev: web-components.html
+next: render-props.html
 ---
 
 Компонент вищого порядку (КВП) — це просунута технологія для повторного використання логіки компоненту. Сам по собі КВП не є частиною React API, але через композиційну природу компонентів він є розповсюдженним патерном проектування.

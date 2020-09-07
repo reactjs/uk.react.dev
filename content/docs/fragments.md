@@ -2,6 +2,8 @@
 id: fragments
 title: Фрагменти
 permalink: docs/fragments.html
+prev: context.html
+next: portals.html
 ---
 
 Повернення кількох елементів з компонента є поширеною практикою в React. Фрагменти дозволяють формувати список дочірніх елементів, не створюючи зайвих вузлів в DOM.

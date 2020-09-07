@@ -2,6 +2,8 @@
 id: integrating-with-other-libraries
 title: Взаємодія зі сторонніми бібліотеками
 permalink: docs/integrating-with-other-libraries.html
+prev: render-props.html
+next: accessibility.html
 ---
 
 React можна використовувати у будь-якому веб-додатку. Його можна вбудовувати в інші додатки, та, з невеликими зусиллями, інші додатки можна вбудувати в React. У цьому гайді ми розглянемо деякі з більш поширених випадків використання React, а саме - інтеграцію з [jQuery](https://jquery.com/) та [Backbone](https://backbonejs.org/). Проте ці ж ідеї можна застосувати до інтеграції компонентів з будь-яким іншим кодом.
