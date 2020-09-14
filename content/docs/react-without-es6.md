@@ -2,6 +2,8 @@
 id: react-without-es6
 title: React без ES6
 permalink: docs/react-without-es6.html
+prev: optimizing-performance.html
+next: react-without-jsx.html
 ---
 
 Зазвичай, ви б оголосили React-компонент у вигляді JavaScript-класу:

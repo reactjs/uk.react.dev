@@ -56,7 +56,12 @@ function MyComponent() {
 
 ### selected {#selected}
 
+<<<<<<< HEAD
 Атрибут `selected` підтримується компонентами `<option>`. Ви можете використовувати його, щоб визначити чи є компонент вибраним. Це корисно для створення контрольованих компонентів.
+=======
+If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
+Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
+>>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 ### style {#style}
 
@@ -120,7 +125,11 @@ React автоматично додасть суфікс "px" до певних 
 
 ### value {#value}
 
+<<<<<<< HEAD
 Атрибут `value` підтримується компонентами `<input>` та `<textarea>`. Ви можете використовувати його щоб встановити значення компоненту. Це корисно для побудови контрольованих компонентів. `defaultValue` — це неконтрольований еквівалент, який встановлює значення компоненту, коли той вперше було змонтовано.
+=======
+The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+>>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 ## Усі підтримувані атрибути HTML {#all-supported-html-attributes}
 

@@ -53,7 +53,11 @@ function ActionLink() {
 }
 ```
 
+<<<<<<< HEAD
 Тут `e` - це синтетична подія. React визначає ці синтетичні події відповідно до [специфікації W3C](https://www.w3.org/TR/DOM-Level-3-Events/), тому вам не потрібно турбуватися про сумісніть між браузерами. Перегляньте довідник по [`SyntheticEvent`](/docs/events.html), щоб дізнатися більше.
+=======
+Here, `e` is a synthetic event. React defines these synthetic events according to the [W3C spec](https://www.w3.org/TR/DOM-Level-3-Events/), so you don't need to worry about cross-browser compatibility. React events do not work exactly the same as native events. See the [`SyntheticEvent`](/docs/events.html) reference guide to learn more.
+>>>>>>> 954a16f1d358009505ae881afaefe463dc6388a5
 
 Зазвичай, коли ви використовуєте React, вам не потрібно викликати `addEventListener`, щоб додати обробник до DOM-елементу після його створення. Натомість, просто вкажіть обробник, коли елемент вперше відрендерився.
 
