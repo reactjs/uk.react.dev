@@ -30,13 +30,9 @@ Greeting.propTypes = {
 };
 ```
 
-<<<<<<< HEAD
-`PropTypes` експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ви отримали вірні дані. В наведеному вище прикладі ми використовуємо `PropTypes.string`. Якщо якийсь проп отримає невірне значення, в консолі  JavaScript буде показано попередження. З міркувань продуктивності `propTypes` перевіряються лише в режимі розробки.
-=======
-In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](https://reactjs.org/docs/react-api.html#reactmemo) or [`React.forwardRef`](https://reactjs.org/docs/react-api.html#reactforwardref).
+У цьому прикладі ми використовуємо класовий компонент, але такий самий функціонал може бути застосований до функціональних компонентів, або компонентів, створених за допомогою [`React.memo`](https://uk.reactjs.org/docs/react-api.html#reactmemo) чи [`React.forwardRef`](https://uk.reactjs.org/docs/react-api.html#reactforwardref).
 
-`PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
->>>>>>> 1becaff62ae228d909b83ef6d08f48c01660300f
+`PropTypes` експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ви отримали вірні дані. В наведеному вище прикладі ми використовуємо `PropTypes.string`. Якщо якийсь проп отримає невірне значення, в консолі  JavaScript буде показано попередження. З міркувань продуктивності `propTypes` перевіряються лише в режимі розробки.
 
 ### PropTypes {#proptypes}
 

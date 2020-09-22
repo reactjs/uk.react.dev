@@ -97,11 +97,7 @@ React 16 в режимі розробки виводить в консоль в�
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Помилка з номерами рядків виявлена запобіжником">
 
-<<<<<<< HEAD
-Якщо ви не користуєтесь Create React App, то ви можете додати вручну [цей плагін для трансформації коду](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) до вашої конфігурації Babel. Зверніть увагу, що він призначений лише для режиму розробки і **повинен бути відключений в продакшн**.
-=======
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
->>>>>>> 1becaff62ae228d909b83ef6d08f48c01660300f
+Якщо ви не користуєтесь Create React App, то ви можете додати вручну [цей плагін для трансформації коду](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) до вашої конфігурації Babel. Зверніть увагу, що він призначений лише для режиму розробки і **повинен бути відключений в продакшн**.
 
 > Примітка
 >

@@ -10,15 +10,9 @@ category: Reference
 
 ## Огляд {#overview}
 
-<<<<<<< HEAD
 Ваші обробники подій отримують екземпляр SyntheticEvent — кроcбраузерну обгортку над нативною подією браузера. Вона має такий же інтерфейс, як і браузерна подія, включаючи методи `stopPropagation()` та `preventDefault()`. Ця обгортка допомагає спрацьовувати різним подіям однаково у всіх браузерах.
 
-Якщо ви усвідомили, що вам з якоїсь причини потрібно отримати нативну браузерну подію, то ви просто можете використати атрибут `nativeEvent`. Нижче наведено перелік атрибутів об'єкта `SyntheticEvent`:
-=======
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers. 
-
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. The synthetic events are different from, and do not map directly to, the browser's native events. For example in `onMouseLeave` `event.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change at any time. Every `SyntheticEvent` object has the following attributes:
->>>>>>> 1becaff62ae228d909b83ef6d08f48c01660300f
+Якщо ви усвідомили, що вам з якоїсь причини потрібно отримати нативну браузерну подію, то ви просто можете використати атрибут `nativeEvent`. Синтетичні події відрізняються від нативних подій браузера. Наприклад, в `onMouseLeave` `event.nativeEvent` вказуватиме на подію `mouseout`. Конкретне відображення не є частиною загальнодоступного API і може змінитися в будь-який час. Нижче наведено перелік атрибутів об'єкта `SyntheticEvent`:
 
 ```javascript
 boolean bubbles
