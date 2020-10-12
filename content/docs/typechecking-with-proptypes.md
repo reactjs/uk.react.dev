@@ -30,7 +30,11 @@ Greeting.propTypes = {
 };
 ```
 
+<<<<<<< HEAD
 У цьому прикладі ми використовуємо класовий компонент, але такий самий функціонал може бути застосований до функціональних компонентів, або компонентів, створених за допомогою [`React.memo`](https://uk.reactjs.org/docs/react-api.html#reactmemo) чи [`React.forwardRef`](https://uk.reactjs.org/docs/react-api.html#reactforwardref).
+=======
+In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](/docs/react-api.html#reactmemo) or [`React.forwardRef`](/docs/react-api.html#reactforwardref).
+>>>>>>> bd0c9d8c5f5e78e0bd1066b46024ba98f4daac84
 
 `PropTypes` експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ви отримали вірні дані. В наведеному вище прикладі ми використовуємо `PropTypes.string`. Якщо якийсь проп отримає невірне значення, в консолі  JavaScript буде показано попередження. З міркувань продуктивності `propTypes` перевіряються лише в режимі розробки.
 
