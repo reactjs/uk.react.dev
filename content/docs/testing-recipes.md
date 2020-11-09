@@ -1,37 +1,37 @@
 ---
 id: testing-recipes
-title: Testing Recipes
+title: Рецепти тестування
 permalink: docs/testing-recipes.html
 prev: testing.html
 next: testing-environments.html
 ---
 
-Common testing patterns for React components.
+Загальні принципи тестування React-компонентів.
 
-> Note:
+> Примітка:
 >
-> This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/docs/testing-environments.html) page.
+> Ця сторінка передбачає, що ви використовуєте виконацець тестів [Jest](https://jestjs.io/). Якщо ви використовуєте інший виконавець тестів, можливо, вам доведеться налаштувати API, але загальна форма рішення, швидше за все, буде однаковою. Докладніше про налаштування середовища тестування на сторінці [Середовища тестування](/docs/testing-environments.html).
 
-On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
+На цій сторінці ми в основному будемо використовувати функціональні компоненти. Проте, стратегії тестування не залежать від деталей реалізації і працюють так само добре для компонентів-класів.
 
-- [Setup/Teardown](#setup--teardown)
+- [Підготовка/Завершення](#setup--teardown)
 - [`act()`](#act)
-- [Rendering](#rendering)
-- [Data Fetching](#data-fetching)
-- [Mocking Modules](#mocking-modules)
-- [Events](#events)
-- [Timers](#timers)
-- [Snapshot Testing](#snapshot-testing)
-- [Multiple Renderers](#multiple-renderers)
-- [Something Missing?](#something-missing)
+- [Рендеринг](#rendering)
+- [Отримання даних](#data-fetching)
+- [Фіктивні модулі](#mocking-modules)
+- [Події](#events)
+- [Таймери](#timers)
+- [Тестування знімками](#snapshot-testing)
+- [Декілька рендерерів](#multiple-renderers)
+- [Чогось не вистачає?](#something-missing)
 
 ---
 
-### Setup/Teardown {#setup--teardown}
+### Підготовка/Завершення {#setup--teardown}
 
-For each test, we usually want to render our React tree to a DOM element that's attached to `document`. This is important so that it can receive DOM events. When the test ends, we want to "clean up" and unmount the tree from the `document`.
+Для кожного тесту ми зазвичай хочемо рендерити наше React дерево до конкретного DOM-елемента, який прикріплений до `document`. Це важливо, щоб він міг отримувати DOM-події. Коли тест завершується, ми хочемо виконати «підчистку» і демонтувати дерево від `document`.
 
-A common way to do it is to use a pair of `beforeEach` and `afterEach` blocks so that they'll always run and isolate the effects of a test to itself:
+Поширеним способом зробити це є використання пари блоків `beforeEach` та `afterEach`, вони завжди будуть виконуватися і ізолювати тести один від одного:
 
 ```jsx
 import { unmountComponentAtNode } from "react-dom";
@@ -51,34 +51,34 @@ afterEach(() => {
 });
 ```
 
-You may use a different pattern, but keep in mind that we want to execute the cleanup _even if a test fails_. Otherwise, tests can become "leaky", and one test can change the behavior of another test. That makes them difficult to debug.
+Ви можете використовувати інший підхід, але майте на увазі що ми хочемо виконувати «підчистку» _навіть якщо тест не проходить_. В іншому випадку тести можуть стати «негерметичними», і один тест може змінити поведінку іншого тесту. Це ускладнює їх налагодження.
 
 ---
 
 ### `act()` {#act}
 
-When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. `react-dom/test-utils` provides a helper called [`act()`](/docs/test-utils.html#act) that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
+При написанні UI-тестів, такі завдання, як рендеринг, події користувача або отримання даних, можна розглядати як «модулі» взаємодії з інтерфейсом користувача. `react-dom/test-utils` надає допоміжну функцію під назвою [`act()`](/docs/test-utils.html#act), що гарантує, що всі оновлення, пов’язані з цими «модулями» були виконані та застосовані до DOM до перевірки будь-яких тверджень:
 
 ```js
 act(() => {
-  // render components
+  // рендер компонентів
 });
-// make assertions
+// перевірка тверджень
 ```
 
-This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these guarantees.
+Це допомагає наблизити ваші тести до того, що реальні користувачі могли б відчувати при використанні вашого додатку. В решті прикладів використовується `act()` щоб забезпечити це.
 
-You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/react), whose helpers are wrapped with `act()`.
+Якщо ви вважаєте, що використання `act()` вимагає написання більшої кількості шаблонного коду, то щоб частково цього уникнути, ви можете скористатись бібліоткою подібною до [React Testing Library](https://testing-library.com/react), допоміжні функції якої вже обернуті в `act()`.
 
-> Note:
+> Примітка:
 >
-> The name `act` comes from the [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert) pattern.
+> Назва функції `act` походить від шаблону [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert).
 
 ---
 
-### Rendering {#rendering}
+### Рендеринг {#rendering}
 
-Commonly, you might want to test whether a component renders correctly for given props. Consider a simple component that renders a message based on a prop:
+Зазвичай вам може знадобитися перевірити, чи правильно компонент відображається для заданих властивостей. Розглянемо простий компонент, який відображає повідомлення на основі властивості:
 
 ```jsx
 // hello.js
@@ -94,7 +94,7 @@ export default function Hello(props) {
 }
 ```
 
-We can write a test for this component:
+Ми можемо написати тест для цього компонента:
 
 ```jsx{24-27}
 // hello.test.js
@@ -139,9 +139,9 @@ it("renders with or without a name", () => {
 
 ---
 
-### Data Fetching {#data-fetching}
+### Отримання даних {#data-fetching}
 
-Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
+Замість звернення до реальних API в своїх тестах, ви можете робити фіктивні запити, які повернуть підставні дані. Такі запити запобігають виникненню проблем у тестах, пов'язані з недоступністю бекенд та збільшують швидкість їх виконання. Примітка: ви все ще можете виконувати запуск [«наскрізних»](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) тестів через фреймворк, який повідомляє, чи працює додаток в цілому.
 
 ```jsx
 // user.js
@@ -175,7 +175,7 @@ export default function User(props) {
 }
 ```
 
-We can write tests for it:
+Ми можемо написати тести для цього компонента:
 
 ```jsx{23-33,44-45}
 // user.test.js
@@ -187,13 +187,13 @@ import User from "./user";
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // підготовлюємо DOM-елемент, до якого робитимемо рендеринг
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // робимо підчистку після завершення
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -212,7 +212,7 @@ it("renders user data", async () => {
     })
   );
 
-  // Use the asynchronous version of act to apply resolved promises
+  // Використовуємо асинхронну версію act для передачі успішно завершених промісів
   await act(async () => {
     render(<User id="123" />, container);
   });
@@ -221,18 +221,18 @@ it("renders user data", async () => {
   expect(container.querySelector("strong").textContent).toBe(fakeUser.age);
   expect(container.textContent).toContain(fakeUser.address);
 
-  // remove the mock to ensure tests are completely isolated
+  // вимикаємо фіктивний fetch, щоб переконатися, що тести повністю ізольовані
   global.fetch.mockRestore();
 });
 ```
 
 ---
 
-### Mocking Modules {#mocking-modules}
+### Фіктивні модулі {#mocking-modules}
 
-Some modules might not work well inside a testing environment, or may not be as essential to the test itself. Mocking out these modules with dummy replacements can make it easier to write tests for your own code.
+Деякі модулі можуть погано працювати у тестовому середовищі або можуть бути не такими важливими для самого тесту. Заміна таких модулів фіктивними може полегшити написання тестів для вашого коду.
 
-Consider a `Contact` component that embeds a third-party `GoogleMap` component:
+Розглянемо компонент `Contact`, який використовує сторонній компонент `GoogleMap`:
 
 ```jsx
 // map.js
@@ -271,7 +271,7 @@ export default function Contact(props) {
 }
 ```
 
-If we don't want to load this component in our tests, we can mock out the dependency itself to a dummy component, and run our tests:
+Якщо ми не хочемо завантажувати цей компонент в наших тестах, ми можемо підмінити його фіктивним і запустити наші тести:
 
 ```jsx{10-18}
 // contact.test.js
@@ -295,13 +295,13 @@ jest.mock("./map", () => {
 
 let container = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // підготовлюємо DOM-елемент, до якого робитимемо рендеринг
   container = document.createElement("div");
   document.body.appendChild(container);
 });
 
 afterEach(() => {
-  // cleanup on exiting
+  // робимо підчистку після завершення
   unmountComponentAtNode(container);
   container.remove();
   container = null;
@@ -337,9 +337,9 @@ it("should render contact information", () => {
 
 ---
 
-### Events {#events}
+### Події {#events}
 
-We recommend dispatching real DOM events on DOM elements, and then asserting on the result. Consider a `Toggle` component:
+Ми рекомендуємо створювати справжні DOM-події на DOM-елементах і після перевіряти очікуваний результат. Розглянемо компонент `Toggle`:
 
 ```jsx
 // toggle.js
@@ -362,7 +362,7 @@ export default function Toggle(props) {
 }
 ```
 
-We could write tests for it:
+Ми можемо написати тести для цього компонента:
 
 ```jsx{13-14,35,43}
 // toggle.test.js
@@ -416,17 +416,17 @@ it("changes value when clicked", () => {
 });
 ```
 
-Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
+Різні DOM-події і їх властивості описані на [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Зверніть увагу, що вам необхідно передавати `{ bubbles: true }` в кожну подію, яку ви створюєте для нього, щоб повідомити обробника подій React, оскільки React автоматично делегує події документу.
 
-> Note:
+> Примітка:
 >
-> React Testing Library offers a [more concise helper](https://testing-library.com/docs/dom-testing-library/api-events) for firing events.
+> React Testing Library пропонує лаконічний варіант [допоміжної функції](https://testing-library.com/docs/dom-testing-library/api-events) для запуску подій.
 
 ---
 
-### Timers {#timers}
+### Таймери {#timers}
 
-Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
+Ваш код може використовувати функції на основі таймера, такі як `setTimeout` щоб запланувати додаткові дії в майбутньому. У наступному прикладі панель множинного вибору очікує вибору користувача і виконує подальші дії, якщо вибір не був зроблений протягом 5 секунд:
 
 ```jsx
 // card.js
@@ -455,7 +455,7 @@ export default function Card(props) {
 }
 ```
 
-We can write tests for this component by leveraging [Jest's timer mocks](https://jestjs.io/docs/en/timer-mocks), and testing the different states it can be in.
+Ми можемо написати тести для цього компонента використовуючи [фіктивні таймери Jest](https://jestjs.io/docs/en/timer-mocks), і протестуємо різні стани, в яких він може бути.
 
 ```jsx{7,31,37,49,59}
 // card.test.js
@@ -539,15 +539,15 @@ it("should accept selections", () => {
 });
 ```
 
-You can use fake timers only in some tests. Above, we enabled them by calling `jest.useFakeTimers()`. The main advantage they provide is that your test doesn't actually have to wait five seconds to execute, and you also didn't need to make the component code more convoluted just for testing.
+Необов'язково використовувати фіктивні таймери у всіх тестах. У тесті вище, ми включили їх викликавши метод `jest.useFakeTimers()`. Головна їхня перевага полягає в тому, що вашому тесту не потрібно чекати п'ять секунд для виконання, а вам ускладнювати код компонента тільки для проведення тестування.
 
 ---
 
-### Snapshot Testing {#snapshot-testing}
+### Тестування знімками {#snapshot-testing}
 
-Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can "save" the rendered component output and ensure that a change to it has to be explicitly committed as a change to the snapshot.
+Фреймворки, такі як Jest, дозволяють зберігати «знімки» даних використовуючи [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). З їх допомогою ми можемо «зберегти» результат рендеру компонента і переконатися, що зміну в ньому явно відображено в знімку.
 
-In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
+У наступному прикладі ми рендеримо компонент і форматуємо відрендерений HTML, використовуючи пакет [`pretty`](https://www.npmjs.com/package/pretty), перед його збереженням у вигляді вбудованого знімка:
 
 ```jsx{29-31}
 // hello.test.js, again
@@ -600,13 +600,13 @@ it("should render a greeting", () => {
 });
 ```
 
-It's typically better to make more specific assertions than to use snapshots. These kinds of tests include implementation details so they break easily, and teams can get desensitized to snapshot breakages. Selectively [mocking some child components](#mocking-modules) can help reduce the size of snapshots and keep them readable for the code review.
+Зазвичай краще перевіряти більш конкретні твердження, ніж використовувати знімки. Цей тип тестів спирається на внутрішню реалізацію компонентів, в результаті чого легко ламаються і команди починають приділяти менше уваги поломкам у знімках. Вибіркова [підзаміна дочірніх компонентів](#mocking-modules) може допомогти знизити розмір знімків і зробить їх код більш читабельним для колег.
 
 ---
 
-### Multiple Renderers {#multiple-renderers}
+### Декілька рендерерів {#multiple-renderers}
 
-In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `ReactDOM.render` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+У окремих випадках ви можете запустити тест компонента, який використовує декілька рендерерів. Наприклад, можна запускати тести знімками для компонента за допомогою `react-test-renderer`, який використовує `ReactDOM.render` всередині дочірнього компонента для рендеру деякого вмісту. В цьому випадку ви можете обернути оновлення функціями `act()` відповідно до їх рендерерів.
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";
@@ -623,6 +623,6 @@ expect(root).toMatchSnapshot();
 
 ---
 
-### Something Missing? {#something-missing}
+### Чогось не вистачає? {#something-missing}
 
-If some common scenario is not covered, please let us know on the [issue tracker](https://github.com/reactjs/reactjs.org/issues) for the documentation website.
+Якщо будь-які із розповсюджених сценаріїв не були охоплені, повідомте нас про це за допомогою [трекера проблем](https://github.com/reactjs/reactjs.org/issues) сайту з документацією.
