@@ -39,7 +39,11 @@ class Welcome extends React.Component {
 
 ### Життєвий цикл компонента {#the-component-lifecycle}
 
+<<<<<<< HEAD
 Кожен компонент має декілька "методів життєвого циклу", які ви можете перевизначати, щоб запускати код в певний момент часу. **Ви можете використовувати [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) як шпаргалку.** В списку нижче найчастіше вживані методи життєвого циклу виділені **напівжирним**. Решта існують лише для випадків, що трапляються відносно нечасто.
+=======
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+>>>>>>> 255497f12fa00d231b5af5d5aa34fa5beffac9e4
 
 #### Монтування {#mounting}
 
@@ -109,7 +113,11 @@ class Welcome extends React.Component {
 
 ### Часто використовані методи життєвого циклу {#commonly-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Методи в цьому розділі охоплюють переважну більшість випадків з якими ви зустрінетесь під час створення React-компонентів. **Для наочної ілюстрації, перегляньте [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+=======
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+>>>>>>> 255497f12fa00d231b5af5d5aa34fa5beffac9e4
 
 ### `render()` {#render}
 
@@ -245,7 +253,11 @@ componentWillUnmount()
 
 ### Рідковживані методи життєвого циклу {#rarely-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Методи в цьому розділі відповідають малопоширеним випадкам використання. Вони є корисними час від часу, але швидше за все, більшість ваших компонентів не потребують жодного з них. **Ви можете побачити більшість наведених нижче методів на [цій діаграмі життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) якщо натиснете прапорець "Show less common lifecycles" зверху сторінки.**
+=======
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+>>>>>>> 255497f12fa00d231b5af5d5aa34fa5beffac9e4
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -278,8 +290,13 @@ static getDerivedStateFromProps(props, state)
 
 Цей метод існує для [малопоширених випадків](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) коли стан залежить від змін в пропсах з часом. Наприклад, він може бути корисним для реалізації компоненту `<Transition>` котрий порівнює свої попередні і наступні дочірні елементи, щоб вирішити котрі з них потрібно анімувати для появи і зникнення.
 
+<<<<<<< HEAD
 Успадкування стану приводить до багатослівного коду і робить ваші компоненти важчими для розуміння.
 [Переконайтеся, що ви знайомі з більш простими альтернативами:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+=======
+Deriving state leads to verbose code and makes your components difficult to think about.
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+>>>>>>> 255497f12fa00d231b5af5d5aa34fa5beffac9e4
 
 * Якщо вам потрібно **виконати побічний ефект** (наприклад, вибірку даних чи анімацію) у відповідь на зміну пропсів, використовуйте натомість метод [`componentDidUpdate`](#componentdidupdate).
 
@@ -323,9 +340,15 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 Щоб дізнатися більше, перегляньте [*Обробка помилок у React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
+<<<<<<< HEAD
 > Примітка
 >
 > Запобіжники перехоплюють лише помилки в компонентах у дереві **нижче** за них. Запобіжник не перехоплює помилки, що виникли в ньому.
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> 255497f12fa00d231b5af5d5aa34fa5beffac9e4
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -413,10 +436,17 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 > Примітка
 >
 > При виникненні помилки, ви можете рендерити резервний інтерфейс користувача `componentDidCatch()` викликом `setState`, але така поведінка буде вважатися застарілою в наступному релізі.
 > Натомість використовуйте `static getDerivedStateFromError()` для обробки резервного рендерингу.
+=======
+> Note
+>
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+>>>>>>> 255497f12fa00d231b5af5d5aa34fa5beffac9e4
 
 * * *
 
