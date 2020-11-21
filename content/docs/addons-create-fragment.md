@@ -3,25 +3,25 @@ id: create-fragment
 title: Keyed Fragments
 permalink: docs/create-fragment.html
 layout: docs
-category: Add-Ons
+category: Доповнення
 ---
 
 > Note:
 >
-> `React.addons` entry point is deprecated as of React v15.5. We now have first class support for fragments which you can read about [here](/docs/fragments.html).
+> `React.addons` використвання застаріле станом на React v15.5. Тепер у нас є першокласна підтримка фрагментів, про яку ви можете прочитати [тут](/docs/fragments.html).
 
-## Importing {#importing}
+## Імпортування {#importing}
 
 ```javascript
 import createFragment from 'react-addons-create-fragment'; // ES6
-var createFragment = require('react-addons-create-fragment'); // ES5 with npm
+var createFragment = require('react-addons-create-fragment'); // ES5 з npm
 ```
 
-## Overview {#overview}
+## Огляд {#overview}
 
-In most cases, you can use the `key` prop to specify keys on the elements you're returning from `render`. However, this breaks down in one situation: if you have two sets of children that you need to reorder, there's no way to put a key on each set without adding a wrapper element.
+У більшості випадків ви можете використовувати властивість `key`, щоб вказати ключі елементам, які ви повертаєте з методу `render`. Однак, це не працює в одній ситуації: якщо у вас є два набори дочірніх компонентів, порядок яких вам потрібно змінити, у такому разі немає способу задати ключ кожному набоу без додавання обгорнутого компоненту.
 
-That is, if you have a component such as:
+Це те саме, якби ви мали наступний компонент:
 
 ```js
 function Swapper(props) {
