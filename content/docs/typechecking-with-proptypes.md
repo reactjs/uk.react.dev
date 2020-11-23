@@ -30,7 +30,11 @@ Greeting.propTypes = {
 };
 ```
 
+<<<<<<< HEAD
 У цьому прикладі ми використовуємо класовий компонент, але такий самий функціонал може бути застосований до функціональних компонентів, або компонентів, створених за допомогою [`React.memo`](https://uk.reactjs.org/docs/react-api.html#reactmemo) чи [`React.forwardRef`](https://uk.reactjs.org/docs/react-api.html#reactforwardref).
+=======
+In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](/docs/react-api.html#reactmemo) or [`React.forwardRef`](/docs/react-api.html#reactforwardref).
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
 
 `PropTypes` експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ви отримали вірні дані. В наведеному вище прикладі ми використовуємо `PropTypes.string`. Якщо якийсь проп отримає невірне значення, в консолі  JavaScript буде показано попередження. З міркувань продуктивності `propTypes` перевіряються лише в режимі розробки.
 
@@ -99,7 +103,11 @@ MyComponent.propTypes = {
   // В цьому випадку буде показано попередження, якщо проп не надано.
   requiredFunc: PropTypes.func.isRequired,
 
+<<<<<<< HEAD
   // Значення будь-якого типу
+=======
+  // A required value of any data type
+>>>>>>> 8f9ef00db1b36ee3e5a0e6072eb601257a6f8ccb
   requiredAny: PropTypes.any.isRequired,
 
   // Ви також можете вказати власну функцію-валідатор. Вона повинна повернути об'єкт
