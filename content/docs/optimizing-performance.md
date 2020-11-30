@@ -43,8 +43,8 @@ npm run build
 Ми пропонуємо готові для продакшу версії React та React DOM у вигляді окремих файлів:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 Пам'ятайте, що для продакшну підходять тільки ті файли React, що закінчуються на `.production.min.js`.
@@ -74,10 +74,17 @@ brunch build -p
 Для найефективнішої продакшн-збірки з використанням Browserify, встановіть декілька плагінів:
 
 ```
+<<<<<<< HEAD
 # Якщо ви користуєтесь npm
 npm install --save-dev envify terser uglifyify
 
 # Якщо ви користуєтесь Yarn
+=======
+# If you use npm
+npm install --save-dev envify terser uglifyify
+
+# If you use Yarn
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 yarn add --dev envify terser uglifyify
 ```
 
@@ -379,7 +386,11 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Ця функція була додана до JavaScript у ES2018. 
+=======
+This feature was added to JavaScript in ES2018.
+>>>>>>> 5e437a10ed4e89cd5eaf990ce4f43e0857592b53
 
 Якщо ви використовуєте Create React App, то `Object.assign` та розпакування об'єктів доступні за замовчуванням.
 
