@@ -30,7 +30,11 @@ Greeting.propTypes = {
 };
 ```
 
+<<<<<<< HEAD
 У цьому прикладі ми використовуємо класовий компонент, але такий самий функціонал може бути застосований до функціональних компонентів, або компонентів, створених за допомогою [`React.memo`](https://uk.reactjs.org/docs/react-api.html#reactmemo) чи [`React.forwardRef`](https://uk.reactjs.org/docs/react-api.html#reactforwardref).
+=======
+In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](/docs/react-api.html#reactmemo) or [`React.forwardRef`](/docs/react-api.html#reactforwardref).
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
 
 `PropTypes` експортує ряд валідаторів, які можуть бути використані щоб впевнитись, що ви отримали вірні дані. В наведеному вище прикладі ми використовуємо `PropTypes.string`. Якщо якийсь проп отримає невірне значення, в консолі  JavaScript буде показано попередження. З міркувань продуктивності `propTypes` перевіряються лише в режимі розробки.
 
@@ -62,8 +66,13 @@ MyComponent.propTypes = {
   // Тип React-елемента (тобто MyComponent).
   optionalElementType: PropTypes.elementType,
 
+<<<<<<< HEAD
   // Ви можете вказати, що проп має бути екземпляром вказаного класу.
   // Для перевірки буде використано оператор instanceof.
+=======
+  // You can also declare that a prop is an instance of a class. This uses
+  // JS's instanceof operator.
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
   optionalMessage: PropTypes.instanceOf(Message),
 
   // Ви можете впевнитись, що проп може мати тільки певні значення
@@ -88,7 +97,7 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
-  
+
   // An object with warnings on extra properties
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
@@ -99,7 +108,11 @@ MyComponent.propTypes = {
   // В цьому випадку буде показано попередження, якщо проп не надано.
   requiredFunc: PropTypes.func.isRequired,
 
+<<<<<<< HEAD
   // Значення будь-якого типу
+=======
+  // A required value of any data type
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
   requiredAny: PropTypes.any.isRequired,
 
   // Ви також можете вказати власну функцію-валідатор. Вона повинна повернути об'єкт
@@ -195,4 +208,52 @@ class Greeting extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Властивість `defaultProps` гарантує, що `this.props.name` матиме значення, навіть якщо воно не було задане батьківським компонентом. Перевірка типів `propTypes` відбувається після застосування `defaultProps`, тобто вона також буде застосована для `defaultProps`.
+=======
+The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+
+### Function Components
+
+If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be proper applied.
+
+Let's say you have a component like this:
+
+```javascript
+export default function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+```
+
+To add PropTypes, you may want to declare the component in a separate function before exporting, like this:
+
+```javascript
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+export default HelloWorldComponent
+```
+
+Then, you can add PropTypes directly to the `HelloWorldComponent`:
+
+```javascript
+import PropTypes from 'prop-types'
+
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+HelloWorldComponent.propTypes = {
+  name: PropTypes.string
+}
+
+export default HelloWorldComponent
+```
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf

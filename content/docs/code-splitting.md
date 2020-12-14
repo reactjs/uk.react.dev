@@ -6,12 +6,16 @@ permalink: docs/code-splitting.html
 
 ## Розбиття по модулям {#bundling}
 
+<<<<<<< HEAD
 Більшість React додатків мають власні розбиті за "бандлами" файли використовуючи такі інструменти, як
 [Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) або 
 [Browserify](http://browserify.org/).
 Бандлінг – це процес імпортування файлів та об'єднання їх в один файл – бандл (модуль).
 Цей бандл може потім бути включений до веб-сторінки для завантаження всього додатку
 одночасно.
+=======
+Most React apps will have their files "bundled" using tools like [Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or [Browserify](http://browserify.org/). Bundling is the process of following imported files and merging them into a single file: a "bundle". This bundle can then be included on a webpage to load an entire app at once.
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
 
 #### Приклад {#example}
 
@@ -45,6 +49,7 @@ console.log(add(16, 26)); // 42
 >
 > Наприкінці ваші бандли будуть значно відрізнятися від наведених прикладів.
 
+<<<<<<< HEAD
 Якщо ви використовуєте [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/) чи подібний інструмент, ви матимете налаштування Webpack за замовчуванням для бандлінгу вашого 
 додатку.
 
@@ -52,9 +57,15 @@ console.log(add(16, 26)); // 42
 [Встановленням](https://webpack.js.org/guides/installation/) та
 [Початком роботи](https://webpack.js.org/guides/getting-started/) на офіційній 
 документації Webpack.
+=======
+If you're using [Create React App](https://create-react-app.dev/), [Next.js](https://nextjs.org/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your app.
+
+If you aren't, you'll need to setup bundling yourself. For example, see the [Installation](https://webpack.js.org/guides/installation/) and [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the Webpack docs.
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
 
 ## Розбиття Коду {#code-splitting}
 
+<<<<<<< HEAD
 Розбиття по бандлам – це прекрасно, але з темпом росту вашого додатку, бандли теж зростають.
 Це особливо помітно, якщо ви встановили та використовуєте великі сторонні бібліотеки. Вам потрібно
 стежити за кодом, який потрапляє у ваш бандл для того, щоб в один момент не зробити цей бандл настільки
@@ -77,6 +88,18 @@ console.log(add(16, 26)); // 42
 
 Найращий спосіб впровадження розбиття коду — через синтаксис 
 динамічних `import()`
+=======
+Bundling is great, but as your app grows, your bundle will grow too. Especially if you are including large third-party libraries. You need to keep an eye on the code you are including in your bundle so that you don't accidentally make it so large that your app takes a long time to load.
+
+To avoid winding up with a large bundle, it's good to get ahead of the problem and start "splitting" your bundle. Code-Splitting is a feature
+supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via [factor-bundle](https://github.com/browserify/factor-bundle)) which can create multiple bundles that can be dynamically loaded at runtime.
+
+Code-splitting your app can help you "lazy-load" just the things that are currently needed by the user, which can dramatically improve the performance of your app. While you haven't reduced the overall amount of code in your app, you've avoided loading code that the user may never need, and reduced the amount of code needed during the initial load.
+
+## `import()` {#import}
+
+The best way to introduce code-splitting into your app is through the dynamic `import()` syntax.
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
 
 **До:**
 
@@ -94,6 +117,7 @@ import("./math").then(math => {
 });
 ```
 
+<<<<<<< HEAD
 В той момент, коли Webpack стикається з таким синтаксисом, він автоматично починає розбивати код вашого додатку.
 Якщо ви вже користуєтесь Create React App, це вже налаштовано для вас
 та ви можете одразу [почати користуватися цим](https://facebook.github.io/create-react-app/docs/code-splitting). Це також підтримується
@@ -104,6 +128,13 @@ import("./math").then(math => {
 
 Під час використання [Babel](https://babeljs.io/), ви маєте пересвідчитись в тому, що Babel може парсити синтаксис динамічних import, виключаючи можливість його перетворення.
 Для цього вам знадобиться [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
+=======
+When Webpack comes across this syntax, it automatically starts code-splitting your app. If you're using Create React App, this is already configured for you and you can [start using it](https://create-react-app.dev/docs/code-splitting/) immediately. It's also supported out of the box in [Next.js](https://nextjs.org/docs/advanced-features/dynamic-import).
+
+If you're setting up Webpack yourself, you'll probably want to read Webpack's [guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+
+When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can parse the dynamic import syntax but is not transforming it. For that you will need [@babel/plugin-syntax-dynamic-import](https://classic.yarnpkg.com/en/package/@babel/plugin-syntax-dynamic-import).
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
 
 ## `React.lazy` {#reactlazy}
 
@@ -196,6 +227,7 @@ const MyComponent = () => (
 
 ## Розбиття коду на основі маршрутів {#route-based-code-splitting}
 
+<<<<<<< HEAD
 Рішення стосовно того, де саме вводити розбиття коду може бути доволі складним.
 Ви хочете переконатися, що ви обираєте місця, які рівномірно розділять ваші бандли,
 але в жодному разі не порушуватимуть роботу користувача.
@@ -207,6 +239,13 @@ const MyComponent = () => (
 
 Нижче наведено приклад налаштування розбиття коду файла з маршрутами додатку, використовуючи
 бібліотеку [React Router](https://reacttraining.com/react-router/) за допомогою `React.lazy`.
+=======
+Deciding where in your app to introduce code splitting can be a bit tricky. You want to make sure you choose places that will split bundles evenly, but won't disrupt the user experience.
+
+A good place to start is with routes. Most people on the web are used to page transitions taking some amount of time to load. You also tend to be re-rendering the entire page at once so your users are unlikely to be interacting with other elements on the page at the same time.
+
+Here's an example of how to setup route-based code splitting into your app using libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
 
 ```js
 import React, { Suspense, lazy } from 'react';

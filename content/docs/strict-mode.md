@@ -116,7 +116,15 @@ class MyComponent extends React.Component {
 
 Суворий режим робить подібні патерни більш помітними, навмисно двічі викликаючи методи, такі як конструктор компонента.
 
+<<<<<<< HEAD
 ### Виявлення застарілого контекстного API {#detecting-legacy-context-api}
+=======
+> Note:
+>
+> Starting with React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+
+### Detecting legacy context API {#detecting-legacy-context-api}
+>>>>>>> 6349ec18a01a3a880b66b87feb8dfe53f52e7aaf
 
 Використання застарілого контекстного API часто призводило до помилок, тому він буде видалений в майбутній мажорній версії React. Він все ще працює в усіх релізах версії 16.x, але показуватиме це попередження у суворому режимі:
 
