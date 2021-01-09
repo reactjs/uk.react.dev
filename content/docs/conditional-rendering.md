@@ -122,7 +122,7 @@ ReactDOM.render(
 
 ### Вбудовані умови if з логічним оператором && {#inline-if-with-logical--operator}
 
-Ви можете [вставляти будь-який вираз у JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) охопивши його у фігурні дужки. Це правило поширюється і на логічний оператор `&&` JavaScript, яким можно зручно вставити елемент в залежності від умови:
+Ви можете [вставляти будь-який вираз у JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx), охопивши його фігурними дужками. Це правило поширюється і на логічний оператор `&&` JavaScript, яким можна зручно вставити елемент в залежності від умови:
 
 ```js{6-10}
 function Mailbox(props) {
@@ -156,7 +156,7 @@ ReactDOM.render(
 
 Іншим методом для умовного рендерингу елементів є використання тернарного оператора [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
-У наступному прикладі ми використаємо цей метод для того, щоб відрендерити маленький кусочок тексту.
+У наступному прикладі ми використаємо цей метод для того, щоб відрендерити маленький шматочок тексту.
 
 ```javascript{5}
 render() {
