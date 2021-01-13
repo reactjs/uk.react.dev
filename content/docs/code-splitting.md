@@ -1,6 +1,6 @@
 ---
 id: code-splitting
-title: Code-Splitting
+title: Розбиття коду
 permalink: docs/code-splitting.html
 ---
 
