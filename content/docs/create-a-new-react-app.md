@@ -49,7 +49,7 @@ npm start
 
 >Примітка
 >
->`npx` на першому рядку це не одрук. Це [інструмент для запуску пакетів, з'явившийся в npm версії 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
+>`npx` на першому рядку це не одрук. Це [інструмент для запуску пакетів, що з'явився в npm версії 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
 Create React App не опрацьовує бекенд логіку чи логіку баз данних, а лише надає команди для побудови фронтенду, тому ви можете використовувати його з будь-яким бекендом. Під капотом він використовує [Babel](https://babeljs.io/) та [webpack](https://webpack.js.org/), але вам не треба нічого знати про них.
 
