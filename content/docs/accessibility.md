@@ -469,7 +469,7 @@ Deque Systems пропонує [aXe-core](https://github.com/dequelabs/axe-core)
 - [Використання інспектора доступності в Chrome](https://developers.google.com/web/tools/chrome-devtools/accessibility/reference#pane)
 - [Використання інспектора доступності в OS X Safari](https://developer.apple.com/library/content/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
 
-### Пристрой дл зчитування екрану {#screen-readers}
+### Пристрій для зчитування екрану {#screen-readers}
 
 Тестування за допомогою пристроїв зчитування екрану має буду невід'ємною частиною вашого тестування доступності.
 
