@@ -1,66 +1,66 @@
 ---
 id: faq-versioning
-title: Versioning Policy
+title: Політика версіонування
 permalink: docs/faq-versioning.html
 layout: docs
 category: FAQ
 ---
 
-React follows [semantic versioning (semver)](https://semver.org/) principles.
+React дотримується принципів [семантичного версіонування (semver)](https://semver.org/).
 
-That means that with a version number **x.y.z**:
+Це означає, що для номера версії виду **x.y.z**:
 
-* When releasing **critical bug fixes**, we make a **patch release** by changing the **z** number (ex: 15.6.2 to 15.6.3).
-* When releasing **new features** or **non-critical fixes**, we make a **minor release** by changing the **y** number (ex: 15.6.2 to 15.7.0).
-* When releasing **breaking changes**, we make a **major release** by changing the **x** number (ex: 15.6.2 to 16.0.0).
+* При випуску **виправлень помилок**, ми робимо **патч-реліз**, змінюючи число **z** (наприклад, з 15.6.2 до 15.6.3).
+* При випуску **нових можливостей** або **несуттєвих виправлень**, ми робимо **мінорний реліз**, змінюючи число **y** (наприклад, з 15.6.2 до 15.7.0).
+* При випуску **зворотно несумісних змін**, ми робимо **мажорний реліз**, змінюючи число **x** (наприклад, з 15.6.2 до 16.0.0).
 
-Major releases can also contain new features, and any release can include bug fixes.
+Мажорні релізи можуть містити нові можливості. Кожен реліз може містити виправлення помилок.
 
-Minor releases are the most common type of release.
+Мінорний реліз — найпоширеніший тип релізів.
 
-> This versioning policy does not apply to prerelease builds in the Next or Experimental channels. [Learn more about prereleases.](/docs/release-channels.html)
+> Ця Політика версіонування не відноситься до попередніх збірок в каналах наступних і експериментальних версій. [Дізнайтися більше про попередні випуски.](/docs/release-channels.html)
 
-### Breaking Changes {#breaking-changes}
+### Зворотно несумісні зміни {#breaking-changes}
 
-Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017; React 17 isn't expected until sometime in 2020.
+Зворотно несумісні зміни незручні для всіх, тому ми намагаємося мінімізувати кількість мажорних релізів. Наприклад, React 15 був випущений у квітні 2016 року, а React 16 — у вересні 2017 року. React 17 очікується десь у 2020 році.
 
-Instead, we release new features in minor versions. That means that minor releases are often more interesting and compelling than majors, despite their unassuming name.
+Замість цього ми випускаємо нові можливості в мінорних релізах. Це означає, що мінорні релізи найчастіше більш цікаві, ніж мажорні, незважаючи на порядковий номер версії.
 
-### Commitment to Stability {#commitment-to-stability}
+### Відповідальне ставлення до стабільності {#commitment-to-stability}
 
-As we change React over time, we try to minimize the effort required to take advantage of new features. When possible, we'll keep an older API working, even if that means putting it in a separate package. For example, [mixins have been discouraged for years](/blog/2016/07/13/mixins-considered-harmful.html) but they're supported to this day [via create-react-class](/docs/react-without-es6.html#mixins) and many codebases continue to use them in stable, legacy code.
+Змінюючи React, ми намагаємося спростити вивчення нових можливостей. Крім цього, ми намагаємося зберегти роботу старих API, навіть якщо потрібно їх перенесення в окремий пакет. Наприклад, [ми відмовилися від міксинів кілька років тому](/blog/2016/07/13/mixins-considered-harmful.html) але вони досі підтримуються [через create-react-class](/docs/react-without-es6.html#mixins) і багато проєктів продовжують їх використовувати у стабільному, застарілому коді.
 
-Over a million developers use React, collectively maintaining millions of components. The Facebook codebase alone has over 50,000 React components. That means we need to make it as easy as possible to upgrade to new versions of React; if we make large changes without a migration path, people will be stuck on old versions. We test these upgrade paths on Facebook itself – if our team of less than 10 people can update 50,000+ components alone, we hope the upgrade will be manageable for anyone using React. In many cases, we write [automated scripts](https://github.com/reactjs/react-codemod) to upgrade component syntax, which we then include in the open-source release for everyone to use.
+Більше мільйона розробників використовують React, підтримуючи мільйони компонентів. Тільки в кодовій базі Facebook більше 50 000 React-компонентів. Все це зобов'язує нас робити оновлення до нових версій якомога простіше. Якщо ми не надамо можливості для оновлення, люди застрягнуть у старих версіях. Ми тестуємо наші шляхи оновлення прямо у Facebook — якщо наша команда з 10 людей може оновити більше 50 тисяч компонентів, ми думаємо, що з цим впораються й інші React-розробники. У багатьох випадках для оновлення синтаксису компонентів ми пишемо [скрипти автоматизації](https://github.com/reactjs/react-codemod) які викладаємо у відкритий доступ для загального використання.
 
-### Gradual Upgrades via Warnings {#gradual-upgrades-via-warnings}
+### Поступове оновлення через попередження {#gradual-upgrades-via-warnings}
 
-Development builds of React include many helpful warnings. Whenever possible, we add warnings in preparation for future breaking changes. That way, if your app has no warnings on the latest release, it will be compatible with the next major release. This allows you to upgrade your apps one component at a time.
+Збірки в режимі розробки в React включають безліч корисних попереджень. Коли можливо, ми додаємо попередження для майбутніх зворотно несумісних змін. Таким чином, якщо ваш додаток не показує попереджень в консолі в останньому релізі, значить воно готове до наступної мажорної версії. Це дозволяє вам оновлювати додаток компонент за компонентом поодинці.
 
-Development warnings won't affect the runtime behavior of your app. That way, you can feel confident that your app will behave the same way between the development and production builds -- the only differences are that the production build won't log the warnings and that it is more efficient. (If you ever notice otherwise, please file an issue.)
+Попередження про розробку не вплинуть на поведінку вашої програми під час виконання. Таким чином, ви можете бути впевнені, що ваш додаток буде вести себе однаково в режимі розробки і продакшн-режимі. Різниця лише в тому, що продакшн-збірка не буде показувати попередження в консолі і що вона більш ефективна. (Якщо ви раптом помітили попередження в продакшн-режимі, відкрийте іш'ю в репозиторії React.)
 
-### What Counts as a Breaking Change? {#what-counts-as-a-breaking-change}
+### Що вважається зворотно несумісною зміною? {#what-counts-as-a-breaking-change}
 
-In general, we *don't* bump the major version number for changes to:
+Як правило, ми *не* підвищуємо мажорну версію для наступних змін:
 
-* **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
-* **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
-* **Alpha and canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
-* **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
+* **Попередження для розробників.** Оскільки вони не впливають на поведінку в продакшн-режимі, ми можемо додавати або змінювати існуючі попередження між мажорними версіями. Це дозволяє нам заздалегідь попереджати про нові мажорні зміни.
+* **APIs з приставкою `unstable_`.** Вони додають експериментальні можливості, в API яких ми не впевнені до кінця. Випускаючи такі можливості з приставкою `unstable_` ми можемо їх оновлювати і переходити до стабільного API швидше.
+* **Альфа і канаркові версії React.** Альфа-версії React дозволяють спробувати нові можливості раніше. Ми можемо вносити в них зміни на основі зворотного зв'язку, отриманого в період альфа-тестування. Якщо ви використовуєте такі версії, майте на увазі, що API може змінитися в стабільній версії.
+* **Недокументовані API і внутрішні структури даних.** Ми не гарантуємо працездатність коду в разі використання `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg` або інших внутрішніх змінних.
 
-This policy is designed to be pragmatic: certainly, we don't want to cause headaches for you. If we bumped the major version for all of these changes, we would end up releasing more major versions and ultimately causing more versioning pain for the community. It would also mean that we can't make progress in improving React as fast as we'd like.
+Наша політика розроблена, щоб бути практичною. Ми не хочемо створювати вам головний біль. Якби ми піднімали мажорну версію занадто часто, то доставили б безліч проблем всій спільноті. І це б не дозволило покращувати React так швидко, як нам хотілося.
 
-That said, if we expect that a change on this list will cause broad problems in the community, we will still do our best to provide a gradual migration path.
+Якщо ми думаємо, що зміни можуть викликати проблеми в спільноті, ми постараємося зробити все можливе, щоб забезпечити плавний перехід від старої версії до нової.
 
-### If a Minor Release Includes No New Features, Why Isn't It a Patch? {#minors-versus-patches}
+### Якщо мінорний реліз не містить нових можливостей, чому це не патч реліз? {#minors-versus-patches}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
+Іноді мінорний реліз може не включати нових можливостей. [Це допускається семантичним версіонуванням](https://semver.org/#spec-item-7), в якому говориться, що **"[мінорна версія] МОЖЕ бути збільшена в разі реалізації нової функціональності або істотного удосконалення в приватному коді. Версія МОЖЕ включати зміни, характерні для патчів."**
 
-However, it does raise the question of why these releases aren't versioned as patches instead.
+Однак виникає питання, чому ці версії не є патчами.
 
-The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
+Відповідь проста: будь-яка зміна в React (як і в будь-якій іншій програмі) несе певний ризик непередбачених ситуацій. Уявіть ситуацію, в якій випуск патч-релізу, що виправляє один баг, випадково вносить новий. Подібне не тільки негативно впливає на розробників, але і підриває їх впевненість у майбутніх патч-релізах. Особливо сумно, якщо виправлявся баг, рідко зустрічається на практиці.
 
-We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
+У нас досить хороший досвід у випуску релізів React без багів, але патч-релізи мають більш високу планку надійності, оскільки більшість розробників припускають, що вони можуть бути прийняті без негативних наслідків.
 
-For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
+З цих причин ми використовуємо патч-релізи тільки для критичних багів і вразливостей в безпеці.
 
-If a release includes non-essential changes — such as internal refactors, changes to implementation details, performance improvements, or minor bugfixes — we will bump the minor version even when there are no new features.
+Якщо в реліз включені несуттєві зміни — такі як внутрішній рефакторинг, зміни деталей реалізації, поліпшення продуктивності або виправлення дрібних багів — ми збільшимо мінорну версію, навіть якщо нічого нового немає.
