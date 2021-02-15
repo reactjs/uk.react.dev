@@ -320,7 +320,11 @@ function getDisplayName(WrappedComponent) {
 
 ### Не використовуйте КВП у середині рендер-методів {#dont-use-hocs-inside-the-render-method}
 
+<<<<<<< HEAD
 Алгоритм порівняння React, що відомий як reconciliation (або узгодження), використовує перевірку на тотожність компонента, щоб визначити, чи слід оновити існуюче піддерево компонентів або слід знищити його та змонтувати нове. Якщо компонент, що був повернений рендер-методом, ідентичний (`===`) попередньому результату, React рекурсивно оновлює піддерева, порівнюючи його з новим. Якщо вони не тотожні, то попереднє піддерево буде повністю розмонтовано.
+=======
+React's diffing algorithm (called [Reconciliation](/docs/reconciliation.html)) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+>>>>>>> 888d9eae7a33ec1a48c18f28e82c26d048d885be
 
 Зазвичай вам не потрібно думати про це. Однак, це важливо для компонента вищого порядку, оскільки це означає, що ви не можете застосувати КВП до компонента в рендер-методі іншого компонента:
 
