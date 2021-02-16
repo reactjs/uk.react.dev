@@ -33,7 +33,7 @@ class Hello extends React.Component {
 }
 
 ReactDOM.render(
-  React.createElement(Hello, {toWhat: 'світе'}, null),
+  React.createElement(Привіт, {toWhat: 'світе'}, null),
   document.getElementById('root')
 );
 ```
