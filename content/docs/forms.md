@@ -31,7 +31,7 @@ redirect_from:
 
 Наприклад, якщо ми хочемо, щоб у прикладі вище після відправлення форми передані дані виводилися у консолі, то ми можемо переписати форму як "керований компонент":
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
