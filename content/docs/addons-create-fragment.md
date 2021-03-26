@@ -35,13 +35,13 @@ function Swapper(props) {
 }
 ```
 
-The children will unmount and remount as you change the `swapped` prop because there aren't any keys marked on the two sets of children.
+Діти будуть демонтуватися та перемонтовуватися, коли ви змінюєте властивість `swapped`, оскільки у двох наборах дочірніх елементів не зазначено жодних клавіш.
 
-To solve this problem, you can use the `createFragment` add-on to give keys to the sets of children.
+Щоб вирішити цю проблему, ви можете використовувати доповнення `createFragment` для передачі ключів до наборів дочірніх елементів.
 
 #### `Array<ReactNode> createFragment(object children)` {#arrayreactnode-createfragmentobject-children}
 
-Instead of creating arrays, we write:
+Замість того, щоб створювати масиви, ми пишемо:
 
 ```javascript
 import createFragment from 'react-addons-create-fragment';
@@ -65,4 +65,4 @@ function Swapper(props) {
 
 Ключі переданого об'єкта (тобто `left` та` right`) використовуються як ключі для всього набору дочірніх елементів, а порядок ключів об'єкта використовується для визначення порядку рендерингу дочірніх елементів. З цією зміною два набори дітей будуть належним чином упорядковані в DOM без демонтування.
 
-The return value of `createFragment` should be treated as an opaque object; you can use the [`React.Children`](/docs/react-api.html#react.children) helpers to loop through a fragment but should not access it directly. Note also that we're relying on the JavaScript engine preserving object enumeration order here, which is not guaranteed by the spec but is implemented by all major browsers and VMs for objects with non-numeric keys.
+Повернене значення `createFragment` слід розглядати як непрозорий об'єкт; Ви можете скористатися помічниками [`React.Children`](/docs/response-api.html#response.children), щоб пройтися по фрагменту, але не слід безпосередньо отримувати до нього доступ. Зауважте також, що ми покладаємось на рушій JavaScript, що зберігає тут порядок перелічення об’єктів, що не гарантується специфікацією, але реалізується усіма основними браузерами та віртуальними машинами для об’єктів з нечисловими клавішами.
