@@ -63,6 +63,6 @@ function Swapper(props) {
 }
 ```
 
-Ключі переданого об'єкта (тобто `left` та` right`) використовуються як ключі для всього набору дочірніх елементів, а порядок ключів об'єкта використовується для визначення порядку рендеру (візуалізації) дочірніх елементів. З цією зміною два набори дітей будуть належним чином упорядковані в DOM без демонтування.
+Ключі переданого об'єкта (тобто `left` та` right`) використовуються як ключі для всього набору дочірніх елементів, а порядок ключів об'єкта використовується для визначення порядку рендерингу дочірніх елементів. З цією зміною два набори дітей будуть належним чином упорядковані в DOM без демонтування.
 
 The return value of `createFragment` should be treated as an opaque object; you can use the [`React.Children`](/docs/react-api.html#react.children) helpers to loop through a fragment but should not access it directly. Note also that we're relying on the JavaScript engine preserving object enumeration order here, which is not guaranteed by the spec but is implemented by all major browsers and VMs for objects with non-numeric keys.
