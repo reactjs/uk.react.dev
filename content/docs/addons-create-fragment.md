@@ -1,6 +1,6 @@
 ---
 id: create-fragment
-title: Keyed Fragments
+title: Фрагменти з Ключами
 permalink: docs/create-fragment.html
 layout: docs
 category: Доповнення
