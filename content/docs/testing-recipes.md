@@ -377,7 +377,6 @@ let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
-  // container *must* be attached to document so events work correctly.
   document.body.appendChild(container);
 });
 
@@ -416,7 +415,7 @@ it("changes value when clicked", () => {
 });
 ```
 
-Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
+Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the root.
 
 > Note:
 >
@@ -466,13 +465,12 @@ import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
-jest.useFakeTimers();
-
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  jest.useFakeTimers();
 });
 
 afterEach(() => {
@@ -480,6 +478,7 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  jest.useRealTimers();
 });
 
 it("should select null after timing out", () => {
