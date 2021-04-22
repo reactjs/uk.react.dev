@@ -83,7 +83,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-Це ж з [Хуками](https://github.com/reactjs/uk.reactjs.org/blob/master/docs/hooks-intro.html): 
+Це ж з [Хуками](https://uk.reactjs.org/docs/hooks-intro.html): 
 
 ```js
 function MyComponent() {
