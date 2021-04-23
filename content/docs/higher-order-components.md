@@ -12,7 +12,7 @@ permalink: docs/higher-order-components.html
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
-Якщо звичайний компонент трасформує пропси у UI, то компонент вищого порядку трасформує один компонент у інший.
+Якщо звичайний компонент трансформує пропси у UI, то компонент вищого порядку трансформує один компонент у інший.
 
 КВП поширені у таких сторонніх бібліотеках, як [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) у Redux, або [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) у Relay.
 
