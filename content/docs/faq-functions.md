@@ -152,7 +152,6 @@ const A = 65 // ASCII-код символу
 class Alphabet extends React.Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
     this.state = {
       justClicked: null,
       letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
@@ -290,9 +289,12 @@ class Searchbox extends React.Component {
   }
 
   handleChange(e) {
+<<<<<<< HEAD
     // React розташовує події в пулі, тому значення зчитується перед debounce.
     // Як альтернативу, ми могли б викликати `event.persist()` і передати подію в повному обсязі.
     // Більш детально дана тема розглядається тут: reactjs.org/docs/events.html#event-pooling
+=======
+>>>>>>> 5119600cf6f7a5dcbd4d2cc23f6b4ff55d2969b2
     this.emitChangeDebounced(e.target.value);
   }
 
