@@ -181,4 +181,8 @@ const element = {
 
 >**Порада:**
 >
+<<<<<<< HEAD
 >Ми рекомендуємо використовувати ["Babel" language definition](https://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> c3c93e2a7ff1b1f7b8735a3a87d4b10937eaaf91
