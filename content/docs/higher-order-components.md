@@ -14,7 +14,11 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Якщо звичайний компонент трансформує пропси у UI, то компонент вищого порядку трансформує один компонент у інший.
 
+<<<<<<< HEAD
 КВП поширені у таких сторонніх бібліотеках, як [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) у Redux, або [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) у Relay.
+=======
+HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer).
+>>>>>>> 16158f195a86fc2dbb59b3ea5a5c32ce161dccb9
 
 У цьому розділі ми обговоримо чому компоненти вищого порядку корисні та як створювати їх власноруч.
 
@@ -320,7 +324,11 @@ function getDisplayName(WrappedComponent) {
 
 ### Не використовуйте КВП у середині рендер-методів {#dont-use-hocs-inside-the-render-method}
 
+<<<<<<< HEAD
 Алгоритм порівняння React, що відомий як reconciliation (або узгодження), використовує перевірку на тотожність компонента, щоб визначити, чи слід оновити існуюче піддерево компонентів або слід знищити його та змонтувати нове. Якщо компонент, що був повернений рендер-методом, ідентичний (`===`) попередньому результату, React рекурсивно оновлює піддерева, порівнюючи його з новим. Якщо вони не тотожні, то попереднє піддерево буде повністю розмонтовано.
+=======
+React's diffing algorithm (called [Reconciliation](/docs/reconciliation.html)) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+>>>>>>> 16158f195a86fc2dbb59b3ea5a5c32ce161dccb9
 
 Зазвичай вам не потрібно думати про це. Однак, це важливо для компонента вищого порядку, оскільки це означає, що ви не можете застосувати КВП до компонента в рендер-методі іншого компонента:
 
