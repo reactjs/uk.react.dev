@@ -141,7 +141,8 @@ class Home extends Component {
                         fontSize: 30,
                       },
                     }}>
-                    JavaScript-бібліотека для створення користувацьких інтерфейсів
+                    JavaScript-бібліотека для створення користувацьких
+                    інтерфейсів
                   </p>
                   <Flex
                     valign="center"
@@ -372,7 +373,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    
+
     examples: allMarkdownRemark(
       filter: {fileAbsolutePath: {regex: "//home/examples//"}}
       sort: {fields: [frontmatter___order], order: ASC}
