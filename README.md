@@ -51,9 +51,15 @@
 
 1. `git add -A && git commit -m "My message"` (замініть `My message` на назву коміту, наприклад `Fix header logo on Android`), для збереження ваших змін
 1. `git push my-fork-name the-name-of-my-branch`
+<<<<<<< HEAD
 1. Перейдіть на [сторінку репозиторію uk.reactjs.org](https://github.com/reactjs/uk.reactjs.org) і ви повинні побачити нещодавно оновлені гілки.
 1. Дотримуйтесь інструкцій на GitHub.
 1. По можливості додайте знімок екрану ваших візуальних змін. Netlify створить сторінку для попереднього перегляду автоматично після створення PR для того, щоб інші люди могли бачити ваші зміни.
+=======
+1. Go to the [reactjs.org repo](https://github.com/reactjs/reactjs.org) and you should see recently pushed branches.
+1. Follow GitHub's instructions.
+1. If possible, include screenshots of visual changes. A [Netlify](https://www.netlify.com/) build will also be automatically created once you make your PR so other people can see your change.
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 ## Переклад
 

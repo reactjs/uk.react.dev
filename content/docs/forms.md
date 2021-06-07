@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 У React HTML-елементи форм працюють дещо інакше, ніж інші DOM-елементи, тому що елементи форм від початку мають певний внутрішній стан. Наприклад, в цю HTML-форму можна ввести ім'я:
+=======
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+>>>>>>> 68e4efcf93b6e589355f6aa3cbc3f3c811c0ad37
 
 ```html
 <form>
@@ -31,7 +35,7 @@ redirect_from:
 
 Наприклад, якщо ми хочемо, щоб у прикладі вище після відправлення форми передані дані виводилися у консолі, то ми можемо переписати форму як "керований компонент":
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
