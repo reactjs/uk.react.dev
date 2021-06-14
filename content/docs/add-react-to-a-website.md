@@ -52,10 +52,17 @@ next: create-a-new-react-app.html
 ```html{5,6,9}
   <!-- ... інший HTML-код ... -->
 
+<<<<<<< HEAD
   <!-- Завантажимо React. -->
   <!-- Примітка: перед розгортанням на продакшн, замініть "development.js" на "production.min.js". -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
   <!-- Завантажимо наш React-компонент. -->
   <script src="like_button.js"></script>
@@ -84,7 +91,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 Ці два рядки коду шукають `<div>`, який ми додали до нашого HTML-файлу в першому кроці і потім відображає React-компонент кнопки "Мені подобається" всередині нього.
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> f3baa6d075c8de475b688abf035d7054bc8a9606
 
 ### Готово! {#thats-it}
 
@@ -115,8 +126,8 @@ ReactDOM.render(e(LikeButton), domContainer);
 Якщо ви вже стискаєте скрипти вашого додатку, **то ваш сайт буде готовим для публікації на продакшн**, якщо ви впевнитесь в тому, що опублікована HTML-сторінка завантажує версії React, які закінчуються на `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Якщо ви ще не налаштували стискання для ваших скриптів, то [цей варіант може вам допомогти із цим](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
