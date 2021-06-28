@@ -312,9 +312,15 @@ declare module 'querystring' {
 
 Тепер ви готові до кодингу! Ми рекомендуємо ознайомитись з наступними ресурсами щоб дізнатися більше про TypeScript:
 
+<<<<<<< HEAD
 * [Документація TypeScript: базові типи](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * [Документація TypeScript: міграція з JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Документація TypeScript: React та Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+=======
+* [TypeScript Documentation: Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+* [TypeScript Documentation: Migrating from JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
+* [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+>>>>>>> 25f756d8e3800afb032cb31ce3626d6134e31e38
 
 ## Reason {#reason}
 
