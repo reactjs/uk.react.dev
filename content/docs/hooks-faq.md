@@ -991,6 +991,7 @@ React відслідковує, який компонент рендеритьс
 
 Хуки об'єднують у собі ідеї кількох різних концепцій:
 
+<<<<<<< HEAD
 * Наші старі експерименти з функціональними API у репозиторії [react-future](https://github.com/reactjs/react-future/tree/master/07%20-%20Returning%20State).
 * Експерименти спільноти React з API рендер пропсів, включно з [Reactions Component](https://github.com/reactions/component) [Раяна Флоренса (Ryan Florence)](https://github.com/ryanflorence).
 * Пропозиція [ключового слова `adopt`](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067), як синтаксичного цукру для рендер пропсів, запропонована [Домініком Ґенневеєм (Dominic Gannaway)](https://github.com/trueadm).
@@ -998,5 +999,14 @@ React відслідковує, який компонент рендеритьс
 * [Компоненти-редюсери](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) у ReasonReact.
 * [Підписки](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) в Rx.
 * [Алгебраїчні ефекти](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) в Multicore OCaml.
+=======
+* Our old experiments with functional APIs in the [react-future](https://github.com/reactjs/react-future/tree/main/07%20-%20Returning%20State) repository.
+* React community's experiments with render prop APIs, including [Ryan Florence](https://github.com/ryanflorence)'s [Reactions Component](https://github.com/reactions/component).
+* [Dominic Gannaway](https://github.com/trueadm)'s [`adopt` keyword](https://gist.github.com/trueadm/17beb64288e30192f3aa29cad0218067) proposal as a sugar syntax for render props.
+* State variables and state cells in [DisplayScript](http://displayscript.org/introduction.html).
+* [Reducer components](https://reasonml.github.io/reason-react/docs/en/state-actions-reducer.html) in ReasonReact.
+* [Subscriptions](http://reactivex.io/rxjs/class/es6/Subscription.js~Subscription.html) in Rx.
+* [Algebraic effects](https://github.com/ocamllabs/ocaml-effects-tutorial#2-effectful-computations-in-a-pure-setting) in Multicore OCaml.
+>>>>>>> 0bb0303fb704147452a568472e968993f0729c28
 
 [Себастьян Маркбоге (Sebastian Markbåge)](https://github.com/sebmarkbage) запропонував початковий дизайн хуків, який удосконалили [Ендрю Кларк (Andrew Clark)](https://github.com/acdlite), [Софі Алперт (Sophie Alpert)](https://github.com/sophiebits), [Домінік Ґенневей (Dominic Gannaway)](https://github.com/trueadm) та інші члени команди React.
