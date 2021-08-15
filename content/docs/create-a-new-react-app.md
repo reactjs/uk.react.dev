@@ -39,7 +39,11 @@ next: cdn-links.html
 
 [Create React App](https://github.com/facebookincubator/create-react-app) -- це комфортний осередок для **вивчення React**, а також це найкращий шлях щоб почати будувати **нові [односторінкові](/docs/glossary.html#single-page-application) додатки** за допомогою React.
 
+<<<<<<< HEAD
 Він встановлює осередок для розробки таким чином, щоб ви могли використовувати найновіші можливості JavaScript, робить розробку комфортнішою, а також оптимізує ваш додаток для продакшну. Вам знадобиться [Node версії >= 8.10 та npm версії >= 5.6](https://nodejs.org/uk/) на вашому комп'ютері. Для створення проекту виконайте:
+=======
+It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 10.16 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
+>>>>>>> 95e15d063b205007a92c52efb5311f76ad5a0b6c
 
 ```bash
 npx create-react-app my-app
