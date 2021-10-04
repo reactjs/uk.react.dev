@@ -235,7 +235,7 @@ class Square extends React.Component {
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -243,7 +243,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Тепер, при натисканні на Square, у браузері щоразу має з'являтись повідомлення.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 >Примітка
 >
@@ -253,7 +257,7 @@ class Square extends React.Component {
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +265,11 @@ class Square extends React.Component {
 >}
 >```
 >
+<<<<<<< HEAD
 >Зверніть увагу, що у `onClick={() => alert('click')}` ми передаємо  *функцію* як проп `onClick`. React викличе цю функцію тільки після натискання. Типовою помилкою є використання синтаксису `onClick={alert('click')}` без  `() =>`, оскільки такий код буде спрацьовувати при кожному рендері компонента.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 Наступним кроком ми хочемо, щоб компонент Square "запам'ятав", що на нього клікнули і відобразив позначку "X". Для "запам'ятовування" компоненти використовують **стан**.
 
@@ -280,7 +288,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );
@@ -451,11 +459,19 @@ class Square extends React.Component {
 
 При натисканні Square з компонента Board викликається функція `onClick`. Розглянемо, чому так відбувається:
 
+<<<<<<< HEAD
 1. Проп `onClick` у вбудованому DOM-компоненті `<button>` наказує React налаштувати прослуховувач події натиску.
 2. Коли кнопку натиснуто, React викличе обробник події `onClick`, який визначено у методі `render()` компонента Square.
 3. Цей обробник події викличе `this.props.onClick()`. Проп onClick для Square визначено у компоненті Board.
 4. Оскільки Board передає `onClick={() => this.handleClick(i)}` до Square, Square при натиску викличе `this.handleClick(i)`.
 5. Ми ще не визначили метод `handleClick()`, тож наш код не працюватиме як слід. Якщо ви натисните на клітинку, то побачите червоний екран з помилкою, яка зазначає: "this.handleClick is not a function".
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 >Примітка
 >
@@ -524,7 +540,11 @@ class Board extends React.Component {
 
 ### Чому незмінність важлива? {#why-immutability-is-important}
 
+<<<<<<< HEAD
 У попередньому прикладі коду ми запропонували використати метод `.slice()` для створення копії масиву `squares`, щоб у подальшому модифікувати цю копію замість оригінального масиву. Тепер ми обговоримо, що таке незмінність, і чому важливо її вивчати.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> 23d03a854ba21aeea0a03a0bd5185e0def9237d6
 
 Загалом існує два загальних підходи до зміни данних. Перший підхід — *змінити* дані напряму, встановлюючи нові значення. Другий підхід — замінити дані копією з уже включеними змінами.
 
