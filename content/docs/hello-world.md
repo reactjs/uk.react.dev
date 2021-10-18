@@ -40,7 +40,11 @@ React - це бібліотека JavaScript, тому ми припускаєм
 
 >Примітка
 >
+<<<<<<< HEAD
 >У прикладах посібника іноді використовуються новий синтаксис JavaScript. Якщо ви не працювали з JavaScript протягом останніх кількох років, [ці три пункти](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) допоможуть вам.
+=======
+>This guide occasionally uses some newer JavaScript syntax in the examples. If you haven't worked with JavaScript in the last few years, [these three points](https://gist.github.com/gaearon/683e676101005de0add59e8bb345340c) should get you most of the way.
+>>>>>>> 4133943e718a77f11627888db2f59f6cb7a73403
 
 
 ## Починаємо! {#lets-get-started}
