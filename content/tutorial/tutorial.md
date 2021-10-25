@@ -235,7 +235,7 @@ class Square extends React.Component {
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -243,7 +243,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Тепер, при натисканні на Square, у браузері щоразу має з'являтись повідомлення.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 >Примітка
 >
@@ -253,7 +257,7 @@ class Square extends React.Component {
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +265,11 @@ class Square extends React.Component {
 >}
 >```
 >
+<<<<<<< HEAD
 >Зверніть увагу, що у `onClick={() => alert('click')}` ми передаємо  *функцію* як проп `onClick`. React викличе цю функцію тільки після натискання. Типовою помилкою є використання синтаксису `onClick={alert('click')}` без  `() =>`, оскільки такий код буде спрацьовувати при кожному рендері компонента.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 Наступним кроком ми хочемо, щоб компонент Square "запам'ятав", що на нього клікнули і відобразив позначку "X". Для "запам'ятовування" компоненти використовують **стан**.
 
@@ -280,7 +288,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );
@@ -451,11 +459,19 @@ class Square extends React.Component {
 
 При натисканні Square з компонента Board викликається функція `onClick`. Розглянемо, чому так відбувається:
 
+<<<<<<< HEAD
 1. Проп `onClick` у вбудованому DOM-компоненті `<button>` наказує React налаштувати прослуховувач події натиску.
 2. Коли кнопку натиснуто, React викличе обробник події `onClick`, який визначено у методі `render()` компонента Square.
 3. Цей обробник події викличе `this.props.onClick()`. Проп onClick для Square визначено у компоненті Board.
 4. Оскільки Board передає `onClick={() => this.handleClick(i)}` до Square, Square при натиску викличе `this.handleClick(i)`.
 5. Ми ще не визначили метод `handleClick()`, тож наш код не працюватиме як слід. Якщо ви натисните на клітинку, то побачите червоний екран з помилкою, яка зазначає: "this.handleClick is not a function".
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 >Примітка
 >
@@ -524,7 +540,11 @@ class Board extends React.Component {
 
 ### Чому незмінність важлива? {#why-immutability-is-important}
 
+<<<<<<< HEAD
 У попередньому прикладі коду ми запропонували використати метод `.slice()` для створення копії масиву `squares`, щоб у подальшому модифікувати цю копію замість оригінального масиву. Тепер ми обговоримо, що таке незмінність, і чому важливо її вивчати.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 Загалом існує два загальних підходи до зміни данних. Перший підхід — *змінити* дані напряму, встановлюючи нові значення. Другий підхід — замінити дані копією з уже включеними змінами.
 
@@ -1045,7 +1065,13 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 Для кожного ходу в історії гри ми створюємо пункт списку `<li>`, який містить кнопку `<button>`. Кнопка має обробник `onClick`, який викликає метод `this.jumpTo()`. Ми ще не запровадили метод `jumpTo()`. На даний момент ми маємо бачити список ходів, зроблених під час гри, та попередження в інструментах розробника, що перекладається наступним чином:
+=======
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We only interested in `move` here, hence `step` is not getting assigned to anything.
+
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> f2158e36715acc001c8317e20dc4f45f9e2089f3
 
 >  Попередження:
 >  Кожен дочірній компонент у масиві або ітераторі повинен мати унікальний проп "key". Перевірте метод render у "Game".
@@ -1145,6 +1171,7 @@ class Game extends React.Component {
     // цей метод не змінився
   }
 ```
+Notice in `jumpTo` method, we haven't updated history property of the state. That is because state updates are merged or in more simple words react will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)**
 
 Тепер внесемо деякі зміни до методу `handleClick` у Game, що спрацьовуватиме при кожному натисканні на клітинки.
 
