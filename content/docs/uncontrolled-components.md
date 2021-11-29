@@ -45,7 +45,11 @@ class NameForm extends React.Component {
 
 ### Значення за замовчуванням {#default-values}
 
+<<<<<<< HEAD
 Під час рендерингу значення атрибуту `value` на елементі форми буде переписувати значення, що визначено в DOM. При використанні неконтрольованих компонентів часом необхідно, щоб React встановив початкове значення, але надалі не контролював оновлення значення. У даному випадку необхідно встановити атрибут `defaultValue` замість `value`.
+=======
+In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`. Changing the value of `defaultValue` attribute after a component has mounted will not cause any update of the value in the DOM.
+>>>>>>> 0057efa12c1aa2271ef80d7a84d622732bdfa85c
 
 ```javascript{7}
 render() {
