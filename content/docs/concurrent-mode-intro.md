@@ -16,9 +16,18 @@ next: concurrent-mode-suspense.html
 
 >Увага:
 >
+<<<<<<< HEAD
 >На сторінці описані **експериментальні функції, [яких ще немає](/docs/concurrent-mode-adoption.html) в стабільній версії**. Не використовуйте експериментальні збірки React в продакшн додатках. Ці функції можуть суттєво змінитися та без попередження потрапити в React.
 >
 >Ця документація орієнтована на першопрохідців та зацікавлених користувачів. **Якщо ви новачок в React, не турбуйтеся про ці функції**, немає необхідності вивчати їх прямо зараз.
+=======
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 </div>
 
@@ -37,7 +46,11 @@ next: concurrent-mode-suspense.html
 
 ## Блокування проти переривання рендерингу {#blocking-vs-interruptible-rendering} 
 
+<<<<<<< HEAD
 **Щоб пояснити паралельний режим, ми будемо використовувати контроль версій як метафору.** Якщо ви працюєте в команді, ви, ймовірно, використовуєте систему контролю версій на зразок Git й працюєте з гілками. Коли гілка готова, ви можете злити свою роботу в master, щоб інші люди могли її витягнути.
+=======
+**To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into main so that other people can pull it.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 До того, як створили контроль версій, робочий процес розробки дуже відрізнявся. Там не було поняття гілок. Якщо ви хотіли відредагувати якісь файли, вам доводилося говорити всім не торкатися цих файлів, поки ви не закінчите роботу. Ви навіть не могли почати працювати над ними одночасно з іншою людиною - ви були буквально *заблоковані*.
 
@@ -61,7 +74,11 @@ next: concurrent-mode-suspense.html
 
 ### Навмисні послідовності завантаження {#intentional-loading-sequences}
 
+<<<<<<< HEAD
 Ми вже говорили, що паралельний режим у React — це ніби працювання "на гілці". Гілки корисні не тільки для короткочасних виправлень, але і для довготривалих змін. Іноді ви можете працювати над функцією, але може пройти кілька тижнів, перш ніж вона виявиться в «досить хорошому стані», щоб злитися з master. Цей аспект метафори про управління версіями стосується і рендерингу. 
+=======
+We've said before that Concurrent Mode is like React working "on a branch". Branches are useful not only for short-term fixes, but also for long-running features. Sometimes you might work on a feature, but it could take weeks before it's in a "good enough state" to merge into main. This side of our version control metaphor applies to rendering too.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 Уявіть, що ми пересуваємося між двома екранами в додатку. Іноді у нас може не вистачати завантаженого коду і даних, щоб показати користувачеві «досить добрий» стан завантаження на новому екрані. Перехід на порожній екран або на великий спінер може бути неприємним досвідом. Проте найчастіше, щоб отримати необхідний код та дані непотрібно занадто багато часу. **Чи не було б приємніше, якби React міг залишитися на старому екрані трохи довше і "пропустити" "поганий стан завантаження" перед тим, як показати новий екран?**
 

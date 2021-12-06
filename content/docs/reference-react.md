@@ -128,7 +128,11 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 Якщо ваш компонент відображає той самий результат з тими самими пропсами та станом, ви можете обгорнути його у виклик `React.memo` для підвищення продуктивності в деяких випадках шляхом запам'ятовування результату. Це означає, що React пропустить рендеринг компоненту та повторно використає останній результат рендерингу.
 
+<<<<<<< HEAD
 `React.memo` тільки перевіряє чи змінилися пропси. Якщо ваша функція, згорнута у `React.memo`, має [`useState`](/docs/hooks-state.html) або [`useContext`](/docs/hooks-reference.html#usecontext) хуки в своїй імплементації, вона все ще буде ререндеритися при зміні стана або контекста.
+=======
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html), [`useReducer`](/docs/hooks-reference.html#usereducer) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 За замовчуванням він тільки поверхово порівнює складні об'єкти, що знаходяться в об'єкті пропсів. Якщо ви хочете контролювати процес порівняння, ви також можете надати користувальницьку функцію для порівняння помістивши її другим аргументом.
 
@@ -175,12 +179,16 @@ React.createElement(
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
 
+<<<<<<< HEAD
 Клонує та повертає новий елемент React, використовуючи `element` як зразок. Отриманий елемент буде містити пропси оригінального елемента з новими властивостями, об'єднаними поверхово. Нові потомки замінять існуючих. `key` і `ref` з оригінального елемента будуть збережені.
+=======
+Clone and return a new React element using `element` as the starting point. `config` should contain all new props, `key`, or `ref`. The resulting element will have the original element's props with the new props merged in shallowly. New children will replace existing children. `key` and `ref` from the original element will be preserved if no `key` and `ref` present in the `config`.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 `React.cloneElement()` майже рівнозначний:
 
@@ -188,7 +196,11 @@ React.cloneElement(
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
+<<<<<<< HEAD
 Проте, він також зберігає посилання. Це означає, що якщо ви отримаєте потомка з атрибутом `ref`, ви не зможете випадково вкрасти його у свого предка. Ви отримаєте той самий `ref`, доданий до вашого нового елемента.
+=======
+However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element. The new `ref` or `key` will replace old ones if present.
+>>>>>>> aa70dcedc6db07987a814dba2b296cc4c5219860
 
 Цей API був впроваджений як заміна застарілого `React.addons.cloneWithProps()`.
 
