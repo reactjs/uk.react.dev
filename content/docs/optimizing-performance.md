@@ -43,8 +43,8 @@ npm run build
 Ми пропонуємо готові для продакшу версії React та React DOM у вигляді окремих файлів:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 Пам'ятайте, що для продакшну підходять тільки ті файли React, що закінчуються на `.production.min.js`.
@@ -74,10 +74,17 @@ brunch build -p
 Для найефективнішої продакшн-збірки з використанням Browserify, встановіть декілька плагінів:
 
 ```
+<<<<<<< HEAD
 # Якщо ви користуєтесь npm
 npm install --save-dev envify terser uglifyify
 
 # Якщо ви користуєтесь Yarn
+=======
+# If you use npm
+npm install --save-dev envify terser uglifyify
+
+# If you use Yarn
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 yarn add --dev envify terser uglifyify
 ```
 
@@ -156,6 +163,7 @@ module.exports = {
 
 Пам'ятайте, що це потрібно робити лише для продакшн-збірок. Ви не повинні використовувати `UglifyJsPlugin` чи `TerserPlugin` під час розробки, тому що це приховає корисні попередження від React та сповільнить процес збірки.
 
+<<<<<<< HEAD
 ## Профілювання компонентів з використанням вкладки Chrome "Performance" {#profiling-components-with-the-chrome-performance-tab}
 
 У режимі **розробки**, ви можете візуалізувати процес монтування, оновлення і демонтування компонентів, використавши інструменти продуктивності у браузерах, що їх підтримують. Наприклад:
@@ -183,6 +191,9 @@ module.exports = {
 Наразі Chrome, Edge та IE є єдиними браузерами, котрі підтримують цю функціональність, але ми використовуємо стандарт [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API), а тому очікуємо, що більше браузерів додадуть її підтримку.
 
 ## Профілювання компонентів з профайлером DevTools {#profiling-components-with-the-devtools-profiler}
+=======
+## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 `react-dom` 16.5+ та `react-native` 0.57+ надають додаткові можливості профілювання в режимі розробки з використанням профайлера React DevTools.
 Огляд профайлера можна знайти в пості блогу ["Знайомство з React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
@@ -199,9 +210,20 @@ module.exports = {
 > Продакшн-збірка профілювання для `react-dom` також доступна як `react-dom/profiling`.
 > Докладніше про її використання ви можете дізнатись за посиланням [fb.me/react-profiling](https://fb.me/react-profiling)
 
+<<<<<<< HEAD
 ## Віртуалізація довгих списків {#virtualize-long-lists}
 
 Якщо ваш додаток рендерить довгі списки даних (сотні чи тисячі рядків), ми радимо використовувати підхід під назвою "віконний доступ". Цей підхід рендерить лише невелику підмножину ваших рядків у будь-який момент часу і може значно зменшити час, потрібний для повторного рендеру компонентів та кількість створених DOM-вузлів.
+=======
+> Note
+>
+> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab. 
+> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
+
+## Virtualize Long Lists {#virtualize-long-lists}
+
+If your application renders long lists of data (hundreds or thousands of rows), we recommend using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 [react-window](https://react-window.now.sh/) та [react-virtualized](https://bvaughn.github.io/react-virtualized/) — це популярні бібліотеки для віконного доступу. Вони надають кілька компонентів для відображення списків, сіток та табличних даних. Якщо ваш додаток потребує іншого підходу, то ви можете створити власний компонент для віконного доступу, як це зроблено в [Twitter](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3).
 
@@ -379,7 +401,11 @@ function updateColorMap(colormap) {
 }
 ```
 
+<<<<<<< HEAD
 Ця функція була додана до JavaScript у ES2018. 
+=======
+This feature was added to JavaScript in ES2018.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
 
 Якщо ви використовуєте Create React App, то `Object.assign` та розпакування об'єктів доступні за замовчуванням.
 

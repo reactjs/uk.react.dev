@@ -92,7 +92,7 @@ function getGreeting(user) {
 ви можете використовувати лапки для задання рядкових літералів як атрибутів:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 ви також можете використовувати фігурні дужки, щоб вставити вираз JavaScript у атрибут:
@@ -181,4 +181,8 @@ const element = {
 
 >**Порада:**
 >
+<<<<<<< HEAD
 >Ми рекомендуємо використовувати ["Babel" language definition](https://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf

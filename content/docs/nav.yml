@@ -130,6 +130,7 @@
     - id: testing-recipes
       title: Рецепти тестування
     - id: testing-environments
+<<<<<<< HEAD
       title: Середовища тестування
 - title: Паралельний режим (Експериментальний)
   isOrdered: true
@@ -145,6 +146,10 @@
     - id: concurrent-mode-reference
       title: Concurrent Mode API Reference
 - title: Участь в проекті
+=======
+      title: Testing Environments
+- title: Contributing
+>>>>>>> 69bd27a3d558d6633e4f0adc61ecb8bb3d5f2edf
   items:
   - id: how-to-contribute
     title: Як зробити внесок?
