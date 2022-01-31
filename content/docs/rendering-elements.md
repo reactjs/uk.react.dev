@@ -38,7 +38,7 @@ const element = <h1>Привіт, світе</h1>;
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 На сторінці відобразиться "Hello, world".
 
@@ -52,7 +52,7 @@ React-елементи є [незмінними](https://uk.wikipedia.org/wiki/�
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
 Він щосекунди викликає [`ReactDOM.render()`](/docs/react-dom.html#render) у функції зворотнього виклику [`setInterval()`](https://developer.mozilla.org/uk/docs/Web/API/WindowOrWorkerGlobalScope/setInterval).
 
@@ -66,7 +66,11 @@ React-елементи є [незмінними](https://uk.wikipedia.org/wiki/�
 
 React DOM порівнює елемент і його дочірні елементи з попередніми та вносить в DOM тільки необхідні зміни для приведення DOM у бажаний стан.
 
+<<<<<<< HEAD
 Ви можете пересвідчитись в цьому, перевіривши [останній приклад](codepen://rendering-elements/update-rendered-element) за допомогою інструментів браузера:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 ![DOM-інспектор показує лише оновлення деталей](../images/docs/granular-dom-updates.gif)
 

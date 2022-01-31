@@ -152,7 +152,24 @@ ReactDOM.render(
 
 Отже, якщо умова правдива (`true`), то елемент, який йде безпосередньо після `&&`, з'явиться у виводі. Якщо ж умова помилкова (`false`), React проігнорує та пропустить його.
 
+<<<<<<< HEAD
 ### Вбудовані умови if-else з тернарним оператором {#inline-if-else-with-conditional-operator}
+=======
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      { count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+>>>>>>> 5f0549c86e7a9c0774e66687d1bc0118a681eb9d
 
 Іншим методом для умовного рендерингу елементів є використання тернарного оператора [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
