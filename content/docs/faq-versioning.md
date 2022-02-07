@@ -22,7 +22,11 @@ React дотримується принципів [семантичного ве
 
 ### Зворотно несумісні зміни {#breaking-changes}
 
+<<<<<<< HEAD
 Зворотно несумісні зміни незручні для всіх, тому ми намагаємося мінімізувати кількість мажорних релізів. Наприклад, React 15 був випущений у квітні 2016 року, а React 16 — у вересні 2017 року. React 17 очікується десь у 2020 році.
+=======
+Breaking changes are inconvenient for everyone, so we try to minimize the number of major releases – for example, React 15 was released in April 2016 and React 16 was released in September 2017, and React 17 was released in October 2020.
+>>>>>>> 20f0fe280f3c122df7541256b983c46e21e33b20
 
 Замість цього ми випускаємо нові можливості в мінорних релізах. Це означає, що мінорні релізи найчастіше більш цікаві, ніж мажорні, незважаючи на порядковий номер версії.
 
