@@ -14,7 +14,11 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Якщо звичайний компонент трансформує пропси у UI, то компонент вищого порядку трансформує один компонент у інший.
 
+<<<<<<< HEAD
 КВП поширені у таких сторонніх бібліотеках, як [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) у Redux, або [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) у Relay.
+=======
+HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer).
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 У цьому розділі ми обговоримо чому компоненти вищого порядку корисні та як створювати їх власноруч.
 
@@ -297,7 +301,11 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 ## Конвенція: повертайте ім’я обгорнутого компонента для легшого дебагу {#convention-wrap-the-display-name-for-easy-debugging}
 
+<<<<<<< HEAD
 Створений КВП компонент-контейнер відображається у [React Developer Tools](https://github.com/facebook/react-devtools), як і будь-який інший компонент. Для того, щоб полегшити процес налагодження, визначте відображуване ім’я, яке повідомляє, що це результат КВП.
+=======
+The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 Найпоширеніший прийом - обгортати відображуване ім’я загорнутого компонента. Отже, якщо ваш компонент вищого порядку названий `withSubscription`, а відображене ім’я загорнутого компонента - `CommentList`, визначте відображуване ім'я як `WithSubscription(CommentList)`:
 
@@ -320,7 +328,11 @@ function getDisplayName(WrappedComponent) {
 
 ### Не використовуйте КВП у середині рендер-методів {#dont-use-hocs-inside-the-render-method}
 
+<<<<<<< HEAD
 Алгоритм порівняння React, що відомий як reconciliation (або узгодження), використовує перевірку на тотожність компонента, щоб визначити, чи слід оновити існуюче піддерево компонентів або слід знищити його та змонтувати нове. Якщо компонент, що був повернений рендер-методом, ідентичний (`===`) попередньому результату, React рекурсивно оновлює піддерева, порівнюючи його з новим. Якщо вони не тотожні, то попереднє піддерево буде повністю розмонтовано.
+=======
+React's diffing algorithm (called [Reconciliation](/docs/reconciliation.html)) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
+>>>>>>> 71cc6be6182418dec43b72f2a9ef464619cb7025
 
 Зазвичай вам не потрібно думати про це. Однак, це важливо для компонента вищого порядку, оскільки це означає, що ви не можете застосувати КВП до компонента в рендер-методі іншого компонента:
 
