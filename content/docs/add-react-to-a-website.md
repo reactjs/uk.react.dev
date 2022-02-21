@@ -52,10 +52,17 @@ next: create-a-new-react-app.html
 ```html{5,6,9}
   <!-- ... інший HTML-код ... -->
 
+<<<<<<< HEAD
   <!-- Завантажимо React. -->
   <!-- Примітка: перед розгортанням на продакшн, замініть "development.js" на "production.min.js". -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+=======
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
 
   <!-- Завантажимо наш React-компонент. -->
   <script src="like_button.js"></script>
@@ -84,7 +91,11 @@ const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
+<<<<<<< HEAD
 Ці два рядки коду шукають `<div>`, який ми додали до нашого HTML-файлу в першому кроці і потім відображає React-компонент кнопки "Мені подобається" всередині нього.
+=======
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
 
 ### Готово! {#thats-it}
 
@@ -115,15 +126,19 @@ ReactDOM.render(e(LikeButton), domContainer);
 Якщо ви вже стискаєте скрипти вашого додатку, **то ваш сайт буде готовим для публікації на продакшн**, якщо ви впевнитесь в тому, що опублікована HTML-сторінка завантажує версії React, які закінчуються на `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Якщо ви ще не налаштували стискання для ваших скриптів, то [цей варіант може вам допомогти із цим](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
 
 ## Необов'язково: Спробуйте React з JSX {#optional-try-react-with-jsx}
 
+<<<<<<< HEAD
 В попередніх прикладах ми використовували тільки звичайні можливості сучасних браузерів. Тому ми використали JavaScript функцію, мета якої описати React, що відобразити на екран:
+=======
+In the examples above, we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display:
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
 
 ```js
 const e = React.createElement;
@@ -149,7 +164,11 @@ return (
 
 Ці два приклади виконують одну і ту ж річ. Незважаючи на те, що **JSX є [цілком необов'язковим](/docs/react-without-jsx.html)**, багато людей вважають його зручним для розробки інтерфейсів користувача -- як із React, так і з іншими бібліотеками.
 
+<<<<<<< HEAD
 Ви можете спробувати JSX [у цьому онлайн-конвертері](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3).
+=======
+You can play with JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.7).
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
 
 ### Швидкий старт з JSX {#quickly-try-jsx}
 
@@ -159,7 +178,11 @@ return (
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
+<<<<<<< HEAD
 Тепер ви можете використовувати JSX в будь-якому `<script>`-тегу за допомогою додавання атрибуту `type="text/babel"`. Ось [приклад HTML-файлу з JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), який ви можете завантажити і поекспериментувати з ним.
+=======
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+>>>>>>> 2310e15532aba273d713996a4c6ef04247dff764
 
 Такий спосіб прекрасний для навчання і створення простих демо. Однак це робить ваш сайт повільним і **непридатним для публікації в продакшн**. Тому для розгортання React-компоненту з JSX краще зробити по-іншому. Коли ви готові до кроку вперед, видаліть тег `<script>` і атрибут `type="text/babel"`, який ми додали раніше. Замість цього, в наступному розділі ви встановите JSX-препроцесор для того, щоб трансформувати код всередині тегів `<script>` автоматично.
 
