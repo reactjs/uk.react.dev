@@ -76,7 +76,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://components-and-props/rendering-a-component)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Давайте розберемо, що відбувається в цьому прикладі:
 
@@ -118,7 +122,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://components-and-props/composing-components)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Як правило, нові React-додатки мають єдиний компонент `App`, що знаходиться зверху дерева ієрархій елементів. Однак, якщо ви інтегруєте React у існуючий додаток, ви можете почати знизу вгору з невеликим компонентом, наприклад `Button`, і поступово працювати у верхній частині ієрархії перегляду.
 
@@ -152,7 +160,11 @@ function Comment(props) {
 }
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://components-and-props/extracting-components)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Він приймає `author` (об'єкт), `text` (рядок) і `date` (дату) як пропси і представляє собою коментар в соціальній мережі.
 
@@ -231,7 +243,11 @@ function Comment(props) {
 }
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://components-and-props/extracting-components-continued)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Розбиття компонентів може здатися спочатку невдячною роботою. Проте, у великих додатках така велика кількість багаторазових компонентів є дуже корисною. Суть в тому, що якщо частина вашого інтерфейсу використовується кілька разів (`Button`,`Panel`, `Avatar`), або сама собою досить складна (`App`, `FeedStory`,`Comment`), краще винести її в окремий компонент.
 

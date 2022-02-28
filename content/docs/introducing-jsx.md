@@ -68,7 +68,11 @@ ReactDOM.render(
 );
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://introducing-jsx)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
 
 Ми розбиваємо JSX на декілька рядків для покращення читабельності. Хоча це не потрібно, ми також рекомендуємо охоплювати його дужками, щоб уникнути проблем, пов'язаних з [автоматичною вставкою крапки з комою](https://stackoverflow.com/q/2846283).
 
@@ -92,7 +96,7 @@ function getGreeting(user) {
 ви можете використовувати лапки для задання рядкових літералів як атрибутів:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 ви також можете використовувати фігурні дужки, щоб вставити вираз JavaScript у атрибут:
@@ -181,4 +185,8 @@ const element = {
 
 >**Порада:**
 >
+<<<<<<< HEAD
 >Ми рекомендуємо використовувати ["Babel" language definition](https://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> 6bd09fe682e18ccd7747fcd7798fa8fb4d3edc42
