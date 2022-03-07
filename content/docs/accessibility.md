@@ -226,7 +226,11 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 Якщо ви використовуєте КВП щоб розширити компоненти, рекомендується [перенаправляти рефи](/docs/forwarding-refs.html) до обгорнутого компоненту за допомогою React-функції `forwardRef`. Якщо сторонній КВП не реалізує перенаправлення, підхід описаний вище все ще може бути використаний для зворотньої сумісності.
+=======
+When using a [HOC](/docs/higher-order-components.html) to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 В якості чудового прикладу керування фокусом можна використовувати компонент [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). Це доволі рідкий випадок реалізацій повністю доступного модального вікна. Мало того, що він задає початковий фокус
 на кнопці "Скасувати" (заважає користувачеві клавіатури випадково активувати успішну дію) і захоплює фокус клавіатури всередині вікна, він також скидає фокус назад на елемент, який спочатку запустив модальне вікно.
@@ -452,7 +456,11 @@ Deque Systems пропонує [aXe-core](https://github.com/dequelabs/axe-core)
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) або aXe - це інспектор доступності в браузері на базі `aXe-core`.
 
+<<<<<<< HEAD
 Ви також можете використовувати модуль [react-axe](https://github.com/dylanb/react-axe), щоб бачити повідомлення про проблеми доступності у консолі безпосередньо під час розробки та перевірки помилок.
+=======
+You can also use the [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) module to report these accessibility findings directly to the console while developing and debugging.
+>>>>>>> a08e1fd4b574a4d2d55e292af9eb01d55a526303
 
 #### WebAIM WAVE {#webaim-wave}
 
