@@ -207,7 +207,11 @@ ReactDOM.render(
 
 ### Ключі повинні бути унікальними лише серед елементів конкретного масиву {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 Ключі, що використовуються в масиві, повинні бути унікальними тільки серед елементів цього масиву. Однак їм не потрібно бути унікальними глобально. Можна використовувати той самий ключ в двох різних масивах:
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> 7994045415a9066f8663ee5403e874edbb4c5f83
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
