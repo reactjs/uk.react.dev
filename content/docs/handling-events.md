@@ -28,20 +28,30 @@ redirect_from:
 </button>
 ```
 
+<<<<<<< HEAD
 Інша відмінність полягає в тому, що ви не можете повернути `false` для того, щоб запобігти поведінці за замовчуванням у React. Ви маєте явно викликати `preventDefault`. Наприклад, для звичайного HTML, щоб запобігти поведінці посилання за замовчуванням (відкриття нової сторінки) ви можете написати:
 
 ```html
 <a href="#" onclick="console.log('Посилання було натиснуте.'); return false">
   Натисни на мене
 </a>
+=======
+Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
+
+```html
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
 ```
 
 У React це може виглядати так:
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
+<<<<<<< HEAD
     console.log('Посилання було натиснуте.');
   }
 
@@ -49,6 +59,15 @@ function ActionLink() {
     <a href="#" onClick={handleClick}>
       Натисни на мене
     </a>
+=======
+    console.log('You clicked submit.');
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
+>>>>>>> 707f22d25f5b343a2e5e063877f1fc97cb1f48a1
   );
 }
 ```
@@ -70,8 +89,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
@@ -83,11 +102,6 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
