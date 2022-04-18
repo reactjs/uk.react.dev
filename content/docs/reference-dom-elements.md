@@ -117,7 +117,11 @@ React автоматично додасть суфікс "px" до певних 
 
 Якщо ви використовуєте серверний рендеринг React, зазвичай існує попередження, коли сервер і клієнт відтворюють відмінний вміст. Проте в деяких рідкісних випадках дуже важко або неможливо гарантувати точний збіг. Наприклад, очікується, що часові мітки будуть відрізнятися на сервері і на клієнті.
 
+<<<<<<< HEAD
 Якщо ви встановите `suppressHydrationWarning` на `true`, React не попередить вас про невідповідності атрибутів і вмісту цього елемента. Він працює лише на одному рівні і призначений для використання в якості "аварійного виходу". Будьте обережні з його використанням. Докладніше про гідратацію можна дізнатися в [документації до ReactDOM.hydrate()](/docs/react-dom.html#hydrate).
+=======
+If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot).
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 
 ### value {#value}
 
@@ -130,9 +134,15 @@ React автоматично додасть суфікс "px" до певних 
 React завжди надавав JavaScript-орієнтований API для DOM. Оскільки компоненти React часто містять як атрибути користувача, так і пов'язані з DOM пропси, React використовує `camelCase` конвенцію так само, як і DOM API:
 
 ```js
+<<<<<<< HEAD
 <div tabIndex="-1" />      // Так само, як і node.tabIndex DOM API
 <div className="Button" /> // Так само, як і node.className DOM API
 <input readOnly={true} />  // Так само, як і node.readOnly DOM API
+=======
+<div tabIndex={-1} />      // Just like node.tabIndex DOM API
+<div className="Button" /> // Just like node.className DOM API
+<input readOnly={true} />  // Just like node.readOnly DOM API
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
 ```
 
 Ці пропси працюють подібно до відповідних атрибутів HTML, за винятком спеціальних випадків задокументованих вище.

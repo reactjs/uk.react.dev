@@ -8,4 +8,8 @@ permalink: warnings/invalid-aria-prop.html
 
 1. Якщо вам здається, що ви використовуєте валідний проп, перевірте правильність його написання. `aria-labelledby` та `aria-activedescendant` часто бувають написані з помилками.
 
+<<<<<<< HEAD
 2. React поки що не розпізнає вказаний вами атрибут. Це, ймовірно, буде виправлено в майбутній версії React. Однак, на даний момент React видаляє всі невідомі атрибути, тому їх присутність у вашому React-додатку не призведе до їх рендеру.
+=======
+2. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React.
+>>>>>>> 07dbd86ca421c262157af673a2584a40fd3b2450
