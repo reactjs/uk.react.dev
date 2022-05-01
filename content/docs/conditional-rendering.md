@@ -44,7 +44,7 @@ ReactDOM.render(
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
-У цьому прикладі різне вітання відрендериться в залежності від значення пропу `isLoggedIn`.
+У цьому прикладі різне вітання відрендериться в залежності від значення пропсу `isLoggedIn`.
 
 ### Змінні-елементи {#element-variables}
 
