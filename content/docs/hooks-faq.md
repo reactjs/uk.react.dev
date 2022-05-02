@@ -97,9 +97,13 @@ prev: hooks-reference.html
 
 Нашою метою є покриття всіх можливостей класів хуками якнайшвидше. Наразі немає альтернативи у вигляді хуків для таких рідковживаних методів життєвого циклу як `getSnapshotBeforeUpdate`, `getDerivedStateFromError` та `componentDidCatch`, але ми плануємо скоро їх додати.
 
+<<<<<<< HEAD
 Оскільки хуки з'явились зовсім нещодавно, то не всі сторонні бібліотеки можуть бути сумісними з ними.
 
 ### Чи замінять хуки рендер пропси та компоненти вищого порядку? {#do-hooks-replace-render-props-and-higher-order-components}
+=======
+### Do Hooks replace render props and higher-order components? {#do-hooks-replace-render-props-and-higher-order-components}
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 Часто рендер пропси та компоненти вищого порядку рендерять лише одного нащадка. Ми вважаємо, що хуки є простішим шляхом для того, щоб зробити це. Все ще ми можемо використовувати обидва шаблони (наприклад, віртуальний компонент скролінгу може мати проп `renderItem` чи візуальний контейнер може мати власну структуру DOM). Але у більшості випадків, хуків буде достатньо для зменшення кількості вкладень у ващому дереві.
 
@@ -150,7 +154,7 @@ function Example() {
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -169,7 +173,7 @@ afterEach(() => {
 it('can render and update a counter', () => {
   // Тестуємо перший рендер і ефект
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -913,9 +917,13 @@ function DeepChild(props) {
 
 >Примітка
 >
+<<<<<<< HEAD
 >Ми радимо [передавати `dispatch` у контексті вниз](#how-to-avoid-passing-callbacks-down), а не окремих функцій зворотнього виклику в пропсах. Підхід нижче описаний лише для повноти і у якості запасного виходу.
 >
 >Також зверніть увагу, що цей шаблон може спричинити проблеми у [конкурентному режимі](/blog/2018/03/27/update-on-async-rendering.html). Ми плануємо надати більш зручні альтернативи у майбутньому, але найбезпечнішим рішенням наразі — скасування функції зворотнього виклику при зміні хоча б одного значення від якого він залежить.
+=======
+>We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>>>>>>> 5f3a9756e00e256735a5f52df19b403d8fdd3a9d
 
 У нечастих випадках вам може бути потрібно запам'ятати функцію зворотнього виклику, використавши [`useCallback`](/docs/hooks-reference.html#usecallback), але запам'ятовування не спрацює як слід, тому що внутрішня функція повинна повторно створюватись надто часто. Якщо функція, яку ви запам'ятовуєте, є оброником події і не використовується під час рендерингу, то ви можете [використати реф як змінну екземпляра](#is-there-something-like-instance-variables) і зберегти у ньому останнє значення вручну:
 
