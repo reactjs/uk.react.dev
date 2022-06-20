@@ -231,7 +231,11 @@ function NumberDescriber(props) {
 
 ### Розпакування атрибутів {#spread-attributes}
 
+<<<<<<< HEAD
 Якщо ви вже маєте визначені пропси в об'єкті `props` та хочете передати їх в JSX, то ви можете скористатися оператором розпакування `...`, щоб це зробити. Ці два компоненти еквівалентні:
+=======
+If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" syntax to pass the whole props object. These two components are equivalent:
+>>>>>>> df2673d1b6ec0cc6657fd58690bbf30fa1e6e0e6
 
 ```js{7}
 function App1() {
@@ -244,7 +248,11 @@ function App2() {
 }
 ```
 
+<<<<<<< HEAD
 Ви також можете вибрати визначені пропси, що будуть використовуватися вашим компонентом, в той час як інші пропси можна передати за допомогою оператора розпакування.
+=======
+You can also pick specific props that your component will consume while passing all other props using the spread syntax.
+>>>>>>> df2673d1b6ec0cc6657fd58690bbf30fa1e6e0e6
 
 ```js{2}
 const Button = props => {
