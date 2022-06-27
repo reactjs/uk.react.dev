@@ -62,16 +62,28 @@ class ErrorBoundary extends React.Component {
 
 Запобіжники працюють як блок `catch {}` в JavaScript, тільки для компонентів. Тільки класові компоненти можуть бути запобіжниками. На практиці, в більшості випадків буде доцільно оголосити один запобіжник і потім використовувати його по всьому додатку.
 
+<<<<<<< HEAD
 Зверніть увагу, що **запобіжники можуть піймати помилки лише в компонентах, що знаходяться під ними в дереві компонентів**. Запобіжник не може піймати помилку в собі. Якщо він зламається при спробі відрендерити повідомлення про помилку, то помилка пошириться до наступного запобіжника вище нього в дереві компонентів. Це також схоже на те, як працює блок `catch {}` в JavaScript.
+=======
+Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how the `catch {}` block works in JavaScript.
+>>>>>>> 26caa649827e8f8cadd24dfc420ea802dcbee246
 
 ## Демонстрація {#live-demo}
 
+<<<<<<< HEAD
 Подивіться [приклад оголошення і використання запобіжника](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) в [React 16](/blog/2017/09/26/react-v16.0.html).
+=======
+Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010).
+>>>>>>> 26caa649827e8f8cadd24dfc420ea802dcbee246
 
 
 ## Де ставити запобіжники {#where-to-place-error-boundaries}
 
+<<<<<<< HEAD
 Вирішуйте на ваш розсуд, як часто ставити запобіжники. Було б доцільно обгорнути компоненти маршрутів найвищого рівня, щоб показати користувачеві повідомлення «Щось пішло не так», так само, як це часто робиться в фреймворках на стороні сервера. Ви також можете обгорнути в запобіжник окремі віджети, щоб захистити решту додатку від збоїв в них.
+=======
+The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+>>>>>>> 26caa649827e8f8cadd24dfc420ea802dcbee246
 
 
 ## Нова поведінка неспійманих помилок {#new-behavior-for-uncaught-errors}
@@ -130,7 +142,11 @@ try {
 
 React не потребує запобіжників, щоб відновитися після помилок з обробниках подій. На відміну від методу `render` та методів життєвого циклу, обробники подій не виконуються під час рендеру. Тобто, якщо виникне виняткова ситуація, React все ще знатиме що показати на екрані.
 
+<<<<<<< HEAD
 Якщо вам потрібно піймати помилку всередині обробника подій, використовуйте звичайний JavaScript вираз `try` / `catch`:
+=======
+If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
+>>>>>>> 26caa649827e8f8cadd24dfc420ea802dcbee246
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
