@@ -33,13 +33,14 @@ const listItems = numbers.map((number) =>
 );
 ```
 
+<<<<<<< HEAD
 Тепер ми включимо масив `listItems` цілком всередину елемента `<ul>`, і [будемо рендерити його у DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+=======
+Then, we can include the entire `listItems` array inside a `<ul>` element:
+>>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +65,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 Коли ви запустите цей код, ви отримаєте попередження, що для елементів списку має бути вказано ключ. "Ключ" - це спеціальний рядковий атрибут, який потрібно вказувати при створенні списку елементів. Ми обговоримо, чому це важливо, у наступній секції.
@@ -86,12 +85,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -165,12 +158,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Приклад вірного використання ключів**
@@ -193,12 +180,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -207,7 +188,11 @@ ReactDOM.render(
 
 ### Ключі повинні бути унікальними лише серед елементів конкретного масиву {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 Ключі, що використовуються в масиві, повинні бути унікальними тільки серед елементів цього масиву. Однак їм не потрібно бути унікальними глобально. Можна використовувати той самий ключ в двох різних масивах:
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> ee7705675d2304c53c174b9fb316e2fbde1e9fb3
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
@@ -239,10 +224,9 @@ const posts = [
   {id: 1, title: 'Привіт, світе', content: 'Ласкаво просимо до вивчення React!'},
   {id: 2, title: 'Установка', content: 'React можна встановити через npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
