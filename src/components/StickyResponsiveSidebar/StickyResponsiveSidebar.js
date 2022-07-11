@@ -7,7 +7,6 @@
 
 import Container from 'components/Container';
 import React, {Component} from 'react';
-import {BannerContext} from 'components/Banner';
 import Sidebar from 'templates/components/Sidebar';
 import {colors, media} from 'theme';
 import ChevronSvg from 'templates/components/ChevronSvg';
@@ -25,8 +24,6 @@ type Props = {
 };
 
 class StickyResponsiveSidebar extends Component<Props, State> {
-  static contextType = BannerContext;
-
   constructor(props: Props) {
     super(props);
 
@@ -45,9 +42,9 @@ class StickyResponsiveSidebar extends Component<Props, State> {
 
   render() {
     const {open} = this.state;
-    const {banner} = this.context;
     const smallScreenSidebarStyles = {
-      top: banner ? banner.smallHeight : 0,
+      top:
+        'calc(var(--survey-banner-height-small) + var(--social-banner-height-small))',
       left: 0,
       bottom: 0,
       right: 0,
@@ -121,18 +118,21 @@ class StickyResponsiveSidebar extends Component<Props, State> {
               transition: 'transform 0.5s ease',
             }}
             css={{
-              marginTop: 60 + (banner ? banner.normalHeight : 0),
+              marginTop:
+                'calc(60px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
 
               [media.size('xsmall')]: {
                 marginTop: 40,
               },
 
               [media.between('small', 'medium')]: {
-                marginTop: 20 + (banner ? banner.normalHeight : 0),
+                marginTop:
+                  'calc(20px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
               },
 
               [media.between('medium', 'large')]: {
-                marginTop: 50 + (banner ? banner.normalHeight : 0),
+                marginTop:
+                  'calc(50px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
               },
 
               [media.greaterThan('small')]: {
