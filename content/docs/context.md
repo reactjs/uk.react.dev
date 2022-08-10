@@ -116,9 +116,9 @@ function Page(props) {
 const MyContext = React.createContext(defaultValue);
 ```
 
-Creates a Context object. When React renders a component that subscribes to this Context object it will read the current context value from the closest matching `Provider` above it in the tree.
+Створює об’єкт Context. Коли React відтворює компонент, який підписується на цей об’єкт Context, він читатиме поточне значення контексту з найближчого відповідного `Provider` над ним у дереві.
 
-The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+Аргумент `defaultValue` використовується **тільки**, коли компонент не має відповідного провайдера над ним у дереві. Це може бути корисним для тестування компонентів ізольовано без їх упаковки. Примітка: передача `undefined` як значення провайдера не призводить до використання споживаючими компонентами `defaultValue`.
 
 ### `Context.Provider` {#contextprovider}
 
