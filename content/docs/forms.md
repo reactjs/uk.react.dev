@@ -9,7 +9,11 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<<<<<<< HEAD
 У React HTML-елементи форм працюють дещо інакше, ніж інші DOM-елементи, тому що елементи форм від початку мають певний внутрішній стан. Наприклад, в цю HTML-форму можна ввести ім'я:
+=======
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+>>>>>>> 5fed75dac5f4e208369b102a1337d76944111b33
 
 ```html
 <form>
@@ -31,7 +35,7 @@ redirect_from:
 
 Наприклад, якщо ми хочемо, щоб у прикладі вище після відправлення форми передані дані виводилися у консолі, то ми можемо переписати форму як "керований компонент":
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -270,15 +274,23 @@ this.setState(partialState);
 
 ## Значення null керованого поля введення даних {#controlled-input-null-value}
 
+<<<<<<< HEAD
 Встановлення значення пропсу `value` в [керованому компоненті](/docs/forms.html#controlled-components) не дозволяє користувачеві змінювати введені дані, якщо ви цього не бажаєте. Якщо ви вказали `value`, але вхідні дані все ще можна редагувати, можливо, ви випадково встановили значення для `value` як `undefined` або `null`.
+=======
+Specifying the `value` prop on a [controlled component](/docs/forms.html#controlled-components) prevents the user from changing the input unless you desire so. If you've specified a `value` but the input is still editable, you may have accidentally set `value` to `undefined` or `null`.
+>>>>>>> 5fed75dac5f4e208369b102a1337d76944111b33
 
 Наступний код це демонструє. (Поле вводу спочатку заблоковане, але стає доступним для редагування після невеликої затримки.)
 
 ```javascript
+<<<<<<< HEAD
 ReactDOM.render(<input value="привіт" />, mountNode);
+=======
+ReactDOM.createRoot(mountNode).render(<input value="hi" />);
+>>>>>>> 5fed75dac5f4e208369b102a1337d76944111b33
 
 setTimeout(function() {
-  ReactDOM.render(<input value={null} />, mountNode);
+  ReactDOM.createRoot(mountNode).render(<input value={null} />);
 }, 1000);
 
 ```
