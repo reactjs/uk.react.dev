@@ -90,6 +90,8 @@
           title: React.Component
     - id: react-dom
       title: ReactDOM
+    - id: react-dom-client
+      title: ReactDOMClient
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements
@@ -130,6 +132,7 @@
     - id: testing-recipes
       title: Рецепти тестування
     - id: testing-environments
+<<<<<<< HEAD
       title: Середовища тестування
 - title: Паралельний режим (Експериментальний)
   isOrdered: true
@@ -145,6 +148,10 @@
     - id: concurrent-mode-reference
       title: Concurrent Mode API Reference
 - title: Участь в проекті
+=======
+      title: Testing Environments
+- title: Contributing
+>>>>>>> ea9e9ab2817c8b7eff5ff60e8fe9b649fd747606
   items:
   - id: how-to-contribute
     title: Як зробити внесок?
