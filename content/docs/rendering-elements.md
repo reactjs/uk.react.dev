@@ -34,11 +34,15 @@ const element = <h1>Привіт, світе</h1>;
 
 Додатки, створені за допомогою самого лише React, зазвичай мають лише один кореневий вузол DOM. Якщо ви інтегруєте React в існуючий додаток — ви можете мати будь-яку кількість ізольованих кореневих DOM вузлів.
 
+<<<<<<< HEAD
 Для рендерингу React-елементу в кореневому DOM вузлі, викличте функцію [`ReactDOM.render()`](/docs/react-dom.html#render) з React-елементом та кореневим DOM вузлом у якості аргументів:
+=======
+To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+>>>>>>> e9faee62db6981e26a1cdabad6ae39620a1d2e3e
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 На сторінці відобразиться "Hello, world".
 
@@ -46,19 +50,31 @@ const element = <h1>Привіт, світе</h1>;
 
 React-елементи є [незмінними](https://uk.wikipedia.org/wiki/Незмінний_об%27єкт). Як тільки елемент створений, ви не можете змінювати його дочірні елементи чи атрибути. Елемент схожий на кадр із фільму: він відображає інтерфейс користувача в певний момент часу.
 
+<<<<<<< HEAD
 З нашими поточними знаннями, єдиний спосіб оновити інтерфейс користувача — створити новий елемент і передати його в [`ReactDOM.render()`](/docs/react-dom.html#render).
+=======
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to `root.render()`.
+>>>>>>> e9faee62db6981e26a1cdabad6ae39620a1d2e3e
 
 Розглянемо наступний приклад годинника:
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
+<<<<<<< HEAD
 Він щосекунди викликає [`ReactDOM.render()`](/docs/react-dom.html#render) у функції зворотнього виклику [`setInterval()`](https://developer.mozilla.org/uk/docs/Web/API/WindowOrWorkerGlobalScope/setInterval).
+=======
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+>>>>>>> e9faee62db6981e26a1cdabad6ae39620a1d2e3e
 
 >**Примітка:**
 >
+<<<<<<< HEAD
 >На практиці, більшість React-додатків викликає [`ReactDOM.render()`](/docs/react-dom.html#render) лише раз. У наступних розділах ми дізнаємось, як такий код інкапсулюється в [компоненти зі станом](/docs/state-and-lifecycle.html).
+=======
+>In practice, most React apps only call `root.render()` once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>>>>>>> e9faee62db6981e26a1cdabad6ae39620a1d2e3e
 >
 >Ми рекомендуємо вам не пропускати ці теми, тому що вони залежать одна від одної.
 
@@ -66,7 +82,11 @@ React-елементи є [незмінними](https://uk.wikipedia.org/wiki/�
 
 React DOM порівнює елемент і його дочірні елементи з попередніми та вносить в DOM тільки необхідні зміни для приведення DOM у бажаний стан.
 
+<<<<<<< HEAD
 Ви можете пересвідчитись в цьому, перевіривши [останній приклад](codepen://rendering-elements/update-rendered-element) за допомогою інструментів браузера:
+=======
+You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) with the browser tools:
+>>>>>>> e9faee62db6981e26a1cdabad6ae39620a1d2e3e
 
 ![DOM-інспектор показує лише оновлення деталей](../images/docs/granular-dom-updates.gif)
 
