@@ -33,7 +33,11 @@ function MyDiv(props) {
 }
 ```
 
+<<<<<<< HEAD
 **Добре:** Spread-оператор може бути використаний для деструктурізації поля об'єкту та визначення його, як окремої змінної.
+=======
+**Good:** The spread syntax can be used to pull variables off props, and put the remaining props into a variable.
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 ```js
 function MyDiv(props) {

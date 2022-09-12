@@ -106,7 +106,7 @@ cd ..
 
 ```js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 ```
 
@@ -235,7 +235,7 @@ class Square extends React.Component {
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={function() { console.log('click'); }}>
         {this.props.value}
       </button>
     );
@@ -243,7 +243,11 @@ class Square extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Тепер, при натисканні на Square, у браузері щоразу має з'являтись повідомлення.
+=======
+If you click on a Square now, you should see 'click' in your browser's devtools console.
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 >Примітка
 >
@@ -253,7 +257,7 @@ class Square extends React.Component {
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => alert('click')}>
+>      <button className="square" onClick={() => console.log('click')}>
 >        {this.props.value}
 >      </button>
 >    );
@@ -261,7 +265,11 @@ class Square extends React.Component {
 >}
 >```
 >
+<<<<<<< HEAD
 >Зверніть увагу, що у `onClick={() => alert('click')}` ми передаємо  *функцію* як проп `onClick`. React викличе цю функцію тільки після натискання. Типовою помилкою є використання синтаксису `onClick={alert('click')}` без  `() =>`, оскільки такий код буде спрацьовувати при кожному рендері компонента.
+=======
+>Notice how with `onClick={() => console.log('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={console.log('click')}` is a common mistake, and would fire every time the component re-renders.
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 Наступним кроком ми хочемо, щоб компонент Square "запам'ятав", що на нього клікнули і відобразив позначку "X". Для "запам'ятовування" компоненти використовують **стан**.
 
@@ -280,7 +288,7 @@ class Square extends React.Component {
 
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={() => console.log('click')}>
         {this.props.value}
       </button>
     );
@@ -451,11 +459,19 @@ class Square extends React.Component {
 
 При натисканні Square з компонента Board викликається функція `onClick`. Розглянемо, чому так відбувається:
 
+<<<<<<< HEAD
 1. Проп `onClick` у вбудованому DOM-компоненті `<button>` наказує React налаштувати прослуховувач події натиску.
 2. Коли кнопку натиснуто, React викличе обробник події `onClick`, який визначено у методі `render()` компонента Square.
 3. Цей обробник події викличе `this.props.onClick()`. Проп onClick для Square визначено у компоненті Board.
 4. Оскільки Board передає `onClick={() => this.handleClick(i)}` до Square, Square при натиску викличе `this.handleClick(i)`.
 5. Ми ще не визначили метод `handleClick()`, тож наш код не працюватиме як слід. Якщо ви натисните на клітинку, то побачите червоний екран з помилкою, яка зазначає: "this.handleClick is not a function".
+=======
+1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
+2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
+3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
+5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 >Примітка
 >
@@ -524,7 +540,11 @@ class Board extends React.Component {
 
 ### Чому незмінність важлива? {#why-immutability-is-important}
 
+<<<<<<< HEAD
 У попередньому прикладі коду ми запропонували використати метод `.slice()` для створення копії масиву `squares`, щоб у подальшому модифікувати цю копію замість оригінального масиву. Тепер ми обговоримо, що таке незмінність, і чому важливо її вивчати.
+=======
+In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 Загалом існує два загальних підходи до зміни данних. Перший підхід — *змінити* дані напряму, встановлюючи нові значення. Другий підхід — замінити дані копією з уже включеними змінами.
 
@@ -542,7 +562,11 @@ var player = {score: 1, name: 'Андрій'};
 var newPlayer = Object.assign({}, player, {score: 2});
 // У цьому прикладі player залишився незмінним, а newPlayer набув значення {score: 2, name: 'Андрій'}
 
+<<<<<<< HEAD
 // Або якщо ви використовуєте синтаксис розширення, ви можете написати:
+=======
+// Or if you are using object spread syntax, you can write:
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 // var newPlayer = {...player, score: 2};
 ```
 
@@ -1045,7 +1069,13 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 **[Проглянути повний код цього кроку](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+<<<<<<< HEAD
 Для кожного ходу в історії гри ми створюємо пункт списку `<li>`, який містить кнопку `<button>`. Кнопка має обробник `onClick`, який викликає метод `this.jumpTo()`. Ми ще не запровадили метод `jumpTo()`. На даний момент ми маємо бачити список ходів, зроблених під час гри, та попередження в інструментах розробника, що перекладається наступним чином:
+=======
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 >  Попередження:
 >  Кожен дочірній компонент у масиві або ітераторі повинен мати унікальний проп "key". Перевірте метод render у "Game".
@@ -1146,11 +1176,21 @@ class Game extends React.Component {
   }
 ```
 
+<<<<<<< HEAD
 Тепер внесемо деякі зміни до методу `handleClick` у Game, що спрацьовуватиме при кожному натисканні на клітинки.
+=======
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+
+We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 Стан `stepNumber`, який ми щойно додали, відображає хід, який користувач бачить на даний момент. Після кожного наступного ходу нам потрібно оновити `stepNumber` використовуючи `stepNumber: history.length` як частину аргументу `this.setState`. Це дозволить нам впевнитись, що ми не застрягнемо на тому самому місці, після того як новий хід буде зроблено.
 
+<<<<<<< HEAD
 Також замінимо `this.state.history` на `this.state.history.slice(0, this.state.stepNumber + 1)`. Це гарантує, що якщо ми повернемося "назад у часі" і зробимо наступний хід з того моменту, ми скинемо усю неактуальну "майбутню" історію.
+=======
+We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if we "go back in time" and then make a new move from that point, we throw away all the "future" history that would now be incorrect.
+>>>>>>> c7d858947f832d1ba4e78caebc391fd964ff6de6
 
 ```javascript{2,13}
   handleClick(i) {
