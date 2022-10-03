@@ -33,13 +33,14 @@ const listItems = numbers.map((number) =>
 );
 ```
 
+<<<<<<< HEAD
 Тепер ми включимо масив `listItems` цілком всередину елемента `<ul>`, і [будемо рендерити його у DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
+=======
+Then, we can include the entire `listItems` array inside a `<ul>` element:
+>>>>>>> 664dd5736287e01a4557cd03c9a8736682911b34
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +65,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 Коли ви запустите цей код, ви отримаєте попередження, що для елементів списку має бути вказано ключ. "Ключ" - це спеціальний рядковий атрибут, який потрібно вказувати при створенні списку елементів. Ми обговоримо, чому це важливо, у наступній секції.
@@ -86,12 +85,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -130,7 +123,11 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
+<<<<<<< HEAD
 Ми не рекомендуємо використовувати індекси для ключів, якщо порядок елементів може змінюватися. Це може негативно вплинути на продуктивність та може викликати проблеми зі станом компонента. Почитайте статтю Робіна Покорни (Robin Pokorny), [яка досконало пояснює, чому індекси-ключі призводять до проблем](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Якщо ви вирішите не призначати ключ для елемента в списку, то React за замовчуванням буде використовувати індекси як ключі.
+=======
+We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+>>>>>>> 664dd5736287e01a4557cd03c9a8736682911b34
 
 Якщо ви зацікавлені в отриманні додаткової інформації - ось [детальне пояснення того, чому ключі необхідні](/docs/reconciliation.html#recursing-on-children).
 
@@ -165,12 +162,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Приклад вірного використання ключів**
@@ -193,12 +184,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -207,7 +192,11 @@ ReactDOM.render(
 
 ### Ключі повинні бути унікальними лише серед елементів конкретного масиву {#keys-must-only-be-unique-among-siblings}
 
+<<<<<<< HEAD
 Ключі, що використовуються в масиві, повинні бути унікальними тільки серед елементів цього масиву. Однак їм не потрібно бути унікальними глобально. Можна використовувати той самий ключ в двох різних масивах:
+=======
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+>>>>>>> 664dd5736287e01a4557cd03c9a8736682911b34
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {
@@ -239,10 +228,9 @@ const posts = [
   {id: 1, title: 'Привіт, світе', content: 'Ласкаво просимо до вивчення React!'},
   {id: 2, title: 'Установка', content: 'React можна встановити через npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
