@@ -169,4 +169,8 @@ class SignUpDialog extends React.Component {
 
 Пропси і композиція дають вам всю необхідну гнучкість, щоб налаштувати вигляд і поведінку компонента в явний і безпечний спосіб. Пам'ятайте, що компоненти можуть приймати довільні пропси, включно з примітивами, React-елементами чи функціями.
 
+<<<<<<< HEAD
 Якщо ви хочете повторно використати функціональність, котра не стосується інтерфейсу користувача, ми рекомендуємо витягнути її в окремий JavaScript-модуль. Компоненти можуть імпортувати його і використувати функцію, об'єкт чи клас без наслідування.
+=======
+If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or class, without extending it.
+>>>>>>> 8fe817e61e5fe50020ed9379ce9e1c5a2cf476a9
