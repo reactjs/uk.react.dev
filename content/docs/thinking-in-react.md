@@ -39,9 +39,15 @@ prev: composition-vs-inheritance.html
 
 Користувацькі інтерфейси часто відображують модель даних JSON. Добре побудована модель, як правило, віддзеркалює призначений для користувача інтерфейс (а значить, і структуру компонентів). Інтерфейс і моделі даних часто мають схожу *інформаційну архітектуру*, тому розділити інтерфейс на частини не складає труднощів. Розбийте інтерфейс користувача на компоненти, кожен з яких відображає частину моделі даних.
 
+<<<<<<< HEAD
 ![Діаграма компонентів](../images/blog/thinking-in-react-components.png)
 
 Ви побачите, що ми маємо п'ять компонентів у нашому додатку. Дані, які представляє кожен компонент, виділено курсивом.
+=======
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
+
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
+>>>>>>> d483aebbac6d3c8f059b52abf21240bc91d0b96e
 
   1. **`FilterableProductTable` (помаранчевий):** містить весь приклад
   2. **`SearchBar` (синій):** приймає всі *вхідні дані користувача*
@@ -70,9 +76,15 @@ prev: composition-vs-inheritance.html
 
 Написання коду можна почати як зверху вниз (з великого `FilterableProductTable`), так і знизу до верху (з маленького `ProductRow`). Простіші додатки зручніше починати з компонентів, що знаходяться вище за ієрархією. У більш складних додатках зручніше в першу чергу створювати і тестувати підкомпоненти.
 
+<<<<<<< HEAD
 Наприкінці цього кроку ви матимете бібліотеку компонентів, які можуть бути використані повторно. Так як це статична версія, то компоненти матимуть тільки методи `render()`. Компонент вище за ієрархією (`FilterableProductTable`) буде передавати модель даних через пропси. Якщо ви внесете зміни в базову модель даних і знову викличите `ReactDOM.render()`, то побачите зміни в інтерфейсі. Немає нічого складного у відстеженні змін та оновленні інтерфейсу. Завдяки **односторонньому потоку даних** (або *односторонній прив'язці*) код працює швидко, але залишається зрозумілим.
 
 Якщо у вас залишилися запитання щодо виконання цього кроку, зверніться до [документації React](/docs/).
+=======
+At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `root.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
+
+Refer to the [React docs](/docs/getting-started.html) if you need help executing this step.
+>>>>>>> d483aebbac6d3c8f059b52abf21240bc91d0b96e
 
 ### Невеликий відступ: як пропси відрізняються від стану {#a-brief-interlude-props-vs-state}
 
@@ -84,7 +96,11 @@ prev: composition-vs-inheritance.html
 
 Щоб правильно побудувати додаток, спочатку потрібно подумати про мінімальний набір змінних станів, які потрібні вашому додатку. Головне тут дотримуватися принципу розробки [DRY: *Don't Repeat Yourself* (укр. не повторюй себе)](https://uk.wikipedia.org/wiki/Don%27t_repeat_yourself). Визначте мінімальну кількість необхідного стану, який потрібен вашому додатку, все інше обчислюйте за необхідності. Наприклад, якщо ви створюєте список справ, тримайте масив пунктів списку під рукою – але не варто зберігати окремий стан для кількості справ у списку. Якщо треба відобразити кількість елементів, просто використовуйте довжину існуючого масиву.
 
+<<<<<<< HEAD
 Давайте перелічимо всі дані у нашому додатку. Ми маємо:
+=======
+Think of all the pieces of data in our example application. We have:
+>>>>>>> d483aebbac6d3c8f059b52abf21240bc91d0b96e
 
   * Початковий список товарів
   * Пошуковий запит, введений користувачем
@@ -137,12 +153,20 @@ prev: composition-vs-inheritance.html
 
 Потік даних у React - односторонній. Це допомагає зрозуміти, як працює додаток, але нам потрібно трохи більше коду, ніж в традиційній двосторонній прив'язці даних.
 
+<<<<<<< HEAD
 Якщо ви спробуєте ввести текст у поле пошуку або встановити прапорець в даній версії прикладу, то побачите, що React ігнорує будь-яке введення. Це навмисне, так як раніше ми прирівняли значення пропа `value` в `input`і до `state`, отриманого з `FilterableProductTable`.
+=======
+If you try to type or check the box in the previous version of the example (step 4), you'll see that React ignores your input. This is intentional, as we've set the `value` prop of the `input` to always be equal to the `state` passed in from `FilterableProductTable`.
+>>>>>>> d483aebbac6d3c8f059b52abf21240bc91d0b96e
 
 Давайте поміркуємо, як ми хочемо змінити поведінку. Нам потрібно, щоб при змінах значень у пошуковій формі змінювався стан у `FilterableProductTable`. Оскільки компоненти повинні оновлювати тільки той стан, що належить їм, `FilterableProductTable` передасть функцію зворотнього виклику у `SearchBar`. У свою чергу, `SearchBar` викликатиме цю функцію зворотнього виклику кожен раз, коли треба оновити стан. Щоб отримувати повідомлення про зміни елементів форми, ми можемо використовувати подію `onChange`. Функції зворотнього виклику, передані з `FilterableProductTable`, викличуть `setState()`, і додаток оновиться.
 
 Бодай звучить складно, але це займає всього кілька рядків коду. А головне, потік даних через додаток залишається прямим і зрозумілим.
 
+<<<<<<< HEAD
 ## От і все {#and-thats-it}
 
 Сподіваємося, що цей приклад допоможе вам отримати краще уявлення про те, як підійти до створення компонентів і додатків у React. Хоча цей процес і використовує трохи більше коду, пам'ятайте: код читають частіше, ніж пишуть. А такий модульний та прямий код, як в нашому додатку, читається легше. Коли ви почнете створювати великі бібліотеки компонентів, ви зможете по-справжньому оцінити прямолінійність і зв'язаність React, а повторно використовувані компоненти зроблять ваш код набагато коротшим. :)
+=======
+Hopefully, this gives you an idea of how to think about building components and applications with React. While it may be a little more typing than you're used to, remember that code is read far more often than it's written, and it's less difficult to read this modular, explicit code. As you start to build large libraries of components, you'll appreciate this explicitness and modularity, and with code reuse, your lines of code will start to shrink. :)
+>>>>>>> d483aebbac6d3c8f059b52abf21240bc91d0b96e
