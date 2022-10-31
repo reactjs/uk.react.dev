@@ -86,8 +86,13 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
             <ExternalFooterLink
+<<<<<<< HEAD
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
               Кодекс поведінки
+=======
+              href={`https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md`}>
+              Code of Conduct
+>>>>>>> e21b37c8cc8b4e308015ea87659f13aa26bd6356
             </ExternalFooterLink>
             {sectionListCommunity.map(section => (
               <FooterLink
@@ -145,7 +150,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            {`Copyright © ${new Date().getFullYear()} Facebook Inc.`}
+            {`Copyright © ${new Date().getFullYear()} Meta Platforms, Inc.`}
           </p>
         </section>
       </div>
