@@ -39,12 +39,25 @@ JSX — це розширення синтаксису JavaScript. Він под
 
 React DOM використовує стиль camelCase для найменування властивостей замість звичайних імен HTML-атрибутів. Наприклад, `tabindex` в JSX перетворюється в `tabIndex`. Атрибут `class` записується як `className`, оскільки в JavaScript слово `class` є зарезервованим:
 
+<<<<<<< HEAD
 ```js
 const name = 'Василина';
 ReactDOM.render(
   <h1 className="hello">Мене звати {name}!</h1>,
   document.getElementById('root')
 );
+=======
+```jsx
+<h1 className="hello">My name is Clementine!</h1>
+```
+
+## [Elements](/docs/rendering-elements.html) {#elements}
+
+React elements are the building blocks of React applications. One might confuse elements with a more widely known concept of "components". An element describes what you want to see on the screen. React elements are immutable.
+
+```js
+const element = <h1>Hello, world</h1>;
+>>>>>>> 822330c3dfa686dbb3424886abce116f20ed20e6
 ```
 
 ## [Елементи](/docs/rendering-elements.html) {#elements}
