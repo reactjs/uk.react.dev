@@ -349,6 +349,6 @@ class ScrollListener extends React.Component {
 }
 ```
 
-#### Тестування обмеження швідкості {#testing-your-rate-limiting}
+#### Тестування обмеження швидкості {#testing-your-rate-limiting}
 
 Коли тестування показує, що ваш код обмеження швидкості працює правильно, корисно мати можливість прокрутити час. Якщо ви використовуєте [`jest`](https://facebook.github.io/jest/), вам може знадобитися [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html). Якщо ви використовуєте `requestAnimationFrame`, то [`raf-stub`](https://github.com/alexreardon/raf-stub) може виявитися корисним інструментом для керування зміною кадрів анімації.
