@@ -1,15 +1,15 @@
 ---
 id: context
-title: Context
+title: Контекст
 permalink: docs/context.html
 ---
 
-Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+Контекст забезпечує спосіб передавати дані через дерево компонентів без необхідності передавати пропси вручну на кожному рівні.
 
-In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+У типовому додатку React дані передаються зверху вниз (від батьківської до дочірньої компоненти) через пропси, але це може бути громіздким для певних типів реквізитів (наприклад, налаштування локалі, тема інтерфейсу користувача), які потрібні багатьом компонентам програми. Контекст надає спосіб обмінюватися значеннями, подібними до цих, між компонентами без необхідності явно передавати властивість через кожен рівень дерева.
 
-- [When to Use Context](#when-to-use-context)
-- [Before You Use Context](#before-you-use-context)
+- [Коли використовувати контекст](#when-to-use-context)
+- [Перед використанням контексту](#before-you-use-context)
 - [API](#api)
   - [React.createContext](#reactcreatecontext)
   - [Context.Provider](#contextprovider)
@@ -23,39 +23,39 @@ In a typical React application, data is passed top-down (parent to child) via pr
 - [Caveats](#caveats)
 - [Legacy API](#legacy-api)
 
-## When to Use Context {#when-to-use-context}
+## Коли використовувати контекст {#when-to-use-context}
 
-Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
+Контекст призначений для обміну даними, які можна вважати «глобальними» для дерева компонентів React, таких як поточний автентифікований користувач, тема чи бажана мова. Наприклад, у наведеному нижче коді ми вручну прокидаємо проп `theme`, щоб стилізувати компонент Button:
 
 `embed:context/motivation-problem.js`
 
-Using context, we can avoid passing props through intermediate elements:
+Використовуючи контекст, ми можемо уникнути проходження атрибутів через проміжні елементи:
 
 `embed:context/motivation-solution.js`
 
-## Before You Use Context {#before-you-use-context}
+## Перед використанням контексту {#before-you-use-context}
 
-Context is primarily used when some data needs to be accessible by *many* components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
+Контекст в основному використовується, коли деякі дані повинні бути доступні *багатьом* компонентам на різних рівнях вкладеності. Застосовуйте його економно, оскільки це ускладнює повторне використання компонентів.
 
-**If you only want to avoid passing some props through many levels, [component composition](/docs/composition-vs-inheritance.html) is often a simpler solution than context.**
+**Якщо ви тільки хочете уникнути проходження деяких реквізитів через багато рівнів, [композиція компонентів](/docs/composition-vs-inheritance.html) часто є простішим рішенням, ніж контекст.**
 
-For example, consider a `Page` component that passes a `user` and `avatarSize` prop several levels down so that deeply nested `Link` and `Avatar` components can read it:
+Наприклад, розглянемо компонент `Page`, який передає властивість `user` і `avatarSize` на кілька рівнів нижче, щоб глибоко вкладені компоненти `Link` і `Avatar` могли прочитати його:
 
 ```js
 <Page user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... який рендерить ...
 <PageLayout user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... який рендерить ...
 <NavigationBar user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... який рендерить ...
 <Link href={user.permalink}>
   <Avatar user={user} size={avatarSize} />
 </Link>
 ```
 
-It might feel redundant to pass down the `user` and `avatarSize` props through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
+Може здатися зайвим передавати властивості `user` і `avatarSize` через багато рівнів, якщо зрештою вони дійсно потрібні лише компоненту `Avatar`. Також дратує те, що щоразу, коли компонент `Avatar` потребує додаткових реквізитів зверху, ви також повинні додавати їх на всіх проміжних рівнях.
 
-One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` or `avatarSize` props:
+Один із способів вирішити цю проблему **без контексту** — це [передавати сам компонент `Avatar`](/docs/composition-vs-inheritance.html#containment) щоб проміжним компонентам не потрібно було знати про властивості `user` або `avatarSize`:
 
 ```js
 function Page(props) {
@@ -68,21 +68,21 @@ function Page(props) {
   return <PageLayout userLink={userLink} />;
 }
 
-// Now, we have:
+// Теперь ми маємо:
 <Page user={user} avatarSize={avatarSize} />
-// ... which renders ...
+// ... який рендерить ...
 <PageLayout userLink={...} />
-// ... which renders ...
+// ... який рендерить ...
 <NavigationBar userLink={...} />
-// ... which renders ...
+// ... який рендерить ...
 {props.userLink}
 ```
 
-With this change, only the top-most Page component needs to know about the `Link` and `Avatar` components' use of `user` and `avatarSize`.
+Завдяки цій зміні лише верхній компонент Page має знати про використання `user` і `avatarSize` компонентами `Link` і `Avatar`.
 
-This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. However, this isn't the right choice in every case: moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+Ця *інверсія керування* може зробити ваш код чистішим у багатьох випадках, зменшивши кількість реквізитів, які потрібно пропустити через вашу програму, і надавши більше контролю кореневим компонентам. Однак це не завжди правильний вибір: переміщення більшої складності вище в дереві робить компоненти вищого рівня складнішими та змушує компоненти нижчого рівня бути більш гнучкими, ніж вам хочеться.
 
-You're not limited to a single child for a component. You may pass multiple children, or even have multiple separate "slots" for children, [as documented here](/docs/composition-vs-inheritance.html#containment):
+Ви не обмежені одним дочірнім компонентом. Ви можете передати кілька дочірніх компонентів або навіть мати кілька окремих "слотів" для дочірніх компонентів, [як описано тут](/docs/composition-vs-inheritance.html#containment):
 
 ```js
 function Page(props) {
@@ -104,9 +104,9 @@ function Page(props) {
 }
 ```
 
-This pattern is sufficient for many cases when you need to decouple a child from its immediate parents. You can take it even further with [render props](/docs/render-props.html) if the child needs to communicate with the parent before rendering.
+Ціого паттерну достатньо для багатьох випадків, коли потрібно відділити дочірній компонент від найближчих батьків. Ви можете піти ще далі за допомогою [рендер-пропси](/docs/render-props.html) якщо дочірня компонента потребує взаємодії з батьківською перед рендерингом.
 
-However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache.
+Однак іноді ті самі дані повинні бути доступні багатьом компонентам у дереві та на різних рівнях вкладеності. Контекст дозволяє вам "транслювати" такі дані та зміни до них усім компонентам нижче. Поширені приклади, коли використання контексту може бути простішим, ніж альтернативи, включають керування поточною мовою, темою або кеш-пам’яттю даних.
 
 ## API {#api}
 
@@ -116,9 +116,9 @@ However, sometimes the same data needs to be accessible by many components in th
 const MyContext = React.createContext(defaultValue);
 ```
 
-Creates a Context object. When React renders a component that subscribes to this Context object it will read the current context value from the closest matching `Provider` above it in the tree.
+Створює об’єкт Context. Коли React відтворює компонент, який підписується на цей об’єкт Context, він читатиме поточне значення контексту з найближчого відповідного `Provider` над ним у дереві.
 
-The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+Аргумент `defaultValue` використовується **тільки**, коли компонент не має відповідного провайдера над ним у дереві. Це може бути корисним для тестування компонентів ізольовано без їх упаковки. Примітка: передача `undefined` як значення провайдера не призводить до використання споживаючими компонентами `defaultValue`.
 
 ### `Context.Provider` {#contextprovider}
 
