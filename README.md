@@ -57,7 +57,7 @@
 
 ## Переклад
 
-Якщо ви зацікавлені у перекладі `reactjs.org`, будь-ласка ознайомтесь з поточним прогресом перекладу на сторінці [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
+Якщо ви зацікавлені у перекладі `reactjs.org`, будь-ласка ознайомтесь з поточним прогресом перекладу на сторінці [translations.reactjs.org](https://translations.reactjs.org/).
 
 
 Якщо переклад на вашу мову наразі не існує і ви б хотіли його створити, то дотримуйтесь інструкцій [Перекладу reactjs.org](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
