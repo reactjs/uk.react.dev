@@ -15,12 +15,22 @@ permalink: docs/strict-mode.html
 
 У наведеному вище прикладі, перевірки суворого режиму *не* будуть виконуватись для компонентів `Header` та `Footer`. Проте компоненти `ComponentOne` та `ComponentTwo`, а також всі їхні нащадки матимуть перевірки.
 
+<<<<<<< HEAD
 `StrictMode` наразі допомагає в:
 * [Ідентифікації компонентів з небезпечними методами життєвого циклу](#identifying-unsafe-lifecycles)
 * [Попередженні про використання застарілого API рядкових рефів](#warning-about-legacy-string-ref-api-usage)
 * [Попередженні про використання застарілого виклику findDOMNode](#warning-about-deprecated-finddomnode-usage)
 * [Виявленні несподіваних побічних ефектів](#detecting-unexpected-side-effects)
 * [Виявленні застарілого контекстного API](#detecting-legacy-context-api)
+=======
+`StrictMode` currently helps with:
+* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
+* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
+* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
+* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
+* [Detecting legacy context API](#detecting-legacy-context-api)
+* [Ensuring reusable state](#ensuring-reusable-state)
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
 
 Додаткова функціональність буде додана в майбутніх релізах React.
 
@@ -55,7 +65,11 @@ React версії 16.3 вводить третій варіант, який п�
 
 Колись React підтримував виклик `findDOMNode` для пошуку DOM-вузла в дереві по вказаному екзепляру класа. Зазвичай вам це не потрібно, тому що ви можете [прикріпити реф безпосередньо до DOM-вузла](/docs/refs-and-the-dom.html#creating-refs).
 
+<<<<<<< HEAD
 `findDOMNode` також може бути застосований до класових компонентів, але це порушувало рівні абстракції, дозволяючи батьківському компоненту вимагати, щоб відбувся рендер певного дочірнього елементу. Це створює небезпеку рефакторингу, коли ви не можете змінити деталі реалізації компонента, тому що батьківський компонент може використовувати його DOM-вузол. `findDOMNode` повертає лише перший дочірній елемент, але з використанням фрагментів компонент може рендерити декілька DOM-вузлів. `findDOMNode` — це API одноразового читання, він повертає вам результат лише на момент, коли ви його викликаєте. Якщо дочірній компонент відрендерить інший вузол, то немає жодної можливості опрацювати цю зміну. Внаслідок цього `findDOMNode` працював лише якщо компоненти завжди повертали єдиний DOM-вузол, що ніколи не змінювався.
+=======
+`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children were rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
 
 Замість цього ви можете зробити це явно, передавши реф у ваш компонент та далі в DOM з використанням [перенаправлення рефів](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
@@ -116,10 +130,80 @@ class MyComponent extends React.Component {
 
 Суворий режим робить подібні патерни більш помітними, навмисно двічі викликаючи методи, такі як конструктор компонента.
 
+<<<<<<< HEAD
 ### Виявлення застарілого контекстного API {#detecting-legacy-context-api}
+=======
+> Note:
+>
+> In React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+>
+> Starting from React 18, React does not suppress any logs. However, if you have React DevTools installed, the logs from the second call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
+
+### Detecting legacy context API {#detecting-legacy-context-api}
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
 
 Використання застарілого контекстного API часто призводило до помилок, тому він буде видалений в майбутній мажорній версії React. Він все ще працює в усіх релізах версії 16.x, але показуватиме це попередження у суворому режимі:
 
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
+<<<<<<< HEAD
 Ознайомтесь з [документацією нового контекстного API](/docs/context.html) для спрощення переходу на нову версію.
+=======
+Read the [new context API documentation](/docs/context.html) to help migrate to the new version.
+
+
+### Ensuring reusable state {#ensuring-reusable-state}
+
+In the future, we’d like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React will support remounting trees using the same component state used before unmounting.
+
+This feature will give React better performance out-of-the-box, but requires components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects do not properly clean up subscriptions in the destroy callback, or implicitly assume they are only mounted or destroyed once.
+
+To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a component mounts for the first time, restoring the previous state on the second mount.
+
+To demonstrate the development behavior you'll see in Strict Mode with this feature, consider what happens when React mounts a new component. Without this change, when a component mounts, React creates the effects:
+
+```
+* React mounts the component.
+  * Layout effects are created.
+  * Effects are created.
+```
+
+With Strict Mode starting in React 18, whenever a component mounts in development, React will simulate immediately unmounting and remounting the component:
+
+```
+* React mounts the component.
+    * Layout effects are created.
+    * Effect effects are created.
+* React simulates effects being destroyed on a mounted component.
+    * Layout effects are destroyed.
+    * Effects are destroyed.
+* React simulates effects being re-created on a mounted component.
+    * Layout effects are created
+    * Effect setup code runs
+```
+
+On the second mount, React will restore the state from the first mount. This feature simulates user behavior such as a user tabbing away from a screen and back, ensuring that code will properly handle state restoration.
+
+When the component unmounts, effects are destroyed as normal:
+
+```
+* React unmounts the component.
+  * Layout effects are destroyed.
+  * Effect effects are destroyed.
+```
+
+Unmounting and remounting includes:
+
+- `componentDidMount`
+- `componentWillUnmount`
+- `useEffect`
+- `useLayoutEffect`
+- `useInsertionEffect`
+
+> Note:
+>
+> This only applies to development mode, _production behavior is unchanged_.
+
+For help supporting common issues, see:
+  - [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18)
+>>>>>>> 1a641bb88e647186f260dd2a8e56f0b083f2e46b
