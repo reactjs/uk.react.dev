@@ -134,7 +134,11 @@ var SayHello = createReactClass({
 
 Це означає, що ES6-класи пишуться із трохи більш універсальним кодом для обробників подій, але при цьому продуктивність величезних додатків є трохи вищою.
 
+<<<<<<< HEAD
 Якщо універсальний код для вас не занадто привабливий, ви можете увімкнути **експериментальну** пропозицію синтаксису [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) з Babel:
+=======
+If the boilerplate code is too unattractive to you, you may use [ES2022 Class Properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields#public_instance_fields) syntax:
+>>>>>>> 868d525a74b717a10e0f61bb576213e133aa8d07
 
 
 ```javascript
@@ -143,11 +147,16 @@ class SayHello extends React.Component {
     super(props);
     this.state = {message: 'Привіт!'};
   }
+<<<<<<< HEAD
   // УВАГА: цей синтаксис є експериментальним!
   // Тут стрілкова функція виконує прив'язку:
+=======
+  
+  // Using an arrow here binds the method:
+>>>>>>> 868d525a74b717a10e0f61bb576213e133aa8d07
   handleClick = () => {
     alert(this.state.message);
-  }
+  };
 
   render() {
     return (
@@ -159,9 +168,13 @@ class SayHello extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 Зверніть увагу, що синтаксис, описаний вище, є **експериментальним** і він може змінитися, або пропозиція не буде внесена в стандарт мови.
 
 Якщо ви за безпечний варіант, то ось ще варіанти:
+=======
+You also have a few other options:
+>>>>>>> 868d525a74b717a10e0f61bb576213e133aa8d07
 
 * Прив'язуйте методи в конструкторі.
 * Використовуйте стрілкові функції, наприклад, `onClick={(e) => this.handleClick(e)}`.
@@ -216,10 +229,8 @@ var TickTock = createReactClass({
   }
 });
 
-ReactDOM.render(
-  <TickTock />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example'));
+root.render(<TickTock />);
 ```
 
 Якщо компонент використовує декілька міксинів і вони визначають одинакові методи життєвого циклу (наприклад, декілька міксинів хочуть виконати очистку коли компонент буде знищеним), всі методи життєвого циклу будуть гарантовано викликані. Методи, визначені на міксинах, запускаються в порядку перерахування міксинів після виклику методу на компоненті.
