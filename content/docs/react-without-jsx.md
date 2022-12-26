@@ -17,10 +17,15 @@ class Hello extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 ReactDOM.render(
   <Hello toWhat="світе" />,
   document.getElementById('root')
 );
+=======
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Hello toWhat="World" />);
+>>>>>>> 4b68508440a985598571f78f60637b6dccdd5a1a
 ```
 
 Його можна переписати таким чином, що JSX не буде використовуватися:
@@ -32,10 +37,15 @@ class Hello extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 ReactDOM.render(
   React.createElement(Hello, {toWhat: 'світе'}, null),
   document.getElementById('root')
 );
+=======
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(Hello, {toWhat: 'World'}, null));
+>>>>>>> 4b68508440a985598571f78f60637b6dccdd5a1a
 ```
 
 Якщо ви зацікавлені в інших прикладах того, як JSX компілюється в JavaScript-код, спробуйте [онлайн Babel-компілятор](babel://jsx-simple-example).
@@ -47,10 +57,15 @@ ReactDOM.render(
 ```js
 const e = React.createElement;
 
+<<<<<<< HEAD
 ReactDOM.render(
   e('div', null, 'Привіт, світе'),
   document.getElementById('root')
 );
+=======
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(e('div', null, 'Hello World'));
+>>>>>>> 4b68508440a985598571f78f60637b6dccdd5a1a
 ```
 
 Якщо ви використаєте дане скорочення для `React.createElement`, то робота з React без JSX буде такою ж зручною.
