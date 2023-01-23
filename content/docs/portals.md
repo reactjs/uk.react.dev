@@ -46,7 +46,11 @@ render() {
 >
 > При роботі з порталами пам'ятайте, що потрібно приділити увагу [управлінню фокусом за допомогою клавіатури](/docs/accessibility.html#programmatically-managing-focus).
 >
+<<<<<<< HEAD
 > Для модальних діалогів переконайтеся, що будь-який користувач буде здатний взаємодіяти з ними, слідуючи  [практикам розробки модальних вікон WAI-ARIA](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
+=======
+> For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/).
+>>>>>>> 38bf76a4a7bec6072d086ce8efdeef9ebb7af227
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
@@ -146,7 +150,8 @@ function Child() {
   );
 }
 
-ReactDOM.render(<Parent />, appRoot);
+const root = ReactDOM.createRoot(appRoot);
+root.render(<Parent />);
 ```
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
