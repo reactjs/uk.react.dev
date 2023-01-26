@@ -20,7 +20,7 @@ function UserGreeting(props) {
 }
 
 function GuestGreeting(props) {
-  return <h1>Зареєструйтеся, будь-ласка.</h1>;
+  return <h1>Зареєструйтеся, будь ласка.</h1>;
 }
 ```
 
