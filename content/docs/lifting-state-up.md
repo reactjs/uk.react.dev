@@ -9,7 +9,19 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
+<<<<<<< HEAD
 Часто кілька компонентів повинні відображати одні і ті ж змінювані дані. Ми рекомендуємо підняти спільний стан до їхнього найближчого спільного предка. Давайте подивимося, як це працює.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Sharing State Between Components](https://beta.reactjs.org/learn/sharing-state-between-components)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let's see how this works in action.
+>>>>>>> 5647a9485db3426d62b5a8203f4499c01bcd789b
 
 У цьому розділі ми створимо калькулятор температури, який обчислює, чи буде вода закипати при заданій температурі.
 
@@ -324,7 +336,11 @@ class Calculator extends React.Component {
 
 Якщо щось може бути обчислене або з пропсів, або зі стану, воно, ймовірно, не повинно бути в стані. Наприклад, замість того, щоб зберігати і `celsiusValue`, і `fahrenheitValue`, ми зберігаємо тільки останню редаговану `temperature` і її `scale`. Значення іншого поля вводу завжди може бути обчислено на їх основі у методі `render()`. Це дозволяє очистити або застосувати округлення до іншого поля без втрати будь-якої точності даних, уведених користувачем.
 
+<<<<<<< HEAD
 Коли ви бачите якусь помилку в UI, ви можете скористатися [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) для перевірки пропсів і переміститися вгору по дереву, поки не знайдете компонент, відповідальний за оновлення стану. Це дозволяє відслідковувати джерело помилок:
+=======
+When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+>>>>>>> 5647a9485db3426d62b5a8203f4499c01bcd789b
 
 <img src="../images/docs/react-devtools-state.gif" alt="Контроль стану в React DevTools" max-width="100%" height="100%">
 
