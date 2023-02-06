@@ -6,7 +6,19 @@ layout: docs
 category: Reference
 ---
 
+<<<<<<< HEAD
 У цьому довідковому матеріалі описана обгортка `SyntheticEvent`, яка є частиною системи подій React. Дивіться інструкцію [Обробка подій](/docs/handling-events.html) для більш детальної інформації.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://beta.reactjs.org/reference/react-dom/components/common)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ## Огляд {#overview}
 
@@ -34,6 +46,7 @@ string type
 
 > Примітка:
 >
+<<<<<<< HEAD
 > Починаючи з версії v0.14, повернення `false` з обробника подій більше не припиняє розповсюдження події. Замість цього вам потрібно самотужки викликати `e.stopPropagation()` або `e.preventDefault()`.
 
 ### Пул подій {#event-pooling}
@@ -60,10 +73,17 @@ function onClick(event) {
   this.setState({eventType: event.type});
 }
 ```
+=======
+> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer [pooled](/docs/legacy-event-pooling.html).
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 > Примітка:
 >
+<<<<<<< HEAD
 > Якщо ви все-таки хочете звернутися до властивостей події асинхронно, вам необхідно зробити виклик `event.persist()` на події. Тоді ця подія буде вилучена з пулу, в свою чергу це дозволить вашому коду утримувати посилання на цю подію.
+=======
+> As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ## Підтримувані події {#supported-events}
 
@@ -167,8 +187,81 @@ onFocus onBlur
 
 Властивості:
 
-```javascript
+```js
 DOMEventTarget relatedTarget
+```
+
+#### onFocus {#onfocus}
+
+The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onFocus={(e) => {
+        console.log('Focused on input');
+      }}
+      placeholder="onFocus is triggered when you click this input."
+    />
+  )
+}
+```
+
+#### onBlur {#onblur}
+
+The `onBlur` event handler is called when focus has left the element (or left some element inside of it). For example, it's called when the user clicks outside of a focused text input.
+
+```javascript
+function Example() {
+  return (
+    <input
+      onBlur={(e) => {
+        console.log('Triggered because this input lost focus');
+      }}
+      placeholder="onBlur is triggered when you click this input and then you click outside of it."
+    />
+  )
+}
+```
+
+#### Detecting Focus Entering and Leaving {#detecting-focus-entering-and-leaving}
+
+You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element. Here is a demo you can copy and paste that shows how to detect focusing a child, focusing the element itself, and focus entering or leaving the whole subtree.
+
+```javascript
+function Example() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('focused self');
+        } else {
+          console.log('focused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus entered self');
+        }
+      }}
+      onBlur={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('unfocused self');
+        } else {
+          console.log('unfocused child', e.target);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus left self');
+        }
+      }}
+    >
+      <input id="1" />
+      <input id="2" />
+    </div>
+  );
+}
 ```
 
 * * *
@@ -305,7 +398,15 @@ DOMTouchList touches
 onScroll
 ```
 
+<<<<<<< HEAD
 Властивості:
+=======
+>Note
+>
+>Starting with React 17, the `onScroll` event **does not bubble** in React. This matches the browser behavior and prevents the confusion when a nested scrollable element fires events on a distant parent.
+
+Properties:
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ```javascript
 number detail

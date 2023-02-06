@@ -4,7 +4,21 @@ title: Неконтрольовані компоненти
 permalink: docs/uncontrolled-components.html
 ---
 
+<<<<<<< HEAD
 У більшості ситуацій, ми рекомендуємо використовувати [контрольовані компоненти](/docs/forms.html#controlled-components) для реалізації форм. У контрольованому компоненті, дані форми котролюються React-компонентом. Альтернативним підходом є використання неконтрольованих компонентів, де дані форми контрольюються самим DOM.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`<input>`](https://beta.reactjs.org/reference/react-dom/components/input)
+> - [`<select>`](https://beta.reactjs.org/reference/react-dom/components/select)
+> - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+In most cases, we recommend using [controlled components](/docs/forms.html#controlled-components) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 Замість того, щоб писати обробник подій для кожного оновлення стану, ви можете використати некотрольований компонент та отримувати значення з DOM через [реф](/docs/refs-and-the-dom.html).
 
@@ -45,7 +59,11 @@ class NameForm extends React.Component {
 
 ### Значення за замовчуванням {#default-values}
 
+<<<<<<< HEAD
 Під час рендерингу значення атрибуту `value` на елементі форми буде переписувати значення, що визначено в DOM. При використанні неконтрольованих компонентів часом необхідно, щоб React встановив початкове значення, але надалі не контролював оновлення значення. У даному випадку необхідно встановити атрибут `defaultValue` замість `value`.
+=======
+In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`. Changing the value of `defaultValue` attribute after a component has mounted will not cause any update of the value in the DOM.
+>>>>>>> d4e42ab21f0cc7d8b79d1a619654e27c79e10af6
 
 ```javascript{7}
 render() {
