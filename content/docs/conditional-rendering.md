@@ -8,7 +8,20 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
+<<<<<<< HEAD
 React дозволяє розподілити логіку на окремі компоненти. Ці компоненти можна показувати або ховати в залежності від поточного стану додатку.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Conditional Rendering](https://beta.reactjs.org/learn/conditional-rendering)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
+In React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 
 Умовний рендеринг у React працює так само, як і умовні вирази працюють в JavaScript. Іноді потрібно пояснити React, як стан впливає на те, які компоненти треба сховати, а які — відрендерити, та як саме. Для цього використовуйте [умовний оператор](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) JavaScript, або вирази подібні до [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else).
 
@@ -35,11 +48,17 @@ function Greeting(props) {
   return <GuestGreeting />;
 }
 
+<<<<<<< HEAD
 ReactDOM.render(
   // Спробуйте замінити значення isLoggedIn на true та подивіться на ефект.
   <Greeting isLoggedIn={false} />,
   document.getElementById('root')
 );
+=======
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+// Try changing to isLoggedIn={true}:
+root.render(<Greeting isLoggedIn={false} />);
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 ```
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
@@ -110,10 +129,8 @@ class LoginControl extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <LoginControl />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<LoginControl />);
 ```
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
@@ -140,10 +157,9 @@ function Mailbox(props) {
 }
 
 const messages = ['React', 'Re: React', 'Re:Re: React'];
-ReactDOM.render(
-  <Mailbox unreadMessages={messages} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Mailbox unreadMessages={messages} />);
 ```
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
@@ -152,7 +168,24 @@ ReactDOM.render(
 
 Отже, якщо умова правдива (`true`), то елемент, який йде безпосередньо після `&&`, з'явиться у виводі. Якщо ж умова помилкова (`false`), React проігнорує та пропустить його.
 
+<<<<<<< HEAD
 ### Вбудовані умови if-else з тернарним оператором {#inline-if-else-with-conditional-operator}
+=======
+Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+
+```javascript{2,5}
+render() {
+  const count = 0;
+  return (
+    <div>
+      {count && <h1>Messages: {count}</h1>}
+    </div>
+  );
+}
+```
+
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
+>>>>>>> 47adefd30c46f486428d8231a68e639d62f02c9e
 
 Іншим методом для умовного рендерингу елементів є використання тернарного оператора [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
@@ -231,10 +264,8 @@ class Page extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Page />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root')); 
+root.render(<Page />);
 ```
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
