@@ -4,9 +4,24 @@ title: Контекст
 permalink: docs/context.html
 ---
 
+<<<<<<< HEAD
 Контекст забезпечує спосіб передавати дані через дерево компонентів без необхідності передавати пропси вручну на кожному рівні.
 
 У типовому додатку React дані передаються зверху вниз (від батьківської до дочірньої компоненти) через пропси, але це може бути громіздким для певних типів реквізитів (наприклад, налаштування локалі, тема інтерфейсу користувача), які потрібні багатьом компонентам програми. Контекст надає спосіб обмінюватися значеннями, подібними до цих, між компонентами без необхідності явно передавати властивість через кожен рівень дерева.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Passing Data Deeply with Context](https://beta.reactjs.org/learn/passing-data-deeply-with-context)
+> - [`useContext`](https://beta.reactjs.org/reference/react/useContext)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+In a typical React application, data is passed top-down (parent to child) via props, but such usage can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
+>>>>>>> 63c77695a95902595b6c2cc084a5c3650b15210a
 
 - [Коли використовувати контекст](#when-to-use-context)
 - [Перед використанням контексту](#before-you-use-context)
@@ -80,7 +95,11 @@ function Page(props) {
 
 Завдяки цій зміні лише верхній компонент Page має знати про використання `user` і `avatarSize` компонентами `Link` і `Avatar`.
 
+<<<<<<< HEAD
 Ця *інверсія керування* може зробити ваш код чистішим у багатьох випадках, зменшивши кількість реквізитів, які потрібно пропустити через вашу програму, і надавши більше контролю кореневим компонентам. Однак це не завжди правильний вибір: переміщення більшої складності вище в дереві робить компоненти вищого рівня складнішими та змушує компоненти нижчого рівня бути більш гнучкими, ніж вам хочеться.
+=======
+This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. Such inversion, however, isn't the right choice in every case; moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+>>>>>>> 63c77695a95902595b6c2cc084a5c3650b15210a
 
 Ви не обмежені одним дочірнім компонентом. Ви можете передати кілька дочірніх компонентів або навіть мати кілька окремих "слотів" для дочірніх компонентів, [як описано тут](/docs/composition-vs-inheritance.html#containment):
 
@@ -118,7 +137,11 @@ const MyContext = React.createContext(defaultValue);
 
 Створює об’єкт Context. Коли React відтворює компонент, який підписується на цей об’єкт Context, він читатиме поточне значення контексту з найближчого відповідного `Provider` над ним у дереві.
 
+<<<<<<< HEAD
 Аргумент `defaultValue` використовується **тільки**, коли компонент не має відповідного провайдера над ним у дереві. Це може бути корисним для тестування компонентів ізольовано без їх упаковки. Примітка: передача `undefined` як значення провайдера не призводить до використання споживаючими компонентами `defaultValue`.
+=======
+The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This default value can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
+>>>>>>> 63c77695a95902595b6c2cc084a5c3650b15210a
 
 ### `Context.Provider` {#contextprovider}
 
@@ -128,7 +151,7 @@ const MyContext = React.createContext(defaultValue);
 
 Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
 
-Accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
+The Provider component accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
 
 All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers (including [`.contextType`](#classcontexttype) and [`useContext`](/docs/hooks-reference.html#usecontext)) is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component skips an update.
 
@@ -162,7 +185,7 @@ class MyClass extends React.Component {
 MyClass.contextType = MyContext;
 ```
 
-The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
+The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). Using this property lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
 
 > Note:
 >
@@ -189,7 +212,7 @@ class MyClass extends React.Component {
 </MyContext.Consumer>
 ```
 
-A React component that subscribes to context changes. This lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+A React component that subscribes to context changes. Using this component lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
 
 Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
 
