@@ -11,7 +11,22 @@ redirect_from:
   - "tips/children-undefined.html"
 ---
 
+<<<<<<< HEAD
 Рефи надають доступ до DOM-вузлів чи React-елементів, що створюються під час рендеру.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Referencing Values with Refs](https://beta.reactjs.org/learn/referencing-values-with-refs)
+> - [Manipulating the DOM with Refs](https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
+> - [`useRef`](https://beta.reactjs.org/reference/react/useRef)
+> - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+Refs provide a way to access DOM nodes or React elements created in the render method.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 У звичайному потоці даних React, батьківські компоненти можуть взаємодіяти з дітьми тільки через [пропси](/docs/components-and-props.html). Щоб модифікувати нащадка, ви маєте повторно відрендерити його з новими пропсами. Проте існують ситуації, коли вам потрібно імперативно змінити нащадка поза межами звичайного потоку даних. Нащадок, щоб бути зміненим, має бути екземпляром React-компонента або DOM-елементом. В обох випадках React надає можливість обійти звичайний потік даних.
 

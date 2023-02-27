@@ -6,7 +6,20 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
+<<<<<<< HEAD
 Розглянемо оголошення змінної:
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Writing Markup with JSX](https://beta.reactjs.org/learn/writing-markup-with-jsx)
+> - [JavaScript in JSX with Curly Braces](https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+Consider this variable declaration:
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 ```js
 const element = <h1>Hello, world!</h1>;
@@ -35,11 +48,6 @@ React [не вимагає](/docs/react-without-jsx.html) використанн
 ```js{1,2}
 const name = 'Josh Perez';
 const element = <h1>Hello, {name}</h1>;
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
 ви можете помістити будь-який валідний [JavaScript вираз](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) всередину фігурних дужок у JSX. Наприклад, `2 + 2`, `user.firstName`, або `formatName(user)` є валідними виразами JavaScript.
@@ -61,14 +69,13 @@ const element = (
     Hello, {formatName(user)}!
   </h1>
 );
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://introducing-jsx)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/PGEjdG?editors=1010)**
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 Ми розбиваємо JSX на декілька рядків для покращення читабельності. Хоча це не потрібно, ми також рекомендуємо охоплювати його дужками, щоб уникнути проблем, пов'язаних з [автоматичною вставкою крапки з комою](https://stackoverflow.com/q/2846283).
 
@@ -92,7 +99,7 @@ function getGreeting(user) {
 ви можете використовувати лапки для задання рядкових літералів як атрибутів:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 ви також можете використовувати фігурні дужки, щоб вставити вираз JavaScript у атрибут:
@@ -181,4 +188,8 @@ const element = {
 
 >**Порада:**
 >
+<<<<<<< HEAD
 >Ми рекомендуємо використовувати ["Babel" language definition](https://babeljs.io/docs/editors) для вашого редактора, щоб код ES6 та JSX правильно виділявся.
+=======
+>We recommend using the ["Babel" language definition](https://babeljs.io/docs/en/next/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c

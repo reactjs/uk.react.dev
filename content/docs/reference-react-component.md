@@ -15,7 +15,15 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+<<<<<<< HEAD
 Ця сторінка містить API довідник для визначення класового компонента React. Ми припускаємо, що ви знайомі з фундаментальними концепціями React, такими як [Компоненти та пропси](/docs/components-and-props.html), а також [Стан і життєвий цикл](/docs/state-and-lifecycle.html). Якщо ні, то спочатку ознайомтеся з ними.
+=======
+> Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 ## Огляд {#overview}
 
@@ -39,7 +47,11 @@ class Welcome extends React.Component {
 
 ### Життєвий цикл компонента {#the-component-lifecycle}
 
+<<<<<<< HEAD
 Кожен компонент має декілька "методів життєвого циклу", які ви можете перевизначати, щоб запускати код в певний момент часу. **Ви можете використовувати [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) як шпаргалку.** В списку нижче найчастіше вживані методи життєвого циклу виділені **напівжирним**. Решта існують лише для випадків, що трапляються відносно нечасто.
+=======
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 #### Монтування {#mounting}
 
@@ -52,7 +64,11 @@ class Welcome extends React.Component {
 
 >Примітка:
 >
+<<<<<<< HEAD
 >Ці методи вважаються застарілими і ви маєте [уникати їх](/blog/2018/03/27/update-on-async-rendering.html) в новому коді:
+=======
+>This method is considered legacy and you should [avoid it](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
@@ -109,7 +125,11 @@ class Welcome extends React.Component {
 
 ### Часто використовані методи життєвого циклу {#commonly-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Методи в цьому розділі охоплюють переважну більшість випадків з якими ви зустрінетесь під час створення React-компонентів. **Для наочної ілюстрації, перегляньте [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+=======
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 ### `render()` {#render}
 
@@ -121,11 +141,19 @@ render()
 
 Під час виклику він перевіряє `this.props` та `this.state` і повертає один з наступних типів:
 
+<<<<<<< HEAD
 - **React-елементи.** Зазвичай створені за допомогою [JSX](/docs/introducing-jsx.html). Наприклад, `<div />` і `<MyComponent />` є React-елементами, які інструктують React відрендерити вузол DOM або інший компонент визначений користувачем, відповідно.
 - **Масиви та фрагменти.** Дозволяють повернути декілька елементів під час рендерингу. Перегляньте документацію для [фрагментів](/docs/fragments.html), щоб дізнатися більше.
 - **Портали**. Дозволють рендерити дочірні елементи в іншому піддереві DOM. Перегляньте документацію для [порталів](/docs/portals.html), щоб дізнатися більше.
 - **Рядки і числа.** Будуть відрендерені як текстові вузли в DOM.
 - **Логічні значення чи `null`**. Не рендерять нічого. (Існують, здебільшого, для підтримки шаблону `return test && <Child />`, де `test` — логічне значення.)
+=======
+- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
+- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
+- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
+- **String and numbers.** These are rendered as text nodes in the DOM.
+- **Booleans or `null` or `undefined`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean).
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 Функція `render()` має бути чистою, а це означає, що вона не змінює стан компонента, повертає однаковий результат при кожному виклику і не взаємодіє з браузером напряму.
 
@@ -245,7 +273,11 @@ componentWillUnmount()
 
 ### Рідковживані методи життєвого циклу {#rarely-used-lifecycle-methods}
 
+<<<<<<< HEAD
 Методи в цьому розділі відповідають малопоширеним випадкам використання. Вони є корисними час від часу, але швидше за все, більшість ваших компонентів не потребують жодного з них. **Ви можете побачити більшість наведених нижче методів на [цій діаграмі життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) якщо натиснете прапорець "Show less common lifecycles" зверху сторінки.**
+=======
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -278,8 +310,13 @@ static getDerivedStateFromProps(props, state)
 
 Цей метод існує для [малопоширених випадків](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) коли стан залежить від змін в пропсах з часом. Наприклад, він може бути корисним для реалізації компоненту `<Transition>` котрий порівнює свої попередні і наступні дочірні елементи, щоб вирішити котрі з них потрібно анімувати для появи і зникнення.
 
+<<<<<<< HEAD
 Успадкування стану приводить до багатослівного коду і робить ваші компоненти важчими для розуміння.
 [Переконайтеся, що ви знайомі з більш простими альтернативами:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+=======
+Deriving state leads to verbose code and makes your components difficult to think about.
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 * Якщо вам потрібно **виконати побічний ефект** (наприклад, вибірку даних чи анімацію) у відповідь на зміну пропсів, використовуйте натомість метод [`componentDidUpdate`](#componentdidupdate).
 
@@ -299,7 +336,11 @@ static getDerivedStateFromProps(props, state)
 getSnapshotBeforeUpdate(prevProps, prevState)
 ```
 
+<<<<<<< HEAD
 `getSnapshotBeforeUpdate()` викликається безпосередньо перед  тим, як останній відрендерений вивід буде зафіксовано, наприклад в DOM. Він дозволяє вашому компоненту захопити деяку інформацію з DOM (наприклад, позицію прокрутки) перед її можливою зміною. Будь-яке значення повернуте цим методом життєвого циклу, буде передане як параметр в `componentDidUpdate()`.
+=======
+`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to `componentDidUpdate()`.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 Цей випадок не поширений, але він може бути в інтерфейсах користувача, таких як ланцюжок повідомлень в чаті, який має оброблювати позицію прокрутки особливим чином.
 
@@ -323,9 +364,15 @@ getSnapshotBeforeUpdate(prevProps, prevState)
 
 Щоб дізнатися більше, перегляньте [*Обробка помилок у React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
+<<<<<<< HEAD
 > Примітка
 >
 > Запобіжники перехоплюють лише помилки в компонентах у дереві **нижче** за них. Запобіжник не перехоплює помилки, що виникли в ньому.
+=======
+> Note
+>
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
@@ -413,10 +460,23 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+<<<<<<< HEAD
 > Примітка
 >
 > При виникненні помилки, ви можете рендерити резервний інтерфейс користувача `componentDidCatch()` викликом `setState`, але така поведінка буде вважатися застарілою в наступному релізі.
 > Натомість використовуйте `static getDerivedStateFromError()` для обробки резервного рендерингу.
+=======
+Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
+
+On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
+
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
+
+> Note
+>
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 * * *
 
@@ -501,12 +561,16 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` ставить в чергу оновлення стану компонента і повідомляє React, що цей компонент і його нащадки мають бути повторно відрендерені з оновленим станом. Це основний метод, який ви використовуєте для оновлення інтерфейсу користувача у відповідь на обробники подій і відповіді сервера.
 
+<<<<<<< HEAD
 Думайте про `setState()` як про *запит*, а не як про команду, що має бути негайно виконана для оновлення компонента. Для кращої наочної продуктивності, React може відкласти виклик і тоді оновити кілька компонентів за один прохід. React не гарантує негайного застосування змін стану.
+=======
+Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. In the rare case that you need to force the DOM update to be applied synchronously, you may wrap it in [`flushSync`](/docs/react-dom.html#flushsync), but this may hurt performance.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 `setState()` не завжди відразу оновлює компонент. Цей метод може групувати чи відкладати оновлення на потім. Це робить зчитування `this.state` відразу після виклику `setState()` потенційною пасткою. Натомість, використовуйте `componentDidUpdate` чи функцію зворотнього виклику `setState` (`setState(updater, callback)`), обидва підходи гарантовано запустяться після застосування оновлення. Якщо вам потрібно оновити стан на основі поперенього стану, прочитайте про аргумент `updater` нижче.
 

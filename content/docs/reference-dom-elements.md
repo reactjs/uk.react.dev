@@ -14,7 +14,24 @@ redirect_from:
   - "tips/dangerously-set-inner-html.html"
 ---
 
+<<<<<<< HEAD
 React впроваджує незалежну від браузера систему DOM для продуктивності та сумісності між браузерами. Ми використали цю можливість, щоб згладити кілька гострих кутів у реалізації DOM у браузері.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Common components (e.g. `<div>`)](https://beta.reactjs.org/reference/react-dom/components/common)
+> - [`<input>`](https://beta.reactjs.org/reference/react-dom/components/input)
+> - [`<option>`](https://beta.reactjs.org/reference/react-dom/components/option)
+> - [`<progress>`](https://beta.reactjs.org/reference/react-dom/components/progress)
+> - [`<select>`](https://beta.reactjs.org/reference/react-dom/components/select)
+> - [`<textarea>`](https://beta.reactjs.org/reference/react-dom/components/textarea)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+React implements a browser-independent DOM system for performance and cross-browser compatibility. We took the opportunity to clean up a few rough edges in browser DOM implementations.
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
  У React усі властивості й атрибути DOM (включно з обробниками подій) мають використовувати *camelCase* нотацію. Наприклад, атрибут HTML `tabindex` відповідає атрибуту `tabIndex` у React. Виключенням є лише `aria-*` та `data-*` атрибути, які будуть у нижньому регістрі. Наприклад, ви можете залишити `aria-label` як `aria-label`.
 
@@ -117,7 +134,11 @@ React автоматично додасть суфікс "px" до певних 
 
 Якщо ви використовуєте серверний рендеринг React, зазвичай існує попередження, коли сервер і клієнт відтворюють відмінний вміст. Проте в деяких рідкісних випадках дуже важко або неможливо гарантувати точний збіг. Наприклад, очікується, що часові мітки будуть відрізнятися на сервері і на клієнті.
 
+<<<<<<< HEAD
 Якщо ви встановите `suppressHydrationWarning` на `true`, React не попередить вас про невідповідності атрибутів і вмісту цього елемента. Він працює лише на одному рівні і призначений для використання в якості "аварійного виходу". Будьте обережні з його використанням. Докладніше про гідратацію можна дізнатися в [документації до ReactDOM.hydrate()](/docs/react-dom.html#hydrate).
+=======
+If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrateRoot()` documentation](/docs/react-dom-client.html#hydrateroot).
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 
 ### value {#value}
 
@@ -130,9 +151,15 @@ React автоматично додасть суфікс "px" до певних 
 React завжди надавав JavaScript-орієнтований API для DOM. Оскільки компоненти React часто містять як атрибути користувача, так і пов'язані з DOM пропси, React використовує `camelCase` конвенцію так само, як і DOM API:
 
 ```js
+<<<<<<< HEAD
 <div tabIndex="-1" />      // Так само, як і node.tabIndex DOM API
 <div className="Button" /> // Так само, як і node.className DOM API
 <input readOnly={true} />  // Так само, як і node.readOnly DOM API
+=======
+<div tabIndex={-1} />      // Just like node.tabIndex DOM API
+<div className="Button" /> // Just like node.className DOM API
+<input readOnly={true} />  // Just like node.readOnly DOM API
+>>>>>>> b0ccb47f33e52315b0ec65edb9a49dc4910dd99c
 ```
 
 Ці пропси працюють подібно до відповідних атрибутів HTML, за винятком спеціальних випадків задокументованих вище.
