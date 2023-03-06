@@ -6,7 +6,20 @@ next: hooks-effect.html
 prev: hooks-overview.html
 ---
 
+<<<<<<< HEAD
 *Хуки* — це новинка в React 16.8. Вони дозволяють вам використовувати стан та інші можливості React без написання класу.
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [State: A Component's Memory](https://beta.reactjs.org/learn/state-a-components-memory)
+> - [`useState`](https://beta.reactjs.org/reference/react/useState)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+>>>>>>> ba290ad4e432f47a2a2f88d067dacaaa161b5200
 
 На [початковій сторінці](/docs/hooks-intro.html) ми ознайомились з хуками на цьому прикладі:
 

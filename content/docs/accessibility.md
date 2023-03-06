@@ -226,7 +226,11 @@ class Parent extends React.Component {
 this.inputElement.current.focus();
 ```
 
+<<<<<<< HEAD
 Якщо ви використовуєте КВП щоб розширити компоненти, рекомендується [перенаправляти рефи](/docs/forwarding-refs.html) до обгорнутого компоненту за допомогою React-функції `forwardRef`. Якщо сторонній КВП не реалізує перенаправлення, підхід описаний вище все ще може бути використаний для зворотньої сумісності.
+=======
+When using a [HOC](/docs/higher-order-components.html) to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
+>>>>>>> ba290ad4e432f47a2a2f88d067dacaaa161b5200
 
 В якості чудового прикладу керування фокусом можна використовувати компонент [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). Це доволі рідкий випадок реалізацій повністю доступного модального вікна. Мало того, що він задає початковий фокус
 на кнопці "Скасувати" (заважає користувачеві клавіатури випадково активувати успішну дію) і захоплює фокус клавіатури всередині вікна, він також скидає фокус назад на елемент, який спочатку запустив модальне вікно.
@@ -375,9 +379,15 @@ class BlurExample extends React.Component {
 
 Кожен з таких компонентів наслідує спеціальний шаблон дизайну, та має функціонувати певним чином незалежно від користувача та агента користувача (браузера):
 
+<<<<<<< HEAD
 - [Практичні рекомендації WAI-ARIA по архітектурі та компонентам](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
 - [Приклади з блоґа Хейдона Піккерінга (Heydon Pickering)](https://heydonworks.com/practical_aria_examples/)
 - [Інклюзивні компоненти](https://inclusive-components.design/)
+=======
+- [ARIA Authoring Practices Guide (APG) - Design Patterns and Examples](https://www.w3.org/WAI/ARIA/apg/patterns/)
+- [Heydon Pickering - ARIA Examples](https://heydonworks.com/article/practical-aria-examples/)
+- [Inclusive Components](https://inclusive-components.design/)
+>>>>>>> ba290ad4e432f47a2a2f88d067dacaaa161b5200
 
 ## На що ще потрібно звернути увагу {#other-points-for-consideration}
 
@@ -403,7 +413,11 @@ class BlurExample extends React.Component {
 - [Все про контрастність кольорів і чому ви маєте переосмислити ваш підхід до неї](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
 - [A11yProject - що таке контрастність кольорів](https://a11yproject.com/posts/what-is-color-contrast/)
 
+<<<<<<< HEAD
 Ручний розрахунок правильних поєднань кольорів для усіх випадків на вашому веб-сайті може бути досить важким. Замість цього ви можете [визначити всю доступну палітру кольорів за допомогою Colorable](https://jxnblk.com/colorable/).
+=======
+It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://colorable.jxnblk.com/).
+>>>>>>> ba290ad4e432f47a2a2f88d067dacaaa161b5200
 
 Згадані нижче інструменти aXe та WAVE також включають тести на контрастність кольорів та повідомлять про помилки.
 
@@ -452,7 +466,11 @@ Deque Systems пропонує [aXe-core](https://github.com/dequelabs/axe-core)
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) або aXe - це інспектор доступності в браузері на базі `aXe-core`.
 
+<<<<<<< HEAD
 Ви також можете використовувати модуль [react-axe](https://github.com/dylanb/react-axe), щоб бачити повідомлення про проблеми доступності у консолі безпосередньо під час розробки та перевірки помилок.
+=======
+You can also use the [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react) module to report these accessibility findings directly to the console while developing and debugging.
+>>>>>>> ba290ad4e432f47a2a2f88d067dacaaa161b5200
 
 #### WebAIM WAVE {#webaim-wave}
 
