@@ -377,7 +377,6 @@ let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
-  // container *must* be attached to document so events work correctly.
   document.body.appendChild(container);
 });
 
@@ -394,7 +393,7 @@ it("changes value when clicked", () => {
     render(<Toggle onChange={onChange} />, container);
   });
 
-  // get ahold of the button element, and trigger some clicks on it
+  // get a hold of the button element, and trigger some clicks on it
   const button = document.querySelector("[data-testid=toggle]");
   expect(button.innerHTML).toBe("Turn on");
 
@@ -416,7 +415,7 @@ it("changes value when clicked", () => {
 });
 ```
 
-Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
+Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the root.
 
 > Note:
 >
@@ -466,13 +465,12 @@ import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
-jest.useFakeTimers();
-
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  jest.useFakeTimers();
 });
 
 afterEach(() => {
@@ -480,6 +478,7 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  jest.useRealTimers();
 });
 
 it("should select null after timing out", () => {
@@ -606,7 +605,7 @@ It's typically better to make more specific assertions than to use snapshots. Th
 
 ### Multiple Renderers {#multiple-renderers}
 
-In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `ReactDOM.render` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `render` from `react-dom` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";

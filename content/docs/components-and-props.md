@@ -16,7 +16,20 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+<<<<<<< HEAD
 Компоненти дозволяють розділити інтерфейс користувача на незалежні частини, придатні до повторного використання, і сприймати їх як такі, що функціонують окремо один від одного. На цій сторінці викладений вступ до ідеї компонентів. Ви можете знайти [докладний опис API компонентів тут](/docs/react-component.html).
+=======
+> Try the new React documentation.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Your First Component](https://beta.reactjs.org/learn/your-first-component)
+> - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 Концептуально компоненти є подібними до функцій JavaScript. Вони приймають довільні вхідні дані (так звані "пропси") і повертають React-елементи, що описують те, що повинно з'явитися на екрані.
 
@@ -64,11 +77,12 @@ const element = <Welcome name="Василина" />;
 
 Наприклад, код нижче виводить на сторінці "Привіт, Василина":
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Привіт, {props.name}</h1>;
 }
 
+<<<<<<< HEAD
 const element = <Welcome name="Василина" />;
 ReactDOM.render(
   element,
@@ -77,13 +91,28 @@ ReactDOM.render(
 ```
 
 [Спробуйте на CodePen](codepen://components-and-props/rendering-a-component)
+=======
+const root = ReactDOM.createRoot(document.getElementById('root'));
+const element = <Welcome name="Sara" />;
+root.render(element);
+```
+
+**[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 Давайте розберемо, що відбувається в цьому прикладі:
 
+<<<<<<< HEAD
 1. Ми викликаємо `ReactDOM.render()` з елементом `<Welcome name="Василина" />`.
 2. React викликає компонент `Welcome` з пропсом `{name: 'Василина'}`.
 3. `Welcome` компонент повертає елемент `<h1>Привіт, Василина</h1>`.
 4. React DOM ефективно оновлює DOM для отримання `<h1>Привіт, Василина</h1>`.
+=======
+1. We call `root.render()` with the `<Welcome name="Sara" />` element.
+2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
+3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
+4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 >**Примітка:** Завжди починайте писати імена компонентів з великої літери.
 >
@@ -111,14 +140,13 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://components-and-props/composing-components)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 Як правило, нові React-додатки мають єдиний компонент `App`, що знаходиться зверху дерева ієрархій елементів. Однак, якщо ви інтегруєте React у існуючий додаток, ви можете почати знизу вгору з невеликим компонентом, наприклад `Button`, і поступово працювати у верхній частині ієрархії перегляду.
 
@@ -152,7 +180,11 @@ function Comment(props) {
 }
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://components-and-props/extracting-components)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/VKQwEo?editors=1010)**
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 Він приймає `author` (об'єкт), `text` (рядок) і `date` (дату) як пропси і представляє собою коментар в соціальній мережі.
 
@@ -231,7 +263,11 @@ function Comment(props) {
 }
 ```
 
+<<<<<<< HEAD
 [Спробуйте на CodePen](codepen://components-and-props/extracting-components-continued)
+=======
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 Розбиття компонентів може здатися спочатку невдячною роботою. Проте, у великих додатках така велика кількість багаторазових компонентів є дуже корисною. Суть в тому, що якщо частина вашого інтерфейсу використовується кілька разів (`Button`,`Panel`, `Avatar`), або сама собою досить складна (`App`, `FeedStory`,`Comment`), краще винести її в окремий компонент.
 

@@ -19,9 +19,17 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 з npm
 
 > Примітка:
 >
+<<<<<<< HEAD
 > Ми рекомендуємо використовувати [React Testing Library](https://git.io/react-testing-library), котра спроектована для заохочення написання тестів та використовує ваші компоненти так, як це роблять кінцеві користувачі.
 >
 > Альтернативно, Airbnb випустила тестову утиліту, що називається [Enzyme](http://airbnb.io/enzyme/), котра легко дозволяє затверджувати, маніпулювати і переміщувати вихідні дані ваших React-компонентів.
+=======
+> We recommend using [React Testing Library](https://testing-library.com/react) which is designed to enable and encourage writing tests that use your components as the end users do.
+> 
+> For React versions <= 16, the [Enzyme](https://airbnb.io/enzyme/) library makes it easy to assert, manipulate, and traverse your React Components' output.
+
+
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
  - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
@@ -87,7 +95,7 @@ class Counter extends React.Component {
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -106,7 +114,7 @@ afterEach(() => {
 it('може відображатися та оновлювати лічильник', () => {
   // Тестуємо перший render та componentDidMount
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -141,7 +149,11 @@ mockComponent(
 
 > Примітка:
 >
+<<<<<<< HEAD
 > `mockComponent()` — застарілий API. Ми рекомендуємо використовувати [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock).
+=======
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://jestjs.io/docs/tutorial-react-native#mock-native-modules-using-jestmock) instead.
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 * * *
 
@@ -302,7 +314,7 @@ renderIntoDocument(element)
 
 ```js
 const domContainer = document.createElement('div');
-ReactDOM.render(element, domContainer);
+ReactDOM.createRoot(domContainer).render(element);
 ```
 
 > Примітка:

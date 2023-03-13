@@ -18,7 +18,17 @@ redirect_from:
   - "docs/environments.html"
 ---
 
+<<<<<<< HEAD
 В даному розділі ми оглянемо документацію React та пов'язані з ним ресурси.
+=======
+> Try the new React documentation.
+> 
+> The new [Quick Start](https://beta.reactjs.org/learn) teaches modern React and includes live examples.
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+This page is an overview of the React documentation and related resources.
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 **React** — це JavaScript-бібліотека для створення інтерфейсів користувача. Відвідайте [нашу головну сторінку](/) або [вступ](/tutorial/tutorial.html), аби скласти перше враження про React.
 
@@ -36,9 +46,15 @@ redirect_from:
 
 ### Онлайн-пісочниці {#online-playgrounds}
 
+<<<<<<< HEAD
 Хочете погратися з React? Скористайтеся онлайн-пісочницями. Спробуйте початковий шаблон на [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) або [Stackblitz](https://stackblitz.com/fork/react).
 
 Віддаєте перевагу вашому улюбленому редактору коду? Тоді ви можете [завантажити даний HTML-файл](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), відредагувати та відкрити його у вашому браузері. Даний шаблон трансформує JSX у JavaScript під час запуску . Однак, доволі повільно, тому ми рекомендуємо використовувати даний файл тільки для простих демонстраційних прикладів.
+=======
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), or [Stackblitz](https://stackblitz.com/fork/react).
+
+If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 ### Додаємо React до сайту {#add-react-to-a-website}
 
@@ -115,7 +131,11 @@ redirect_from:
 
 Ви також можете підписатись на [профіль @reactjs](https://twitter.com/reactjs) у Twitter, однак ви не пропустите нічого важливого, якщо будете слідкувати тільки за блогом.
 
+<<<<<<< HEAD
 У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/master/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react/releases).
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/main/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react/releases) page.
+>>>>>>> 19aa5b4852c3905757edb16dd62f7e7506231210
 
 ## Документація старих версій React {#versioned-documentation}
 
