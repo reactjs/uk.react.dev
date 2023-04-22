@@ -4,6 +4,16 @@ title: Запобіжники
 permalink: docs/error-boundaries.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`: Catching rendering errors with an error boundary](https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary)
+
+</div>
+
 Раніше помилки JavaScript всередині компонентів призводили до пошкодження внутрішнього стану бібліотеки React та спричиняли [видачу](https://github.com/facebook/react/issues/4026) [незрозумілих](https://github.com/facebook/react/issues/6895) [помилок](https://github.com/facebook/react/issues/8579) під час наступних рендерів. Ці помилки були завжди спричинені попереднью помилкою в коді програми. React не надавав можливості вчасно їх опрацювати в компонентах та не міг відновитися після них.
 
 

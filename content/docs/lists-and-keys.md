@@ -6,6 +6,17 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Rendering Lists](https://react.dev/learn/rendering-lists)
+
+</div>
+
+
 Для початку згадаймо, як перетворювати списки у JavaScript.
 
 У коді, наведеному нижче, ми використовуємо функцію [`map()`](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/map), щоб подвоїти значення в масиві `numbers`. Ми призначаємо новий масив, що повертається з `map()` до змінної `doubled` і виводимо її в консоль:
@@ -36,10 +47,7 @@ const listItems = numbers.map((number) =>
 Тепер ми включимо масив `listItems` цілком всередину елемента `<ul>`, і [будемо рендерити його у DOM](/docs/rendering-elements.html#rendering-an-element-into-the-dom):
 
 ```javascript{2}
-ReactDOM.render(
-  <ul>{listItems}</ul>,
-  document.getElementById('root')
-);
+<ul>{listItems}</ul>
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
@@ -64,10 +72,8 @@ function NumberList(props) {
 }
 
 const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<NumberList numbers={numbers} />);
 ```
 
 Коли ви запустите цей код, ви отримаєте попередження, що для елементів списку має бути вказано ключ. "Ключ" - це спеціальний рядковий атрибут, який потрібно вказувати при створенні списку елементів. Ми обговоримо, чому це важливо, у наступній секції.
@@ -86,12 +92,6 @@ function NumberList(props) {
     <ul>{listItems}</ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
@@ -130,7 +130,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-Ми не рекомендуємо використовувати індекси для ключів, якщо порядок елементів може змінюватися. Це може негативно вплинути на продуктивність та може викликати проблеми зі станом компонента. Почитайте статтю Робіна Покорни (Robin Pokorny), [яка досконало пояснює, чому індекси-ключі призводять до проблем](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). Якщо ви вирішите не призначати ключ для елемента в списку, то React за замовчуванням буде використовувати індекси як ключі.
+Ми не рекомендуємо використовувати індекси для ключів, якщо порядок елементів може змінюватися. Це може негативно вплинути на продуктивність та може викликати проблеми зі станом компонента. Почитайте статтю Робіна Покорни (Robin Pokorny), [яка досконало пояснює, чому індекси-ключі призводять до проблем](https://robinpokorny.com/blog/index-as-a-key-is-an-anti-pattern/). Якщо ви вирішите не призначати ключ для елемента в списку, то React за замовчуванням буде використовувати індекси як ключі.
 
 Якщо ви зацікавлені в отриманні додаткової інформації - ось [детальне пояснення того, чому ключі необхідні](/docs/reconciliation.html#recursing-on-children).
 
@@ -165,12 +165,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 **Приклад вірного використання ключів**
@@ -193,12 +187,6 @@ function NumberList(props) {
     </ul>
   );
 }
-
-const numbers = [1, 2, 3, 4, 5];
-ReactDOM.render(
-  <NumberList numbers={numbers} />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
@@ -239,10 +227,9 @@ const posts = [
   {id: 1, title: 'Привіт, світе', content: 'Ласкаво просимо до вивчення React!'},
   {id: 2, title: 'Установка', content: 'React можна встановити через npm.'}
 ];
-ReactDOM.render(
-  <Blog posts={posts} />,
-  document.getElementById('root')
-);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Blog posts={posts} />);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)

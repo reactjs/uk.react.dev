@@ -2,22 +2,29 @@
 id: hello-world
 title: Привіт, світе
 permalink: docs/hello-world.html
-prev: cdn-links.html
+prev: release-channels.html
 next: introducing-jsx.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Quick Start](https://react.dev/learn) for an introduction to React.
+
+</div>
+
 Найменший приклад React виглядає наступним чином:
 
-```js
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('root')
-);
+```jsx
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<h1>Hello, world!</h1>);
 ```
 
 На сторінці з'явиться заголовок "Hello, world!"
 
-[](codepen://hello-world)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/rrpgNB?editors=1010)**
 
 Натисніть на посилання вище, щоб відкрити онлайн-редактор. Спробуйте відредагувати код і подивіться, як зміниться результат. Більшість сторінок цього посібника матимуть такі інтерактивні приклади.
 

@@ -403,7 +403,7 @@ class BlurExample extends React.Component {
 - [Все про контрастність кольорів і чому ви маєте переосмислити ваш підхід до неї](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
 - [A11yProject - що таке контрастність кольорів](https://a11yproject.com/posts/what-is-color-contrast/)
 
-Ручний розрахунок правильних поєднань кольорів для усіх випадків на вашому веб-сайті може бути досить важким. Замість цього ви можете [визначити всю доступну палітру кольорів за допомогою Colorable](https://jxnblk.com/colorable/).
+Ручний розрахунок правильних поєднань кольорів для усіх випадків на вашому веб-сайті може бути досить важким. Замість цього ви можете [визначити всю доступну палітру кольорів за допомогою Colorable](https://colorable.jxnblk.com/).
 
 Згадані нижче інструменти aXe та WAVE також включають тести на контрастність кольорів та повідомлять про помилки.
 
@@ -452,7 +452,7 @@ Deque Systems пропонує [aXe-core](https://github.com/dequelabs/axe-core)
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) або aXe - це інспектор доступності в браузері на базі `aXe-core`.
 
-Ви також можете використовувати модуль [react-axe](https://github.com/dylanb/react-axe), щоб бачити повідомлення про проблеми доступності у консолі безпосередньо під час розробки та перевірки помилок.
+Ви також можете використовувати модуль [@axe-core/react](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/react), щоб бачити повідомлення про проблеми доступності у консолі безпосередньо під час розробки та перевірки помилок.
 
 #### WebAIM WAVE {#webaim-wave}
 

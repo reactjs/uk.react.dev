@@ -4,6 +4,12 @@ title: React без JSX
 permalink: docs/react-without-jsx.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 JSX не є вимогою для роботи з React. Використання React без JSX є найзручнішим тоді, коли ви не бажаєте налаштовувати компіляцію у вашому середовищі збірки.
 
 Кожен JSX-елемент являє собою "синтаксичний цукор" для виклику `React.createElement(component, props, ...children)`. Отже, все що можна зробити за допомогою JSX, може також бути виконаним на чистому JavaScript.
@@ -17,10 +23,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <Hello toWhat="світе" />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Hello toWhat="світе" />);
 ```
 
 Його можна переписати таким чином, що JSX не буде використовуватися:
@@ -32,10 +36,8 @@ class Hello extends React.Component {
   }
 }
 
-ReactDOM.render(
-  React.createElement(Hello, {toWhat: 'світе'}, null),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(Hello, {toWhat: 'світе'}, null));
 ```
 
 Якщо ви зацікавлені в інших прикладах того, як JSX компілюється в JavaScript-код, спробуйте [онлайн Babel-компілятор](babel://jsx-simple-example).
@@ -47,10 +49,8 @@ ReactDOM.render(
 ```js
 const e = React.createElement;
 
-ReactDOM.render(
-  e('div', null, 'Привіт, світе'),
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(e('div', null, 'Привіт, світе'));
 ```
 
 Якщо ви використаєте дане скорочення для `React.createElement`, то робота з React без JSX буде такою ж зручною.

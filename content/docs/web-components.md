@@ -6,6 +6,14 @@ redirect_from:
   - "docs/webcomponents.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> See [Custom HTML elements](https://react.dev/reference/react-dom/components#custom-html-elements) in the new docs.
+>
+</div>
+
 React та [веб-компоненти](https://developer.mozilla.org/en-US/docs/Web/Web_Components) створені для вирішення різних проблем.  Веб-компоненти забезпечують надійну інкапсуляцію для повторно використовуваних компонентів, в той час як React надає декларативну бібліотеку для синхронізації даних з DOM. Дві цілі доповнюють одна одну. Як розробник, ви можете використовувати React у своїх веб-компонентах, або використовувати веб-компоненти у React, або і те, і інше.
 
 Більшість React-розробників не використовують веб-компоненти, але у вас може з'явитися бажання спробувати їх. Наприклад, якщо ваш проект використовує сторонні UI-компоненти, написані за допомогою веб-компонентів.
@@ -50,7 +58,8 @@ class XSearch extends HTMLElement {
 
     const name = this.getAttribute('name');
     const url = 'https://www.google.com/search?q=' + encodeURIComponent(name);
-    ReactDOM.render(<a href={url}>{name}</a>, mountPoint);
+    const root = ReactDOM.createRoot(mountPoint);
+    root.render(<a href={url}>{name}</a>);
   }
 }
 customElements.define('x-search', XSearch);

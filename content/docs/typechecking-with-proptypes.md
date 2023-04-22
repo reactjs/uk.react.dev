@@ -6,6 +6,14 @@ redirect_from:
   - "docs/react-api.html#typechecking-with-proptypes"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> PropTypes aren't commonly used in modern React. Use TypeScript for static type checking.
+
+</div>
+
 > Примітка:
 >
 > `React.PropTypes` переміщено в інший пакет починаючи з React версії 15.5. Будь ласка, надалі замість нього використовуйте [бібліотеку `prop-types`](https://www.npmjs.com/package/prop-types).
@@ -88,7 +96,7 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
-  
+
   // An object with warnings on extra properties
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
@@ -173,10 +181,8 @@ Greeting.defaultProps = {
 };
 
 // Рендерить "Привіт, Незнайомець":
-ReactDOM.render(
-  <Greeting />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example')); 
+root.render(<Greeting />);
 ```
 
 Якщо ви використовуєте Babel-плагін для трансформації коду [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/), то ви можете задати `defaultProps` як статичну властивість класу React-компонента. Цей синтаксис ще поки не затверджено і він буде потребувати кроку компіляції для того, щоб ваш компонент працював у браузері. Щоб дізнатись більше, дивіться [пропозицію про поля класу](https://github.com/tc39/proposal-class-fields).
@@ -196,3 +202,47 @@ class Greeting extends React.Component {
 ```
 
 Властивість `defaultProps` гарантує, що `this.props.name` матиме значення, навіть якщо воно не було задане батьківським компонентом. Перевірка типів `propTypes` відбувається після застосування `defaultProps`, тобто вона також буде застосована для `defaultProps`.
+
+### Function Components {#function-components}
+
+If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be properly applied.
+
+Let's say you have a component like this:
+
+```javascript
+export default function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+```
+
+To add PropTypes, you may want to declare the component in a separate function before exporting, like this:
+
+```javascript
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+export default HelloWorldComponent
+```
+
+Then, you can add PropTypes directly to the `HelloWorldComponent`:
+
+```javascript
+import PropTypes from 'prop-types'
+
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+HelloWorldComponent.propTypes = {
+  name: PropTypes.string
+}
+
+export default HelloWorldComponent
+```

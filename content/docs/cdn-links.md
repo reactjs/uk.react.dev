@@ -6,21 +6,30 @@ prev: create-a-new-react-app.html
 next: release-channels.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) for the recommended ways to add React.
+
+</div>
+
 Як React, так і ReactDOM доступні через CDN.
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 ```
 
 Зазначені вище версії призначені тільки при розробці програми, але не підходять для використання в продакшн-оточенні. Мініфіковані та оптимізовані для продакшн версії React перераховані нижче:
 
 ```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
-Щоб завантажити конкретну версію `react` та `react-dom`, замініть `16` на номер версії, яка вам потрібна.
+Щоб завантажити конкретну версію `react` та `react-dom`, замініть `18` на номер версії, яка вам потрібна.
 
 ### Для чого атрибут `crossorigin`? {#why-the-crossorigin-attribute}
 

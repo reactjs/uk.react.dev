@@ -13,6 +13,19 @@ redirect_from:
   - "docs/top-level-api-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`react`: Components](https://react.dev/reference/react/components)
+> - [`react`: Hooks](https://react.dev/reference/react/)
+> - [`react`: APIs](https://react.dev/reference/react/apis)
+> - [`react`: Legacy APIs](https://react.dev/reference/react/legacy)
+
+</div>
+
 `React` є точкою входу у бібліотеку React. Якщо ви завантажуєте React з тега `<script>`, API верхнього рівня доступні в глобальному об'єкті `React`. Якщо ви використовуєте ES6 разом із npm, ви можете написати `import React from 'react'`, якщо ES5 -- `var React = require('react')`.
 
 ## Огляд {#overview}
@@ -65,6 +78,13 @@ React-компоненти також можуть бути визначені �
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Transitions {#transitions}
+
+*Transitions* are a new concurrent feature introduced in React 18. They allow you to mark updates as transitions, which tells React that they can be interrupted and avoid going back to Suspense fallbacks for already visible content.
+
+- [`React.startTransition`](#starttransition)
+- [`React.useTransition`](/docs/hooks-reference.html#usetransition)
+
 ### Хуки {#hooks}
 
 *Хуки* є новим доповненням у React 16.8. Вони дозволяють вам використовувати стан та інші React особливості без написання класу. Хукам [присвячено секцію в документації](/docs/hooks-intro.html) та окремий API довідник:
@@ -81,12 +101,26 @@ React-компоненти також можуть бути визначені �
   - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+  - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
+  - [`useTransition`](/docs/hooks-reference.html#usetransition)
+  - [`useId`](/docs/hooks-reference.html#useid)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
+  - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 
 ## Довідка {#reference}
 
 ### `React.Component` {#reactcomponent}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Component`](https://react.dev/reference/react/Component).
+
+</div>
 
 `React.Component` є базовим класом для React-компонентів, коли вони визначені за допомогою [ES6 класів](https://developer.mozilla.org/uk/docs/Web/JavaScript/Reference/Classes):
 
@@ -104,19 +138,35 @@ class Greeting extends React.Component {
 
 ### `React.PureComponent` {#reactpurecomponent}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`PureComponent`](https://react.dev/reference/react/PureComponent).
+
+</div>
+
 `React.PureComponent` подібний до [`React.Component`](#reactcomponent). Різниця між ними тільки в тому, що [`React.Component`](#reactcomponent) не реалізує [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), а `React.PureComponent` реалізує його через поверхове порівняння пропсів та стану.
 
 Якщо метод `render()` компонента React відображає той самий результат з тими самими пропсами та станом, ви можете використовувати `React.PureComponent` для підвищення продуктивності у деяких випадках.
 
 > Примітка
 >
-> Метод `shouldComponentUpdate()` класу `React.PureComponent` тільки поверхово порівнює об'єкти. Якщо вони містять складні структури даних, це може призвести до помилкових спрацьовувань під час більш глибокого порівняння. Розширюйте `PureComponent` тільки тоді, коли ви очікуєте на прості пропси та стан, або використовуйте [`forceUpdate()`](/docs/react-component.html#forceupdate), коли ви знаєте, що структури даних змінилися. Або розгляньте можливісь застосування [незмінних об'єктів](https://facebook.github.io/immutable-js/) для спрощення швидкого порівняння вкладених даних.
+> Метод `shouldComponentUpdate()` класу `React.PureComponent` тільки поверхово порівнює об'єкти. Якщо вони містять складні структури даних, це може призвести до помилкових спрацьовувань під час більш глибокого порівняння. Розширюйте `PureComponent` тільки тоді, коли ви очікуєте на прості пропси та стан, або використовуйте [`forceUpdate()`](/docs/react-component.html#forceupdate), коли ви знаєте, що структури даних змінилися. Або розгляньте можливісь застосування [незмінних об'єктів](https://immutable-js.com/) для спрощення швидкого порівняння вкладених даних.
 >
 > Крім того, метод `shouldComponentUpdate()` класу `React.PureComponent` пропускає оновлення пропсів для всього піддерева компоненту. Впевніться, що всі дочірні компоненти також "чисті".
 
 * * *
 
 ### `React.memo` {#reactmemo}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`memo`](https://react.dev/reference/react/memo).
+
+</div>
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -156,6 +206,14 @@ export default React.memo(MyComponent, areEqual);
 
 ### `createElement()` {#createelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createElement`](https://react.dev/reference/react/createElement).
+
+</div>
+
 ```javascript
 React.createElement(
   type,
@@ -172,10 +230,18 @@ React.createElement(
 
 ### `cloneElement()` {#cloneelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`cloneElement`](https://react.dev/reference/react/cloneElement).
+
+</div>
+
 ```
 React.cloneElement(
   element,
-  [props],
+  [config],
   [...children]
 )
 ```
@@ -188,13 +254,21 @@ React.cloneElement(
 <element.type {...element.props} {...props}>{children}</element.type>
 ```
 
-Проте, він також зберігає посилання. Це означає, що якщо ви отримаєте потомка з атрибутом `ref`, ви не зможете випадково вкрасти його у свого предка. Ви отримаєте той самий `ref`, доданий до вашого нового елемента.
+Проте, він також зберігає посилання. Це означає, що якщо ви отримаєте потомка з атрибутом `ref`, ви не зможете випадково вкрасти його у свого предка. Ви отримаєте той самий `ref`, доданий до вашого нового елемента. The new `ref` or `key` will replace old ones if present.
 
 Цей API був впроваджений як заміна застарілого `React.addons.cloneWithProps()`.
 
 * * *
 
 ### `createFactory()` {#createfactory}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createFactory`](https://react.dev/reference/react/createFactory).
+
+</div>
 
 ```javascript
 React.createFactory(type)
@@ -210,6 +284,14 @@ React.createFactory(type)
 
 ### `isValidElement()` {#isvalidelement}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`isValidElement`](https://react.dev/reference/react/isValidElement).
+
+</div>
+
 ```javascript
 React.isValidElement(object)
 ```
@@ -219,6 +301,14 @@ React.isValidElement(object)
 * * *
 
 ### `React.Children` {#reactchildren}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Children`](https://react.dev/reference/react/Children).
+
+</div>
 
 `React.Children` надає утиліти для роботи з непрозорою структурою даних `this.props.children`.
 
@@ -278,6 +368,14 @@ React.Children.toArray(children)
 
 ### `React.Fragment` {#reactfragment}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Fragment`](https://react.dev/reference/react/Fragment).
+
+</div>
+
 Компонент `React.Fragment` доволяє вам повертати множину елементів у методі `render()` без створення додаткового DOM елемента:
 
 ```javascript
@@ -296,10 +394,26 @@ render() {
 
 ### `React.createRef` {#reactcreateref}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`createRef`](https://react.dev/reference/react/createRef).
+
+</div>
+
 `React.createRef` створює [посилання](/docs/refs-and-the-dom.html), яке може бути додане до елемента React через ref атрибут.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
 ### `React.forwardRef` {#reactforwardref}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`forwardRef`](https://react.dev/reference/react/forwardRef).
+
+</div>
 
 `React.forwardRef` створює React-компонент, що передає атрибут [ref](/docs/refs-and-the-dom.html), який він отримав, іншому компоненту, розташованому нижче у дереві. Цей прийом не дуже поширений, але він особливо корисний у двох випадках:
 
@@ -318,6 +432,14 @@ render() {
 
 ### `React.lazy` {#reactlazy}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`lazy`](https://react.dev/reference/react/lazy).
+
+</div>
+
 `React.lazy()` дає вам змогу визначити компонент, що динамічно завантажується. Це допомагає зменшити розмір бандлу шляхом затримки рендерингу компонентів, які не використовуються під час початкового рендерингу.
 
 Більш детальіше ви можете дізнатися у розділі документації про [розділення коду](/docs/code-splitting.html#reactlazy), а також прочитавши [дану статтю](https://medium.com/@pomber/lazy-loading-and-preloading-components-in-react-16-6-804de091c82d).
@@ -329,11 +451,15 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Зверніть увагу, що рендеринг `lazy` компонентів потребує наявності компонента `<React.Suspense>`, розташованого вище у дереві рендерингу. Таким чином ви можете вказати індикатор завантаження.
 
-> **Примітка**
->
-> Використання `React.lazy` з динамічним імпортом вимагає підтримки промісів від вашого JS оточення. Для IE11 та нижче, потрібно використовувати polyfill.
-
 ### `React.Suspense` {#reactsuspense}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`Suspense`](https://react.dev/reference/react/Suspense).
+
+</div>
 
 `React.Suspense` дозволяє вам вказати індикатор завантаження у випадку, якщо деякі компоненти у дереві нижче ще не готові до рендерингу. Сьогодні, ледаче завантаження компонентів — це **єдиний** варіант використання, що підтримується `<React.Suspense>`:
 
@@ -355,8 +481,36 @@ function MyComponent() {
 
 Це задокументовано у розділі про [розділення коду](/docs/code-splitting.html#reactlazy). Зауважте, що `lazy` компоненти можуть бути розташовані глибоко всередині дерева `Suspense` -- йому не обов'язково обгортати кожнен з них. Найкраще розміщувати `<Suspense>` там, де ви хочете бачити індикатор завантаження, але `lazy()` використовувати всюди, де ви хочете розділити код.
 
-Хоча це і не підтримується на даний час, в майбутньому ми плануємо дати можливість `Suspense` обробляти більше сценаріїв, наприклад, вибірку даних. Ви можете прочитати про це у [нашому плані дій](/blog/2018/11/27/react-16-roadmap.html).
-
->Примітка:
+> Note
 >
->`ReactDOMServer` не підтримує `React.lazy()` та `<React.Suspense>`. Це відоме обмеження буде вирішено в майбутньому.
+> For content that is already shown to the user, switching back to a loading indicator can be disorienting. It is sometimes better to show the "old" UI while the new UI is being prepared. To do this, you can use the new transition APIs [`startTransition`](#starttransition) and [`useTransition`](/docs/hooks-reference.html#usetransition) to mark updates as transitions and avoid unexpected fallbacks.
+
+#### `React.Suspense` in Server Side Rendering {#reactsuspense-in-server-side-rendering}
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
+
+#### `React.Suspense` during hydration {#reactsuspense-during-hydration}
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+
+### `React.startTransition` {#starttransition}
+
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`startTransition`](https://react.dev/reference/react/startTransition).
+
+</div>
+
+```js
+React.startTransition(callback)
+```
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+
+> Примітка:
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transition will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).

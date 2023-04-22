@@ -6,6 +6,17 @@ redirect_from:
   - "docs/advanced-performance.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`memo`: Skipping re-rendering when props are unchanged
+](https://react.dev/reference/react/memo#skipping-re-rendering-when-props-are-unchanged)
+
+</div>
+
 React за лаштунками використовує кілька розумних підходів для мінімізації кількості вартісних DOM-операцій, необхідних для оновлення користувацького інтерфейсу. Для більшості додатків, використання React дозволить мати швидкий інтерфейс без докладання особливих зусиль для оптимізації продуктивності. Не дивлячись на це, існує кілька шляхів для прискорення швидкодії вашого React-додатку.
 
 ## Використання продакшн-збірки {#use-the-production-build}
@@ -43,8 +54,8 @@ npm run build
 Ми пропонуємо готові для продакшу версії React та React DOM у вигляді окремих файлів:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 ```
 
 Пам'ятайте, що для продакшну підходять тільки ті файли React, що закінчуються на `.production.min.js`.
@@ -156,32 +167,6 @@ module.exports = {
 
 Пам'ятайте, що це потрібно робити лише для продакшн-збірок. Ви не повинні використовувати `UglifyJsPlugin` чи `TerserPlugin` під час розробки, тому що це приховає корисні попередження від React та сповільнить процес збірки.
 
-## Профілювання компонентів з використанням вкладки Chrome "Performance" {#profiling-components-with-the-chrome-performance-tab}
-
-У режимі **розробки**, ви можете візуалізувати процес монтування, оновлення і демонтування компонентів, використавши інструменти продуктивності у браузерах, що їх підтримують. Наприклад:
-
-<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="React-компоненти на графіку часу в Chrome" /></center>
-
-Щоб зробити це в Chrome:
-
-1. Тимчасово **вимкніть всі розширення Chrome, особливо React DevTools**. Вони можуть істотно спотворити резульати!
-
-2. Впевніться, що додаток запущений в режимі розробки.
-
-3. Відкрийте Chrome DevTools, оберіть вкладку **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** та натисніть **Record**.
-
-4. Виконайте дії, які потрібно профілювати. Не записуйте більше 20 секунд, інакше Chrome може зависнути.
-
-5. Зупиніть запис.
-
-6. Події React будуть згруповані під міткою **User Timing**.
-
-Для більш детальних інструкцій перегляньте [цю статтю Бена Шварца (Ben Schwarz)](https://calibreapp.com/blog/react-performance-profiling-optimization).
-
-Зверніть увагу на те, **що ці значення відносні і компоненти в продакшні будуть рендеритись швидше**. Проте це допоможе вам зрозуміти, коли не пов'язані між собою частини інтерфейсу оновлюються через помилку та як глибоко і часто ці оновлення вібдуваються.
-
-Наразі Chrome, Edge та IE є єдиними браузерами, котрі підтримують цю функціональність, але ми використовуємо стандарт [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API), а тому очікуємо, що більше браузерів додадуть її підтримку.
-
 ## Профілювання компонентів з профайлером DevTools {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5+ та `react-native` 0.57+ надають додаткові можливості профілювання в режимі розробки з використанням профайлера React DevTools.
@@ -198,6 +183,11 @@ module.exports = {
 >
 > Продакшн-збірка профілювання для `react-dom` також доступна як `react-dom/profiling`.
 > Докладніше про її використання ви можете дізнатись за посиланням [fb.me/react-profiling](https://fb.me/react-profiling)
+
+> Note
+>
+> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab.
+> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
 
 ## Віртуалізація довгих списків {#virtualize-long-lists}
 
@@ -379,7 +369,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-Ця функція була додана до JavaScript у ES2018. 
+Ця функція була додана до JavaScript у ES2018.
 
 Якщо ви використовуєте Create React App, то `Object.assign` та розпакування об'єктів доступні за замовчуванням.
 

@@ -5,6 +5,14 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> The new documentation pages teaches React with Hooks.
+
+</div>
+
 *Хуки* — це новинка в React 16.8. Вони дозволяють вам використовувати стан та інші можливості React без написання класу.
 
 На цій сторінці ви знайдете відповіді на деякі поширені питання щодо [хуків](/docs/hooks-overview.html).
@@ -97,8 +105,6 @@ prev: hooks-reference.html
 
 Нашою метою є покриття всіх можливостей класів хуками якнайшвидше. Наразі немає альтернативи у вигляді хуків для таких рідковживаних методів життєвого циклу як `getSnapshotBeforeUpdate`, `getDerivedStateFromError` та `componentDidCatch`, але ми плануємо скоро їх додати.
 
-Оскільки хуки з'явились зовсім нещодавно, то не всі сторонні бібліотеки можуть бути сумісними з ними.
-
 ### Чи замінять хуки рендер пропси та компоненти вищого порядку? {#do-hooks-replace-render-props-and-higher-order-components}
 
 Часто рендер пропси та компоненти вищого порядку рендерять лише одного нащадка. Ми вважаємо, що хуки є простішим шляхом для того, щоб зробити це. Все ще ми можемо використовувати обидва шаблони (наприклад, віртуальний компонент скролінгу може мати проп `renderItem` чи візуальний контейнер може мати власну структуру DOM). Але у більшості випадків, хуків буде достатньо для зменшення кількості вкладень у ващому дереві.
@@ -150,7 +156,7 @@ function Example() {
 
 ```js{3,20-22,29-31}
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { act } from 'react-dom/test-utils';
 import Counter from './Counter';
 
@@ -169,7 +175,7 @@ afterEach(() => {
 it('can render and update a counter', () => {
   // Тестуємо перший рендер і ефект
   act(() => {
-    ReactDOM.render(<Counter />, container);
+    ReactDOM.createRoot(container).render(<Counter />);
   });
   const button = container.querySelector('button');
   const label = container.querySelector('p');
@@ -335,9 +341,7 @@ function useWindowPosition() {
 
 Наразі ви можете зробити це вручну, [використавши реф](#is-there-something-like-instance-variables):
 
-```js{6,8}
-function Counter() {
-  const [count, setCount] = useState(0);
+Sometimes, you need previous props to **clean up an effect.** For example, you might have an effect that subscribes to a socket based on the `userId` prop. If the `userId` prop changes, you want to unsubscribe from the _previous_ `userId` and subscribe to the _next_ one. You don't need to do anything special for this to work:
 
   const prevCountRef = useRef();
   useEffect(() => {
@@ -914,8 +918,6 @@ function DeepChild(props) {
 >Примітка
 >
 >Ми радимо [передавати `dispatch` у контексті вниз](#how-to-avoid-passing-callbacks-down), а не окремих функцій зворотнього виклику в пропсах. Підхід нижче описаний лише для повноти і у якості запасного виходу.
->
->Також зверніть увагу, що цей шаблон може спричинити проблеми у [конкурентному режимі](/blog/2018/03/27/update-on-async-rendering.html). Ми плануємо надати більш зручні альтернативи у майбутньому, але найбезпечнішим рішенням наразі — скасування функції зворотнього виклику при зміні хоча б одного значення від якого він залежить.
 
 У нечастих випадках вам може бути потрібно запам'ятати функцію зворотнього виклику, використавши [`useCallback`](/docs/hooks-reference.html#usecallback), але запам'ятовування не спрацює як слід, тому що внутрішня функція повинна повторно створюватись надто часто. Якщо функція, яку ви запам'ятовуєте, є оброником події і не використовується під час рендерингу, то ви можете [використати реф як змінну екземпляра](#is-there-something-like-instance-variables) і зберегти у ньому останнє значення вручну:
 

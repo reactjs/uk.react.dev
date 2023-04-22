@@ -9,6 +9,16 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Sharing State Between Components](https://react.dev/learn/sharing-state-between-components)
+
+</div>
+
 Часто кілька компонентів повинні відображати одні і ті ж змінювані дані. Ми рекомендуємо підняти спільний стан до їхнього найближчого спільного предка. Давайте подивимося, як це працює.
 
 У цьому розділі ми створимо калькулятор температури, який обчислює, чи буде вода закипати при заданій температурі.
@@ -324,7 +334,7 @@ class Calculator extends React.Component {
 
 Якщо щось може бути обчислене або з пропсів, або зі стану, воно, ймовірно, не повинно бути в стані. Наприклад, замість того, щоб зберігати і `celsiusValue`, і `fahrenheitValue`, ми зберігаємо тільки останню редаговану `temperature` і її `scale`. Значення іншого поля вводу завжди може бути обчислено на їх основі у методі `render()`. Це дозволяє очистити або застосувати округлення до іншого поля без втрати будь-якої точності даних, уведених користувачем.
 
-Коли ви бачите якусь помилку в UI, ви можете скористатися [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) для перевірки пропсів і переміститися вгору по дереву, поки не знайдете компонент, відповідальний за оновлення стану. Це дозволяє відслідковувати джерело помилок:
+Коли ви бачите якусь помилку в UI, ви можете скористатися [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools) для перевірки пропсів і переміститися вгору по дереву, поки не знайдете компонент, відповідальний за оновлення стану. Це дозволяє відслідковувати джерело помилок:
 
 <img src="../images/docs/react-devtools-state.gif" alt="Контроль стану в React DevTools" max-width="100%" height="100%">
 

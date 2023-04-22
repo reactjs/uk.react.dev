@@ -6,109 +6,227 @@ category: Reference
 permalink: docs/react-dom.html
 ---
 
-Якщо ви завантажуєте React з тегу `<script>`, то API верхнього рівня доступні в глобальному об'єкті `ReactDOM`. Якщо ви використовуєте ES6 разом із npm, ви можете написати `import ReactDOM from 'react-dom'`, якщо ES5 -- `var ReactDOM = require('react-dom')`.
+<div class="scary">
 
-## Огляд {#overview}
-
-Пакет `react-dom` надає специфічні для DOM методи, що можуть використовуватись на верхньому рівні вашого додатку, а також як запасний спосіб аби вийти з React моделі, якщо це необхідно. У більшості ваших компонентів вам не потрібно використовувати цей модуль.
-
-- [`render()`](#render)
-- [`hydrate()`](#hydrate)
-- [`unmountComponentAtNode()`](#unmountcomponentatnode)
-- [`findDOMNode()`](#finddomnode)
-- [`createPortal()`](#createportal)
-
-### Підтримка браузерів {#browser-support}
-
-React підтримує всі популярні браузери, в тому числі Internet Explorer 9 і вище, хоча [деякі поліфіли необхідні](/docs/javascript-environment-requirements.html) для старіших браузерів, таких як IE 9 та IE 10.
-
-> Примітка
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
 >
-> Ми не підтримуємо старі версії браузерів, які не підтримують методи ES5, але ви можете помітити, що ваш додаток працює і в них, якщо у вашу сторінку включено такі поліфіли, як [es5-shim та es5-sham](https://github.com/es-shims/es5-shim) включені в сторінку. Це тільки ваш вибір, якщо ви вирішити піти цим шляхом.
+> These new documentation pages teach modern React:
+>
+> - [`react-dom`: Components](https://react.dev/reference/react-dom/components)
+> - [`react-dom`: APIs](https://react.dev/reference/react-dom)
+> - [`react-dom`: Client APIs](https://react.dev/reference/react-dom/client)
+> - [`react-dom`: Server APIs](https://react.dev/reference/react-dom/server)
 
-* * *
+</div>
 
-## Довідка {#reference}
+The `react-dom` package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside the React model if you need to.
 
-### `render()` {#render}
-
-```javascript
-ReactDOM.render(element, container[, callback])
+```js
+import * as ReactDOM from 'react-dom';
 ```
 
-Рендерить React-елемент у наданий `container` у DOM-і і повертає [реф](/docs/more-about-refs.html) на компонент (або повертає `null` для [компонентів без стану](/docs/components-and-props.html#function-and-class-components)).
+If you use ES5 with npm, you can write:
 
-Якщо React-елемент був попередньо відрендерений у `container`, цей метод виконає його оновлення і змінить DOM за необхідністю, щоб відобразити останній варіант React-елемента.
+```js
+var ReactDOM = require('react-dom');
+```
 
-Якщо надано функцію зворотнього виклику, вона буде виконана після того, як компонент відрендериться або оновиться.
+The `react-dom` package also provides modules specific to client and server apps:
+- [`react-dom/client`](/docs/react-dom-client.html)
+- [`react-dom/server`](/docs/react-dom-server.html)
 
-> Примітка:
+## Overview {#overview}
+
+The `react-dom` package exports these methods:
+- [`createPortal()`](#createportal)
+- [`flushSync()`](#flushsync)
+
+These `react-dom` methods are also exported, but are considered legacy:
+- [`render()`](#render)
+- [`hydrate()`](#hydrate)
+- [`findDOMNode()`](#finddomnode)
+- [`unmountComponentAtNode()`](#unmountcomponentatnode)
+
+> Note: 
+> 
+> Both `render` and `hydrate` have been replaced with new [client methods](/docs/react-dom-client.html) in React 18. These methods will warn that your app will behave as if it's running React 17 (learn more [here](https://reactjs.org/link/switch-to-createroot)).
+
+### Browser Support {#browser-support}
+
+React supports all modern browsers, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older versions.
+
+> Note
 >
-> `ReactDOM.render()` контролює вміст вузла контейнера, який ви передаєте. Будь-який наявний DOM-елемент всередині буде замінено під час першого виклику. Наступні виклики використовують React-овий алгоритм різниці DOM-ів для ефективних оновлень.
+> We do not support older browsers that don't support ES5 methods or microtasks such as Internet Explorer. You may find that your apps do work in older browsers if polyfills such as [es5-shim and es5-sham](https://github.com/es-shims/es5-shim) are included in the page, but you're on your own if you choose to take this path.
+
+## Reference {#reference}
+
+### `createPortal()` {#createportal}
+
+<div class="scary">
+
+> This content is out of date.
 >
-> `ReactDOM.render()` не модифікує вузол контейнера (тільки модифікує нащадків). Також можливо вставити компонент у наявний DOM-вузол без перезапису наявних нащадків.
+> Read the new React documentation for [`createPortal`](https://react.dev/reference/react-dom/createPortal).
+
+</div>
+
+```javascript
+createPortal(child, container)
+```
+
+Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).
+
+### `flushSync()` {#flushsync}
+
+<div class="scary">
+
+> This content is out of date.
 >
-> `ReactDOM.render()` наразі повертає посилання на кореневий екземпляр `ReactComponent`. Однак використання значення, що повертається, є застарілим
-> і його потрібно уникати, оскільки майбутні версії React можуть рендерити компоненти асинхронно в деяких випадках. Якщо вам потрібне посилання на корінь екземпляра `ReactComponent` кращим рішенням буде приєднати
-> [реф зворотнього виклику](/docs/more-about-refs.html#the-ref-callback-attribute) до кореневого елементу.
+> Read the new React documentation for [`flushSync`](https://react.dev/reference/react-dom/flushSync).
+
+</div>
+
+```javascript
+flushSync(callback)
+```
+
+Force React to flush any updates inside the provided callback synchronously. This ensures that the DOM is updated immediately.
+
+```javascript
+// Force this state update to be synchronous.
+flushSync(() => {
+  setCount(count + 1);
+});
+// By this point, DOM is updated.
+```
+
+> Note:
+> 
+> `flushSync` can significantly hurt performance. Use sparingly.
+> 
+> `flushSync` may force pending Suspense boundaries to show their `fallback` state.
+> 
+> `flushSync` may also run pending effects and synchronously apply any updates they contain before returning.
+> 
+> `flushSync` may also flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
+
+## Legacy Reference {#legacy-reference}
+### `render()` {#render}
+
+<div class="scary">
+
+> This content is out of date.
 >
-> Використання `ReactDOM.render()` для гідратації відрендерених сервером контейнерів застаріле і буде видалено в React 17. Натомість використовуйте [`hydrate()`](#hydrate).
+> Read the new React documentation for [`render`](https://react.dev/reference/react-dom/render).
+
+</div>
+
+```javascript
+render(element, container[, callback])
+```
+
+> Note:
+>
+> `render` has been replaced with `createRoot` in React 18. See [createRoot](/docs/react-dom-client.html#createroot) for more info.
+
+Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#function-and-class-components)).
+
+If the React element was previously rendered into `container`, this will perform an update on it and only mutate the DOM as necessary to reflect the latest React element.
+
+If the optional callback is provided, it will be executed after the component is rendered or updated.
+
+> Note:
+>
+> `render()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when first called. Later calls use React’s DOM diffing algorithm for efficient updates.
+>
+> `render()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
+>
+> `render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
+> [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
+>
+> Using `render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) instead.
 
 * * *
 
 ### `hydrate()` {#hydrate}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`hydrate`](https://react.dev/reference/react-dom/hydrate).
+
+</div>
+
 ```javascript
-ReactDOM.hydrate(element, container[, callback])
+hydrate(element, container[, callback])
 ```
 
-Такий же як [`render()`](#render), але використовується для гідратації контейнеру, HTML-вміст якого був відрендерений за допомогою [`ReactDOMServer`](/docs/react-dom-server.html). React буде намагатись приєднати слухачі подій до наявної розмітки.
+> Note:
+>
+> `hydrate` has been replaced with `hydrateRoot` in React 18. See [hydrateRoot](/docs/react-dom-client.html#hydrateroot) for more info.
 
-React очікує, що відрендерений вміст ідентичний між сервером та клієнтом. Він може виправляти різницю в текстовому вмісті, але ви повинні трактувати незбіжності як дефекти та виправити їх. У режимі розробника React попереджає про незбіжності під час гідратації. Немає гарантії, що відмінності атрибутів будуть виправлені у випадку незбіжностей. Це важливо з точки зору продуктивності, оскільки в багатьох додатках невідповідності трапляються рідко, тому проведення валідації всієї розмітки буде надзвичайно трудомістким.
+Same as [`render()`](#render), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.
 
-Якщо єдиний атрибут елементу чи текстовий вміст відрізняється між сервером та клієнтом (для прикладу, мітка часу), ви можете відключити попередження, додавши `suppressHydrationWarning={true}` до елементу. Це працює тільки на першому рівні глибини і покликане бути запасним варіантом. Не зловживайте ним. За винятком текстового вмісту, React все ж не буде намагатись виправити його, тому він може залишитись різним до наступних оновлень.
+React expects that the rendered content is identical between the server and the client. It can patch up differences in text content, but you should treat mismatches as bugs and fix them. In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
 
-Якщо вам потрібно відрендерити щось, що відрізняється на сервері та клієнті, ви можете зробити двопрохідний рендеринг. Компоненти, в яких є відмінності в рендерингу на клієнті, можуть читати змінну стану, наприклад, `this.state.isClient`, якій ви можете присвоїти `true` в `componentDidMount()`. Початковий прохід рендеру відрендерить той же вміст, що і на сервері, таким чином уникнувши незбіжностей, а додатковий прохід відбудеться синхронно відразу після гідратації. Зауважте, що такий спосіб зробить компоненти повільнішими, оскільки вони будуть рендеритись двічі, тому використовуйте його обережно.
+If a single element's attribute or text content is unavoidably different between the server and the client (for example, a timestamp), you may silence the warning by adding `suppressHydrationWarning={true}` to the element. It only works one level deep, and is intended to be an escape hatch. Don't overuse it. Unless it's text content, React still won't attempt to patch it up, so it may remain inconsistent until future updates.
 
-Пам’ятайте про те, що користувачу має бути комфортно працювати при повільному з'єднанні. JavaScript-код може завантажитись набагато пізніше, ніж початковий HTML-рендер, тому якщо ви рендерите щось, що відрізняється тільки на стороні клієнта, перехід може бути незлагодженим. Однак, якщо спосіб двопрохідного рендерингу використано вдало, то рендеринг "оболонки" додатку на сервері і показ деяких віджетів лише на клієнті матиме свої переваги. Для того, щоб навчитись це робити і при цьому не отримати незбіжностей у розмітці, зверніться до пояснень у попередньому параграфі.
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a state variable like `this.state.isClient`, which you can set to `true` in `componentDidMount()`. This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration. Note that this approach will make your components slower because they have to render twice, so use it with caution.
+
+Remember to be mindful of user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so if you render something different in the client-only pass, the transition can be jarring. However, if executed well, it may be beneficial to render a "shell" of the application on the server, and only show some of the extra widgets on the client. To learn how to do this without getting the markup mismatch issues, refer to the explanation in the previous paragraph.
 
 * * *
 
 ### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
+<div class="scary">
+
+> This content is out of date.
+>
+> Read the new React documentation for [`unmountComponentAtNode`](https://react.dev/reference/react-dom/unmountComponentAtNode).
+
+</div>
+
 ```javascript
-ReactDOM.unmountComponentAtNode(container)
+unmountComponentAtNode(container)
 ```
 
-Видаляє змонтований React-компонент з DOM-у та очищує обробників подій та стан. Якщо ніякий компонент не було змонтовано в контейнер, виклик цієї функції нічого не робить. Повертає `true`, якщо компонент було демонтовано та `false`, якщо не було ніякого компоненту, який би можна було демонтувати.
+> Note:
+>
+> `unmountComponentAtNode` has been replaced with `root.unmount()` in React 18. See [createRoot](/docs/react-dom-client.html#createroot) for more info.
+
+Remove a mounted React component from the DOM and clean up its event handlers and state. If no component was mounted in the container, calling this function does nothing. Returns `true` if a component was unmounted and `false` if there was no component to unmount.
 
 * * *
 
 ### `findDOMNode()` {#finddomnode}
 
-> Примітка:
+<div class="scary">
+
+> This content is out of date.
 >
-> `findDOMNode` — це запасний спосіб, що використовувався для доступу до базового DOM-вузла. У більшості випадків, використання цього способу не рекомендується, оскільки він порушує абстракцію компоненту. [Він визнаний застарілим в `StrictMode`.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+> Read the new React documentation for [`findDOMNode`](https://react.dev/reference/react-dom/findDOMNode).
+
+</div>
+
+> Note:
+>
+> `findDOMNode` is an escape hatch used to access the underlying DOM node. In most cases, use of this escape hatch is discouraged because it pierces the component abstraction. [It has been deprecated in `StrictMode`.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
 ```javascript
-ReactDOM.findDOMNode(component)
+findDOMNode(component)
 ```
-Якщо цей компонент був змонтований у DOM, цей метод поверне відповідний нативний браузерний DOM-елемент. Цей метод корисний для читання значення з DOM-у, таких як значення полів форми та вимірювань DOM. **У більшості випадків, ви можете приєднати ref до DOM-вузла і уникнути використання `findDOMNode` взагалі.**
+If this component has been mounted into the DOM, this returns the corresponding native browser DOM element. This method is useful for reading values out of the DOM, such as form field values and performing DOM measurements. **In most cases, you can attach a ref to the DOM node and avoid using `findDOMNode` at all.**
 
-Якщо компонент рендериться в `null` або `false`, `findDOMNode` повертає `null`. Коли компонент рендериться в рядок, `findDOMNode` повертає текстовий DOM-вузол, який містить значення. Починаючи з React 16, компонент може повертати фрагмент з декількома дочірніми елементами, в цьому випадку `findDOMNode` поверне DOM-вузол, що відповідає першому не порожньому нащадку.
+When a component renders to `null` or `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value. As of React 16, a component may return a fragment with multiple children, in which case `findDOMNode` will return the DOM node corresponding to the first non-empty child.
 
-> Примітка:
+> Note:
 >
-> `findDOMNode` працює тільки на змонтованих компонентах (тобто таких компонентах, що були розміщені в DOM-і). Якщо ви спробуєте викликати цей метод на компоненті, який ще не було змонтовано (для прикладу, викликати `findDOMNode()` у `render()` методі компоненту, який ще тільки буде створено), то отримаєте помилку.
+> `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created) an exception will be thrown.
 >
-> `findDOMNode` не може використовуватись з функціональними компонентами.
+> `findDOMNode` cannot be used on function components.
 
 * * *
-
-### `createPortal()` {#createportal}
-
-```javascript
-ReactDOM.createPortal(child, container)
-```
-
-Створює портал. Портали надають можливість [рендерити дочірні елементи у DOM-вузол, який існує за межами ієрархії DOM-компонента](/docs/portals.html).

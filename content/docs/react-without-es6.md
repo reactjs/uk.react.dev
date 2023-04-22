@@ -4,6 +4,12 @@ title: React без ES6
 permalink: docs/react-without-es6.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 Зазвичай, ви б оголосили React-компонент у вигляді JavaScript-класу:
 
 ```javascript
@@ -143,11 +149,10 @@ class SayHello extends React.Component {
     super(props);
     this.state = {message: 'Привіт!'};
   }
-  // УВАГА: цей синтаксис є експериментальним!
   // Тут стрілкова функція виконує прив'язку:
   handleClick = () => {
     alert(this.state.message);
-  }
+  };
 
   render() {
     return (
@@ -216,10 +221,8 @@ var TickTock = createReactClass({
   }
 });
 
-ReactDOM.render(
-  <TickTock />,
-  document.getElementById('example')
-);
+const root = ReactDOM.createRoot(document.getElementById('example'));
+root.render(<TickTock />);
 ```
 
 Якщо компонент використовує декілька міксинів і вони визначають одинакові методи життєвого циклу (наприклад, декілька міксинів хочуть виконати очистку коли компонент буде знищеним), всі методи життєвого циклу будуть гарантовано викликані. Методи, визначені на міксинах, запускаються в порядку перерахування міксинів після виклику методу на компоненті.
