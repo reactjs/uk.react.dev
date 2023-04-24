@@ -9,6 +9,18 @@ redirect_from:
   - "docs/forms-zh-CN.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`<input>`](https://react.dev/reference/react-dom/components/input)
+> - [`<select>`](https://react.dev/reference/react-dom/components/select)
+> - [`<textarea>`](https://react.dev/reference/react-dom/components/textarea)
+
+</div>
+
 У React HTML-елементи форм працюють дещо інакше, ніж інші DOM-елементи, тому що елементи форм від початку мають певний внутрішній стан. Наприклад, в цю HTML-форму можна ввести ім'я:
 
 ```html
@@ -31,7 +43,7 @@ redirect_from:
 
 Наприклад, якщо ми хочемо, щоб у прикладі вище після відправлення форми передані дані виводилися у консолі, то ми можемо переписати форму як "керований компонент":
 
-```javascript{4,10-12,24}
+```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -275,10 +287,10 @@ this.setState(partialState);
 Наступний код це демонструє. (Поле вводу спочатку заблоковане, але стає доступним для редагування після невеликої затримки.)
 
 ```javascript
-ReactDOM.render(<input value="привіт" />, mountNode);
+ReactDOM.createRoot(mountNode).render(<input value="привіт" />);
 
 setTimeout(function() {
-  ReactDOM.render(<input value={null} />, mountNode);
+  ReactDOM.createRoot(mountNode).render(<input value={null} />);
 }, 1000);
 
 ```

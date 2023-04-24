@@ -8,6 +8,12 @@ prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+
+</div>
+
 React має потужну модель композиції і ми рекомендуємо використовувати композицію замість наслідування для повторного використання коду між компонентами.
 
 В цьому розділі ми розглянемо кілька проблем, котрі нові React-розробники вирішують за допомогою наслідування і покажемо, як вони вирішуються за допомогою композиції.

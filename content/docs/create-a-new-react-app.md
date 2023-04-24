@@ -8,6 +8,15 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Start a New React Project](https://react.dev/learn/start-a-new-react-project) for the recommended ways to create an app.
+
+</div>
+
 Для більш комфортної роботи використовуйте вбудований набір інструментів.
 
 Ця сторінка описує декілька  популярних наборів інструментів для роботи з React, що допоможуть вам з такими задачами як:
@@ -75,7 +84,7 @@ Create React App не опрацьовує бекенд логіку чи лог
 
 - **[Nx](https://nx.dev/react)** це інструментарій для повноцінної розробки в єдиному репозиторії, який має вбудовану підтримку для React, Next.js, [Express](https://expressjs.com/), та інших.
 
-- **[Parcel](https://parceljs.org/)** -- швидкий бандлер веб-додатків з нульовою конфігурацією, [який працює з React](https://parceljs.org/recipes.html#react).
+- **[Parcel](https://parceljs.org/)** -- швидкий бандлер веб-додатків з нульовою конфігурацією, [який працює з React](https://parceljs.org/recipes/react/).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** -- це фреймворк для серверного рендерингу, що не потребує ніякої конфігурації, але більш гнучкий ніж Next.js.
 

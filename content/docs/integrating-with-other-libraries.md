@@ -4,6 +4,19 @@ title: Взаємодія зі сторонніми бібліотеками
 permalink: docs/integrating-with-other-libraries.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> These new documentation pages teach modern React:
+>
+> - [`useSyncExternalStore`: Subscribing to an external store 
+](https://react.dev/reference/react/useSyncExternalStore#subscribing-to-an-external-store)
+> - [`createPortal`: Rendering React components into non-React DOM nodes 
+](https://react.dev/reference/react-dom/createPortal#rendering-react-components-into-non-react-dom-nodes)
+
+</div>
+
 React можна використовувати у будь-якому веб-додатку. Його можна вбудовувати в інші додатки, та, з невеликими зусиллями, інші додатки можна вбудувати в React. У цьому гайді ми розглянемо деякі з більш поширених випадків використання React, а саме - інтеграцію з [jQuery](https://jquery.com/) та [Backbone](https://backbonejs.org/). Проте ці ж ідеї можна застосувати до інтеграції компонентів з будь-яким іншим кодом.
 
 ## Інтеграція з плагінами, які змінюють DOM {#integrating-with-dom-manipulation-plugins}
@@ -190,9 +203,9 @@ class Chosen extends React.Component {
 
 ## Інтеграція з іншими візуальними бібліотеками {#integrating-with-other-view-libraries}
 
-React можна вбудовувати в інші додатки, завдяки гнучкості функції [`ReactDOM.render()`](/docs/react-dom.html#render).
+React можна вбудовувати в інші додатки, завдяки гнучкості функції [`createRoot()`](/docs/react-dom-client.html#createRoot).
 
-Хоча React широко використовується для завантаження єдиного кореневого компоненту в DOM, метод `ReactDOM.render()` також може бути викликаний багато разів для незалежних частин UI, що можуть бути такими малими, як кнопка, або такими великими, як окремий додаток.
+Хоча React широко використовується для завантаження єдиного кореневого компоненту в DOM, метод `createRoot()` також може бути викликаний багато разів для незалежних частин UI, що можуть бути такими малими, як кнопка, або такими великими, як окремий додаток.
 
 Насправді, саме так Facebook використовує React. Такий підхід дозволяє писати програми частинами і комбінувати їх з шаблонами, створеними на сервері, або з іншим клієнтським кодом.
 
@@ -216,15 +229,9 @@ function Button() {
   return <button id="btn">Say Hello</button>;
 }
 
-ReactDOM.render(
-  <Button />,
-  document.getElementById('container'),
-  function() {
-    $('#btn').click(function() {
-      alert('Hello!');
-    });
-  }
-);
+$('#btn').click(function() {
+  alert('Hello!');
+});
 ```
 
 З цього моменту можете починати передавати все більше логіки самому компоненту й застосовувати все більше й більше React-підходів до написання коду. Наприклад, у компонентах найкраще не покладатись на ідентифікатори тому, що один і той самий компонент може бути відрендерений декілька разів. Натомість, використовуємо [систему подій React](/docs/handling-events.html) та реєструємо метод-обробник події click безпосередньо на React-елементі `<button>`:
@@ -240,36 +247,34 @@ function HelloButton() {
   }
   return <Button onClick={handleClick} />;
 }
-
-ReactDOM.render(
-  <HelloButton />,
-  document.getElementById('container')
-);
 ```
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
-Ви можете написати скільки завгодно ізольованих компонентів, а також ренедрити їх у різних DOM-контейнерах за допомогою функції`ReactDOM.render()`. Поступово, коли трансформуєте все більше коду програми у React-компоненти, можна буде об’єднати їх в більші компоненти, а деякі з викликів до `ReactDOM.render()` — перемістити вгору за ієрархією.
+Ви можете написати скільки завгодно ізольованих компонентів, а також ренедрити їх у різних DOM-контейнерах за допомогою функції`ReactDOM.createRoot()`. Поступово, коли трансформуєте все більше коду програми у React-компоненти, можна буде об’єднати їх в більші компоненти, а деякі з викликів до `ReactDOM.createRoot()` — перемістити вгору за ієрархією.
 
 ### Вставка React у представлення Backbone {#embedding-react-in-a-backbone-view}
 
 Представлення у [Backbone](https://backbonejs.org/) зазвичай використовують HTML-рядки або функції, які генерують рядкові шаблони, для створення вмісту їх DOM-елементів. Цей процес також може бути замінений за допомого рендеру React-компонентів.
 
-Нижче – приклад того, як ми створюємо Backbone-представлення, що називається `ParagraphView`. Воно перевизначить `render()` метод Backbone для рендерингу React-компоненту `<Paragraph>` у DOM-елемент, наданий Backbone (`this.el`). Тут ми також використовуємо метод [`ReactDOM.render()`](/docs/react-dom.html#render):
+Нижче – приклад того, як ми створюємо Backbone-представлення, що називається `ParagraphView`. Воно перевизначить `render()` метод Backbone для рендерингу React-компоненту `<Paragraph>` у DOM-елемент, наданий Backbone (`this.el`). Тут ми також використовуємо метод [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot):
 
-```js{1,5,8,12}
+```js{7,11,15}
 function Paragraph(props) {
   return <p>{props.text}</p>;
 }
 
 const ParagraphView = Backbone.View.extend({
+  initialize(options) {
+    this.reactRoot = ReactDOM.createRoot(this.el);
+  },
   render() {
     const text = this.model.get('text');
-    ReactDOM.render(<Paragraph text={text} />, this.el);
+    this.reactRoot.render(<Paragraph text={text} />);
     return this;
   },
   remove() {
-    ReactDOM.unmountComponentAtNode(this.el);
+    this.reactRoot.unmount();
     Backbone.View.prototype.remove.call(this);
   }
 });
@@ -277,7 +282,7 @@ const ParagraphView = Backbone.View.extend({
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
-Важливо також викликати метод `ReactDOM.unmountComponentAtNode()` у середині методу `remove`, щоб React видаляв зареєстровані обробники подій та інші ресурси, які пов’язані з деревом компонентів, у момент, коли воно видаляється.
+Важливо також викликати метод `root.unmount()` у середині методу `remove`, щоб React видаляв зареєстровані обробники подій та інші ресурси, які пов’язані з деревом компонентів, у момент, коли воно видаляється.
 
 Коли компонент видаляється з React-дерева *зсередини*, очищення проводиться автоматично. Проте оскільки ми видаляємо все дерево вручну, мусимо викликати цей метод.
 
@@ -428,10 +433,8 @@ function Example(props) {
 }
 
 const model = new Backbone.Model({ firstName: 'Frodo' });
-ReactDOM.render(
-  <Example model={model} />,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Example model={model} />);
 ```
 
 [**Спробувати на CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)

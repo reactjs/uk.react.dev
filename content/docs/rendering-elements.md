@@ -8,6 +8,18 @@ prev: introducing-jsx.html
 next: components-and-props.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach how to write JSX and show it on an HTML page:
+>
+> - [Writing Markup with JSX](https://react.dev/learn/writing-markup-with-jsx)
+> - [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project#step-2-render-react-components-anywhere-on-the-page)
+
+</div>
+
 Елементи — це найменші будівельні блоки React-додатку.
 
 Елемент описує те, що ви хочете бачити на екрані:
@@ -38,7 +50,7 @@ const element = <h1>Привіт, світе</h1>;
 
 `embed:rendering-elements/render-an-element.js`
 
-[](codepen://rendering-elements/render-an-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ZpvBNJ?editors=1010)**
 
 На сторінці відобразиться "Hello, world".
 
@@ -52,9 +64,9 @@ React-елементи є [незмінними](https://uk.wikipedia.org/wiki/�
 
 `embed:rendering-elements/update-rendered-element.js`
 
-[](codepen://rendering-elements/update-rendered-element)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
-Він щосекунди викликає [`ReactDOM.render()`](/docs/react-dom.html#render) у функції зворотнього виклику [`setInterval()`](https://developer.mozilla.org/uk/docs/Web/API/WindowOrWorkerGlobalScope/setInterval).
+Він щосекунди викликає [`root.render()`](/docs/react-dom.html#render) у функції зворотнього виклику [`setInterval()`](https://developer.mozilla.org/uk/docs/Web/API/WindowOrWorkerGlobalScope/setInterval).
 
 >**Примітка:**
 >
@@ -66,7 +78,7 @@ React-елементи є [незмінними](https://uk.wikipedia.org/wiki/�
 
 React DOM порівнює елемент і його дочірні елементи з попередніми та вносить в DOM тільки необхідні зміни для приведення DOM у бажаний стан.
 
-Ви можете пересвідчитись в цьому, перевіривши [останній приклад](codepen://rendering-elements/update-rendered-element) за допомогою інструментів браузера:
+Ви можете пересвідчитись в цьому, перевіривши [останній приклад](https://codepen.io/gaearon/pen/gwoJZk?editors=1010) за допомогою інструментів браузера:
 
 ![DOM-інспектор показує лише оновлення деталей](../images/docs/granular-dom-updates.gif)
 

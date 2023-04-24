@@ -39,12 +39,8 @@ JSX — це розширення синтаксису JavaScript. Він под
 
 React DOM використовує стиль camelCase для найменування властивостей замість звичайних імен HTML-атрибутів. Наприклад, `tabindex` в JSX перетворюється в `tabIndex`. Атрибут `class` записується як `className`, оскільки в JavaScript слово `class` є зарезервованим:
 
-```js
-const name = 'Василина';
-ReactDOM.render(
-  <h1 className="hello">Мене звати {name}!</h1>,
-  document.getElementById('root')
-);
+```jsx
+<h1 className="hello">Мене звати Василина!</h1>
 ```
 
 ## [Елементи](/docs/rendering-elements.html) {#elements}

@@ -10,16 +10,14 @@ import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
 // $FlowFixMe Update Flow
-import React, {useContext} from 'react';
-import {BannerContext} from 'components/Banner';
+import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import FeedbackForm from 'components/FeedbackForm';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
-import {sharedStyles} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
-import {colors} from 'theme';
+import {sharedStyles, colors, media, fonts} from 'theme';
 
 import type {Node} from 'types';
 
@@ -58,7 +56,6 @@ const MarkdownPage = ({
   sectionList,
   titlePostfix = '',
 }: Props) => {
-  const {banner} = useContext(BannerContext);
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 
@@ -77,7 +74,11 @@ const MarkdownPage = ({
         position: 'relative',
         zIndex: 0,
         '& h1, & h2, & h3, & h4, & h5, & h6': {
-          scrollMarginTop: banner ? banner.normalHeight : 0,
+          scrollMarginTop: fonts.header.fontSize,
+
+          [media.lessThan('medium')]: {
+            scrollMarginTop: fonts.header[media.lessThan('medium')].fontSize,
+          },
         },
       }}>
       <TitleAndMetaTags
@@ -96,7 +97,7 @@ const MarkdownPage = ({
                 <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
-                    <span>
+                    <span css={{lineHeight: 1.75}}>
                       Від{' '}
                       {toCommaSeparatedList(authors, author => (
                         <a
@@ -131,7 +132,7 @@ const MarkdownPage = ({
                     </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/reactjs/uk.reactjs.org/tree/master/${
+                      href={`https://github.com/reactjs/uk.reactjs.org/tree/main/${
                         markdownRemark.fields.path
                       }`}>
                       Редагувати цю сторінку

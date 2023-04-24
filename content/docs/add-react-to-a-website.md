@@ -8,6 +8,15 @@ prev: getting-started.html
 next: create-a-new-react-app.html
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> See [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) for the recommended ways to add React.
+
+</div>
+
 Використовуйте лише ту частину React, яка вам потрібна.
 
 З самого початку React був спроектований для поступового вбудовування і **ви можете використати ту частину React, яка вам потрібна**. Можливо, ви тільки хочете "оживити" елементи існуючого сайту. React-компоненти є чудовим способом зробити це.
@@ -25,7 +34,7 @@ next: create-a-new-react-app.html
 
 Вам не потрібно встановлювати складні інструменти або що-небудь інше -- **для того, щоб пройти даний розділ, вам потрібен доступ в Інтернет і хвилинка вільного часу.**
 
-Необов'язково: [Завантажити готовий приклад (2Кб в архіві)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+Необов'язково: [Завантажити готовий приклад (2Кб в архіві)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)
 
 ### Крок 1: Додайте DOM-контейнер до HTML структури {#step-1-add-a-dom-container-to-the-html}
 
@@ -54,8 +63,8 @@ next: create-a-new-react-app.html
 
   <!-- Завантажимо React. -->
   <!-- Примітка: перед розгортанням на продакшн, замініть "development.js" на "production.min.js". -->
-  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Завантажимо наш React-компонент. -->
   <script src="like_button.js"></script>
@@ -77,11 +86,12 @@ next: create-a-new-react-app.html
 
 Після **[початкового коду](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** додайте два рядки коду в кінці `like_button.js`:
 
-```js{3,4}
+```js{3,4,5}
 // ... початковий код, який ви скопіювали...
 
 const domContainer = document.querySelector('#like_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(e(LikeButton));
 ```
 
 Ці два рядки коду шукають `<div>`, який ми додали до нашого HTML-файлу в першому кроці і потім відображає React-компонент кнопки "Мені подобається" всередині нього.
@@ -94,7 +104,7 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 **[Подивитися фінальний код прикладу](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Завантажити код прикладу (2Кб в архіві)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
+**[Завантажити код прикладу (2Кб в архіві)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/87f0b6f34238595b44308acfb86df6ea43669c08.zip)**
 
 ### Порада: Повторно використовуйте компоненти {#tip-reuse-a-component}
 
@@ -102,7 +112,7 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 [Подивитися повний першокод](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-[Завантажити код прикладу (2Кб в архіві)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
+[Завантажити код прикладу (2Кб в архіві)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/279839cb9891bd41802ebebc5365e9dec08eeb9f.zip)
 
 >Примітка
 >
@@ -115,8 +125,8 @@ ReactDOM.render(e(LikeButton), domContainer);
 Якщо ви вже стискаєте скрипти вашого додатку, **то ваш сайт буде готовим для публікації на продакшн**, якщо ви впевнитесь в тому, що опублікована HTML-сторінка завантажує версії React, які закінчуються на `production.min.js`:
 
 ```js
-<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 Якщо ви ще не налаштували стискання для ваших скриптів, то [цей варіант може вам допомогти із цим](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
@@ -149,7 +159,7 @@ return (
 
 Ці два приклади виконують одну і ту ж річ. Незважаючи на те, що **JSX є [цілком необов'язковим](/docs/react-without-jsx.html)**, багато людей вважають його зручним для розробки інтерфейсів користувача -- як із React, так і з іншими бібліотеками.
 
-Ви можете спробувати JSX [у цьому онлайн-конвертері](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.4.3).
+Ви можете спробувати JSX [у цьому онлайн-конвертері](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.15.7).
 
 ### Швидкий старт з JSX {#quickly-try-jsx}
 
@@ -159,7 +169,7 @@ return (
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 ```
 
-Тепер ви можете використовувати JSX в будь-якому `<script>`-тегу за допомогою додавання атрибуту `type="text/babel"`. Ось [приклад HTML-файлу з JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), який ви можете завантажити і поекспериментувати з ним.
+Тепер ви можете використовувати JSX в будь-якому `<script>`-тегу за допомогою додавання атрибуту `type="text/babel"`. Ось [приклад HTML-файлу з JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), який ви можете завантажити і поекспериментувати з ним.
 
 Такий спосіб прекрасний для навчання і створення простих демо. Однак це робить ваш сайт повільним і **непридатним для публікації в продакшн**. Тому для розгортання React-компоненту з JSX краще зробити по-іншому. Коли ви готові до кроку вперед, видаліть тег `<script>` і атрибут `type="text/babel"`, який ми додали раніше. Замість цього, в наступному розділі ви встановите JSX-препроцесор для того, щоб трансформувати код всередині тегів `<script>` автоматично.
 
@@ -183,7 +193,7 @@ JSX не потребує від проекту складних інструм�
 
 Створіть директорію під назвою `src` і запустіть наступну команду в терміналі:
 
-```
+```console
 npx babel --watch src --out-dir . --presets react-app/prod
 ```
 

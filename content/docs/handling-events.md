@@ -8,6 +8,16 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Responding to Events](https://react.dev/learn/responding-to-events)
+
+</div>
+
 Обробка подій для React-елементів дуже схожа до обробки подій для DOM-елементів. Але є деякі синтаксичні відмінності:
 * Події React іменуються в camelCase, а не в нижньому регістрі.
 * З JSX ви передаєте функцію як обробник події замість рядка.
@@ -31,24 +41,24 @@ redirect_from:
 Інша відмінність полягає в тому, що ви не можете повернути `false` для того, щоб запобігти поведінці за замовчуванням у React. Ви маєте явно викликати `preventDefault`. Наприклад, для звичайного HTML, щоб запобігти поведінці посилання за замовчуванням (відкриття нової сторінки) ви можете написати:
 
 ```html
-<a href="#" onclick="console.log('Посилання було натиснуте.'); return false">
-  Натисни на мене
-</a>
+<form onsubmit="console.log('You clicked submit.'); return false">
+  <button type="submit">Submit</button>
+</form>
 ```
 
 У React це може виглядати так:
 
-```js{2-5,8}
-function ActionLink() {
-  function handleClick(e) {
+```js{3}
+function Form() {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log('Посилання було натиснуте.');
+    console.log('You clicked submit.');
   }
 
   return (
-    <a href="#" onClick={handleClick}>
-      Натисни на мене
-    </a>
+    <form onSubmit={handleSubmit}>
+      <button type="submit">Submit</button>
+    </form>
   );
 }
 ```
@@ -70,8 +80,8 @@ class Toggle extends React.Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
     }));
   }
 
@@ -83,11 +93,6 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
 
 [**Спробуйте на CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
@@ -101,10 +106,9 @@ ReactDOM.render(
 ```js{2-6}
 class LoggingButton extends React.Component {
   // Цей синтаксис забезпечує прив'язку `this` всередині handleClick.
-  // Попередження: це *експериментальний* синтаксис.
   handleClick = () => {
     console.log('this це:', this);
-  }
+  };
 
   render() {
     return (

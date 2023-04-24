@@ -18,6 +18,15 @@ redirect_from:
   - "docs/environments.html"
 ---
 
+<div class="scary">
+
+>
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> The new [Quick Start](https://react.dev/learn) teaches modern React and includes live examples.
+
+</div>
+
 В даному розділі ми оглянемо документацію React та пов'язані з ним ресурси.
 
 **React** — це JavaScript-бібліотека для створення інтерфейсів користувача. Відвідайте [нашу головну сторінку](/) або [вступ](/tutorial/tutorial.html), аби скласти перше враження про React.
@@ -38,7 +47,7 @@ redirect_from:
 
 Хочете погратися з React? Скористайтеся онлайн-пісочницями. Спробуйте початковий шаблон на [CodePen](codepen://hello-world), [CodeSandbox](https://codesandbox.io/s/new), [Glitch](https://glitch.com/edit/#!/remix/starter-react-template) або [Stackblitz](https://stackblitz.com/fork/react).
 
-Віддаєте перевагу вашому улюбленому редактору коду? Тоді ви можете [завантажити даний HTML-файл](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), відредагувати та відкрити його у вашому браузері. Даний шаблон трансформує JSX у JavaScript під час запуску . Однак, доволі повільно, тому ми рекомендуємо використовувати даний файл тільки для простих демонстраційних прикладів.
+Віддаєте перевагу вашому улюбленому редактору коду? Тоді ви можете [завантажити даний HTML-файл](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), відредагувати та відкрити його у вашому браузері. Даний шаблон трансформує JSX у JavaScript під час запуску . Однак, доволі повільно, тому ми рекомендуємо використовувати даний файл тільки для простих демонстраційних прикладів.
 
 ### Додаємо React до сайту {#add-react-to-a-website}
 
@@ -115,7 +124,7 @@ redirect_from:
 
 Ви також можете підписатись на [профіль @reactjs](https://twitter.com/reactjs) у Twitter, однак ви не пропустите нічого важливого, якщо будете слідкувати тільки за блогом.
 
-У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/master/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react/releases).
+У блозі ми пишемо не про всі релізи React, але завжди є можливість переглянути повний список змін [у файлі `CHANGELOG.md` у репозиторії React](https://github.com/facebook/react/blob/main/CHANGELOG.md), а також на сторінці [Релізи](https://github.com/facebook/react/releases).
 
 ## Документація старих версій React {#versioned-documentation}
 

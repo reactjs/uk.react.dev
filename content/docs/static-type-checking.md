@@ -4,6 +4,14 @@ title: Статична типізація
 permalink: docs/static-type-checking.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Check out [React TypeScript cheatsheet](https://react-typescript-cheatsheet.netlify.app/) for how to use React with TypeScript.
+
+</div>
+
 Статичні типізатори, такі як [Flow](https://flow.org/) і [TypeScript](https://www.typescriptlang.org/), розпізнають певні типи проблем навіть до запуску вашого коду. Вони також можуть покращити робочий процес розробника додаючи функції, такі як автозавершення. З цієї причини для великих кодових баз ми рекомендуємо використовувати Flow або TypeScript замість `PropTypes`.
 
 ## Flow {#flow}
@@ -316,7 +324,7 @@ declare module 'querystring' {
 * [Документація TypeScript: міграція з JavaScript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [Документація TypeScript: React та Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 
-## Reason {#reason}
+## ReScript {#rescript}
 
 [Reason](https://reasonml.github.io/uk/) – це не нова мова, а новий синтаксис та інструментарій, працюючі на перевіреній часом мові [OCaml](https://ocaml.org/). Reason надає OCaml знайомий синтаксис пристосований для програмістів JavaScript та використовує знайомий всім робочий процес NPM/Yarn.
 

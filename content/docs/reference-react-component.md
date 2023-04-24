@@ -15,6 +15,16 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> These new documentation pages teach modern React:
+>
+> - [`React.Component`](https://react.dev/reference/react/Component)
+
+</div>
+
 Ця сторінка містить API довідник для визначення класового компонента React. Ми припускаємо, що ви знайомі з фундаментальними концепціями React, такими як [Компоненти та пропси](/docs/components-and-props.html), а також [Стан і життєвий цикл](/docs/state-and-lifecycle.html). Якщо ні, то спочатку ознайомтеся з ними.
 
 ## Огляд {#overview}
@@ -39,7 +49,7 @@ class Welcome extends React.Component {
 
 ### Життєвий цикл компонента {#the-component-lifecycle}
 
-Кожен компонент має декілька "методів життєвого циклу", які ви можете перевизначати, щоб запускати код в певний момент часу. **Ви можете використовувати [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) як шпаргалку.** В списку нижче найчастіше вживані методи життєвого циклу виділені **напівжирним**. Решта існують лише для випадків, що трапляються відносно нечасто.
+Кожен компонент має декілька "методів життєвого циклу", які ви можете перевизначати, щоб запускати код в певний момент часу. **Ви можете використовувати [цю діаграму життєвого циклу](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) як шпаргалку.** В списку нижче найчастіше вживані методи життєвого циклу виділені **напівжирним**. Решта існують лише для випадків, що трапляються відносно нечасто.
 
 #### Монтування {#mounting}
 
@@ -109,7 +119,7 @@ class Welcome extends React.Component {
 
 ### Часто використовані методи життєвого циклу {#commonly-used-lifecycle-methods}
 
-Методи в цьому розділі охоплюють переважну більшість випадків з якими ви зустрінетесь під час створення React-компонентів. **Для наочної ілюстрації, перегляньте [цю діаграму життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+Методи в цьому розділі охоплюють переважну більшість випадків з якими ви зустрінетесь під час створення React-компонентів. **Для наочної ілюстрації, перегляньте [цю діаграму життєвого циклу](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()` {#render}
 
@@ -245,7 +255,7 @@ componentWillUnmount()
 
 ### Рідковживані методи життєвого циклу {#rarely-used-lifecycle-methods}
 
-Методи в цьому розділі відповідають малопоширеним випадкам використання. Вони є корисними час від часу, але швидше за все, більшість ваших компонентів не потребують жодного з них. **Ви можете побачити більшість наведених нижче методів на [цій діаграмі життєвого циклу](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) якщо натиснете прапорець "Show less common lifecycles" зверху сторінки.**
+Методи в цьому розділі відповідають малопоширеним випадкам використання. Вони є корисними час від часу, але швидше за все, більшість ваших компонентів не потребують жодного з них. **Ви можете побачити більшість наведених нижче методів на [цій діаграмі життєвого циклу](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) якщо натиснете прапорець "Show less common lifecycles" зверху сторінки.**
 
 
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
@@ -413,6 +423,12 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
+Production and development builds of React slightly differ in the way `componentDidCatch()` handles errors.
+
+On development, the errors will bubble up to `window`, this means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch()`.
+
+On production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch()`.
+
 > Примітка
 >
 > При виникненні помилки, ви можете рендерити резервний інтерфейс користувача `componentDidCatch()` викликом `setState`, але така поведінка буде вважатися застарілою в наступному релізі.
@@ -501,7 +517,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 ### `setState()` {#setstate}
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` ставить в чергу оновлення стану компонента і повідомляє React, що цей компонент і його нащадки мають бути повторно відрендерені з оновленим станом. Це основний метод, який ви використовуєте для оновлення інтерфейсу користувача у відповідь на обробники подій і відповіді сервера.

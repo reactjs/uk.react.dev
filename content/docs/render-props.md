@@ -4,6 +4,15 @@ title: Рендер-пропси
 permalink: docs/render-props.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+>
+> Render props are used in modern React, but aren't very common.  
+> For many cases, they have been replaced by [custom Hooks](https://react.dev/learn/reusing-logic-with-custom-hooks).
+
+</div>
+
 Термін ["рендер-проп"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce) відноситься до техніки, в якій React-компоненти розділяють між собою один код (функцію) передаючи її через проп.
 
 Компонент з рендер-пропом приймає функцію, яка повертає React-елемент, і викликає її замість реалізації власної рендер-логіки.

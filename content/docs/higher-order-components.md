@@ -4,6 +4,14 @@ title: Компоненти вищого порядку
 permalink: docs/higher-order-components.html
 ---
 
+<div class="scary">
+
+> These docs are old and won't be updated. Go to [react.dev](https://react.dev/) for the new React docs.
+> 
+> Higher-order components are not commonly used in modern React code.
+
+</div>
+
 Компонент вищого порядку (КВП) — це просунута технологія для повторного використання логіки компоненту. Сам по собі КВП не є частиною React API, але через композиційну природу компонентів він є розповсюдженним патерном проектування.
 
 Тобто, **компонент вищого порядку — це функція, яка приймає компонент та повертає новий компонент.**
@@ -14,7 +22,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Якщо звичайний компонент трансформує пропси у UI, то компонент вищого порядку трансформує один компонент у інший.
 
-КВП поширені у таких сторонніх бібліотеках, як [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) у Redux, або [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html) у Relay.
+КВП поширені у таких сторонніх бібліотеках, як [`connect`](https://react-redux.js.org/api/connect) у Redux, або [`createFragmentContainer`](https://relay.dev/docs/v10.1.3/fragment-container/#createfragmentcontainer) у Relay.
 
 У цьому розділі ми обговоримо чому компоненти вищого порядку корисні та як створювати їх власноруч.
 
@@ -297,7 +305,7 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 ## Конвенція: повертайте ім’я обгорнутого компонента для легшого дебагу {#convention-wrap-the-display-name-for-easy-debugging}
 
-Створений КВП компонент-контейнер відображається у [React Developer Tools](https://github.com/facebook/react-devtools), як і будь-який інший компонент. Для того, щоб полегшити процес налагодження, визначте відображуване ім’я, яке повідомляє, що це результат КВП.
+Створений КВП компонент-контейнер відображається у [React Developer Tools](https://github.com/facebook/react/tree/main/packages/react-devtools), як і будь-який інший компонент. Для того, щоб полегшити процес налагодження, визначте відображуване ім’я, яке повідомляє, що це результат КВП.
 
 Найпоширеніший прийом - обгортати відображуване ім’я загорнутого компонента. Отже, якщо ваш компонент вищого порядку названий `withSubscription`, а відображене ім’я загорнутого компонента - `CommentList`, визначте відображуване ім'я як `WithSubscription(CommentList)`:
 
