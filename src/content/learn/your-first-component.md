@@ -1,47 +1,47 @@
 ---
-title: Your First Component
+title: Ваш перший компонент
 ---
 
 <Intro>
 
-*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+*Компоненти* є одним з основних понять React. Вони є основою, на якій ви будуєте інтерфейси користувача (UI), що робить їх ідеальним місцем для початку вашого шляху з React!
 
 </Intro>
 
 <YouWillLearn>
 
-* What a component is
-* What role components play in a React application
-* How to write your first React component
+* Що таке компонент
+* Яку роль відіграють компоненти в додатку React
+* Як написати свій перший компонент React
 
 </YouWillLearn>
 
-## Components: UI building blocks {/*components-ui-building-blocks*/}
+## Компоненти: Будівельні блоки UI {/*components-ui-building-blocks*/}
 
-On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
+У Вебі, HTML дозволяє нам створювати багатоструктурні документи за допомогою вбудованих наборів тегів, таких як `<h1>` та `<li>`:
 
 ```html
 <article>
-  <h1>My First Component</h1>
+  <h1>Мій перший компонент</h1>
   <ol>
-    <li>Components: UI Building Blocks</li>
-    <li>Defining a Component</li>
-    <li>Using a Component</li>
+    <li>Компоненти: Будівельні блоки UI</li>
+    <li>Визначення компонента</li>
+    <li>Використання компонента</li>
   </ol>
 </article>
 ```
 
-This markup represents this article `<article>`, its heading `<h1>`, and an (abbreviated) table of contents as an ordered list `<ol>`. Markup like this, combined with CSS for style, and JavaScript for interactivity, lies behind every sidebar, avatar, modal, dropdown—every piece of UI you see on the Web.
+Ця розмітка представляє статтю `<article>`, її заголовок `<h1>`, та (скорочений) зміст у вигляді впорядкованого списку `<ol>`. Розмітка подібна до цієї, в поєднанні з CSS для стилізації та JavaScript для інтерактивності, лежить в основі кожної бічної панелі, аватара, модального вікна, випадного меню — кожного елемента UI, який ви бачите в Вебі.
 
-React lets you combine your markup, CSS, and JavaScript into custom "components", **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
+React дозволяє вам поєднувати вашу розмітку, CSS та JavaScript у власні "компоненти", **повторно використовувані елементи UI для вашого додатку.** Зміст коду, який ви бачили вище, можна перетворити на компонент `<TableOfContents />`, який ви можете відобразити на кожній сторінці. Під капотом він все ще використовує ті ж самі HTML-теги, такі як `<article>`, `<h1>`, тощо.
 
-Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components:
+Так само, як і з HTML-тегами, ви можете компонувати, впорядковувати та вкладати компоненти для створення цілих сторінок. Наприклад, сторінка документації, яку ви читаєте, складається з компонентів React:
 
 ```js
 <PageLayout>
   <NavigationHeader>
     <SearchBar />
-    <Link to="/docs">Docs</Link>
+    <Link to="/docs">Документація</Link>
   </NavigationHeader>
   <Sidebar />
   <PageContent>
@@ -51,11 +51,11 @@ Just like with HTML tags, you can compose, order and nest components to design w
 </PageLayout>
 ```
 
-As your project grows, you will notice that many of your designs can be composed by reusing components you already wrote, speeding up your development. Our table of contents above could be added to any screen with `<TableOfContents />`! You can even jumpstart your project with the thousands of components shared by the React open source community like [Chakra UI](https://chakra-ui.com/) and [Material UI.](https://material-ui.com/)
+Зі зростанням вашого проекту ви помітите, що багато з ваших дизайнів можна створити шляхом повторного використання компонентів, які ви вже написали, що пришвидшує вашу розробку. Наш зміст вище може бути доданий до будь-якого екрану за допомогою `<TableOfContents />`! Ви навіть можете розпочати свій проект з тисячами компонентів, які поділяє спільнота відкритого коду React, таких як [Chakra UI](https://chakra-ui.com/) та [Material UI.](https://material-ui.com/)
 
-## Defining a component {/*defining-a-component*/}
+## Визначення компонента {/*defining-a-component*/}
 
-Traditionally when creating web pages, web developers marked up their content and then added interaction by sprinkling on some JavaScript. This worked great when interaction was a nice-to-have on the web. Now it is expected for many sites and all apps. React puts interactivity first while still using the same technology: **a React component is a JavaScript function that you can _sprinkle with markup_.** Here's what that looks like (you can edit the example below):
+Традиційно, створюючи веб-сторінки, веб-розробники розмічали свій контент і додавали взаємодію, розсипаючи трохи JavaScript. Це чудово працювало, коли взаємодія була приємним доповненням до вебу. Тепер це очікується на багатьох сайтах і в усіх додатках. React ставить взаємодію на перше місце, використовуючи при цьому ту ж технологію: **компонент React - це функція JavaScript, яку можна _посипати розміткою_.** Ось як це виглядає (ви можете відредагувати приклад нижче):
 
 <Sandpack>
 
@@ -64,7 +64,7 @@ export default function Profile() {
   return (
     <img
       src="https://i.imgur.com/MK3eW3Am.jpg"
-      alt="Katherine Johnson"
+      alt="Кетерін Джонсон (Katherine Johnson)"
     />
   )
 }
@@ -76,51 +76,50 @@ img { height: 200px; }
 
 </Sandpack>
 
-And here's how to build a component:
+А ось як створити компонент:
 
-### Step 1: Export the component {/*step-1-export-the-component*/}
+### Крок 1: Експортування компонента {/*step-1-export-the-component*/}
 
-The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
+Префікс `export default` це [стандартний синтаксис JavaScript](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (не специфічний для React). Він дозволяє вам позначити головну функцію у файлі, щоб ви могли потім імпортувати її з інших файлів. (Детальніше про імпорт у розділі [Імпортування та експортування компонентів](/learn/importing-and-exporting-components)!)
 
-### Step 2: Define the function {/*step-2-define-the-function*/}
+### Крок 2: Визначення функції {/*step-2-define-the-function*/}
 
-With `function Profile() { }` you define a JavaScript function with the name `Profile`.
+За допомогою `function Profile() { }` ви визначаєте функцію JavaScript з іменем `Profile`.
 
 <Pitfall>
 
-React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
-
+React компоненти є звичайними JavaScript функціями, але **їхні назви мають починатися з великої літери** інакше вони не будуть працювати!
 </Pitfall>
 
-### Step 3: Add markup {/*step-3-add-markup*/}
+### Крок 3: Додавання розмітки {/*step-3-add-markup*/}
 
-The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
+Компонент повертає тег `<img />` з атрибутами `src` та `alt`. `<img />` записаний як HTML, але насправді це JavaScript під капотом! Цей синтаксис називається [JSX](/learn/writing-markup-with-jsx), і він дозволяє вам вбудовувати розмітку всередину JavaScript.
 
-Return statements can be written all on one line, as in this component:
+Оператори повернення можуть бути записані на одному рядку, як у цьому компоненті:
 
 ```js
-return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
+return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Кетерін Джонсон (Katherine Johnson)" />;
 ```
 
-But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses:
+Але якщо ваша розмітка не розташована на тому ж рядку, що й ключове слово `return` ви повинні обернути її в пару дужок:
 
 ```js
 return (
   <div>
-    <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+    <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Кетерін Джонсон (Katherine Johnson)" />
   </div>
 );
 ```
 
 <Pitfall>
 
-Without parentheses, any code on the lines after `return` [will be ignored](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
+Без дужок будь-який код на рядках після `return` [буде проігноровано](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
 
 </Pitfall>
 
-## Using a component {/*using-a-component*/}
+## Застосування компонента {/*using-a-component*/}
 
-Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` component that uses multiple `Profile` components:
+Тепер, коли ви визначили свій компонент `Profile`, ви можете вкладати його всередину інших компонентів. Наприклад, ви можете експортувати компонент `Gallery`, який використовує кілька компонентів `Profile`:
 
 <Sandpack>
 
@@ -129,7 +128,7 @@ function Profile() {
   return (
     <img
       src="https://i.imgur.com/MK3eW3As.jpg"
-      alt="Katherine Johnson"
+      alt="Кетерін Джонсон (Katherine Johnson)"
     />
   );
 }
@@ -137,7 +136,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Видатні вчені</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -152,37 +151,37 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-### What the browser sees {/*what-the-browser-sees*/}
+### Що бачить браузер {/*what-the-browser-sees*/}
 
-Notice the difference in casing:
+Зверніть увагу на відмінність у регістрі літер:
 
-* `<section>` is lowercase, so React knows we refer to an HTML tag.
-* `<Profile />` starts with a capital `P`, so React knows that we want to use our component called `Profile`.
+* `<section>` написано у нижньому регістрі, тому React знає, що ми звертаємось до HTML-тегу.
+* `<Profile />` починається з великої літери `P`, тому React знає, що ми хочемо використовувати наш компонент з назвою `Profile`.
 
-And `Profile` contains even more HTML: `<img />`. In the end, this is what the browser sees:
+І `Profile` містить ще більше HTML: `<img />`. В кінцевому результаті це те, що бачить браузер:
 
 ```html
 <section>
-  <h1>Amazing scientists</h1>
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
-  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
+  <h1>Видатні вчені</h1>
+  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Кетерін Джонсон (Katherine Johnson)" />
+  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Кетерін Джонсон (Katherine Johnson)" />
+  <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Кетерін Джонсон (Katherine Johnson)" />
 </section>
 ```
 
-### Nesting and organizing components {/*nesting-and-organizing-components*/}
+### Вкладення та організація компонентів {/*nesting-and-organizing-components*/}
 
-Components are regular JavaScript functions, so you can keep multiple components in the same file. This is convenient when components are relatively small or tightly related to each other. If this file gets crowded, you can always move `Profile` to a separate file. You will learn how to do this shortly on the [page about imports.](/learn/importing-and-exporting-components)
+Компоненти є звичайними функціями JavaScript, тому ви можете зберігати кілька компонентів у одному файлі. Це зручно, коли компоненти є досить малими або тісно пов'язаними між собою. Якщо цей файл стає переповненим, ви завжди можете перемістити компонент `Profile` до окремого файлу. Незабаром ви навчитеся це робити на [сторінці про імпорт.](/learn/importing-and-exporting-components)
 
-Because the `Profile` components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a component once, and then use it in as many places and as many times as you like.
+Тому що компоненти `Profile` рендеряться всередині `Gallery`—навіть кілька разів!—ми можемо сказати, що `Gallery` є **батьківським компонентом,** який рендерить кожний `Profile` як "дочірній". Це частина магії React: ви можете визначити компонент один раз і потім використовувати його в будь-яких місцях та скільки завгодно разів.
 
 <Pitfall>
 
-Components can render other components, but **you must never nest their definitions:**
+Компоненти можуть рендерити інші компоненти, але **ви не повинні вкладати їх визначення одне в одне:**
 
 ```js {2-5}
 export default function Gallery() {
-  // 🔴 Never define a component inside another component!
+  // 🔴 Ніколи не визначайте компонент всередині іншого компонента!
   function Profile() {
     // ...
   }
@@ -190,47 +189,47 @@ export default function Gallery() {
 }
 ```
 
-The snippet above is [very slow and causes bugs.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Instead, define every component at the top level:
+Код вище [дуже повільний і може призводити до помилок.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Натомість, визначайте кожен компонент на верхньому рівні:
 
 ```js {5-8}
 export default function Gallery() {
   // ...
 }
 
-// ✅ Declare components at the top level
+// ✅ Оголошуйте компоненти на верхньому рівні
 function Profile() {
   // ...
 }
 ```
 
-When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+Якщо дочірній компонент потребує деяких даних від батьківського компонента, [передавайте їх за допомогою пропсів](/learn/passing-props-to-a-component) замість вкладення визначень.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Components all the way down {/*components-all-the-way-down*/}
+#### Компоненти на всій глибині {/*components-all-the-way-down*/}
 
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or [Create React App](https://create-react-app.dev/), the root component is defined in `src/App.js`. If you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+Ваш додаток React починається з "кореневого" компонента. Зазвичай він створюється автоматично, коли ви створюєте новий проект. Наприклад, якщо ви використовуєте [CodeSandbox](https://codesandbox.io/) або [Create React App](https://create-react-app.dev/), кореневий компонент визначений в `src/App.js`. Якщо ви використовуєте фреймворк [Next.js](https://nextjs.org/), кореневий компонент визначений в `pages/index.js`. У цих прикладах ви експортували кореневі компоненти.
 
-Most React apps use components all the way down. This means that you won't only use components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
+Більшість додатків React використовують компоненти на всій глибині. Це означає, що ви будете використовувати компоненти не тільки для повторно використовуваних елементів, таких як кнопки, але й для більших елементів, таких як бічні панелі, списки та, врешті-решт, цілі сторінки! Компоненти - зручний спосіб організації коду UI та розмітки, навіть якщо деякі з них використовуються лише один раз.
 
-[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+[Фреймворки на основі React](/learn/start-a-new-react-project) йдуть ще далі. Замість використання порожнього HTML-файлу і дозволу React "перейняти" керування сторінкою за допомогою JavaScript, вони також автоматично генерують HTML з вашими компонентами React. Це дозволяє вашому додатку показувати деякий вміст до завантаження коду JavaScript.
 
-Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
+Проте, багато сайтів використовують React лише для [додавання інтерактивності до існуючих HTML-сторінок.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) Вони мають кілька кореневих компонентів замість одного для всієї сторінки. Ви можете використовувати стільки React, скільки вам потрібно.
 
 </DeepDive>
 
 <Recap>
 
-You've just gotten your first taste of React! Let's recap some key points.
+Ви щойно спробували React вперше! Давайте повторимо деякі ключові моменти.
 
-* React lets you create components, **reusable UI elements for your app.**
-* In a React app, every piece of UI is a component.
-* React components are regular JavaScript functions except:
+* React дозволяє створювати компоненти, **елементи UI для повторного використання у вашому додатку.**
+* У додатку React кожен елемент UI є компонентом.
+* React компоненти є звичайними JavaScript функціями, за винятком:
 
-  1. Their names always begin with a capital letter.
-  2. They return JSX markup.
+  1. Їхні назви завжди починаються з великої літери.
+  2. Вони повертають JSX-розмітку.
 
 </Recap>
 
@@ -238,9 +237,9 @@ You've just gotten your first taste of React! Let's recap some key points.
 
 <Challenges>
 
-#### Export the component {/*export-the-component*/}
+#### Експорт компонента {/*export-the-component*/}
 
-This sandbox doesn't work because the root component is not exported:
+Цей sandbox не працює, тому що основний компонент не експортований:
 
 <Sandpack>
 
@@ -249,7 +248,7 @@ function Profile() {
   return (
     <img
       src="https://i.imgur.com/lICfvbD.jpg"
-      alt="Aklilu Lemma"
+      alt="Аклілу Лемма (Aklilu Lemma)"
     />
   );
 }
@@ -261,11 +260,11 @@ img { height: 181px; }
 
 </Sandpack>
 
-Try to fix it yourself before looking at the solution!
+Спробуйте виправити це самостійно, перш ніж дивитись на рішення!
 
 <Solution>
 
-Add `export default` before the function definition like so:
+Додайте `export default` перед визначенням функції таким чином:
 
 <Sandpack>
 
@@ -274,7 +273,7 @@ export default function Profile() {
   return (
     <img
       src="https://i.imgur.com/lICfvbD.jpg"
-      alt="Aklilu Lemma"
+      alt="Аклілу Лемма (Aklilu Lemma)"
     />
   );
 }
@@ -286,17 +285,17 @@ img { height: 181px; }
 
 </Sandpack>
 
-You might be wondering why writing `export` alone is not enough to fix this example. You can learn the difference between `export` and `export default` in [Importing and Exporting Components.](/learn/importing-and-exporting-components)
+Вам може бути цікаво чому запис `export` сам по собі недостатній для виправлення цього прикладу. Ви можете дізнатися різницю між `export` та `export default` у розділі [Імпортування та експортування компонентів.](/learn/importing-and-exporting-components)
 
 </Solution>
 
-#### Fix the return statement {/*fix-the-return-statement*/}
+#### Виправте оператор return {/*fix-the-return-statement*/}
 
-Something isn't right about this `return` statement. Can you fix it?
+З цим оператором `return` щось не так. Чи можете ви виправити його?
 
 <Hint>
 
-You may get an "Unexpected token" error while trying to fix this. In that case, check that the semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
+Під час спроби виправити це, можливо, ви отримаєте помилку "Unexpected token". У такому випадку, перевірте, чи крапка з комою знаходиться після закриваючої дужки. Залишення крапки з комою всередині `return ( )` призведе до помилки.
 
 </Hint>
 
@@ -306,7 +305,7 @@ You may get an "Unexpected token" error while trying to fix this. In that case, 
 ```js
 export default function Profile() {
   return
-    <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+    <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Кацуко Сарухаші (Katsuko Saruhashi)" />;
 }
 ```
 
@@ -318,13 +317,13 @@ img { height: 180px; }
 
 <Solution>
 
-You can fix this component by moving the return statement to one line like so:
+Цей компонент можна виправити, перенісши оператор return на одну лінію:
 
 <Sandpack>
 
 ```js
 export default function Profile() {
-  return <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Katsuko Saruhashi" />;
+  return <img src="https://i.imgur.com/jA8hHMpm.jpg" alt="Кацуко Сарухаші (Katsuko Saruhashi)" />;
 }
 ```
 
@@ -334,7 +333,7 @@ img { height: 180px; }
 
 </Sandpack>
 
-Or by wrapping the returned JSX markup in parentheses that open right after `return`:
+Або обгорніть повернену JSX розмітку у дужки, які відкриваються одразу після `return`:
 
 <Sandpack>
 
@@ -343,7 +342,7 @@ export default function Profile() {
   return (
     <img 
       src="https://i.imgur.com/jA8hHMpm.jpg" 
-      alt="Katsuko Saruhashi" 
+      alt="Кацуко Сарухаші (Katsuko Saruhashi)"
     />
   );
 }
@@ -357,9 +356,9 @@ img { height: 180px; }
 
 </Solution>
 
-#### Spot the mistake {/*spot-the-mistake*/}
+#### Виявіть помилку {/*spot-the-mistake*/}
 
-Something's wrong with how the `Profile` component is declared and used. Can you spot the mistake? (Try to remember how React distinguishes components from the regular HTML tags!)
+Щось не так з оголошенням та використанням компонента `Profile`. Чи можете ви знайти помилку? (Спробуйте пригадати, як React відрізняє компоненти від звичайних HTML-тегів!)
 
 <Sandpack>
 
@@ -368,7 +367,7 @@ function profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
@@ -376,7 +375,7 @@ function profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Видатні вчені</h1>
       <profile />
       <profile />
       <profile />
@@ -393,9 +392,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Solution>
 
-React component names must start with a capital letter.
+Назви компонентів React повинні починатися з великої літери.
 
-Change `function profile()` to `function Profile()`, and then change every `<profile />` to `<Profile />`:
+Змініть `function profile()` на `function Profile()`,  а потім змініть кожен `<profile />` на `<Profile />`:
 
 <Sandpack>
 
@@ -404,7 +403,7 @@ function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
@@ -412,7 +411,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Видатні вчені</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -429,14 +428,14 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-#### Your own component {/*your-own-component*/}
+#### Ваш власний компонент {/*your-own-component*/}
 
-Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component that shows `<h1>Good job!</h1>`. Don't forget to export it!
+Напишіть компонент з нуля. Ви можете дати йому будь-яку валідну назву та повернути будь-яку розмітку. Якщо у вас закінчилися ідеї, ви можете написати компонент `Congratulations`, який показує `<h1>Гарна робота!</h1>`. Не забудьте експортувати його!
 
 <Sandpack>
 
 ```js
-// Write your component below!
+// Напишіть свій компонент нижче!
 
 ```
 
@@ -449,7 +448,7 @@ Write a component from scratch. You can give it any valid name and return any ma
 ```js
 export default function Congratulations() {
   return (
-    <h1>Good job!</h1>
+    <h1>Гарна робота!</h1>
   );
 }
 ```
