@@ -29,7 +29,7 @@ function Profile() {
   return (
     <img
       src="https://i.imgur.com/MK3eW3As.jpg"
-      alt="Katherine Johnson"
+      alt="Кетерін Джонсон (Katherine Johnson)"
     />
   );
 }
@@ -81,7 +81,7 @@ function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
@@ -201,7 +201,7 @@ export function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
@@ -291,7 +291,7 @@ export function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
@@ -359,7 +359,7 @@ export function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
@@ -409,7 +409,7 @@ export default function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
