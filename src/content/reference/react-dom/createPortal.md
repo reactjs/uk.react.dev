@@ -10,7 +10,7 @@ title: createPortal
 ```js
 <div>
   <SomeComponent />
-  {createPortal(children, domNode)}
+  {createPortal(children, domNode, key?)}
 </div>
 ```
 
@@ -22,7 +22,7 @@ title: createPortal
 
 ## Опис {/*reference*/}
 
-### `createPortal(children, domNode)` {/*createportal*/}
+### `createPortal(children, domNode, key?)` {/*createportal*/}
 
 Щоб створити портал, викличте `createPortal`, передаючи JSX і DOM-вузол в якому він повинен відрендеритись:
 
@@ -50,7 +50,13 @@ import { createPortal } from 'react-dom';
 
 * `domNode`: DOM-вузол, наприклад повернутий з `document.getElementById()`. Переданий вузол вже повинен існувати. Передавання різних DOM-вузлів під час оновлення спричинить повторне створення контенту всередині порталу.
 
+<<<<<<< HEAD
 #### Результат {/*returns*/}
+=======
+* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists/#keeping-list-items-in-order-with-key)
+
+#### Returns {/*returns*/}
+>>>>>>> 3364c93feb358a7d1ac2e8d8b0468c3e32214062
 
 `createPortal` повертає React-вузол, який може бути включеним в JSX або ж повернутим з React-компонента. Якщо React зіткнеться з таким у виводі рендеру, він помістить надані `children` всередину переданого `domNode`.
 
