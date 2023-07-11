@@ -4,7 +4,7 @@ title: forwardRef
 
 <Intro>
 
-`forwardRef` lets your component expose a DOM node to parent component with a [ref.](/learn/manipulating-the-dom-with-refs)
+`forwardRef` дозволяє вашому компоненту розкрити DOM-вузол батьківському компоненту через [реф.](/learn/manipulating-the-dom-with-refs)
 
 ```js
 const SomeComponent = forwardRef(render)
@@ -16,11 +16,11 @@ const SomeComponent = forwardRef(render)
 
 ---
 
-## Reference {/*reference*/}
+## Опис {/*reference*/}
 
 ### `forwardRef(render)` {/*forwardref*/}
 
-Call `forwardRef()` to let your component receive a ref and forward it to a child component:
+Викличте `forwardRef()`, щоб ваш компонент зміг отримати реф та направити його до дочірнього компонента:
 
 ```js
 import { forwardRef } from 'react';
@@ -30,26 +30,25 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-[See more examples below.](#usage)
+[Перегляньте більше прикладів нижче.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Параметри {/*parameters*/}
 
-* `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
+* `render`: Функція для рендеру вашого компонента. React викликає цю функцію з пропсами і `ref`, які ваш компонент отримав від батьківського компонента. JSX, який ви повертаєте, буде виводом вашого компонента.
 
-#### Returns {/*returns*/}
+#### Результат {/*returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
+`forwardRef` повертає React-компонент, який можна рендерити в JSX. На відміну від React-компонентів, створених звичайними функціями, компонент повернутий з `forwardRef` також може отримувати `ref` проп.
 
-#### Caveats {/*caveats*/}
+#### Застереження {/*caveats*/}
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
-
+* У суворому режимі React **викличе вашу функцію для рендеру двічі**, щоб [допомогти вам знаходити побічні ефекти.](#my-initializer-or-updater-function-runs-twice) Ця поведінка діє лише під час розробки і не впливає на продакшн. Якщо ваша функція для рендеру є чистою (якою вона й має бути), то ця поведінка не вплине на логіку вашого компонента. Результат одного з викликів буде проігноровано. 
 
 ---
 
-### `render` function {/*render-function*/}
+### Функція `render` {/*render-function*/}
 
-`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
+`forwardRef` приймає функцію для рендеру як аргумент. React викликає цю функцію з `props` та `ref`:
 
 ```js
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -62,23 +61,23 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-#### Parameters {/*render-parameters*/}
+#### Параметри {/*render-parameters*/}
 
-* `props`: The props passed by the parent component.
+* `props`: Пропси передані батьківським компонентом.
 
-* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/reference/react/useImperativeHandle)
+* `ref`:  Атрибут `ref`, переданий батьківським компонентом. `ref` може бути об'єктом чи функцією. Якщо батьківський компонент не передав реф, то цей параметр буде `null`. Вам потрібно або передати отриманий `ref` до іншого компонента, або передати його в  [`useImperativeHandle`.](/reference/react/useImperativeHandle)
 
-#### Returns {/*render-returns*/}
+#### Результат {/*render-returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
+`forwardRef` повертає React-компонент, який можна рендерити в JSX. На відміну від React-компонентів, створених звичайними функціями, компонент повернутий з `forwardRef` також може отримувати `ref` проп.
 
 ---
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
-### Exposing a DOM node to the parent component {/*exposing-a-dom-node-to-the-parent-component*/}
+### Розкриття DOM-вузла батьківському компоненту {/*exposing-a-dom-node-to-the-parent-component*/}
 
-By default, each component's DOM nodes are private. However, sometimes it's useful to expose a DOM node to the parent--for example, to allow focusing it. To opt in, wrap your component definition into `forwardRef()`:
+За замовчуванням, DOM-вузли кожного компонента приватні. Але, іноді потрібно передавати DOM-вузол батьківському компоненту, наприклад, щоб мати можливість сфокусувати його. Щоб зробити це, обгорніть оголошення вашого компонента в `forwardRef()`:
 
 ```js {3,11}
 import { forwardRef } from 'react';
@@ -94,7 +93,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-You will receive a <CodeStep step={1}>ref</CodeStep> as the second argument after props. Pass it to the DOM node that you want to expose:
+Ви отримаєте <CodeStep step={1}>реф</CodeStep> як другий аргумент після пропсів. Передайте його у DOM-вузол, який хочете розкрити:
 
 ```js {8} [[1, 3, "ref"], [1, 8, "ref", 30]]
 import { forwardRef } from 'react';
@@ -110,7 +109,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-This lets the parent `Form` component access the <CodeStep step={2}>`<input>` DOM node</CodeStep> exposed by `MyInput`:
+Це дозволяє батьківському компоненту `Form` отримати доступ до <CodeStep step={2}>`<input>` DOM-вузла,</CodeStep> розкритого в `MyInput`:
 
 ```js [[1, 2, "ref"], [1, 10, "ref", 41], [2, 5, "ref.current"]]
 function Form() {
@@ -124,22 +123,22 @@ function Form() {
     <form>
       <MyInput label="Enter your name:" ref={ref} />
       <button type="button" onClick={handleClick}>
-        Edit
+        Редагувати
       </button>
     </form>
   );
 }
 ```
 
-This `Form` component [passes a ref](/reference/react/useRef#manipulating-the-dom-with-a-ref) to `MyInput`. The `MyInput` component *forwards* that ref to the `<input>` browser tag. As a result, the `Form` component can access that `<input>` DOM node and call [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) on it.
+Цей компонент `Form` [передає реф](/reference/react/useRef#manipulating-the-dom-with-a-ref) до `MyInput`. Компонент `MyInput` *направляє* той реф до браузерного тегу `<input>`. Як результат, компонент `Form` має доступ до DOM-вузла `<input>` та може викликати [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) на ньому.
 
-Keep in mind that exposing a ref to the DOM node inside your component makes it harder to change your component's internals later. You will typically expose DOM nodes from reusable low-level components like buttons or text inputs, but you won't do it for application-level components like an avatar or a comment.
+Пам'ятайте, що розкриття рефу DOM-вузла всередині вашого компонента робить важчою зміну внутрішніх частин компонента пізніше. Зазвичай, ви будете розкривати DOM-вузли з компонентів нижнього рівня, що перевикористовуються, та не будете робити це із глобальними компонентами, такими як аватар чи коментар.
 
-<Recipes title="Examples of forwarding a ref">
+<Recipes title="Приклади направлення рефу">
 
-#### Focusing a text input {/*focusing-a-text-input*/}
+#### Фокусування на текстовому полі {/*focusing-a-text-input*/}
 
-Clicking the button will focus the input. The `Form` component defines a ref and passes it to the `MyInput` component. The `MyInput` component forwards that ref to the browser `<input>`. This lets the `Form` component focus the `<input>`.
+Натискання кнопки сфокусує курсор на полі вводу. Компонент `Form` оголошує реф і передає його до компонента `MyInput`. Компонент `MyInput` направляє той реф до браузерного `<input>`. Це дозволяє компоненту `Form` сфокусувати курсор на `<input>`.
 
 <Sandpack>
 
@@ -158,7 +157,7 @@ export default function Form() {
     <form>
       <MyInput label="Enter your name:" ref={ref} />
       <button type="button" onClick={handleClick}>
-        Edit
+        Редагувати
       </button>
     </form>
   );
@@ -191,9 +190,9 @@ input {
 
 <Solution />
 
-#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### Відтворення та зупинка відео {/*playing-and-pausing-a-video*/}
 
-Clicking the button will call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node. The `App` component defines a ref and passes it to the `MyVideoPlayer` component. The `MyVideoPlayer` component forwards that ref to the browser `<video>` node. This lets the `App` component play and pause the `<video>`.
+Натискання на кнопку викличе [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) і [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) на DOM-вузлі `<video>`. Компонент `App` оголошує реф та передає його в компонент `MyVideoPlayer`. Компонент `MyVideoPlayer` направляє той реф до браузерного вузла `<video>`. Це дозволяє компоненту `App` відтворювати та зупиняти `<video>`.
 
 <Sandpack>
 
@@ -206,10 +205,10 @@ export default function App() {
   return (
     <>
       <button onClick={() => ref.current.play()}>
-        Play
+        Відтворити
       </button>
       <button onClick={() => ref.current.pause()}>
-        Pause
+        Зупинити
       </button>
       <br />
       <MyVideoPlayer
@@ -252,9 +251,9 @@ button { margin-bottom: 10px; margin-right: 10px; }
 
 ---
 
-### Forwarding a ref through multiple components {/*forwarding-a-ref-through-multiple-components*/}
+### Передача рефу через кілька компонентів {/*forwarding-a-ref-through-multiple-components*/}
 
-Instead of forwarding a `ref` to a DOM node, you can forward it to your own component like `MyInput`:
+Замість направлення `ref` до DOM-вузла, ви можете направити його у ваш власний компонент, наприклад `MyInput`:
 
 ```js {1,5}
 const FormField = forwardRef(function FormField(props, ref) {
@@ -268,7 +267,7 @@ const FormField = forwardRef(function FormField(props, ref) {
 });
 ```
 
-If that `MyInput` component forwards a ref to its `<input>`, a ref to `FormField` will give you that `<input>`:
+Якщо компонент `MyInput` направляє реф до свого `<input>`, реф до `FormField` дасть вам той `<input>`:
 
 ```js {2,5,10}
 function Form() {
@@ -282,14 +281,14 @@ function Form() {
     <form>
       <FormField label="Enter your name:" ref={ref} isRequired={true} />
       <button type="button" onClick={handleClick}>
-        Edit
+        Редагувати
       </button>
     </form>
   );
 }
 ```
 
-The `Form` component defines a ref and passes it to `FormField`. The `FormField` component forwards that ref to `MyInput`, which forwards it to a browser `<input>` DOM node. This is how `Form` accesses that DOM node.
+Компонент `Form` оголошує реф та передає його до `FormField`. Компонент `FormField` направляє той реф у `MyInput`, який направляє його в браузерний DOM-вузол `<input>`. Ось як `Form` отримує доступ до того DOM-вузла.
 
 
 <Sandpack>
@@ -309,7 +308,7 @@ export default function Form() {
     <form>
       <FormField label="Enter your name:" ref={ref} isRequired={true} />
       <button type="button" onClick={handleClick}>
-        Edit
+        Редагувати
       </button>
     </form>
   );
@@ -331,7 +330,7 @@ const FormField = forwardRef(function FormField({ label, isRequired }, ref) {
         onChange={e => setValue(e.target.value)} 
       />
       {(isRequired && value === '') &&
-        <i>Required</i>
+        <i>Обов'язкове поле</i>
       }
     </>
   );
@@ -367,9 +366,9 @@ input, button {
 
 ---
 
-### Exposing an imperative handle instead of a DOM node {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
+### Розкриття імперативного керування замість DOM-вузла {/*exposing-an-imperative-handle-instead-of-a-dom-node*/}
 
-Instead of exposing an entire DOM node, you can expose a custom object, called an *imperative handle,* with a more constrained set of methods. To do this, you'd need to define a separate ref to hold the DOM node:
+Замість того, щоб розкривати весь DOM-вузол, ви можете розкрити власний об'єкт з обмеженим набором методів, що називають *імперативним керуванням*. Щоб зробити це, вам потрібно буде оголосити окремий реф для зберігання DOM-вузла:
 
 ```js {2,6}
 const MyInput = forwardRef(function MyInput(props, ref) {
@@ -381,7 +380,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Pass the `ref` you received to [`useImperativeHandle`](/reference/react/useImperativeHandle) and specify the value you want to expose to the `ref`:
+Передайте `ref`, який ви отримуєте, в [`useImperativeHandle`](/reference/react/useImperativeHandle) і вкажіть значення яке ви хочете розкрити в `ref`:
 
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -404,7 +403,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-If some component gets a ref to `MyInput`, it will only receive your `{ focus, scrollIntoView }` object instead of the DOM node. This lets you limit the information you expose about your DOM node to the minimum.
+Якщо якийсь компонент отримує реф до `MyInput`, він отримає тільки ваш об'єкт `{ focus, scrollIntoView }`, замість DOM-вузла. Це дозволяє вам обмежувати розкриту інформацію про ваш DOM-вузол до мінімуму.
 
 <Sandpack>
 
@@ -417,7 +416,7 @@ export default function Form() {
 
   function handleClick() {
     ref.current.focus();
-    // This won't work because the DOM node isn't exposed:
+    // Це не працюватиме, тому що DOM-вузол не розкритий:
     // ref.current.style.opacity = 0.5;
   }
 
@@ -425,7 +424,7 @@ export default function Form() {
     <form>
       <MyInput label="Enter your name:" ref={ref} />
       <button type="button" onClick={handleClick}>
-        Edit
+        Редагувати
       </button>
     </form>
   );
@@ -463,25 +462,25 @@ input {
 
 </Sandpack>
 
-[Read more about using imperative handles.](/reference/react/useImperativeHandle)
+[Прочитайте більше про використання імперативного керування.](/reference/react/useImperativeHandle)
 
 <Pitfall>
 
-**Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
+**Не використовуйте рефи занадто часто.** Ви повинні використовувати рефи тільки для *імперативної* поведінки, яку не можете передавати як пропси: для прикладу, скролл до вузла, фокусування на вузлі, активацію анімації, виділення тексту тощо.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**Якщо ви можете передати щось як проп, вам не потрібно використовувати реф.** Для прикладу, замість розкриття імперативного керування  `{ open, close }` з компонента `Modal`, краще передати `isOpen` як проп, подібно до `<Modal isOpen={isOpen} />`. [Ефекти](/learn/synchronizing-with-effects) можуть допомогти вам розкрити імперативну поведінку через пропси.
 
 </Pitfall>
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Усунення неполадок {/*troubleshooting*/}
 
-### My component is wrapped in `forwardRef`, but the `ref` to it is always `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
+### Мій компонент обгорнутий у `forwardRef`, але `ref` до нього завжди `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
 
-This usually means that you forgot to actually use the `ref` that you received.
+Це зазвичай означає, що ви забули використати `ref`, який отримали.
 
-For example, this component doesn't do anything with its `ref`:
+Для прикладу, цей компонент не робить нічого зі своїм `ref`:
 
 ```js {1}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -494,7 +493,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-To fix it, pass the `ref` down to a DOM node or another component that can accept a ref:
+Щоб виправити це, передайте `ref` вниз во DOM-вузла або іншого компонента, який може прийняти реф:
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label }, ref) {
@@ -507,7 +506,7 @@ const MyInput = forwardRef(function MyInput({ label }, ref) {
 });
 ```
 
-The `ref` to `MyInput` could also be `null` if some of the logic is conditional:
+`ref` до `MyInput` також може бути `null`, якщо якась логіка умовна:
 
 ```js {1,5}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
@@ -520,7 +519,7 @@ const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
 });
 ```
 
-If `showInput` is `false`, then the ref won't be forwarded to any node, and a ref to `MyInput` will remain empty. This is particularly easy to miss if the condition is hidden inside another component, like `Panel` in this example:
+Якщо `showInput` це `false`, реф не буде передано ні в один вузол, і реф до `MyInput` залишиться пустим. Це особливо легко непомітити, якщо умова схована всередині іншого компонента, як `Panel` в цьому прикладі:
 
 ```js {5,7}
 const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
