@@ -54,7 +54,11 @@ function Post() {
 }
 ```
 
+<<<<<<< HEAD
 Фрагменти є корисним інструментом, оскільки групування елементів з `Fragment` не має впливу на розташування або стилізацію, на відміну від огортання елементів в інший контейнер, такий як DOM-елемент. Якщо ви перевірите цей приклад за допомогою інструментів браузера, ви побачите, що всі DOM-вузли `<h1>` і `<p>` відображаються як сусідні елементи без обгорток навколо них:
+=======
+Fragments are useful because grouping elements with a Fragment has no effect on layout or styles, unlike if you wrapped the elements in another container like a DOM element. If you inspect this example with the browser tools, you'll see that all `<h1>` and `<article>` DOM nodes appear as siblings without wrappers around them:
+>>>>>>> 819518cfe32dd2db3b765410247c30feea713c77
 
 <Sandpack>
 
