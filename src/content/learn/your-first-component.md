@@ -210,7 +210,11 @@ function Profile() {
 
 #### Компоненти на всій глибині {/*components-all-the-way-down*/}
 
+<<<<<<< HEAD
 Ваш React додаток починається з "кореневого" компонента. Зазвичай він створюється автоматично, коли ви створюєте новий проект. Наприклад, якщо ви використовуєте [CodeSandbox](https://codesandbox.io/) або [Create React App](https://create-react-app.dev/), кореневий компонент визначений в `src/App.js`. Якщо ви використовуєте фреймворк [Next.js](https://nextjs.org/), кореневий компонент визначений в `pages/index.js`. У цих прикладах ви експортували кореневі компоненти.
+=======
+Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+>>>>>>> 5219d736a7c181a830f7646e616eb97774b43272
 
 Більшість додатків React використовують компоненти на всій глибині. Це означає, що ви будете використовувати компоненти не тільки для повторно використовуваних елементів, таких як кнопки, але й для більших елементів, таких як бічні панелі, списки та, врешті-решт, цілі сторінки! Компоненти - зручний спосіб організації коду UI та розмітки, навіть якщо деякі з них використовуються лише один раз.
 
