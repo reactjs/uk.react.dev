@@ -1,34 +1,34 @@
 ---
-title: Writing Markup with JSX
+title: Написання розмітки з JSX
 ---
 
 <Intro>
 
-*JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write components, most React developers prefer the conciseness of JSX, and most codebases use it.
+*JSX* — це синтаксичне розширення для JavaScript, яке дозволяє вам писати HTML-подібну розмітку всередині файлу JavaScript. Хоча існують інші способи написання компонентів, більшість розробників React віддають перевагу лаконічності JSX, і більшість кодових баз використовують його.
 
 </Intro>
 
 <YouWillLearn>
 
-* Why React mixes markup with rendering logic
-* How JSX is different from HTML
-* How to display information with JSX
+* Чому React змішує розмітку з логікою відображення
+* Чим JSX відрізняється від HTML
+* Як відображати інформацію за допомогою JSX
 
 </YouWillLearn>
 
-## JSX: Putting markup into JavaScript {/*jsx-putting-markup-into-javascript*/}
+## JSX: Вставка розмітки в JavaScript {/*jsx-putting-markup-into-javascript*/}
 
-The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
+Веб був побудований на HTML, CSS та JavaScript. Протягом багатьох років веброзробники розміщали вміст у HTML, дизайн у CSS, а логіку у JavaScript — часто у відокремлених файлах! Вміст розмічався всередині HTML, тоді як логіка сторінки мешкала окремо у JavaScript:
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_html" height={237} width={325} alt="HTML markup with purple background and a div with two child tags: p and form. ">
+<Diagram name="writing_jsx_html" height={237} width={325} alt="HTML розмітка з фіолетовим фоном та елементом div з двома дочірніми тегами: p та form.">
 
 HTML
 
 </Diagram>
 
-<Diagram name="writing_jsx_js" height={237} width={325} alt="Three JavaScript handlers with yellow background: onSubmit, onLogin, and onClick.">
+<Diagram name="writing_jsx_js" height={237} width={325} alt="Три JavaScript обробники з жовтим фоном: onSubmit, onLogin та onClick.">
 
 JavaScript
 
@@ -36,53 +36,53 @@ JavaScript
 
 </DiagramGroup>
 
-But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—components.**
+У міру зростання інтерактивності Вебу, логіка все більше впливала на вміст. JavaScript став відповідальним за HTML! Ось чому **у React, логіка відображення та розмітка знаходяться разом в одному місці — компонентах.**
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Sidebar which calls the function isLoggedIn, highlighted in yellow. Nested inside the function highlighted in purple is the p tag from before, and a Form tag referencing the component shown in the next diagram.">
+<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React-компонент з HTML та JavaScript змішаних з попередніх прикладів. Функція називається Sidebar, яка викликає функцію isLoggedIn, яка виділена жовтим кольором. Вкладений всередині функції, яка виділена фіолетовим кольором, є тег p, який був показаний раніше, і тег Form, який посилається на компонент, показаний на наступній діаграмі.">
 
-`Sidebar.js` React component
+`Sidebar.js` React компонент
 
 </Diagram>
 
-<Diagram name="writing_jsx_form" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Form containing two handlers onClick and onSubmit highlighted in yellow. Following the handlers is HTML highlighted in purple. The HTML contains a form element with a nested input element, each with an onClick prop.">
+<Diagram name="writing_jsx_form" height={330} width={325} alt="React-компонент з HTML та JavaScript змішаних з попередніх прикладів. Назва функції - Form, яка містить два обробники подій onClick та onSubmit, які позначені жовтим кольором. Після обробників слідує HTML, який позначений фіолетовим кольором. В HTML міститься елемент форми з вкладеним елементом input, кожен з них має властивість onClick.">
 
-`Form.js` React component
+`Form.js` React компонент
 
 </Diagram>
 
 </DiagramGroup>
 
-Keeping a button's rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, details that are unrelated, such as the button's markup and a sidebar's markup, are isolated from each other, making it safer to change either of them on their own.
+Зберігання логіки відображення кнопки та її розмітки разом гарантує, що вони залишаються синхронізованими одне з одним при кожному редагуванні. Натомість деталі, які не мають відношення одна до одної, як-от розмітка кнопки та розмітка бічної панелі, ізольовані одна від одної, що робить безпечну зміну кожної з них окремо.
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information. The best way to understand this is to convert some HTML markup to JSX markup.
+Кожен компонент React — це функція JavaScript, яка може містити деяку розмітку, яку React відображає в браузері. Компоненти React використовують розширення синтаксису, яке називається JSX, для представлення цієї розмітки. JSX схожий на HTML, але трохи суворіший і може відображати динамічну інформацію. Найкращий спосіб зрозуміти це — перетворити деяку HTML-розмітку на розмітку JSX.
 
 <Note>
 
-JSX and React are two separate things. They're often used together, but you *can* [use them independently](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) of each other. JSX is a syntax extension, while React is a JavaScript library.
+JSX та React — дві різні речі. Їх часто використовують разом, але ви *можете* [використовувати їх незалежно](https://uk.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) одне від одного. JSX є розширенням синтаксису, у той час, як React — бібліотека JavaScript.
 
 </Note>
 
-## Converting HTML to JSX {/*converting-html-to-jsx*/}
+## Конвертація HTML в JSX {/*converting-html-to-jsx*/}
 
-Suppose that you have some (perfectly valid) HTML:
+Припустимо, у вас є деякий (абсолютно правильний) HTML:
 
 ```html
-<h1>Hedy Lamarr's Todos</h1>
+<h1>Список завдань Геді Ламари</h1>
 <img 
   src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Hedy Lamarr" 
+  alt="Геді Ламар (Hedy Lamarr)" 
   class="photo"
 >
 <ul>
-    <li>Invent new traffic lights
-    <li>Rehearse a movie scene
-    <li>Improve the spectrum technology
+    <li>Винахід нових світлофорів
+    <li>Провести репетицію сцени з фільму
+    <li>Вдосконалення технології спектра
 </ul>
 ```
 
-And you want to put it into your component:
+І ви хочете вставити його у свій компонент:
 
 ```js
 export default function TodoList() {
@@ -92,7 +92,7 @@ export default function TodoList() {
 }
 ```
 
-If you copy and paste it as is, it will not work:
+Якщо ви скопіюєте та вставите його як є, він не буде працювати:
 
 
 <Sandpack>
@@ -100,17 +100,17 @@ If you copy and paste it as is, it will not work:
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
+    // Це не зовсім працює!
+    <h1>Список завдань Геді Ламари</h1>
     <img 
       src="https://i.imgur.com/yXOvdOSs.jpg" 
-      alt="Hedy Lamarr" 
+      alt="Геді Ламар (Hedy Lamarr)" 
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve the spectrum technology
+      <li>Винахід нових світлофорів
+      <li>Провести репетицію сцени з фільму
+      <li>Вдосконалення технології спектра
     </ul>
   );
 }
@@ -122,28 +122,28 @@ img { height: 90px }
 
 </Sandpack>
 
-This is because JSX is stricter and has a few more rules than HTML! If you read the error messages above, they'll guide you to fix the markup, or you can follow the guide below.
+Це тому, що JSX строгіший і має декілька більше правил ніж HTML! Якщо ви прочитаєте повідомлення про помилки вище, вони нададуть вам вказівки щодо виправлення розмітки, або ви можете скористатися наступним посібником.
 
 <Note>
 
-Most of the time, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
+Більшість часу, повідомлення про помилки, що відображаються в React, допоможуть вам знайти, де знаходиться проблема. Зверніться до них, якщо ви застрягли!
 
 </Note>
 
-## The Rules of JSX {/*the-rules-of-jsx*/}
+## Правила JSX {/*the-rules-of-jsx*/}
 
-### 1. Return a single root element {/*1-return-a-single-root-element*/}
+### 1. Повертайте один кореневий елемент {/*1-return-a-single-root-element*/}
 
-To return multiple elements from a component, **wrap them with a single parent tag.**
+Щоб повернути декілька елементів із компонента, **оберніть їх одним батьківським тегом.**
 
-For example, you can use a `<div>`:
+Наприклад, ви можете використовувати `<div>`:
 
 ```js {1,11}
 <div>
-  <h1>Hedy Lamarr's Todos</h1>
+  <h1>Список завдань Геді Ламари</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
+    alt="Геді Ламар (Hedy Lamarr)" 
     class="photo"
   >
   <ul>
@@ -153,14 +153,14 @@ For example, you can use a `<div>`:
 ```
 
 
-If you don't want to add an extra `<div>` to your markup, you can write `<>` and `</>` instead:
+Якщо ви не хочете додавати додатковий `<div>` до вашої розмітки, ви можете написати `<>` та `</>` замість нього:
 
 ```js {1,11}
 <>
-  <h1>Hedy Lamarr's Todos</h1>
+  <h1>Список завдань Геді Ламари</h1>
   <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
+    src="https://i.imgur.com/yXOvdOSs.jpg"
+    alt="Геді Ламар (Hedy Lamarr)" 
     class="photo"
   >
   <ul>
@@ -169,64 +169,64 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[Fragment.](/reference/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
+Цей порожній тег називається *[Фрагмент.](/reference/react/Fragment)* Фрагменти дозволяють вам групувати елементи без додавання додаткових тегів до HTML-структури сторінки.
 
 <DeepDive>
 
-#### Why do multiple JSX tags need to be wrapped? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
+#### Чому декілька тегів JSX потрібно обгортати? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
 
-JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a Fragment.
+JSX виглядає схожим на HTML, але "під капотом" він перетворюється на звичайні об'єкти JavaScript. Ви не можете повернути два об'єкти з функції без обгортання їх у масив. Це пояснює, чому ви також не можете повернути два теги JSX без обгортання їх в інший тег або Фрагмент.
 
 </DeepDive>
 
-### 2. Close all the tags {/*2-close-all-the-tags*/}
+### 2. Закривайте всі теги {/*2-close-all-the-tags*/}
 
-JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
+JSX вимагає явного закриття тегів: теги, які закриваються самі, такі як `<img>`, повинні бути записані як `<img />`, а теги, які обгортають щось, наприклад `<li>oranges`, мають бути написані як `<li>oranges</li>`.
 
-This is how Hedy Lamarr's image and list items look closed:
+Ось як виглядають закритими зображення та пункти списку Геді Ламари:
 
 ```js {2-6,8-10}
 <>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
+    alt="Геді Ламар (Hedy Lamarr)" 
     class="photo"
    />
   <ul>
-    <li>Invent new traffic lights</li>
-    <li>Rehearse a movie scene</li>
-    <li>Improve the spectrum technology</li>
+    <li>Винахід нових світлофорів</li>
+    <li>Провести репетицію сцени з фільму</li>
+    <li>Вдосконалення технології спектра</li>
   </ul>
 </>
 ```
 
-### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
+### 3. camelCase для <s>всіх</s> більшості речей! {/*3-camelcase-salls-most-of-the-things*/}
 
-JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
+JSX перетворюється в JavaScript, а атрибути, записані в JSX, стають ключами об'єктів JavaScript. У ваших компонентах ви часто будете хотіти зчитувати ці атрибути у змінні. Але у JavaScript є обмеження на імена змінних. Наприклад, їх імена не можуть містити дефіси або бути зарезервованими словами, такими як `class`.
 
-This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width` you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
+Ось чому в React багато атрибутів HTML та SVG записані у camelCase. Наприклад, замість `stroke-width` ви використовуєте `strokeWidth`. Оскільки `class` є зарезервованим словом, в React ви пишете `className`, названий за [відповідною властивістю DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
 
 ```js {4}
 <img 
   src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Hedy Lamarr" 
+  alt="Геді Ламар (Hedy Lamarr)" 
   className="photo"
 />
 ```
 
-You can [find all these attributes in the list of DOM component props.](/reference/react-dom/components/common) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
+Ви можете [знайти всі ці атрибути в списку властивостей DOM компоненту.](/reference/react-dom/components/common) Якщо ви допустите помилку, не хвилюйтесь - React надрукує повідомлення з можливим виправленням у [консолі браузера.](https://developer.mozilla.org/docs/Tools/Browser_Console)
 
 <Pitfall>
 
-For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) and [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) attributes are written as in HTML with dashes.
+З історичних причин атрибути [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) та [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) записуються з дефісами, як у HTML.
 
 </Pitfall>
 
-### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
+### Професійна порада: Використовуйте JSX конвертер {/*pro-tip-use-a-jsx-converter*/}
 
-Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
+Конвертація всіх цих атрибутів у наявній розмітці може бути виснажливою! Ми рекомендуємо використовувати [конвертер](https://transform.tools/html-to-jsx) для перекладу вашого наявного HTML та SVG у JSX. Конвертери дуже корисні на практиці, але все ж варто розуміти, що відбувається, щоб ви могли зручно писати JSX самостійно.
 
-Here is your final result:
+Ось ваш кінцевий результат:
 
 <Sandpack>
 
@@ -234,16 +234,16 @@ Here is your final result:
 export default function TodoList() {
   return (
     <>
-      <h1>Hedy Lamarr's Todos</h1>
+      <h1>Список завдань Геді Ламари</h1>
       <img 
         src="https://i.imgur.com/yXOvdOSs.jpg" 
-        alt="Hedy Lamarr" 
+        alt="Геді Ламар (Hedy Lamarr)" 
         className="photo" 
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve the spectrum technology</li>
+        <li>Винахід нових світлофорів</li>
+        <li>Провести репетицію сцени з фільму</li>
+        <li>Вдосконалення технології спектра</li>
       </ul>
     </>
   );
@@ -258,11 +258,11 @@ img { height: 90px }
 
 <Recap>
 
-Now you know why JSX exists and how to use it in components:
+Тепер ви розумієте, чому існує JSX і як його використовувати в компонентах:
 
-* React components group rendering logic together with markup because they are related.
-* JSX is similar to HTML, with a few differences. You can use a [converter](https://transform.tools/html-to-jsx) if you need to.
-* Error messages will often point you in the right direction to fixing your markup.
+- Компоненти React групують логіку відображення разом з розміткою, оскільки вони пов'язані.
+- JSX схожий на HTML, з декількома відмінностями. Якщо потрібно, ви можете скористатися [конвертером](https://transform.tools/html-to-jsx).
+- Повідомлення про помилки часто вкажуть вам правильний шлях для виправлення вашої розмітки.
 
 </Recap>
 
@@ -270,9 +270,9 @@ Now you know why JSX exists and how to use it in components:
 
 <Challenges>
 
-#### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
+#### Конвертація деякого HTML в JSX {/*convert-some-html-to-jsx*/}
 
-This HTML was pasted into a component, but it's not valid JSX. Fix it:
+Цей HTML був вставлений в компонент, але він не є валідним JSX. Виправте його:
 
 <Sandpack>
 
@@ -280,12 +280,12 @@ This HTML was pasted into a component, but it's not valid JSX. Fix it:
 export default function Bio() {
   return (
     <div class="intro">
-      <h1>Welcome to my website!</h1>
+      <h1>Ласкаво просимо на мій сайт!</h1>
     </div>
     <p class="summary">
-      You can find my thoughts here.
+      Ви можете знайти мої думки тут.
       <br><br>
-      <b>And <i>pictures</b></i> of scientists!
+      <b>Та <i>зображення</b></i> науковців!
     </p>
   );
 }
@@ -308,7 +308,7 @@ export default function Bio() {
 
 </Sandpack>
 
-Whether to do it by hand or using the converter is up to you!
+Чи робити це вручну, чи скористатися конвертером - це ваш вибір!
 
 <Solution>
 
@@ -319,12 +319,12 @@ export default function Bio() {
   return (
     <div>
       <div className="intro">
-        <h1>Welcome to my website!</h1>
+        <h1>Ласкаво просимо на мій сайт!</h1>
       </div>
       <p className="summary">
-        You can find my thoughts here.
+        Ви можете знайти мої думки тут.
         <br /><br />
-        <b>And <i>pictures</i></b> of scientists!
+        <b>Та <i>зображення</i></b> науковців!
       </p>
     </div>
   );
