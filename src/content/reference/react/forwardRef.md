@@ -134,7 +134,11 @@ function Form() {
 
 Пам'ятайте, що розкриття рефу DOM-вузла всередині вашого компонента робить важчою зміну внутрішніх частин компонента пізніше. Зазвичай, ви будете розкривати DOM-вузли з компонентів нижнього рівня, що перевикористовуються (як-от кнопки та поля вводу), та не будете робити це із глобальними компонентами, такими як аватар чи коментар.
 
+<<<<<<< HEAD
 <Recipes title="Приклади направлення рефу">
+=======
+<Recipes titleText="Examples of forwarding a ref">
+>>>>>>> 4bdb87b172a7723d56d03a5630c8a9870f6f03ec
 
 #### Фокусування на текстовому полі {/*focusing-a-text-input*/}
 
@@ -422,7 +426,7 @@ export default function Form() {
 
   return (
     <form>
-      <MyInput label="Enter your name:" ref={ref} />
+      <MyInput placeholder="Enter your name" ref={ref} />
       <button type="button" onClick={handleClick}>
         Редагувати
       </button>
