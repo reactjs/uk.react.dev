@@ -50,13 +50,9 @@ import { createPortal } from 'react-dom';
 
 * `domNode`: DOM-вузол, наприклад повернутий з `document.getElementById()`. Переданий вузол вже повинен існувати. Передавання різних DOM-вузлів під час оновлення спричинить повторне створення контенту всередині порталу.
 
-<<<<<<< HEAD
-#### Результат {/*returns*/}
-=======
-* **optional** `key`: A unique string or number to be used as the portal's [key.](/learn/rendering-lists/#keeping-list-items-in-order-with-key)
+* **опційний** `key`: Унікальна стрічкова або числова змінна, що використовується як [ключ](/learn/rendering-lists/#keeping-list-items-in-order-with-key) порталу.
 
-#### Returns {/*returns*/}
->>>>>>> a8790ca810c1cebd114db35a433b90eb223dbb04
+#### Результат {/*returns*/}
 
 `createPortal` повертає React-вузол, який може бути включеним в JSX або ж повернутим з React-компонента. Якщо React зіткнеться з таким у виводі рендеру, він помістить надані `children` всередину переданого `domNode`.
 
