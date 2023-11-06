@@ -50,7 +50,7 @@ import { createPortal } from 'react-dom';
 
 * `domNode`: DOM-вузол, наприклад повернутий з `document.getElementById()`. Переданий вузол вже повинен існувати. Передавання різних DOM-вузлів під час оновлення спричинить повторне створення контенту всередині порталу.
 
-* **опційний** `key`: Унікальна рядкова або числова змінна, що використовується як [ключ](/learn/rendering-lists/#keeping-list-items-in-order-with-key) порталу.
+* **опційний** `key`: Унікальна стрічкова або числова змінна, що використовується як [ключ](/learn/rendering-lists/#keeping-list-items-in-order-with-key) порталу.
 
 #### Результат {/*returns*/}
 
