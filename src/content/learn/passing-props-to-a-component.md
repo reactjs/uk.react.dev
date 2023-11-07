@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: Передача пропсів до компонента
 ---
 
 <Intro>
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+Компоненти React використовують *пропси* для взаємодії між собою. Кожен батьківський компонент може передати деяку інформацію своїм дочірнім компонентам, передаючи їм пропси. Пропси можуть нагадувати вам HTML-атрибути, але ви можете передавати через них будь-яке значення JavaScript, включаючи об'єкти, масиви та функції.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* Як передавати пропси до компонента
+* Як читати пропси з компонента
+* Як встановлювати значення за замовчуванням для пропсів
+* Як передавати JSX до компонента
+* Як пропси змінюються з часом
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## Знайомі пропси {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+Пропси — це інформація, яку ви передаєте до тегу JSX. Наприклад, `className`, `src`, `alt`, `width` та `height` деякі з пропсів, які ви можете передати до тегу `<img>`:
 
 <Sandpack>
 
@@ -30,7 +30,7 @@ function Avatar() {
     <img
       className="avatar"
       src="https://i.imgur.com/1bX5QH6.jpg"
-      alt="Lin Lanying"
+      alt="Лін Ланьїн (Lin Lanying)"
       width={100}
       height={100}
     />
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+Пропси, які ви можете передати до тегу `<img>`, визначені заздалегідь (ReactDOM відповідає [стандарту HTML](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Але ви можете передати будь-які пропси до *власних* компонентів, таких як `<Avatar>`, щоб налаштувати їх. Ось як це зробити!
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Передача пропсів до компонента {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+У цьому коді компонент `Profile` не передає жодних пропсів до свого дочірнього компонента `Avatar`:
 
 ```js
 export default function Profile() {
@@ -65,17 +65,17 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+Ви можете передати деякі пропси до компонента `Avatar` у два кроки.
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### Крок 1: Передайте пропси до дочірнього компонента {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+Спочатку передайте деякі пропси до `Avatar`. Наприклад, давайте передамо два пропси: `person` (об'єкт) і `size` (число):
 
 ```js
 export default function Profile() {
   return (
     <Avatar
-      person={{ name: 'Lin Lanying', imageId: '1bX5QH6' }}
+      person={{ name: 'Лін Ланьїн (Lin Lanying)', imageId: '1bX5QH6' }}
       size={100}
     />
   );
@@ -84,25 +84,25 @@ export default function Profile() {
 
 <Note>
 
-If double curly braces after `person=` confuse you, recall [they're merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+Якщо подвійні фігурні дужки після `person=` вас збивають з пантелику, згадайте, що [вони просто об'єкт](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) всередині фігурних дужок JSX.
 
 </Note>
 
-Now you can read these props inside the `Avatar` component.
+Тепер ви можете читати ці пропси всередині компонента `Avatar`.
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### Крок 2: Читайте пропси всередині дочірнього компонента {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+Ви можете прочитати ці пропси, перераховуючи їх назви `person, size`, розділені комами всередині `({` та `})` безпосередньо після `function Avatar`. Це дозволяє використовувати їх всередині коду `Avatar` як змінні.
 
 ```js
 function Avatar({ person, size }) {
-  // person and size are available here
+  // person та size доступні тут
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+Додайте деяку логіку до `Avatar`, яка використовує пропси `person` та `size` для відображення і готово.
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+Тепер ви можете налаштувати `Avatar` для відображення багатьма різними способами з різними пропсами. Спробуйте змінити значення!
 
 <Sandpack>
 
@@ -127,21 +127,21 @@ export default function Profile() {
       <Avatar
         size={100}
         person={{ 
-          name: 'Katsuko Saruhashi', 
+          name: 'Кацуко Сарухаші (Katsuko Saruhashi)', 
           imageId: 'YfeOqp2'
         }}
       />
       <Avatar
         size={80}
         person={{
-          name: 'Aklilu Lemma', 
+          name: 'Аклілу Лемма (Aklilu Lemma)', 
           imageId: 'OKS67lh'
         }}
       />
       <Avatar
         size={50}
         person={{ 
-          name: 'Lin Lanying',
+          name: 'Лін Ланьїн (Lin Lanying)',
           imageId: '1bX5QH6'
         }}
       />
@@ -168,9 +168,9 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-Props let you think about parent and child components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
+Props дозволяють вам думати про батьківські та дочірні компоненти незалежно. Наприклад, ви можете змінити проп `person` або `size` всередині `Profile`, не думаючи про те, як `Avatar` використовує їх. Аналогічно, ви можете змінити спосіб використання `Avatar` цих пропсів, не звертаючи уваги на `Profile`.
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+Ви можете уявляти пропси як "ручки", які ви можете налаштовувати. Вони виконують ту саму роль, що і аргументи для функцій - насправді, пропси _є_ єдиним аргументом вашого компонента! Функції компонентів React приймають один аргумент - об'єкт `props`:
 
 ```js
 function Avatar(props) {
@@ -180,11 +180,11 @@ function Avatar(props) {
 }
 ```
 
-Usually you don't need the whole `props` object itself, so you destructure it into individual props.
+Зазвичай вам не потрібен весь об'єкт `props` сам по собі, тому ви розкладаєте його на окремі пропси.
 
 <Pitfall>
 
-**Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
+**Не пропустіть пару фігурних дужок `{` та `}` всередині `(` та `)` при оголошенні пропсів:
 
 ```js
 function Avatar({ person, size }) {
@@ -192,7 +192,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-This syntax is called ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) and is equivalent to reading properties from a function parameter:
+Цей синтаксис називається ["деструктуризація"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) і еквівалентний читанню властивостей з параметра функції:
 
 ```js
 function Avatar(props) {
@@ -204,9 +204,9 @@ function Avatar(props) {
 
 </Pitfall>
 
-## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
+## Вказання значення за замовчуванням для пропа {/*specifying-a-default-value-for-a-prop*/}
 
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
+Якщо ви хочете задати пропу значення за замовчуванням, на яке він посилатиметься, якщо не вказано іншого, ви можете зробити це з деструктуризацією, поставивши `=` та значення за замовчуванням відразу після параметра:
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -214,13 +214,13 @@ function Avatar({ person, size = 100 }) {
 }
 ```
 
-Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` will be set to `100`.
+Тепер, якщо `<Avatar person={...} />` рендериться без пропу `size`, `size` буде встановлено на `100`.
 
-The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+Значення за замовчуванням використовується тільки у випадку, якщо проп `size` відсутній або якщо ви передаєте `size={undefined}`. Але якщо ви передаєте `size={null}` або `size={0}`, значення за замовчуванням **не буде** використовуватись.
 
-## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
+## Передача пропсів за допомогою spread синтаксису JSX {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-Sometimes, passing props gets very repetitive:
+Іноді передача пропсів стає дуже повторюваною:
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -237,7 +237,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-There's nothing wrong with repetitive code—it can be more legible. But at times you may value conciseness. Some components forward all of their props to their children, like how this `Profile` does with `Avatar`. Because they don't use any of their props directly, it can make sense to use a more concise "spread" syntax:
+Немає нічого поганого в повторюваному коді — це може бути більш зрозумілим. Але іноді ви можете цінувати лаконічність. Деякі компоненти передають всі свої пропси своїм дочірнім компонентам, як це робить `Profile` з `Avatar`. Оскільки вони не використовують жоден зі своїх пропсів безпосередньо, може бути розумним використовувати більш лаконічний синтаксис "spread":
 
 ```js
 function Profile(props) {
@@ -249,13 +249,13 @@ function Profile(props) {
 }
 ```
 
-This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
+Це передає всі пропси `Profile` до `Avatar` без перерахування кожного з їх імен.
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
+**Використовуйте синтаксис spread з обережністю.** Якщо ви використовуєте його в кожному другому компоненті щось пішло не так. Часто це означає, що вам слід розбити ваші компоненти і передавати дітей як JSX. Детальніше про це далі!
 
-## Passing JSX as children {/*passing-jsx-as-children*/}
+## Передача JSX як дітей {/*passing-jsx-as-children*/}
 
-It is common to nest built-in browser tags:
+Вкладення вбудованих тегів браузера є звичайним ділом:
 
 ```js
 <div>
@@ -263,7 +263,7 @@ It is common to nest built-in browser tags:
 </div>
 ```
 
-Sometimes you'll want to nest your own components the same way:
+Іноді ви захочете вкладати свої власні компоненти так само:
 
 ```js
 <Card>
@@ -271,7 +271,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+Коли ви вкладаєте вміст всередині тегу JSX, батьківський компонент отримує цей вміст у властивості з назвою `children`. Наприклад, компонент `Card` нижче отримає проп `children`, встановлену на `<Avatar />` і відображатиме його в обгортковому div:
 
 <Sandpack>
 
@@ -292,7 +292,7 @@ export default function Profile() {
       <Avatar
         size={100}
         person={{ 
-          name: 'Katsuko Saruhashi',
+          name: 'Кацуко Сарухаші (Katsuko Saruhashi)',
           imageId: 'YfeOqp2'
         }}
       />
@@ -347,17 +347,17 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+Спробуйте замінити `<Avatar>` всередині `<Card>` на деякий текст, щоб побачити, як компонент `Card` може обгорнути будь-який вкладений вміст. Він не потребує "знати", що саме рендериться всередині нього. Ви ще побачите цей гнучкий шаблон в багатьох місцях.
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, etc.
+Ви можете уявляти компонент з пропом `children` як компонент з "отвіром", який може бути "заповнений" батьківськими компонентами з довільним JSX. Ви часто будете використовувати властивість `children` для візуальних обгорток: панелей, сіток і т.д.
 
-<Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
+<Illustration src="/images/docs/illustrations/i_children-prop.png" alt='Подібна до головоломки плитка Card з слотами для "дочірніх" шматочків, наприклад текст або Avatar' />
 
-## How props change over time {/*how-props-change-over-time*/}
+## Як пропси змінюються з часом {/*how-props-change-over-time*/}
 
-The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+Компонент `Clock`, наведений нижче, отримує два пропи від батьківського компонента: `color` та `time`. (Код батьківського компонента опущено, оскільки він використовує [стан](/learn/state-a-components-memory), про який ми ще не говорили.)
 
-Try changing the color in the select box below:
+Спробуйте змінити колір у випадаючому списку нижче:
 
 <Sandpack>
 
@@ -392,7 +392,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Виберіть колір:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -407,21 +407,21 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+Цей приклад показує, що **компонент може отримувати різні пропси з часом**. Пропси не завжди є статичними! Тут проп `time` змінюється кожну секунду, а проп `color` змінюється, коли ви вибираєте інший колір. Пропси відображають дані компонента в будь-який момент часу, а не лише на початку.
 
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable". When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
+Однак, пропси є [незмінними(immutable)](https://uk.wikipedia.org/wiki/%D0%9D%D0%B5%D0%B7%D0%BC%D1%96%D0%BD%D0%BD%D0%B8%D0%B9_%D0%BE%D0%B1%27%D1%94%D0%BA%D1%82) — термін з комп'ютерних наук, що означає "незмінні". Коли компоненту потрібно змінити свої пропси (наприклад, відповідно до взаємодії користувача або нових даних), він повинен "запитати" свій батьківський компонент передати йому _інші пропси_ — новий об'єкт! Його старі пропси будуть відкинуті, і, врешті-решт, рушій JavaScript звільнить пам'ять, яку вони займали.
 
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory.](/learn/state-a-components-memory)
+**Не намагайтеся «змінювати пропси»**. Коли вам потрібно реагувати на введення користувача (наприклад, змінювати вибраний колір), вам потрібно «встановити стан», про що ви можете дізнатися в [Стан: Пам'ять компонента.](/learn/state-a-components-memory)
 
 <Recap>
 
-* To pass props, add them to the JSX, just like you would with HTML attributes.
-* To read props, use the `function Avatar({ person, size })` destructuring syntax.
-* You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
-* You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
-* Props are read-only snapshots in time: every render receives a new version of props.
-* You can't change props. When you need interactivity, you'll need to set state.
+* Щоб передати пропси, додайте їх до JSX, так само, як ви робите з атрибутами HTML.
+* Щоб прочитати пропси, використовуйте синтаксис деструктуризації `function Avatar({ person, size })`.
+* Ви можете вказати значення за замовчуванням, наприклад, `size = 100`, яке використовується для відсутніх та `undefined` пропсів.
+* Ви можете передати всі пропси JSX за допомогою синтаксису розширення `<Avatar {...props} />`, але не зловживайте цим!
+* Вкладений JSX, наприклад `<Card><Avatar /></Card>`, буде виглядати як проп `children` компонента `Card`.
+* Пропси в момент часу можуть бути використані тільки для читання: кожен рендер отримує нову версію пропсів.
+* Ви не можете змінювати пропси. Коли вам потрібна взаємодія, вам потрібно встановити стан.
 
 </Recap>
 
@@ -429,9 +429,9 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Challenges>
 
-#### Extract a component {/*extract-a-component*/}
+#### Винесіть компонент {/*extract-a-component*/}
 
-This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
+Цей компонент `Gallery` містить дуже схожу розмітку для двох профілів. Винесіть компонент `Profile` з нього, щоб зменшити дублювання. Вам потрібно буде вибрати, які пропси передати йому.
 
 <Sandpack>
 
@@ -441,52 +441,52 @@ import { getImageUrl } from './utils.js';
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Визначні вчені</h1>
       <section className="profile">
-        <h2>Maria Skłodowska-Curie</h2>
+        <h2>Марія Склодовська-Кюрі (Maria Skłodowska-Curie)</h2>
         <img
           className="avatar"
           src={getImageUrl('szV5sdG')}
-          alt="Maria Skłodowska-Curie"
+          alt="Марія Склодовська-Кюрі (Maria Skłodowska-Curie)"
           width={70}
           height={70}
         />
         <ul>
           <li>
-            <b>Profession: </b> 
-            physicist and chemist
+            <b>Професія: </b> 
+            фізик та хімік
           </li>
           <li>
-            <b>Awards: 4 </b> 
-            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
+            <b>Нагороди: 4 </b> 
+            (Нобелівська премія з фізики, Нобелівська премія з хімії, Медаль Дейві, Медаль Маттеуччі)
           </li>
           <li>
-            <b>Discovered: </b>
-            polonium (chemical element)
+            <b>Відкрито: </b>
+            полоній (хімічний елемент)
           </li>
         </ul>
       </section>
       <section className="profile">
-        <h2>Katsuko Saruhashi</h2>
+        <h2>Кацуко Сарухаші (Katsuko Saruhashi)</h2>
         <img
           className="avatar"
           src={getImageUrl('YfeOqp2')}
-          alt="Katsuko Saruhashi"
+          alt="Кацуко Сарухаші (Katsuko Saruhashi)"
           width={70}
           height={70}
         />
         <ul>
           <li>
-            <b>Profession: </b> 
-            geochemist
+            <b>Професія: </b> 
+            геохімік
           </li>
           <li>
-            <b>Awards: 2 </b> 
-            (Miyake Prize for geochemistry, Tanaka Prize)
+            <b>Нагороди: 2 </b> 
+            (Премія Міяке з геохімії, Премія Танака)
           </li>
           <li>
-            <b>Discovered: </b>
-            a method for measuring carbon dioxide in seawater
+            <b>Відкрито: </b>
+            метод вимірювання вмісту діоксиду карбону в морській воді
           </li>
         </ul>
       </section>
@@ -524,15 +524,15 @@ li { margin: 5px; }
 
 <Hint>
 
-Start by extracting the markup for one of the scientists. Then find the pieces that don't match it in the second example, and make them configurable by props.
+Почніть з винесення розмітки для одного з вчених. Потім знайдіть частини, які не відповідають йому в другому прикладі, і зробіть їх налаштовуваними за допомогою пропсів.
 
 </Hint>
 
 <Solution>
 
-In this solution, the `Profile` component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
+У цьому рішенні компонент `Profile` приймає кілька пропсів: `imageId` (рядок), `name` (рядок), `profession` (рядок), `awards` (масив рядків), `discovery` (рядок) і `imageSize` (число).
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+Зверніть увагу, що проп `imageSize` має значення за замовчуванням, тому ми не передаємо його до компонента.
 
 <Sandpack>
 
@@ -558,13 +558,13 @@ function Profile({
         height={imageSize}
       />
       <ul>
-        <li><b>Profession:</b> {profession}</li>
+        <li><b>Професія:</b> {profession}</li>
         <li>
-          <b>Awards: {awards.length} </b>
+          <b>Нагороди: {awards.length} </b>
           ({awards.join(', ')})
         </li>
         <li>
-          <b>Discovered: </b>
+          <b>Відкрито: </b>
           {discovery}
         </li>
       </ul>
@@ -575,27 +575,27 @@ function Profile({
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Визначні вчені</h1>
       <Profile
         imageId="szV5sdG"
-        name="Maria Skłodowska-Curie"
-        profession="physicist and chemist"
-        discovery="polonium (chemical element)"
+        name="Марія Склодовська-Кюрі (Maria Skłodowska-Curie)"
+        profession="фізик та хімік"
+        discovery="полоній (хімічний елемент)"
         awards={[
-          'Nobel Prize in Physics',
-          'Nobel Prize in Chemistry',
-          'Davy Medal',
-          'Matteucci Medal'
+          'Нобелівська премія з фізики',
+          'Нобелівська премія з хімії',
+          'Медаль Дейві',
+          'Медаль Маттеуччі'
         ]}
       />
       <Profile
         imageId='YfeOqp2'
-        name='Katsuko Saruhashi'
-        profession='geochemist'
-        discovery="a method for measuring carbon dioxide in seawater"
+        name='Кацуко Сарухаші (Katsuko Saruhashi)'
+        profession='геохімік'
+        discovery="метод вимірювання вмісту діоксиду карбону в морській воді"
         awards={[
-          'Miyake Prize for geochemistry',
-          'Tanaka Prize'
+          'Премія Міяке з геохімії',
+          'Премія Танака'
         ]}
       />
     </div>
@@ -630,9 +630,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Note how you don't need a separate `awardCount` prop if `awards` is an array. Then you can use `awards.length` to count the number of awards. Remember that props can take any values, and that includes arrays too!
+Зверніть увагу, якщо `awards` є масивом, вам не потрібен окремий проп `awardCount`. Тоді ви можете використовувати `awards.length`, щоб підрахувати кількість нагород. Пам'ятайте, що пропси можуть приймати будь-які значення, включаючи масиви!
 
-Another solution, which is more similar to the earlier examples on this page, is to group all information about a person in a single object, and pass that object as one prop:
+Ще одне рішення, яке більше схоже на попередні приклади на цій сторінці, полягає в тому, щоб групувати всю інформацію про людину в один об'єкт і передавати цей об'єкт як один проп:
 
 <Sandpack>
 
@@ -654,14 +654,14 @@ function Profile({ person, imageSize = 70 }) {
       />
       <ul>
         <li>
-          <b>Profession:</b> {person.profession}
+          <b>Професія:</b> {person.profession}
         </li>
         <li>
-          <b>Awards: {person.awards.length} </b>
+          <b>Нагороди: {person.awards.length} </b>
           ({person.awards.join(', ')})
         </li>
         <li>
-          <b>Discovered: </b>
+          <b>Відкрито: </b>
           {person.discovery}
         </li>
       </ul>
@@ -672,27 +672,27 @@ function Profile({ person, imageSize = 70 }) {
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Визначні вчені</h1>
       <Profile person={{
         imageId: 'szV5sdG',
-        name: 'Maria Skłodowska-Curie',
-        profession: 'physicist and chemist',
-        discovery: 'polonium (chemical element)',
+        name: 'Марія Склодовська-Кюрі (Maria Skłodowska-Curie)',
+        profession: 'фізик та хімік',
+        discovery: 'полоній (хімічний елемент)',
         awards: [
-          'Nobel Prize in Physics',
-          'Nobel Prize in Chemistry',
-          'Davy Medal',
-          'Matteucci Medal'
+          'Нобелівська премія з фізики',
+          'Нобелівська премія з хімії',
+          'Медаль Дейві',
+          'Медаль Маттеуччі'
         ],
       }} />
       <Profile person={{
         imageId: 'YfeOqp2',
-        name: 'Katsuko Saruhashi',
-        profession: 'geochemist',
-        discovery: 'a method for measuring carbon dioxide in seawater',
+        name: 'Кацуко Сарухаші (Katsuko Saruhashi)',
+        profession: 'геохімік',
+        discovery: 'метод вимірювання вмісту діоксиду карбону в морській воді',
         awards: [
-          'Miyake Prize for geochemistry',
-          'Tanaka Prize'
+          'Премія Міяке з геохімії',
+          'Премія Танака'
         ],
       }} />
     </div>
@@ -727,15 +727,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Although the syntax looks slightly different because you're describing properties of a JavaScript object rather than a collection of JSX attributes, these examples are mostly equivalent, and you can pick either approach.
+Хоча синтаксис виглядає трохи інакше, оскільки ви описуєте властивості об'єкта JavaScript, а не колекцію атрибутів JSX, ці приклади в основному еквівалентні, і ви можете вибрати будь-який підхід.
 
 </Solution>
 
-#### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+#### Налаштування розміру зображення на основі пропу {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+У цьому прикладі `Avatar` отримує числовий проп `size`, який визначає ширину та висоту елемента `<img>`. У цьому прикладі проп `size` встановлено на `40`. Однак, якщо ви відкриєте зображення в новій вкладці, ви помітите, що саме зображення більше (`160` пікселів). Розмір реального зображення визначається розміром ескізу, який ви запитуєте.
 
-Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
+Змініть компонент `Avatar`, щоб він запитував найближчий розмір зображення на основі пропу `size`. Зокрема, якщо `size` менше `90`, передайте `'s'` ("малий(small)") замість `'b'` ("великий(big)") до функції `getImageUrl`. Переконайтеся, що ваші зміни працюють, рендеруючи аватари з різними значеннями пропу `size` та відкриваючи зображення в новій вкладці.
 
 <Sandpack>
 
@@ -759,7 +759,7 @@ export default function Profile() {
     <Avatar
       size={40}
       person={{ 
-        name: 'Gregorio Y. Zara', 
+        name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
         imageId: '7vQD0fP'
       }}
     />
@@ -786,7 +786,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-Here is how you could go about it:
+Ось як ви можете з цим справитися:
 
 <Sandpack>
 
@@ -815,14 +815,14 @@ export default function Profile() {
       <Avatar
         size={40}
         person={{ 
-          name: 'Gregorio Y. Zara', 
+          name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
           imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={120}
         person={{ 
-          name: 'Gregorio Y. Zara', 
+          name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
           imageId: '7vQD0fP'
         }}
       />
@@ -848,7 +848,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-You could also show a sharper image for high DPI screens by taking [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) into account:
+Ви також можете показати більш чітке зображення для екранів з високою щільністю пікселів, враховуючи [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio):
 
 <Sandpack>
 
@@ -879,21 +879,21 @@ export default function Profile() {
       <Avatar
         size={40}
         person={{ 
-          name: 'Gregorio Y. Zara', 
+          name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
           imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={70}
         person={{ 
-          name: 'Gregorio Y. Zara', 
+          name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
           imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={120}
         person={{ 
-          name: 'Gregorio Y. Zara', 
+          name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
           imageId: '7vQD0fP'
         }}
       />
@@ -919,13 +919,13 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+Пропси дозволяють інкапсулювати таку логіку всередині компонента `Avatar` (і змінювати її пізніше, якщо потрібно), щоб кожен міг використовувати компонент `<Avatar>` без думок про те, як запитувати та змінювати розмір зображень.
 
 </Solution>
 
-#### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+#### Передача JSX у проп `children` {/*passing-jsx-in-a-children-prop*/}
 
-Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
+Винесіть компонент `Card` з розмітки нижче та використайте проп `children`, щоб передати йому різний JSX:
 
 <Sandpack>
 
@@ -935,11 +935,11 @@ export default function Profile() {
     <div>
       <div className="card">
         <div className="card-content">
-          <h1>Photo</h1>
+          <h1>Фото</h1>
           <img
             className="avatar"
             src="https://i.imgur.com/OKS67lhm.jpg"
-            alt="Aklilu Lemma"
+            alt="Аклілу Лемма (Aklilu Lemma)"
             width={70}
             height={70}
           />
@@ -947,8 +947,8 @@ export default function Profile() {
       </div>
       <div className="card">
         <div className="card-content">
-          <h1>About</h1>
-          <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+          <h1>Про</h1>
+          <p>Аклілу Лемма (Aklilu Lemma) був видатним ефіопським вченим, який відкрив природний спосіб лікування шистосомозу.</p>
         </div>
       </div>
     </div>
@@ -983,13 +983,13 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+Будь-який JSX, який ви поміщаєте всередину тегу компонента, буде переданий як властивість `children` цьому компоненту.
 
 </Hint>
 
 <Solution>
 
-This is how you can use the `Card` component in both places:
+Ось як ви можете використовувати компонент `Card` в обох місцях:
 
 <Sandpack>
 
@@ -1008,18 +1008,18 @@ export default function Profile() {
   return (
     <div>
       <Card>
-        <h1>Photo</h1>
+        <h1>Фото</h1>
         <img
           className="avatar"
           src="https://i.imgur.com/OKS67lhm.jpg"
-          alt="Aklilu Lemma"
+          alt="Аклілу Лемма (Aklilu Lemma)"
           width={100}
           height={100}
         />
       </Card>
       <Card>
-        <h1>About</h1>
-        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+        <h1>Про</h1>
+        <p>Аклілу Лемма (Aklilu Lemma) був видатним ефіопським вченим, який відкрив природний спосіб лікування шистосомозу.</p>
       </Card>
     </div>
   );
@@ -1051,7 +1051,7 @@ h1 {
 
 </Sandpack>
 
-You can also make `title` a separate prop if you want every `Card` to always have a title:
+Ви також можете зробити `title` окремим пропом, якщо ви хочете, щоб у кожного `Card` завжди був заголовок:
 
 <Sandpack>
 
@@ -1070,17 +1070,17 @@ function Card({ children, title }) {
 export default function Profile() {
   return (
     <div>
-      <Card title="Photo">
+      <Card title="Фото">
         <img
           className="avatar"
           src="https://i.imgur.com/OKS67lhm.jpg"
-          alt="Aklilu Lemma"
+          alt="Аклілу Лемма (Aklilu Lemma)"
           width={100}
           height={100}
         />
       </Card>
-      <Card title="About">
-        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+      <Card title="Про">
+        <p>Аклілу Лемма (Aklilu Lemma) був видатним ефіопським вченим, який відкрив природний спосіб лікування шистосомозу.</p>
       </Card>
     </div>
   );
