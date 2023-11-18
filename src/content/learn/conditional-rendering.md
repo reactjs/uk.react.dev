@@ -1,24 +1,24 @@
 ---
-title: Conditional Rendering
+title: Умовний рендеринг
 ---
 
 <Intro>
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Ваши компоненти часто потребують відображати різний контент в залежності від умови. У React ви можете умовно рендерити JSX, використовуючи синтаксис JavaScript: оператори `if`, `&&` та `? :`.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to return different JSX depending on a condition
-* How to conditionally include or exclude a piece of JSX
-* Common conditional syntax shortcuts you’ll encounter in React codebases
+* Як повертати різний JSX в залежності від умови
+* Як умовно включати або виключати частину JSX
+* Загальні скорочення умовного синтаксису, з якими ви зустрінетеся в кодових базах React
 
 </YouWillLearn>
 
-## Conditionally returning JSX {/*conditionally-returning-jsx*/}
+## Умовне повернення JSX {/*conditionally-returning-jsx*/}
 
-Let’s say you have a `PackingList` component rendering several `Item`s, which can be marked as packed or not:
+Припустимо, у вас є компонент `PackingList`, який рендерить кілька компонентів `Item`, які можуть бути запаковані або ні:
 
 <Sandpack>
 
@@ -30,19 +30,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -52,9 +52,9 @@ export default function PackingList() {
 
 </Sandpack>
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+Зверніть увагу, що деякі компоненти `Item` мають проп `isPacked` встановлений на `true` замість `false`. Ви хочете додати позначку (✔) до запакованих речей, якщо `isPacked={true}`.
 
-You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
+Ви можете зробити це за допомогою [оператора `if`/`else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) ось так:
 
 ```js
 if (isPacked) {
@@ -63,7 +63,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a checkmark at the end:
+Якщо проп `isPacked` дорівнює `true`, цей код **повертає інше JSX-дерево.** З цією зміною, деякі елементи отримають позначку в кінці:
 
 <Sandpack>
 
@@ -78,19 +78,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -100,13 +100,13 @@ export default function PackingList() {
 
 </Sandpack>
 
-Try editing what gets returned in either case, and see how the result changes!
+Спробуйте змінити код цього прикладу та подивіться, як змінюється результат!
 
-Notice how you're creating branching logic with JavaScript's `if` and `return` statements. In React, control flow (like conditions) is handled by JavaScript.
+Зверніть увагу, як ви створюєте розгалужену логіку використовуючи `if` та `return` із JavaScript. У React керування потоком (наприклад, умовами) обробляється за допомогою JavaScript.
 
-### Conditionally returning nothing with `null` {/*conditionally-returning-nothing-with-null*/}
+### Умовне повернення пустоти за допомогою `null` {/*conditionally-returning-nothing-with-null*/}
 
-In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A component must return something. In this case, you can return `null`:
+У деяких ситуаціях ви хочете взагалі нічого не відображати. Наприклад, скажімо, ви не хочете показувати запаковані елементи взагалі. Але компонент повинен повертати щось. У цьому випадку ви можете повернути `null`:
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If `isPacked` is true, the component will return nothing, `null`. Otherwise, it will return JSX to render.
+Якщо `isPacked` дорівнює true, компонент нічого не поверне, тобто `null`. В іншому випадку, він поверне JSX для рендеру.
 
 <Sandpack>
 
@@ -130,19 +130,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -152,23 +152,23 @@ export default function PackingList() {
 
 </Sandpack>
 
-In practice, returning `null` from a component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component's JSX. Here's how to do that!
+Практика поверення `null` з компонента не є поширенною, оскільки це може здивувати розробника, який намагається його відобразити. Частіше ви б умовно включали або виключали компонент у JSX батьківського компонента. Ось як це зробити!
 
-## Conditionally including JSX {/*conditionally-including-jsx*/}
+## Умовне включення JSX {/*conditionally-including-jsx*/}
 
-In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
+У попередньому прикладі ви контролювали, яке JSX-дерево повертатиме компонент, якщо взагалі буде. Ви вже могли помітити деяке дублювання у результаті рендера:
 
 ```js
 <li className="item">{name} ✔</li>
 ```
 
-is very similar to
+дуже схоже на
 
 ```js
 <li className="item">{name}</li>
 ```
 
-Both of the conditional branches return `<li className="item">...</li>`:
+Обидві умовні гілки повертають `<li className="item">...</li>`:
 
 ```js
 if (isPacked) {
@@ -177,13 +177,13 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-While this duplication isn't harmful, it could make your code harder to maintain. What if you want to change the `className`? You'd have to do it in two places in your code! In such a situation, you could conditionally include a little JSX to make your code more [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+Хоча це дублювання не шкідливе, воно може ускладнити підтримку вашого коду. Що, якщо ви хочете змінити `className`? Вам доведеться робити це в двох місцях у вашому коду! У такій ситуації ви могли б умовно включити трохи JSX, щоб зробити ваш код більш [DRY.](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 
-### Conditional (ternary) operator (`? :`) {/*conditional-ternary-operator--*/}
+### Умовний (тернарний) оператор (`? :`) {/*conditional-ternary-operator--*/}
 
-JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator".
+JavaScript має компактний синтаксис для написання умовного виразу -- [умовний оператор](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) або "тернарний оператор".
 
-Instead of this:
+Замість цього:
 
 ```js
 if (isPacked) {
@@ -192,7 +192,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-You can write this:
+Ви можете написати ось так:
 
 ```js
 return (
@@ -202,17 +202,17 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
+Це можна прочитати як *"якщо `isPacked` -- true, тоді (`?`) відобразити `name + ' ✔'`, в іншому випадку (`:`) відобразити `name`"*.
 
 <DeepDive>
 
-#### Are these two examples fully equivalent? {/*are-these-two-examples-fully-equivalent*/}
+#### Чи ці два приклади повністю еквівалентні? {/*are-these-two-examples-fully-equivalent*/}
 
-If you're coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different "instances" of `<li>`. But JSX elements aren't "instances" because they don't hold any internal state and aren't real DOM nodes. They're lightweight descriptions, like blueprints. So these two examples, in fact, *are* completely equivalent. [Preserving and Resetting State](/learn/preserving-and-resetting-state) goes into detail about how this works.
+Якщо ви прийшли з об'єктно-орієнтованого програмування, ви можете припустити, що два приклади вище є трохи різними, оскільки один з них може створити два різних "екземпляри" `<li>`. Але JSX-елементи не є "екземплярами", оскільки вони не містять жодного внутрішнього стану і не є реальними вузлами DOM. Це легкі описи, подібні до креслень. Таким чином, ці два приклади, насправді, *є* абсолютно еквівалентними. [Збереження та скидання стану](/learn/preserving-and-resetting-state) детально розповідає про те, як це працює.
 
 </DeepDive>
 
-Now let's say you want to wrap the completed item's text into another HTML tag, like `<del>` to strike it out. You can add even more newlines and parentheses so that it's easier to nest more JSX in each of the cases:
+Тепер, скажімо, ви хочете обернути текст елемента в інший HTML-тег, наприклад `<del>`, щоб його перекреслити. Ви можете додати ще більше нових рядків і дужок, щоб було легше використовувати вкладенний JSX в кожному з випадків:
 
 <Sandpack>
 
@@ -234,19 +234,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -256,11 +256,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
+Цей стиль добре працює для простих умов, але використовуйте його з розумом. Якщо ваші компоненти стають заплутаними через занадто великі вкладені умовні розмітки, розгляньте можливість витягнення дочірніх компонентів, щоб все виглядало охайніше та зрозуміліше. У React розмітка є частиною вашого коду, тому ви можете використовувати такі інструменти, як змінні та функції, щоб спростити складні вирази.
 
-### Logical AND operator (`&&`) {/*logical-and-operator-*/}
+### Логічний оператор AND (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+Інший поширений шорткат, з яким ви зіткнетеся -- [логічний оператор AND (`&&`) JavaScript.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Всередині компонентів React він часто з'являється, коли ви хочете відрендерити деякий JSX, коли умова є істинною, **або нічого не рендерити в іншому випадку.** З `&&` ви могли б умовно відрендерити позначку, лише якщо `isPacked` дорівнює `true`:
 
 ```js
 return (
@@ -270,9 +270,9 @@ return (
 );
 ```
 
-You can read this as *"if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing"*.
+Ви можете читати це як *"якщо `isPacked`, тоді (`&&`) відрендерити позначку, в іншому випадку нічого не рендерити"*.
 
-Here it is in action:
+Ось він в дії:
 
 <Sandpack>
 
@@ -288,19 +288,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -310,30 +310,30 @@ export default function PackingList() {
 
 </Sandpack>
 
-A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the checkmark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
+[JavaScript && вираз](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) повертає значення своєї правої сторони (у нашому випадку, позначку) якщо ліва сторона (наша умова) `true`. Але якщо умова `false`, то весь вираз стає `false`. React розглядає `false` як "діру" в JSX дереві, так само як `null` або `undefined`, і не рендерить нічого на його місці.
 
 
 <Pitfall>
 
-**Don't put numbers on the left side of `&&`.**
+**Не ставте числа зліва від `&&`.**
 
-To test the condition, JavaScript converts the left side to a boolean automatically. However, if the left side is `0`, then the whole expression gets that value (`0`), and React will happily render `0` rather than nothing.
+Щоб перевірити умову, JavaScript автоматично перетворює ліву сторону на булеве значення. Однак, якщо ліва сторона дорівнює `0`, то весь вираз отримує це значення (`0`), і React з задоволенням відрендерить `0` замість нічого.
 
-For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
+Наприклад, поширеною помилкою є написання коду типу `messageCount && <p>New messages</p>`. Легко припустити, що він не рендерить нічого, коли `messageCount` дорівнює `0`, але насправді він рендерить сам `0`!
 
-To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+Щоб виправити це, зробіть ліву сторону булевою: `messageCount > 0 && <p>New messages</p>`.
 
 </Pitfall>
 
-### Conditionally assigning JSX to a variable {/*conditionally-assigning-jsx-to-a-variable*/}
+### Умовне присвоєння JSX змінній {/*conditionally-assigning-jsx-to-a-variable*/}
 
-When the shortcuts get in the way of writing plain code, try using an `if` statement and a variable. You can reassign variables defined with [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), so start by providing the default content you want to display, the name:
+Коли скорочення заважають писати звичайний код, спробуйте використати оператор `if` та змінну. Ви можете переприсвоювати змінні, визначені за допомогою [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), тому почніть з задання вмісту за замовчуванням, який ви хочете відобразити, name:
 
 ```js
 let itemContent = name;
 ```
 
-Use an `if` statement to reassign a JSX expression to `itemContent` if `isPacked` is `true`:
+Використовуйте оператор `if` для переприсвоєння JSX-виразу `itemContent`, якщо `isPacked` дорівнює `true`:
 
 ```js
 if (isPacked) {
@@ -341,7 +341,7 @@ if (isPacked) {
 }
 ```
 
-[Curly braces open the "window into JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Embed the variable with curly braces in the returned JSX tree, nesting the previously calculated expression inside of JSX:
+[Фігурні дужки відкривають "вікно в JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Вбудуйте змінну з фігурними дужками в JSX-дерево, вкладаючи раніше обчислений вираз всередину JSX:
 
 ```js
 <li className="item">
@@ -349,7 +349,7 @@ if (isPacked) {
 </li>
 ```
 
-This style is the most verbose, but it's also the most flexible. Here it is in action:
+Цей стиль є найбільш багатослівним, але він також найбільш гнучкий. Ось як він працює на практиці:
 
 <Sandpack>
 
@@ -369,19 +369,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -391,7 +391,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Like before, this works not only for text, but for arbitrary JSX too:
+Як і раніше, це працює не тільки для тексту, але й для довільного JSX:
 
 <Sandpack>
 
@@ -415,19 +415,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -437,16 +437,16 @@ export default function PackingList() {
 
 </Sandpack>
 
-If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
+Якщо ви не знайомі з JavaScript, цей різноманітний стиль може здатися вам спочатку приголомшливим. Однак, вивчення різних з них допоможе вам читати та писати будь-який код JavaScript -- і не тільки компоненти React! Виберіть той, який вам більше подобається для початку, а потім зверніться до цього довідника знову, якщо ви забудете, як працюють інші.
 
 <Recap>
 
-* In React, you control branching logic with JavaScript.
-* You can return a JSX expression conditionally with an `if` statement.
-* You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
-* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render `<A />`, otherwise `<B />`"*.
-* In JSX, `{cond && <A />}` means *"if `cond`, render `<A />`, otherwise nothing"*.
-* The shortcuts are common, but you don't have to use them if you prefer plain `if`.
+* У React ви керуєте розгалуженою логікою за допомогою JavaScript.
+* Ви можете повернути JSX-вираз умовно за допомогою оператора `if`.
+* Ви можете умовно зберегти деякий JSX у змінну, а потім включити його в інший JSX, використовуючи фігурні дужки.
+* У JSX, `{cond ? <A /> : <B />}` означає *"якщо `cond`, відобразити `<A />`, інакше `<B />`"*.
+* У JSX, `{cond && <A />}` означає *"якщо `cond`, відобразити `<A />`, інакше нічого"*.
+* Ці скорочення є поширеними, але ви не повинні їх використовувати, якщо вам більше подобається простий `if`.
 
 </Recap>
 
@@ -454,9 +454,9 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 
 <Challenges>
 
-#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### Показати значок для незавершених елементів за допомогою `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
-Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
+Використовуйте умовний оператор (`cond ? a : b`) для відображення ❌, якщо `isPacked` не дорівнює `true`.
 
 <Sandpack>
 
@@ -472,19 +472,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -510,19 +510,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           isPacked={true} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           isPacked={true} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           isPacked={false} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -534,15 +534,15 @@ export default function PackingList() {
 
 </Solution>
 
-#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### Показати важливість елемента за допомогою `&&` {/*show-the-item-importance-with-*/}
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
+У цьому прикладі, кожен `Item` отримує числовий проп `importance`. Використовуйте оператор `&&` для відображення "_(Важливість: X)_" курсивом, але лише для елементів, важливість яких не дорівнює нулю. Ваш список елементів повинен виглядати так:
 
-* Space suit _(Importance: 9)_
-* Helmet with a golden leaf
-* Photo of Tam _(Importance: 6)_
+* Космічний костюм _(Важливість: 9)_
+* Шолом з золотим листом
+* Фото Там _(Важливість: 6)_
 
-Don't forget to add a space between the two labels!
+Не забудьте додати пробіл між двома мітками!
 
 <Sandpack>
 
@@ -558,19 +558,19 @@ function Item({ name, importance }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           importance={9} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           importance={0} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           importance={6} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -582,7 +582,7 @@ export default function PackingList() {
 
 <Solution>
 
-This should do the trick:
+Це повинно спрацювати:
 
 <Sandpack>
 
@@ -602,19 +602,19 @@ function Item({ name, importance }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд(Sally Ride)</h1>
       <ul>
         <Item 
           importance={9} 
-          name="Space suit" 
+          name="Космічний костюм" 
         />
         <Item 
           importance={0} 
-          name="Helmet with a golden leaf" 
+          name="Шолом із золотим листям" 
         />
         <Item 
           importance={6} 
-          name="Photo of Tam" 
+          name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
     </section>
@@ -624,15 +624,15 @@ export default function PackingList() {
 
 </Sandpack>
 
-Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
+Зверніть увагу, що ви повинні написати `importance > 0 && ...` замість `importance && ...`, щоб якщо `importance` дорівнює `0`, `0` не відображався як результат!
 
-In this solution, two separate conditions are used to insert a space between the name and the importance label. Alternatively, you could use a fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+У цьому рішенні використовуються дві окремі умови для вставки пробілу між ім'ям та міткою важливості. Ви також можете використати фрагмент з початковим пробілом: `importance > 0 && <> <i>...</i></>` або додати пробіл безпосередньо всередині `<i>`:  `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
-#### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
+#### Рефакторінг послідовності `? :` на `if` та змінні {/*refactor-a-series-of---to-if-and-variables*/}
 
-This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
+Цей компонент `Drink` використовує послідовність умов `? :` для відображення різної інформації в залежності від того, чи є проп `name` `"tea"` або `"coffee"`. Проблема в тому, що інформація про кожний напій розподілена між кількома умовами. Рефакторінг цього коду, щоб використовувати один `if` замість трьох умов `? :`.
 
 <Sandpack>
 
@@ -665,11 +665,11 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Once you've refactored the code to use `if`, do you have further ideas on how to simplify it?
+Після того, як ви рефакторили код, щоб використовувати `if`, у вас є ідеї, як його можна спростити?
 
 <Solution>
 
-There are multiple ways you could go about this, but here is one starting point:
+Існує багато способів, як це можна зробити, але ось одна вихідна точка:
 
 <Sandpack>
 
@@ -712,9 +712,9 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Here the information about each drink is grouped together instead of being spread across multiple conditions. This makes it easier to add more drinks in the future.
+Тут інформація про кожний напій згрупована разом, замість того, щоб розподілятися між кількома умовами. Це спрощує додавання нових напоїв у майбутньому.
 
-Another solution would be to remove the condition altogether by moving the information into objects:
+Іншим рішенням було б видалити умову взагалі, перемістивши інформацію в об'єкти:
 
 <Sandpack>
 
