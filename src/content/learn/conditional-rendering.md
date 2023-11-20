@@ -626,11 +626,7 @@ export default function PackingList() {
 
 Зверніть увагу, що ви повинні написати `importance > 0 && ...` замість `importance && ...`, щоб якщо `importance` дорівнює `0`, `0` не відображався як результат!
 
-<<<<<<< HEAD
-У цьому рішенні використовуються дві окремі умови для вставки пробілу між ім'ям та міткою важливості. Ви також можете використати фрагмент з початковим пробілом: `importance > 0 && <> <i>...</i></>` або додати пробіл безпосередньо всередині `<i>`:  `importance > 0 && <i> ...</i>`.
-=======
-In this solution, two separate conditions are used to insert a space between the name and the importance label. Alternatively, you could use a Fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
->>>>>>> 4f9e9a56611c7a56b9506cf0a7ca84ab409824bc
+У цьому рішенні дві окремі умови використовуються щоб вставити пробіл між імʼям та міткою важливості. Альтернативно, ви могли б використати Фрагмент з переднім пробілом: `importance > 0 && <> <i>...</i></>` або додати пробіл безпосередньо всередині `<i>`:  `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
