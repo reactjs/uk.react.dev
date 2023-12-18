@@ -66,7 +66,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Gallery from './Gallery.js';
 
 export default function App() {
@@ -76,7 +76,7 @@ export default function App() {
 }
 ```
 
-```js Gallery.js
+```js src/Gallery.js
 function Profile() {
   return (
     <img
@@ -185,7 +185,7 @@ export default function App() {
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Gallery from './Gallery.js';
 import { Profile } from './Gallery.js';
 
@@ -196,7 +196,7 @@ export default function App() {
 }
 ```
 
-```js Gallery.js
+```js src/Gallery.js
 export function Profile() {
   return (
     <img
@@ -272,7 +272,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Gallery from './Gallery.js';
 import { Profile } from './Gallery.js';
 
@@ -285,7 +285,7 @@ export default function App() {
 }
 ```
 
-```js Gallery.js active
+```js src/Gallery.js active
 // Перенесіть мене у Profile.js!
 export function Profile() {
   return (
@@ -308,7 +308,7 @@ export default function Gallery() {
 }
 ```
 
-```js Profile.js
+```js src/Profile.js
 ```
 
 ```css
@@ -325,7 +325,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Gallery from './Gallery.js';
 import { Profile } from './Profile.js';
 
@@ -339,7 +339,7 @@ export default function App() {
 }
 ```
 
-```js Gallery.js
+```js src/Gallery.js
 import { Profile } from './Profile.js';
 
 export default function Gallery() {
@@ -354,7 +354,7 @@ export default function Gallery() {
 }
 ```
 
-```js Profile.js
+```js src/Profile.js
 export function Profile() {
   return (
     <img
@@ -375,7 +375,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Sandpack>
 
-```js App.js
+```js src/App.js
 import Gallery from './Gallery.js';
 import Profile from './Profile.js';
 
@@ -389,7 +389,7 @@ export default function App() {
 }
 ```
 
-```js Gallery.js
+```js src/Gallery.js
 import Profile from './Profile.js';
 
 export default function Gallery() {
@@ -404,7 +404,7 @@ export default function Gallery() {
 }
 ```
 
-```js Profile.js
+```js src/Profile.js
 export default function Profile() {
   return (
     <img
