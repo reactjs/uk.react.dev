@@ -144,7 +144,7 @@
 | React | React |
 | React element | React-елемент, елемент React |
 | reconciliation | узгодження |
-| render(ing) | рендер, рендерити |
+| render(ing) | рендер, рендерити (відрендерити) |
 | re-render(ing) | повторний рендер |
 | render prop | рендер-проп |
 | render props | рендер-пропси |
