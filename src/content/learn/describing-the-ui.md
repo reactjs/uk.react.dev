@@ -1,30 +1,30 @@
 ---
-title: Describing the UI
+title: Написання UI
 ---
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React — це JavaScript-бібліотека для рендерингу інтерфейсів користувача (_далі_ — UI). UI складається з невеликих елементів, як кнопки, текст і зображення. React дозволяє об'єднувати їх у повторно використовувані *компоненти* з можливістю вкладення. Від вебсайтів до застосунків для телефону — незалежно від платформи все на екрані можна розбити на компоненти. У цьому розділі ви навчитеся створювати, налаштовувати та відображати залежно від умов компоненти React.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
-* [Why understanding your UI as trees is useful](/learn/understanding-your-ui-as-a-tree)
+* [Як написати ваш перший React-компонент](/learn/your-first-component)
+* [Коли і як створювати файли з багатьма компонентами](/learn/importing-and-exporting-components)
+* [Як додати розмітку до JavaScript за допомогою JSX](/learn/writing-markup-with-jsx)
+* [Як використовувати фігурні дужки у JSX, щоб отримати доступ до функціональності JavaScript із ваших компонентів](/learn/javascript-in-jsx-with-curly-braces)
+* [Як налаштовувати компоненти за допомогою пропсів](/learn/passing-props-to-a-component)
+* [Як умовно рендерити компоненти](/learn/conditional-rendering)
+* [Як рендерити безліч компонентів одночасно](/learn/rendering-lists)
+* [Як уникнути заплутаних помилок за допомогою "чистих" компонентів](/learn/keeping-components-pure)
+* [Чому корисно розуміти ваш UI як дерево](/learn/understanding-your-ui-as-a-tree)
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## Ваш перший компонент {/*your-first-component*/}
 
-React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+React-застосунки створені з ізольованих частин UI, які називаються *компонентами*. Компонент React — це функція JavaScript, до якої можна додати розмітку. Компоненти можуть бути маленькими, як кнопка, або великими, як ціла сторінка. Ось компонент `Gallery`, який рендерить три компоненти `Profile`:
 
 <Sandpack>
 
@@ -33,7 +33,7 @@ function Profile() {
   return (
     <img
       src="https://i.imgur.com/MK3eW3As.jpg"
-      alt="Katherine Johnson"
+      alt="Кетрін Джонсон (Katherine Johnson)"
     />
   );
 }
@@ -41,7 +41,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Видатні вчені</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -58,13 +58,13 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+Прочитайте розділ **["Ваш перший компонент"](/learn/your-first-component)**, щоб дізнатися, як оголошувати та використовувати компоненти React.
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## Імпорт та експорт компонентів {/*importing-and-exporting-components*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
+Ви можете оголосити багато компонентів в одному файлі, але великі файли можуть бути заскладними для навігації. Щоб вирішити цю проблему, ви можете *експортувати* компонент у його власний файл, а потім *імпортувати* цей компонент з іншого файлу:
 
 
 <Sandpack>
@@ -85,7 +85,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Видатні вчені</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -99,7 +99,7 @@ export default function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"
-      alt="Alan L. Hart"
+      alt="Алан Л. Гарт (Alan L. Hart)"
     />
   );
 }
@@ -113,15 +113,15 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+Прочитайте розділ **["Імпорт та експорт компонентів"](/learn/importing-and-exporting-components)**, щоб дізнатися, як розділити компоненти на декілька файлів.
 
 </LearnMore>
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Написання розмітки з JSX {/*writing-markup-with-jsx*/}
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+Кожен компонент React — це функція JavaScript, яка може містити певну розмітку, яку React рендерить у браузері. Компоненти React використовують розширення синтаксису під назвою JSX для представлення цієї розмітки. JSX дуже схожий на HTML, але з трохи більшою кількістю обмежень і з можливістю відображати інформацію, що динамічно змінюється.
 
-If we paste existing HTML markup into a React component, it won't always work:
+Якщо ми вставимо наявну розмітку HTML у компонент React, це не завжди працюватиме:
 
 <Sandpack>
 
@@ -129,16 +129,16 @@ If we paste existing HTML markup into a React component, it won't always work:
 export default function TodoList() {
   return (
     // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
+    <h1>Список завдань Геді Ламар</h1>
     <img
       src="https://i.imgur.com/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve spectrum technology
+      <li>Винахід нових світлофорів
+      <li>Провести репетицію сцени з фільму
+      <li>Вдосконалення технології спектра
     </ul>
   );
 }
@@ -150,7 +150,7 @@ img { height: 90px; }
 
 </Sandpack>
 
-If you have existing HTML like this, you can fix it using a [converter](https://transform.tools/html-to-jsx):
+Якщо у вас вже є схожий HTML, ви можете виправити його за допомогою [конвертера](https://transform.tools/html-to-jsx):
 
 <Sandpack>
 
@@ -158,16 +158,16 @@ If you have existing HTML like this, you can fix it using a [converter](https://
 export default function TodoList() {
   return (
     <>
-      <h1>Hedy Lamarr's Todos</h1>
+      <h1>Список завдань Геді Ламар</h1>
       <img
         src="https://i.imgur.com/yXOvdOSs.jpg"
-        alt="Hedy Lamarr"
+        alt="Геді Ламар (Hedy Lamarr)"
         className="photo"
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve spectrum technology</li>
+        <li>Винахід нових світлофорів</li>
+        <li>Провести репетицію сцени з фільму</li>
+        <li>Вдосконалення технології спектра</li>
       </ul>
     </>
   );
@@ -182,19 +182,19 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how to write valid JSX.
+Прочитайте розділ **["Написання розмітки з JSX"](/learn/writing-markup-with-jsx)**, щоб дізнатися, як писати правильний JSX.
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript у JSX з фігурними дужками {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
+JSX дозволяє писати HTML-подібну розмітку всередині файлу JavaScript, зберігаючи логіку рендерингу та вміст в одному місці. Іноді вам потрібно додати трохи логіки JavaScript або посилатися на динамічну властивість у цій розмітці. Тоді ви можете використовувати фігурні дужки у своєму JSX, щоб "відкрити вікно" у JavaScript:
 
 <Sandpack>
 
 ```js
 const person = {
-  name: 'Gregorio Y. Zara',
+  name: 'Грегоріо І. Зара (Gregorio Y. Zara)',
   theme: {
     backgroundColor: 'black',
     color: 'pink'
@@ -204,16 +204,16 @@ const person = {
 export default function TodoList() {
   return (
     <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
+      <h1>Список завдань {person.name}</h1>
       <img
         className="avatar"
         src="https://i.imgur.com/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Покращити відеотелефон</li>
+        <li>Підготувати лекції з авіаційних технологій</li>
+        <li>Працювати над двигуном на спиртовому паливі</li>
       </ul>
     </div>
   );
@@ -230,13 +230,13 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)** to learn how to access JavaScript data from JSX.
+Прочитайте розділ **["JavaScript у JSX з фігурними дужками"](/learn/javascript-in-jsx-with-curly-braces)**, щоб дізнатися, як отримувати доступ до JavaScript-елементів зсередини JSX.
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Передача пропсів до компонента {/*passing-props-to-a-component*/}
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+Компоненти React використовують *пропси* для спілкування один з одним. Кожен батьківський компонент може передавати деяку інформацію своїм дочірнім компонентам, задаючи їхні пропси. Пропси можуть нагадувати вам атрибути HTML, але ви можете передати через них будь-яке значення JavaScript, включно з об'єктами, масивами, функціями та навіть JSX!
 
 <Sandpack>
 
@@ -249,7 +249,7 @@ export default function Profile() {
       <Avatar
         size={100}
         person={{
-          name: 'Katsuko Saruhashi',
+          name: 'Кацуко Сарухаші (Katsuko Saruhashi)',
           imageId: 'YfeOqp2'
         }}
       />
@@ -311,15 +311,15 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to learn how to pass and read props.
+Прочитайте розділ **["Передача пропсів до компонента"](/learn/passing-props-to-a-component)**, щоб дізнатися, як передавати та читати пропси.
 
 </LearnMore>
 
-## Conditional rendering {/*conditional-rendering*/}
+## Умовний рендеринг {/*conditional-rendering*/}
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Ваші компоненти часто повинні відображати різні елементи залежно від різних умов. У React ви можете умовно рендерити JSX за допомогою синтаксису JavaScript, використовуючи вираз `if` та оператори `&&` і `? :`.
 
-In this example, the JavaScript `&&` operator is used to conditionally render a checkmark:
+У цьому прикладі оператор JavaScript `&&` використовується для умовного рендерингу прапорця:
 
 <Sandpack>
 
@@ -335,19 +335,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+      <h1>Список речей для пакування Саллі Райд (Sally Ride)</h1>
       <ul>
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Космічний костюм"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Шолом із золотим листям"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
+          name="Фото Тем О'Шонессі (Tam O'Shaughnessy)"
         />
       </ul>
     </section>
@@ -359,15 +359,15 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the different ways to render content conditionally.
+Прочитайте розділ **["Умовний рендеринг"](/learn/conditional-rendering)**, щоб дізнатися про різні способи рендерингу вмісту залежно від умов.
 
 </LearnMore>
 
-## Rendering lists {/*rendering-lists*/}
+## Рендеринг списків {/*rendering-lists*/}
 
-You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
+Часто потрібно відобразити кілька подібних компонентів із колекції даних. Ви можете використовувати `filter()` і `map()` із JavaScript у React, щоб фільтрувати та перетворювати свій масив даних у масив компонентів.
 
-For each array item, you will need to specify a `key`. Usually, you will want to use an ID from the database as a `key`. Keys let React keep track of each item's place in the list even if the list changes.
+Для кожного елемента масиву вам потрібно буде вказати `key`. Зазвичай ви хочете використовувати ідентифікатор із бази даних як `key`. Ключі дозволяють React відстежувати місце кожного елемента у списку, навіть якщо список змінюється.
 
 <Sandpack>
 
@@ -384,14 +384,14 @@ export default function List() {
       />
       <p>
         <b>{person.name}:</b>
-        {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        {' ' + person.profession + ', '}
+        чиєю працею є {person.accomplishment}
       </p>
     </li>
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Вчені</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -401,33 +401,33 @@ export default function List() {
 ```js src/data.js
 export const people = [{
   id: 0,
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  name: 'Кетрін Джонсон (Creola Katherine Johnson)',
+  profession: 'математик',
+  accomplishment: 'розрахунки для космічних польотів',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  name: 'Маріо Моліна (Mario José Molina-Pasquel Henríquez)',
+  profession: 'хімік',
+  accomplishment: 'відкриття озонової діри в Арктиці',
   imageId: 'mynHUSa'
 }, {
   id: 2,
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  name: 'Абдус Салам (Moшинкаmad Abdus Salam)',
+  profession: 'фізик',
+  accomplishment: 'теорія електромагнетизму',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  name: 'Персі Джуліан (Percy Lavon Julian)',
+  profession: 'хімік',
+  accomplishment: 'новаторські кортизоновмісні препарати, стероїди та протизаплідні таблетки',
   imageId: 'IOjWm71'
 }, {
   id: 4,
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  name: 'Субрахманьян Чандрасекар (Subrahmanyan Chandrasekhar)',
+  profession: 'астрофізик',
+  accomplishment: 'розрахунок мас зір категорії "білий карлик"',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -459,18 +459,18 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+Прочитайте розділ **["Рендеринг списків"](/learn/rendering-lists)**, щоб дізнатися, як рендерити список компонентів і вибирати ключ.
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## Утримання компонентів "чистими" {/*keeping-components-pure*/}
 
-Some JavaScript functions are *pure.* A pure function:
+Деякі функції JavaScript є *чистими*. Чиста функція (pure function):
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Займається лише своєю справою.** Вона не змінює жодних об'єктів чи змінних, які існували до її виклику.
+* **Однакові вхідні дані — той самий результат.** З урахуванням однакових вхідних даних чиста функція має завжди повертати той самий результат.
 
-By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
+Пишучи компоненти виключно як чисті функції, ви можете уникнути цілого класу незрозумілих помилок і непередбачуваної поведінки відповідно до того, як ваша кодова база зростатиме. Ось приклад "нечистого" компонента:
 
 <Sandpack>
 
@@ -478,9 +478,9 @@ By strictly only writing your components as pure functions, you can avoid an ent
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Погано: зміна значення змінної, що вже існувала!
   guest = guest + 1;
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Чашка для гостя #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -496,13 +496,13 @@ export default function TeaSet() {
 
 </Sandpack>
 
-You can make this component pure by passing a prop instead of modifying a preexisting variable:
+Ви можете зробити цей компонент чистим, передавши проп замість модифікації змінної, що вже існувала:
 
 <Sandpack>
 
 ```js
 function Cup({ guest }) {
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Чашка для гостя #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -520,43 +520,43 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+Прочитайте розділ **["Утримання компонентів "чистими""](/learn/keeping-components-pure)**, щоб дізнатися, як писати компоненти у вигляді чистих, передбачуваних функцій.
 
 </LearnMore>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## Ваш UI як дерево {/*your-ui-as-a-tree*/}
 
-React uses trees to model the relationships between components and modules. 
+React використовує дерева для моделювання зв'язків між компонентами та модулями.
 
-A React render tree is a representation of the parent and child relationship between components. 
+Дерево рендерингу React — це представлення батьківського та дочірнього зв'язку між компонентами.
 
-<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
+<Diagram name="generic_render_tree" height={250} width={500} alt="Граф дерева із п'ятьма вузлами, де кожен вузол відповідає компоненту. Кореневий вузол розташований у верхній частині графа дерева та позначений як 'Root Component'. Він має дві стрілки, що тягнуться до двох вузлів, позначених як 'Component A' і 'Component C'. Кожна зі стрілок позначена як 'renders'. 'Component A' має одну стрілку з поміткою 'renders' до вузла, позначеного як 'Component B'. 'Component C' має одну стрілку з поміткою 'renders' до вузла, позначеного як 'Component D'.">
 
-An example React render tree.
-
-</Diagram>
-
-Components near the top of the tree, near the root component, are considered top-level components. Components with no child components are leaf components. This categorization of components is useful for understanding data flow and rendering performance.
-
-Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree. 
-
-<Diagram name="generic_dependency_tree" height={250} width={500} alt="A tree graph with five nodes. Each node represents a JavaScript module. The top-most node is labelled 'RootModule.js'. It has three arrows extending to the nodes: 'ModuleA.js', 'ModuleB.js', and 'ModuleC.js'. Each arrow is labelled as 'imports'. 'ModuleC.js' node has a single 'imports' arrow that points to a node labelled 'ModuleD.js'.">
-
-An example module dependency tree.
+Приклад дерева рендерингу React.
 
 </Diagram>
 
-A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues. 
+Компоненти, розташовані біля вершини дерева, поблизу кореневого компонента, вважаються внутрішніми (top-level) компонентами. Компоненти без дочірніх компонентів є листовими компонентами. Ця категоризація компонентів корисна для розуміння потоку даних і продуктивності рендерингу.
+
+Моделювання зв'язків між модулями JavaScript — ще один корисний спосіб зрозуміти вашу програму. Ми називаємо це деревом залежностей модулів.
+
+<Diagram name="generic_dependency_tree" height={250} width={500} alt="Граф дерева із п'ятьма вузлами. Кожен вузол відповідає модулю JavaScript. Вузол у верхній частині позначено 'RootModule.js'. Він має три стрілки, що тягнуться до вузлів: 'ModuleA.js', 'ModuleB.js' і 'ModuleC.js'. Кожна стрілка позначена як 'imports'. Вузол 'ModuleC.js' має одну стрілку 'imports', яка напрямлена до вузла із міткою 'ModuleD.js'.">
+
+Приклад дерева залежностей модулів.
+
+</Diagram>
+
+Дерево залежностей часто використовується бандлерами, щоб запакувати весь актуальний код JavaScript для завантаження та рендерингу клієнтом. Великий розмір бандлу погіршує досвід користування React-застосунками. Розуміння дерева залежностей модулів корисно для усунення таких проблем.
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 
-Read **[Your UI as a Tree](/learn/understanding-your-ui-as-a-tree)** to learn how to create a render and module dependency trees for a React app and how they're useful mental models for improving user experience and performance.
+Прочитайте розділ **["Ваш UI як дерево"](/learn/understanding-your-ui-as-a-tree)**, щоб дізнатися, як створюється дерево рендерингу і залежностей модулів у React-застосунках та наскільки вони є корисними абстрактними моделями для покращення досвіду користування і продуктивності.
 
 </LearnMore>
 
 
-## What's next? {/*whats-next*/}
+## Що далі? {/*whats-next*/}
 
-Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
+Перейдіть до розділу ["Ваш перший компонент"](/learn/your-first-component), щоб почати читати цю секцію посторінково!
 
-Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
+Або, якщо ви вже знайомі з цими темами, чому б не переглянути ["Додавання інтерактивності"](/learn/adding-interactivity)?
