@@ -1,41 +1,41 @@
 ---
-title: Understanding Your UI as a Tree
+title: Розуміння вашого UI як дерева
 ---
 
 <Intro>
 
-Your React app is taking shape with many components being nested within each other. How does React keep track of your app's component structure?
+React-застосунок формується великою кількістю компонентів, які вкладені один в одного. Як React відстежує структуру компонентів у вашому застосунку?
 
-React, and many other UI libraries, model UI as a tree. Thinking of your app as a tree is useful for understanding the relationship between components. This understanding will help you debug future concepts like performance and state management.
+Інтерфейс користувача (_далі_ — UI) моделюється у вигляді дерева у React і багатьох інших UI-бібліотеках. Думати про ваш застосунок як про дерево — корисно, щоб розуміти зв'язки між компонентами. Це розуміння допоможе вам далі у налагодженні певних моментів як продуктивність та управління станом.
 
 </Intro>
 
 <YouWillLearn>
 
-* How React "sees" component structures
-* What a render tree is and what it is useful for
-* What a module dependency tree is and what it is useful for
+* Як React "бачить" структури компонентів
+* Що таке дерево рендерингу і чим воно корисне
+* Що таке дерево залежностей модулів і чим воно корисне
 
 </YouWillLearn>
 
-## Your UI as a tree {/*your-ui-as-a-tree*/}
+## Ваш UI у вигляді дерева {/*your-ui-as-a-tree*/}
 
-Trees are a relationship model between items and UI is often represented using tree structures. For example, browsers use tree structures to model HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) and CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Mobile platforms also use trees to represent their view hierarchy.
+Дерева є моделлю зв'язків між елементами, і UI часто представлений за допомогою деревоподібних структур. Наприклад, браузери використовують деревоподібні структури для моделювання HTML ([DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)) та CSS ([CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model)). Мобільні платформи також використовують дерева для представлення своєї ієрархії "екранів".
 
-<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Diagram with three sections arranged horizontally. In the first section, there are three rectangles stacked vertically, with labels 'Component A', 'Component B', and 'Component C'. Transitioning to the next pane is an arrow with the React logo on top labeled 'React'. The middle section contains a tree of components, with the root labeled 'A' and two children labeled 'B' and 'C'. The next section is again transitioned using an arrow with the React logo on top labeled 'React'. The third and final section is a wireframe of a browser, containing a tree of 8 nodes, which has only a subset highlighted (indicating the subtree from the middle section).">
+<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="Діаграма із трьох секцій, розташованих горизонтально. У першій секції розташовані вертикально три прямокутники з написами 'Component A', 'Component B' та 'Component C'. Перехід до наступної секції здійснюється за допомогою стрілки з логотипом React над нею та підписом 'React'. Середня секція містить дерево компонентів: корінь, підписаний як 'A', і його двоє дітей, підписані як 'B' і 'C'. Перехід до наступної секції також здійснюється за допомогою стрілки з логотипом React над нею та підписом 'React'. Третя і остання секція — це ескіз браузера, що містить дерево з 8 вузлами, в якому виділено кольором лише піддерево (що вказує на піддерево з середнього розділу).">
 
-React creates a UI tree from your components. In this example, the UI tree is then used to render to the DOM.
+React створює дерево UI із ваших компонентів. У цьому прикладі дерево UI потім використовується для рендерингу у DOM.
 </Diagram>
 
-Like browsers and mobile platforms, React also uses tree structures to manage and model the relationship between components in a React app. These trees are useful tools to understand how data flows through a React app and how to optimize rendering and app size.
+Подібно до браузерів і мобільних платформ, React також використовує деревоподібні структури для управління та моделювання зв'язків між компонентами у React-застосунку. Ці дерева є корисними інструментами для розуміння того, як дані рухаються через React-застосунок і як оптимізувати рендеринг та розмір застосунку.
 
-## The Render Tree {/*the-render-tree*/}
+## Дерево рендерингу {/*the-render-tree*/}
 
-A major feature of components is the ability to compose components of other components. As we [nest components](/learn/your-first-component#nesting-and-organizing-components), we have the concept of parent and child components, where each parent component may itself be a child of another component.
+Основна функція компонентів полягає у можливості створення компонентів з інших компонентів. Коли ми [вкладаємо компоненти](/learn/your-first-component#nesting-and-organizing-components), у нас з'являється концепція батьківських і дочірніх компонентів, де кожен батьківський компонент сам може бути дочірнім компонентом іншого компонента.
 
-When we render a React app, we can model this relationship in a tree, known as the render tree.
+Коли ми рендеримо React-застосунок, ми можемо моделювати ці зв'язки у вигляді дерева, яке називається деревом рендерингу.
 
-Here is a React app that renders inspirational quotes.
+Ось застосунок React, який рендерить цитати, що надихають.
 
 <Sandpack>
 
@@ -47,7 +47,7 @@ import Copyright from './Copyright';
 export default function App() {
   return (
     <>
-      <FancyText title text="Get Inspired App" />
+      <FancyText title text="Застосунок 'Натхнення'" />
       <InspirationGenerator>
         <Copyright year={2004} />
       </InspirationGenerator>
@@ -77,9 +77,9 @@ export default function InspirationGenerator({children}) {
 
   return (
     <>
-      <p>Your inspirational quote is:</p>
+      <p>Цитата, що тебе надихає:</p>
       <FancyText text={quote} />
-      <button onClick={next}>Inspire me again</button>
+      <button onClick={next}>Надихнутися знову</button>
       {children}
     </>
   );
@@ -94,9 +94,9 @@ export default function Copyright({year}) {
 
 ```js src/quotes.js
 export default [
-  "Don’t let yesterday take up too much of today.” — Will Rogers",
-  "Ambition is putting a ladder against the sky.",
-  "A joy that's shared is a joy made double.",
+  "Не дозволяйте вчорашньому займати занадто багато сьогодення.” — Вільям Роджерс (Will Rogers)",
+  "Амбіція — це ставити драбину до неба.",
+  "Поділена радість — подвійна радість, поділене горе — вже тільки півгоря.",
   ];
 ```
 
@@ -118,34 +118,34 @@ export default [
 
 </Sandpack>
 
-<Diagram name="render_tree" height={250} width={500} alt="Tree graph with five nodes. Each node represents a component. The root of the tree is App, with two arrows extending from it to 'InspirationGenerator' and 'FancyText'. The arrows are labelled with the word 'renders'. 'InspirationGenerator' node also has two arrows pointing to nodes 'FancyText' and 'Copyright'.">
+<Diagram name="render_tree" height={250} width={500} alt="Граф дерева з п'ятьма вузлами. Кожен вузол відповідає компоненту. Корінь дерева — це App, він має дві стрілки, які ведуть до 'InspirationGenerator' та 'FancyText'. Стрілки позначені словом 'renders'. Вузол 'InspirationGenerator' також має дві стрілки, що вказують на вузли 'FancyText' та 'Copyright'.">
 
-React creates a *render tree*, a UI tree, composed of the rendered components.
+React створює *дерево рендерингу* — дерево UI, складене з відрендерених компонентів.
 
 
 </Diagram>
 
-From the example app, we can construct the above render tree.
+З прикладу застосунку ми можемо побудувати вищеописане дерево рендерингу.
 
-The tree is composed of nodes, each of which represents a component. `App`, `FancyText`, `Copyright`, to name a few, are all nodes in our tree.
+Дерево складається з вузлів, кожен з яких відповідає певному компоненту. `App`, `FancyText`, `Copyright` — це приклади кількох вузлів у нашому дереві.
 
-The root node in a React render tree is the [root component](/learn/importing-and-exporting-components#the-root-component-file) of the app. In this case, the root component is `App` and it is the first component React renders. Each arrow in the tree points from a parent component to a child component.
+Кореневий вузол у дереві рендерингу React — це [кореневий компонент](/learn/importing-and-exporting-components#the-root-component-file) застосунку. У цьому прикладі кореневим компонентом є `App`, і це перший компонент, який React рендерить. Кожна стрілка у дереві напрямлена від батьківського до дочірнього компонента.
 
 <DeepDive>
 
-#### Where are the HTML tags in the render tree? {/*where-are-the-html-elements-in-the-render-tree*/}
+#### Де у дереві рендерингу HTML-теги? {/*where-are-the-html-elements-in-the-render-tree*/}
 
-You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](learn/your-first-component#components-ui-building-blocks).
+У наведеному вище дереві рендерингу не згадуються HTML-теги, які кожен компонент рендерить. Це тому, що дерево рендерингу складається лише з [компонентів](learn/your-first-component#components-ui-building-blocks) React.
 
-React, as a UI framework, is platform agnostic. On react.dev, we showcase examples that render to the web, which uses HTML markup as its UI primitives. But a React app could just as likely render to a mobile or desktop platform, which may use different UI primitives like [UIView](https://developer.apple.com/documentation/uikit/uiview) or [FrameworkElement](https://learn.microsoft.com/en-us/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
+React як UI-фреймворк є платформонезалежним. На сайті uk.react.dev ми демонструємо приклади, які рендеряться для вебу, що використовує HTML-розмітку як свої UI-примітиви. Але React-застосунок може так само рендеритися для мобільної або стаціонарної платформи, що може використовувати інші UI-примітиви, як-от [UIView](https://developer.apple.com/documentation/uikit/uiview) або [FrameworkElement](https://learn.microsoft.com/uk-ua/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
 
-These platform UI primitives are not a part of React. React render trees can provide insight to our React app regardless of what platform your app renders to.
+Ці платформові UI-примітиви не є частиною React. Дерева рендерингу React можуть надавати інформацію про наш React-застосунок незалежно від того, для якої платформи він рендериться.
 
 </DeepDive>
 
-A render tree represents a single render pass of a React application. With [conditional rendering](/learn/conditional-rendering), a parent component may render different children depending on the data passed.
+Дерево рендерингу відповідає одному проходу рендеру React-застосунку. За допомогою [умовного рендерингу](/learn/conditional-rendering) батьківський компонент може відображати різних дітей залежно від переданих даних.
 
-We can update the app to conditionally render either an inspirational quote or color.
+Ми можемо оновити застосунок, щоб умовно відрендерити або цитату, або колір, що надихає.
 
 <Sandpack>
 
@@ -157,7 +157,7 @@ import Copyright from './Copyright';
 export default function App() {
   return (
     <>
-      <FancyText title text="Get Inspired App" />
+      <FancyText title text="Застосунок 'Натхнення'" />
       <InspirationGenerator>
         <Copyright year={2004} />
       </InspirationGenerator>
@@ -194,12 +194,12 @@ export default function InspirationGenerator({children}) {
 
   return (
     <>
-      <p>Your inspirational {inspiration.type} is:</p>
+      <p>{inspiration.type}, що тебе надихає:</p>
       {inspiration.type === 'quote'
       ? <FancyText text={inspiration.value} />
       : <Color value={inspiration.value} />}
 
-      <button onClick={next}>Inspire me again</button>
+      <button onClick={next}>Надихнутися знову</button>
       {children}
     </>
   );
@@ -214,11 +214,11 @@ export default function Copyright({year}) {
 
 ```js src/inspirations.js
 export default [
-  {type: 'quote', value: "Don’t let yesterday take up too much of today.” — Will Rogers"},
+  {type: 'quote', value: "Не дозволяйте вчорашньому займати занадто багато сьогодення.” — Вільям Роджерс (Will Rogers)"},
   {type: 'color', value: "#B73636"},
-  {type: 'quote', value: "Ambition is putting a ladder against the sky."},
+  {type: 'quote', value: "Амбіція — це ставити драбину до неба."},
   {type: 'color', value: "#256266"},
-  {type: 'quote', value: "A joy that's shared is a joy made double."},
+  {type: 'quote', value: "Поділена радість — подвійна радість, поділене горе — вже тільки півгоря."},
   {type: 'color', value: "#F9F2B4"},
 ];
 ```
@@ -245,55 +245,55 @@ export default [
 ```
 </Sandpack>
 
-<Diagram name="conditional_render_tree" height={250} width={561} alt="Tree graph with six nodes. The top node of the tree is labelled 'App' with two arrows extending to nodes labelled 'InspirationGenerator' and 'FancyText'. The arrows are solid lines and are labelled with the word 'renders'. 'InspirationGenerator' node also has three arrows. The arrows to nodes 'FancyText' and 'Color' are dashed and labelled with 'renders?'. The last arrow points to the node labelled 'Copyright' and is solid and labelled with 'renders'.">
+<Diagram name="conditional_render_tree" height={250} width={561} alt="Граф дерева із шістьма вузлами. Кореневий вузол дерева позначений як 'App' і має дві стрілки, що ведуть до вузлів, позначених як 'InspirationGenerator' та 'FancyText'. Стрілки мають тверді лінії і позначені словом 'renders'. Вузол 'InspirationGenerator' також має три стрілки. Стрілки до вузлів 'FancyText' і 'Color' пунктирні і позначені як 'renders?'. Остання стрілка вказує на вузол, позначений як 'Copyright', і є твердою та позначена словом 'renders'.">
 
-With conditional rendering, across different renders, the render tree may render different components.
-
-</Diagram>
-
-In this example, depending on what `inspiration.type` is, we may render `<FancyText>` or `<Color>`. The render tree may be different for each render pass.
-
-Although render trees may differ across render passes, these trees are generally helpful for identifying what the *top-level* and *leaf components* are in a React app. Top-level components are the components nearest to the root component and affect the rendering performance of all the components beneath them and often contain the most complexity. Leaf components are near the bottom of the tree and have no child components and are often frequently re-rendered.
-
-Identifying these categories of components are useful for understanding data flow and performance of your app.
-
-## The Module Dependency Tree {/*the-module-dependency-tree*/}
-
-Another relationship in a React app that can be modeled with a tree are an app's module dependencies. As we [break up our components](/learn/importing-and-exporting-components#exporting-and-importing-a-component) and logic into separate files, we create [JS modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) where we may export components, functions, or constants.
-
-Each node in a module dependency tree is a module and each branch represents an `import` statement in that module.
-
-If we take the previous Inspirations app, we can build a module dependency tree, or dependency tree for short.
-
-<Diagram name="module_dependency_tree" height={250} width={658} alt="A tree graph with seven nodes. Each node is labelled with a module name. The top level node of the tree is labelled 'App.js'. There are three arrows pointing to the modules 'InspirationGenerator.js', 'FancyText.js' and 'Copyright.js' and the arrows are labelled with 'imports'. From the 'InspirationGenerator.js' node, there are three arrows that extend to three modules: 'FancyText.js', 'Color.js', and 'inspirations.js'. The arrows are labelled with 'imports'.">
-
-The module dependency tree for the Inspirations app.
+За допомогою умовного рендерингу дерево рендерингу може рендерити різні компоненти у різних рендерах.
 
 </Diagram>
 
-The root node of the tree is the root module, also known as the entrypoint file. It often is the module that contains the root component.
+У цьому прикладі залежно від того, що є `inspiration.type`, ми можемо відрендерити або `<FancyText>`, або `<Color>`. Дерево рендерингу може бути різним для кожного проходу рендеру.
 
-Comparing to the render tree of the same app, there are similar structures but some notable differences:
+Хоча дерева рендерингу можуть відрізнятися між різними проходами рендеру, вони загалом корисні для ідентифікації *внутрішніх* (top-level) та *зовнішніх* (leaf) компонентів у React-застосунку. Внутрішні компоненти — це компоненти, ближчі до кореневого компонента, які впливають на продуктивність рендерингу всіх компонентів під ними і часто є найбільш складними. Зовнішні компоненти, або листи, знаходяться в нижній частині дерева і не мають дочірніх компонентів та часто піддаються повторному рендерингу.
 
-* The nodes that make-up the tree represent modules, not components.
-* Non-component modules, like `inspirations.js`, are also represented in this tree. The render tree only encapsulates components.
-* `Copyright.js` appears under `App.js` but in the render tree, `Copyright`, the component, appears as a child of `InspirationGenerator`. This is because `InspirationGenerator` accepts JSX as [children props](/learn/passing-props-to-a-component#passing-jsx-as-children), so it renders `Copyright` as a child component but does not import the module.
+Ідентифікація цих категорій компонентів корисна для розуміння потоку даних (data flow) та продуктивності вашого застосунку.
 
-Dependency trees are useful to determine what modules are necessary to run your React app. When building a React app for production, there is typically a build step that will bundle all the necessary JavaScript to ship to the client. The tool responsible for this is called a [bundler](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), and bundlers will use the dependency tree to determine what modules should be included.
+## Дерево залежностей модуля {/*the-module-dependency-tree*/}
 
-As your app grows, often the bundle size does too. Large bundle sizes are expensive for a client to download and run. Large bundle sizes can delay the time for your UI to get drawn. Getting a sense of your app's dependency tree may help with debugging these issues.
+Ще одним типом зв'язків у React-застосунку, що можуть бути змодельовані за допомогою дерева, є залежності модулів застосунку. Коли ми [виносимо наші компоненти](/learn/importing-and-exporting-components#exporting-and-importing-a-component) та логіку в окремі файли, ми створюємо [JS-модулі](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), з яких можна експортувати компоненти, функції або константи.
+
+Кожен вузол у дереві залежностей модулів — це модуль, а кожна гілка відповідає оператору `import` у цьому модулі.
+
+Якщо ми візьмемо попередній застосунок "Натхнення", ми можемо побудувати дерево залежностей модулів, або скорочено — дерево залежностей.
+
+<Diagram name="module_dependency_tree" height={250} width={658} alt="Граф дерева із сімома вузлами. Кожен вузол позначений назвою модуля. Кореневий вузол дерева позначений як 'App.js'. Від нього виходять три стрілки до модулів 'InspirationGenerator.js', 'FancyText.js' та 'Copyright.js', і ці стрілки позначені словом 'imports'. Від вузла 'InspirationGenerator.js' відходять три стрілки до трьох модулів: 'FancyText.js', 'Color.js' та 'inspirations.js'. Ці стрілки позначені словом 'imports'.">
+
+Дерево залежностей модулів для застосунку "Натхнення".
+
+</Diagram>
+
+Кореневий вузол дерева — це кореневий модуль, відомий також як файл точки входу. Зазвичай це модуль, який містить кореневий компонент.
+
+Порівнюючи з деревом рендерингу цього ж застосунку, бачимо схожі структури з деякими ключовими відмінностями:
+
+* Вузли, які утворюють дерево, відповідають модулям, а не компонентам.
+* Модулі, що не містять компонентів, як-от `inspirations.js`, також є у цьому дереві. Дерево рендерингу охоплює лише компоненти.
+* `Copyright.js` розташований безпосередньо під `App.js`, але в дереві рендерингу компонент `Copyright` з'являється як дочірній елемент `InspirationGenerator`. Це тому, що `InspirationGenerator` приймає JSX як [проп children](/learn/passing-props-to-a-component#passing-jsx-as-children), тому він рендерить `Copyright` як дочірній компонент, а не імпортує модуль.
+
+Дерева залежностей корисні для визначення, які модулі необхідні для запуску вашого React-застосунку. Під час побудови готового до впровадження React-застосунку зазвичай є етап, який запакує (bundle) весь необхідний JavaScript-код для доставлення клієнту. Інструмент, що за це відповідає, називається [бандлер](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Understanding_client-side_tools/Overview#the_modern_tooling_ecosystem), і бандлери використовують дерево залежностей для визначення, які модулі повинно бути включено.
+
+Відповідно до того, як зростає ваш застосунок, збільшується і розмір запакованого застосунку — бандлу. Великі розміри бандлів є "дорогими" для завантаження та виконання клієнтом. Великі розміри бандлів можуть затримувати час відображення вашого UI. Розуміння дерева залежностей вашого застосунку може допомогти з налагодженням цих проблем.
 
 [comment]: <> (perhaps we should also deep dive on conditional imports)
 
 <Recap>
 
-* Trees are a common way to represent the relationship between entities. They are often used to model UI.
-* Render trees represent the nested relationship between React components across a single render.
-* With conditional rendering, the render tree may change across different renders. With different prop values, components may render different children components.
-* Render trees help identify what the top-level and leaf components are. Top-level components affect the rendering performance of all components beneath them and leaf components are often re-rendered frequently. Identifying them is useful for understanding and debugging rendering performance.
-* Dependency trees represent the module dependencies in a React app.
-* Dependency trees are used by build tools to bundle the necessary code to ship an app.
-* Dependency trees are useful for debugging large bundle sizes that slow time to paint and expose opportunities for optimizing what code is bundled.
+* Дерева — це поширений спосіб представлення зв'язків між сутностями. Часто вони використовуються для моделювання UI.
+* Дерева рендерингу відображають вкладені зв'язки між компонентами React у межах одного рендеру.
+* З умовним рендерингом дерево рендерингу може змінюватися між різними рендерами. Залежно від різних значень пропсів компоненти можуть рендерити різні дочірні компоненти.
+* Дерева рендерингу допомагають ідентифікувати, які компоненти є внутрішніми, а які — зовнішніми (листи). Внутрішні компоненти впливають на продуктивність рендерингу всіх компонентів-нащадків, а компоненти-листи часто піддаються повторному рендерингу. Їх ідентифікація корисна для розуміння та налагодження продуктивності рендерингу.
+* Дерева залежностей відображають залежності модулів у React-застосунку.
+* Дерева залежностей використовуються бандлерами, щоб запакувати необхідний код для доставлення застосунку.
+* Дерева залежностей корисні для налагодження великих розмірів бандлів, які збільшують час до появи першого вмісту та показують можливі оптимізації відносно того, який код додається до бандлу.
 
 </Recap>
 
