@@ -156,6 +156,7 @@ export default function App() {
 
 <Sandpack>
 
+```html public/index.html
 <!--
   Вміст HTML усередині <div id="root">...</div>
   був згенерований, починаючи з компонента App, за допомогою react-dom/server.
