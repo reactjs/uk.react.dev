@@ -45,7 +45,7 @@ export default function Button() {
 ```js
 export default function Button() {
   function handleClick() {
-    alert('Ви натисли на мене!');
+    alert('Ви натиснули на мене!');
   }
 
   return (
