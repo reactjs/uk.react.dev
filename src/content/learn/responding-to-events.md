@@ -73,7 +73,7 @@ button { margin-right: 10px; }
 
 ```jsx
 <button onClick={function handleClick() {
-  alert('Ви натисли на мене!');
+  alert('Ви натиснули на мене!');
 }}>
 ```
 
