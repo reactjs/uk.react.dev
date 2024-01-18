@@ -40,15 +40,10 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 `forwardRef` повертає React-компонент, який можна рендерити в JSX. На відміну від React-компонентів, створених звичайними функціями, компонент повернутий з `forwardRef` також може отримувати `ref` проп.
 
-<<<<<<< HEAD
 #### Застереження {/*caveats*/}
-=======
-#### Caveats {/*caveats*/}
 
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
->>>>>>> 6bfde58c109ec86fd6c5767421404cb679ffba9a
+* У строгому режимі React **викличе вашу функцію для рендеру двічі**, щоб [допомогти вам знаходити побічні ефекти.](/reference/react/useState#my-initializer-or-updater-function-runs-twice) Ця поведінка діє лише під час розробки і не впливає на готовий до впровадження код (production). Якщо ваша функція для рендеру є чистою (якою вона й повинна бути), то ця поведінка не вплине на логіку вашого компонента. Результат одного з викликів буде проігноровано. 
 
-* У строгому режимі React **викличе вашу функцію для рендеру двічі**, щоб [допомогти вам знаходити побічні ефекти.](#my-initializer-or-updater-function-runs-twice) Ця поведінка діє лише під час розробки і не впливає на продакшн. Якщо ваша функція для рендеру є чистою (якою вона й повинна бути), то ця поведінка не вплине на логіку вашого компонента. Результат одного з викликів буде проігноровано. 
 
 ---
 
