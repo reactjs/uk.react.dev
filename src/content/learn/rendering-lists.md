@@ -113,21 +113,13 @@ const people = [{
   name: 'Абдус Салам (Moшинкаmad Abdus Salam)',
   profession: 'фізик',
 }, {
-<<<<<<< HEAD
+  id: 3,
   name: 'Персі Джуліан (Percy Lavon Julian)',
   profession: 'хімік',  
 }, {
+  id: 4,
   name: 'Субрахманьян Чандрасекар (Subrahmanyan Chandrasekhar)',
   profession: 'астрофізик',
-=======
-  id: 3,
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',  
-}, {
-  id: 4,
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
->>>>>>> 7bdbab144e09d4edf793ff5128080eb1dba79be4
 }];
 ```
 
