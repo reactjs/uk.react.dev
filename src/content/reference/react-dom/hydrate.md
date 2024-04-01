@@ -152,7 +152,11 @@ export default function App() {
 
 ### Робота з вмістом, що різниться на стороні клієнта та сервера {/*handling-different-client-and-server-content*/}
 
+<<<<<<< HEAD
 Якщо вам потрібно відрендерити різний вміст на стороні сервера та клієнта, ви можете зробити двоетапний рендеринг. Компоненти, які рендерять щось інше на стороні клієнта, можуть використовувати [змінну стану](/reference/react/useState), наприклад `isClient`, яку ви можете змінити на `true` в [ефекті](/reference/react/useEffect):
+=======
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/reference/react/useState) like `isClient`, which you can set to `true` in an [Effect](/reference/react/useEffect):
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 <Sandpack>
 
