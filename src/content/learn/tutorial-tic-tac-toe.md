@@ -1,31 +1,31 @@
 ---
-title: 'Tutorial: Tic-Tac-Toe'
+title: 'Туторіал: Хрестики-нулики'
 ---
 
 <Intro>
 
-You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
+Впродовж цього туторіалу ви будете створювати просту гру хрестики-нулики. Проходження цього туторіалу не вимагає наявності знань з React. Техніки, які ви вивчите в продовж цього туторіалу є фундаментальними при побудові будь-якого React застосунку, і їх повне розуміння надасть глибоке розуміння React.
 
 </Intro>
 
 <Note>
 
-This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
+Цей навчальний посібник створений для людей, що надають перевагу **вчитися на практиці** і хочуть швидко створити щось своїми руками. Якщо ви надаєте перевагу вивченню кожної концепції крок за кроком, почніть з [Describing the UI.](/learn/describing-the-ui)
 
 </Note>
 
-The tutorial is divided into several sections:
+Цей навчальний посібник поділений на декілька частин:
 
-- [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-- [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-- [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
-- [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+- [Налаштування посібника](#setup-for-the-tutorial) нададуть вам **початкову точку**, щоб слідувати туторіалу.
+- [Огляд](#overview) навчить вас **основам** React: компонентам, просам, і стану.
+- [Довершення гри](#completing-the-game) покаже вам **найбільш стандартні техніки** в React розробці.
+- [Додавання подорожі в часі](#adding-time-travel) надасть **більш глибше розуміння** унікальних сильних сторін React.
 
-### What are you building? {/*what-are-you-building*/}
+### Що ви створюєте? {/*what-are-you-building*/}
 
-In this tutorial, you'll build an interactive tic-tac-toe game with React.
+В цьому навчальному посібнику, ви будете створювати інтерактивну гру хрестики-нулики на React.
 
-You can see what it will look like when you're finished here:
+Ви можете переглянути, як виглядатиме гра, коли ви завершите розробку тут:
 
 <Sandpack>
 
@@ -57,9 +57,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Переможець: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Наступний гравець: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -103,9 +103,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Перейти до кроку #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Перейти до початку гри';
     }
     return (
       <li key={move}>
@@ -194,15 +194,15 @@ body {
 
 </Sandpack>
 
-If the code doesn't make sense to you yet, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Не хвилюйтесь, якщо зараз ви не розумієте код, або якщо ви не знайомі з синтаксисом! Ціллю цього туторіалу є допомогти вам зрозуміти React та його синтаксис.
 
-We recommend that you check out the tic-tac-toe game above before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+Ми рекомендуємо вам спробувати зіграти в гру хрестики-нулики, що знаходиться вище, перед продовженням туторіалу. Однією з особливостей, які ви помітите, буде нумерований список в правій частині ігрової дошки. Цей список надає вам історію всіх кроків, які були здійснені впродовж гри, і він оновлюється в процесі гри.
 
-Once you've played around with the finished tic-tac-toe game, keep scrolling. You'll start with a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Як тільки ви завершите знайомство з завершеною версією гри, продовжуйте рухатись по змісту. Ви почнете з простішого шаблону гри в цьому туторіалі. Нашим наступним кроком буде виконати налаштування, щоб ви могли почати імплементувати гру.
 
-## Setup for the tutorial {/*setup-for-the-tutorial*/}
+## Налаштування для туторіала {/*setup-for-the-tutorial*/}
 
-In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. CodeSandbox lets you write code in your browser and preview how your users will see the app you've created. The new tab should display an empty square and the starter code for this tutorial.
+В live редакторі коду нижче, натисніть **Fork** в правому верхньому куті для того, щоб відкрити редактор в новій вкладці браузера використовуючи сайт CodeSandbox. CodeSandbox дозволяє вам писати код у вашому браузері і переглядати, як користувачі будуть бачити застосунок, який ви створюєте. На новій вкладці повинен відображатися порожній квадрат і початковий код для цього навчального посібника.
 
 <Sandpack>
 
@@ -261,33 +261,33 @@ body {
 
 <Note>
 
-You can also follow this tutorial using your local development environment. To do this, you need to:
+Ви також можете виконувати цей туторіал використовуючи ваше локальне середовище розробки. Для цього вам потрібно буде:
 
-1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **Download Sandbox** in that menu to download an archive of the files locally
-1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
-1. Install the dependencies with `npm install`
-1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+1. Встановіть [Node.js](https://nodejs.org/en/)
+1. На вкладці CodeSandbox відкритій в браузері раніше, у верхньому лівому куті натисніть кнопку, що відкриває меню і оберіть **Download Sandbox** в цьому меню, щоб завантажити архів з файлами на локальний пристрій
+1. Розархівуйте архів, відкрийте новий термінал та з допомогою `cd` перейдіть в розархівовану директорію
+1. Встановіть всі залежності з допомогою `npm install`
+1. Виконайте `npm start` для запуску локального сервера та слідуйте підказкам, щоб переглянути виконання коду в браузері
 
-If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
+Якщо ви застрягли - не дайте цьому вас зупинити! Продовжуйте виконання прикладу онлайн і спробуйте пізніше виконати його локально.
 
 </Note>
 
-## Overview {/*overview*/}
+## Загальний огляд {/*overview*/}
 
-Now that you're set up, let's get an overview of React!
+Тепер, коли всі налаштування виконані, приступимо до огляду React!
 
-### Inspecting the starter code {/*inspecting-the-starter-code*/}
+### Огляд початкового коду {/*inspecting-the-starter-code*/}
 
-In CodeSandbox you'll see three main sections:
+В CodeSandbox ви побачите три основні секції:
 
-![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
+![CodeSandbox з початковим кодом](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
+1. Секція _Files_ містить список файлів як-от `App.js`, `index.js`, `styles.css` а також папку `public`
+1. Секція _code editor_ де ви зможете побачити сирцевий код відчиненого файлу
+1. Секція _browser_ де ви будуте бачити, як написаний код відображається на сторінці
 
-The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
+Файл `App.js` повинен бути обраний в секції _Files_. Вміст файлу в _code editor_ повинен бути наступним:
 
 ```jsx
 export default function Square() {
@@ -295,15 +295,15 @@ export default function Square() {
 }
 ```
 
-The _browser_ section should be displaying a square with a X in it like this:
+В секції _browser_ повинен відображатися квадрат з X всередині, на зразок:
 
 ![x-filled square](../images/tutorial/x-filled-square.png)
 
-Now let's have a look at the files in the starter code.
+Тепер давайте поглянемо на файли, що містяться в початковому коді.
 
 #### `App.js` {/*appjs*/}
 
-The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
+Код в `App.js` створює _компонент_. В React, компонентом називають блок коду, який можна перевикористати і який представляє частину користувацького інтерфейсу. Компоненти використовуються для відображення, оновлення, та роботи з елементами користувацького інтерфейсу вашого застосунку. Давайте оглянемо компонент рядок за рядком, щоб зрозуміти, що в відбувається:
 
 ```js {1}
 export default function Square() {
@@ -311,7 +311,7 @@ export default function Square() {
 }
 ```
 
-The first line defines a function called `Square`. The `export` JavaScript keyword makes this function accessible outside of this file. The `default` keyword tells other files using your code that it's the main function in your file.
+Перший рядок оголошує функцію з назвою `Square`. Слово `export` є ключовим словом в JavaScript і робить цю функцію доступною за межами цього файлу. Ключове слово `default` вказує іншим файлам, що використовуватимуть ваш код про те, що це головна функція у вашому файлі.
 
 ```js {2}
 export default function Square() {
@@ -319,15 +319,15 @@ export default function Square() {
 }
 ```
 
-The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
+Наступний рядок повертає кнопку. Слово `return` є ключовим словом JavaScript і каже, що наступна частина після цього слова буде повернута в якості результату тій функції, яка його викликала. `<button>` є *JSX елементом*. JSX елемент є комбінацією JavaScript коду та HTML тегів, які описують, що потрібно показати на екрані. `className="square"` є властивістю кнопки або *пропом* який каже CSS як стилізувати кнопку. `X` є текстом, який відображатиметься всередині кнопки і `</button>` закриває JSX елемент, вказуючи, що будь-який інший контент не повинен знаходитися всередині кнопки.
 
 #### `styles.css` {/*stylescss*/}
 
-Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
+Натисніть на файл з назвою `styles.css` в секції _Files_ в CodeSandbox. Цей файл визначає стилі вашого React застосунку. Перші два _CSS селектори_ (`*` та `body`) визначають стиль більших частин вашого застосунку в той час, коли селектор `.square` визначає стиль будь-якого компоненту, в якого властивість `className` має значення `square`. У вашому коді, це буде дійсним для кнопки у компоненті Square в файлі `App.js`.
 
 #### `index.js` {/*indexjs*/}
 
-Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
+Натисніть на файл з назвою `index.js` в секції _Files_ в CodeSandbox. Ви не будете редагувати цей файл під час туторіалу, але важливо знати, що він є мостом між компонентом, який ви створили в файлі `App.js` і браузером.
 
 ```jsx
 import { StrictMode } from 'react';
@@ -337,14 +337,14 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 bring all the necessary pieces together: 
+Лінії 1-5 з'єднують всі важливі частини застосунку: 
 
 * React
-* React's library to talk to web browsers (React DOM)
-* the styles for your components
-* the component you created in `App.js`.
+* React бібліотеку для комунікації з браузерами (React DOM)
+* стилі для ваших компонентів
+* компонент створений у файлі `App.js`.
 
-The remainder of the file brings all the pieces together and injects the final product into `index.html` in the `public` folder.
+В наступній частині файлу ці всі складові з'єднуються та вставляються у вихідний результат, який поміщається у `index.html`, який знаходиться в папці `public`.
 
 ### Building the board {/*building-the-board*/}
 
