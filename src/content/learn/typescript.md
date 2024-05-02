@@ -137,11 +137,7 @@ export default App = AppTSX;
 const [enabled, setEnabled] = useState(false);
 ```
 
-<<<<<<< HEAD
 У цьому прикладі тип `boolean` буде заданий для змінної `enabled`, а `setEnabled` буде функцією, яка приймає або аргумент типу `boolean`, або функцію, що повертає `boolean`. Якщо ви хочете явно вказати тип для стану, передайте аргумент типу у виклику `useState`:
-=======
-This will assign the type of `boolean` to `enabled`, and `setEnabled` will be a function accepting either a `boolean` argument, or a function that returns a `boolean`. If you want to explicitly provide a type for the state, you can do so by providing a type argument to the `useState` call:
->>>>>>> 9e1f5cd590fd066e72dda9022237bee30b499951
 
 ```ts 
 // Явно задати тип "boolean"
