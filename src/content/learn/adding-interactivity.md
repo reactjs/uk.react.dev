@@ -1,30 +1,30 @@
 ---
-title: Adding Interactivity
+title: Додавання взаємодії
 ---
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+На екрані деякі елементи оновлюються у відповідь на введення користувача. Наприклад, при натисканні на галерею зображень змінюється активне зображення. У React дані, які змінюються з часом, називаються *станом.* Ви можете додавати стан до будь-якого компонента і оновлювати його за потребою. У цьому розділі ви дізнаєтеся, як писати компоненти, які обробляють взаємодію, оновлюють свій стан та відображають різний вихід протягом часу.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
-* [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [Як обробляти події, ініційовані користувачем](/learn/responding-to-events)
+* [Як зберігати інформацію у компонентах за допомогою стану](/learn/state-a-components-memory)
+* [Як React оновлює користувацький інтерфейс у двох фазах](/learn/render-and-commit)
+* [Чому стан не оновлюється одразу після його зміни](/learn/state-as-a-snapshot)
+* [Як чергувати кілька оновлень стану](/learn/queueing-a-series-of-state-updates)
+* [Як оновити об'єкт у стані](/learn/updating-objects-in-state)
+* [Як оновити масив у стані](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
-## Responding to events {/*responding-to-events*/}
+## Реагування на події {/responding-to-events/}
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+У React ви можете додавати обробники подій до свого JSX. Обробники подій - це ваші власні функції, які будуть викликані у відповідь на дії користувача, такі як натискання, наведення, фокусування на полях введення форми та інші.
 
-Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
+Вбудовані компоненти, наприклад <button>, підтримують лише вбудовані браузерні події, такі як onClick. Однак ви також можете створювати власні компоненти і надавати їм обробникам подій пропи з будь-якими іменами, які підходять для вашого додатку.
 
 <Sandpack>
 
@@ -32,8 +32,8 @@ Built-in components like `<button>` only support built-in browser events like `o
 export default function App() {
   return (
     <Toolbar
-      onPlayMovie={() => alert('Playing!')}
-      onUploadImage={() => alert('Uploading!')}
+      onPlayMovie={() => alert('Грає!')}
+      onUploadImage={() => alert('Завантажується!')}
     />
   );
 }
@@ -42,10 +42,10 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
       <Button onClick={onPlayMovie}>
-        Play Movie
+        Грати фільм
       </Button>
       <Button onClick={onUploadImage}>
-        Upload Image
+        Завантажити зображення
       </Button>
     </div>
   );
@@ -68,22 +68,22 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Read **[Responding to Events](/learn/responding-to-events)** to learn how to add event handlers.
+Прочитайте **[Реагування на Події](/learn/responding-to-events)** щоб дізнатися, як додавати обробники подій.
 
 </LearnMore>
 
-## State: a component's memory {/*state-a-components-memory*/}
+## Стан: пам'ять компонента {/state-a-components-memory/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
+Компоненти часто потребують змінювати те, що відображається на екрані в результаті взаємодії. Введення даних у форму повинно оновлювати поле введення, натискання кнопки "далі" на каруселі зображень повинно змінювати відображене зображення, натискання кнопки "купити" розміщує товар у кошику. Компоненти повинні "пам'ятати" різні речі: поточне значення введення, поточне зображення, кошик покупок. У React такий тип пам'яті, специфічний для компонента, називається *станом.*
 
-You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+Ви можете додати стан до компонента за допомогою хука [`useState`](/reference/react/useState). *Хуки* - це спеціальні функції, які дозволяють вашим компонентам використовувати функціональні можливості React (стан - одна з цих можливостей). Хук `useState` дозволяє вам оголосити змінну стану. Він приймає початковий стан і повертає пару значень: поточний стан і функцію установки стану, яка дозволяє вам його оновлювати.
 
 ```js
 const [index, setIndex] = useState(0);
 const [showMore, setShowMore] = useState(false);
 ```
 
-Here is how an image gallery uses and updates state on click:
+Ось як галерея зображень використовує та оновлює стан при натисканні:
 
 <Sandpack>
 
@@ -112,14 +112,14 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        Далі
       </button>
       <h2>
         <i>{sculpture.name} </i>
-        by {sculpture.artist}
+        від {sculpture.artist}
       </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
+        ({index + 1} з {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Hide' : 'Show'} details
@@ -137,76 +137,76 @@ export default function Gallery() {
 ```js src/data.js
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
-  artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  artist: 'Марта Кольвін Андраде',
+  description: 'Хоча Кольвін в основному відома своїми абстрактними темами, які натякають на дохідно-гіспанські символи, ця гігантська скульптура, присвячена нейрохірургії, є однією з найвпізнаваніших робіт скульптури в громадському просторі.',
   url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
+  alt: 'Статуя з бронзи, на якій дві перехрещені руки ніжно тримають людський мозок на вказівних пальцях.'
 }, {
   name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  artist: 'EЕдуардо Каталано',
+  description: 'Ця величезна (75 футів або 23 метри) срібляста квітка розташована в Буенос-Айресі. Вона призначена для руху, закриваючи свої пелюстки ввечері або при сильному вітрі, і відкриваючи їх вранці.',
   url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+  alt: 'Гігантська металева скульптура квітки з відбиваючими пелюстками, схожими на дзеркало, і міцними тичинками.'
 }, {
   name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  artist: 'Джон Вудроу Вільсон',
+  description: 'Вілсон був відомий своєю зацікавленістю рівністю, соціальною справедливістю, а також основними і духовними якостями людства. Ця величезна (7 футів або 2,13 метри) бронзова скульптура втілює те, що він описував як "символічне чорне присутність, що пройнята почуттям загальної людяності."',
   url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+  alt: 'Скульптура, яка зображує людську голову, здається вічно присутньою і урочистою. Вона випромінює спокій і безтурботність.'
 }, {
   name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  artist: 'Невідомий художник',
+  description: 'Розташовані на острові Пасхи, є 1000 моаї, або величезних статуй, створених давніми людьми Рапа Нуі, яких деякі вважають уособленням убожествленого предків.',
   url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+  alt: 'Три величезних кам'яних бюста з головами, які надто великі у порівнянні з тулубом, з похмурними обличчями.'
 }, {
   name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  artist: 'Нікі де Сен-Фалль',
+  description: 'Нани — це торжественні створіння, символи жіночності та материнства. Спочатку Сен-Фалль використовувала тканину та знайдені об'єкти для створення Нан, а пізніше ввела поліестер для досягнення більш яскравого ефекту.',
   url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+  alt: 'Велика мозаїчна скульптура веселого танцюючого жіночого образу в яскравому костюмі, що випромінює радість.'
 }, {
   name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  artist: 'Барбара Хепворт',
+  description: 'Ця абстрактна бронзова скульптура є частиною серії "Сім'я людська", розташованої в Йоркширському скульптурному парку. Хепворт вирішила не створювати буквальні представлення світу, а розвивати абстрактні форми, натхненні людьми та пейзажами.',
   url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+  alt: 'Висока скульптура з трьох елементів, розміщених один на одному, нагадуючи людську фігуру.'
 }, {
   name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  artist: 'Ламіді Олонаде Факеє',
+  description: "Походячи з чотирьох поколінь різьбярів по дереву, творчість Факеє поєднувала традиційні та сучасні теми йоруба.",
   url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+  alt: 'Складна дерев'яна скульптура воїна з уважним обличчям на коні, прикрашеному візерунками.'
 }, {
   name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  artist: 'Аліна Шапочникова',
+  description: "Шапочникова відома своїми скульптурами фрагментованого тіла як метафорою крихкості та непостійності молодості та краси. Ця скульптура зображує дві дуже реалістичні великі животи, розташовані один над одним, кожен приблизно по п'ять футів (1,5 метра) заввишки.",
   url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+  alt: 'Скульптура нагадує каскад заломів, досить відмінний від животів у класичних скульптурах.'
 }, {
   name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  artist: 'Невідомий художник',
+  description: 'Армія з теракоти - це колекція теракотових скульптур, які зображують армії Цинь Ші Хуана, першого імператора Китаю. Армія складалася з понад 8000 солдатів, 130 колісниць з 520 кіньми та 150 коней кінних вояків.',
   url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+  alt: '12 теракотових скульптур урочистих воїнів, кожен з унікальним виразом обличчя та бронею.'
 }, {
   name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  artist: 'Луїз Невельсон',
+  description: 'Невельсон була відома тим, що збирала предмети з решток у Нью-Йорку, які потім вона складала в монументальні конструкції. У цій роботі вона використала різнорідні деталі, такі як ніжка від ліжка, шайба для жонглювання та фрагмент сидіння, прибиваючи та склеюючи їх у коробки, які відображають вплив геометричної абстракції простору та форми кубізму.',
   url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+  alt: 'Чорна матова скульптура, де окремі елементи спочатку неможливо відрізнити один від одного.'
 }, {
   name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  artist: 'Ранджані Шеттар',
+  description: 'Шеттар об'єднує традиційне і сучасне, природне і промислове. Її мистецтво зосереджене на взаємині людини і природи. Її роботу описали як переконливу як абстрактну, так і фігуративну, що піддається гравітації, і "вдале поєднання незвичайних матеріалів."',
   url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+  alt: 'Бліда скульптура, схожа на дріт, прикріплена до бетонної стіни і спускається на підлогу. Вона виглядає легкою.'
 }, {
   name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  artist: 'Тайбейський зоопарк',
+  description: 'Тайбейський зоопарк замовив Квадратну площу Гіппопотамів з підводними гіппопотамами, які граються.',
   url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+  alt: 'Група бронзових скульптур гіпопотамів, що виступають із підвір'я, немов вони пливуть.'
 }];
 ```
 
@@ -229,35 +229,35 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Read **[State: A Component's Memory](/learn/state-a-components-memory)** to learn how to remember a value and update it on interaction.
+Прочитайте **[Стан: Пам'ять компонента](/learn/state-a-components-memory)** щоб дізнатися, як запам'ятати значення та оновлювати його під час взаємодії.
 
 </LearnMore>
 
-## Render and commit {/*render-and-commit*/}
+## Рендер та фіксація {/*render-and-commit*/}
 
-Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Перш ніж ваші компоненти будуть відображені на екрані, вони повинні бути відрендерені React. Розуміння кроків у цьому процесі допоможе вам зрозуміти, як працює ваш код і пояснити його поведінку.
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Уявіть, що ваші компоненти - це кухарі на кухні, які збирають смачні страви з інгредієнтів. У цьому сценарії React - це офіціант, який приймає замовлення від клієнтів та приносить їм їхні замовлення. Цей процес запиту та обслуговування інтерфейсу має три кроки:
 
-1. **Triggering** a render (delivering the diner's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **Запуск** рендерингу (передача замовлення клієнта на кухню)
+2. **Рендеринг** компонента (приготування замовлення на кухні)
+3. **Фіксація** в DOM (розміщення замовлення на столі)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Запуск" alt="React як офіціант у ресторані, приймає замовлення від користувачів і доставляє їх до Компонентської Кухні." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Рендеринг" alt="Карточний Шеф надає React свіжий компонент Картки." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Фіксація" alt="React доставляє Картку користувачеві до його столу." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
 <LearnMore path="/learn/render-and-commit">
 
-Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of a UI update.
+Прочитайте **[Рендер і фіксація](/learn/render-and-commit)** для вивчення життєвого циклу оновлення користувацького інтерфейсу.
 
 </LearnMore>
 
-## State as a snapshot {/*state-as-a-snapshot*/}
+## Стан як знімок {/*state-as-a-snapshot*/}
 
-Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
+На відміну від звичайних змінних JavaScript, стан React працює більше як знімок. Встановлення його не змінює вже існуючу змінну стану, але спричиняє повторний рендерінг. Це може бути неочікувано на початку!
 
 ```js
 console.log(count);  // 0
@@ -265,7 +265,7 @@ setCount(count + 1); // Request a re-render with 1
 console.log(count);  // Still 0!
 ```
 
-This behavior help you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
+Це поведінка допомагає уникнути недоліків. Ось невеличкий додаток чату. Спробуйте вгадати, що відбудеться, якщо спершу натиснути "Відправити", а потім змінити отримувача на Боба. Чию ​​назву відображатиме alert через п'ять секунд?
 
 <Sandpack>
 
@@ -279,7 +279,7 @@ export default function Form() {
   function handleSubmit(e) {
     e.preventDefault();
     setTimeout(() => {
-      alert(`You said ${message} to ${to}`);
+      alert(`Ви надіслали ${message} до ${to}`);
     }, 5000);
   }
 
@@ -290,12 +290,12 @@ export default function Form() {
         <select
           value={to}
           onChange={e => setTo(e.target.value)}>
-          <option value="Alice">Alice</option>
-          <option value="Bob">Bob</option>
+          <option value="Alice">Аліса</option>
+          <option value="Bob">Боб</option>
         </select>
       </label>
       <textarea
-        placeholder="Message"
+        placeholder="Повідомлення"
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
@@ -314,13 +314,13 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state appears "fixed" and unchanging inside the event handlers.
+Прочитайте **[Стан як знімок](/learn/state-as-a-snapshot)** щоб дізнатися, чому стан виглядає "фіксованим" і незмінним всередині обробників подій.
 
 </LearnMore>
 
-## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
+## Чергування серії оновлень стану {/*queueing-a-series-of-state-updates*/}
 
-This component is buggy: clicking "+3" increments the score only once.
+Цей компонент має помилку: клацання "+3" збільшує рахунок лише один раз.
 
 <Sandpack>
 
@@ -342,7 +342,7 @@ export default function Counter() {
         increment();
         increment();
       }}>+3</button>
-      <h1>Score: {score}</h1>
+      <h1>Бали: {score}</h1>
     </>
   )
 }
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State as a Snapshot](/learn/state-as-a-snapshot) explains why this is happening. Setting state requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
+[Стан як знімок](/learn/state-as-a-snapshot) Це відбувається через те, що встановлення стану створює запит на новий повторний рендеринг, але не змінює його у вже запущеному коді. Таким чином, `score` залишається `0` одразу після виклику `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0
@@ -366,7 +366,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-You can fix this by passing an *updater function* when setting state. Notice how replacing `setScore(score + 1)` with `setScore(s => s + 1)` fixes the "+3" button. This lets you queue multiple state updates.
+Ви можете виправити це, передаючи функцію оновлення при встановленні стану. Зауважте, як заміна `setScore(score + 1)` на `setScore(s => s + 1)` виправляє кнопку "+3". Це дозволяє вам чергувати кілька оновлень стану.
 
 <Sandpack>
 
@@ -388,7 +388,7 @@ export default function Counter() {
         increment();
         increment();
       }}>+3</button>
-      <h1>Score: {score}</h1>
+      <h1>Бали: {score}</h1>
     </>
   )
 }
@@ -402,15 +402,15 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue a sequence of state updates.
+Прочитайте **[Чергування Серії Оновлень Стану](/learn/queueing-a-series-of-state-updates)** щоб дізнатися, як чергувати послідовні оновлення стану.
 
 </LearnMore>
 
-## Updating objects in state {/*updating-objects-in-state*/}
+## Оновлення об'єктів у стані {/*updating-objects-in-state*/}
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
+Стан може зберігати будь-який тип значень JavaScript, включаючи об'єкти. Але вам не слід змінювати об'єкти та масиви, які ви утримуєте в стані React безпосередньо. Замість цього, коли вам потрібно оновити об'єкт або масив, вам потрібно створити новий (або зробити копію існуючого), а потім оновити стан, щоб використовувати цю копію.
 
-Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
+Зазвичай ви використовуватимете синтаксис розгортання ... для копіювання об'єктів та масивів, які ви хочете змінити. Наприклад, оновлення вкладеного об'єкта може виглядати так:
 
 <Sandpack>
 
@@ -419,10 +419,10 @@ import { useState } from 'react';
 
 export default function Form() {
   const [person, setPerson] = useState({
-    name: 'Niki de Saint Phalle',
+    name: 'Нікі де Сент-Фаль',
     artwork: {
       title: 'Blue Nana',
-      city: 'Hamburg',
+      city: 'Гамбург',
       image: 'https://i.imgur.com/Sd1AgUOm.jpg',
     }
   });
@@ -467,28 +467,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Ім'я:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Назва:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Город:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Зображення:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -518,7 +518,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-If copying objects in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+Якщо копіювання об'єктів у коді стає нудним, ви можете використовувати бібліотеку, наприклад, Immer, щоб зменшити повторюваний код:
 
 <Sandpack>
 
@@ -527,10 +527,10 @@ import { useImmer } from 'use-immer';
 
 export default function Form() {
   const [person, updatePerson] = useImmer({
-    name: 'Niki de Saint Phalle',
+    name: 'Нікі де Сент-Фаль',
     artwork: {
       title: 'Blue Nana',
-      city: 'Hamburg',
+      city: 'Гамбург',
       image: 'https://i.imgur.com/Sd1AgUOm.jpg',
     }
   });
@@ -562,28 +562,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Ім'я:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Назва:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Город:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Зображення:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -633,13 +633,13 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Read **[Updating Objects in State](/learn/updating-objects-in-state)** to learn how to update objects correctly.
+Прочитайте **[Оновлення об'єктів у стані](/learn/updating-objects-in-state)** щоб дізнатися, як правильно оновлювати об'єкти.
 
 </LearnMore>
 
-## Updating arrays in state {/*updating-arrays-in-state*/}
+## Оновлення масивів у стані {/*updating-arrays-in-state*/}
 
-Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
+Масиви - це ще один тип змінних об'єктів JavaScript, які ви можете зберігати у стані і повинні розглядати як тільки для читання. Так само, як і з об'єктами, коли вам потрібно оновити масив, збережений у стані, вам потрібно створити новий (або зробити копію існуючого), а потім встановити стан, щоб використовувати новий масив:
 
 <Sandpack>
 
@@ -669,8 +669,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Список Мистецтва</h1>
+      <h2>Мій список мистецтва, який я хочу побачити:</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -705,7 +705,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-If copying arrays in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+Якщо копіювання масивів у коді стає нудним, ви можете використовувати бібліотеку, наприклад, [Immer](https://github.com/immerjs/use-immer), щоб зменшити повторюваний код:
 
 <Sandpack>
 
@@ -733,8 +733,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Список Мистецтва</h1>
+      <h2>Мій список мистецтва, який я хочу побачити:</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -789,12 +789,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Read **[Updating Arrays in State](/learn/updating-arrays-in-state)** to learn how to update arrays correctly.
+Прочитайте **[Оновлення масивів у стані](/learn/updating-arrays-in-state)** щоб дізнатися, як правильно оновлювати масиви.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Що будемо робити далі?? {/*whats-next*/}
 
-Head over to [Responding to Events](/learn/responding-to-events) to start reading this chapter page by page!
+Перейдіть за посиланням [Реагування на події](/learn/responding-to-events) to start reading this chapter page by page!
 
-Or, if you're already familiar with these topics, why not read about [Managing State](/learn/managing-state)?
+Або, якщо ви вже знайомі з цими темами, чому б не прочитати про [Управління станом](/learn/managing-state)?
