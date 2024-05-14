@@ -273,8 +273,8 @@ console.log(count);  // Still 0!
 import { useState } from 'react';
 
 export default function Form() {
-  const [to, setTo] = useState('Alice');
-  const [message, setMessage] = useState('Hello');
+  const [to, setTo] = useState('Аліса');
+  const [message, setMessage] = useState('Привіт');
 
   function handleSubmit(e) {
     e.preventDefault();
