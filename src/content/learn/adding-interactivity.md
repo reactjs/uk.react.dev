@@ -793,7 +793,7 @@ function ItemList({ artworks, onToggle }) {
 
 </LearnMore>
 
-## Що будемо робити далі?? {/*whats-next*/}
+## Що далі?? {/*whats-next*/}
 
 Перейдіть за посиланням [Реагування на події](/learn/responding-to-events) to start reading this chapter page by page!
 
