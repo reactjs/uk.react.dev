@@ -68,7 +68,7 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Прочитайте **[Реагування на Події](/learn/responding-to-events)** щоб дізнатися, як додавати обробники подій.
+Прочитайте розділ **["Реагування на події"](/learn/responding-to-events)**, щоб дізнатися, як додавати обробники подій.
 
 </LearnMore>
 
