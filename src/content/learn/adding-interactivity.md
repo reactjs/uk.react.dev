@@ -12,7 +12,7 @@ title: Додавання інтерактивності
 
 * [Як обробляти події, ініційовані користувачем](/learn/responding-to-events)
 * [Як зберігати інформацію у компонентах за допомогою стану](/learn/state-a-components-memory)
-* [Як React оновлює користувацький інтерфейс у двох фазах](/learn/render-and-commit)
+* [Як React оновлює UI двома етапами](/learn/render-and-commit)
 * [Чому стан не оновлюється одразу після його зміни](/learn/state-as-a-snapshot)
 * [Як чергувати кілька оновлень стану](/learn/queueing-a-series-of-state-updates)
 * [Як оновити об'єкт у стані](/learn/updating-objects-in-state)
