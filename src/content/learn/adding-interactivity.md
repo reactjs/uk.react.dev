@@ -229,7 +229,7 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Прочитайте **[Стан: Пам'ять компонента](/learn/state-a-components-memory)** щоб дізнатися, як запам'ятати значення та оновлювати його під час взаємодії.
+Прочитайте розділ **["Стан: Пам'ять компонента"](/learn/state-a-components-memory)**, щоб дізнатися, як запам'ятати значення та оновлювати його під час взаємодії.
 
 </LearnMore>
 
@@ -251,7 +251,7 @@ button {
 
 <LearnMore path="/learn/render-and-commit">
 
-Прочитайте **[Рендер і фіксація](/learn/render-and-commit)** для вивчення життєвого циклу оновлення користувацького інтерфейсу.
+Прочитайте розділ **["Рендер та фіксація"](/learn/render-and-commit)**, для вивчення життєвого циклу оновлення UI.
 
 </LearnMore>
 
@@ -314,7 +314,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Прочитайте **[Стан як знімок](/learn/state-as-a-snapshot)** щоб дізнатися, чому стан виглядає "фіксованим" і незмінним всередині обробників подій.
+Прочитайте розділ **["Стан як знімок"](/learn/state-as-a-snapshot)**, щоб дізнатися, чому стан виглядає "фіксованим" і незмінним всередині обробників подій.
 
 </LearnMore>
 
@@ -354,7 +354,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[Стан як знімок](/learn/state-as-a-snapshot) Це відбувається через те, що встановлення стану створює запит на новий повторний рендеринг, але не змінює його у вже запущеному коді. Таким чином, `score` залишається `0` одразу після виклику `setScore(score + 1)`.
+["Стан як знімок"](/learn/state-as-a-snapshot) Це відбувається через те, що встановлення стану створює запит на новий повторний рендеринг, але не змінює його у вже запущеному коді. Таким чином, `score` залишається `0` одразу після виклику `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0
@@ -402,7 +402,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Прочитайте **[Чергування Серії Оновлень Стану](/learn/queueing-a-series-of-state-updates)** щоб дізнатися, як чергувати послідовні оновлення стану.
+Прочитайте розділ **["Чергування серії оновлень стану"](/learn/queueing-a-series-of-state-updates)**, щоб дізнатися, як чергувати послідовні оновлення стану.
 
 </LearnMore>
 
@@ -633,7 +633,7 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Прочитайте **[Оновлення об'єктів у стані](/learn/updating-objects-in-state)** щоб дізнатися, як правильно оновлювати об'єкти.
+Прочитайте розділ **["Оновлення об'єктів у стані"](/learn/updating-objects-in-state)**, щоб дізнатися, як правильно оновлювати об'єкти.
 
 </LearnMore>
 
@@ -789,12 +789,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Прочитайте **[Оновлення масивів у стані](/learn/updating-arrays-in-state)** щоб дізнатися, як правильно оновлювати масиви.
+Прочитайте розділ **["Оновлення масивів у стані"](/learn/updating-arrays-in-state)**, щоб дізнатися, як правильно оновлювати масиви.
 
 </LearnMore>
 
 ## Що далі?? {/*whats-next*/}
 
-Перейдіть за посиланням [Реагування на події](/learn/responding-to-events) to start reading this chapter page by page!
+Перейдіть за посиланням ["Реагування на події"](/learn/responding-to-events), щоб почати читати цей розділ сторінку за сторінкою!
 
-Або, якщо ви вже знайомі з цими темами, чому б не прочитати про [Управління станом](/learn/managing-state)?
+Або, якщо ви вже знайомі з цими темами, чому б не прочитати про ["Управління станом"](/learn/managing-state)?
