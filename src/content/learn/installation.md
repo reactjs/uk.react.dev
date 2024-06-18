@@ -37,7 +37,7 @@ export default function App() {
 
 Ви можете редагувати його прямо на цій сторінці або відкрити у новій вкладці, натиснувши кнопку "Fork" у верхньому правому куті.
 
-Більшість сторінок у документації React містять схожі пісочниці. Водночас існує багато інших онлайн-пісочниць з підтримкою React, наприклад: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) або [CodePen.](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb)
+Більшість сторінок у документації React містять схожі пісочниці. Водночас існує багато інших онлайн-пісочниць з підтримкою React, наприклад: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) або [CodePen.](https://codepen.io/pen?template=QWYVwWN)
 
 ### Спробувати React локально {/*try-react-locally*/}
 
