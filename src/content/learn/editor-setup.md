@@ -10,7 +10,7 @@ title: Налаштування редактора
 
 <YouWillLearn>
 
-* Які найпопулярніші редактори
+* Які є найпопулярніші редактори
 * Як автоматично форматувати код
 
 </YouWillLearn>
@@ -25,15 +25,15 @@ title: Налаштування редактора
 * [Sublime Text](https://www.sublimetext.com/) має підтримку JSX і TypeScript, [підсвітку синтаксису](https://stackoverflow.com/a/70960574/458193) та вбудоване автодоповнення.
 * [Vim](https://www.vim.org/) – це високоналаштовний текстовий редактор, розроблений для того, щоб зробити створення та внесення змін до текстів будь-якого роду дуже ефективним. У вигляді "vi" він доданий до більшості систем UNIX і до Apple OS X.
 
-## Рекомендовані можливості текстових редакторів {/*recommended-text-editor-features*/}
+## Рекомендовані функції текстових редакторів {/*recommended-text-editor-features*/}
 
-В частину редакторів ці можливості зразу вбудовані, а інші можуть вимагати додавання розширень. Перевірте, що пропонує обраний вами редактор!
+Деякі редактори вже мають ці функції з самого початку, але інші можуть потребувати певних розширень. Перевірте, що пропонує вибраний вами редактор!
 
 ### Статична перевірка коду {/*linting*/}
 
 Лінтери (інструменти статичної перевірки) коду знаходять проблеми у вашому коді при його написанні, допомагаючи зразу їх виправити. [ESLint](https://eslint.org/) – популярний лінтер для JavaScript з відкритим кодом.
 
-* [Встановіть ESLint з рекомендованими налаштуваннями для React](https://www.npmjs.com/package/eslint-config-react-app) (перевірте, що у вас [встановлено Node!](https://nodejs.org/en/download/current/))
+* [Встановіть ESLint із рекомендованими налаштуваннями для React](https://www.npmjs.com/package/eslint-config-react-app) (перевірте, що у вас [встановлено Node!](https://nodejs.org/en/download/current/))
 * [Інтегруйте ESLint у VSCode за допомогою офіційного розширення](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
 **Пересвідчіться, що ввімкнули у своєму проєкті всі правила [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks).** Вони критичні, адже зразу відловлюють найнеприємніші дефекти. Рекомендований набір налаштувань [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) також їх вміщає.
@@ -44,8 +44,8 @@ title: Налаштування редактора
 
 Встановити [розширення Prettier у VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) можна за допомогою таких кроків:
 
-1. Запустіть VS Code
-2. Скористайтеся Швидким відкриттям (натисніть Ctrl/Cmd+P)
+1. Відкрийте VS Code
+2. Скористайтеся швидким відкриттям (натисніть Ctrl/Cmd+P)
 3. Вставте `ext install esbenp.prettier-vscode`
 4. Натисніть Enter
 
@@ -53,7 +53,7 @@ title: Налаштування редактора
 
 В ідеалі слід форматувати свій код при кожному збереженні. VS Code має налаштування для цього!
 
-1. У VS Code натисніть `CTRL/CMD + SHIFT + P`.
+1. Маючи відкрите вікно VS Code, натисніть `CTRL/CMD + SHIFT + P`.
 2. Надрукуйте "settings"
 3. Натисніть Enter
 4. У панелі пошуку надрукуйте "format on save"
