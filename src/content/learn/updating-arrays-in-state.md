@@ -1,52 +1,52 @@
 ---
-title: Updating Arrays in State
+title: Оновлення масивів у стані
 ---
 
 <Intro>
 
-Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
+Масиви є змінними в JavaScript, але ви повинні розглядати їх як незмінні, коли зберігаєте їх у стані. Як і з об’єктами, коли ви хочете оновити масив, що зберігається в стані, вам потрібно створити новий (або зробити копію існуючого), а потім встановити стан для використання нового масиву.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
-- How to update an object inside of an array
-- How to make array copying less repetitive with Immer
+- Як додавати, видаляти або змінювати елементи в масиві в стані React
+- Як оновити об'єкт всередині масиву
+- Як зробити копіювання масиву менш повторюваним за допомогою Immer
 
 </YouWillLearn>
 
-## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
+## Оновлення масивів без мутації {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+У JavaScript масиви – це ще один вид об’єктів. [Як і з об’єктами](/learn/updating-objects-in-state), **ви повинні розглядати масиви в стані React як доступні лише для читання.** Це означає, що ви не повинні перепризначати елементи всередині масиву, наприклад `arr[0] = 'bird'`, і також використовувати методи, які змінюють масив, такі як `push()` і `pop()`.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+Натомість кожного разу, коли ви бажаєте оновити масив, потрібно передати *новий* масив у вашу функцію налаштування стану. Щоб зробити це, ви можете створити новий масив із вихідного у вашому стані, викликавши його немутаційні методи, такі як `filter()` і `map()`. Потім можете встановити стан для нового отриманого масиву.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+Ось довідкова таблиця загальних операцій із масивами. Маючи справу з масивами всередині стану React, вам потрібно буде уникати методів у лівій колонці, а натомість віддавати перевагу методам у правій:
 
-|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
+|           | уникати (змінює масив)           | віддати перевагу (повертає новий масив)                                        |
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+| додавання    | `push`, `unshift`                   | `concat`, `[...arr]` spread синтаксис ([приклад](#adding-to-an-array)) |
+| видалення  | `pop`, `shift`, `splice`            | `filter`, `slice` ([приклад](#removing-from-an-array))              |
+| заміна | `splice`, `arr[i] = ...` призначення | `map` ([приклад](#replacing-items-in-an-array))                     |
+| сортування   | `reverse`, `sort`                   | спочатку скопіюйте масив ([приклад](#making-other-changes-to-an-array)) |
 
-Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
+Крім того, ви можете [скористатися Immer](#write-concise-update-logic-with-immer), що дозволяє використовувати методи з обох стовпців.
 
 <Pitfall>
 
-Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) and [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) are named similarly but are very different:
+На жаль, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) та [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) мають схожі назви, але дуже відрізняються:
 
-* `slice` lets you copy an array or a part of it.
-* `splice` **mutates** the array (to insert or delete items).
+* `slice` дозволяє копіювати масив або його частину.
+* `splice` **змінює** масив (для вставки або видалення елементів).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+У React ви будете використовувати `slice` (без `p`!) набагато частіше, тому що ви не хочете мутувати об’єкти чи масиви в стані. [Оновлення об’єктів](/learn/updating-objects-in-state) пояснює, що таке мутація та чому вона не рекомендована для стану.
 
 </Pitfall>
 
-### Adding to an array {/*adding-to-an-array*/}
+### Додавання до масиву {/*adding-to-an-array*/}
 
-`push()` will mutate an array, which you don't want:
+`push()` змінить масив, що вам не потрібно:
 
 <Sandpack>
 
@@ -61,7 +61,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Надихаючі скульптори:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -71,7 +71,7 @@ export default function List() {
           id: nextId++,
           name: name,
         });
-      }}>Add</button>
+      }}>Додати</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -88,18 +88,18 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
+Натомість створіть *новий* масив, який містить існуючі елементи *і* новий елемент у кінці. Це можна зробити кількома способами, але найпростішим є використання `...` - синтаксису [розширення масиву](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals):
 
 ```js
-setArtists( // Replace the state
-  [ // with a new array
-    ...artists, // that contains all the old items
-    { id: nextId++, name: name } // and one new item at the end
+setArtists( // Замінити стан
+  [ // новим масивом
+    ...artists, // який містить усі старі елементи
+    { id: nextId++, name: name } // і один новий елемент в кінці
   ]
 );
 ```
 
-Now it works correctly:
+Тепер все працює правильно:
 
 <Sandpack>
 
@@ -114,7 +114,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Надихаючі скульптори:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -124,7 +124,7 @@ export default function List() {
           ...artists,
           { id: nextId++, name: name }
         ]);
-      }}>Add</button>
+      }}>Додати</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -141,16 +141,16 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
+Синтаксис spread також дозволяє додавати елемент до початку, розміщуючи його *перед* оригінальним масивом `...artists`:
 
 ```js
 setArtists([
   { id: nextId++, name: name },
-  ...artists // Put old items at the end
+  ...artists // Покладіть старі елементи в кінці
 ]);
 ```
 
-In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
+Таким чином, spread може виконувати роботу як `push()`, додаючи в кінець масиву, так і `unshift()`, додаючи до початку масиву. Спробуйте це в пісочниці вище!
 
 ### Removing from an array {/*removing-from-an-array*/}
 
