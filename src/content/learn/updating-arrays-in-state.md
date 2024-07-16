@@ -152,9 +152,9 @@ setArtists([
 
 Таким чином, spread може виконувати роботу як `push()`, додаючи в кінець масиву, так і `unshift()`, додаючи до початку масиву. Спробуйте це в пісочниці вище!
 
-### Removing from an array {/*removing-from-an-array*/}
+### Видалення з масиву {/*removing-from-an-array*/}
 
-The easiest way to remove an item from an array is to *filter it out*. In other words, you will produce a new array that will not contain that item. To do this, use the `filter` method, for example:
+Найпростіший спосіб видалити елемент із масиву — це *відфільтрувати його*. Іншими словами, створити новий масив, який не міститиме цей елемент. Для цього скористайтеся методом `filter`, наприклад:
 
 <Sandpack>
 
@@ -174,7 +174,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Надихаючі скульптори:</h1>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>
@@ -186,7 +186,7 @@ export default function List() {
                 )
               );
             }}>
-              Delete
+              Видалити
             </button>
           </li>
         ))}
@@ -198,7 +198,7 @@ export default function List() {
 
 </Sandpack>
 
-Click the "Delete" button a few times, and look at its click handler.
+Натисніть кнопку «Видалити» кілька разів і подивіться на її обробник кліків.
 
 ```js
 setArtists(
@@ -206,13 +206,13 @@ setArtists(
 );
 ```
 
-Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
+Тут `artists.filter(a => a.id !== artist.id)` означає "створити масив, який складається з тих `скульпторів`, ідентифікатори яких відрізняються від `artist.id`". Іншими словами, кнопка «Видалити» кожного скульптора відфільтровує _цього_ скульптора з масиву, а потім запитує повторну візуалізацію з отриманим масивом. Зауважте, що `filter` не змінює вихідний масив.
 
-### Transforming an array {/*transforming-an-array*/}
+### Перетворення масиву {/*transforming-an-array*/}
 
-If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
+Якщо ви хочете змінити деякі або всі елементи масиву, можете скористатися `map()`, щоб створити **новий** масив. Функція, яку ви передасте `map`, може вирішити, що робити з кожним елементом, на основі його даних або індексу (або обох).
 
-In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 50 pixels. It does this by producing a new array of data using `map()`:
+У цьому прикладі масив містить координати двох кіл і квадрата. Коли ви натискаєте кнопку, вона пересуває лише кола вниз на 50 пікселів. Це робиться шляхом створення нового масиву даних за допомогою `map()`:
 
 <Sandpack>
 
@@ -233,24 +233,24 @@ export default function ShapeEditor() {
   function handleClick() {
     const nextShapes = shapes.map(shape => {
       if (shape.type === 'square') {
-        // No change
+        // Без змін
         return shape;
       } else {
-        // Return a new circle 50px below
+        // Повертає нове коло нижче на 50px
         return {
           ...shape,
           y: shape.y + 50,
         };
       }
     });
-    // Re-render with the new array
+    // Повторний рендер з новим масивом
     setShapes(nextShapes);
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Move circles down!
+        Перемістити кола вниз!
       </button>
       {shapes.map(shape => (
         <div
@@ -278,11 +278,11 @@ body { height: 300px; }
 
 </Sandpack>
 
-### Replacing items in an array {/*replacing-items-in-an-array*/}
+### Заміна елементів у масиві {/*replacing-items-in-an-array*/}
 
-It is particularly common to want to replace one or more items in an array. Assignments like `arr[0] = 'bird'` are mutating the original array, so instead you'll want to use `map` for this as well.
+Особливо часто потрібно замінити один або кілька елементів у масиві. Присвоєння на кшталт `arr[0] = 'bird'` змінюють оригінальний масив, тому натомість ви також можете використовувати `map` для цього.
 
-To replace an item, create a new array with `map`. Inside your `map` call, you will receive the item index as the second argument. Use it to decide whether to return the original item (the first argument) or something else:
+Щоб замінити елемент, створіть новий масив за допомогою `map`. У виклику `map` ви отримаєте індекс елемента як другий аргумент. Використовуйте його, щоб вирішити, повертати оригінальний елемент (перший аргумент) чи щось інше:
 
 <Sandpack>
 
@@ -301,10 +301,10 @@ export default function CounterList() {
   function handleIncrementClick(index) {
     const nextCounters = counters.map((c, i) => {
       if (i === index) {
-        // Increment the clicked counter
+        // Збільшити лічильник біля натиснутих клавіш
         return c + 1;
       } else {
-        // The rest haven't changed
+        // Решта не змінилися
         return c;
       }
     });
@@ -332,11 +332,11 @@ button { margin: 5px; }
 
 </Sandpack>
 
-### Inserting into an array {/*inserting-into-an-array*/}
+### Вставка в масив {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+Іноді вам може знадобитися вставити елемент у певну позицію, яка не є ні на початку, ні в кінці. Для цього ви можете використовувати синтаксис поширення масиву `...` разом із методом `slice()`. Метод `slice()` дозволяє вирізати "шматочок" масиву. Щоб вставити елемент, ви створите масив, який розподіляє фрагмент _перед_ точкою вставки, потім новий елемент, а потім решту вихідного масиву.
 
-In this example, the Insert button always inserts at the index `1`:
+У цьому прикладі кнопка Вставити завжди вставляє елемент з індексом `1`:
 
 <Sandpack>
 
@@ -357,13 +357,13 @@ export default function List() {
   );
 
   function handleClick() {
-    const insertAt = 1; // Could be any index
+    const insertAt = 1; // Може бути будь-яким індексом
     const nextArtists = [
-      // Items before the insertion point:
+      // Елементи перед точкою вставки:
       ...artists.slice(0, insertAt),
-      // New item:
+      // Новий елемент:
       { id: nextId++, name: name },
-      // Items after the insertion point:
+      // Елементи після точки вставки:
       ...artists.slice(insertAt)
     ];
     setArtists(nextArtists);
@@ -372,13 +372,13 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Надихаючі скульптори:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
       />
       <button onClick={handleClick}>
-        Insert
+        Вставити
       </button>
       <ul>
         {artists.map(artist => (
@@ -396,13 +396,13 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-### Making other changes to an array {/*making-other-changes-to-an-array*/}
+### Внесення інших змін до масиву {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
+Є деякі речі, які неможливо зробити лише за допомогою синтаксису розповсюдження та методів, які не мутують, таких як `map()` і `filter()`. Наприклад, може знадобитися зробити реверс  елементів в масиві або відсортувати його. Методи JavaScript `reverse()` і `sort()` змінюють оригінальний масив, тому ви не можете використовувати їх безпосередньо.
 
-**However, you can copy the array first, and then make changes to it.**
+**Однак ви можете спочатку скопіювати масив, а потім внести в нього зміни.**
 
-For example:
+Наприклад:
 
 <Sandpack>
 
@@ -427,7 +427,7 @@ export default function List() {
   return (
     <>
       <button onClick={handleClick}>
-        Reverse
+        Реверс
       </button>
       <ul>
         {list.map(artwork => (
@@ -441,25 +441,25 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+Тут ви використовуєте синтаксис росповсюдження `[...list]`, щоб спочатку створити копію вихідного масиву. Тепер, коли маєте копію, можете використовувати методи зміни, як то `nextList.reverse()` або `nextList.sort()`, або навіть призначати окремі елементи за допомогою `nextList[0] = "something"`.
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+Однак, **навіть якщо ви скопіюєте масив, ви не зможете змінити існуючі елементи _всередині_ нього безпосередньо.** Це пояснюється тим, що копіювання неглибоке — новий масив міститиме ті самі елементи, що й оригінальний. Отже, якщо змінюєте об’єкт у скопійованому масиві, ви змінюєте наявний стан. Наприклад, такий код є проблемою.
 
 ```js
 const nextList = [...list];
-nextList[0].seen = true; // Problem: mutates list[0]
+nextList[0].seen = true; // Проблема: мутація list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+Хоча `nextList` і `list` — це два різні масиви, **`nextList[0]` і `list[0]` вказують на той самий об’єкт.** Отже, змінивши `nextList[0].seen`, ви також змінюєте `list[0].seen`. Це мутація стану, якої слід уникати! Цю проблему можна вирішити подібно до [оновлення вкладених об’єктів JavaScript](/learn/updating-objects-in-state#updating-a-nested-object) – скопіювавши окремі елементи, які потрібно змінити, а не видозмінювати їх. Ось як.
 
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
+## Оновлення об'єктів всередині масивів {/*updating-objects-inside-arrays*/}
 
-Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
+Об’єкти не _справді_ розташовані "всередині" масивів. Вони можуть здатися "всередині" коду, але кожен об’єкт у масиві є окремим значенням, на яке "вказує" масив. Ось чому потрібно бути обережними, змінюючи вкладені поля, такі як `list[0]`. Інші, в той час, можуть працювати з тим  самим елементом масиву!
 
-**When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
+**Під час оновлення вкладеного стану вам потрібно створити копії від точки оновлення, і аж до верхнього рівня.** Давайте подивимося, як це робиться.
 
-In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:
+У цьому прикладі два окремі списки мають однаковий початковий стан. Вони мають бути ізольованими, але через мутацію їхній стан випадково оприлюднено, і встановлення прапорця в одному списку впливає на інший:
 
 <Sandpack>
 
@@ -539,34 +539,34 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-The problem is in code like this:
+Проблема полягає в цьому коді:
 
 ```js
 const myNextList = [...myList];
 const artwork = myNextList.find(a => a.id === artworkId);
-artwork.seen = nextSeen; // Problem: mutates an existing item
+artwork.seen = nextSeen; // Проблема: мутація існуючого елементу
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+Хоча сам масив myNextList є новим, самі *елементи* ті самі, що і в оригінальному масиві myList. Отже, зміна `artwork.seen` змінює *оригінальний* елемент. Цей елемент також є у `yourList`, що спричиняє помилку. Про такі помилки може бути важко подумати, але, на щастя, вони зникають, якщо ви уникаєте зміни стану.
 
-**You can use `map` to substitute an old item with its updated version without mutation.**
+**Ви можете скористатися `map`, щоб замінити старий елемент його оновленою версією без мутації.**
 
 ```js
 setMyList(myList.map(artwork => {
   if (artwork.id === artworkId) {
-    // Create a *new* object with changes
+    // Створення *нового* зміненого об'єкта
     return { ...artwork, seen: nextSeen };
   } else {
-    // No changes
+    // Без змін
     return artwork;
   }
 }));
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+Тут `...` — синтаксис розповсюдження об’єкта, який використовується для [створення копії об’єкта.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
 
-With this approach, none of the existing state items are being mutated, and the bug is fixed:
+За допомогою цього підходу жоден із існуючих елементів стану не змінюється, і помилку виправлено:
 
 <Sandpack>
 
@@ -589,10 +589,10 @@ export default function BucketList() {
   function handleToggleMyList(artworkId, nextSeen) {
     setMyList(myList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Створення *нового* зміненого об'єкта
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Без змін
         return artwork;
       }
     }));
@@ -601,10 +601,10 @@ export default function BucketList() {
   function handleToggleYourList(artworkId, nextSeen) {
     setYourList(yourList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Створення *нового* зміненого об'єкта
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Без змін
         return artwork;
       }
     }));
@@ -652,7 +652,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
+Загалом, **ви повинні змінювати лише об’єкти, які ви щойно створили.** Якщо ви вставляєте *новий* елемент, ви можете його змінити, але якщо маєте справу з чимось, що вже є в стані, вам потрібно зробити копію.
 
 ### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
 
