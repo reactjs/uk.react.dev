@@ -57,7 +57,7 @@ npx create-remix
 
 Якщо Remix — це для вас щось нове, погляньте його [підручник з блогом](https://remix.run/docs/en/main/tutorials/blog) (коротке) і [підручник із застосунком](https://remix.run/docs/en/main/tutorials/jokes) (довге).
 
-Remix підтримується [Shopify](https://www.shopify.com/). При створенні проєкту Remix необхідно [обрати свою ціль розгортання](https://remix.run/docs/en/main/guides/deployment). Застосунок Remix можна розгорнути на будь-якому хостингу, що підтримує Node.js або є безсерверним, за допомогою готового чи власного [адаптера](https://remix.run/docs/en/main/other-api/adapter).
+Remix підтримується [Shopify](https://www.shopify.com/). Для створення проєкту Remix необхідно [обрати свою ціль розгортання](https://remix.run/docs/en/main/guides/deployment). Застосунок Remix можна розгорнути на будь-якому хостингу, що підтримує Node.js або є безсерверним, за допомогою готового чи власного [адаптера](https://remix.run/docs/en/main/other-api/adapter).
 
 ### Gatsby {/*gatsby*/}
 
@@ -69,7 +69,7 @@ npx create-gatsby
 
 Якщо Gatsby — це для вас щось нове, погляньте [підручник Gatsby.](https://www.gatsbyjs.com/docs/tutorial/)
 
-Gatsby підтримується [Netlify](https://www.netlify.com/). [Цілком статичний сайт Gatsby можна розгорнути](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting) на будь-якому статичному хостингу. При бажанні скористатися суто серверними можливостями фреймворку слід перевірити, що хостинг підтримує ці можливості для Gatsby.
+Gatsby підтримується [Netlify](https://www.netlify.com/). [Цілком статичний сайт Gatsby можна розгорнути](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting) на будь-якому статичному хостингу. За бажання скористатися суто серверними можливостями фреймворку слід перевірити, що хостинг підтримує ці можливості для Gatsby.
 
 ### Expo (для нативних застосунків) {/*expo*/}
 
