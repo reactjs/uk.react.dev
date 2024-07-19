@@ -1,13 +1,13 @@
 {
-  "title": "Learn React",
+  "title": "Вивчення React",
   "path": "/learn",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "ОЗНАЙОМЛЕННЯ"
     },
     {
-      "title": "Quick Start",
+      "title": "Швидкий старт",
       "path": "/learn",
       "routes": [
         {
@@ -21,27 +21,27 @@
       ]
     },
     {
-      "title": "Installation",
+      "title": "Встановлення",
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Start a New React Project",
+          "title": "Початок нового React-проєкту",
           "path": "/learn/start-a-new-react-project"
         },
         {
-          "title": "Add React to an Existing Project",
+          "title": "Інтеграція React в існуючий проект",
           "path": "/learn/add-react-to-an-existing-project"
         },
         {
-          "title": "Editor Setup",
+          "title": "Налаштування редактора",
           "path": "/learn/editor-setup"
         },
         {
-          "title": "Using TypeScript",
+          "title": "Використання TypeScript",
           "path": "/learn/typescript"
         },
         {
-          "title": "React Developer Tools",
+          "title": "Інструменти React розробника",
           "path": "/learn/react-developer-tools"
         },
         {
@@ -53,39 +53,39 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "ВИВЧЕННЯ REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "Написання UI",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
         {
-          "title": "Your First Component",
+          "title": "Ваш перший компонент",
           "path": "/learn/your-first-component"
         },
         {
-          "title": "Importing and Exporting Components",
+          "title": "Імпорт та експорт компонентів",
           "path": "/learn/importing-and-exporting-components"
         },
         {
-          "title": "Writing Markup with JSX",
+          "title": "Написання розмітки з JSX",
           "path": "/learn/writing-markup-with-jsx"
         },
         {
-          "title": "JavaScript in JSX with Curly Braces",
+          "title": "JavaScript у JSX з фігурними дужками",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
-          "title": "Passing Props to a Component",
+          "title": "Передача пропсів до компонента",
           "path": "/learn/passing-props-to-a-component"
         },
         {
-          "title": "Conditional Rendering",
+          "title": "Умовний рендеринг",
           "path": "/learn/conditional-rendering"
         },
         {
-          "title": "Rendering Lists",
+          "title": "Рендеринг списків",
           "path": "/learn/rendering-lists"
         },
         {
@@ -93,7 +93,7 @@
           "path": "/learn/keeping-components-pure"
         },
         {
-          "title": "Your UI as a Tree",
+          "title": "Ваш UI як дерево",
           "path": "/learn/understanding-your-ui-as-a-tree"
         }
       ]
@@ -104,7 +104,7 @@
       "tags": [],
       "routes": [
         {
-          "title": "Responding to Events",
+          "title": "Реагування на події",
           "path": "/learn/responding-to-events"
         },
         {
