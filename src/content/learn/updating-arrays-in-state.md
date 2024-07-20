@@ -4,13 +4,13 @@ title: Оновлення масивів у стані
 
 <Intro>
 
-Масиви є змінними в JavaScript, але ви повинні розглядати їх як незмінні, коли зберігаєте їх у стані. Як і з об’єктами, коли ви хочете оновити масив, що зберігається в стані, вам потрібно створити новий (або зробити копію існуючого), а потім встановити стан для використання нового масиву.
+ В JavaScript масиви є змінними, але потрібно розглядати їх як незмінні, під час зберігання у стані. Як і з об’єктами, коли вам потрібно оновити масив, що зберігається в стані, слід створити новий (або зробити копію існуючого), а потім встановити стан для використання нового масиву.
 
 </Intro>
 
 <YouWillLearn>
 
-- Як додавати, видаляти або змінювати елементи в масиві в стані React
+- Як додавати, видаляти або змінювати елементи масиву в стані React
 - Як оновити об'єкт всередині масиву
 - Як зробити копіювання масиву менш повторюваним за допомогою Immer
 
@@ -18,9 +18,9 @@ title: Оновлення масивів у стані
 
 ## Оновлення масивів без мутації {/*updating-arrays-without-mutation*/}
 
-У JavaScript масиви – це ще один вид об’єктів. [Як і з об’єктами](/learn/updating-objects-in-state), **ви повинні розглядати масиви в стані React як доступні лише для читання.** Це означає, що ви не повинні перепризначати елементи всередині масиву, наприклад `arr[0] = 'bird'`, і також використовувати методи, які змінюють масив, такі як `push()` і `pop()`.
+У JavaScript масиви – це ще один вид об’єктів. [Як і з об’єктами](/learn/updating-objects-in-state), **потрібно розглядати масиви в стані React як доступні лише для читання.** Це означає, що не слід перепризначати елементи всередині масиву, наприклад `arr[0] = 'bird'`, а також використовувати методи, які змінюють масив, такі як `push()` і `pop()`.
 
-Натомість кожного разу, коли ви бажаєте оновити масив, потрібно передати *новий* масив у вашу функцію налаштування стану. Щоб зробити це, ви можете створити новий масив із вихідного у вашому стані, викликавши його немутаційні методи, такі як `filter()` і `map()`. Потім можете встановити стан для нового отриманого масиву.
+Натомість кожного разу, коли хочете оновити масив, потрібно передати *новий* масив у функцію налаштування стану. Щоб зробити це, ви можете створити новий масив із вихідного у вашому стані, викликавши його немутаційні методи, такі як `filter()` і `map()`. Потім можете встановити стан для нового отриманого масиву.
 
 Ось довідкова таблиця загальних операцій із масивами. Маючи справу з масивами всередині стану React, вам потрібно буде уникати методів у лівій колонці, а натомість віддавати перевагу методам у правій:
 
@@ -31,7 +31,7 @@ title: Оновлення масивів у стані
 | заміна | `splice`, `arr[i] = ...` призначення | `map` ([приклад](#replacing-items-in-an-array))                     |
 | сортування   | `reverse`, `sort`                   | спочатку скопіюйте масив ([приклад](#making-other-changes-to-an-array)) |
 
-Крім того, ви можете [скористатися Immer](#write-concise-update-logic-with-immer), що дозволяє використовувати методи з обох стовпців.
+Крім того, ви можете [скористатися Immer](#write-concise-update-logic-with-immer), що дозволить використовувати методи з обох стовпців.
 
 <Pitfall>
 
@@ -40,7 +40,7 @@ title: Оновлення масивів у стані
 * `slice` дозволяє копіювати масив або його частину.
 * `splice` **змінює** масив (для вставки або видалення елементів).
 
-У React ви будете використовувати `slice` (без `p`!) набагато частіше, тому що ви не хочете мутувати об’єкти чи масиви в стані. [Оновлення об’єктів](/learn/updating-objects-in-state) пояснює, що таке мутація та чому вона не рекомендована для стану.
+У React ви будете використовувати `slice` (без `p`!) набагато частіше, тому що непотрібно мутувати об’єкти чи масиви в стані. [Оновлення об’єктів](/learn/updating-objects-in-state) пояснює, що таке мутація та чому вона не рекомендована для стану.
 
 </Pitfall>
 
@@ -88,13 +88,13 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Натомість створіть *новий* масив, який містить існуючі елементи *і* новий елемент у кінці. Це можна зробити кількома способами, але найпростішим є використання `...` - синтаксису [розширення масиву](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals):
+Натомість створіть *новий* масив, який містить існуючі елементи *і* новий елемент у кінці. Це можна зробити кількома способами, але найпростішим є використання `...` - синтаксису [поширення масиву](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals):
 
 ```js
 setArtists( // Замінити стан
   [ // новим масивом
     ...artists, // який містить усі старі елементи
-    { id: nextId++, name: name } // і один новий елемент в кінці
+    { id: nextId++, name: name } // і додати новий елемент в кінці
   ]
 );
 ```
@@ -141,7 +141,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Синтаксис spread також дозволяє додавати елемент до початку, розміщуючи його *перед* оригінальним масивом `...artists`:
+Синтаксис поширення також дозволяє додавати елемент до початку, розміщуючи його *перед* оригінальним масивом `...artists`:
 
 ```js
 setArtists([
@@ -150,7 +150,7 @@ setArtists([
 ]);
 ```
 
-Таким чином, spread може виконувати роботу як `push()`, додаючи в кінець масиву, так і `unshift()`, додаючи до початку масиву. Спробуйте це в пісочниці вище!
+Таким чином, поширення може виконувати роботу як `push()`, додаючи в кінець масиву, так і `unshift()`, додаючи до початку. Спробуйте це в пісочниці вище!
 
 ### Видалення з масиву {/*removing-from-an-array*/}
 
@@ -198,7 +198,7 @@ export default function List() {
 
 </Sandpack>
 
-Натисніть кнопку «Видалити» кілька разів і подивіться на її обробник кліків.
+Натисніть кнопку "Видалити" кілька разів і подивіться на її обробник кліків.
 
 ```js
 setArtists(
@@ -206,11 +206,11 @@ setArtists(
 );
 ```
 
-Тут `artists.filter(a => a.id !== artist.id)` означає "створити масив, який складається з тих `скульпторів`, ідентифікатори яких відрізняються від `artist.id`". Іншими словами, кнопка «Видалити» кожного скульптора відфільтровує _цього_ скульптора з масиву, а потім запитує повторну візуалізацію з отриманим масивом. Зауважте, що `filter` не змінює вихідний масив.
+Тут `artists.filter(a => a.id !== artist.id)` означає "створити масив, який складається з тих `artists`, ідентифікатори яких відрізняються від `artist.id`". Іншими словами, кнопка "Видалити" кожного скульптора відфільтровує _цього_ скульптора з масиву, а потім запитує повторну візуалізацію з отриманим масивом. Зауважте, що `filter` не змінює вихідний масив.
 
 ### Перетворення масиву {/*transforming-an-array*/}
 
-Якщо ви хочете змінити деякі або всі елементи масиву, можете скористатися `map()`, щоб створити **новий** масив. Функція, яку ви передасте `map`, може вирішити, що робити з кожним елементом, на основі його даних або індексу (або обох).
+Якщо потрібно змінити деякі або всі елементи масиву, можна скористатися `map()`, щоб створити **новий** масив. Функція, яку передасте `map`, може вирішити, що робити з кожним елементом, на основі його даних або індексу (або обох).
 
 У цьому прикладі масив містить координати двох кіл і квадрата. Коли ви натискаєте кнопку, вона пересуває лише кола вниз на 50 пікселів. Це робиться шляхом створення нового масиву даних за допомогою `map()`:
 
@@ -280,9 +280,9 @@ body { height: 300px; }
 
 ### Заміна елементів у масиві {/*replacing-items-in-an-array*/}
 
-Особливо часто потрібно замінити один або кілька елементів у масиві. Присвоєння на кшталт `arr[0] = 'bird'` змінюють оригінальний масив, тому натомість ви також можете використовувати `map` для цього.
+Особливо часто потрібно замінити один або кілька елементів у масиві. Присвоєння на кшталт `arr[0] = 'bird'` змінюють оригінальний масив, тому натомість ви також можете скористатися `map`.
 
-Щоб замінити елемент, створіть новий масив за допомогою `map`. У виклику `map` ви отримаєте індекс елемента як другий аргумент. Використовуйте його, щоб вирішити, повертати оригінальний елемент (перший аргумент) чи щось інше:
+Щоб замінити елемент, створіть новий масив за допомогою `map`. У виклику `map` ви маєте індекс елемента другим аргументом. Використовуйте його, щоб вирішити, повертати оригінальний елемент (перший аргумент) чи щось інше:
 
 <Sandpack>
 
@@ -334,7 +334,7 @@ button { margin: 5px; }
 
 ### Вставка в масив {/*inserting-into-an-array*/}
 
-Іноді вам може знадобитися вставити елемент у певну позицію, яка не є ні на початку, ні в кінці. Для цього ви можете використовувати синтаксис поширення масиву `...` разом із методом `slice()`. Метод `slice()` дозволяє вирізати "шматочок" масиву. Щоб вставити елемент, ви створите масив, який розподіляє фрагмент _перед_ точкою вставки, потім новий елемент, а потім решту вихідного масиву.
+Іноді може знадобитися вставити елемент у певну позицію, яка не є ні на початку, ні в кінці. Для цього ви можете використовувати синтаксис поширення масиву `...` разом із методом `slice()`. Метод `slice()` дозволяє вирізати "шматочок" масиву. Щоб вставити елемент, ви створюєте масив, який розподіляє фрагмент _перед_ точкою вставки, потім новий елемент, а потім решту вихідного масиву.
 
 У цьому прикладі кнопка Вставити завжди вставляє елемент з індексом `1`:
 
@@ -398,9 +398,9 @@ button { margin-left: 5px; }
 
 ### Внесення інших змін до масиву {/*making-other-changes-to-an-array*/}
 
-Є деякі речі, які неможливо зробити лише за допомогою синтаксису розповсюдження та методів, які не мутують, таких як `map()` і `filter()`. Наприклад, може знадобитися зробити реверс  елементів в масиві або відсортувати його. Методи JavaScript `reverse()` і `sort()` змінюють оригінальний масив, тому ви не можете використовувати їх безпосередньо.
+Є деякі речі, які неможливо зробити лише за допомогою синтаксису поширення та методів, які не мутують, таких як `map()` і `filter()`. Наприклад, може знадобитися зробити реверс елементів в масиві або відсортувати його. Методи JavaScript `reverse()` і `sort()` змінюють оригінальний масив, тому не можна використовувати їх безпосередньо.
 
-**Однак ви можете спочатку скопіювати масив, а потім внести в нього зміни.**
+**Однак можна спочатку скопіювати масив, а потім внести в нього зміни.**
 
 Наприклад:
 
@@ -410,9 +410,9 @@ button { margin-left: 5px; }
 import { useState } from 'react';
 
 const initialList = [
-  { id: 0, title: 'Big Bellies' },
-  { id: 1, title: 'Lunar Landscape' },
-  { id: 2, title: 'Terracotta Army' },
+  { id: 0, title: 'Великі животи' },
+  { id: 1, title: 'Місячний пейзаж' },
+  { id: 2, title: 'Теракотова армія' },
 ];
 
 export default function List() {
@@ -441,9 +441,9 @@ export default function List() {
 
 </Sandpack>
 
-Тут ви використовуєте синтаксис росповсюдження `[...list]`, щоб спочатку створити копію вихідного масиву. Тепер, коли маєте копію, можете використовувати методи зміни, як то `nextList.reverse()` або `nextList.sort()`, або навіть призначати окремі елементи за допомогою `nextList[0] = "something"`.
+Тут ви використовуєте синтаксис поширення `[...list]`, щоб спочатку створити копію вихідного масиву. Тепер, коли маєте копію, можете використовувати методи зміни, як то `nextList.reverse()` або `nextList.sort()`, або навіть призначати окремі елементи за допомогою `nextList[0] = "something"`.
 
-Однак, **навіть якщо ви скопіюєте масив, ви не зможете змінити існуючі елементи _всередині_ нього безпосередньо.** Це пояснюється тим, що копіювання неглибоке — новий масив міститиме ті самі елементи, що й оригінальний. Отже, якщо змінюєте об’єкт у скопійованому масиві, ви змінюєте наявний стан. Наприклад, такий код є проблемою.
+Однак, **навіть якщо скопіюєте масив, ви не зможете змінити існуючі елементи _всередині_ нього безпосередньо.** Це пояснюється тим, що копіювання неглибоке — новий масив міститиме ті самі елементи, що й оригінальний. Отже, якщо змінюєте об’єкт у скопійованому масиві, ви змінюєте наявний стан. Наприклад, такий код є проблемою.
 
 ```js
 const nextList = [...list];
@@ -455,7 +455,7 @@ setList(nextList);
 
 ## Оновлення об'єктів всередині масивів {/*updating-objects-inside-arrays*/}
 
-Об’єкти не _справді_ розташовані "всередині" масивів. Вони можуть здатися "всередині" коду, але кожен об’єкт у масиві є окремим значенням, на яке "вказує" масив. Ось чому потрібно бути обережними, змінюючи вкладені поля, такі як `list[0]`. Інші, в той час, можуть працювати з тим  самим елементом масиву!
+Об’єкти _справді_ не розташовані "всередині" масивів. Вони можуть здаватися тими, що "всередині" коду, але кожен об’єкт у масиві є окремим значенням, на яке "вказує" масив. Ось чому потрібно бути обережним, змінюючи вкладені поля, такі як `list[0]`. Інші, в той самий час, можуть працювати з тим самим елементом масиву!
 
 **Під час оновлення вкладеного стану вам потрібно створити копії від точки оновлення, і аж до верхнього рівня.** Давайте подивимося, як це робиться.
 
@@ -468,9 +468,9 @@ import { useState } from 'react';
 
 let nextId = 3;
 const initialList = [
-  { id: 0, title: 'Big Bellies', seen: false },
-  { id: 1, title: 'Lunar Landscape', seen: false },
-  { id: 2, title: 'Terracotta Army', seen: true },
+  { id: 0, title: 'Великі животи', seen: false },
+  { id: 1, title: 'Місячний пейзаж', seen: false },
+  { id: 2, title: 'Теракотова армія', seen: true },
 ];
 
 export default function BucketList() {
@@ -499,12 +499,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Мистецький список</h1>
+      <h2>Мій список:</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Ваш список:</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -564,7 +564,7 @@ setMyList(myList.map(artwork => {
 }));
 ```
 
-Тут `...` — синтаксис розповсюдження об’єкта, який використовується для [створення копії об’єкта.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+Тут `...` — синтаксис поширення об’єкта, який використовується для [створення копії об’єкта.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
 
 За допомогою цього підходу жоден із існуючих елементів стану не змінюється, і помилку виправлено:
 
@@ -575,9 +575,9 @@ import { useState } from 'react';
 
 let nextId = 3;
 const initialList = [
-  { id: 0, title: 'Big Bellies', seen: false },
-  { id: 1, title: 'Lunar Landscape', seen: false },
-  { id: 2, title: 'Terracotta Army', seen: true },
+  { id: 0, title: 'Великі животи', seen: false },
+  { id: 1, title: 'Місячний пейзаж', seen: false },
+  { id: 2, title: 'Теракотова армія', seen: true },
 ];
 
 export default function BucketList() {
@@ -612,12 +612,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Мистецький список</h1>
+      <h2>Мій список:</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Ваш список:</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -652,16 +652,16 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Загалом, **ви повинні змінювати лише об’єкти, які ви щойно створили.** Якщо ви вставляєте *новий* елемент, ви можете його змінити, але якщо маєте справу з чимось, що вже є в стані, вам потрібно зробити копію.
+Загалом, **ви повинні змінювати лише об’єкти, які щойно створили.** Якщо ви вставляєте *новий* елемент, можете його змінити, але якщо маєте справу з чимось, що вже є в стані, потрібно зробити копію.
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Пишимо стислу логіку оновлення за допомогою Immer {/*write-concise-update-logic-with-immer*/}
 
-Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+Оновлення вкладених масивів без мутації може приводити до деяких повторень. [Так само, як і з об'єктами](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
 
-- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](/learn/choosing-the-state-structure#avoid-deeply-nested-state) so that they are flat.
-- If you don't want to change your state structure, you might prefer to use [Immer](https://github.com/immerjs/use-immer), which lets you write using the convenient but mutating syntax and takes care of producing the copies for you.
+- Як правило, вам не потрібно оновлювати стан більше, ніж глибиною на кілька рівнів. Якщо об'єкти стану дуже глибокі, можете [реструктурувати їх](/learn/choosing-the-state-structure#avoid-deeply-nested-state) щоб вони були більш плоскими.
+- Якщо ви не хочете змінювати структуру стану, можете віддати перевагу [Immer](https://github.com/immerjs/use-immer), що дозволяє писати за допомогою зручного, але мутаційного синтаксису та піклується про створення копії замість вас.
 
-Here is the Art Bucket List example rewritten with Immer:
+Ось попередній приклад, написаний за допомогою Immer:
 
 <Sandpack>
 
@@ -671,9 +671,9 @@ import { useImmer } from 'use-immer';
 
 let nextId = 3;
 const initialList = [
-  { id: 0, title: 'Big Bellies', seen: false },
-  { id: 1, title: 'Lunar Landscape', seen: false },
-  { id: 2, title: 'Terracotta Army', seen: true },
+  { id: 0, title: 'Великі животи', seen: false },
+  { id: 1, title: 'Місячний пейзаж', seen: false },
+  { id: 2, title: 'Теракотова армія', seen: true },
 ];
 
 export default function BucketList() {
@@ -704,12 +704,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Мистецький список</h1>
+      <h2>Мій список:</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Ваш список:</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -762,7 +762,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+Зверніть увагу, що з використанням Immer, **мутація, як от `artwork.seen = nextSeen` тепер гаразд:**
 
 ```js
 updateMyTodos(draft => {
@@ -771,17 +771,17 @@ updateMyTodos(draft => {
 });
 ```
 
-This is because you're not mutating the _original_ state, but you're mutating a special `draft` object provided by Immer. Similarly, you can apply mutating methods like `push()` and `pop()` to the content of the `draft`.
+Це тому, що ви не мутуєте _вихідний_ стан, але мутуєте спеціальну чорнетку - `draft` об'єкт Immer. Аналогічно, можете застосувати такі методи мутації, як `push()` та `pop()` до змісту `draft`.
 
-Behind the scenes, Immer always constructs the next state from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating state.
+Під капотом, Immer завжди будує наступний стан з нуля відповідно до змін, які зроблено для `draft`. Це підтримує обробники подій дуже стислими, не мутуючи стан.
 
 <Recap>
 
-- You can put arrays into state, but you can't change them.
-- Instead of mutating an array, create a *new* version of it, and update the state to it.
-- You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
-- You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
-- You can use Immer to keep your code concise.
+- Можна вкласти масиви в стан, але не можна їх змінювати.
+- Замість мутування масиву, створіть його *нову* версію та оновіть стан.
+- Можете скористатися `[...arr, newItem]` синтаксисом поширення для створення масивів з новими елементами.
+- Можете використовувати `filter()` та `map()` для створення нових масивів з відфільтрованими та зміненими елементами.
+- Можете скористатися Immer для стислості коду.
 
 </Recap>
 
@@ -789,9 +789,9 @@ Behind the scenes, Immer always constructs the next state from scratch according
 
 <Challenges>
 
-#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### Оновіть товар у кошику {/*update-an-item-in-the-shopping-cart*/}
 
-Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
+Напішіть логіку `handleIncreaseClick` таким чином, щоб натискання "+" збільшувало відповідне число:
 
 <Sandpack>
 
@@ -800,15 +800,15 @@ import { useState } from 'react';
 
 const initialProducts = [{
   id: 0,
-  name: 'Baklava',
+  name: 'Пахлава',
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Сир',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Спагетті',
   count: 2,
 }];
 
@@ -849,7 +849,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can use the `map` function to create a new array, and then use the `...` object spread syntax to create a copy of the changed object for the new array:
+Можна скористатися функцією `map` щоб створити новий масив, а потім `...` синтаксисом поширення щоб створити копію зміненого об'єкта у новому масиві:
 
 <Sandpack>
 
@@ -858,15 +858,15 @@ import { useState } from 'react';
 
 const initialProducts = [{
   id: 0,
-  name: 'Baklava',
+  name: 'Пахлава',
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Сир',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Спагетті',
   count: 2,
 }];
 
@@ -916,9 +916,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### Видаліть товар із кошика {/*remove-an-item-from-the-shopping-cart*/}
 
-This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
+Цей кошик має робочу кнопку "+", але кнопка "–" нічого не робить. Вам потрібно додати обробник події, який дозволить зменшувати `count` для відповідного товару. При натисканні "–" коли count дорівнює 1, товар повинен автоматично видалятись із кошика. Переконайтесь, що 0 не відображено.
 
 <Sandpack>
 
@@ -927,15 +927,15 @@ import { useState } from 'react';
 
 const initialProducts = [{
   id: 0,
-  name: 'Baklava',
+  name: 'Пахлава',
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Сир',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Спагетті',
   count: 2,
 }];
 
@@ -988,7 +988,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can first use `map` to produce a new array, and then `filter` to remove products with a `count` set to `0`:
+Скористайтеся спочатку `map`, щоб створити новий масив, а потім `filter`, щоб видалилити товари, якщо `count` дорівнює `0`:
 
 <Sandpack>
 
@@ -997,15 +997,15 @@ import { useState } from 'react';
 
 const initialProducts = [{
   id: 0,
-  name: 'Baklava',
+  name: 'Пахлава',
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Сир',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Спагетті',
   count: 2,
 }];
 
@@ -1077,9 +1077,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Виправте мутації за допомогою немутативних методів {/*fix-the-mutations-using-non-mutative-methods*/}
 
-In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
+В цьому прикладі, всі обробники подій в `App.js` використовують мутацію. Як результат, редагування та видалення задач не працює. Перепіщіть `handleAddTodo`, `handleChangeTodo`, та `handleDeleteTodo` з використанням немутативних методів:
 
 <Sandpack>
 
@@ -1090,9 +1090,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Купити молоко', done: true },
+  { id: 1, title: 'З\'їсти тако', done: false },
+  { id: 2, title: 'Заварити чай', done: false },
 ];
 
 export default function TaskApp() {
@@ -1146,14 +1146,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Додати задачу"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Додати</button>
     </>
   )
 }
@@ -1197,7 +1197,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Зберегти
         </button>
       </>
     );
@@ -1206,7 +1206,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Редагувати
         </button>
       </>
     );
@@ -1225,7 +1225,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Видалити
       </button>
     </label>
   );
@@ -1242,7 +1242,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
+В `handleAddTodo`, можна скористатися синтаксисом поширення. В `handleChangeTodo`, можна створити новий масив за допомогою `map`. В `handleDeleteTodo`, можна створити новий масив за допомогою `filter`. Тепер список працює як слід:
 
 <Sandpack>
 
@@ -1253,9 +1253,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Купити молоко', done: true },
+  { id: 1, title: 'З\'їсти тако', done: false },
+  { id: 2, title: 'Заварити чай', done: false },
 ];
 
 export default function TaskApp() {
@@ -1313,14 +1313,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Додати задачу"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Додати</button>
     </>
   )
 }
@@ -1364,7 +1364,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Зберегти
         </button>
       </>
     );
@@ -1373,7 +1373,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Редагувати
         </button>
       </>
     );
@@ -1392,7 +1392,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Видалити
       </button>
     </label>
   );
@@ -1410,9 +1410,9 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### Виправлення мутацій за допомогою Immer {/*fix-the-mutations-using-immer*/}
 
-This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
+Це той самий приклад, що і в попередньому завданні. Але цього разу, треба виправити мутації за допомогою Immer. Для зручності, `useImmer` вже імпортовано, тому вам потрібно змінити стан змінної `todos`, щоб скористатися цим.
 
 <Sandpack>
 
@@ -1424,9 +1424,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Купити молоко', done: true },
+  { id: 1, title: 'З\'їсти тако', done: false },
+  { id: 2, title: 'Заварити чай', done: false },
 ];
 
 export default function TaskApp() {
@@ -1480,14 +1480,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Додати задачу"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Додати</button>
     </>
   )
 }
@@ -1531,7 +1531,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Зберегти
         </button>
       </>
     );
@@ -1540,7 +1540,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Редагувати
         </button>
       </>
     );
@@ -1559,7 +1559,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Видалити
       </button>
     </label>
   );
@@ -1594,7 +1594,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-With Immer, you can write code in the mutative fashion, as long as you're only mutating parts of the `draft` that Immer gives you. Here, all mutations are performed on the `draft` so the code works:
+За допомогою Immer, ви можете написати код у мутативному стілі, тому що мутуєте тільки частини чернетки `draft` яку надає вам Immer. Тут всі мутації представлені лише в чернетці `draft` тому код працює:
 
 <Sandpack>
 
@@ -1606,9 +1606,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Купити молоко', done: true },
+  { id: 1, title: 'З\'їсти тако', done: false },
+  { id: 2, title: 'Заварити чай', done: false },
 ];
 
 export default function TaskApp() {
@@ -1668,14 +1668,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Додати задачу"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Додати</button>
     </>
   )
 }
@@ -1719,7 +1719,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Зберегти
         </button>
       </>
     );
@@ -1728,7 +1728,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Редагувати
         </button>
       </>
     );
@@ -1747,7 +1747,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Видалити
       </button>
     </label>
   );
@@ -1780,9 +1780,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can also mix and match the mutative and non-mutative approaches with Immer.
+З Immer також можливо змішувати та поєднувати мутативний та немутативний підходи.
 
-For example, in this version `handleAddTodo` is implemented by mutating the Immer `draft`, while `handleChangeTodo` and `handleDeleteTodo` use the non-mutative `map` and `filter` methods:
+Наприклад, в цій версії `handleAddTodo` реалізовано мутуючи чернетку `draft` Immer, тоді як `handleChangeTodo` так і `handleDeleteTodo` використовують немутативні методи `map` та `filter`:
 
 <Sandpack>
 
@@ -1794,9 +1794,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Купити молоко', done: true },
+  { id: 1, title: 'З\'їсти тако', done: false },
+  { id: 2, title: 'Заварити чай', done: false },
 ];
 
 export default function TaskApp() {
@@ -1853,14 +1853,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Додати задачу"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Додати</button>
     </>
   )
 }
@@ -1904,7 +1904,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Зберегти
         </button>
       </>
     );
@@ -1913,7 +1913,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Редагувати
         </button>
       </>
     );
@@ -1932,7 +1932,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Видалити
       </button>
     </label>
   );
@@ -1965,7 +1965,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-With Immer, you can pick the style that feels the most natural for each separate case.
+Використовуючи Immer, можна обрати стиль, який найбільше підходить в кожному конкретному випадку.
 
 </Solution>
 
