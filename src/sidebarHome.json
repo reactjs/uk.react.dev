@@ -1,25 +1,25 @@
 {
-  "title": "React Docs",
+  "title": "Документація React",
   "path": "/",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET STARTED"
+      "sectionHeader": "ОЗНАЙОМЛЕННЯ"
     },
     {
-      "title": "Quick Start",
+      "title": "Швидкий старт",
       "path": "/learn"
     },
     {
-      "title": "Installation",
+      "title": "Встановлення",
       "path": "/learn/installation"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "LEARN REACT"
+      "sectionHeader": "ВИВЧЕННЯ REACT"
     },
     {
-      "title": "Describing the UI",
+      "title": "Написання UI",
       "path": "/learn/describing-the-ui"
     },
     {
