@@ -170,6 +170,7 @@
 | shallow | поверхове(а) (порівняння, рівність), поверховий (рендер) |
 | side effect | побічний ефект |
 | single-page application | односторінковий застосунок |
+| snapshot | снепшот |
 | state | стан |
 | stateful component | компонент зі станом |
 | stateless component | компонент без стану |
