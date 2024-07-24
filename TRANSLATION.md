@@ -162,6 +162,7 @@
 | state | стан |
 | stateful component | компонент зі станом |
 | stateless component | компонент без стану |
+| strict mode | суворий режим |
 | suspense | затримка |
 | tag | тег |
 | template literals | шаблонні рядки |
