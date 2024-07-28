@@ -26,7 +26,7 @@ title: Оновлення масивів у стані
 
 |           | уникати (змінює масив)           | віддати перевагу (повертає новий масив)                                        |
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| додавання    | `push`, `unshift`                   | `concat`, `[...arr]` spread синтаксис ([приклад](#adding-to-an-array)) |
+| додавання    | `push`, `unshift`                   | `concat`, spread-синтаксис `[...arr]` ([приклад](#adding-to-an-array)) |
 | видалення  | `pop`, `shift`, `splice`            | `filter`, `slice` ([приклад](#removing-from-an-array))              |
 | заміна | `splice`, `arr[i] = ...` призначення | `map` ([приклад](#replacing-items-in-an-array))                     |
 | сортування   | `reverse`, `sort`                   | спочатку скопіюйте масив ([приклад](#making-other-changes-to-an-array)) |
