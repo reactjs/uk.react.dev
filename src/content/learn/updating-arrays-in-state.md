@@ -28,7 +28,7 @@ title: Оновлення масивів у стані
 | --------- | ----------------------------------- | ------------------------------------------------------------------- |
 | додавання    | `push`, `unshift`                   | `concat`, spread-синтаксис `[...arr]` ([приклад](#adding-to-an-array)) |
 | видалення  | `pop`, `shift`, `splice`            | `filter`, `slice` ([приклад](#removing-from-an-array))              |
-| заміна | `splice`, `arr[i] = ...` призначення | `map` ([приклад](#replacing-items-in-an-array))                     |
+| заміна | `splice`, `arr[i] = ...` присвоєння | `map` ([приклад](#replacing-items-in-an-array))                     |
 | сортування   | `reverse`, `sort`                   | спочатку скопіюйте масив ([приклад](#making-other-changes-to-an-array)) |
 
 Крім того, ви можете [скористатися Immer](#write-concise-update-logic-with-immer), що дозволить використовувати методи з обох стовпців.
