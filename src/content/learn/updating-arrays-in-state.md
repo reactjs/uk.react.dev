@@ -38,7 +38,7 @@ title: Оновлення масивів у стані
 На жаль, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) та [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) мають схожі назви, але дуже відрізняються:
 
 * `slice` дозволяє копіювати масив або його частину.
-* `splice` **змінює** масив (для вставки або видалення елементів).
+* `splice` **змінює** масив (для вставлення або видалення елементів).
 
 У React ви будете використовувати `slice` (без `p`!) набагато частіше, тому що непотрібно мутувати об’єкти чи масиви в стані. [Оновлення об’єктів](/learn/updating-objects-in-state) пояснює, що таке мутація та чому вона не рекомендована для стану.
 
