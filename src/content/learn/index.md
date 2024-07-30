@@ -95,7 +95,7 @@ function AboutPage() {
 
 ## Додавання стилів {/*adding-styles*/}
 
-У React, ви вказуєте клас CSS за допомогою `className`. Він працює так само, як атрибут [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) у HTML:
+У React, ви вказуєте клас CSS за допомогою `className`. Він працює так само, як атрибут [`class`](https://webdoky.org/uk/docs/Web/HTML/Global_attributes/class) у HTML:
 
 ```js
 <img className="avatar" />
@@ -111,7 +111,7 @@ function AboutPage() {
 ```
 
 
-React не вказує, як додавати файли CSS. У найпростішому випадку ви додасте тег [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) до свого HTML. Якщо ви використовуєте інструмент збірки або фреймворк, зверніться до його документації, щоб дізнатися, як додати файл CSS до вашого проекту.
+React не вказує, як додавати файли CSS. У найпростішому випадку ви додасте тег [`<link>`](https://webdoky.org/uk/docs/Web/HTML/Element/link) до свого HTML. Якщо ви використовуєте інструмент збірки або фреймворк, зверніться до його документації, щоб дізнатися, як додати файл CSS до вашого проекту.
 
 ## Відображення даних {/*displaying-data*/}
 
@@ -182,7 +182,7 @@ export default function Profile() {
 ## Умовний рендер {/*conditional-rendering*/}
 
 
-У React немає спеціального синтаксису для запису умов. Замість цього ви будете використовувати ті ж прийоми, що й під час написання звичайного JavaScript коду. Наприклад, ви можете використовувати оператор [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else), щоб умовно включати JSX:
+У React немає спеціального синтаксису для запису умов. Замість цього ви будете використовувати ті ж прийоми, що й під час написання звичайного JavaScript коду. Наприклад, ви можете використовувати оператор [`if`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Statements/if...else), щоб умовно включати JSX:
 
 ```js
 let content;
@@ -198,7 +198,7 @@ return (
 );
 ```
 
-Якщо ви віддаєте перевагу більш компактному коду, ви можете використовувати [умовний оператор `?`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). На відміну від `if`, він працює в JSX:
+Якщо ви віддаєте перевагу більш компактному коду, ви можете використовувати [умовний оператор `?`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). На відміну від `if`, він працює в JSX:
 
 ```js
 <div>
@@ -210,7 +210,7 @@ return (
 </div>
 ```
 
-Якщо вам не потрібна гілка `else`, ви також можете використовувати коротший [логічний синтаксис `&&`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+Якщо вам не потрібна гілка `else`, ви також можете використовувати коротший [логічний синтаксис `&&`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Logical_AND#zakorochennia-obchyslennia):
 
 ```js
 <div>
@@ -221,7 +221,7 @@ return (
 
 ## Рендер списків {/*rendering-lists*/}
 
-Для рендеру списків компонентів ви будете покладатися на такі особливості JavaScript, як [цикл `for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) та [метод масивів `map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
+Для рендеру списків компонентів ви будете покладатися на такі особливості JavaScript, як [цикл `for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) та [метод масивів `map()`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
 Наприклад, припустімо, що у вас є масив продуктів:
 
