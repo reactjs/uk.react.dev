@@ -259,7 +259,7 @@ export default [
 
 ## Дерево залежностей модуля {/*the-module-dependency-tree*/}
 
-Ще одним типом зв'язків у React-застосунку, що можуть бути змодельовані за допомогою дерева, є залежності модулів застосунку. Коли ми [виносимо наші компоненти](/learn/importing-and-exporting-components#exporting-and-importing-a-component) та логіку в окремі файли, ми створюємо [JS-модулі](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), з яких можна експортувати компоненти, функції або константи.
+Ще одним типом зв'язків у React-застосунку, що можуть бути змодельовані за допомогою дерева, є залежності модулів застосунку. Коли ми [виносимо наші компоненти](/learn/importing-and-exporting-components#exporting-and-importing-a-component) та логіку в окремі файли, ми створюємо [JS-модулі](https://webdoky.org/uk/docs/Web/JavaScript/Guide/Modules), з яких можна експортувати компоненти, функції або константи.
 
 Кожен вузол у дереві залежностей модулів — це модуль, а кожна гілка відповідає оператору `import` у цьому модулі.
 
