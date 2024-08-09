@@ -198,7 +198,7 @@ return (
 );
 ```
 
-Якщо ви віддаєте перевагу більш компактному коду, ви можете використовувати [умовний оператор `?`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). На відміну від `if`, він працює в JSX:
+Якщо ви віддаєте перевагу більш компактному коду, ви можете використовувати [умовний оператор `?`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Conditional_operator). На відміну від `if`, він працює в JSX:
 
 ```js
 <div>
