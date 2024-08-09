@@ -181,7 +181,7 @@ return <li className="item">{name}</li>;
 
 ### Умовний (тернарний) оператор (`? :`) {/*conditional-ternary-operator--*/}
 
-JavaScript має компактний синтаксис для написання умовного виразу -- [умовний оператор](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) або "тернарний оператор".
+JavaScript має компактний синтаксис для написання умовного виразу -- [умовний оператор](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Conditional_operator) або "тернарний оператор".
 
 Замість цього:
 
