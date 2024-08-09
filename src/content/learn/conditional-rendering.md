@@ -54,7 +54,7 @@ export default function PackingList() {
 
 Зверніть увагу, що деякі компоненти `Item` мають проп `isPacked` встановлений на `true` замість `false`. Ви хочете додати позначку (✔) до запакованих речей, якщо `isPacked={true}`.
 
-Ви можете зробити це за допомогою [оператора `if`/`else`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) ось так:
+Ви можете зробити це за допомогою [оператора `if`/`else`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Statements/if...else) ось так:
 
 ```js
 if (isPacked) {
@@ -181,7 +181,7 @@ return <li className="item">{name}</li>;
 
 ### Умовний (тернарний) оператор (`? :`) {/*conditional-ternary-operator--*/}
 
-JavaScript має компактний синтаксис для написання умовного виразу -- [умовний оператор](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) або "тернарний оператор".
+JavaScript має компактний синтаксис для написання умовного виразу -- [умовний оператор](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Conditional_operator) або "тернарний оператор".
 
 Замість цього:
 
@@ -260,7 +260,7 @@ export default function PackingList() {
 
 ### Логічний оператор AND (`&&`) {/*logical-and-operator-*/}
 
-Ще одне поширене скорочення, з яким ви зіткнетеся -- [логічний оператор AND (`&&`) JavaScript.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Всередині компонентів React він часто з'являється, коли ви хочете відрендерити деякий JSX, коли умова є `true`, **або нічого не рендерити в іншому випадку.** З `&&` ви могли б умовно відрендерити позначку, лише якщо `isPacked` є `true`:
+Ще одне поширене скорочення, з яким ви зіткнетеся -- [логічний оператор AND (`&&`) JavaScript.](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.) Всередині компонентів React він часто з'являється, коли ви хочете відрендерити деякий JSX, коли умова є `true`, **або нічого не рендерити в іншому випадку.** З `&&` ви могли б умовно відрендерити позначку, лише якщо `isPacked` є `true`:
 
 ```js
 return (
@@ -310,7 +310,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-[JavaScript && вираз](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) повертає значення своєї правої сторони (у нашому випадку, позначку) якщо ліва сторона (наша умова) `true`. Але якщо умова `false`, то весь вираз стає `false`. React розглядає `false` як "діру" в JSX дереві, так само як `null` або `undefined`, і не рендерить нічого на його місці.
+[JavaScript && вираз](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Operators/Logical_AND) повертає значення своєї правої сторони (у нашому випадку, позначку) якщо ліва сторона (наша умова) `true`. Але якщо умова `false`, то весь вираз стає `false`. React розглядає `false` як "діру" в JSX дереві, так само як `null` або `undefined`, і не рендерить нічого на його місці.
 
 
 <Pitfall>
@@ -327,7 +327,7 @@ export default function PackingList() {
 
 ### Умовне присвоєння JSX змінній {/*conditionally-assigning-jsx-to-a-variable*/}
 
-Коли скорочення заважають писати звичайний код, спробуйте використати оператор `if` та змінну. Ви можете переприсвоювати змінні, визначені за допомогою [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), тому почніть з задання вмісту за замовчуванням, який ви хочете відобразити, name:
+Коли скорочення заважають писати звичайний код, спробуйте використати оператор `if` та змінну. Ви можете переприсвоювати змінні, визначені за допомогою [`let`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Statements/let), тому почніть з задання вмісту за замовчуванням, який ви хочете відобразити, name:
 
 ```js
 let itemContent = name;

@@ -34,7 +34,7 @@ title: Інтеграція React в існуючий проект
 
 Ви можете зробити це у два кроки:
 
-1. **Налаштуйте JavaScript середовище**, яке б дозволяло вам використовувати [JSX синтаксис](/learn/writing-markup-with-jsx), розділіть ваш код на модулі з [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) синтаксисом і користуйтеся пакетами (наприклад, React) з [npm](https://www.npmjs.com/) реєстру пакетів.
+1. **Налаштуйте JavaScript середовище**, яке б дозволяло вам використовувати [JSX синтаксис](/learn/writing-markup-with-jsx), розділіть ваш код на модулі з [`import`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) синтаксисом і користуйтеся пакетами (наприклад, React) з [npm](https://www.npmjs.com/) реєстру пакетів.
 2. **Рендеріть ваші React компоненти** там, де ви б хотіли бачити їх на сторінці.
 
 Конкретний підхід залежить від налаштувань вашої існуючої сторінки, тому розглянемо деякі деталі.
