@@ -1,27 +1,27 @@
 ---
-title: State as a Snapshot
+title: Стан як снепшот
 ---
 
 <Intro>
 
-State variables might look like regular JavaScript variables that you can read and write to. However, state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render.
+Змінні стану можуть нагадувати звичайні змінні JavaScript, які можна зчитати та змінити. Проте стан поводиться радше як снепшот – окремий незмінний кадр. Задання йому значення не змінює наявну змінну стану, а натомість запускає повторний рендер.
 
 </Intro>
 
 <YouWillLearn>
 
-* How setting state triggers re-renders
-* When and how state updates
-* Why state does not update immediately after you set it
-* How event handlers access a "snapshot" of the state
+* Як задання стану запускає повторні рендери
+* Коли та як оновлюється стан
+* Чому стан не оновлюється відразу після задання значення
+* Як обробники подій звертаються до "снепшоту" стану
 
 </YouWillLearn>
 
-## Setting state triggers renders {/*setting-state-triggers-renders*/}
+## Задання стану запускає рендери {/*setting-state-triggers-renders*/}
 
-You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
+Можна уявляти, що інтерфейс користувача змінюється безпосередньо внаслідок дії користувача, наприклад, клацання. У React це працює трохи інакше, ніж передбачає ця ментальна модель. На попередній сторінці ви побачили, що [задання стану просить React про повторний рендер](/learn/render-and-commit#step-1-trigger-a-render). Це означає, що необхідно *оновити стан*, щоб інтерфейс зреагував на подію.
 
-In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
+У цьому прикладі, якщо натиснути "надіслати", то `setIsSent(true)` каже React виконати повторний рендер UI:
 
 <Sandpack>
 
@@ -30,9 +30,9 @@ import { useState } from 'react';
 
 export default function Form() {
   const [isSent, setIsSent] = useState(false);
-  const [message, setMessage] = useState('Hi!');
+  const [message, setMessage] = useState('Привіт!');
   if (isSent) {
-    return <h1>Your message is on its way!</h1>
+    return <h1>Ваше повідомлення — в дорозі!</h1>
   }
   return (
     <form onSubmit={(e) => {
@@ -41,11 +41,11 @@ export default function Form() {
       sendMessage(message);
     }}>
       <textarea
-        placeholder="Message"
+        placeholder="Повідомлення"
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit">Надіслати</button>
     </form>
   );
 }
@@ -61,43 +61,43 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Here's what happens when you click the button:
+Ось що відбувається, коли ви клацаєте кнопку:
 
-1. The `onSubmit` event handler executes.
-2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
-3. React re-renders the component according to the new `isSent` value.
+1. Виконується обробник події `onSubmit`.
+2. `setIsSent(true)` задає `isSent` значення `true` і так додає до черги новий рендер.
+3. React виконує повторний рендер компонента згідно з новим значенням `isSent`.
 
-Let's take a closer look at the relationship between state and rendering.
+Погляньмо уважніше на взаємозв'язок між станом і рендерингом.
 
-## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
+## Кожен рендер отримує новий снепшот {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+["Рендеринг"](/learn/render-and-commit#step-2-react-renders-your-components) означає, що React викликає ваш компонент, який є функцією. JSX, який ви повертаєте з цієї функції, — це як кадр UI в певну мить часу. Його пропси, обробники подій і локальні змінні обчислюються **з використанням його стану в мить рендеру.**
 
-Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
+На відміну від світлини чи кадру кінострічки повернений "снепшот" UI інтерактивний. Він вміщає логіку штибу обробників подій, які визначають дії внаслідок введення користувачем. React оновлює екран до відповідності цьому снепшоту й приєднує обробники подій. Як наслідок, натискання кнопки запускає обробник клацання, заданий у вашому JSX.
 
-When React re-renders a component:
+Коли React виконує повторний рендер компонента, відбувається наступне:
 
-1. React calls your function again.
-2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot your function returned.
-
-<IllustrationBlock sequential>
-    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
-    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
-    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
-</IllustrationBlock>
-
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+1. React знову викликає вашу функцію.
+2. Ваша функція повертає новий снепшот JSX.
+3. React потім оновлює екран до відповідності снепшоту, поверненого вашою функцією.
 
 <IllustrationBlock sequential>
-  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
+    <Illustration caption="React виконує функцію" src="/images/docs/illustrations/i_render1.png" />
+    <Illustration caption="Обчислюється снепшот" src="/images/docs/illustrations/i_render2.png" />
+    <Illustration caption="Оновлюється дерево DOM" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.
+Стан, пам'ять компонента, не схожий на звичайну змінну, що зникає, коли відбувається повернення з функції. Стан фактично "живе" в самому React — неначе на поличці! — поза вашою функцією. Коли React викликає ваш компонент, він надає вам снепшот стану для конкретного поточного рендеру. Ваш компонент повертає снепшот UI зі свіжим набором пропсів і обробників подій у своєму JSX, обчисленим **із використанням значень стану, взятих із цього рендеру!**
 
-See what happens when you click the "+3" button:
+<IllustrationBlock sequential>
+  <Illustration caption="Ви кажете React оновити стан" src="/images/docs/illustrations/i_state-snapshot1.png" />
+  <Illustration caption="React оновлює значення стану" src="/images/docs/illustrations/i_state-snapshot2.png" />
+  <Illustration caption="React передає снепшот значення стану до компонента" src="/images/docs/illustrations/i_state-snapshot3.png" />
+</IllustrationBlock>
+
+Ось невеликий експеримент для демонстрації того, як це працює. У цьому прикладі можна очікувати, що клацання кнопки "+3" збільшить лічильник тричі, тому що це викликає `setNumber(number + 1)` тричі.
+
+Дивіться, що станеться, якщо клацнути кнопку "+3":
 
 <Sandpack>
 
@@ -127,9 +127,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Notice that `number` only increments once per click!
+Зверніть увагу, що `number` збільшується лише раз за одне клацання!
 
-**Setting state only changes it for the *next* render.** During the first render, `number` was `0`. This is why, in *that render's* `onClick` handler, the value of `number` is still `0` even after `setNumber(number + 1)` was called:
+**Задання стану змінює його лише для *наступного* рендеру.** Під час першого рендеру `number` був `0`. Саме тому в обробнику `onClick` того конкретного рендеру значення `number` все одно `0` навіть після виклику `setNumber(number + 1)`:
 
 ```js
 <button onClick={() => {
@@ -139,18 +139,18 @@ Notice that `number` only increments once per click!
 }}>+3</button>
 ```
 
-Here is what this button's click handler tells React to do:
+Ось що обробник клацання цієї кнопки запитує в React:
 
-1. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-2. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
+1. `setNumber(number + 1)`: `number` — `0`, тож `setNumber(0 + 1)`.
+    * React готується змінити `number` на `1` у наступному рендері.
+2. `setNumber(number + 1)`: `number` — `0`, тож `setNumber(0 + 1)`.
+    * React готується змінити `number` на `1` у наступному рендері.
+3. `setNumber(number + 1)`: `number` — `0`, тож `setNumber(0 + 1)`.
+    * React готується змінити `number` на `1` у наступному рендері.
 
-Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
+Навіть попри те, що ви викликали `setNumber(number + 1)` тричі, в обробнику подій *поточного рендеру* `number` завжди дорівнює `0`, тож ви задаєте стану значення `1` тричі. Саме тому, коли завершується виконання вашого обробника помилок, React виконує повторний рендер компонента, де `number` дорівнює `1`, а не `3`.
 
-You can also visualize this by mentally substituting state variables with their values in your code. Since the `number` state variable is `0` for *this render*, its event handler looks like this:
+Також це можна візуалізувати, уявно замінюючи змінні стану їхніми значеннями в вашому коді. Оскільки змінна стану `number` дорівнює `0` для *поточного рендеру*, обробник подій має наступний вигляд:
 
 ```js
 <button onClick={() => {
@@ -160,7 +160,7 @@ You can also visualize this by mentally substituting state variables with their 
 }}>+3</button>
 ```
 
-For the next render, `number` is `1`, so *that render's* click handler looks like this:
+Для наступного рендеру `number` дорівнює `1`, тож для *цього наступного рендеру* обробник клацання має такий вигляд:
 
 ```js
 <button onClick={() => {
@@ -170,11 +170,11 @@ For the next render, `number` is `1`, so *that render's* click handler looks lik
 }}>+3</button>
 ```
 
-This is why clicking the button again will set the counter to `2`, then to `3` on the next click, and so on.
+Саме тому клацання кнопки знову задасть лічильнику значення `2`, після наступного клацання — `3` і так далі.
 
-## State over time {/*state-over-time*/}
+## Стан протягом часу {/*state-over-time*/}
 
-Well, that was fun. Try to guess what clicking this button will alert:
+Що ж, це було весело. Спробуйте вгадати, що покаже клацання цієї кнопки:
 
 <Sandpack>
 
@@ -203,14 +203,14 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-If you use the substitution method from before, you can guess that the alert shows "0":
+Якщо ви скористаєтесь методом заміни, описаним вище, то можете вгадати, що буде показано "0":
 
 ```js
 setNumber(0 + 5);
 alert(0);
 ```
 
-But what if you put a timer on the alert, so it only fires _after_ the component re-rendered? Would it say "0" or "5"? Have a guess!
+А якщо поставити таймер на виведення повідомлення, щоб воно спрацювало лише *після* повторного рендеру компонента? Буде "0" чи "5"? Вгадайте!
 
 <Sandpack>
 
@@ -241,7 +241,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Surprised? If you use the substitution method, you can see the "snapshot" of the state passed to the alert.
+Здивовані? Якщо скористалися методом заміни, то бачите, який саме "снепшот" стану був переданий до повідомлення.
 
 ```js
 setNumber(0 + 5);
@@ -250,16 +250,16 @@ setTimeout(() => {
 }, 3000);
 ```
 
-The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
+Стан, що зберігається в React, може змінитися на час виведення повідомлення, але він був запланований з використанням снепшоту стану, актуального в момент взаємодії користувача з елементом!
 
-**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
+**Значення змінної стану ніколи не змінюється протягом одного рендеру,** навіть якщо код обробника події є асинхронним. Всередині `onClick` *поточного рендеру* значення `number` усе одно залишається `0` навіть після виклику `setNumber(number + 5)`. Її значення "зафіксувалося", коли React "зробив снепшот" UI, викликавши ваш компонент.
 
-Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
+Ось приклад, як це захищає обробники подій від помилок хронометражу. Нижче — форма, що надсилає повідомлення з п'ятисекундною затримкою. Уявіть такий сценарій:
 
-1. You press the "Send" button, sending "Hello" to Alice.
-2. Before the five-second delay ends, you change the value of the "To" field to "Bob".
+1. Ви натискаєте кнопку "Надіслати", надсилаючи "Привіт" Алісі.
+2. Перш ніж закінчиться п'ятисекундна затримка, ви змінюєте значення в полі "Кому" на "Боб".
 
-What do you expect the `alert` to display? Would it display, "You said Hello to Alice"? Or would it display, "You said Hello to Bob"? Make a guess based on what you know, and then try it:
+Як гадаєте, що покаже `alert`? Чи виведеться "Ви надіслали Привіт користувачу Аліса"? Чи, можливо, "Ви надіслали Привіт користувачу Боб"? Спробуйте вгадати на основі того, що знаєте, а потім перевірте:
 
 <Sandpack>
 
@@ -267,33 +267,33 @@ What do you expect the `alert` to display? Would it display, "You said Hello to 
 import { useState } from 'react';
 
 export default function Form() {
-  const [to, setTo] = useState('Alice');
-  const [message, setMessage] = useState('Hello');
+  const [to, setTo] = useState('Аліса');
+  const [message, setMessage] = useState('Привіт');
 
   function handleSubmit(e) {
     e.preventDefault();
     setTimeout(() => {
-      alert(`You said ${message} to ${to}`);
+      alert(`Ви надіслали ${message} користувачу ${to}`);
     }, 5000);
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        To:{' '}
+        Кому:{' '}
         <select
           value={to}
           onChange={e => setTo(e.target.value)}>
-          <option value="Alice">Alice</option>
-          <option value="Bob">Bob</option>
+          <option value="Аліса">Аліса</option>
+          <option value="Боб">Боб</option>
         </select>
       </label>
       <textarea
-        placeholder="Message"
+        placeholder="Повідомлення"
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit">Надіслати</button>
     </form>
   );
 }
@@ -305,19 +305,19 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
+**React тримає значення стану "зафіксованими" в межах обробників подій одного рендеру.** Немає потреби перейматися тим, чи стан змінився, поки виконувався код.
 
-But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
+Але що якщо хочеться зчитати найсвіжіший стан перед повторним рендером? Знадобиться скористатися [функцією-оновлювачем стану](/learn/queueing-a-series-of-state-updates), про яку мова піде на наступній сторінці!
 
 <Recap>
 
-* Setting state requests a new render.
-* React stores state outside of your component, as if on a shelf.
-* When you call `useState`, React gives you a snapshot of the state *for that render*.
-* Variables and event handlers don't "survive" re-renders. Every render has its own event handlers.
-* Every render (and functions inside it) will always "see" the snapshot of the state that React gave to *that* render.
-* You can mentally substitute state in event handlers, similarly to how you think about the rendered JSX.
-* Event handlers created in the past have the state values from the render in which they were created.
+* Задання стану спричиняє прохання про новий рендер.
+* React зберігає стан поза вашим компонентом, неначе на поличці.
+* Коли викликається `useState`, React віддає снепшот стану *для конкретного поточного рендеру*.
+* Змінні та обробники подій не "переживають" повторні рендери. Кожний рендер має власні обробники подій.
+* Кожний рендер (а також функції в ньому) завжди "бачить" снепшот стану, який React віддав *цьому конкретному* рендеру.
+* Можна уявно підставити стан в обробниках подій — подібного до того, як ми уявляємо JSX після рендеру.
+* Обробники подій, створені в минулому, мають значення стану з тих рендерів, у яких вони створені.
 
 </Recap>
 
@@ -325,9 +325,9 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 <Challenges>
 
-#### Implement a traffic light {/*implement-a-traffic-light*/}
+#### Реалізація світлофора {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles when the button is pressed:
+Ось компонент пішохідного світлофора, що перемикається, коли натискається кнопка:
 
 <Sandpack>
 
@@ -344,12 +344,12 @@ export default function TrafficLight() {
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Змінити на {walk ? 'Стійте' : 'Йдіть'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Йдіть' : 'Стійте'}
       </h1>
     </>
   );
@@ -362,13 +362,13 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Add an `alert` to the click handler. When the light is green and says "Walk", clicking the button should say "Stop is next". When the light is red and says "Stop", clicking the button should say "Walk is next".
+Додайте `alert` до обробника клацання. Коли світлофор світиться зеленим і каже "Йдіть", натискання кнопки повинно видавати "Далі буде Стійте". Коли світлофор світиться червоним і каже "Стійте", натискання кнопки повинно видавати "Далі буде Йдіть".
 
-Does it make a difference whether you put the `alert` before or after the `setWalk` call?
+Чи важливий порядок: розташувати `alert` до виклику `setWalk` або навпаки?
 
 <Solution>
 
-Your `alert` should look like this:
+Ваш `alert` повинен мати такий вигляд:
 
 <Sandpack>
 
@@ -380,18 +380,18 @@ export default function TrafficLight() {
 
   function handleClick() {
     setWalk(!walk);
-    alert(walk ? 'Stop is next' : 'Walk is next');
+    alert(walk ? 'Далі буде Стійте' : 'Далі буде Йдіть');
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Змінити на {walk ? 'Стійте' : 'Йдіть'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Йдіть' : 'Стійте'}
       </h1>
     </>
   );
@@ -404,22 +404,22 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Whether you put it before or after the `setWalk` call makes no difference. That render's value of `walk` is fixed. Calling `setWalk` will only change it for the *next* render, but will not affect the event handler from the previous render.
+Чи ви поставите виклик `alert` до виклику `setWalk`, чи після — буде той самий результат. Значення `walk` у рендері зафіксоване. Виклик `setWalk` змінить його лише для *наступного* рендеру, але не вплине на обробник подій з попереднього.
 
-This line might seem counter-intuitive at first:
+Цей рядок може спершу здаватися контрінтуїтивним:
 
 ```js
-alert(walk ? 'Stop is next' : 'Walk is next');
+alert(walk ? 'Далі буде Стійте' : 'Далі буде Йдіть');
 ```
 
-But it makes sense if you read it as: "If the traffic light shows 'Walk now', the message should say 'Stop is next.'" The `walk` variable inside your event handler matches that render's value of `walk` and does not change.
+Але він досить логічний, якщо прочитати його так: "Якщо світлофор показує 'Йдіть', то повідомлення повинно звучати 'Далі буде Стійте.'". Змінна `walk` усередині вашого обробника подій відповідає значенню `walk` конкретного рендеру й не змінюється.
 
-You can verify that this is correct by applying the substitution method. When `walk` is `true`, you get:
+Можна перевірити, що це саме так, застосувавши метод заміни. Коли `walk` дорівнює `true`, отримаємо:
 
 ```js
 <button onClick={() => {
   setWalk(false);
-  alert('Stop is next');
+  alert('Далі буде Стійте');
 }}>
   Change to Stop
 </button>
@@ -428,7 +428,7 @@ You can verify that this is correct by applying the substitution method. When `w
 </h1>
 ```
 
-So clicking "Change to Stop" queues a render with `walk` set to `false`, and alerts "Stop is next".
+Тож клацання "Змінити на Стійте" додає в чергу рендер, у якому `walk` отримує значення `false`, і виводить "Далі буде Стійте".
 
 </Solution>
 
