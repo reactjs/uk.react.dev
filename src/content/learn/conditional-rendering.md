@@ -52,11 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Зверніть увагу, що деякі компоненти `Item` мають проп `isPacked` встановлений на `true` замість `false`. Ви хочете додати позначку (✔) до запакованих речей, якщо `isPacked={true}`.
-=======
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✅) to packed items if `isPacked={true}`.
->>>>>>> 7d50c3ffd4df2dc7903f4e41069653a456a9c223
+Зверніть увагу, що деякі компоненти `Item` мають проп `isPacked` встановлений на `true` замість `false`. Ви хочете додати позначку (✅) до запакованих речей, якщо `isPacked={true}`.
 
 Ви можете зробити це за допомогою [оператора `if`/`else`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Statements/if...else) ось так:
 
@@ -206,11 +202,7 @@ return (
 );
 ```
 
-<<<<<<< HEAD
-Це можна прочитати як *"якщо `isPacked` є true, тоді (`?`) відобразити `name + ' ✔'`, в іншому випадку (`:`) відобразити `name`"*.
-=======
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✅'`, otherwise (`:`) render `name`"*.
->>>>>>> 7d50c3ffd4df2dc7903f4e41069653a456a9c223
+Це можна прочитати як *"якщо `isPacked` є true, тоді (`?`) рендерити `name + ' ✅'`, в іншому випадку (`:`) рендерити `name`"*.
 
 <DeepDive>
 
