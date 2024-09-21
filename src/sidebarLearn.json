@@ -163,7 +163,7 @@
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
-          "title": "Масштабування з використанням контексту та ред'юсера",
+          "title": "Масштабування з використанням контексту та редюсера",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]
