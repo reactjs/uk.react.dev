@@ -1,53 +1,53 @@
 ---
-title: Choosing the State Structure
+title: Вибір структури стану
 ---
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+Структура стану може утворювати разючу різницю між компонентом, який приємно змінювати та зневаджувати, та компонентом, який є постійним джерелом дефектів. Ось кілька порад, які варто обдумати при структуруванні стану.
 
 </Intro>
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* Коли використовувати одну змінну стану, а коли – декілька
+* Чого слід уникати при організації стану
+* Як виправити поширені помилки за допомогою доброї структури стану
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## Принципи структурування стану {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+Коли ви пишете компонент, що містить певний стан, доводиться приймати рішення про те, скільки змінних стану використати і якою повинна бути форма їхніх даних. Попри те, що можна написати коректну програму навіть з субоптимальною структурою стану, є кілька принципів, які можуть привести до кращих рішень:
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **Групувати споріднені частини стану.** Якщо дві чи більше змінні стану завжди оновлюватимуться водночас, можливо, їх краще об'єднати в одну змінну стану.
+2. **Уникати суперечностей стану.** Коли стан структурований так, що кілька його частин можуть суперечити та "не походжуватися" одне з одним, це утворює простір для помилок. Цього слід уникати.
+3. **Уникати надлишкового стану.** Якщо якусь інформацію під час рендерингу можна обчислити на основі пропсів компонента чи його наявних змінних стану, не слід додавати таку інформацію до стану цього компонента.
+4. **Уникати дублювання у стані.** Коли одні й ті ж дані дублюються в різних змінних стану, або всередині вкладених об'єктів, то складно підтримувати їхню синхронізацію. Позбавляйтеся дублювання, коли можете.
+5. **Уникати стану з глибокою вкладеністю.** Глибоко ієрархічний стан не дуже зручно оновлювати. Коли це можливо, віддавайте перевагу пласкому стану.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+Мета цих принципів – *щоб стан було легко оновлювати без додавання помилок*. Вилучення зі стану надлишкових і продубльованих даних допомагає пересвідчитися, що всі частини синхронізовані одна з одною. Це схоже на те, як інженер баз даних міг би ["нормалізуватИ" структуру бази даних](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description), щоб знизити шанс появи дефектів. Перефразовуючи Альберта Ейнштейна, **"Роби свій стан простим, як можливо, – але не простіше цього."**
 
-Now let's see how these principles apply in action.
+Тепер погляньмо, як ці принципи застосовуються на практиці.
 
-## Group related state {/*group-related-state*/}
+## Групувати споріднений стан {/*group-related-state*/}
 
-You might sometimes be unsure between using a single or multiple state variables.
+Іноді може бути непевність щодо використання однієї або кількох змінних стану.
 
-Should you do this?
+Чи варто зробити так?
 
 ```js
 const [x, setX] = useState(0);
 const [y, setY] = useState(0);
 ```
 
-Or this?
+Або так?
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+Технічно можна зробити і так, і так. Але **якщо якісь дві змінні стану завжди змнюються разом, можливо, краще об'єднати їх в одну змінну стану.** Тоді ви не забудете завжди підтримувати їхню синхронізацію, як у цьому прикладі, де рухання курсора оновлює обидві координати червоної крапки:
 
 <Sandpack>
 
@@ -93,17 +93,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Another case where you'll group data into an object or an array is when you don't know how many pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
+Ще одна ситуація, коли дані групують в об'єкт чи масив, – це коли невідомо, скільки порцій стану знадобиться. Наприклад, це допомагає, коли є форма, куди користувач може додати власні поля.
 
 <Pitfall>
 
-If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
+Якщо ваша змінна стану є об'єктом, пам'ятайте, що [не можна оновлювати лише одне поле в цьому об'єкті](/learn/updating-objects-in-state), явно не скопіювавши інші поля. Наприклад, у прикладі вище не можна зробити `setPosition({ x: 100 })`, тому що тоді властивості `y` не було б узагалі! Замість цього, щоб оновити лише `x`, треба або виконати `setPosition({ ...position, x: 100 })`, або розбити змінну на дві й виконати `setX(100)`.
 
 </Pitfall>
 
-## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
+## Уникати суперечностей стану {/*avoid-contradictions-in-state*/}
 
-Here is a hotel feedback form with `isSending` and `isSent` state variables:
+Ось форма для відгуків на готель, що має змінні стану `isSending` і `isSent`:
 
 <Sandpack>
 
@@ -124,12 +124,12 @@ export default function FeedbackForm() {
   }
 
   if (isSent) {
-    return <h1>Thanks for feedback!</h1>
+    return <h1>Дякуємо за відгук!</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>How was your stay at The Prancing Pony?</p>
+      <p>Як вам було зупинитися в Поні-стрибунці?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -140,14 +140,14 @@ export default function FeedbackForm() {
         disabled={isSending}
         type="submit"
       >
-        Send
+        Надіслати
       </button>
-      {isSending && <p>Sending...</p>}
+      {isSending && <p>Надсилається...</p>}
     </form>
   );
 }
 
-// Pretend to send a message.
+// Удаємо, ніби надсилаємо повідомлення.
 function sendMessage(text) {
   return new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
+Попри те, що цей код працює, він залишає простір для "неможливих" станів. Наприклад, якщо забути викликати `setIsSent` і `setIsSending` разом, то можна опитися в ситуації, коли і `isSending`, і `isSent` мають значення `true` водночас. Чим складніший компонент, тим важче зрозуміти, що трапилося.
 
-**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
+**Оскільки `isSending` та `isSent` ніколи не повинні мати значення `true` водночас, краще замінити їх однією змінною стану `status`, яка може перебувати в одному з *трьох* валідних станів:** `'typing'` (початковий), `'sending'` і `'sent'`:
 
 <Sandpack>
 
@@ -181,12 +181,12 @@ export default function FeedbackForm() {
   const isSent = status === 'sent';
 
   if (isSent) {
-    return <h1>Thanks for feedback!</h1>
+    return <h1>Дякуємо за відгук!</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>How was your stay at The Prancing Pony?</p>
+      <p>Як вам було зупинитися в Поні-стрибунці?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -197,14 +197,14 @@ export default function FeedbackForm() {
         disabled={isSending}
         type="submit"
       >
-        Send
+        Надіслати
       </button>
-      {isSending && <p>Sending...</p>}
+      {isSending && <p>Надсилається...</p>}
     </form>
   );
 }
 
-// Pretend to send a message.
+// Удаємо, ніби надсилаємо повідомлення.
 function sendMessage(text) {
   return new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -214,20 +214,20 @@ function sendMessage(text) {
 
 </Sandpack>
 
-You can still declare some constants for readability:
+Для кращої прочитності можна все ж додати кілька сталих:
 
 ```js
 const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-But they're not state variables, so you don't need to worry about them getting out of sync with each other.
+Але вони не є змінними стану, тож немає потреби турбуватися про те, що вони розсинхронізуються одна з одною.
 
-## Avoid redundant state {/*avoid-redundant-state*/}
+## Уникати надлишковий стану {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+Якщо можна обчислити якусь інформацію під час рендерингу, на основі пропсів компонента або наявних змінних стану, **не слід** додавати цю інформацію до стану компонента.
 
-For example, take this form. It works, but can you find any redundant state in it?
+Для прикладу – ця форма. Вона працює, але чи зможете ви знайти в ній надлишковий стан?
 
 <Sandpack>
 
@@ -251,23 +251,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Зареєструймо вас</h2>
       <label>
-        First name:{' '}
+        Ім'я:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Прізвище:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Ваш квиток буде видано на ім'я: <b>{fullName}</b>
       </p>
     </>
   );
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This form has three state variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from state.**
+У цій формі три змінні стану: `firstName`, `lastName` і `fullName`. Проте `fullName` – надлишкова. **Змінну `fullName` завжди можна обчислити під час рендеру на основі `firstName` і `lastName`, тож її слід вилучити зі стану.**
 
-This is how you can do it:
+Ось як це робиться:
 
 <Sandpack>
 
@@ -305,23 +305,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Зареєструймо вас</h2>
       <label>
-        First name:{' '}
+        Ім'я:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Прізвище:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Ваш квиток буде видано на ім'я: <b>{fullName}</b>
       </p>
     </>
   );
@@ -334,50 +334,50 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `fullName` is *not* a state variable. Instead, it's calculated during render:
+Тут `fullName` – це *не* змінна стану. Натомість це значення обчислюється під час рендеру:
 
 ```js
 const fullName = firstName + ' ' + lastName;
 ```
 
-As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
+Як наслідок, обробникам змін не потрібно робити нічого особливого для його оновлення. Викликавши `setFirstName` або `setLastName`, ви запускаєте повторний рендер, а тоді наступне значення `fullName` обчислюється на основі свіжих даних.
 
 <DeepDive>
 
-#### Don't mirror props in state {/*don-t-mirror-props-in-state*/}
+#### Не віддзеркалювати пропси у стані {/*don-t-mirror-props-in-state*/}
 
-A common example of redundant state is code like this:
+Поширений приклад надлишкового стану – код, схожий на цей:
 
 ```js
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Тут змінна стану `color` ініціалізується пропом `messageColor`. Проблема полягає в тому, що **якщо батьківський компонент передасть інше значення `messageColor` пізніше (наприклад, `'red'` замість `'blue'`), то *змінна стану* `color` не оновиться!** Стан ініціалізується лише під час першого рендеру.
 
-This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+Саме тому "віддзеркалення" якогось пропу на змінну стану може приводити до спантеличеності. Замість цього використовуйте у своєму коді проп `messageColor` безпосередньо. Якщо хочете надати йому коротше ім'я, створіть сталу:
 
 ```js
 function Message({ messageColor }) {
   const color = messageColor;
 ```
 
-This way it won't get out of sync with the prop passed from the parent component.
+Так він не розсинхронізується з пропом, переданим з батьківського компонента.
 
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+"Віддзеркалення" пропсів у стан має зміст лише тоді, коли ви *хочете* ігнорувати всі оновлення конкретного пропа. Прийнято починати назву такого пропа з `initial` або `default`, аби прояснити, що нові значення ігноруються:
 
 ```js
 function Message({ initialColor }) {
-  // The `color` state variable holds the *first* value of `initialColor`.
-  // Further changes to the `initialColor` prop are ignored.
+  // Змінна стану `color` зберігає *перше* значення `initialColor`.
+  // Наступні зміни пропа `initialColor` ігноруються.
   const [color, setColor] = useState(initialColor);
 ```
 
 </DeepDive>
 
-## Avoid duplication in state {/*avoid-duplication-in-state*/}
+## Уникати дублювання стану {/*avoid-duplication-in-state*/}
 
-This menu list component lets you choose a single travel snack out of several:
+Цей компонент списку меню дає змогу обрати один дорожній перекус з кількох:
 
 <Sandpack>
 
@@ -385,9 +385,9 @@ This menu list component lets you choose a single travel snack out of several:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'пиріжок з горохом', id: 0 },
+  { title: 'горішки', id: 1 },
+  { title: 'зерновий батончик', id: 2 },
 ];
 
 export default function Menu() {
@@ -398,7 +398,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2>
+      <h2>Який вам перекус?</h2>
       <ul>
         {items.map(item => (
           <li key={item.id}>
@@ -406,11 +406,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choose</button>
+            }}>Оберіть</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Ви обрали {selectedItem.title}.</p>
     </>
   );
 }
@@ -422,9 +422,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Currently, it stores the selected item as an object in the `selectedItem` state variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
+Наразі він зберігає обраний елемент як об'єкт у змінній стану `selectedItem`. Проте це не надто тішить: **вміст `selectedItem` – той самий об'єкт, що присутній в списку `items`.** Це означає, що інформація про сам елемент дублюється у двох місцях.
 
-Why is this a problem? Let's make each item editable:
+Чому це проблема? Зробимо кожний з елементів доступним для редагування:
 
 <Sandpack>
 
@@ -432,9 +432,9 @@ Why is this a problem? Let's make each item editable:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'пиріжок з горохом', id: 0 },
+  { title: 'горішки', id: 1 },
+  { title: 'зерновий батончик', id: 2 },
 ];
 
 export default function Menu() {
@@ -458,7 +458,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2> 
+      <h2>Який вам перекус?</h2> 
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -471,11 +471,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choose</button>
+            }}>Оберіть</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Ви обрали {selectedItem.title}.</p>
     </>
   );
 }
@@ -487,9 +487,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated state, and you forgot to update `selectedItem`.
+Зверніть увагу, що якщо спершу клацнути на елементі "Оберіть", а *потім* відредагувати його, то **поле оновлюється, але на підпис унизу це редагування не впливає.** Так відбувається, тому що стан дублюється, і ви забули оновити `selectedItem`.
 
-Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in state, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
+Попри те, що можна було б оновити і `selectedItem` також, легше виправлення – позбавитися дублювання. У цьому прикладі замість об'єкта `selectedItem` (який утворює дублювання щодо об'єктів усередині `items`) у стані зберігається `selectedId`, а *потім* отримується `selectedItem`, шляхом пошуку в масиві `items` елемента за ідентифікатором:
 
 <Sandpack>
 
@@ -497,9 +497,9 @@ Although you could update `selectedItem` too, an easier fix is to remove duplica
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'пиріжок з горохом', id: 0 },
+  { title: 'горішки', id: 1 },
+  { title: 'зерновий батончик', id: 2 },
 ];
 
 export default function Menu() {
@@ -525,7 +525,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2>
+      <h2>Який вам перекус?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -538,11 +538,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedId(item.id);
-            }}>Choose</button>
+            }}>Оберіть</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Ви обрали {selectedItem.title}.</p>
     </>
   );
 }
@@ -554,23 +554,23 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-The state used to be duplicated like this:
+Раніше стан дублювався отак:
 
-* `items = [{ id: 0, title: 'pretzels'}, ...]`
-* `selectedItem = {id: 0, title: 'pretzels'}`
+* `items = [{ id: 0, title: 'пиріжок з горохом'}, ...]`
+* `selectedItem = {id: 0, title: 'пиріжок з горохом'}`
 
-But after the change it's like this:
+Але після внесення змін він отакий:
 
-* `items = [{ id: 0, title: 'pretzels'}, ...]`
+* `items = [{ id: 0, title: 'пиріжок з горохом'}, ...]`
 * `selectedId = 0`
 
-The duplication is gone, and you only keep the essential state!
+Дублювання зникло, і залишився лише суттєвий стан!
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+Якщо тепер відредагувати *обраний* елемент, то повідомлення нижче оновиться негайно. Це пов'язано з тим, що `setItems` запускає повторний рендер, а `items.find(...)` знайде елемент з оновленою назвою. Не було потреби зберігати в стані *обраний елемент*, тому що суттєвим є лише *обраний ідентифікатор*. Решту можна обчислити під час рендеру.
 
-## Avoid deeply nested state {/*avoid-deeply-nested-state*/}
+## Уникати глибокої вкладеності стану {/*avoid-deeply-nested-state*/}
 
-Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
+Уявіть план подорожі, що складається з планет, континентів і країн. Може бути спокуса структурувати його стан за допомогою вкладених об'єктів і масивів, як у цьому прикладі:
 
 <Sandpack>
 
@@ -599,7 +599,7 @@ export default function TravelPlan() {
   const planets = plan.childPlaces;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Місця, варті відвідування</h2>
       <ol>
         {planets.map(place => (
           <PlaceTree key={place.id} place={place} />
@@ -616,194 +616,194 @@ export const initialTravelPlan = {
   title: '(Root)',
   childPlaces: [{
     id: 1,
-    title: 'Earth',
+    title: 'Земля',
     childPlaces: [{
       id: 2,
-      title: 'Africa',
+      title: 'Африка',
       childPlaces: [{
         id: 3,
-        title: 'Botswana',
+        title: 'Ботсвана',
         childPlaces: []
       }, {
         id: 4,
-        title: 'Egypt',
+        title: 'Єгипет',
         childPlaces: []
       }, {
         id: 5,
-        title: 'Kenya',
+        title: 'Кенія',
         childPlaces: []
       }, {
         id: 6,
-        title: 'Madagascar',
+        title: 'Мадагаскар',
         childPlaces: []
       }, {
         id: 7,
-        title: 'Morocco',
+        title: 'Марокко',
         childPlaces: []
       }, {
         id: 8,
-        title: 'Nigeria',
+        title: 'Нігерія',
         childPlaces: []
       }, {
         id: 9,
-        title: 'South Africa',
+        title: 'Південно-Африканська Республіка',
         childPlaces: []
       }]
     }, {
       id: 10,
-      title: 'Americas',
+      title: 'Америка',
       childPlaces: [{
         id: 11,
-        title: 'Argentina',
+        title: 'Аргентина',
         childPlaces: []
       }, {
         id: 12,
-        title: 'Brazil',
+        title: 'Бразилія',
         childPlaces: []
       }, {
         id: 13,
-        title: 'Barbados',
+        title: 'Барбадос',
         childPlaces: []
       }, {
         id: 14,
-        title: 'Canada',
+        title: 'Канада',
         childPlaces: []
       }, {
         id: 15,
-        title: 'Jamaica',
+        title: 'Ямайка',
         childPlaces: []
       }, {
         id: 16,
-        title: 'Mexico',
+        title: 'Мексика',
         childPlaces: []
       }, {
         id: 17,
-        title: 'Trinidad and Tobago',
+        title: 'Тринідад і Тобаго',
         childPlaces: []
       }, {
         id: 18,
-        title: 'Venezuela',
+        title: 'Венесуела',
         childPlaces: []
       }]
     }, {
       id: 19,
-      title: 'Asia',
+      title: 'Азія',
       childPlaces: [{
         id: 20,
-        title: 'China',
+        title: 'Китай',
         childPlaces: []
       }, {
         id: 21,
-        title: 'India',
+        title: 'Індія',
         childPlaces: []
       }, {
         id: 22,
-        title: 'Singapore',
+        title: 'Сингапур',
         childPlaces: []
       }, {
         id: 23,
-        title: 'South Korea',
+        title: 'Південна Корея',
         childPlaces: []
       }, {
         id: 24,
-        title: 'Thailand',
+        title: 'Тайланд',
         childPlaces: []
       }, {
         id: 25,
-        title: 'Vietnam',
+        title: "В'єтнам",
         childPlaces: []
       }]
     }, {
       id: 26,
-      title: 'Europe',
+      title: 'Європа',
       childPlaces: [{
         id: 27,
-        title: 'Croatia',
+        title: 'Хорватія',
         childPlaces: [],
       }, {
         id: 28,
-        title: 'France',
+        title: 'Франція',
         childPlaces: [],
       }, {
         id: 29,
-        title: 'Germany',
+        title: 'Німеччина',
         childPlaces: [],
       }, {
         id: 30,
-        title: 'Italy',
+        title: 'Італія',
         childPlaces: [],
       }, {
         id: 31,
-        title: 'Portugal',
+        title: 'Португалія',
         childPlaces: [],
       }, {
         id: 32,
-        title: 'Spain',
+        title: 'Іспанія',
         childPlaces: [],
       }, {
         id: 33,
-        title: 'Turkey',
+        title: 'Туреччина',
         childPlaces: [],
       }]
     }, {
       id: 34,
-      title: 'Oceania',
+      title: 'Океанія',
       childPlaces: [{
         id: 35,
-        title: 'Australia',
+        title: 'Австралія',
         childPlaces: [],
       }, {
         id: 36,
-        title: 'Bora Bora (French Polynesia)',
+        title: 'Бора-Бора (Французька Полінезія)',
         childPlaces: [],
       }, {
         id: 37,
-        title: 'Easter Island (Chile)',
+        title: 'Острів Пасхи (Чилі)',
         childPlaces: [],
       }, {
         id: 38,
-        title: 'Fiji',
+        title: 'Фіджі',
         childPlaces: [],
       }, {
         id: 39,
-        title: 'Hawaii (the USA)',
+        title: 'Гаваї (США)',
         childPlaces: [],
       }, {
         id: 40,
-        title: 'New Zealand',
+        title: 'Нова Зеландія',
         childPlaces: [],
       }, {
         id: 41,
-        title: 'Vanuatu',
+        title: 'Вануату',
         childPlaces: [],
       }]
     }]
   }, {
     id: 42,
-    title: 'Moon',
+    title: 'Місяць',
     childPlaces: [{
       id: 43,
-      title: 'Rheita',
+      title: 'Рейта',
       childPlaces: []
     }, {
       id: 44,
-      title: 'Piccolomini',
+      title: 'Піколоміні',
       childPlaces: []
     }, {
       id: 45,
-      title: 'Tycho',
+      title: 'Тихо',
       childPlaces: []
     }]
   }, {
     id: 46,
-    title: 'Mars',
+    title: 'Марс',
     childPlaces: [{
       id: 47,
-      title: 'Corn Town',
+      title: 'Кукурудзяне',
       childPlaces: []
     }, {
       id: 48,
-      title: 'Green Hill',
+      title: 'Зелений пагорб',
       childPlaces: []      
     }]
   }]
@@ -812,11 +812,11 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
+Тепер, скажімо, ви хочете додати кнопку для видалення місця, яке вже відвідали. З чого почнете? [Оновлення вкладеного стану](/learn/updating-objects-in-state#updating-a-nested-object) включає створення копій об'єктів від частини, що змінилася, аж до самого кінця ланцюжка вкладеності. Видалення місця з глибокою вкладеністю включає копіювання всього його ланцюжка предків. Такий код може бути дуже громіздким.
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
+**Якщо стан має завелику вкладеність, щоб легко його оновити, розгляньте варіант його "сплющення".** Ось один з варіантів реструктуризації цих даних. Замість деревоподібної структури, де кожен `place` має масив *своїх дочірніх місць*, кожне місце може зберігати масив *ідентифікаторів своїх дочірніх місць*. Крім цього, збережіть відображення з ідентифікатора кожного місця на відповідне місце.
 
-This data restructuring might remind you of seeing a database table:
+Така реструктуризація даних може нагадати вам вигляд таблиці бази даних:
 
 <Sandpack>
 
@@ -851,7 +851,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Місця, варті відвідування</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -875,242 +875,242 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Земля',
     childIds: [2, 10, 19, 26, 34]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Африка',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
     id: 3,
-    title: 'Botswana',
+    title: 'Ботсвана',
     childIds: []
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Єгипет',
     childIds: []
   },
   5: {
     id: 5,
-    title: 'Kenya',
+    title: 'Кенія',
     childIds: []
   },
   6: {
     id: 6,
-    title: 'Madagascar',
+    title: 'Мадагаскар',
     childIds: []
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Марокко',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Нігерія',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Південно-Африканська Республіка',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Америка',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
     id: 11,
-    title: 'Argentina',
+    title: 'Аргентина',
     childIds: []
   },
   12: {
     id: 12,
-    title: 'Brazil',
+    title: 'Бразилія',
     childIds: []
   },
   13: {
     id: 13,
-    title: 'Barbados',
+    title: 'Барбадос',
     childIds: []
   }, 
   14: {
     id: 14,
-    title: 'Canada',
+    title: 'Канада',
     childIds: []
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Ямайка',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Мексика',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Тринідад і Тобаго',
     childIds: []
   },
   18: {
     id: 18,
-    title: 'Venezuela',
+    title: 'Венесуела',
     childIds: []
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Азія',
     childIds: [20, 21, 22, 23, 24, 25],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Китай',
     childIds: []
   },
   21: {
     id: 21,
-    title: 'India',
+    title: 'Індія',
     childIds: []
   },
   22: {
     id: 22,
-    title: 'Singapore',
+    title: 'Сингапур',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'South Korea',
+    title: 'Південна Корея',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'Thailand',
+    title: 'Тайланд',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Vietnam',
+    title: "В'єтнам",
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Europe',
+    title: 'Європа',
     childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
-    title: 'Croatia',
+    title: 'Хорватія',
     childIds: []
   },
   28: {
     id: 28,
-    title: 'France',
+    title: 'Франція',
     childIds: []
   },
   29: {
     id: 29,
-    title: 'Germany',
+    title: 'Німеччина',
     childIds: []
   },
   30: {
     id: 30,
-    title: 'Italy',
+    title: 'Італія',
     childIds: []
   },
   31: {
     id: 31,
-    title: 'Portugal',
+    title: 'Португалія',
     childIds: []
   },
   32: {
     id: 32,
-    title: 'Spain',
+    title: 'Іспанія',
     childIds: []
   },
   33: {
     id: 33,
-    title: 'Turkey',
+    title: 'Туреччина',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Oceania',
+    title: 'Океанія',
     childIds: [35, 36, 37, 38, 39, 40, 41],   
   },
   35: {
     id: 35,
-    title: 'Australia',
+    title: 'Австралія',
     childIds: []
   },
   36: {
     id: 36,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Бора-Бора (Французька Полінезія)',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Easter Island (Chile)',
+    title: 'Острів Пасхи (Чилі)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Fiji',
+    title: 'Фіджі',
     childIds: []
   },
   39: {
     id: 40,
-    title: 'Hawaii (the USA)',
+    title: 'Гаваї (США)',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'New Zealand',
+    title: 'Нова Зеландія',
     childIds: []
   },
   41: {
     id: 41,
-    title: 'Vanuatu',
+    title: 'Вануату',
     childIds: []
   },
   42: {
     id: 42,
-    title: 'Moon',
+    title: 'Місяць',
     childIds: [43, 44, 45]
   },
   43: {
     id: 43,
-    title: 'Rheita',
+    title: 'Рейта',
     childIds: []
   },
   44: {
     id: 44,
-    title: 'Piccolomini',
+    title: 'Піколоміні',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Tycho',
+    title: 'Тихо',
     childIds: []
   },
   46: {
     id: 46,
-    title: 'Mars',
+    title: 'Марс',
     childIds: [47, 48]
   },
   47: {
     id: 47,
-    title: 'Corn Town',
+    title: 'Кукурудзяне',
     childIds: []
   },
   48: {
     id: 48,
-    title: 'Green Hill',
+    title: 'Зелений пагорб',
     childIds: []
   }
 };
@@ -1118,14 +1118,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
+**Тепер, коли стан "плаский" (або, як іще кажуть, "нормалізований"), оновлення вкладених елементів полегшилося.**
 
-In order to remove a place now, you only need to update two levels of state:
+Щоб вилучити місце тепер, необхідно оновити лише два рівні стану:
 
-- The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
-- The updated version of the root "table" object should include the updated version of the parent place.
+- Оновлена версія *батьківсього* місця повинна виключити вилучений ідентифікатор зі свого масиву `childIds`.
+- Оновлена версія кореневого "табличного" об'єкта повинна містити оновлену версію батьківського місця.
 
-Here is an example of how you could go about it:
+Ось приклад того, як до цього можна підійти:
 
 <Sandpack>
 
@@ -1138,17 +1138,17 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     const parent = plan[parentId];
-    // Create a new version of the parent place
-    // that doesn't include this child ID.
+    // Створити нову версію батьківського місця,
+    // що не містить цього дочірнього ідентифікатора.
     const nextParent = {
       ...parent,
       childIds: parent.childIds
         .filter(id => id !== childId)
     };
-    // Update the root state object...
+    // Оновити кореневий об'єкт стану...
     setPlan({
       ...plan,
-      // ...so that it has the updated parent.
+      // ...щоб у ньому був оновлений батьківський елемент.
       [parentId]: nextParent
     });
   }
@@ -1157,7 +1157,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Місця, варті відвідування</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1182,7 +1182,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Complete
+        Завершити
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1211,242 +1211,242 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Земля',
     childIds: [2, 10, 19, 26, 34]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Африка',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
     id: 3,
-    title: 'Botswana',
+    title: 'Ботсвана',
     childIds: []
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Єгипет',
     childIds: []
   },
   5: {
     id: 5,
-    title: 'Kenya',
+    title: 'Кенія',
     childIds: []
   },
   6: {
     id: 6,
-    title: 'Madagascar',
+    title: 'Мадагаскар',
     childIds: []
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Марокко',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Нігерія',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Південно-Африканська Республіка',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Америка',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
     id: 11,
-    title: 'Argentina',
+    title: 'Аргентина',
     childIds: []
   },
   12: {
     id: 12,
-    title: 'Brazil',
+    title: 'Бразилія',
     childIds: []
   },
   13: {
     id: 13,
-    title: 'Barbados',
+    title: 'Барбадос',
     childIds: []
   }, 
   14: {
     id: 14,
-    title: 'Canada',
+    title: 'Канада',
     childIds: []
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Ямайка',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Мексика',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Тринідад і Тобаго',
     childIds: []
   },
   18: {
     id: 18,
-    title: 'Venezuela',
+    title: 'Венесуела',
     childIds: []
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Азія',
     childIds: [20, 21, 22, 23, 24, 25],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Китай',
     childIds: []
   },
   21: {
     id: 21,
-    title: 'India',
+    title: 'Індія',
     childIds: []
   },
   22: {
     id: 22,
-    title: 'Singapore',
+    title: 'Сингапур',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'South Korea',
+    title: 'Південна Корея',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'Thailand',
+    title: 'Тайланд',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Vietnam',
+    title: "В'єтнам",
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Europe',
+    title: 'Європа',
     childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
-    title: 'Croatia',
+    title: 'Хорватія',
     childIds: []
   },
   28: {
     id: 28,
-    title: 'France',
+    title: 'Франція',
     childIds: []
   },
   29: {
     id: 29,
-    title: 'Germany',
+    title: 'Німеччина',
     childIds: []
   },
   30: {
     id: 30,
-    title: 'Italy',
+    title: 'Італія',
     childIds: []
   },
   31: {
     id: 31,
-    title: 'Portugal',
+    title: 'Португалія',
     childIds: []
   },
   32: {
     id: 32,
-    title: 'Spain',
+    title: 'Іспанія',
     childIds: []
   },
   33: {
     id: 33,
-    title: 'Turkey',
+    title: 'Туреччина',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Oceania',
+    title: 'Океанія',
     childIds: [35, 36, 37, 38, 39, 40, 41],   
   },
   35: {
     id: 35,
-    title: 'Australia',
+    title: 'Австралія',
     childIds: []
   },
   36: {
     id: 36,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Бора-Бора (Французька Полінезія)',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Easter Island (Chile)',
+    title: 'Острів Пасхи (Чилі)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Fiji',
+    title: 'Фіджі',
     childIds: []
   },
   39: {
     id: 39,
-    title: 'Hawaii (the USA)',
+    title: 'Гаваї (США)',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'New Zealand',
+    title: 'Нова Зеландія',
     childIds: []
   },
   41: {
     id: 41,
-    title: 'Vanuatu',
+    title: 'Вануату',
     childIds: []
   },
   42: {
     id: 42,
-    title: 'Moon',
+    title: 'Місяць',
     childIds: [43, 44, 45]
   },
   43: {
     id: 43,
-    title: 'Rheita',
+    title: 'Рейта',
     childIds: []
   },
   44: {
     id: 44,
-    title: 'Piccolomini',
+    title: 'Піколоміні',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Tycho',
+    title: 'Тихо',
     childIds: []
   },
   46: {
     id: 46,
-    title: 'Mars',
+    title: 'Марс',
     childIds: [47, 48]
   },
   47: {
     id: 47,
-    title: 'Corn Town',
+    title: 'Кукурудзяне',
     childIds: []
   },
   48: {
     id: 48,
-    title: 'Green Hill',
+    title: 'Зелений пагорб',
     childIds: []
   }
 };
@@ -1458,13 +1458,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+Можна робити стан як завгодно вкладеним, але його "сплющення" може розв'язати чимало проблем. Воно полегшує оновлення стану, а також допомагає пересвідчитись, що немає дублювання в різних частинах вкладеного об'єкта.
 
 <DeepDive>
 
-#### Improving memory usage {/*improving-memory-usage*/}
+#### Покращення використання пам'яті {/*improving-memory-usage*/}
 
-Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
+В ідеалі краще також вилучати видалені елементи (та їхніх нащадків!) з "табличного" об'єкта, щоб покращити використання пам'яті. Ця версія це робить. Також вона [використовує Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer), аби логіка була стислішою.
 
 <Sandpack>
 
@@ -1477,12 +1477,12 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     updatePlan(draft => {
-      // Remove from the parent place's child IDs.
+      // Вилучити з батьківського місця дочірні ідентифікатори.
       const parent = draft[parentId];
       parent.childIds = parent.childIds
         .filter(id => id !== childId);
 
-      // Forget this place and all its subtree.
+      // Забути це місце та все його піддерево.
       deleteAllChildren(childId);
       function deleteAllChildren(id) {
         const place = draft[id];
@@ -1496,7 +1496,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Місця, варті відвідування</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1521,7 +1521,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Complete
+        Завершити
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1550,242 +1550,242 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Земля',
     childIds: [2, 10, 19, 26, 34]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Африка',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
     id: 3,
-    title: 'Botswana',
+    title: 'Ботсвана',
     childIds: []
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Єгипет',
     childIds: []
   },
   5: {
     id: 5,
-    title: 'Kenya',
+    title: 'Кенія',
     childIds: []
   },
   6: {
     id: 6,
-    title: 'Madagascar',
+    title: 'Мадагаскар',
     childIds: []
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Марокко',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Нігерія',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Південно-Африканська Республіка',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Америка',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
     id: 11,
-    title: 'Argentina',
+    title: 'Аргентина',
     childIds: []
   },
   12: {
     id: 12,
-    title: 'Brazil',
+    title: 'Бразилія',
     childIds: []
   },
   13: {
     id: 13,
-    title: 'Barbados',
+    title: 'Барбадос',
     childIds: []
   }, 
   14: {
     id: 14,
-    title: 'Canada',
+    title: 'Канада',
     childIds: []
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Ямайка',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Мексика',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Тринідад і Тобаго',
     childIds: []
   },
   18: {
     id: 18,
-    title: 'Venezuela',
+    title: 'Венесуела',
     childIds: []
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Азія',
     childIds: [20, 21, 22, 23, 24, 25,],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Китай',
     childIds: []
   },
   21: {
     id: 21,
-    title: 'India',
+    title: 'Індія',
     childIds: []
   },
   22: {
     id: 22,
-    title: 'Singapore',
+    title: 'Сингапур',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'South Korea',
+    title: 'Південна Корея',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'Thailand',
+    title: 'Тайланд',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Vietnam',
+    title: "В'єтнам",
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Europe',
+    title: 'Європа',
     childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
-    title: 'Croatia',
+    title: 'Хорватія',
     childIds: []
   },
   28: {
     id: 28,
-    title: 'France',
+    title: 'Франція',
     childIds: []
   },
   29: {
     id: 29,
-    title: 'Germany',
+    title: 'Німеччина',
     childIds: []
   },
   30: {
     id: 30,
-    title: 'Italy',
+    title: 'Італія',
     childIds: []
   },
   31: {
     id: 31,
-    title: 'Portugal',
+    title: 'Португалія',
     childIds: []
   },
   32: {
     id: 32,
-    title: 'Spain',
+    title: 'Іспанія',
     childIds: []
   },
   33: {
     id: 33,
-    title: 'Turkey',
+    title: 'Туреччина',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Oceania',
+    title: 'Океанія',
     childIds: [35, 36, 37, 38, 39, 40,, 41],   
   },
   35: {
     id: 35,
-    title: 'Australia',
+    title: 'Австралія',
     childIds: []
   },
   36: {
     id: 36,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Бора-Бора (Французька Полінезія)',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Easter Island (Chile)',
+    title: 'Острів Пасхи (Чилі)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Fiji',
+    title: 'Фіджі',
     childIds: []
   },
   39: {
     id: 39,
-    title: 'Hawaii (the USA)',
+    title: 'Гаваї (США)',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'New Zealand',
+    title: 'Нова Зеландія',
     childIds: []
   },
   41: {
     id: 41,
-    title: 'Vanuatu',
+    title: 'Вануату',
     childIds: []
   },
   42: {
     id: 42,
-    title: 'Moon',
+    title: 'Місяць',
     childIds: [43, 44, 45]
   },
   43: {
     id: 43,
-    title: 'Rheita',
+    title: 'Рейта',
     childIds: []
   },
   44: {
     id: 44,
-    title: 'Piccolomini',
+    title: 'Піколоміні',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Tycho',
+    title: 'Тихо',
     childIds: []
   },
   46: {
     id: 46,
-    title: 'Mars',
+    title: 'Марс',
     childIds: [47, 48]
   },
   47: {
     id: 47,
-    title: 'Corn Town',
+    title: 'Кукурудзяне',
     childIds: []
   },
   48: {
     id: 48,
-    title: 'Green Hill',
+    title: 'Зелений пагорб',
     childIds: []
   }
 };
@@ -1817,25 +1817,25 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+Іноді можна також знизити вкладеність стану, перенісши частину вкладеного стану до дочірніх компонентів. Це добре працює для ефемерного стану UI, який не потребує збереження, наприклад, чи наведений на елемент курсор.
 
 <Recap>
 
-* If two state variables always update together, consider merging them into one. 
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
+* Якщо дві змінні стану завжди оновлюються разом, розгляньте варіант їх об'єднання докупи.
+* Обирайте свої змінні стану ретельно, щоб уникати створення "неможливих" станів.
+* Структуруйте свій стан так, щоб знижувати ймовірність помилок при його оновленні.
+* Уникайте надлишкового та дубльованого стану, щоб не доводилося його синхронізувати.
+* Не додавайте пропси *у* стан, якщо не хочете свідомо запобігти оновленням.
+* У разі патернів UI штибу меню вибору, зберігайте у стані ідентифікатор або індекс, а не сам об'єкт.
+* Якщо оновлення стану з глибокою вкладеністю – складне, спробуйте його сплющити.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### Виправлення компонента, що не оновлюється {/*fix-a-component-thats-not-updating*/}
 
-This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
+Цей компонент `Clock` отримує два пропси: `color` і `time`. Коли обрати в блоку вибору інший колір, компонент отримає від свого батьківського компонента інший проп `color`. Проте чомусь виведений колір не оновлюється. Чому? Виправіть проблему.
 
 <Sandpack>
 
@@ -1873,11 +1873,11 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Оберіть колір:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
-          <option value="lightcoral">lightcoral</option>
-          <option value="midnightblue">midnightblue</option>
-          <option value="rebeccapurple">rebeccapurple</option>
+          <option value="lightcoral">світлокораловий</option>
+          <option value="midnightblue">опівнічносиній</option>
+          <option value="rebeccapurple">темнофіолетовий</option>
         </select>
       </p>
       <Clock color={color} time={time.toLocaleTimeString()} />
@@ -1890,7 +1890,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+Проблема в тому, що цей компонент має стан `color`, ініціалізований початковим значенням пропу `color`. Але коли проп `color` змінюється, це не впливає на змінну стану! Тож вони стають розсинхронізованими. Щоб це виправити, вилучіть змінну стану взагалі, й користуйтеся пропом `color` безпосередньо.
 
 <Sandpack>
 
@@ -1927,11 +1927,11 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Оберіть колір:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
-          <option value="lightcoral">lightcoral</option>
-          <option value="midnightblue">midnightblue</option>
-          <option value="rebeccapurple">rebeccapurple</option>
+          <option value="lightcoral">світлокораловий</option>
+          <option value="midnightblue">опівнічносиній</option>
+          <option value="rebeccapurple">темнофіолетовий</option>
         </select>
       </p>
       <Clock color={color} time={time.toLocaleTimeString()} />
@@ -1942,7 +1942,7 @@ export default function App() {
 
 </Sandpack>
 
-Or, using the destructuring syntax:
+Або, користуючись синтаксисом деструктурування:
 
 <Sandpack>
 
@@ -1979,11 +1979,11 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Оберіть колір:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
-          <option value="lightcoral">lightcoral</option>
-          <option value="midnightblue">midnightblue</option>
-          <option value="rebeccapurple">rebeccapurple</option>
+          <option value="lightcoral">світлокораловий</option>
+          <option value="midnightblue">опівнічносиній</option>
+          <option value="rebeccapurple">темнофіолетовий</option>
         </select>
       </p>
       <Clock color={color} time={time.toLocaleTimeString()} />
@@ -1996,13 +1996,13 @@ export default function App() {
 
 </Solution>
 
-#### Fix a broken packing list {/*fix-a-broken-packing-list*/}
+#### Виправлення зламаного списку багажу {/*fix-a-broken-packing-list*/}
 
-This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark an item as packed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
+Цей список багажу має нижній колонтитул, який показує, скільки предметів зібрано та скільки їх є усього. Спершу здається, що він працює, але в ньому є дефекти. Наприклад, якщо позначити предмет як зібраний, а тоді його видалити, то лічильник не оновиться коректно. Виправіть лічильник так, щоб він завжди працював коректно.
 
 <Hint>
 
-Is any state in this example redundant?
+Чи є який-небудь стан у цьому прикладі надлишковим?
 
 </Hint>
 
@@ -2070,7 +2070,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <b>Зібрано {packed} з {total}!</b>
     </>
   );
 }
@@ -2084,14 +2084,14 @@ export default function AddItem({ onAddItem }) {
   return (
     <>
       <input
-        placeholder="Add item"
+        placeholder="Додати предмет"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddItem(title);
-      }}>Add</button>
+      }}>Додати</button>
     </>
   )
 }
@@ -2124,7 +2124,7 @@ export default function PackingList({
             {item.title}
           </label>
           <button onClick={() => onDeleteItem(item.id)}>
-            Delete
+            Видалити
           </button>
         </li>
       ))}
@@ -2143,7 +2143,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+Попри те, що можна було б ретельно виправити кожний обробник подій для коректного оновлення лічильників `total` і `packed`, корінь проблеми полягає в тому, що ці змінні стану взагалі існують. Вони надлишкові, тому що завжди можна обчислити кількість предметів (зібраних чи загальну) на основі самого масива `items`. Вилучіть надлишковий стан, аби виправити ваду:
 
 <Sandpack>
 
@@ -2205,7 +2205,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <b>Зібрано {packed} з {total}!</b>
     </>
   );
 }
@@ -2219,14 +2219,14 @@ export default function AddItem({ onAddItem }) {
   return (
     <>
       <input
-        placeholder="Add item"
+        placeholder="Додати предмет"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddItem(title);
-      }}>Add</button>
+      }}>Додати</button>
     </>
   )
 }
@@ -2259,7 +2259,7 @@ export default function PackingList({
             {item.title}
           </label>
           <button onClick={() => onDeleteItem(item.id)}>
-            Delete
+            Видалити
           </button>
         </li>
       ))}
@@ -2276,15 +2276,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notice how the event handlers are only concerned with calling `setItems` after this change. The item counts are now calculated during the next render from `items`, so they are always up-to-date.
+Зверніть увагу, що обробники подій при змінах займаються лише викликом `setItems`. Кількість предметів тепер обчислюється під час наступного рендеру на основі `items`, тому вона завжди актуальна.
 
 </Solution>
 
-#### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
+#### Виправлення зникнення вибору {/*fix-the-disappearing-selection*/}
 
-There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
+У стані є список `letters` (листів). Коли навести курсор або фокус на конкретний лист, він виділяється. Наразі виділений лист зберігається в змінній стану `highlightedLetter`. Можна додавати й забирати "зірочку" з окремих листів, що оновлює масив `letters` у стані.
 
-This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
+Цей код працює, але є невеликий глюк UI. Коли натиснути "Додати зірочку" чи "Прибрати зірочку", то виділення тимчасово зникає. Проте воно зникає знову, щойно перевести курсор або перемкнутися на інший лист клавіатурою. Чому так відбувається? Виправіть це, щоб виділення не зникало після натискання кнопок.
 
 <Sandpack>
 
@@ -2316,7 +2316,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Вхідна пошта</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2357,7 +2357,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter);
       }}>
-        {letter.isStarred ? 'Unstar' : 'Star'}
+        {letter.isStarred ? 'Прибрати зірочку' : 'Додати зірочку'}
       </button>
       {letter.subject}
     </li>
@@ -2368,15 +2368,15 @@ export default function Letter({
 ```js src/data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Готові до пригод?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Час зареєструватися!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Фестиваль починається вже за СІМ днів!',
   isStarred: false,
 }];
 ```
@@ -2391,9 +2391,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+Проблема в тому, що об'єкт листа зберігається в `highlightedLetter`. Але та сама інформація також зберігається в масиві `letters`. Тож у стані є дублювання! Коли масив `letters` оновлюється після клацання миші, створюється новий об'єкт листа, відмінний від `highlightedLetter`. Саме тому перевірка `highlightedLetter === letter` стає `false`, і виділення зникає. Воно з'являється, коли при руханні курсором знову викликається `setHighlightedLetter`.
 
-To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
+Щоб виправити цю проблему, приберіть зі стану дублювання. Замість зберігання в двох місцях *самого листа*, збережіть натомість `highlightedId`. Потім можна перевірити `isHighlighted` для кожної літери, обчисливши `letter.id === highlightedId`, і це спрацює, навіть якщо об'єкт `letter` змінився після минулого рендера.
 
 <Sandpack>
 
@@ -2425,7 +2425,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Вхідна пошта</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2466,7 +2466,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter.id);
       }}>
-        {letter.isStarred ? 'Unstar' : 'Star'}
+        {letter.isStarred ? 'Прибрати зірочку' : 'Додати зірочку'}
       </button>
       {letter.subject}
     </li>
@@ -2477,15 +2477,15 @@ export default function Letter({
 ```js src/data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Готові до пригод?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Час зареєструватися!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Фестиваль починається вже за СІМ днів!',
   isStarred: false,
 }];
 ```
@@ -2500,15 +2500,15 @@ li { border-radius: 5px; }
 
 </Solution>
 
-#### Implement multiple selection {/*implement-multiple-selection*/}
+#### Реалізація множинного вибору {/*implement-multiple-selection*/}
 
-In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
+У цьому прикладі кожний `Letter` має проп `isSelected` і обробник `onToggle`, який позначає цей лист як обраний. Це працює, але стан зберігається у вигляді `selectedId` (або `null`, або ідентифікатор), тож лише один лист може бути обраний водночас.
 
-Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
+Змініть структуру стану для підтримки множинного вибору. (Як структурувати його? Подумайте, перш ніж писати код.) Кожне поле для позначки повинно стати незалежним від іншим. Клацання обраного листа повинно знімати з нього позначку. І наостанок, нижній колонтитул повинен показувати коректне число обраних елементів.
 
 <Hint>
 
-Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in state.
+Замість одного обраного ідентифікатора може мати зміст зберігати у стані масив або [Set](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Set/) обраних ідентифікаторів.
 
 </Hint>
 
@@ -2522,24 +2522,24 @@ import Letter from './Letter.js';
 export default function MailClient() {
   const [selectedId, setSelectedId] = useState(null);
 
-  // TODO: allow multiple selection
+  // TODO: дозволити множинний вибір
   const selectedCount = 1;
 
   function handleToggle(toggledId) {
-    // TODO: allow multiple selection
+    // TODO: дозволити множинний вибір
     setSelectedId(toggledId);
   }
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Вхідна пошта</h2>
       <ul>
         {letters.map(letter => (
           <Letter
             key={letter.id}
             letter={letter}
             isSelected={
-              // TODO: allow multiple selection
+              // TODO: дозволити множинний вибір
               letter.id === selectedId
             }
             onToggle={handleToggle}
@@ -2548,7 +2548,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Ви обрали {selectedCount} листів
           </b>
         </p>
       </ul>
@@ -2585,15 +2585,15 @@ export default function Letter({
 ```js src/data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Готові до пригод?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Час зареєструватися!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Фестиваль починається вже за СІМ днів!',
   isStarred: false,
 }];
 ```
@@ -2609,7 +2609,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
+Замість одного-єдиного `selectedId` зберігайте у стані *масив* `selectedIds`. Наприклад, якщо обрати перший і останній листи, в масиві було б `[0, 2]`. Коли нічого не вибрано, це був би порожній масив `[]`:
 
 <Sandpack>
 
@@ -2624,14 +2624,14 @@ export default function MailClient() {
   const selectedCount = selectedIds.length;
 
   function handleToggle(toggledId) {
-    // Was it previously selected?
+    // Чи був цей лист досі обраним?
     if (selectedIds.includes(toggledId)) {
-      // Then remove this ID from the array.
+      // Тоді вилучіть цей ідентифікатор з масиву.
       setSelectedIds(selectedIds.filter(id =>
         id !== toggledId
       ));
     } else {
-      // Otherwise, add this ID to the array.
+      // Інакше – додайте цей ідентифікатор до масиву.
       setSelectedIds([
         ...selectedIds,
         toggledId
@@ -2641,7 +2641,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Вхідна пошта</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2656,7 +2656,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Ви обрали {selectedCount} листів
           </b>
         </p>
       </ul>
@@ -2693,15 +2693,15 @@ export default function Letter({
 ```js src/data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Готові до пригод?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Час зареєструватися!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Фестиваль починається вже за СІМ днів!',
   isStarred: false,
 }];
 ```
@@ -2715,9 +2715,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-One minor downside of using an array is that for each item, you're calling `selectedIds.includes(letter.id)` to check whether it's selected. If the array is very large, this can become a performance problem because array search with [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) takes linear time, and you're doing this search for each individual item.
+Невеличкий недолік використання масиву полягає в тому, що для кожного елемента викликається `selectedIds.includes(letter.id)`, аби перевірити, чи є цей елемент обраним. Якщо масив дуже великий, це може стати проблемою швидкодії, тому що пошук у масиві за допомогою [`includes()`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) займає лінійний час, і цей пошук відбувається для кожного окремого елемента.
 
-To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in state instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
+Аби це виправити, можна натомість зберігати в стані [Set](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Set), що пропонує швидку операцію [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has):
 
 <Sandpack>
 
@@ -2734,7 +2734,7 @@ export default function MailClient() {
   const selectedCount = selectedIds.size;
 
   function handleToggle(toggledId) {
-    // Create a copy (to avoid mutation).
+    // Створити копію (для запобігання внесенню змін).
     const nextIds = new Set(selectedIds);
     if (nextIds.has(toggledId)) {
       nextIds.delete(toggledId);
@@ -2746,7 +2746,7 @@ export default function MailClient() {
 
   return (
     <>
-      <h2>Inbox</h2>
+      <h2>Вхідна пошта</h2>
       <ul>
         {letters.map(letter => (
           <Letter
@@ -2761,7 +2761,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Ви обрали {selectedCount} листів
           </b>
         </p>
       </ul>
@@ -2798,15 +2798,15 @@ export default function Letter({
 ```js src/data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Готові до пригод?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Час зареєструватися!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Фестиваль починається вже за СІМ днів!',
   isStarred: false,
 }];
 ```
@@ -2820,9 +2820,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Now each item does a `selectedIds.has(letter.id)` check, which is very fast.
+Тепер кожний елемент має перевірку `selectedIds.has(letter.id)`, яка дуже швидка.
 
-Keep in mind that you [should not mutate objects in state](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
+Майте на увазі, що [не слід змінювати об'єкти у стані](/learn/updating-objects-in-state), і те саме також стосується Set. Саме тому функція `handleToggle` спершу створює *копію* Set, а тоді оновлює цю копію.
 
 </Solution>
 
