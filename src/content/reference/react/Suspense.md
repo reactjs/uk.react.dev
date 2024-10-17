@@ -4,7 +4,7 @@ title: <Suspense>
 
 <Intro>
 
-`<Suspense>` lets you display a fallback until its children have finished loading.
+`<Suspense>` дає вам змогу відображати запасний варіант (fallback), доки його дочірні компоненти не завершать завантаження.
 
 
 ```js
@@ -19,28 +19,28 @@ title: <Suspense>
 
 ---
 
-## Reference {/*reference*/}
+## Опис {/*reference*/}
 
 ### `<Suspense>` {/*suspense*/}
 
-#### Props {/*props*/}
-* `children`: The actual UI you intend to render. If `children` suspends while rendering, the Suspense boundary will switch to rendering `fallback`.
-* `fallback`: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to `fallback` when `children` suspends, and back to `children` when the data is ready. If `fallback` suspends while rendering, it will activate the closest parent Suspense boundary.
+#### Пропси {/*props*/}
+* `children`: Очікуваний UI, який ви хочете відрендерити. Якщо `children` затримується (suspends) під час рендерингу, межа (boundary) Suspense перемкнеться на рендер `fallback`.
+* `fallback`: Альтернативний UI, який рендериться замість очікуваного UI, якщо той ще не завершив завантаження. Проп приймає будь-який валідний React-вузол, хоча на практиці запасний варіант є невеличким елементом для заповнення області перегляду, як-от спінер чи скелетон. Suspense автоматично перемкнеться на `fallback`, коли `children` затримується, і назад на `children`, коли дані будуть готові. Якщо `fallback` затримується під час рендеру, найближча батьківська межа Suspense буде активована.
 
-#### Caveats {/*caveats*/}
+#### Застереження {/*caveats*/}
 
-- React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
-- If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
-- If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/reference/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This ensures that Effects measuring the DOM layout don't try to do this while the content is hidden.
-- React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
+- React не зберігає жодного стану для рендерів, затриманих до першого монтування (mount). Коли компонент завантажиться, React ще раз спробує відрендерити затримане дерево компонентів із нуля.
+- Якщо Suspense відображав вміст, але затримався повторно, `fallback` буде відображено знову, за винятком випадків, коли оновлення, яке це спричинило, зумовлене функціями [`startTransition`](/reference/react/startTransition) або [`useDeferredValue`](/reference/react/useDeferredValue).
+- Якщо React потрібно сховати вже видимий вміст через повторну затримку, він скине [ефекти макета](/reference/react/useLayoutEffect) в дереві компонентів. Коли вміст буде знову готовий до показу, React викличе ефекти макета знову. Це запевняє, що ефекти, які проводять виміри DOM-макета, не намагатимуться робити цього, доки вміст прихований.
+- React має вбудовані оптимізації інтегровані в Suspense, як-от *Потоковий рендеринг на стороні сервера* і *Вибіркову гідрацію*. Прочитайте [архітектурний огляд](https://github.com/reactwg/react-18/discussions/37) і подивіться [технічну доповідь](https://www.youtube.com/watch?v=pj5N-Khihgc), щоб дізнатися більше.
 
 ---
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
-### Displaying a fallback while content is loading {/*displaying-a-fallback-while-content-is-loading*/}
+### Відображення запасного варіанту під час завантаження вмісту {/*displaying-a-fallback-while-content-is-loading*/}
 
-You can wrap any part of your application with a Suspense boundary:
+Ви можете загорнути будь-яку частину вашого застосунку в межу Suspense:
 
 ```js [[1, 1, "<Loading />"], [2, 2, "<Albums />"]]
 <Suspense fallback={<Loading />}>
@@ -48,9 +48,9 @@ You can wrap any part of your application with a Suspense boundary:
 </Suspense>
 ```
 
-React will display your <CodeStep step={1}>loading fallback</CodeStep> until all the code and data needed by <CodeStep step={2}>the children</CodeStep> has been loaded.
+React відображатиме ваш <CodeStep step={1}>запасний варіант завантаження</CodeStep>, доки всесь код та дані, які потребує <CodeStep step={2}>дочірній компонент</CodeStep>, не будуть завантажені.
 
-In the example below, the `Albums` component *suspends* while fetching the list of albums. Until it's ready to render, React switches the closest Suspense boundary above to show the fallback--your `Loading` component. Then, when the data loads, React hides the `Loading` fallback and renders the `Albums` component with data.
+У прикладі вище, компонент `Albums` *затримується* під час отримання списку альбомів. Доки він не буде готовим до рендеру, React переключиться на найближчу межу Suspense вверху дерева, щоб показати запасний варіант - ваш компонент `Loading`. Коли дані завантажаться, React сховає запасний варіант `Loading` і відрендерить компонент `Albums` з даними.
 
 <Sandpack>
 
@@ -72,7 +72,7 @@ export default function App() {
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Відкрити сторінку виконавця The Beatles
       </button>
     );
   }
@@ -95,7 +95,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Завантаження...</h2>;
 }
 ```
 
@@ -118,9 +118,9 @@ export default function Albums({ artistId }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -140,7 +140,7 @@ async function getData(url) {
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -205,25 +205,25 @@ async function getAlbums() {
 
 <Note>
 
-**Only Suspense-enabled data sources will activate the Suspense component.** They include:
+**Тільки джерела даних із підтримкою Suspense активують компонент Suspense.** Вони включають:
 
-- Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
-- Lazy-loading component code with [`lazy`](/reference/react/lazy)
-- Reading the value of a cached Promise with [`use`](/reference/react/use)
+-Отримання даних із фреймворками, що підтримують Suspense, наприклад, [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) та [Next.js](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming#streaming-with-suspense)
+- Компоненти з відкладеним завантаженням, які використовують [`lazy`](/reference/react/lazy)
+- Зчитування значення кешованого Promise з [`use`](/reference/react/use)
 
-Suspense **does not** detect when data is fetched inside an Effect or event handler.
+Suspense **не** реагує, коли дані отримуються всередині ефекта чи обробника подій.
 
-The exact way you would load data in the `Albums` component above depends on your framework. If you use a Suspense-enabled framework, you'll find the details in its data fetching documentation.
+Спосіб, у який ви будете отримувати дані в компоненті `Albums`, наведеному вище, залежить від вашого фреймоворку. Якщо ви використовуєте фреймворк із підтримкою Suspense, ви знайдете деталі в його документації щодо отримання даних.
 
-Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React. 
+Отримання даних із Suspense, але без використання фреймворку, наразі не підтримується. Вимоги до реалізації джерела даних із підтримкою Suspense нестабільні й незадокументовані. Офіційний API для інтеграції джерел даних та Suspense буде випущено в майбутній версії React. 
 
 </Note>
 
 ---
 
-### Revealing content together at once {/*revealing-content-together-at-once*/}
+### Одночасне відображення всього вмісту {/*revealing-content-together-at-once*/}
 
-By default, the whole tree inside Suspense is treated as a single unit. For example, even if *only one* of these components suspends waiting for some data, *all* of them together will be replaced by the loading indicator:
+Початково, усе дерево всередині Suspense сприймається як один компонент. Для прикладу, навіть якщо *тільки один* із цих компонентів затримується, очікуючи на дані, *всі* з них буде замінено на індикатор завантаження:
 
 ```js {2-5}
 <Suspense fallback={<Loading />}>
@@ -234,9 +234,9 @@ By default, the whole tree inside Suspense is treated as a single unit. For exam
 </Suspense>
 ```
 
-Then, after all of them are ready to be displayed, they will all appear together at once.
+Коли всі з них будуть готові до відображення, вони зв'являться всі разом в один момент.
 
-In the example below, both `Biography` and `Albums` fetch some data. However, because they are grouped under a single Suspense boundary, these components always "pop in" together at the same time.
+У прикладі нижче, обидва компоненти `Biography` і `Albums` отримують якісь дані. Проте, через те що вони згруповані всередині одної межі Suspense, ці компоненти завжди "вискакуватимуть" одночасно.
 
 <Sandpack>
 
@@ -258,7 +258,7 @@ export default function App() {
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Відкрити сторінку виконавця The Beatles
       </button>
     );
   }
@@ -286,7 +286,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function Loading() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Завантаження...</h2>;
 }
 ```
 
@@ -333,9 +333,9 @@ export default function Albums({ artistId }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -357,19 +357,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 1500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+  return `The Beatles був англійським рок-гуртом, 
+    cтвореним у Ліверпулі в 1960 році, до складу якого  
+    входили Джон Леннон (John Lennon), Пол Маккартні (Paul McCartney), 
+    Джордж Гаррісон (George Harrison) і Рінго Старр (Ringo Starr).`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -443,7 +443,7 @@ async function getAlbums() {
 
 </Sandpack>
 
-Components that load data don't have to be direct children of the Suspense boundary. For example, you can move `Biography` and `Albums` into a new `Details` component. This doesn't change the behavior. `Biography` and `Albums` share the same closest parent Suspense boundary, so their reveal is coordinated together.
+Компоненти, що завантажують дані, можуть не бути прямими дочірніми компонентами межі Suspense. Наприклад, ви можете перенести `Biography` і `Albums` у новий компонент `Details`. Це не вплине на поведінку. `Biography` і `Albums` поділяють одну найближчу батьківську межу Suspense, тому їхнє відображення координується разом.
 
 ```js {2,8-11}
 <Suspense fallback={<Loading />}>
@@ -464,9 +464,9 @@ function Details({ artistId }) {
 
 ---
 
-### Revealing nested content as it loads {/*revealing-nested-content-as-it-loads*/}
+### Відображення вкладеного вмісту поступово, відповідно до його завантаження {/*revealing-nested-content-as-it-loads*/}
 
-When a component suspends, the closest parent Suspense component shows the fallback. This lets you nest multiple Suspense components to create a loading sequence. Each Suspense boundary's fallback will be filled in as the next level of content becomes available. For example, you can give the album list its own fallback:
+Коли компонент затримується, найближчий батьківський компонент Suspense відображає запасний варіант. Це дає вам змогу вкладувати кілька компонентів Suspense, щоб сворити послідовність завантаження. Кожен запасний варіант Suspense буде замінено, коли наступний рівень вмісту буде доступним. Наприклад, ви можете дати списку альбомів власний запасний варіант:
 
 ```js {3,7}
 <Suspense fallback={<BigSpinner />}>
@@ -479,14 +479,14 @@ When a component suspends, the closest parent Suspense component shows the fallb
 </Suspense>
 ```
 
-With this change, displaying the `Biography` doesn't need to "wait" for the `Albums` to load.
+Із цією зміною, для відображення `Biography` не потрібно "чекати" завантаження `Albums`.
 
-The sequence will be:
+Послідовність буде такою:
 
-1. If `Biography` hasn't loaded yet, `BigSpinner` is shown in place of the entire content area.
-2. Once `Biography` finishes loading, `BigSpinner` is replaced by the content.
-3. If `Albums` hasn't loaded yet, `AlbumsGlimmer` is shown in place of `Albums` and its parent `Panel`.
-4. Finally, once `Albums` finishes loading, it replaces `AlbumsGlimmer`.
+1. Якщо `Biography` ще не завантажився, `BigSpinner` буде показано замість усього вмісту.
+2. Як тільки `Biography` закінчить завантаження, `BigSpinner` буде замінено бажаним вмістом.
+3. Якщо `Albums` ще не завантажився, `AlbumsGlimmer` буде показано замість `Albums` і його батьківського компонента `Panel`.
+4. Нарешті, як тільки `Albums` закінчить завантаження, він замінить `AlbumsGlimmer`.
 
 <Sandpack>
 
@@ -508,7 +508,7 @@ export default function App() {
   } else {
     return (
       <button onClick={() => setShow(true)}>
-        Open The Beatles artist page
+        Відкрити сторінку виконавця The Beatles
       </button>
     );
   }
@@ -538,7 +538,7 @@ export default function ArtistPage({ artist }) {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Завантаження...</h2>;
 }
 
 function AlbumsGlimmer() {
@@ -595,9 +595,9 @@ export default function Albums({ artistId }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -619,19 +619,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+  return `The Beatles був англійським рок-гуртом, 
+    cтвореним у Ліверпулі в 1960 році, до складу якого  
+    входили Джон Леннон (John Lennon), Пол Маккартні (Paul McCartney), 
+    Джордж Гаррісон (George Harrison) і Рінго Старр (Ringo Starr).`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -722,15 +722,15 @@ async function getAlbums() {
 
 </Sandpack>
 
-Suspense boundaries let you coordinate which parts of your UI should always "pop in" together at the same time, and which parts should progressively reveal more content in a sequence of loading states. You can add, move, or delete Suspense boundaries in any place in the tree without affecting the rest of your app's behavior.
+Межі Suspense дають вам змогу контролювати, які частини UI повинні завжди з'являтися одночасно, і які частини повинні поступово показувати більше вмісту відповідно до послідовності завантаження. Ви можете додавати, переставляти або видаляти межі Suspense в будь-якому місці дерева компонетів, без впливу на поведінку решти застосунку.
 
-Don't put a Suspense boundary around every component. Suspense boundaries should not be more granular than the loading sequence that you want the user to experience. If you work with a designer, ask them where the loading states should be placed--it's likely that they've already included them in their design wireframes.
+Не ставте межу Suspense навколо кожного компонента. Межі Suspense не повинні бути більш частими, ніж послідовність завантаження, яку ви хочете, щоб користувач побачив. Якщо ви працюєте з дизайнером, запитайте його, де повинні відображатися індикатори завантаження — висока вірогідність, що вони вже включили їх у макети дизайну.
 
 ---
 
-### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
+### Відображення застарілого вмісту під час завантаження нового {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-In this example, the `SearchResults` component suspends while fetching the search results. Type `"a"`, wait for the results, and then edit it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
+У цьому прикладі, компонент `SearchResults` затримується, доки завантажує результати пошуку. Введіть `"a"`, зачекайте на результат, а тоді змініть на `"ab"`. Результати для `"a"` будуть замінені запасним варінтом завантаження.
 
 <Sandpack>
 
@@ -743,10 +743,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Пошук альбомів:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Завантаження...</h2>}>
         <SearchResults query={query} />
       </Suspense>
     </>
@@ -764,7 +764,7 @@ export default function SearchResults({ query }) {
   }
   const albums = use(fetchData(`/search?q=${query}`));
   if (albums.length === 0) {
-    return <p>No matches for <i>"{query}"</i></p>;
+    return <p>Не знайдено результатів для <i>"{query}"</i></p>;
   }
   return (
     <ul>
@@ -779,9 +779,9 @@ export default function SearchResults({ query }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -801,7 +801,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -877,7 +877,7 @@ input { margin: 10px; }
 
 </Sandpack>
 
-A common alternative UI pattern is to *defer* updating the list and to keep showing the previous results until the new results are ready. The [`useDeferredValue`](/reference/react/useDeferredValue) Hook lets you pass a deferred version of the query down: 
+Поширеним альтернативним UI паттерном є *відкладене* оновлення списку з показом попередніх результатів, доки нові результати не будуть готові. Хук [`useDeferredValue`](/reference/react/useDeferredValue) дає змогу передавати відкладений варіант запиту вниз по дереву: 
 
 ```js {3,11}
 export default function App() {
@@ -886,10 +886,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Пошук альбомів:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Завантаження...</h2>}>
         <SearchResults query={deferredQuery} />
       </Suspense>
     </>
@@ -897,9 +897,9 @@ export default function App() {
 }
 ```
 
-The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
+`query` оновиться одразу, тому пошуковий рядок відображатиме нове значення. Проте, `deferredQuery` збереже попереднє значення, доки дані не будуть завантажені, тож `SearchResults` на деякий час відобразить застарілі результати.
 
-To make it more obvious to the user, you can add a visual indication when the stale result list is displayed:
+Щоб зробити це більш очевидним для користувача, ви можете додати візуальний індикатор під час відображення застарілого вмісту:
 
 ```js {2}
 <div style={{
@@ -909,7 +909,7 @@ To make it more obvious to the user, you can add a visual indication when the st
 </div>
 ```
 
-Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the dimmed stale result list until the new results have loaded:
+Введіть `"a"` у прикладі нижче, зачекайте на результат, тоді змініть значення на `"ab"`. Зверніть увагу, як замість запасного варіанту, ви бачите затемнений список попередніх результатів, доки нові результати не завантажилися:
 
 
 <Sandpack>
@@ -925,10 +925,10 @@ export default function App() {
   return (
     <>
       <label>
-        Search albums:
+        Пошук альбомів:
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
-      <Suspense fallback={<h2>Loading...</h2>}>
+      <Suspense fallback={<h2>Завантаження...</h2>}>
         <div style={{ opacity: isStale ? 0.5 : 1 }}>
           <SearchResults query={deferredQuery} />
         </div>
@@ -948,7 +948,7 @@ export default function SearchResults({ query }) {
   }
   const albums = use(fetchData(`/search?q=${query}`));
   if (albums.length === 0) {
-    return <p>No matches for <i>"{query}"</i></p>;
+    return <p>Не знайдено результатів для <i>"{query}"</i></p>;
   }
   return (
     <ul>
@@ -963,9 +963,9 @@ export default function SearchResults({ query }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -985,7 +985,7 @@ async function getData(url) {
 }
 
 async function getSearchResults(query) {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
@@ -1063,15 +1063,15 @@ input { margin: 10px; }
 
 <Note>
 
-Both deferred values and [Transitions](#preventing-already-revealed-content-from-hiding) let you avoid showing Suspense fallback in favor of inline indicators. Transitions mark the whole update as non-urgent so they are typically used by frameworks and router libraries for navigation. Deferred values, on the other hand, are mostly useful in application code where you want to mark a part of UI as non-urgent and let it "lag behind" the rest of the UI.
+Як затримані значення так і [переходи](#preventing-already-revealed-content-from-hiding) дають вам змогу уникнути відображення запасного варіанту Suspense, натомість відображаючи індикатор безпосередньо у вмісті. Переходи відмічають оновлення як нетермінові, тож вони часто використовуються фреймворками та бібліотеками-маршрутизаторами для навігації. З іншого боку, відкладені значення, переважно використовуються в коді застосунку там, де ви хочете відмітити частину UI як нетермінову й дозволити їй "відставати" від решти UI.
 
 </Note>
 
 ---
 
-### Preventing already revealed content from hiding {/*preventing-already-revealed-content-from-hiding*/}
+### Запобігання заміни запасним варіантом уже відображеного вмісту {/*preventing-already-revealed-content-from-hiding*/}
 
-When a component suspends, the closest parent Suspense boundary switches to showing the fallback. This can lead to a jarring user experience if it was already displaying some content. Try pressing this button:
+Коли компонент затримується, найближча батьківська межа Suspense перемикається на показ запасного варіанту. Це може призвести до неприємного користувацького досвіду у випадку, якщо якийсь вміст уже відображався. Спробуйте настинути цю кнопку:
 
 <Sandpack>
 
@@ -1119,7 +1119,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Завантаження...</h2>;
 }
 ```
 
@@ -1128,7 +1128,7 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <section className="header">
-        Music Browser
+        Музичний браузер
       </section>
       <main>
         {children}
@@ -1142,7 +1142,7 @@ export default function Layout({ children }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Відкрити сторінку виконавця The Beatles
     </button>
   );
 }
@@ -1222,9 +1222,9 @@ export default function Panel({ children }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -1246,19 +1246,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+  return `The Beatles був англійським рок-гуртом, 
+    cтвореним у Ліверпулі в 1960 році, до складу якого  
+    входили Джон Леннон (John Lennon), Пол Маккартні (Paul McCartney), 
+    Джордж Гаррісон (George Harrison) і Рінго Старр (Ringo Starr).`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -1365,9 +1365,9 @@ main {
 
 </Sandpack>
 
-When you pressed the button, the `Router` component rendered `ArtistPage` instead of `IndexPage`. A component inside `ArtistPage` suspended, so the closest Suspense boundary started showing the fallback. The closest Suspense boundary was near the root, so the whole site layout got replaced by `BigSpinner`.
+Коли ви натиснули кнопку, компонент `Router` відрендерив `ArtistPage` замість `IndexPage`. Компонент всередині `ArtistPage` затриманий, тож найближча межа Suspense почала відображати запасний варіант. Найближча межа Suspense була біля корневого компонента, тому весь макет сайту було замінено на `BigSpinner`.
 
-To prevent this, you can mark the navigation state update as a *Transition* with [`startTransition`:](/reference/react/startTransition)
+Щоб запобігти цьому, ви можете відмітити оновлення стану навігації як *перехід*, використовуючи [`startTransition`:](/reference/react/startTransition)
 
 ```js {5,7}
 function Router() {
@@ -1381,7 +1381,7 @@ function Router() {
   // ...
 ```
 
-This tells React that the state transition is not urgent, and it's better to keep showing the previous page instead of hiding any already revealed content. Now clicking the button "waits" for the `Biography` to load:
+Це говорить React що перехід стану не є терміновим і краще продовжити показувати попередню сторінку, замість того, щоб ховати вже відображений вміст. Тепер натискання на кнопку "очікує", доки `Biography` завантажиться:
 
 <Sandpack>
 
@@ -1431,7 +1431,7 @@ function Router() {
 }
 
 function BigSpinner() {
-  return <h2>🌀 Loading...</h2>;
+  return <h2>🌀 Завантаження...</h2>;
 }
 ```
 
@@ -1440,7 +1440,7 @@ export default function Layout({ children }) {
   return (
     <div className="layout">
       <section className="header">
-        Music Browser
+        Музичний Браузер
       </section>
       <main>
         {children}
@@ -1454,7 +1454,7 @@ export default function Layout({ children }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Відкрити сторінку виконавця The Beatles
     </button>
   );
 }
@@ -1534,9 +1534,9 @@ export default function Panel({ children }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -1558,19 +1558,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+  return `The Beatles був англійським рок-гуртом, 
+    cтвореним у Ліверпулі в 1960 році, до складу якого  
+    входили Джон Леннон (John Lennon), Пол Маккартні (Paul McCartney), 
+    Джордж Гаррісон (George Harrison) і Рінго Старр (Ringo Starr).`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -1677,19 +1677,19 @@ main {
 
 </Sandpack>
 
-A Transition doesn't wait for *all* content to load. It only waits long enough to avoid hiding already revealed content. For example, the website `Layout` was already revealed, so it would be bad to hide it behind a loading spinner. However, the nested `Suspense` boundary around `Albums` is new, so the Transition doesn't wait for it.
+Перехід не чекає на завантаження *всього* вмісту. Він лише чекає достатньо довго, щоб уникнути приховання вже відображеного вмісту. Для прикладу, `Layout` вебсайту вже було відображено, тому було би погано ховати його за спіннером завантаження. Проте, вкладена межа `Suspense` навколо `Albums` нова, тому перехід не чекає на неї.
 
 <Note>
 
-Suspense-enabled routers are expected to wrap the navigation updates into Transitions by default.
+Передбачається, що маршрутизатори з інтегрованим Suspense заздалегідь огортатимуть оновлення навігації в перехід.
 
 </Note>
 
 ---
 
-### Indicating that a Transition is happening {/*indicating-that-a-transition-is-happening*/}
+### Індикація переходу {/*indicating-that-a-transition-is-happening*/}
 
-In the above example, once you click the button, there is no visual indication that a navigation is in progress. To add an indicator, you can replace [`startTransition`](/reference/react/startTransition) with [`useTransition`](/reference/react/useTransition) which gives you a boolean `isPending` value. In the example below, it's used to change the website header styling while a Transition is happening:
+У прикладі зверху, як тільки ви натискаєте на кнопку, відсутній візуальний сигнал того, що відбувається навігація. Щоб додати індикатор, ви можете замінити [`startTransition`](/reference/react/startTransition) на [`useTransition`](/reference/react/useTransition), який дає вам булеве значення `isPending`. У прикладі нище, воно використовується, щоб змінити стилі хедеру вебсайту, доки відбувається перехід:
 
 <Sandpack>
 
@@ -1751,7 +1751,7 @@ export default function Layout({ children, isPending }) {
       <section className="header" style={{
         opacity: isPending ? 0.7 : 1
       }}>
-        Music Browser
+       Музичний Браузер
       </section>
       <main>
         {children}
@@ -1765,7 +1765,7 @@ export default function Layout({ children, isPending }) {
 export default function IndexPage({ navigate }) {
   return (
     <button onClick={() => navigate('/the-beatles')}>
-      Open The Beatles artist page
+      Відкрити сторінку виконавця The Beatles
     </button>
   );
 }
@@ -1845,9 +1845,9 @@ export default function Panel({ children }) {
 ```
 
 ```js src/data.js hidden
-// Note: the way you would do data fetching depends on
-// the framework that you use together with Suspense.
-// Normally, the caching logic would be inside a framework.
+// Примітка: те, як ви будете отримувати дані, залежить
+// від фреймворку, який ви використовуєте разом із Suspense.
+// Зазвичай логіка кешування буде всередині фреймворку.
 
 let cache = new Map();
 
@@ -1869,19 +1869,19 @@ async function getData(url) {
 }
 
 async function getBio() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 500);
   });
 
-  return `The Beatles were an English rock band, 
-    formed in Liverpool in 1960, that comprised 
-    John Lennon, Paul McCartney, George Harrison 
-    and Ringo Starr.`;
+  return `The Beatles був англійським рок-гуртом, 
+    cтвореним у Ліверпулі в 1960 році, до складу якого  
+    входили Джон Леннон (John Lennon), Пол Маккартні (Paul McCartney), 
+    Джордж Гаррісон (George Harrison) і Рінго Старр (Ringo Starr).`;
 }
 
 async function getAlbums() {
-  // Add a fake delay to make waiting noticeable.
+  // Додаємо штучну затримку, щоб очікування було помітним.
   await new Promise(resolve => {
     setTimeout(resolve, 3000);
   });
@@ -1990,27 +1990,27 @@ main {
 
 ---
 
-### Resetting Suspense boundaries on navigation {/*resetting-suspense-boundaries-on-navigation*/}
+### Скидання меж Suspense під час навігації {/*resetting-suspense-boundaries-on-navigation*/}
 
-During a Transition, React will avoid hiding already revealed content. However, if you navigate to a route with different parameters, you might want to tell React it is *different* content. You can express this with a `key`:
+Під час переходу, React уникне приховання вже відображеного вмісту. Проте, якщо ви перейдете на маршрут з іншими параметрами, ви захочете сказати React, що це *інший* вміст. Ви можете досягнути цього з `key`:
 
 ```js
 <ProfilePage key={queryParams.id} />
 ```
 
-Imagine you're navigating within a user's profile page, and something suspends. If that update is wrapped in a Transition, it will not trigger the fallback for already visible content. That's the expected behavior.
+Уявіть, що ви переходите всередині сторінки профілю користувача, і щось затримується. Якщо те оновлення використовує перехід, воно не буде викликати запасний варіант для вже відображеного вмісту. Така поведінка є очікуваною.
 
-However, now imagine you're navigating between two different user profiles. In that case, it makes sense to show the fallback. For example, one user's timeline is *different content* from another user's timeline. By specifying a `key`, you ensure that React treats different users' profiles as different components, and resets the Suspense boundaries during navigation. Suspense-integrated routers should do this automatically.
+А тепер уявіть, що ви переходите між профілями двох різних користувачів. У такому випадку доцільно відображати запасний варіант. Наприклад, вміст стрічки одного користувача *відрізняється*, від стрічки іншого користувача. Вказуючи `key`, ви запевняєтеся, що React розглядає профілі різних користувачів як різні компоненти і скидає межу Suspense під час навігації. Маршрутизатори з інтегрованим Suspense повинні робити це автоматично.
 
 ---
 
-### Providing a fallback for server errors and client-only content {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
+### Застосування запасного варіанту для серверних помилок та вмісту, що опрацьовується тільки на стороні клієнта {/*providing-a-fallback-for-server-errors-and-client-only-content*/}
 
-If you use one of the [streaming server rendering APIs](/reference/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner at first.
+Якщо ви використовуєте якийсь з [API для потокового рендеру на стороні сервера](/reference/react-dom/server) (або фреймворк, що покладається на них), React також використовуватими вашу межу `<Suspense>`, щоб обробляти помилки на стороні сервера. Якщо компонент видає помилку на стороні сервера, React не відмінить серверний рендеринг. Натомість, він знайде найближчий компонент `<Suspense>` вище нього й додасть його запасний варіант (наприклад спіннер) у згенерований сервером HTML. Спочатку користувач побачить спіннер.
 
-On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [error boundary.](/reference/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+На стороні клієнта, React спробує відрендерити той же компонент знову. Якщо в ньому виникає помилка й на стороні клієнта, React видасть помилку і відобразить найближчу [границю помилки.](/reference/react/Component#static-getderivedstatefromerror) Проте, якщо він не видає помилки на стороні клієнта, React не буде відображати користувачу помилку, тому що вміст усе ж був відображений коректно.
 
-You can use this to opt out some components from rendering on the server. To do this, throw an error in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
+Ви можете використати це, щоб виключити деякі компоненти з рендерингу на стороні сервера. Щоб зробити це, видайте помилку в серверному оточенні й обгорніть ці компоненти в межу `<Suspense>`, щоб замінити їхній HTML запасним варіантом:
 
 ```js
 <Suspense fallback={<Loading />}>
@@ -2019,35 +2019,35 @@ You can use this to opt out some components from rendering on the server. To do 
 
 function Chat() {
   if (typeof window === 'undefined') {
-    throw Error('Chat should only render on the client.');
+    throw Error('Чат повинен рендеритися тільки на стороні клієнта.');
   }
   // ...
 }
 ```
 
-The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
+Відрендерений на стороні сервера HTML включатиме лише індикатор завантаження. Його буде замінено компонентом `Chat` на стороні клієнта.
 
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## Усунення неполадок {/*troubleshooting*/}
 
-### How do I prevent the UI from being replaced by a fallback during an update? {/*preventing-unwanted-fallbacks*/}
+### Як я можу запобігти заміні UI запасним варіантом під час оновлення? {/*preventing-unwanted-fallbacks*/}
 
-Replacing visible UI with a fallback creates a jarring user experience. This can happen when an update causes a component to suspend, and the nearest Suspense boundary is already showing content to the user.
+Заміна видимого UI запасним варіантом спричиняє неприємний користувацький досвід. Це стається, коли оновлення спричиняє затримку компонента, а найближчий Suspense вже показує вміст користувачу.
 
-To prevent this from happening, [mark the update as non-urgent using `startTransition`](#preventing-already-revealed-content-from-hiding). During a Transition, React will wait until enough data has loaded to prevent an unwanted fallback from appearing:
+Щоб запобігти цьому, [відмітьте оновлення нетерміновим, використовуючи `startTransition`](#preventing-already-revealed-content-from-hiding). Під час переходу, React зачекає на завантаження даних, щоб запобігти відображенню небажаного запасного варіанту:
 
 ```js {2-3,5}
 function handleNextPageClick() {
-  // If this update suspends, don't hide the already displayed content
+  // Якщо це оновлення затримається, уже відображений вміст не буде сховано
   startTransition(() => {
     setCurrentPage(currentPage + 1);
   });
 }
 ```
 
-This will avoid hiding existing content. However, any newly rendered `Suspense` boundaries will still immediately display fallbacks to avoid blocking the UI and let the user see the content as it becomes available.
+Це допоможе уникнути приховання вже існуючого вмісту. Однак, будь-яка наново відрендерена межа `Suspense`, усе ще відображатиме запасний варіант, щоб уникнути блокування UI і дасть змогу користувачу бачити вміст як тільки він стане доступним.
 
-**React will only prevent unwanted fallbacks during non-urgent updates**. It will not delay a render if it's the result of an urgent update. You must opt in with an API like [`startTransition`](/reference/react/startTransition) or [`useDeferredValue`](/reference/react/useDeferredValue).
+**React запобігатиме небажаним запасним варіантам лише під час нетермінових оновлень**. Він не затримуватиме рендеринг, якщо це результат термінового оновлення. Ви повинні увімкнути це з API, наприклад, [`startTransition`](/reference/react/startTransition) або [`useDeferredValue`](/reference/react/useDeferredValue).
 
-If your router is integrated with Suspense, it should wrap its updates into [`startTransition`](/reference/react/startTransition) automatically.
+Якщо у ваш маршрутизатор інтегровано Suspense, він повинен огортати оновлення у [`startTransition`](/reference/react/startTransition) автоматично.
