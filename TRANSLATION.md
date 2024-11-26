@@ -134,7 +134,7 @@
 | error boundary | запобіжник |
 | error log | лог помилок |
 | event handler | обробник події |
-| fallback | запасний |
+| fallback | запасний варіант |
 | feature | особливість |
 | framework | фреймворк |
 | function component | функційний компонент |
