@@ -17,7 +17,7 @@ Additions since this post was originally shared with the React 19 RC in April:
 - **Pre-warming for suspended trees**: see [Improvements to Suspense](/blog/2024/04/25/react-19-upgrade-guide#improvements-to-suspense).
 - **React DOM static APIs**: see [New React DOM Static APIs](#new-react-dom-static-apis).
 
-_The date for this post has been update to reflect the stable release date._
+_The date for this post has been updated to reflect the stable release date._
 
 </Note>
 
@@ -362,7 +362,7 @@ React 19 includes all of the React Server Components features included from the 
 
 #### How do I build support for Server Components? {/*how-do-i-build-support-for-server-components*/}
 
-While React Server Components in React 19 are stable and will not break between major versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
+While React Server Components in React 19 are stable and will not break between minor versions, the underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. 
 
 To support React Server Components as a bundler or framework, we recommend pinning to a specific React version, or using the Canary release. We will continue working with bundlers and frameworks to stabilize the APIs used to implement React Server Components in the future.
 
