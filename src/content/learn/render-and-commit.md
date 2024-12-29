@@ -55,7 +55,7 @@ export default function Image() {
   return (
     <img
       src="https://i.imgur.com/ZF6s192.jpg"
-      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+      alt="'Рід квіткові' ('Floralis Genérica') — Едуардо Каталано (Eduardo Catalano): велетенська металева скульптура квітки зі світловідбивними пелюстками"
     />
   );
 }
@@ -92,7 +92,7 @@ export default function Image() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Inspiring Sculptures</h1>
+      <h1>Скульптури, що надихають</h1>
       <Image />
       <Image />
       <Image />
@@ -104,7 +104,7 @@ function Image() {
   return (
     <img
       src="https://i.imgur.com/ZF6s192.jpg"
-      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+      alt="'Рід квіткові' ('Floralis Genérica') — Едуардо Каталано (Eduardo Catalano): велетенська металева скульптура квітки зі світловідбивними пелюстками"
     />
   );
 }
