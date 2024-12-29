@@ -24,7 +24,7 @@ title: Рендер і фіксація
 3. **Фіксація** у DOM (розміщення замовлення на столі)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Виклик" alt="React як офіціант у ресторані, що збирає замовлення від клієнтів і передає їх до Кухні компонентів." src="/images/docs/illustrations/i_render-and-commit1.png" />
   <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
   <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
