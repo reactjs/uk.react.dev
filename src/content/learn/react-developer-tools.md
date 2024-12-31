@@ -54,11 +54,7 @@ react-devtools
 
 ## Мобільний застосунок (React Native) {/*mobile-react-native*/}
 
-<<<<<<< HEAD
-Для інспектування застосунків, створених за допомогою [React Native](https://reactnative.dev/), можна використовувати [інструменти розробника React Native](https://reactnative.dev/docs/debugging/react-native-devtools) — вбудований налагоджувач, який глибоко інтегрує інструменти розробника React. Усі функції працюють так само, як у розширенні браузера, включно з підсвічуванням та виділенням нативних елементів.
-=======
-To inspect apps built with [React Native](https://reactnative.dev/), you can use [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.
->>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
+Для інспектування застосунків, створених за допомогою [React Native](https://reactnative.dev/), можна використовувати [інструменти розробника React Native](https://reactnative.dev/docs/react-native-devtools) — вбудований налагоджувач, який глибоко інтегрує інструменти розробника React. Усі функції працюють так само, як у розширенні браузера, включно з підсвічуванням та виділенням нативних елементів.
 
 [Дізнатися більше про налагодження React Native.](https://reactnative.dev/docs/debugging)
 
