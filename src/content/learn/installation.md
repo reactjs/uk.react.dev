@@ -11,7 +11,7 @@ title: Встановлення
 <YouWillLearn isChapter={true}>
 
 * [Як почати новий React-проєкт](/learn/start-a-new-react-project)
-* [Як інтегрувати React в існуючий проєкт](/learn/add-react-to-an-existing-project)
+* [Як інтегрувати React у наявний проєкт](/learn/add-react-to-an-existing-project)
 * [Як налаштувати редактор коду](/learn/editor-setup)
 * [Як встановити інструменти React розробника](/learn/react-developer-tools)
 
@@ -47,9 +47,9 @@ export default function App() {
 
 Якщо ви хочете створити застосунок або вебсайт за допомогою React, [почніть новий React-проєкт.](/learn/start-a-new-react-project)
 
-## Інтегрувати React в існуючий проєкт {/*add-react-to-an-existing-project*/}
+## Інтегрувати React у наявний проєкт {/*add-react-to-an-existing-project*/}
 
-Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React в існуючий проєкт.](/learn/add-react-to-an-existing-project)
+Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React у наявний проєкт.](/learn/add-react-to-an-existing-project)
 
 ## Подальші кроки {/*next-steps*/}
 
