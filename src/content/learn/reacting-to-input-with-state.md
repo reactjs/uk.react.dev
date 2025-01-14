@@ -81,7 +81,7 @@ function disable(el) {
 }
 
 function submitForm(answer) {
-  // Зробімо вигляд, що тут відбувається мережевий запит.
+  // Удаймо, що тут відбувається мережевий запит.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (answer.toLowerCase() === 'стамбул') {
