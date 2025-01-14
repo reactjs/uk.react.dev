@@ -139,7 +139,7 @@
       "tags": ["intermediate"],
       "routes": [
         {
-          "title": "Reacting to Input with State",
+          "title": "Реагування станом на введення",
           "path": "/learn/reacting-to-input-with-state"
         },
         {
