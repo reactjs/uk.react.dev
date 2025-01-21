@@ -57,12 +57,13 @@ npm install react react-dom
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
   <body>
     <!-- Контент вашої сторінки (у цьому прикладі він заміняється) -->
+    <div id="root"></div>
   </body>
 </html>
 ```
@@ -119,7 +120,7 @@ root.render(<h1>Hello, world</h1>);
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>My app</title></head>
