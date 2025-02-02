@@ -211,11 +211,11 @@ ul, li { margin: 0; padding: 0; }
 
 Наприклад, `TaskApp` передає перелік завдань і обробники подій компоненту `TaskList`:
 
-```jsx
-<TaskList tasks={tasks} dispatch={dispatch} />
 ```js
 <TaskList
-  tasks={tasks} onChangeTask={handleChangeTask} onDeleteTask={handleDeleteTask}
+  tasks={tasks}
+  onChangeTask={handleChangeTask}
+  onDeleteTask={handleDeleteTask}
 />
 ```
 
