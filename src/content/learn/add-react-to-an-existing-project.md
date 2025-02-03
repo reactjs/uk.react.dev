@@ -45,7 +45,11 @@ title: Інтеграція React у наявний проєкт
 
 * **Якщо ваш застосунок вже розділений на файли, які використовують вираз `import`,** спробуйте використовувати ті налаштування, які у вас вже є. Перевірте, чи написання `<div />` у вашому JS-коді спричиняє синтаксичну помилку. Якщо це так, ймовірно, вам потрібно [трансформувати ваш JavaScript-код, використовуючи Babel](https://babeljs.io/setup), і включити [попереднє налаштування Babel React](https://babeljs.io/docs/babel-preset-react), щоб користуватися JSX.
 
+<<<<<<< HEAD
 * **Якщо ваш застосунок не налаштований, щоб компілювати JavaScript-модулі,** налаштуйте його за допомогою [Vite](https://vitejs.dev/). Спільнота Vite підтримує [багато інтеграцій із фреймворками для сервера](https://github.com/vitejs/awesome-vite#integrations-with-backends), включно з Rails, Django і Laravel. Якщо вашого серверного фреймворку немає у списку, [дотримуйтеся цього посібника](https://vitejs.dev/guide/backend-integration.html), щоб із ним вручну інтегрувати Vite-збірку.
+=======
+* **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vite.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vite.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 Щоб перевірити, що ваше налаштування працює, виконайте цю команду з директорії проєкту:
 
@@ -85,7 +89,11 @@ root.render(<h1>Hello, world</h1>);
 
 <Note>
 
+<<<<<<< HEAD
 Перша інтеграція модульного середовища JavaScript у наявний проєкт може лякати, але це того варте! Якщо ви застрягли, спробуйте скористатися [ресурсами нашої спільноти](/community) або [чатом Vite](https://chat.vitejs.dev/).
+=======
+Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vite.dev/).
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 </Note>
 
