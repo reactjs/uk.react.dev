@@ -4,7 +4,7 @@ title: Спільний доступ до стану між компонента
 
 <Intro>
 
-Інколи ви хочете, щоб стан двох компонентів завжди змінювався разом. Щоб так зробити, видаліть стан з обох компонентів, перенесіть його до їхнього найближчого спільного батька та потім передайте його вниз до них завдяки пропсам. Це відоме як *підняття стану вгору* і це одна з найпоширеніших речей, які ви будете робити під час написання React коду.  
+Інколи ви хочете, щоб стан двох компонент завжди змінювався разом. Щоб так зробити, видаліть стан з обох компонент, перенесіть його до їхнього найближчого спільного батька та потім передайте його вниз до них завдяки пропсам. Це відоме як *підняття стану вгору* і це одна з найпоширеніших речей, які ви будете робити під час написання React коду.  
 
 </Intro>
 
@@ -17,13 +17,13 @@ title: Спільний доступ до стану між компонента
 
 ## Підняття стану на прикладі {/*lifting-state-up-by-example*/}
 
-В цьому прикладі, батьківський `Accordion` компонента рендерить дві окремі `Panel`і:
+В цьому прикладі, батьківський `Accordion` компонент рендерить дві окремі `Panel`і:
 
 * `Accordion`
   - `Panel`
   - `Panel`
 
-Кожна `Panel` компонента має булевий `isActive` стан, що визначає чи її вміст видимий. 
+Кожний `Panel` компонент має булевий `isActive` стан, що визначає чи її вміст видимий. 
 
 Натисніть кнопку Показати для обох панелей: 
 
@@ -73,33 +73,33 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Notice how pressing one panel's button does not affect the other panel--they are independent.
+Зверніть увагу, що натискання кнопки однієї панелі не впливає на іншу панель--вони незалежні.
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+<Diagram name="sharing_state_child" height={367} width={477} alt="Діаграма показує дерево з трьох компонент, один батько з назвою Accordion і два дочірні компоненти з назвами Panel. Обидва компоненти Panel містять isActive зі значенням false.">
 
-Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
+Спочатку стан `isActive` кожної `Panel` дорівнює `false`, тому вони обидві виглядають згорнутими
 
 </Diagram>
 
-<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="Та сама діаграма, що й попередня, з виділеним isActive першого дочірнього компонента Panel, що вказує на клік зі значенням isActive, встановленим у true. Другий компонент Panel все ще містить значення false." >
 
-Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone
+Натискання на будь-яку з кнопок `Panel` призведе до оновлення стану `isActive` тільки цієї `Panel`.
 
 </Diagram>
 
 </DiagramGroup>
 
-**But now let's say you want to change it so that only one panel is expanded at any given time.** With that design, expanding the second panel should collapse the first one. How would you do that?
+**Але тепер припустимо, що ви хочете змінити це так, щоб тільки одна панель була розгорнути в будь-який момент часу.** При такому дизайні, розгортання другої панелі повинно згорнути першу. Як би ви це зробили?
 
-To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
+Щоб скоординувати ці дві панелі, вам потрібно "підняти їхній стан вгору" до батьківського компонента в три кроки:
 
-1. **Remove** state from the child components.
-2. **Pass** hardcoded data from the common parent.
-3. **Add** state to the common parent and pass it down together with the event handlers.
+1. **Видалити** стан із дочірніх компонент.
+2. **Передати** незмінні дані від спільного батька.
+3. **Додати** стан до спільного батька і передати його вниз разом з обробниками подій.
 
-This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
+Це дозволить компоненту `Accordion`скоординувати обидві `Panel` і розгортати тільки одну на раз.
 
 ### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
 
