@@ -1,31 +1,31 @@
 ---
-title: Sharing State Between Components
+title: Спільний доступ до стану між компонентами
 ---
 
 <Intro>
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
+Інколи ви хочете, щоб стан двох компонентів завжди змінювався разом. Щоб так зробити, видаліть стан з обох компонентів, перенесіть його до їхнього найближчого спільного батька та потім передайте його вниз до них завдяки пропсам. Це відоме як *підняття стану вгору* і це одна з найпоширеніших речей, які ви будете робити під час написання React коду.  
 
 </Intro>
 
 <YouWillLearn>
 
-- How to share state between components by lifting it up
-- What are controlled and uncontrolled components
+- Як поширювати стан між компонент підняттям його вгору
+- Що таке контрольовані та не контрольовані компоненти
 
 </YouWillLearn>
 
-## Lifting state up by example {/*lifting-state-up-by-example*/}
+## Підняття стану на прикладі {/*lifting-state-up-by-example*/}
 
-In this example, a parent `Accordion` component renders two separate `Panel`s:
+В цьому прикладі, батьківський `Accordion` компонента рендерить дві окремі `Panel`і:
 
 * `Accordion`
   - `Panel`
   - `Panel`
 
-Each `Panel` component has a boolean `isActive` state that determines whether its content is visible.
+Кожна `Panel` компонента має булевий `isActive` стан, що визначає чи її вміст видимий. 
 
-Press the Show button for both panels:
+Натисніть кнопку Показати для обох панелей: 
 
 <Sandpack>
 
@@ -41,7 +41,7 @@ function Panel({ title, children }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Показати
         </button>
       )}
     </section>
@@ -51,12 +51,12 @@ function Panel({ title, children }) {
 export default function Accordion() {
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About">
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+      <h2>Алмати, Казахстан</h2>
+      <Panel title="Про Алмати">
+        Із населенням близько 2 мільйонів, Алмати є найбільшим містом в Казахстані. З 1929 по 1997, воно було його столицею.
       </Panel>
-      <Panel title="Etymology">
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+      <Panel title="Етимологія">
+        Назва походить від казахського слова <span lang="kk-KZ">алма</span>, що означає "яблуко" і часто перекладалось як "повний яблук". Насправді, регіон що оточує Алмати вважається прабатьківщиною яблука, і дика <i lang="la">Malus sieversii</i> вважається ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
   );
