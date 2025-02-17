@@ -125,7 +125,7 @@
 | development | розробка |
 | development mode | режим розробки |
 | developer tools | інструменти розробника |
-| React developer tools | інструменти React розробника |
+| React developer tools | інструменти розробника React |
 | DOM container | DOM-контейнер |
 | effect | ефект |
 | encapsulation | інкапсуляція |
