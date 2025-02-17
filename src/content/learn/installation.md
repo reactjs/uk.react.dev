@@ -32,25 +32,25 @@ export default function App() {
 
 Щоб спробувати React локально на вашому комп'ютері, [завантажте цю HTML-сторінку.](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) Відкрийте її у редакторі та браузері!
 
-## Початок React-проєкту {/*creating-a-react-app*/}
+## Створення React-застосунку {/*creating-a-react-app*/}
 
-Якщо ви хочете створити застосунок за допомогою React, [почніть React-проєкт](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
+Якщо ви хочете почати проєкт за допомогою React, [створіть React-застосунок](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
 
-## Build a React Framework {/*build-a-react-framework*/}
+## Побудова React-фреймворку {/*build-a-react-framework*/}
 
-If a framework is not a good fit for your project, or you prefer to start by building your own framework, you can [build your own React framework](/learn/building-a-react-framework).
+Якщо фреймворк не годиться для вашого проєкту або ви бажаєте почати із самостійного створення його структури, [побудуйте власний React-фреймворк](/learn/building-a-react-framework).
 
 ## Інтегрувати React у наявний проєкт {/*add-react-to-an-existing-project*/}
 
 Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React у наявний проєкт.](/learn/add-react-to-an-existing-project)
 
-## Deprecated Options {/*deprecated-options*/}
+## Застарілі варіанти {/*deprecated-options*/}
 
 ### Create React App (Deprecated) {/*create-react-app-deprecated*/}
 
-Create React App is a deprecated tool, previously recommended for creating new React apps. If you want to start a new React app, you can [create a React app](/learn/creating-a-react-app) using a recommended framework. 
+Create React App — це застарілий інструмент, який раніше рекомендувався для створення нових React-застосунків. Якщо ви хочете почати новий проєкт за допомогою React, ви можете [створити React-застосунок](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
 
-For more information, see [Sunsetting Create React App](/blog/2025/02/14/sunsetting-create-react-app).
+Дізнайтеся більше у статті ["Sunsetting Create React App"](/blog/2025/02/14/sunsetting-create-react-app).
 
 ## Подальші кроки {/*next-steps*/}
 
