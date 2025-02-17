@@ -25,17 +25,12 @@
       "path": "/learn/installation",
       "routes": [
         {
-<<<<<<< HEAD
-          "title": "Початок нового React-проєкту",
-          "path": "/learn/start-a-new-react-project"
-=======
           "title": "Creating a React App",
           "path": "/learn/creating-a-react-app"
         },
         {
           "title": "Building a React Framework",
           "path": "/learn/building-a-react-framework"
->>>>>>> 49284218b1f5c94f930f8a9b305040dbe7d3dd48
         },
         {
           "title": "Інтеграція React у наявний проєкт",
