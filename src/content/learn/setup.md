@@ -1,32 +1,32 @@
 ---
-title: Setup
+title: Налаштування
 ---
 <Intro>
 
-React integrates with tools like editors, TypeScript, browser extensions, and compliers. This section will help you get your environment set up.
+React інтегрується з різними інструментами: редакторами, TypeScript, розширеннями браузера та компіляторами. Цей розділ допоможе вам налаштувати середовище.
 
 </Intro>
 
-## Editor Setup {/*editor-setup*/}
+## Налаштування редактора {/*editor-setup*/}
 
-See our [recommended editors](/learn/editor-setup) and learn how to set them up to work with React.
+Перегляньте [рекомендовані редактори](/learn/editor-setup) та дізнайтеся, як налаштувати їх для роботи з React.
 
-## Using TypeScript {/*using-typescript*/}
+## Використання TypeScript {/*using-typescript*/}
 
-TypeScript is a popular way to add type definitions to JavaScript codebases. [Learn how to integrate TypeScript into your React projects](/learn/typescript).
+TypeScript — це популярний спосіб додавати визначення типів до JavaScript-коду. [Дізнайтеся, як інтегрувати TypeScript у ваші React-проєкти](/learn/typescript).
 
-## React Developer Tools {/*react-developer-tools*/}
+## Інструменти розробника React {/*react-developer-tools*/}
 
-React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](learn/react-developer-tools).
+Інструменти розробника React (React Developer Tools) — це розширення для браузера, яке може інспектувати компоненти React, редагувати пропси та стан, а також виявляти проблеми продуктивності. Дізнайтеся, як його встановити, [тут](learn/react-developer-tools).
 
 ## React Compiler {/*react-compiler*/}
 
-React Compiler is a tool that automatically optimizes your React app. [Learn more](/learn/react-compiler).
+React Compiler — це інструмент, який автоматично оптимізує ваш React-застосунок. [Дізнатися більше](/learn/react-compiler).
 
 ## Start a React Project from scratch {/*start-a-react-project-from-scratch*/}
 
 If you want to build your own framework, you can [start a React project from scratch](/learn/start-a-react-project-from-scratch).
 
-## Next steps {/*next-steps*/}
+## Подальші кроки {/*next-steps*/}
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
+Відвідайте посібник [Швидкий старт](/learn), щоб ознайомитися з найважливішими концепціями React, з якими ви стикаєтесь щодня.
