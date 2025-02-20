@@ -1,90 +1,90 @@
 ---
-title: Creating a React App
+title: Створення React-застосунку
 ---
 
 <Intro>
 
-If you want to build a new app or website with React, we recommend starting with a framework.
+Якщо ви вирішили розробити новий застосунок або вебсайт за допомогою React, ми радимо вибрати один із фреймворків.
 
 </Intro>
 
-## Recommended React frameworks {/*bleeding-edge-react-frameworks*/}
+## Рекомендовані React-фреймворки {/*bleeding-edge-react-frameworks*/}
 
-These recommended frameworks support all the features you need to deploy and scale your app in production. They have integrated the latest React features and take advantage of React’s architecture.
+Ці фреймворки підтримують усі функції, що знадобляться для розгортання та масштабування застосунку в публічному середовищі (in production). Вони інтегрували останні React-функції й послуговуються перевагами архітектури React.
 
 <Note>
 
-#### React frameworks do not require a server. {/*react-frameworks-do-not-require-a-server*/}
+#### React-фреймворки не потребують сервера. {/*react-frameworks-do-not-require-a-server*/}
 
-All the frameworks on this page can create single-page apps. Single-page apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service and do not need a server. If you would like to enable features that require a server (like server side rendering), you can opt-in on individual routes without rewriting your app.
+Усі фреймворки на цій сторінці можуть створювати односторінкові застосунки (SPA). Їх можна розгортати через [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) або сервіс статичного хостингу та вони не потребують сервера. Якщо ви хочете використати функції, для яких потрібен сервер (наприклад, SSR — рендеринг із боку сервера), то можна ввімкнути окремі маршрути без переписування застосунку.
 
 </Note>
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
-**[Next.js's App Router](https://nextjs.org/docs) is a React framework that takes full advantage of React's architecture to enable full-stack React apps.**
+**[App Router від Next.js's](https://nextjs.org/docs) — це React-фреймворк, який повністю використовує переваги архітектури React, щоб уможливлювати React-застосунки повного стеку.**
 
 <TerminalBlock>
 npx create-next-app@latest
 </TerminalBlock>
 
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server. Vercel additionally provides opt-in paid cloud services.
+Next.js підтримується командою [Vercel](https://vercel.com/). [Розгорнути застосунок Next.js](https://nextjs.org/docs/app/building-your-application/deploying) можна на будь-якому Node.js- або безсерверному хостингу, а також на власному сервері. Також Next.js підтримує [статичне експортування](https://nextjs.org/docs/app/building-your-application/deploying/static-exports), якому не потрібен сервер. На додачу Vercel пропонує необов'язкові платні хмарні послуги.
 
 ### React Router (v7) {/*react-router-v7*/}
 
-**[React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework**. It emphasizes standard Web APIs and has several [ready to deploy templates](https://github.com/remix-run/react-router-templates) for various JavaScript runtimes and platforms.
+**[React Router](https://reactrouter.com/start/framework/installation) — це найпопулярніша бібліотека маршрутизації для React, яку можна поєднати з Vite для створення повноцінного React-фреймворку**. Він зосереджується на стандартних вебінтерфейсах і має кілька [готових до розгортання шаблонів](https://github.com/remix-run/react-router-templates) для різних середовищ і платформ JavaScript.
 
-To create a new React Router framework project, run:
+Щоб створити новий проєкт з допомогою фреймворку React Router, виконайте:
 
 <TerminalBlock>
 npx create-react-router@latest
 </TerminalBlock>
 
-React Router is maintained by [Shopify](https://www.shopify.com).
+React Router підтримується [компанією Shopify](https://www.shopify.com).
 
-### Expo (for native apps) {/*expo*/}
+### Expo (для нативних застосунків) {/*expo*/}
 
-**[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
+**[Expo](https://expo.dev/) — це React-фреймворк, що дає змогу створювати універсальні застосунки для Android, iOS і вебу з по-справжньому нативним UI.** Він пропонує набір інструментів для [React Native](https://reactnative.dev/), завдяки якому цими нативними частинами легше користуватися. Щоб створити новий проєкт Expo, виконайте:
 
 <TerminalBlock>
 npx create-expo-app@latest
 </TerminalBlock>
 
-If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutorial/introduction/).
+Якщо Expo — це для вас щось нове, перегляньте [підручник Expo](https://docs.expo.dev/tutorial/introduction/).
 
-Expo is maintained by [Expo (the company)](https://expo.dev/about). Building apps with Expo is free, and you can submit them to the Google and Apple app stores without restrictions. Expo additionally provides opt-in paid cloud services.
+Expo підтримується [компанією Expo](https://expo.dev/about). Розробляти застосунки за допомогою Expo можна безкоштовно, і їх можна подавати до каталогів застосунків Google і Apple без жодних обмежень. На додачу Expo пропонує необов'язкові платні хмарні послуги.
 
 
-## Other options {/*other-options*/}
+## Інші варіанти {/*other-options*/}
 
-There are other up-and-coming frameworks that are working towards our full stack React vision:
+Є й інші перспективні фреймворки, які працюють над нашим баченням повного стеку з React:
 
-- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
-- [RedwoodJS](https://redwoodjs.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
+- [TanStack Start (бета-версія)](https://tanstack.com/): TanStack Start — це React-фреймворк повного стеку на основі TanStack Router. Він надає повнодокументний SSR, потокове передавання, серверні функції, збирання тощо за допомогою інструментів як Nitro та Vite.
+- [RedwoodJS](https://redwoodjs.com/): Redwood — це React-фреймворк повного стеку із великою кількістю попередньо встановлених пакетів і налаштувань, що дає змогу легко створювати вебзастосунки повного стеку.
 
 <DeepDive>
 
-#### Which features make up the React team’s full-stack architecture vision? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
+#### З яких функцій складається бачення архітектури повного стеку від команди React? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive components in a single React tree.
+Бандлер App Router від Next.js повністю реалізує офіційну [специфікацію серверних компонентів React](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). Це дає змогу поєднувати компоненти, що виконуються під час збирання, ті, що працюють суто на сервері, та інтерактивні компоненти в єдине дерево React.
 
-For example, you can write a server-only React component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive components:
+Наприклад, можна написати суто серверний компонент React як `async` функцію, що зчитує дані з бази даних або з файлу. Потім можна передати дані до інтерактивних компонентів:
 
 ```js
-// This component runs *only* on the server (or during the build).
+// Цей компонент виконується *лише* на сервері (або під час збирання).
 async function Talks({ confId }) {
-  // 1. You're on the server, so you can talk to your data layer. API endpoint not required.
+  // 1. Ви на сервері, тож можете спілкуватися зі своїм шаром даних. Наявність API — необов'язкова.
   const talks = await db.Talks.findAll({ confId });
 
-  // 2. Add any amount of rendering logic. It won't make your JavaScript bundle larger.
+  // 2. Додавайте будь-яку кількість логіки рендерингу. Це не збільшить ваш бандл із JavaScript.
   const videos = talks.map(talk => talk.video);
 
-  // 3. Pass the data down to the components that will run in the browser.
+  // 3. Передайте дані до компонентів, що виконаються в браузері.
   return <SearchableVideoList videos={videos} />;
 }
 ```
 
-Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). This lets you specify a loading state (like a skeleton placeholder) for different parts of your user interface directly in your React tree:
+App Router від Next.js також інтегрує [отримання даних із Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). Це дає змогу задати стан завантаження (наприклад, каркасний елемент для заповнення (skeleton placeholder)) для різних частин інтерфейсу безпосередньо в дереві React:
 
 ```js
 <Suspense fallback={<TalksLoading />}>
@@ -92,25 +92,25 @@ Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03
 </Suspense>
 ```
 
-Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
+Серверні компоненти та Suspense — це радше функції React, аніж Next.js. Проте їхнє залучення на рівні фреймворку вимагає нетривіальних зусиль для реалізації та підтримування. Наразі App Router від Next.js — це найповніша імплементація. Команда React працює разом із розробниками бандлерів, щоб було легше реалізувати ці функції в наступному поколінні фреймворків.
 
 </DeepDive>
 
 <Note>
 
 
-#### Do you recommend Vite? {/*do-you-recommend-vite*/}
+#### Чи рекомендуєте Vite? {/*do-you-recommend-vite*/}
 
-We provide several Vite-based recommendations.
+Ми пропонуємо кілька рекомендацій для Vite.
 
-React Router v7 is a Vite based framework which allows you to use Vite's fast development server and build tooling with a framework that provides routing and data fetching. Just like the other frameworks we recommend, you can build a SPA with React Router v7.
+React Router v7 — це фреймворк на основі Vite, який дає вам змогу використовувати швидкий сервер розробки Vite та налаштувати все за допомогою фреймворку, який забезпечує маршрутизацію та отримання даних. Як і в інших фреймворках, які ми рекомендуємо, ви можете створити SPA за допомогою React Router v7.
 
-We also recommend using Vite when [adding React to an existing project](/learn/add-react-to-an-existing-project), or [building a framework](/learn/building-a-react-framework).
+Ми також рекомендуємо використовувати Vite під час [додавання React до наявного проєкту](/learn/add-react-to-an-existing-project) або [побудови фреймворку](/learn/building-a-react-framework).
 
-Just like Svelte has Sveltekit, Vue has Nuxt, and Solid has SolidStart, React recommends using a framework that integrates with build tools like Vite for new projects.
+Подібно до того, як у Svelte є Sveltekit, у Vue — Nuxt, а у Solid — SolidStart, React рекомендує використовувати для нових проєктів фреймворк, який легко інтегрується з інструментами збірки, як-от Vite.
 
 </Note>
 
 -----
 
-_If you’re a framework author interested in being included on this page, [please let us know](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
+_Якщо ви автор фреймворку та бажаєте додати його на цю сторінку, [будь ласка, напишіть нам](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
