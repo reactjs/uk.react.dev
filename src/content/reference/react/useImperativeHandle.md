@@ -4,7 +4,7 @@ title: useImperativeHandle
 
 <Intro>
 
-`useImperativeHandle` це хук, який дозволяє кастомізувати об’єкт, який повертається через [реф.](/learn/manipulating-the-dom-with-refs)
+`useImperativeHandle` це хук, який дозволяє кастомізувати об'єкт, який повертається через [реф.](/learn/manipulating-the-dom-with-refs)
 
 ```js
 useImperativeHandle(ref, createHandle, dependencies?)
@@ -16,7 +16,7 @@ useImperativeHandle(ref, createHandle, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Опис {/*reference*/}
 
 ### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
 
@@ -40,27 +40,27 @@ function MyInput({ ref }) {
 
 * `ref`: `Реф`, який ви отримали як проп у компоненті `MyInput`.
 
-* `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. That ref handle can have any type. Usually, you will return an object with the methods you want to expose.
+* `createHandle`: Функція, яка не приймає аргументів і повертає об'єкт посилання, який ви хочете надати. Цей об’єкт може бути будь-якого типу. Зазвичай, ви повертатимете об'єкт з методами, які ви захочете використовувати.
 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If a re-render resulted in a change to some dependency, or if you omitted this argument, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
+* **Опціональний параметр** `dependencies`: Список усіх реактивних значень, на які посилається код `createHandle`. Реактивні значення включають в себе пропси, стан та всі змінні та функції, оголошені безпосередньо в тілі компонента. Якщо ваш лінтер [налаштований для Реакту](/learn/editor-setup#linting), він перевірить, чи кожне реактивне значення вказане як залежність. Список залежностей повинен містити стале число елементів, записаних в рядок як `[залежність1, залежність2, залежність3]`. Реакт порівняє кожну залежність із своїм попереднім значенням використовуючи порівняння [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Якщо повторний рендер призвів до зміни однієї із залежностей або якщо ви пропустили даний аргумент, ваша `createHandle` функція буде виконана повторно і новостворений об'єкт посилання буде призначений до рефу.
 
 <Note>
 
-Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef) 
+Починаючи з React 19 [`реф` доступний як проп.](/blog/2024/12/05/react-19#ref-as-a-prop) У React 18 і старіших версіях необхідно було отримувати `реф` з [`forwardRef`.](/reference/react/forwardRef)
 
 </Note>
 
-#### Returns {/*returns*/}
+#### Результат {/*returns*/}
 
-`useImperativeHandle` returns `undefined`.
+`useImperativeHandle` повертає `undefined`.
 
 ---
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
-### Exposing a custom ref handle to the parent component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
+### Надання кастомного об'єкта посилання батьківському компоненту {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-To expose a DOM node to the parent element, pass in the `ref` prop to the node.
+Щоб надати DOM-вузол батьківському елементу, передайте проп ref до цього вузла.
 
 ```js {2}
 function MyInput({ ref }) {
@@ -68,7 +68,7 @@ function MyInput({ ref }) {
 };
 ```
 
-With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/learn/manipulating-the-dom-with-refs) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
+У коді вище [посилання до `MyInput` отримає DOM вузол `<input>`.](/learn/manipulating-the-dom-with-refs) Однак, замість цього ви можете передати кастомне значення. Щоб кастомізувати наданий об'єкт посилання, викличте `useImperativeHandle` на верхньому рівні вашого компонента:
 
 ```js {4-8}
 import { useImperativeHandle } from 'react';
@@ -76,7 +76,7 @@ import { useImperativeHandle } from 'react';
 function MyInput({ ref }) {
   useImperativeHandle(ref, () => {
     return {
-      // ... your methods ...
+      // ... ваші методи ...
     };
   }, []);
 
@@ -84,7 +84,7 @@ function MyInput({ ref }) {
 };
 ```
 
-Note that in the code above, the `ref` is no longer passed to the `<input>`.
+Зверніть увагу, що в наданому вище коді `реф` більше не передається до `<input>`.
 
 For example, suppose you don't want to expose the entire `<input>` DOM node, but you want to expose two of its methods: `focus` and `scrollIntoView`. To do this, keep the real browser DOM in a separate ref. Then use `useImperativeHandle` to expose a handle with only the methods that you want the parent component to call:
 
