@@ -4,7 +4,7 @@ title: useImperativeHandle
 
 <Intro>
 
-`useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](/learn/manipulating-the-dom-with-refs)
+`useImperativeHandle` це хук, який дозволяє кастомізувати об’єкт, який повертається через [реф.](/learn/manipulating-the-dom-with-refs)
 
 ```js
 useImperativeHandle(ref, createHandle, dependencies?)
@@ -20,7 +20,7 @@ useImperativeHandle(ref, createHandle, dependencies?)
 
 ### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
 
-Call `useImperativeHandle` at the top level of your component to customize the ref handle it exposes:
+Викличте `useImperativeHandle` на верхньому рівні вашого компонента, щоб кастомізувати об'єкт посилання, який повертає реф:
 
 ```js
 import { useImperativeHandle } from 'react';
@@ -28,17 +28,17 @@ import { useImperativeHandle } from 'react';
 function MyInput({ ref }) {
   useImperativeHandle(ref, () => {
     return {
-      // ... your methods ...
+      // ... ваші методи ...
     };
   }, []);
   // ...
 ```
 
-[See more examples below.](#usage)
+[Перегляньте більше прикладів нижче.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Параметри {/*parameters*/}
 
-* `ref`: The `ref` you received as a prop to the `MyInput` component.
+* `ref`: `Реф`, який ви отримали як проп у компоненті `MyInput`.
 
 * `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. That ref handle can have any type. Usually, you will return an object with the methods you want to expose.
 
