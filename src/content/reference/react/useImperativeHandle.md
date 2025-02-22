@@ -86,7 +86,7 @@ function MyInput({ ref }) {
 
 Зверніть увагу, що в наданому вище коді `реф` більше не передається до `<input>`.
 
-For example, suppose you don't want to expose the entire `<input>` DOM node, but you want to expose two of its methods: `focus` and `scrollIntoView`. To do this, keep the real browser DOM in a separate ref. Then use `useImperativeHandle` to expose a handle with only the methods that you want the parent component to call:
+Наприклад, припустимо, ви не хочете використовувати весь вузол DOM `<input>`, а лише два його методи: `focus` і `scrollIntoView`. Щоб зробити це, зберігайте справжній браузерний DOM у окремому посиланні. Потім викличте `useImperativeHandle` щоб повернути об'єкт, який містить лише ті методи, які ви хочете, щоб батьківський компонент викликав:
 
 ```js {7-14}
 import { useRef, useImperativeHandle } from 'react';
@@ -109,7 +109,7 @@ function MyInput({ ref }) {
 };
 ```
 
-Now, if the parent component gets a ref to `MyInput`, it will be able to call the `focus` and `scrollIntoView` methods on it. However, it will not have full access to the underlying `<input>` DOM node.
+Тепер, якщо батьківський компонент передасть реф до `MyInput`, він буде здатний викликати методи `focus` і `scrollIntoView` в компоненті. Однак, він не буде мати повного доступу до DOM вузла `<input>`.
 
 <Sandpack>
 
@@ -122,7 +122,7 @@ export default function Form() {
 
   function handleClick() {
     ref.current.focus();
-    // This won't work because the DOM node isn't exposed:
+    // Це не спрацює, бо вузол DOM не був представлений:
     // ref.current.style.opacity = 0.5;
   }
 
@@ -170,9 +170,9 @@ input {
 
 ---
 
-### Exposing your own imperative methods {/*exposing-your-own-imperative-methods*/}
+### Передавання власних імперативних методів {/*exposing-your-own-imperative-methods*/}
 
-The methods you expose via an imperative handle don't have to match the DOM methods exactly. For example, this `Post` component exposes a `scrollAndFocusAddComment` method via an imperative handle. This lets the parent `Page` scroll the list of comments *and* focus the input field when you click the button:
+Методи, які ви передаєте через імперативний обробник не обов'язково мають точно відповідати DOM методам. Наприклад, даний компонент `Post` передає метод `scrollAndFocusAddComment` через імперативний обробник. Це дозволяє батьківському компоненту `Page` гортати список коментарів *і* фокусуватись на полі введення, коли ви натискаєте кнопку:
 
 <Sandpack>
 
@@ -285,8 +285,8 @@ export default AddComment;
 
 <Pitfall>
 
-**Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
+**Не зловживайте рефами.** Використовуйте рефи лише для *імперативної* поведінки, яку ви не можете виразити через пропси: наприклад, пролистування до вузла DOM, фокусування на вузлі, виклик анімації, виділення тексту тощо.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**Якщо ви можете виразити щось як проп, тоді не варто використовувати реф.** Наприклад, замість передачі імперативного обробника у вигляді `{ open, close }` з компоненту `Modal`, кращим підходом буде використати проп `isOpen` у такому вигляді `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) може допомогти вам задавати імперативну поведінку через пропси.
 
 </Pitfall>
