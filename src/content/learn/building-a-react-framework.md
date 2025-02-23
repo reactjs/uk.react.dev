@@ -1,137 +1,137 @@
 ---
-title: Building a React Framework
+title: Побудова React-фреймворку
 ---
 
 <Intro>
 
-If your app has constraints not well-served by existing frameworks, or you prefer to solve these problems yourself, you can build your own framework.
+Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви хочете розв'язувати усі проблеми самотужки, то можете збудувати власний фреймворк.
 
 </Intro>
 
 <Note>
 
-### Consider using an existing framework {/*you-should-probably-use-a-framework*/}
+### Зважте використання наявного фреймворку {/*you-should-probably-use-a-framework*/}
 
-Building a framework is complex and requires extensive expertise across various domains. This complexity is not limited to React — it is a widespread challenge encountered by all UI libraries. Using an existing framework can save significant time and effort by allowing you to focus on building your application. Existing frameworks have tested, robust features and community support.
+Побудова фреймворку є комплексною і вимагає неабиякого досвіду в різних сферах. Ця складність не тільки в React — це поширена проблема, з якою стикаються всі UI-бібліотеки. Використання наявного фреймворку може значно заощадити час і зусилля, даючи змогу зосередитися саме на побудові застосунку. Наявні фреймворки мають перевірені й надійні функції та підтримку спільноти.
 
-For a list of recommended frameworks, check out [Creating a React App](/learn/creating-a-react-app).
+Щоб отримати список рекомендованих фреймворків, перегляньте розділ ["Створення React-застосунку"](/learn/creating-a-react-app).
 
 </Note>
 
-Building a framework is a large undertaking that often requires expertise in many different areas. Understanding your goals and requirements before starting to build your own framework can help guide your development process and save a considerable amount of time.
+Побудова фреймворку — це чимале зобов'язання, яке часто потребує досвіду в багатьох різних сферах. Розуміння ваших цілей і вимог перед початком створення власного фреймворку може допомогти вам скерувати процес розробки та заощадити велику кількість часу.
 
-For example, if you need to build a framework that integrates with a specific system or infrastructure, it's important to understand the features and limitations of those systems. Understanding your constraints can help guide your framework development process. 
+Наприклад, якщо вам треба побудувати фреймворк, який інтегрується з певною системою чи інфраструктурою, важливо розуміти функції та межі цих систем. Усвідомлення їхніх обмежень допоможе керувати процесом розробки фреймворку.
 
-If you are building your own framework to learn, using popular tools like Vite and React Router can be a good starting point and let you focus on how to combine different tools to build a framework.
+Якщо ви створюєте власний фреймворк для навчання, то використання популярних інструментів, як-от Vite і React Router, стане гарним початком і дасть вам змогу зосередитися на тому, як комбінувати різні інструменти для побудови фреймворку.
 
-## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
+## Крок 1: Установіть інструмент збирання {/*step-1-install-a-build-tool*/}
 
-The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
+Першим кроком є ​​встановлення інструменту збирання, наприклад, `vite`, `parcel` або `rsbuild`. Вони надають функції для пакування та виконання вихідного коду, сервер для локальної розробки та команду збирання, щоб розгорнути застосунок на робочому сервері.
 
 ### Vite {/*vite*/}
 
-[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
+[Vite](https://vite.dev/) — це інструмент збирання, який має на меті забезпечити швидшу та ефективнішу розробку сучасних вебпроєктів.
 
 <TerminalBlock>
 npm create vite@latest my-app -- --template react
 </TerminalBlock>
 
-Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.
+Vite є досить розсудливим і постачається відразу з виваженими початковими налаштуваннями. Він має багату екосистему плагінів для підтримування швидкого оновлення, JSX, Babel/SWC та інших поширених функцій. Найперше перегляньте [плагін React](https://vite.dev/plugins/#vitejs-plugin-react) або [плагін React SWC](https://vite.dev/plugins/#vitejs-plugin-react-swc) і [приклад проєкту з React SSR](https://vite.dev/guide/ssr.html#example-projects).
 
-Vite is already being used as a build tool in one of our [recommended frameworks](/learn/creating-a-react-app): [React Router](https://reactrouter.com/start/framework/installation).
+Vite вже використовується як інструмент збирання в одному з наших [рекомендованих фреймворків](/learn/creating-a-react-app) — [React Router](https://reactrouter.com/start/framework/installation).
 
 ### Parcel {/*parcel*/}
 
-[Parcel](https://parceljs.org/) combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production applications.
+[Parcel](https://parceljs.org/) поєднує в собі чудовий досвід розробки без додаткових налаштувань із масштабованою архітектурою, що може привести ваш проєкт на самому початку до великого та готового до впровадження застосунку.
 
 <TerminalBlock>
 npm install --save-dev parcel
 </TerminalBlock>
 
-Parcel supports fast refresh, JSX, TypeScript, Flow, and styling out of the box. See [Parcel's React recipe](https://parceljs.org/recipes/react/#getting-started) to get started.
+Parcel відразу підтримує швидке оновлення, JSX, TypeScript, Flow і стилізацію. Найперше перегляньте [рецепт React від Parcel](https://parceljs.org/recipes/react/#getting-started).
 
 ### Rsbuild {/*rsbuild*/}
 
-[Rsbuild](https://rsbuild.dev/) is an Rspack-powered build tool that provides a seamless development experience for React applications. It comes with carefully tuned defaults and performance optimizations ready to use.
+[Rsbuild](https://rsbuild.dev/) — це інструмент збирання на основі Rspack, який забезпечує безшовну розробку React-застосунків. Він постачається з ретельно налаштованими початковими параметрами й оптимізаціями швидкодії, готовими до використання.
 
 <TerminalBlock>
 npx create-rsbuild --template react
 </TerminalBlock>
 
-Rsbuild includes built-in support for React features like fast refresh, JSX, TypeScript, and styling. See [Rsbuild's React guide](https://rsbuild.dev/guide/framework/react) to get started.
+Rsbuild відразу підтримує такі функції React, як швидке оновлення, JSX, TypeScript і стилізація. Найперше перегляньте [посібник React від Rsbuild](https://rsbuild.dev/guide/framework/react).
 
 <Note>
 
-#### Metro for React Native {/*react-native*/}
+#### Metro для React Native {/*react-native*/}
 
-If you'd like your framework to support React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to Vite or Parcel. We recommend starting with Vite or Parcel unless your project requires React Native support.
+Якщо ви хочете, щоб ваш фреймворк підтримував React Native, вам потрібно буде використовувати [Metro](https://metrobundler.dev/) — бандлер JavaScript для React Native. Metro створює бандли для iOS та Android, але йому бракує багатьох функцій, як порівняти з Vite або Parcel. Ми рекомендуємо почати з Vite або Parcel, якщо ваш проєкт не вимагає підтримування React Native.
 
 </Note>
 
-## Step 2: Build your framework {/*step-2-build-your-framework*/}
+## Крок 2: Збудуйте власний фреймворк {/*step-2-build-your-framework*/}
 
-The build tool you select starts with a client-only, single-page app (SPA). While SPAs can be a good place to start, many SPAs will encounter problems as they grow. Frameworks can provide the scaffolding to solve these problems. Most frameworks will implement routing, code-splitting, different rendering strategies, and data-fetching. These features are interconnected. For example, if you use a router that only works on the client it could prevent you from implementing server-side rendering. The best frameworks provide a cohesive, consistent experience across these features for developers and users.
+Інструмент збирання, який ви вибрали, починається з клієнтського односторінкового застосунку (SPA). Хоч SPA можуть бути гарними для початку, багато з них зіткнуться з проблемами, коли розростуться. Фреймворки можуть надати риштування для вирішення цих проблем. Більшість із них реалізують маршрутизацію (routing), розділення коду (code-splitting), різні стратегії рендерингу та отримання даних (data-fetching). Ці функції взаємопов'язані. Наприклад, якщо ви використовуєте маршрутизатор, який працює лише на клієнті, це може перешкоджати реалізації рендерингу з боку сервера. Найкращі фреймворки забезпечують узгоджену, послідовну роботу з цими функціями для розробників і користувачів.
 
-### Routing {/*routing*/}
+### Маршрутизація {/*routing*/}
 
-Routing determines what to display when a user visits a particular URL. You need to set up a router to map URLs to different parts of your app. You'll also need to handle nested routes, route parameters, and query parameters. Most modern routers use file-based routing. Routing can be integrated with other features like:
+Маршрутизація визначає, що відображати, коли користувач відвідує певну URL-адресу. Вам треба налаштувати маршрутизатор, щоб зіставляти URL-адреси з різними частинами застосунку. Вам також потрібно буде обробляти вкладені маршрути, параметри маршруту та параметри запиту (query parameters). Більшість сучасних маршрутизаторів використовує маршрутизацію на основі файлів. Маршрутизація може бути інтегрована з іншими функціями, як-от:
 
-* **Rendering strategies** to enable different rendering strategies on different routes, so you can introduce new strategies without having to rewrite your whole app. This can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to be rendered ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to be rendered ([Largest Contentful Paint](https://web.dev/articles/lcp)).
-* **Data fetching** to enable data fetching before the page loads on a route. This can prevent layout shifts ([Cumulative Layout Shift](https://web.dev/articles/cls)) and decrease the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp))
-* **Code splitting** to reduce the JavaScript bundle size sent to the client and improve performance on underpowered devices. This can reduce the time it takes for the browser to respond to a user interaction ([First Input Delay](https://web.dev/articles/fid)) and the largest visible content of the app to be rendered ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+* **Стратегії рендерингу**, щоб увімкнути різні стратегії рендерингу на різних маршрутах, щоб ви могли додавати нові стратегії без переписування всього застосунку. Це може зменшити час до завантаження першого байта вмісту ([час до першого байта, TTFB](https://web.dev/articles/ttfb)), рендерингу першого фрагмента вмісту ([малювання першого вмісту, FCP](https://web.dev/articles/fcp)) і рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/articles/lcp)).
+* **Отримання даних**, щоб увімкнути отримання даних перед завантаженням сторінки за певним маршрутом. Це може запобігти зсувам макета ([кумулятивний зсув макета, CLS](https://web.dev/articles/cls)) та   зменшити час до рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/articles/lcp))
+* **Розділення коду**, щоб зменшити розмір JavaScript-бандлу, який надсилається клієнту, і підвищити швидкодію на малопотужних пристроях. Це може зменшити час, потрібний браузеру для відповіді на взаємодію користувача ([затримка після першого введення, FID](https://web.dev/articles/fid)) і рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/articles/lcp)).
 
-If you're not sure how to get started with routing, we recommend using [React Router](https://reactrouter.com/start/framework/custom) or [Tanstack Router](https://tanstack.com/router/latest).
+Якщо ви не впевнені, як працювати з маршрутизацією, рекомендуємо використати [React Router](https://reactrouter.com/start/framework/custom) або [Tanstack Router](https://tanstack.com/router/latest).
 
-### Data-fetching {/*data-fetching*/}
+### Отримання даних {/*data-fetching*/}
 
-Data-fetching is the process of fetching data from a server or other data source. You need to set up or create a data-fetching library to handle data retrieval from your server and manage the state of that data. You'll also need to handle loading states, error states, and caching data. Data fetching can be integrated with features like:
+Отримання даних — це процес отримання даних із сервера або іншого джерела даних. Вам треба налаштувати або створити відповідну бібліотеку, щоб обробляти отримання даних із вашого сервера та управляти станом цих даних. Вам також потрібно опрацьовувати стани завантаження, стани помилок і кешування даних. Отримання даних може бути інтегроване з іншими функціями, як-от:
 
-* **Routing** to enable data fetching to take place before page loads. This can improve how quickly a page loads and becomes visible to users ([Largest Contentful Paint](https://web.dev/lcp)) and reduce time it takes for your app to be interactive ([Time to Interactive](https://web.dev/tti)).
-* **Rendering strategies** to prerender fetched data before it is sent to the client. This can reduce the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/lcp)).
+* **Маршрутизація**, щоб увімкнути отримання даних перед завантаженням сторінки. Це може покращити швидкість завантаження сторінки та її видимість для користувачів ([малювання найбільшого вмісту, LCP](https://web.dev/lcp)) і зменшити час, потрібний вашому застосунку, щоб стати інтерактивним ([час до інтерактивності, TTI](https://web.dev/tti)).
+* **Стратегії рендерингу**, щоб попередньо рендерити запитувані дані перед тим, як надіслати їх клієнту. Це може зменшити час до рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/lcp)).
 
-Integrating routing and data fetching is particularly important to prevent network waterfalls. In a SPA, if you fetch data during a component's initial render, the first data fetch is delayed until all code has loaded and components have finished rendering. This is commonly known as a waterfall: instead of fetching data at the same time as your code is loading, you need to first wait for your code to load before fetching data. To address these waterfalls, your app needs to fetch the data for each route in parallel with sending code to the browser.
+Інтеграція маршрутизації та отримання даних насамперед важлива для запобігання мережевого "водоспаду". Якщо ви запитуєте дані під час початкового рендеру компонента, то перше отримання даних у SPA відкладається, доки не буде завантажено весь код і компоненти не завершать рендеринг. Це зазвичай називають водоспадом: замість того, щоб отримувати дані під час завантаження коду, вам потрібно спочатку зачекати, поки він завантажиться. І щоб усунути ці каскади, ваш застосунок повинен отримувати дані для кожного маршруту паралельно з надсиланням коду в браузер.
 
-Popular data fetching libraries that you can use as a part of your framework include [React Query](https://react-query.tanstack.com/), [SWR](https://swr.vercel.app/), [Apollo](https://www.apollographql.com/docs/react), and [Relay](https://relay.dev/).
+Популярні бібліотеки отримання даних, які ви можете використовувати як частину свого фреймворку: [React Query](https://react-query.tanstack.com/), [SWR](https://swr.vercel.app/), [Apollo](https://www.apollographql.com/docs/react) і [Relay](https://relay.dev/).
 
-### Rendering strategies {/*rendering-strategies*/}
+### Стратегії рендерингу {/*rendering-strategies*/}
 
-Since the build tool you select only support single page apps (SPAs) you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+Оскільки вибраний вами інструмент збирання підтримує лише односторінкові застосунки (SPA), вам треба самостійно реалізувати інші [патерни рендерингу](https://www.patterns.dev/vanilla/rendering-patterns), як-от рендеринг із боку сервера (SSR), генерація статичного сайту (SSG) та/або серверні компоненти React (RSC). Хоч спочатку вони рідко потрібні, згодом SSR, SSG або RSC можуть оптимізувати деякі маршрути вашого застосунку.
 
-* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are fast and responsive, but they can have slower initial load times. SPAs are the default architecture for most build tools.
+* **Односторінкові застосунки (SPA)** завантажують одну HTML-сторінку та динамічно оновлюють її, коли користувач взаємодіє із застосунком. SPA є швидкими та чуйними, але часто повільніші під час початкового завантаження. SPA є стандартною архітектурою для більшості інструментів збирання.
 
-* **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
+* **Потоковий рендеринг з боку сервера (SSR)** рендерить сторінку на сервері та надсилає повністю відрендерену сторінку клієнту. SSR може покращити швидкодію, але його налаштування та обслуговування радше складніші, ніж для односторінкового застосунку. З додаванням потоковості SSR це може бути ще складнішим. Перегляньте [посібник Vite із SSR]( https://vite.dev/guide/ssr).
 
-* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering.
+* **Генерація статичного сайту (SSG)** генерує статичні HTML-файли для вашого застосунку під час збирання. SSG може покращити швидкодію, але його налаштування та обслуговування можуть бути складнішими, ніж для рендерингу з боку сервера.
 
-* **React Server Components (RSC)** lets you mix build-time, server-only, and interactive components in a single React tree. RSC can improve performance, but it currently requires deep expertise to set up and maintain. See [Parcel's RSC examples](https://github.com/parcel-bundler/rsc-examples).
+* **Серверні компоненти React (RSC)** дають змогу змішувати компільовані, суто серверні та інтерактивні компоненти в одному React-дереві. RSC може покращити швидкодію, але наразі необхідні глибокі знання для його налаштування та обслуговування. Перегляньте [приклади RSC від Parcel](https://github.com/parcel-bundler/rsc-examples).
 
-Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering. Using the right rendering strategy for the right routes can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to render ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+Ваші стратегії рендерингу мають бути інтегровані з вашим маршрутизатором, щоб застосунки, створені за допомогою вашого фреймворку, могли вибирати стратегію рендерингу для кожного маршруту. Це дає змогу використовувати різні стратегії рендерингу без переписування всього застосунку. Наприклад, головна сторінка вашого застосунку може мати користь від статичної генерації (SSG), а сторінка з інформаційною стрічкою — від рендерингу з боку сервера. Використання слушної стратегії рендерингу для відповідних маршрутів може зменшити час до завантаження першого байта вмісту ([час до першого байта](https://web.dev/articles/ttfb)), рендерингу першого фрагмента вмісту ([малювання першого вмісту, FCP](https://web.dev/articles/fcp)) і рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/articles/lcp)).
 
-### Code-splitting {/*code-splitting*/}
+### Розділення коду {/*code-splitting*/}
 
-Code-splitting is the process of breaking your app into smaller bundles that can be loaded on demand. An app's code size increases with every new feature and additional dependency. Apps can become slow to load because all of the code for the entire app needs to be sent before it can be used. Caching, reducing features/dependencies, and moving some code to run on the server can help mitigate slow loading but are incomplete solutions that can sacrifice functionality if overused.
+Розділення коду — це процес розбиття вашого застосунку на менші бандли, які можна завантажувати на вимогу. Розмір коду застосунку збільшується з кожною новою функцією чи доданою залежністю. Застосунки можуть повільно завантажуватися, оскільки перед використанням потрібно надіслати весь код для всього застосунку. Кешування, зменшення функцій/залежностей і перенесення деякого коду для виконання на сервері радше пришвидшать завантаження, але є неповними рішеннями, які можуть пожертвувати функціональністю у разі надмірного використання.
 
-Similarly, if you rely on the apps using your framework to split the code, you might encounter situations where loading becomes slower than if no code splitting were happening at all. For example, [lazily loading](/reference/react/lazy) a chart delays sending the code needed to render the chart, splitting the chart code from the rest of the app. [Parcel supports code splitting with React.lazy](https://parceljs.org/recipes/react/#code-splitting). However, if the chart loads its data *after* it has been initially rendered you are now waiting twice. This is a waterfall: rather than fetching the data for the chart and sending the code to render it simultaneously, you must wait for each step to complete one after the other.
+Також якщо ви покладаєтеся на те, щоб застосунки на базі вашого фреймворку розділяли код, ви можете зіткнутися із ситуаціями, коли завантаження стає повільнішим, ніж якби розділення коду не відбувалося взагалі. Наприклад, [ліниво завантажена](/reference/react/lazy) діаграма затримує надсилання коду, необхідного для її рендерингу, відділяючи свій код від решти застосунку. [Parcel підтримує розділення коду за допомогою React.lazy](https://parceljs.org/recipes/react/#code-splitting). Однак, якщо діаграма завантажує свої дані *після* свого початкового рендерингу, ви тепер чекаєте двічі. Це водоспад: замість одночасного отримання даних для діаграми та надсилання коду для її рендерингу, ви повинні чекати, поки кожен крок завершиться один за одним.
 
-Splitting code by route, when integrated with bundling and data fetching, can reduce the initial load time of your app and the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+Розділення коду за маршрутом, інтегроване з бандлером й отриманням даних, може зменшити час початкового завантаження вашого застосунку та рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/articles/lcp)).
 
-### And more... {/*and-more*/}
+### І більше... {/*and-more*/}
 
-These are just a few examples of the features a framework will need to consider.
+Це були лише кілька прикладів функцій, які необхідно враховувати фреймворку.
 
-There are many other problems that users need to solve like:
+Є багато інших проблем, які користувачі повинні вирішити, наприклад:
 
-- Accessibility
-- Asset loading
-- Authentication
-- Error handling
-- Mutating data
-- Navigations
-- Nested routes
-- Optimistic updates
-- Caching
-- Progressive enhancement
-- Static site generation
-- Server-side rendering
+- Доступність
+- Завантаження ресурсів
+- Автентифікація
+- Обробка помилок
+- Мутація даних
+- Навігації
+- Вкладені маршрути
+- Оптимістичні оновлення
+- Кешування
+- Поступове покращення (Progressive Enhancement)
+- Генерація статичного сайту (SSG)
+- Рендеринг з боку сервера (SSR)
 
-Many of these problems individually can be difficult as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 
+Багато з цих проблем окремо можуть стати складними, оскільки кожна з них взаємопов'язана з іншими та може вимагати глибоких знань у сфері, з якою ви часом не будете знайомі. Якщо ви не хочете вирішувати ці проблеми самотужки, [розпочніть роботу з фреймворком](/learn/creating-a-react-app), який вже надає ці функції.
