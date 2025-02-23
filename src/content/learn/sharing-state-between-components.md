@@ -96,36 +96,36 @@ h3, p { margin: 5px 0px; }
 Щоб скоординувати ці дві панелі, вам потрібно "підняти їхній стан вгору" до батьківського компонента в три кроки:
 
 1. **Видалити** стан із дочірніх компонент.
-2. **Передати** незмінні дані від спільного батька.
+2. **Передати** жорсткокодовані дані від спільного батька.
 3. **Додати** стан до спільного батька і передати його вниз разом з обробниками подій.
 
 Це дозволить компоненту `Accordion`скоординувати обидві `Panel` і розгортати тільки одну на раз.
 
-### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
+### Крок 1: Видаліть стан з дочірніх компонент {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+Ви передасьте контроль `isActive` до `Panel` батьківського компонента. Це означає що батьківський компоненнт передасть `isActive` до `Panel` як проп. Почніть з **видалення цього рядка** з `Panel` компонента:
 
 ```js
 const [isActive, setIsActive] = useState(false);
 ```
 
-And instead, add `isActive` to the `Panel`'s list of props:
+Натомість додайте `isActive` до списку пропсів `Panel`:
 
 ```js
 function Panel({ title, children, isActive }) {
 ```
 
-Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
+Тепер батьківський компонента `Panel` може *контролювати* `isActive`, [передаючи його як проп.](/learn/passing-props-to-a-component) І навпаки, `Panel` компонент тепер *не має контролю* над значенням `isActive`-- тепер це залежить від батьківського компонента!
 
-### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
+### Крок 2: Передайте жорсткокодовані дані з батьківського компонента {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
-To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
+Щоб підняти стан вгору, ви повинні виявити найближчий спільний батьківський компонент *обох* дочірніх компонентів, які ви хочете скоординувати:
 
-* `Accordion` *(closest common parent)*
+* `Accordion` *(найближчий спільний батько)*
   - `Panel`
   - `Panel`
 
-In this example, it's the `Accordion` component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
+У цьому прикладі, компонент `Accordion`. Оскільки він знаходиться над обогома панелями і може контролювати їхні пропси, це стане "джерелом правди" для визначення, яка панель є відкритою на даний момент. Зробіть так щоб компонент `Accordion` передавав жорсткокодоване значення `isActive` (наприклад, `true`) до обидвох панелей:
 
 <Sandpack>
 
@@ -135,12 +135,12 @@ import { useState } from 'react';
 export default function Accordion() {
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
+    <h2>Алмати, Казахстан</h2>
       <Panel title="About" isActive={true}>
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Із населенням близько 2 мільйонів, Алмати є найбільшим містом в Казахстані. З 1929 по 1997, воно було його столицею.
       </Panel>
       <Panel title="Etymology" isActive={true}>
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Назва походить від казахського слова <span lang="kk-KZ">алма</span>, що означає "яблуко" і часто перекладалось як "повний яблук". Насправді, регіон що оточує Алмати вважається прабатьківщиною яблука, і дика <i lang="la">Malus sieversii</i> вважається ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
   );
@@ -154,7 +154,7 @@ function Panel({ title, children, isActive }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Показати
         </button>
       )}
     </section>
@@ -172,7 +172,7 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Try editing the hardcoded `isActive` values in the `Accordion` component and see the result on the screen.
+Спробуйте відредагувати жорсткокодовані значення `isActive` у компоненті `Accordion` і подивіться на результат на екрані.
 
 ### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
 
