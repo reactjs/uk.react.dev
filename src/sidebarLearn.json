@@ -25,13 +25,23 @@
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Початок нового React-проєкту",
-          "path": "/learn/start-a-new-react-project"
+          "title": "Створення React-застосунку",
+          "path": "/learn/creating-a-react-app"
+        },
+        {
+          "title": "Побудова React-фреймворку",
+          "path": "/learn/building-a-react-framework"
         },
         {
           "title": "Інтеграція React у наявний проєкт",
           "path": "/learn/add-react-to-an-existing-project"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Налаштування",
+      "path": "/learn/setup",
+      "routes": [
         {
           "title": "Налаштування редактора",
           "path": "/learn/editor-setup"
@@ -41,7 +51,7 @@
           "path": "/learn/typescript"
         },
         {
-          "title": "Інструменти React розробника",
+          "title": "Інструменти розробника React",
           "path": "/learn/react-developer-tools"
         },
         {

@@ -1,22 +1,22 @@
 ---
-title: Інструменти React розробника
+title: Інструменти розробника React
 ---
 
 <Intro>
 
-Використовуйте інструменти React розробника (_React Developer Tools_) для інспектування React [компонентів](/learn/your-first-component), редагування їх [пропсів](/learn/passing-props-to-a-component) і [стану](/learn/state-a-components-memory), а також для виявлення проблем з продуктивністю.
+Використовуйте інструменти розробника React (_React Developer Tools_) для інспектування React [компонентів](/learn/your-first-component), редагування їх [пропсів](/learn/passing-props-to-a-component) і [стану](/learn/state-a-components-memory), а також для виявлення проблем з продуктивністю.
 
 </Intro>
 
 <YouWillLearn>
 
-* Як встановити інструменти React розробника
+* Як встановити інструменти розробника React
 
 </YouWillLearn>
 
 ## Розширення браузера {/*browser-extension*/}
 
-Найпростіший спосіб налагодження вебсайтів, створених за допомогою React — встановити розширення браузера "Інструменти React розробника" (_React Developer Tools_). Воно доступне для декількох популярних браузерів:
+Найпростіший спосіб налагодження вебсайтів, створених за допомогою React — встановити розширення браузера "Інструменти розробника React" (_React Developer Tools_). Воно доступне для декількох популярних браузерів:
 
 * [Встановити для **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=uk)
 * [Встановити для **Firefox**](https://addons.mozilla.org/uk/firefox/addon/react-devtools/)
@@ -24,7 +24,7 @@ title: Інструменти React розробника
 
 Тепер, якщо ви відвідаєте вебсайт, **який створений за допомогою React**, ви побачите вкладки _Components_ і _Profiler_.
 
-![Розширення 'Інструменти React розробника'](/images/docs/react-devtools-extension.png)
+![Розширення 'Інструменти розробника React'](/images/docs/react-devtools-extension.png)
 
 ### Safari та інші браузери {/*safari-and-other-browsers*/}
 Для інших браузерів (наприклад, Safari) встановіть npm-пакет [`react-devtools`](https://www.npmjs.com/package/react-devtools):
@@ -50,7 +50,7 @@ react-devtools
 
 Перезавантажте вебсайт у браузері, щоб переглянути його в інструментах розробника.
 
-![Автономні 'Інструменти React розробника'](/images/docs/react-devtools-standalone.png)
+![Автономні 'Інструменти розробника React'](/images/docs/react-devtools-standalone.png)
 
 ## Мобільний застосунок (React Native) {/*mobile-react-native*/}
 
