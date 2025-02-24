@@ -454,7 +454,7 @@ interface MyComponentProps {
 
 Ми рекомендуємо такі ресурси:
 
- - [Посібник TypeScript](https://www.typescriptlang.org/docs/handbook/) є офіційною документацією для TypeScript і охоплює більшість ключових особливостей мови.
+ - [Посібник TypeScript](https://www.typescriptlang.org/docs/handbook/) є офіційною документацією для TypeScript і охоплює більшість ключових функцій мови.
 
  - [Список змін TypeScript](https://devblogs.microsoft.com/typescript/) описує нові функції більш детально.
 

@@ -150,7 +150,7 @@
 | error log | лог помилок |
 | event handler | обробник події |
 | fallback | запасний |
-| feature | особливість |
+| feature | функція; особливість |
 | framework | фреймворк |
 | function component | функційний компонент |
 | helper | допоміжний(а); *helper function — допоміжна функція* |

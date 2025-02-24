@@ -36,21 +36,22 @@ export default function App() {
 
 Якщо ви хочете почати проєкт за допомогою React, [створіть React-застосунок](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
 
-## Побудова React-фреймворку {/*build-a-react-framework*/}
+## Побудувати React-застосунок з нуля {/*build-a-react-app-from-scratch*/}
 
-Якщо фреймворк не годиться для вашого проєкту або ви бажаєте почати із самостійного створення його структури, [побудуйте власний React-фреймворк](/learn/building-a-react-framework).
+Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви бажаєте побудувати власний фреймворк чи розібратися в основах, [побудуйте React-застосунок з нуля](/learn/build-a-react-app-from-scratch).
 
 ## Інтегрувати React у наявний проєкт {/*add-react-to-an-existing-project*/}
 
 Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React у наявний проєкт.](/learn/add-react-to-an-existing-project)
 
-## Застарілі варіанти {/*deprecated-options*/}
 
-### Create React App (Deprecated) {/*create-react-app-deprecated*/}
+<Note>
 
-Create React App — це застарілий інструмент, який раніше рекомендувався для створення нових React-застосунків. Якщо ви хочете почати новий проєкт за допомогою React, ви можете [створити React-застосунок](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
+#### Чи слід використовувати Create React App? {/*should-i-use-create-react-app*/}
 
-Дізнайтеся більше у статті ["Sunsetting Create React App"](/blog/2025/02/14/sunsetting-create-react-app).
+Ні. Create React App застарів. Дізнайтеся більше у статті ["Sunsetting Create React App"](/blog/2025/02/14/sunsetting-create-react-app).
+
+</Note>
 
 ## Подальші кроки {/*next-steps*/}
 

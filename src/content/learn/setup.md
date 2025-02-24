@@ -23,10 +23,6 @@ TypeScript — це популярний спосіб додавати визн�
 
 React Compiler — це інструмент, який автоматично оптимізує ваш React-застосунок. [Дізнатися більше](/learn/react-compiler).
 
-## Start a React Project from scratch {/*start-a-react-project-from-scratch*/}
-
-If you want to build your own framework, you can [start a React project from scratch](/learn/start-a-react-project-from-scratch).
-
 ## Подальші кроки {/*next-steps*/}
 
 Відвідайте посібник ["Швидкий старт"](/learn), щоб ознайомитися з найважливішими концепціями React, з якими ви стикаєтеся щодня.

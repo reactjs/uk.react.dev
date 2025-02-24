@@ -221,7 +221,7 @@ return (
 
 ## Рендер списків {/*rendering-lists*/}
 
-Для рендеру списків компонентів ви будете покладатися на такі особливості JavaScript, як [цикл `for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) та [метод масивів `map()`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
+Для рендеру списків компонентів ви будете покладатися на такі функції JavaScript, як [цикл `for`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) та [метод масивів `map()`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Array/map).
 
 Наприклад, припустімо, що у вас є масив продуктів:
 

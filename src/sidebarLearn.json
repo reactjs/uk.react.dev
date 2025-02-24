@@ -29,8 +29,8 @@
           "path": "/learn/creating-a-react-app"
         },
         {
-          "title": "Побудова React-фреймворку",
-          "path": "/learn/building-a-react-framework"
+          "title": "Побудова React-застосунку з нуля",
+          "path": "/learn/build-a-react-app-from-scratch"
         },
         {
           "title": "Інтеграція React у наявний проєкт",
@@ -118,7 +118,7 @@
           "path": "/learn/responding-to-events"
         },
         {
-          "title": "State: A Component's Memory",
+          "title": "Стан: пам'ять компонента",
           "path": "/learn/state-a-components-memory"
         },
         {
