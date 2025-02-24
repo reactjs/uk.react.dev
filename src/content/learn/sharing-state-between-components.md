@@ -136,10 +136,10 @@ export default function Accordion() {
   return (
     <>
     <h2>Алмати, Казахстан</h2>
-      <Panel title="About" isActive={true}>
+      <Panel title="Про Алмати" isActive={true}>
         Із населенням близько 2 мільйонів, Алмати є найбільшим містом в Казахстані. З 1929 по 1997, воно було його столицею.
       </Panel>
-      <Panel title="Etymology" isActive={true}>
+      <Panel title="Етимологія" isActive={true}>
         Назва походить від казахського слова <span lang="kk-KZ">алма</span>, що означає "яблуко" і часто перекладалось як "повний яблук". Насправді, регіон що оточує Алмати вважається прабатьківщиною яблука, і дика <i lang="la">Malus sieversii</i> вважається ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
@@ -174,19 +174,18 @@ h3, p { margin: 5px 0px; }
 
 Спробуйте відредагувати жорсткокодовані значення `isActive` у компоненті `Accordion` і подивіться на результат на екрані.
 
-### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
+### Крок 3: Добавте стан до батьківської компоненти {/*step-3-add-state-to-the-common-parent*/}
 
-Lifting state up often changes the nature of what you're storing as state.
+Підйом стану вгору часто змінює природу того, що ви зберігаєте як стан.
 
-In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use a number as the index of the active `Panel` for the state variable:
+В цьому випадку, тільки одна панель має бути актиною одночасно. Це означає що `Accordion` спільний батьківський компонент має відстежувати, *яка* панель є активною. Замість `boolean` значення, омжна використовувати число як індекс активної `Panel` для змінної стану:
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);
 ```
+Коли `activeIndex` доорівнює `0`, перша панель буде відкритою і коли це значення дорівнює `1`, активною буде друга.
 
-When the `activeIndex` is `0`, the first panel is active, and when it's `1`, it's the second one.
-
-Clicking the "Show" button in either `Panel` needs to change the active index in `Accordion`. A `Panel` can't set the `activeIndex` state directly because it's defined inside the `Accordion`. The `Accordion` component needs to *explicitly allow* the `Panel` component to change its state by [passing an event handler down as a prop](/learn/responding-to-events#passing-event-handlers-as-props):
+Натискаючи "Показати" кнопку в одній із `Panel` має змінити активний індекс в `Accordion`. `Panel` не може встановлювати `activeIndex` стан безпосередньо, оскільки це визанчається всередині `Accordion`. Компонент `Accordion` повинен *явно дозволити* компоненту `Panel` змінювати свій стан за допомогою [передавання обробника подій вниз як проп](/learn/responding-to-events#passing-event-handlers-as-props):
 
 ```js
 <>
@@ -204,8 +203,7 @@ Clicking the "Show" button in either `Panel` needs to change the active index in
   </Panel>
 </>
 ```
-
-The `<button>` inside the `Panel` will now use the `onShow` prop as its click event handler:
+Кнопка `<button>` всередині `Panel` тепер буде використовувати `onShow` проп як обробник події кліку:
 
 <Sandpack>
 
@@ -216,20 +214,20 @@ export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
-      <Panel
-        title="About"
+    <h2>Алмати, Казахстан</h2>
+       <Panel
+        title="Про Алмати"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Із населенням близько 2 мільйонів, Алмати є найбільшим містом в Казахстані. З 1929 по 1997, воно було його столицею.
       </Panel>
       <Panel
-        title="Etymology"
+        title="Етимологія"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Назва походить від казахського слова <span lang="kk-KZ">алма</span>, що означає "яблуко" і часто перекладалось як "повний яблук". Насправді, регіон що оточує Алмати вважається прабатьківщиною яблука, і дика <i lang="la">Malus sieversii</i> вважається ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
   );
@@ -248,7 +246,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Показати
         </button>
       )}
     </section>
@@ -265,20 +263,19 @@ h3, p { margin: 5px 0px; }
 ```
 
 </Sandpack>
-
-This completes lifting state up! Moving state into the common parent component allowed you to coordinate the two panels. Using the active index instead of two "is shown" flags ensured that only one panel is active at a given time. And passing down the event handler to the child allowed the child to change the parent's state.
+Підняття стану вгору завершено! Переміщення стану в спільний батьківський компонент дозволяє вам скоординувати дві панелі. Використовуючи активний індекс замість двох "показано" прапорців гарантує, що тільки одна панель буде активною на даний момент. І передаючи вниз обробник подій до дочірнього компонента дозволить дочірньому компоненту змінювати батьківський стан.
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
+<Diagram name="sharing_state_parent" height={385} width={487} alt="Діаграма зоображає дерево із трьох компонент, один батьківський з назвою Accordion та двох дочірніх з назвами Panel. Accordion містить activeIndex нульовим значенням, яке стає isActive із значенням true, що передається до першої панелі і isActive із значенням false до другої Panel.">
 
-Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
+Початково, `Accordion` має `activeIndex` із значенням `0`, тому перша `Panel` отримує `isActive = true`
 
 </Diagram>
 
-<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="The same diagram as the previous, with the activeIndex value of the parent Accordion component highlighted indicating a click with the value changed to one. The flow to both of the children Panel components is also highlighted, and the isActive value passed to each child is set to the opposite: false for the first Panel and true for the second one." >
+<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="Така сама діаграма що й попередня, тільки із activeIndex значення батьківського компонента підсвічено, що вказує клік із значенням зміненим на одиницю. Шлях до обох дочірніх Panel компонент таокж підсвічений та isActive значення, яке передане до кожної дочірньої компоненти є протилежним: false для першої Panel та true для другої" >
 
-When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receives `isActive = true` instead
+Коли `Accordion` `activeIndex` стан змінюється на `1`, друга `Panel` отримує `isActive = true` замість
 
 </Diagram>
 
