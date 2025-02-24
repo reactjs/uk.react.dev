@@ -70,9 +70,15 @@ export default function Image() {
 Після першого рендеру компонента ви можете збудити (trigger) подальші рендери, оновивши його стан за допомогою [функції `set`.](/reference/react/useState#setstate) Оновлення стану вашого компонента автоматично додає рендер до черги. (Уявіть відвідувача ресторану, який після першого замовлення замовляє чай, десерт та всяку всячину залежно від стану спраги чи голоду).
 
 <IllustrationBlock sequential>
+<<<<<<< HEAD
   <Illustration caption="Оновлення стану..." alt="React як офіціант у ресторані, що подає клієнту, представленому як постать з курсором замість голови, інтерфейс карти (Card UI). Постать бажає рожеву картку, а не чорну!" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="...збуджує..." alt="React повертається до кухні компонентів (Component Kitchen) і каже кухареві карток, що потрібна рожева картка (Card)." src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="...рендер!" alt="Кухар карток видає React рожеву картку (Card)." src="/images/docs/illustrations/i_rerender3.png" />
+=======
+  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 </IllustrationBlock>
 
 ## Крок 2: React рендерить ваші компоненти {/*step-2-react-renders-your-components*/}
@@ -84,7 +90,11 @@ export default function Image() {
 
 Цей процес є рекурсивним: якщо оновлений компонент повертає якийсь інший компонент, React буде рендерити _цей_ компонент наступним, і якщо цей компонент також щось повертає, він буде рендерити _той інший_ компонент наступним, і так далі. Процес триватиме доти, доки не залишиться вкладених компонентів, і React не знатиме точно, що саме має бути відображено на екрані.
 
+<<<<<<< HEAD
 У цьому прикладі React викличе `Gallery()` й `Image()` кілька разів:
+=======
+In the following example, React will call `Gallery()` and `Image()` several times:
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 <Sandpack>
 
@@ -148,10 +158,17 @@ img { margin: 0 10px 10px 0; }
 
 ## Крок 3: React вносить зміни в DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
+<<<<<<< HEAD
 Після рендерингу (виклику) ваших компонентів React модифікує DOM.
 
 * **Для початкового рендерингу** React використовує API DOM [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild), щоб вивести на екран усі новостворені вузли DOM.
 * **Для повторних рендерів** React застосовує мінімально необхідні операції (обчислені під час рендерингу!), щоб оновити DOM відповідно до результату найсвіжішого рендерингу.
+=======
+After rendering (calling) your components, React will modify the DOM.
+
+* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
+* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+>>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 **React змінює вузли DOM тільки тоді, коли є різниця між рендерами.** Наприклад, ось компонент, який повторно рендериться щосекунди з різними властивостями, що передаються від батьківського компонента. Зверніть увагу, що можна додати текст у `<input>`, оновивши його `value`, але текст не зникає, коли компонент рендериться повторно:
 
