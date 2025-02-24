@@ -29,13 +29,8 @@
           "path": "/learn/creating-a-react-app"
         },
         {
-<<<<<<< HEAD
-          "title": "Побудова React-фреймворку",
-          "path": "/learn/building-a-react-framework"
-=======
-          "title": "Build a React App from Scratch",
+          "title": "Побудова React-застосунку з нуля",
           "path": "/learn/build-a-react-app-from-scratch"
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
         },
         {
           "title": "Інтеграція React у наявний проєкт",

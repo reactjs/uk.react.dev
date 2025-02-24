@@ -36,38 +36,22 @@ export default function App() {
 
 Якщо ви хочете почати проєкт за допомогою React, [створіть React-застосунок](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
 
-<<<<<<< HEAD
-## Побудова React-фреймворку {/*build-a-react-framework*/}
+## Побудувати React-застосунок з нуля {/*build-a-react-app-from-scratch*/}
 
-Якщо фреймворк не годиться для вашого проєкту або ви бажаєте почати із самостійного створення його структури, [побудуйте власний React-фреймворк](/learn/building-a-react-framework).
-=======
-## Build a React App from Scratch {/*build-a-react-app-from-scratch*/}
-
-If a framework is not a good fit for your project, you prefer to build your own framework, or you just want to learn the basics of a React app you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
+Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви бажаєте побудувати власний фреймворк чи розібратися в основах, [побудуйте React-застосунок з нуля](/learn/build-a-react-app-from-scratch).
 
 ## Інтегрувати React у наявний проєкт {/*add-react-to-an-existing-project*/}
 
 Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React у наявний проєкт.](/learn/add-react-to-an-existing-project)
 
-<<<<<<< HEAD
-## Застарілі варіанти {/*deprecated-options*/}
-=======
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 <Note>
 
-<<<<<<< HEAD
-Create React App — це застарілий інструмент, який раніше рекомендувався для створення нових React-застосунків. Якщо ви хочете почати новий проєкт за допомогою React, ви можете [створити React-застосунок](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
+#### Чи слід використовувати Create React App? {/*should-i-use-create-react-app*/}
 
-Дізнайтеся більше у статті ["Sunsetting Create React App"](/blog/2025/02/14/sunsetting-create-react-app).
-=======
-#### Should I use Create React App? {/*should-i-use-create-react-app*/}
-
-No. Create React App has been deprecated. For more information, see [Sunsetting Create React App](/blog/2025/02/14/sunsetting-create-react-app).
+Ні. Create React App застарів. Дізнайтеся більше у статті ["Sunsetting Create React App"](/blog/2025/02/14/sunsetting-create-react-app).
 
 </Note>
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ## Подальші кроки {/*next-steps*/}
 

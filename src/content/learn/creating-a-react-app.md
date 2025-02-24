@@ -8,29 +8,19 @@ title: Створення React-застосунку
 
 </Intro>
 
-<<<<<<< HEAD
-## Рекомендовані React-фреймворки {/*bleeding-edge-react-frameworks*/}
-=======
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
+Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви бажаєте побудувати власний фреймворк чи розібратися в основах, [побудуйте React-застосунок з нуля](/learn/build-a-react-app-from-scratch).
 
-## Full-stack frameworks {/*full-stack-frameworks*/}
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
+## Фреймворки повного стеку {/*full-stack-frameworks*/}
 
 Ці фреймворки підтримують усі функції, що знадобляться для розгортання та масштабування застосунку в публічному середовищі (in production). Вони інтегрували останні React-функції й послуговуються перевагами архітектури React.
 
 <Note>
 
-<<<<<<< HEAD
-#### React-фреймворки не потребують сервера. {/*react-frameworks-do-not-require-a-server*/}
+#### Фреймворки повного стеку не потребують сервера. {/*react-frameworks-do-not-require-a-server*/}
 
-Усі фреймворки на цій сторінці можуть створювати односторінкові застосунки (SPA). Їх можна розгортати через [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) або сервіс статичного хостингу та вони не потребують сервера. Якщо ви хочете використати функції, для яких потрібен сервер (наприклад, SSR — рендеринг із боку сервера), то можна ввімкнути окремі маршрути без переписування застосунку.
-=======
-#### Full-stack frameworks do not require a server. {/*react-frameworks-do-not-require-a-server*/}
+Усі фреймворки на цій сторінці підтримують рендеринг із боку клієнта ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), односторінкові застосунки ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)) і генерацію статичних сайтів ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). Їх можна розгортати через [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) або сервіс статичного хостингу та вони не потребують сервера. Додатково ці фреймворки дають вам змогу додавати рендеринг із боку сервера (SSR) для певних маршрутів, якщо вам це необхідно.
 
-All the frameworks on this page support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and static-site generation ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). These apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service without a server. Additionally, these frameworks allow you to add server-side rendering on a per-route basis, when it makes sense for your use case.
-
-This allows you to start with a client-only app, and if your needs change later, you can opt-in to using server features on individual routes without rewriting your app. See your framework's documentation for configuring the rendering strategy.
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
+Це дає вам змогу почати із суто клієнтського застосунку і за необхідності пізніше використати серверні функції для окремих маршрутів без переписування застосунку. Щоб налаштувати стратегію рендерингу, перегляньте документацію вашого фреймворку.
 
 </Note>
 
@@ -69,11 +59,7 @@ npx create-expo-app@latest
 Expo підтримується [компанією Expo](https://expo.dev/about). Розробляти застосунки за допомогою Expo можна безкоштовно, і їх можна подавати до каталогів застосунків Google і Apple без жодних обмежень. На додачу Expo пропонує необов'язкові платні хмарні послуги.
 
 
-<<<<<<< HEAD
-## Інші варіанти {/*other-options*/}
-=======
-## Other frameworks {/*other-frameworks*/}
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
+## Інші фреймворки {/*other-frameworks*/}
 
 Є й інші перспективні фреймворки, які працюють над нашим баченням повного стеку з React:
 
@@ -114,27 +100,13 @@ App Router від Next.js також інтегрує [отримання дан
 
 </DeepDive>
 
-## Start From Scratch {/*start-from-scratch*/}
+## Початок із нуля {/*start-from-scratch*/}
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, there are other options available for starting a React project from scratch.
+Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви бажаєте побудувати власний фреймворк чи розібратися в основах React-застосунку, є інші доступні варіанти для початку React-проєкту з нуля.
 
-<<<<<<< HEAD
-#### Чи рекомендуєте Vite? {/*do-you-recommend-vite*/}
+Початок роботи з нуля надає вам більше гнучкості, але потребує від вас вибору інструментів для маршрутизації, отримання даних та інших типових патернів використання. Це дуже схоже на створення власного фреймворку замість використання наявного. [Фреймворки, які ми рекомендуємо](#recommended-react-frameworks), мають готові вбудовані рішення для цих проблем.
 
-Ми пропонуємо кілька рекомендацій для Vite.
-
-React Router v7 — це фреймворк на основі Vite, який дає вам змогу використовувати швидкий сервер розробки Vite та налаштувати все за допомогою фреймворку, який забезпечує маршрутизацію та отримання даних. Як і в інших фреймворках, які ми рекомендуємо, ви можете створити SPA за допомогою React Router v7.
-
-Ми також рекомендуємо використовувати Vite під час [додавання React до наявного проєкту](/learn/add-react-to-an-existing-project) або [побудови фреймворку](/learn/building-a-react-framework).
-
-Подібно до того, як у Svelte є Sveltekit, у Vue — Nuxt, а у Solid — SolidStart, React рекомендує використовувати для нових проєктів фреймворк, який легко інтегрується з інструментами збирання, як-от Vite.
-
-</Note>
-=======
-Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#recommended-react-frameworks) have built-in solutions for these problems.  
-
-If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a built tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
+Якби ви хочете власне рішення, перегляньте наш посібник із [побудови React-застосунку з нуля](/learn/build-a-react-app-from-scratch), щоб отримати інструкції з налаштування нового React-проєкту, починаючи з інструментів збирання, як-от [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) чи [RSbuild](https://rsbuild.dev/).
 
 -----
 
