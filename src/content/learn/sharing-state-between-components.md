@@ -283,48 +283,48 @@ h3, p { margin: 5px 0px; }
 
 <DeepDive>
 
-#### Controlled and uncontrolled components {/*controlled-and-uncontrolled-components*/}
+#### Контрольовані та неконтрольовані компоненти {/*controlled-and-uncontrolled-components*/}
 
-It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
+Прийнято називати деякий компонент із локальним станом "неконтрольованим". Для прикладу, вихідний `Panel` компонент із `isActive` змінною стану є неконтрольований, оскільки його батько не може впливати на те, чи буде панель активною чи ні.
 
-In contrast, you might say a component is "controlled" when the important information in it is driven by props rather than its own local state. This lets the parent component fully specify its behavior. The final `Panel` component with the `isActive` prop is controlled by the `Accordion` component.
+На противагу, ви можете сказати що компонент є "контрольований" коли важлива інформація в ньому керується за допомогою пропсів а не його власним локальним станом. Це дозволяє батьківському компоненту повністю визанчити його поведінку. Останній `Panel` компонент із `isActive` проп є контрольований компонентом `Accordion`.
 
-Uncontrolled components are easier to use within their parents because they require less configuration. But they're less flexible when you want to coordinate them together. Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
+Неконтрольовані компоненти легше використовувати із їхніми батьківськими, оскільки вони вимагають менше налаштувань. Але вони менш гнучкі, коли ви хочете скоординувати їх разом. Контрольовані компоненти є максимально гнучкими але вони вимагають від батьківських компонент повністю налаштувати їх за допомогою пропсів.
 
-In practice, "controlled" and "uncontrolled" aren't strict technical terms--each component usually has some mix of both local state and props. However, this is a useful way to talk about how components are designed and what capabilities they offer.
+На практиці, "контрольований" та "неконтрольований" не є строгими технічними термінами--кожен компонент, зазвичай має суміш обох, із локальним станом та пропсами. Однак, це корисний спосіб, щоб поговорити як компоненти спроектовані, та які можливості вони пропонують.
 
-When writing a component, consider which information in it should be controlled (via props), and which information should be uncontrolled (via state). But you can always change your mind and refactor later.
+Коли пишите компонент, подумайте, яка інформація в ньому має бути контрольованою (за допомогою пропсів), а яка інформація має бути неконтрольована (за допомогою стану). Але завжди можете передумати і покращити це пізніше.
 
 </DeepDive>
 
-## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
+## Єдине джерело правди для кожного стану {/*a-single-source-of-truth-for-each-state*/}
 
-In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
+В React застосунку, багато компонент матимуть їхній власний стан. Деякий стан може "жити" близько до листкових компонент (компоненти, що знаходяться внизу дерева), для прикладу, поля вводу. Інші стани можуть "жити" ближче до вершини застосунку. Для прикладу, навіть клієнтські бібліотеки маршрутизації зазвичай реалізовані за допомогою зберігання поточного маршруту в React стані та передають його вниз за допомогою пропсів!
 
-**For each unique piece of state, you will choose the component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ component that holds that piece of information. Instead of duplicating shared state between components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
+**Для кожної унікальної частинки стану, ви вибирете компонент що "належить" йому.** Цей принцип також відомий як ["єдине джерело правди"](https://en.wikipedia.org/wiki/Single_source_of_truth) Це не означає, що весь стан знаходиться в одному місці--це означає, що для _кожної_ частини стану існує _певний_ компонент, який містить ту частину інформації. Замість дублювання спільного стану між компонентами, *підніміть його вгору* до їхнього спільного батька та *передайте його вниз* до дочірніх компонент, де він потрібний. 
 
-Your app will change as you work on it. It is common that you will move state down or back up while you're still figuring out where each piece of the state "lives". This is all part of the process!
+Ваш застосунок буде змінюватись в міру того, як ви працюєте над ним. Часто буває так. що ви переміщуєте стан вниз або назад вгору, протягом того, як стараєтесь з'ясувати де кожен шматок стану "живе". Це все частина процесу! 
 
-To see what this feels like in practice with a few more components, read [Thinking in React.](/learn/thinking-in-react)
+Щоб побачити, як це виглядає на практиці з кількома іншими компонентами, читайте [Мислення в React.](/learn/thinking-in-react)
 
 <Recap>
 
-* When you want to coordinate two components, move their state to their common parent.
-* Then pass the information down through props from their common parent.
-* Finally, pass the event handlers down so that the children can change the parent's state.
-* It's useful to consider components as "controlled" (driven by props) or "uncontrolled" (driven by state).
+* Коли ви хочете скоординувати два компоненти, перенесіть їхній стан до їхнього спільного батька.
+* Потім передайте інформацію вниз через пропси від їхнього спільного батька.
+* Нарешті, передайте обробник подій вниз, щоб діти могли змінювати батьківський стан.
+* Корисно розглядати компонент як "контрольований" (керований пропсами) або "неконтрольований" (керований станом).
 
 </Recap>
 
 <Challenges>
 
-#### Synced inputs {/*synced-inputs*/}
+#### Синхронізовані поля вводу {/*synced-inputs*/}
 
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
+Ці два поля вводу є незалежні. Зробіть так, щоб вони були синхронізовані: редагування одного поля вводу має оновлювати інше поле вводу із тим самим текстом, і навпаки.
 
 <Hint>
 
-You'll need to lift their state up into the parent component.
+Вам потрібно підняти їхній стан вгору до батьківського компонентам.
 
 </Hint>
 
@@ -336,8 +336,8 @@ import { useState } from 'react';
 export default function SyncedInputs() {
   return (
     <>
-      <Input label="First input" />
-      <Input label="Second input" />
+      <Input label="Перше поле вводу" />
+      <Input label="Друге поле вводу" />
     </>
   );
 }
@@ -371,7 +371,7 @@ label { display: block; }
 
 <Solution>
 
-Move the `text` state variable into the parent component along with the `handleChange` handler. Then pass them down as props to both of the `Input` components. This will keep them in sync.
+Пересіть змінну стану `text` в батьківський компонент разом із `handleChange` обробником. Потім передайте їх вниз як пропси до обох `Input` компонент. Це забезпечить їхню синхронізацію.
 
 <Sandpack>
 
@@ -388,12 +388,12 @@ export default function SyncedInputs() {
   return (
     <>
       <Input
-        label="First input"
+        label="Перше поле вводу"
         value={text}
         onChange={handleChange}
       />
       <Input
-        label="Second input"
+        label="Друге поле вводу"
         value={text}
         onChange={handleChange}
       />
@@ -424,17 +424,17 @@ label { display: block; }
 
 </Solution>
 
-#### Filtering a list {/*filtering-a-list*/}
+#### Фільтрування списку {/*filtering-a-list*/}
 
-In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
+В цьому прикладі, `SearchBar` має власний `query` стан що контролює текстове поле вводу. Його батьківський `FilterableList` компонент відображає `List` елементів але це не враховує пошуковий запит.
 
-Use the `filterItems(foods, query)` function to filter the list according to the search query. To test your changes, verify that typing "s" into the input filters down the list to "Sushi", "Shish kebab", and "Dim sum".
+Використайте `filterItems(foods, query)` функцію щоб фільтрувати список відповідно до пошукового запиту. Щоб перевірити ваші зміни, переконайтеся, що введення "с" в поле введення відфільтрує список до "Суші", та "Дім сум".
 
-Note that `filterItems` is already implemented and imported so you don't need to write it yourself!
+Зверніть увагу, що `filterItems` вже реалізовано та імпортовано, отже вам не потрібно писати його самостійно!
 
 <Hint>
 
-You will want to remove the `query` state and the `handleChange` handler from the `SearchBar`, and move them to the `FilterableList`. Then pass them down to `SearchBar` as `query` and `onChange` props.
+Вам потрібно видалити стан `query` та `handleChange` обробник з `SearchBar`, та перенести їх до `FilterableList`. Потім передати їх вниз до `SearchBar` як `query` та `onChange` пропси.
 
 </Hint>
 
@@ -463,7 +463,7 @@ function SearchBar() {
 
   return (
     <label>
-      Search:{' '}
+      Пошук:{' '}
       <input
         value={query}
         onChange={handleChange}
@@ -500,24 +500,24 @@ export function filterItems(items, query) {
 
 export const foods = [{
   id: 0,
-  name: 'Sushi',
-  description: 'Sushi is a traditional Japanese dish of prepared vinegared rice'
+  name: 'Суші',
+  description: 'Суші - традиційна японська страва з готового рису, заправленого оцтом'
 }, {
   id: 1,
-  name: 'Dal',
-  description: 'The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added'
+  name: 'Дал',
+  description: 'Найпоширеніший спосіб приготування дала - у вигляді супу, до якого можуть додавати цибулю, помідори та різні спеції'
 }, {
   id: 2,
-  name: 'Pierogi',
-  description: 'Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water'
+  name: 'Пиріжки',
+  description: 'Пиріжки - це вареники з начинкою, які готуються шляхом обгортання прісного тіста навколо солоної або солодкої начинки і варіння в киплячій воді'
 }, {
   id: 3,
-  name: 'Shish kebab',
-  description: 'Shish kebab is a popular meal of skewered and grilled cubes of meat.'
+  name: 'Шиш-кебаб',
+  description: 'Шиш-кебаб - популярна страва з кубиків м\'яса, нанизаних на шампур і приготованих на грилі.'
 }, {
   id: 4,
-  name: 'Dim sum',
-  description: 'Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch'
+  name: 'Дім сум',
+  description: 'Дім сум - це великий асортимент невеликих страв, якими кантонці традиційно насолоджуються в ресторанах на сніданок та обід.'
 }];
 ```
 
@@ -525,7 +525,7 @@ export const foods = [{
 
 <Solution>
 
-Lift the `query` state up into the `FilterableList` component. Call `filterItems(foods, query)` to get the filtered list and pass it down to the `List`. Now changing the query input is reflected in the list:
+Підніміть стан `query`вгору в `FilterableList` компонент. Викличте `filterItems(foods, query)` щоб отримати відфільтрований список і передати його вниз до `List`. Тепер зміна пошукових даних вводу відображається в списку:
 
 <Sandpack>
 
@@ -556,7 +556,7 @@ export default function FilterableList() {
 function SearchBar({ query, onChange }) {
   return (
     <label>
-      Search:{' '}
+      Пошук:{' '}
       <input
         value={query}
         onChange={onChange}
@@ -593,24 +593,24 @@ export function filterItems(items, query) {
 
 export const foods = [{
   id: 0,
-  name: 'Sushi',
-  description: 'Sushi is a traditional Japanese dish of prepared vinegared rice'
+  name: 'Суші',
+  description: 'Суші - традиційна японська страва з готового рису, заправленого оцтом'
 }, {
   id: 1,
-  name: 'Dal',
-  description: 'The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added'
+  name: 'Дал',
+  description: 'Найпоширеніший спосіб приготування дала - у вигляді супу, до якого можуть додавати цибулю, помідори та різні спеції'
 }, {
   id: 2,
-  name: 'Pierogi',
-  description: 'Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water'
+  name: 'Пиріжки',
+  description: 'Пиріжки - це вареники з начинкою, які готуються шляхом обгортання прісного тіста навколо солоної або солодкої начинки і варіння в киплячій воді'
 }, {
   id: 3,
-  name: 'Shish kebab',
-  description: 'Shish kebab is a popular meal of skewered and grilled cubes of meat.'
+  name: 'Шиш-кебаб',
+  description: 'Шиш-кебаб - популярна страва з кубиків м\'яса, нанизаних на шампур і приготованих на грилі.'
 }, {
   id: 4,
-  name: 'Dim sum',
-  description: 'Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch'
+  name: 'Дім сум',
+  description: 'Дім сум - це великий асортимент невеликих страв, якими кантонці традиційно насолоджуються в ресторанах на сніданок та обід.'
 }];
 ```
 
