@@ -130,7 +130,7 @@ export default function Form() {
     <form>
       <MyInput placeholder="Введіть ваше ім'я" ref={ref} />
       <button type="button" onClick={handleClick}>
-        Змінити
+        Редагувати
       </button>
     </form>
   );
@@ -219,7 +219,7 @@ function Post({ ref }) {
   return (
     <>
       <article>
-        <p>Вітаю на моєму блозі!</p>
+        <p>Вітаю в моєму блозі!</p>
       </article>
       <CommentList ref={commentsRef} />
       <AddComment ref={addCommentRef} />
