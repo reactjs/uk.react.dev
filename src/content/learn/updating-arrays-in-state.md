@@ -410,9 +410,9 @@ button { margin-left: 5px; }
 import { useState } from 'react';
 
 const initialList = [
-  { id: 0, title: 'Великі животи' },
-  { id: 1, title: 'Місячний пейзаж' },
-  { id: 2, title: 'Теракотова армія' },
+  { id: 0, title: 'Великі животи (Big Bellies)' },
+  { id: 1, title: 'Місячний пейзаж (Lunar Landscape)' },
+  { id: 2, title: 'Теракотова армія (Terracotta Army)' },
 ];
 
 export default function List() {
@@ -468,9 +468,9 @@ import { useState } from 'react';
 
 let nextId = 3;
 const initialList = [
-  { id: 0, title: 'Великі животи', seen: false },
-  { id: 1, title: 'Місячний пейзаж', seen: false },
-  { id: 2, title: 'Теракотова армія', seen: true },
+  { id: 0, title: 'Великі животи (Big Bellies)', seen: false },
+  { id: 1, title: 'Місячний пейзаж (Lunar Landscape)', seen: false },
+  { id: 2, title: 'Теракотова армія (Terracotta Army)', seen: true },
 ];
 
 export default function BucketList() {
@@ -575,9 +575,9 @@ import { useState } from 'react';
 
 let nextId = 3;
 const initialList = [
-  { id: 0, title: 'Великі животи', seen: false },
-  { id: 1, title: 'Місячний пейзаж', seen: false },
-  { id: 2, title: 'Теракотова армія', seen: true },
+  { id: 0, title: 'Великі животи (Big Bellies)', seen: false },
+  { id: 1, title: 'Місячний пейзаж (Lunar Landscape)', seen: false },
+  { id: 2, title: 'Теракотова армія (Terracotta Army)', seen: true },
 ];
 
 export default function BucketList() {
@@ -671,9 +671,9 @@ import { useImmer } from 'use-immer';
 
 let nextId = 3;
 const initialList = [
-  { id: 0, title: 'Великі животи', seen: false },
-  { id: 1, title: 'Місячний пейзаж', seen: false },
-  { id: 2, title: 'Теракотова армія', seen: true },
+  { id: 0, title: 'Великі животи (Big Bellies)', seen: false },
+  { id: 1, title: 'Місячний пейзаж (Lunar Landscape)', seen: false },
+  { id: 2, title: 'Теракотова армія (Terracotta Army)', seen: true },
 ];
 
 export default function BucketList() {
