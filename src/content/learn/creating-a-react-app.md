@@ -104,18 +104,10 @@ App Router від Next.js також інтегрує [отримання дан
 
 Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви бажаєте побудувати власний фреймворк чи розібратися в основах React-застосунку, є інші доступні варіанти для початку React-проєкту з нуля.
 
-<<<<<<< HEAD
-Початок роботи з нуля надає вам більше гнучкості, але потребує від вас вибору інструментів для маршрутизації, отримання даних та інших типових патернів використання. Це дуже схоже на створення власного фреймворку замість використання наявного. [Фреймворки, які ми рекомендуємо](#recommended-react-frameworks), мають готові вбудовані рішення для цих проблем.
-=======
-Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#full-stack-frameworks) have built-in solutions for these problems.  
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
+Початок роботи з нуля надає вам більше гнучкості, але потребує від вас вибору інструментів для маршрутизації, отримання даних та інших типових патернів використання. Це дуже схоже на створення власного фреймворку замість використання наявного. [Фреймворки, які ми рекомендуємо](#full-stack-frameworks), мають готові вбудовані рішення для цих проблем.
 
 Якби ви хочете власне рішення, перегляньте наш посібник із [побудови React-застосунку з нуля](/learn/build-a-react-app-from-scratch), щоб отримати інструкції з налаштування нового React-проєкту, починаючи з інструментів збирання, як-от [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) чи [RSbuild](https://rsbuild.dev/).
 
 -----
 
-<<<<<<< HEAD
 _Якщо ви автор фреймворку та бажаєте додати його на цю сторінку, [будь ласка, напишіть нам](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
-=======
-_If you’re a framework author interested in being included on this page, [please let us know](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
->>>>>>> ab18d2f0f5151ab0c927a12eb0a64f8170762eff
