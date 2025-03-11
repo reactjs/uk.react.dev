@@ -1,5 +1,5 @@
 ---
-title: React Blog
+title: Блог React
 ---
 
 <Intro>
@@ -106,8 +106,8 @@ Not every React release deserves its own blog post, but you can find a detailed 
 
 ---
 
-### Older posts {/*older-posts*/}
+### Старіші публікації {/*older-posts*/}
 
-See the [older posts.](https://reactjs.org/blog/all.html)
+Перегляньте [старіші публікації.](https://reactjs.org/blog/all.html)
 
 <div className="h-12"></div>

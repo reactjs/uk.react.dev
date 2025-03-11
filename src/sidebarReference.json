@@ -1,5 +1,5 @@
 {
-  "title": "API Reference",
+  "title": "Довідник API",
   "path": "/reference/react",
   "routes": [
     {
@@ -7,11 +7,11 @@
       "sectionHeader": "react@{{version}}"
     },
     {
-      "title": "Overview",
+      "title": "Вступ",
       "path": "/reference/react"
     },
     {
-      "title": "Hooks",
+      "title": "Хуки",
       "path": "/reference/react/hooks",
       "routes": [
         {
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "Компоненти",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -107,7 +107,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis",
       "routes": [
         {
@@ -160,7 +160,7 @@
       "sectionHeader": "react-dom@{{version}}"
     },
     {
-      "title": "Hooks",
+      "title": "Хуки",
       "path": "/reference/react-dom/hooks",
       "routes": [
         {
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "Компоненти",
       "path": "/reference/react-dom/components",
       "routes": [
         {
@@ -224,7 +224,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom",
       "routes": [
         {
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "title": "Client APIs",
+      "title": "Клієнтські API",
       "path": "/reference/react-dom/client",
       "routes": [
         {
@@ -276,7 +276,7 @@
       ]
     },
     {
-      "title": "Server APIs",
+      "title": "Серверні API",
       "path": "/reference/react-dom/server",
       "routes": [
         {
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "title": "Static APIs",
+      "title": "Статичні API",
       "path": "/reference/react-dom/static",
       "routes": [
         {
@@ -313,10 +313,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Rules of React"
+      "sectionHeader": "Правила React"
     },
     {
-      "title": "Overview",
+      "title": "Вступ",
       "path": "/reference/rules",
       "routes": [
         {
@@ -335,7 +335,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "React Server Components"
+      "sectionHeader": "Серверні компоненти React"
     },
     {
       "title": "Server Components",
@@ -361,10 +361,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "sectionHeader": "Спадкові API"
     },
     {
-      "title": "Legacy React APIs",
+      "title": "Спадкові API в React",
       "path": "/reference/react/legacy",
       "routes": [
         {

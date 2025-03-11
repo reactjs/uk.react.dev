@@ -1,13 +1,13 @@
 {
-  "title": "Blog",
+  "title": "Блог",
   "path": "/blog",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "НОВИНИ"
     },
     {
-      "title": "Blog",
+      "title": "Блог",
       "path": "/blog",
       "skipBreadcrumb": true,
       "routes": [
@@ -117,7 +117,7 @@
           "path": "/blog/2020/12/21/data-fetching-with-react-server-components"
         },
         {
-          "title": "Older posts",
+          "title": "Старіші публікації",
           "path": "https://reactjs.org/blog/all.html"
         }
       ]

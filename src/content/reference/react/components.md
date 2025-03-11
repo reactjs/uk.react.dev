@@ -1,5 +1,5 @@
 ---
-title: "Built-in React Components"
+title: "React: вбудовані компоненти"
 ---
 
 <Intro>

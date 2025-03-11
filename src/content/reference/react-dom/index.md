@@ -1,5 +1,5 @@
 ---
-title: React DOM APIs
+title: "React DOM: API"
 ---
 
 <Intro>
@@ -41,7 +41,7 @@ The `react-dom` package provides two additional entry points:
 
 ---
 
-## Removed APIs {/*removed-apis*/}
+## Видалені API {/*removed-apis*/}
 
 These APIs were removed in React 19:
 
