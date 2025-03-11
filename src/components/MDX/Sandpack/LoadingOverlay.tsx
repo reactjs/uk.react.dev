@@ -63,7 +63,7 @@ export const LoadingOverlay = ({
         opacity: stillLoading ? 1 : 0,
         transition: `opacity ${FADE_ANIMATION_DURATION}ms ease-out`,
       }}>
-      <div className="sp-cube-wrapper" title="Open in CodeSandbox">
+      <div className="sp-cube-wrapper" title="Відкрити в CodeSandbox">
         {/* @ts-ignore: the OpenInCodeSandboxButton type from '@codesandbox/sandpack-react/unstyled' is incompatible with JSX in React 19 */}
         <OpenInCodeSandboxButton />
         <div className="sp-cube">

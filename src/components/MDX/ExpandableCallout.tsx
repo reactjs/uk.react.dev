@@ -26,7 +26,7 @@ interface ExpandableCalloutProps {
 
 const variantMap = {
   deprecated: {
-    title: 'Deprecated',
+    title: 'Застаріле',
     Icon: IconWarning,
     containerClasses: 'bg-red-5 dark:bg-red-60 dark:bg-opacity-20',
     textColor: 'text-red-50 dark:text-red-40',
@@ -34,7 +34,7 @@ const variantMap = {
       'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
   },
   note: {
-    title: 'Note',
+    title: 'Примітка',
     Icon: IconNote,
     containerClasses:
       'bg-green-5 dark:bg-green-60 dark:bg-opacity-20 text-primary dark:text-primary-dark text-lg',
@@ -52,7 +52,7 @@ const variantMap = {
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
   pitfall: {
-    title: 'Pitfall',
+    title: 'Будьте обачні',
     Icon: IconPitfall,
     containerClasses: 'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20',
     textColor: 'text-yellow-50 dark:text-yellow-40',
@@ -60,7 +60,7 @@ const variantMap = {
       'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
   },
   wip: {
-    title: 'Under Construction',
+    title: 'Досі розробляється',
     Icon: IconNote,
     containerClasses: 'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20',
     textColor: 'text-yellow-50 dark:text-yellow-40',
@@ -76,7 +76,7 @@ const variantMap = {
       'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
   },
   rsc: {
-    title: 'React Server Components',
+    title: 'Серверні компоненти React',
     Icon: null,
     containerClasses: 'bg-blue-10 dark:bg-blue-60 dark:bg-opacity-20',
     textColor: 'text-blue-50 dark:text-blue-40',

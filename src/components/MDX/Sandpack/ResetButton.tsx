@@ -13,9 +13,9 @@ export function ResetButton({onReset}: ResetButtonProps) {
     <button
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
       onClick={onReset}
-      title="Reset Sandbox"
+      title="Почати пісочницю наново"
       type="button">
-      <IconRestart className="inline mx-1 relative" /> Reset
+      <IconRestart className="inline mx-1 relative" /> Скинути
     </button>
   );
 }

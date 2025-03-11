@@ -253,7 +253,7 @@ export default function TopNav({
             <div className="flex flex-row 3xl:flex-1 items-centers">
               <button
                 type="button"
-                aria-label="Menu"
+                aria-label="Меню"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className={cn(
                   'active:scale-95 transition-transform flex lg:hidden w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link',
@@ -268,8 +268,8 @@ export default function TopNav({
                   <div className="uwu-visible flex items-center justify-center h-full">
                     <NextLink href="/">
                       <Image
-                        alt="logo by @sawaratsuki1004"
-                        title="logo by @sawaratsuki1004"
+                        alt="лого від @sawaratsuki1004"
+                        title="лого від @sawaratsuki1004"
                         className="h-8"
                         priority
                         width={63}
@@ -308,7 +308,7 @@ export default function TopNav({
                 )}
                 onClick={onOpenSearch}>
                 <IconSearch className="align-middle me-3 text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
-                Search
+                Пошук
                 <span className="hidden ms-auto sm:flex item-center me-1">
                   <Kbd data-platform="mac">⌘</Kbd>
                   <Kbd data-platform="win" wide>
@@ -321,25 +321,25 @@ export default function TopNav({
             <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
               <div className="mx-2.5 gap-1.5 hidden lg:flex">
                 <NavItem isActive={section === 'learn'} url="/learn">
-                  Learn
+                  Вивчення
                 </NavItem>
                 <NavItem
                   isActive={section === 'reference'}
                   url="/reference/react">
-                  Reference
+                  Довідник
                 </NavItem>
                 <NavItem isActive={section === 'community'} url="/community">
-                  Community
+                  Спільнота
                 </NavItem>
                 <NavItem isActive={section === 'blog'} url="/blog">
-                  Blog
+                  Блог
                 </NavItem>
               </div>
               <div className="flex w-full md:hidden"></div>
               <div className="flex items-center -space-x-2.5 xs:space-x-0 ">
                 <div className="flex md:hidden">
                   <button
-                    aria-label="Search"
+                    aria-label="Пошук"
                     type="button"
                     className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 md:hidden hover:bg-secondary-button hover:dark:bg-secondary-button-dark outline-link"
                     onClick={onOpenSearch}>
@@ -349,7 +349,7 @@ export default function TopNav({
                 <div className="flex dark:hidden">
                   <button
                     type="button"
-                    aria-label="Use Dark Mode"
+                    aria-label="Використовувати темний режим"
                     onClick={() => {
                       window.__setPreferredTheme('dark');
                     }}
@@ -360,7 +360,7 @@ export default function TopNav({
                 <div className="hidden dark:flex">
                   <button
                     type="button"
-                    aria-label="Use Light Mode"
+                    aria-label="Використовувати світлий режим"
                     onClick={() => {
                       window.__setPreferredTheme('light');
                     }}
@@ -371,7 +371,7 @@ export default function TopNav({
                 <div className="flex">
                   <Link
                     href="/community/translations"
-                    aria-label="Translations"
+                    aria-label="Переклади"
                     className="active:scale-95 transition-transform flex w-12 h-12 rounded-full items-center justify-center hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {languageIcon}
                   </Link>
@@ -381,7 +381,7 @@ export default function TopNav({
                     href="https://github.com/facebook/react/releases"
                     target="_blank"
                     rel="noreferrer noopener"
-                    aria-label="Open on GitHub"
+                    aria-label="Відкрити на GitHub"
                     className="flex items-center justify-center w-12 h-12 transition-transform rounded-full active:scale-95 hover:bg-primary/5 hover:dark:bg-primary-dark/5 outline-link">
                     {githubIcon}
                   </Link>
@@ -408,20 +408,20 @@ export default function TopNav({
                 <Suspense fallback={null}>
                   <div className="ps-3 xs:ps-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
                     <NavItem isActive={section === 'learn'} url="/learn">
-                      Learn
+                      Вивчення
                     </NavItem>
                     <NavItem
                       isActive={section === 'reference'}
                       url="/reference/react">
-                      Reference
+                      Довідник
                     </NavItem>
                     <NavItem
                       isActive={section === 'community'}
                       url="/community">
-                      Community
+                      Спільнота
                     </NavItem>
                     <NavItem isActive={section === 'blog'} url="/blog">
-                      Blog
+                      Блог
                     </NavItem>
                   </div>
                   <div
