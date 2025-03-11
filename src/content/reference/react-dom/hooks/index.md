@@ -1,5 +1,5 @@
 ---
-title: "Built-in React DOM Hooks"
+title: "React DOM: вбудовані хуки"
 ---
 
 <Intro>

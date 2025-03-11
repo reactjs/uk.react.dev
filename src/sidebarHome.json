@@ -23,7 +23,7 @@
       "path": "/learn/describing-the-ui"
     },
     {
-      "title": "Adding Interactivity",
+      "title": "Додавання інтерактивності",
       "path": "/learn/adding-interactivity"
     },
     {
@@ -39,19 +39,19 @@
       "sectionHeader": "REACT API"
     },
     {
-      "title": "Hooks",
+      "title": "Хуки",
       "path": "/reference/react"
     },
     {
-      "title": "Components",
+      "title": "Компоненти",
       "path": "/reference/react/components"
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis"
     },
     {
-      "title": "Legacy APIs",
+      "title": "Спадкові API",
       "path": "/reference/react/legacy"
     },
     {
@@ -59,35 +59,35 @@
       "sectionHeader": "REACT DOM API"
     },
     {
-      "title": "Components",
+      "title": "Компоненти",
       "path": "/reference/react-dom/components"
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom"
     },
     {
-      "title": "Client APIs",
+      "title": "Клієнтські API",
       "path": "/reference/react-dom/client"
     },
     {
-      "title": "Server APIs",
+      "title": "Серверні API",
       "path": "/reference/react-dom/server"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "ДОЛУЧИТИСЯ"
     },
     {
-      "title": "React Community",
+      "title": "Спільнота React",
       "path": "/community"
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "STAY INFORMED"
+      "sectionHeader": "НОВИНИ"
     },
     {
-      "title": "React Blog",
+      "title": "Блог React",
       "path": "/blog"
     }
   ]

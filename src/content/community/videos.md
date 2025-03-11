@@ -1,5 +1,5 @@
 ---
-title: React Videos
+title: Відео про React
 ---
 
 <Intro>

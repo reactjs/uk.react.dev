@@ -67,7 +67,7 @@ export function TeamMember({
             {twitter && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label={`${name} on Twitter`}
+                  aria-label={`${name} у Twitter`}
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconTwitter className="pe-1" />
@@ -78,7 +78,7 @@ export function TeamMember({
             {threads && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label={`${name} on Threads`}
+                  aria-label={`${name} у Threads`}
                   href={`https://threads.net/${threads}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconThreads className="pe-1" />
@@ -89,7 +89,7 @@ export function TeamMember({
             {bsky && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label={`${name} on Bluesky`}
+                  aria-label={`${name} у Bluesky`}
                   href={`https://bsky.app/profile/${bsky}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconBsky className="pe-1" />
@@ -100,7 +100,7 @@ export function TeamMember({
             {github && (
               <div className="me-4">
                 <ExternalLink
-                  aria-label="GitHub Profile"
+                  aria-label="Профіль у GitHub"
                   href={`https://github.com/${github}`}
                   className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                   <IconGitHub className="pe-1" /> {github}
@@ -109,7 +109,7 @@ export function TeamMember({
             )}
             {personal && (
               <ExternalLink
-                aria-label="Personal Site"
+                aria-label="Персональний вебсайт"
                 href={`https://${personal}`}
                 className="hover:text-primary hover:underline dark:text-primary-dark flex flex-row items-center">
                 <IconLink className="pe-1" /> {personal}

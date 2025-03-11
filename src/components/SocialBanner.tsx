@@ -9,7 +9,7 @@ import {ExternalLink} from './ExternalLink';
 
 const bannerText = 'Stream React Conf on May 15-16.';
 const bannerLink = 'https://conf.react.dev/';
-const bannerLinkText = 'Learn more.';
+const bannerLinkText = 'Детальніше.';
 
 export default function SocialBanner() {
   const ref = useRef<HTMLDivElement | null>(null);

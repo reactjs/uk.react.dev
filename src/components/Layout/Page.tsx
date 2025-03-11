@@ -132,7 +132,7 @@ export function Page({
           <link
             rel="alternate"
             type="application/rss+xml"
-            title="React Blog RSS Feed"
+            title="RSS-стрічка блогу React"
             href="/rss.xml"
           />
         </Head>

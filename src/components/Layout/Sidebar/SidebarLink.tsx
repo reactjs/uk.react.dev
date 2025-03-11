@@ -77,14 +77,14 @@ export function SidebarLink({
         {title}{' '}
         {version === 'major' && (
           <span
-            title="- This feature is available in React 19 beta and the React canary channel"
+            title="- ця функція доступна в бета-версії React 19 та каналі canary-версій React"
             className={`text-xs px-1 ms-1 rounded bg-gray-10 dark:bg-gray-40 dark:bg-opacity-20 text-gray-40 dark:text-gray-40`}>
             React 19
           </span>
         )}
         {version === 'canary' && (
           <IconCanary
-            title=" - This feature is available in the latest Canary"
+            title=" - ця функція доступна в останній canary-версії"
             className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
           />
         )}

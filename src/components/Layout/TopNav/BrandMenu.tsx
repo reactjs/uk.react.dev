@@ -50,7 +50,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
           sideOffset={0}
           align="end">
           <ContextMenu.Label className="ps-4 pt-2 text-base text-tertiary dark:text-tertiary-dark">
-            Dark Mode
+            Темний режим
           </ContextMenu.Label>
           <DownloadMenuItem
             fileName="react_logo_dark.svg"
@@ -58,7 +58,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Logo SVG</span>
+            <span>Лого як SVG</span>
           </DownloadMenuItem>
           <DownloadMenuItem
             fileName="react_wordmark_dark.svg"
@@ -66,7 +66,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Wordmark SVG</span>
+            <span>Шрифтове лого як SVG</span>
           </DownloadMenuItem>
           <MenuItem
             onSelect={async () => {
@@ -75,10 +75,10 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconCopy />
             </span>
-            <span>Copy dark mode color</span>
+            <span>Скопіювати колір темного режиму</span>
           </MenuItem>
           <ContextMenu.Label className="ps-4 text-base text-tertiary dark:text-tertiary-dark">
-            Light Mode
+            Світлий режим
           </ContextMenu.Label>
           <DownloadMenuItem
             fileName="react_logo_light.svg"
@@ -86,7 +86,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Logo SVG</span>
+            <span>Лого SVG</span>
           </DownloadMenuItem>
           <DownloadMenuItem
             fileName="react_wordmark_light.svg"
@@ -94,7 +94,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconDownload />
             </span>
-            <span>Wordmark SVG</span>
+            <span>Шрифтове лого як SVG</span>
           </DownloadMenuItem>
           <MenuItem
             onSelect={async () => {
@@ -103,7 +103,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
             <span className="w-8">
               <IconCopy />
             </span>
-            <span>Copy light mode color</span>
+            <span>Скопіювати колір світлого режиму</span>
           </MenuItem>
           <div className="uwu-visible flex flex-col">
             <ContextMenu.Separator className="" />
@@ -118,13 +118,13 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
               <span className="w-8">
                 <IconClose />
               </span>
-              <span>Turn off</span>
+              <span>Вимкнути</span>
             </MenuItem>
             <DownloadMenuItem fileName="react_uwu_png" href="/images/uwu.png">
               <span className="w-8">
                 <IconDownload />
               </span>
-              <span>Logo PNG</span>
+              <span>Лого як PNG</span>
             </DownloadMenuItem>
 
             <ExternalLink
@@ -134,7 +134,7 @@ export default function BrandMenu({children}: {children: React.ReactNode}) {
                 <span className="w-8">
                   <IconNewPage />
                 </span>
-                <span>Logo by @sawaratsuki1004</span>
+                <span>Лого від @sawaratsuki1004</span>
               </MenuItem>
             </ExternalLink>
           </div>

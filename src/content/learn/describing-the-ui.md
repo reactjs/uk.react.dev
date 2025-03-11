@@ -186,7 +186,7 @@ img { height: 90px; }
 
 </LearnMore>
 
-## JavaScript у JSX з фігурними дужками {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript у JSX із фігурними дужками {/*javascript-in-jsx-with-curly-braces*/}
 
 JSX дозволяє писати HTML-подібну розмітку всередині файлу JavaScript, зберігаючи логіку рендерингу та вміст в одному місці. Іноді вам потрібно додати трохи логіки JavaScript або посилатися на динамічну властивість у цій розмітці. Тоді ви можете використовувати фігурні дужки у своєму JSX, щоб "відкрити вікно" у JavaScript:
 

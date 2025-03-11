@@ -189,7 +189,7 @@ export function Preview({
                 ? 'absolute opacity-0 pointer-events-none duration-75'
                 : 'opacity-100 duration-150'
             )}
-            title="Sandbox Preview"
+            title="Попередній перегляд пісочниці"
             style={{
               height: iframeComputedHeight || '15px',
               zIndex: isExpanded ? 'initial' : -1,

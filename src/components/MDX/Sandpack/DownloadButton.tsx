@@ -100,9 +100,9 @@ ${css}
     <button
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
       onClick={downloadHTML}
-      title="Download Sandbox"
+      title="Завантажити пісочницю"
       type="button">
-      <IconDownload className="inline me-1" /> Download
+      <IconDownload className="inline me-1" /> Завантажити
     </button>
   );
 }

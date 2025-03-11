@@ -1,5 +1,5 @@
 ---
-title: Static React DOM APIs
+title: "React DOM: статичні API"
 ---
 
 <Intro>

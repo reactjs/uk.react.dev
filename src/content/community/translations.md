@@ -1,5 +1,5 @@
 ---
-title: Translations
+title: Переклади
 ---
 
 <Intro>

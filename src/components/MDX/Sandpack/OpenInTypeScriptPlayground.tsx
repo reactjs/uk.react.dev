@@ -12,7 +12,7 @@ export const OpenInTypeScriptPlaygroundButton = (props: {content: string}) => {
       href={`https://www.typescriptlang.org/play#src=${encodeURIComponent(
         contentWithReactImport
       )}`}
-      title="Open in TypeScript Playground"
+      title="Відкрити в TypeScript-пісочниці"
       target="_blank"
       rel="noreferrer">
       <IconNewPage
@@ -20,7 +20,7 @@ export const OpenInTypeScriptPlaygroundButton = (props: {content: string}) => {
         width="1em"
         height="1em"
       />
-      <span className="hidden md:block">TypeScript Playground</span>
+      <span className="hidden md:block">TypeScript-пісочниця</span>
     </a>
   );
 };

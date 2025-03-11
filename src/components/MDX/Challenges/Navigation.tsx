@@ -106,7 +106,7 @@ export function Navigation({
       <div className="flex z-10 pb-2 ps-2">
         <button
           onClick={handleScrollLeft}
-          aria-label="Scroll left"
+          aria-label="Прогорнути вліво"
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r rtl:rotate-180',
             {
@@ -118,7 +118,7 @@ export function Navigation({
         </button>
         <button
           onClick={handleScrollRight}
-          aria-label="Scroll right"
+          aria-label="Прогорнути вправо"
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-e rtl:rotate-180',
             {

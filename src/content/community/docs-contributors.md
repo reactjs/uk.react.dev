@@ -1,5 +1,5 @@
 ---
-title: Docs Contributors
+title: Автори документації
 ---
 
 <Intro>

@@ -119,8 +119,8 @@ export function HomeContent() {
         <div className="mx-5 mt-12 lg:mt-24 mb-20 lg:mb-32 flex flex-col justify-center">
           <div className="uwu-visible flex justify-center">
             <Image
-              alt="logo by @sawaratsuki1004"
-              title="logo by @sawaratsuki1004"
+              alt="лого від @sawaratsuki1004"
+              title="лого від @sawaratsuki1004"
               loading="eager"
               width={313}
               height={160}
@@ -145,7 +145,7 @@ export function HomeContent() {
               size="lg"
               className="w-full sm:w-auto justify-center"
               label="Learn React">
-              Learn React
+              Вивчення React
             </ButtonLink>
             <ButtonLink
               href={'/reference/react'}
@@ -153,7 +153,7 @@ export function HomeContent() {
               size="lg"
               className="w-full sm:w-auto justify-center"
               label="API Reference">
-              API Reference
+              Довідник API
             </ButtonLink>
           </div>
         </div>
@@ -435,7 +435,7 @@ export function HomeContent() {
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">
-                      Read more React news
+                      Більше новин про React
                     </CTA>
                   </div>
                 </div>
@@ -443,7 +443,7 @@ export function HomeContent() {
               <div className="w-full lg:w-6/12">
                 <p className="uppercase tracking-wide font-bold text-sm text-tertiary dark:text-tertiary-dark flex flex-row gap-2 items-center mt-5 lg:-mt-2 w-full">
                   <IconChevron />
-                  Latest React News
+                  Останні новини про React
                 </p>
                 <div className="flex-col sm:flex-row flex-wrap flex gap-5 text-start my-5">
                   <div className="flex-1 min-w-[40%] text-start">
@@ -461,7 +461,7 @@ export function HomeContent() {
                 </div>
                 <div className="flex lg:hidden justify-start w-full">
                   <CTA color="gray" icon="news" href="/blog">
-                    Read more React news
+                    Більше новин про React
                   </CTA>
                 </div>
               </div>
@@ -519,7 +519,7 @@ export function HomeContent() {
               type="primary"
               size="lg"
               label="Take the Tutorial">
-              Get Started
+              Ознайомитися
             </ButtonLink>
           </div>
         </Section>
@@ -1104,7 +1104,7 @@ function SearchableVideoList({ videos }) {
             contentMarginTop="72px"
             height="30rem">
             <h1 className="mx-4 mb-1 font-bold text-3xl text-primary">
-              React Videos
+              Відео про React
             </h1>
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
               A brief history of React
@@ -1321,7 +1321,7 @@ function BrowserChrome({children, hasPulse, hasRefresh, domain, path}) {
                 <div className="z-0 absolute shadow-[0_0_0_8px_rgba(0,0,0,0.5)] inset-0 rounded-full animation-pulse-shadow" />
               )}
               <button
-                aria-label="Reload"
+                aria-label="Перезавантажити"
                 onClick={handleRestart}
                 className={
                   'z-10 flex items-center p-1.5 rounded-full cursor-pointer justify-center' +
@@ -1512,7 +1512,7 @@ function ConferenceLayout({conf, children}) {
       data-hover="ConferenceLayout">
       <Cover background={conf.cover}>
         <select
-          aria-label="Event"
+          aria-label="Подія"
           defaultValue={slug}
           onChange={(e) => {
             startTransition(() => {
@@ -1685,7 +1685,7 @@ function LikeButton({video}) {
         'outline-none focus:bg-red-50/5 focus:text-red-50 relative flex items-center justify-center w-10 h-10 cursor-pointer rounded-full hover:bg-card active:scale-95 active:bg-red-50/5 active:text-red-50',
         isLiked ? 'text-red-50' : 'text-tertiary'
       )}
-      aria-label={isLiked ? 'Unsave' : 'Save'}
+      aria-label={isLiked ? 'Видалити з улюбленого' : 'Додати в улюблене'}
       onClick={() => {
         const nextIsLiked = !isLiked;
         if (nextIsLiked) {

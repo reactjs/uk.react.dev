@@ -33,7 +33,7 @@ function PageHeading({
           {title}
           {canary && (
             <IconCanary
-              title=" - This feature is available in the latest Canary"
+              title=" - ця функція доступна в останній canary-версії"
               className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
             />
           )}

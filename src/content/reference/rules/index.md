@@ -1,5 +1,5 @@
 ---
-title: Rules of React
+title: Правила React
 ---
 
 <Intro>
