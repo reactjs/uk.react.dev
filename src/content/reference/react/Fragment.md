@@ -29,7 +29,7 @@ title: <Fragment> (<>...</>)
 
 - **опційний** `key`: Фрагменти, оголошені з явним синтаксисом `<Fragment>` можуть мати [ключі.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 
-#### Обмеження {/*caveats*/}
+#### Застереження {/*caveats*/}
 
 - Якщо ви хочете передати `key` для Fragment, ви не можете використовувати синтаксис `<>...</>`. Ви маєте явно імпортувати `Fragment` з `'react'` та рендерити `<Fragment key={yourKey}>...</Fragment>`.
 
