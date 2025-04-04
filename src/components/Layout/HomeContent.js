@@ -136,7 +136,8 @@ export function HomeContent() {
             React
           </h1>
           <p className="text-4xl font-display max-w-lg md:max-w-full py-1 text-center text-secondary dark:text-primary-dark leading-snug self-center">
-            The library for web and native user interfaces
+            Бібліотека зі створення UI <br className="hidden lg:inline" /> для
+            вебу і нативних платформ
           </p>
           <div className="mt-5 self-center flex gap-2 w-full sm:w-auto flex-col sm:flex-row">
             <ButtonLink
@@ -160,13 +161,13 @@ export function HomeContent() {
 
         <Section background="left-card">
           <Center>
-            <Header>Create user interfaces from components</Header>
+            <Header>Створюйте інтерфейс із компонентів</Header>
             <Para>
-              React lets you build user interfaces out of individual pieces
-              called components. Create your own React components like{' '}
-              <Code>Thumbnail</Code>, <Code>LikeButton</Code>, and{' '}
-              <Code>Video</Code>. Then combine them into entire screens, pages,
-              and apps.
+              React дає змогу створювати інтерфейси користувача з окремих
+              частин&nbsp;— компонентів. Створюйте власні React-компоненти,
+              наприклад: <Code>Thumbnail</Code>, <Code>LikeButton</Code> та{' '}
+              <Code>Video</Code>. Потім об&apos;єднайте їх у віджети, сторінки і
+              застосунки.
             </Para>
           </Center>
           <FullBleed>
@@ -174,22 +175,22 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              Whether you work on your own or with thousands of other
-              developers, using React feels the same. It is designed to let you
-              seamlessly combine components written by independent people,
-              teams, and organizations.
+              Чи ви самі, чи з тисячами інших розробників&nbsp;— React
+              відчувається однаково. Він розроблений так, щоб дати вам змогу
+              безшовно поєднувати компоненти, написані окремими людьми,
+              командами та організаціями.
             </Para>
           </Center>
         </Section>
 
         <Section background="right-card">
           <Center>
-            <Header>Write components with code and markup</Header>
+            <Header>Пишіть компоненти кодом і розміткою</Header>
             <Para>
-              React components are JavaScript functions. Want to show some
-              content conditionally? Use an <Code>if</Code> statement.
-              Displaying a list? Try array <Code>map()</Code>. Learning React is
-              learning programming.
+              Компоненти React&nbsp;— це JavaScript-функції. Бажаєте показати
+              деякий вміст умовно? Використовуйте оператор <Code>if</Code>.
+              Показати список? Спробуйте <Code>map()</Code> для масиву. Вивчення
+              React&nbsp;— це вивчення програмування.
             </Para>
           </Center>
           <FullBleed>
@@ -197,22 +198,22 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              This markup syntax is called JSX. It is a JavaScript syntax
-              extension popularized by React. Putting JSX markup close to
-              related rendering logic makes React components easy to create,
-              maintain, and delete.
+              Цей синтаксис розмітки називається JSX. Це розширення синтаксису
+              JavaScript, популяризоване завдяки React. Близькість JSX-розмітки
+              до пов&apos;язаної з нею логіки рендерингу спрощує створення,
+              підтримування та видалення React-компонентів.
             </Para>
           </Center>
         </Section>
 
         <Section background="left-card">
           <Center>
-            <Header>Add interactivity wherever you need it</Header>
+            <Header>Додайте за потреби інтерактивність</Header>
             <Para>
-              React components receive data and return what should appear on the
-              screen. You can pass them new data in response to an interaction,
-              like when the user types into an input. React will then update the
-              screen to match the new data.
+              Компоненти React отримують дані та повертають те, що має
+              з&apos;явитися на екрані. Ви можете передавати їм нові дані у
+              відповідь на взаємодію, наприклад, коли користувач вводить щось у
+              поле. Потім React оновить екран відповідно до нових даних.
             </Para>
           </Center>
           <FullBleed>
@@ -220,16 +221,16 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              You don’t have to build your whole page in React. Add React to
-              your existing HTML page, and render interactive React components
-              anywhere on it.
+              Вам не потрібно будувати всю сторінку за допомогою React. Додайте
+              React до вашої наявної HTML-сторінки і рендеріть інтерактивні
+              React-компоненти будь-де на ній.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="code"
                 href="/learn/add-react-to-an-existing-project">
-                Add React to your page
+                Додати React до вашої сторінки
               </CTA>
             </div>
           </Center>
@@ -238,14 +239,15 @@ export function HomeContent() {
         <Section background="right-card">
           <Center>
             <Header>
-              Go full-stack <br className="hidden lg:inline" />
-              with a framework
+              Виберіть фреймворк <br className="hidden lg:inline" />
+              повного стеку
             </Header>
             <Para>
-              React is a library. It lets you put components together, but it
-              doesn’t prescribe how to do routing and data fetching. To build an
-              entire app with React, we recommend a full-stack React framework
-              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
+              React&nbsp;— це бібліотека. Він комбінує компоненти, але не
+              визначає спосіб маршрутизації чи запиту даних. Щоб побудувати
+              цільний застосунок, ми рекомендуємо скористатися React-фреймворком
+              повного стеку, як-от{' '}
+              <Link href="https://nextjs.org">Next.js</Link> або{' '}
               <Link href="https://remix.run">Remix</Link>.
             </Para>
           </Center>
@@ -254,17 +256,18 @@ export function HomeContent() {
           </FullBleed>
           <Center>
             <Para>
-              React is also an architecture. Frameworks that implement it let
-              you fetch data in asynchronous components that run on the server
-              or even during the build. Read data from a file or a database, and
-              pass it down to your interactive components.
+              React також є архітектурою. Фреймворки, які її реалізують, дають
+              вам змогу отримувати дані в асинхронних компонентах, які
+              виконуються на сервері або навіть під час збирання. Читайте дані з
+              файлу або бази даних і передавайте їх своїм інтерактивним
+              компонентам.
             </Para>
             <div className="flex justify-start w-full lg:justify-center">
               <CTA
                 color="gray"
                 icon="framework"
                 href="/learn/start-a-new-react-project">
-                Get started with a framework
+                Розпочати з фреймворком
               </CTA>
             </div>
           </Center>
@@ -272,12 +275,12 @@ export function HomeContent() {
         <Section background="left-card">
           <div className="mx-auto flex flex-col w-full">
             <div className="mx-auto max-w-4xl lg:text-center items-center px-5 flex flex-col">
-              <Header>Use the best from every platform</Header>
+              <Header>Візьміть найкраще від кожної з платформ</Header>
               <Para>
-                People love web and native apps for different reasons. React
-                lets you build both web apps and native apps using the same
-                skills. It leans upon each platform’s unique strengths to let
-                your interfaces feel just right on every platform.
+                Людям подобаються нативні чи вебзастосунки через різні причини.
+                React дає змогу створювати і ті, й інші, використовуючи однакові
+                навички. Він спирається на унікальні сильні сторони кожної
+                платформи, щоб ваші інтерфейси для них мали якнайкращий вигляд.
               </Para>
             </div>
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row mt-16 mb-20 lg:mb-28 px-5 gap-20 lg:gap-5">
@@ -291,15 +294,16 @@ export function HomeContent() {
                     <div className="bg-wash relative h-14 w-full" />
                     <div className="relative flex items-start justify-center flex-col flex-1 pb-16 pt-5 gap-3 px-5 lg:px-10 lg:pt-8">
                       <h4 className="leading-tight text-primary font-semibold text-3xl lg:text-4xl">
-                        Stay true to the web
+                        Залишатися вірними вебу
                       </h4>
                       <p className="lg:text-xl leading-normal text-secondary">
-                        People expect web app pages to load fast. On the server,
-                        React lets you start streaming HTML while you’re still
-                        fetching data, progressively filling in the remaining
-                        content before any JavaScript code loads. On the client,
-                        React can use standard web APIs to keep your UI
-                        responsive even in the middle of rendering.
+                        Люди очікують, що сторінки вебзастосунків
+                        завантажуватимуться швидко. На сервері React дає змогу
+                        почати потокове передавання HTML, поки ви все ще
+                        отримуєте дані, поступово заповнюючи решту вмісту перед
+                        завантаженням JavaScript-коду. На клієнті React може
+                        використовувати стандартні API вебу, щоб підтримувати
+                        чутливість інтерфейсу навіть під час рендерингу.
                       </p>
                     </div>
                   </div>
@@ -377,21 +381,21 @@ export function HomeContent() {
                       </div>
                       <div className="flex flex-col items-start justify-center pt-0 gap-3 px-2.5 lg:pt-8 lg:px-8">
                         <h4 className="leading-tight text-primary dark:text-primary-dark font-semibold text-3xl lg:text-4xl">
-                          Go truly native
+                          Стати справді нативними
                         </h4>
                         <p className="h-full lg:text-xl text-secondary dark:text-secondary-dark leading-normal">
-                          People expect native apps to look and feel like their
-                          platform.{' '}
+                          Люди очікують, що нативні застосунки матимуть вигляд і
+                          відчуття їхньої платформи.{' '}
                           <Link href="https://reactnative.dev">
                             React Native
                           </Link>{' '}
-                          and{' '}
+                          і{' '}
                           <Link href="https://github.com/expo/expo">Expo</Link>{' '}
-                          let you build apps in React for Android, iOS, and
-                          more. They look and feel native because their UIs{' '}
-                          <i>are</i> truly native. It’s not a web view—your
-                          React components render real Android and iOS views
-                          provided by the platform.
+                          дають змогу створювати застосунки за допомогою React
+                          для Android, iOS тощо. Вони нативні, оскільки їхні
+                          інтерфейси справді <i>є</i> такими. Це не
+                          webview&nbsp;— ваші React-компоненти будуть рендерити
+                          реальні компоненти Android та iOS, надані платформою.
                         </p>
                       </div>
                     </div>
@@ -401,14 +405,15 @@ export function HomeContent() {
             </div>
             <div className="px-5 lg:px-0 max-w-4xl mx-auto lg:text-center text-secondary dark:text-secondary-dark">
               <Para>
-                With React, you can be a web <i>and</i> a native developer. Your
-                team can ship to many platforms without sacrificing the user
-                experience. Your organization can bridge the platform silos, and
-                form teams that own entire features end-to-end.
+                За допомогою React ви можете бути розробником для вебу <i>та</i>{' '}
+                нативної системи. Ваша команда може поставляти продукт до
+                багатьох платформ без шкоди для UX. Ваша організація може
+                подолати відокремленість між платформами та сформувати команди,
+                які відповідають за функції від а до я.
               </Para>
               <div className="flex justify-start w-full lg:justify-center">
                 <CTA color="gray" icon="native" href="https://reactnative.dev/">
-                  Build for native platforms
+                  Побудувати для нативних платформ
                 </CTA>
               </div>
             </div>
@@ -419,19 +424,19 @@ export function HomeContent() {
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row px-5">
             <div className="max-w-3xl lg:max-w-7xl gap-5 flex flex-col lg:flex-row lg:px-5">
               <div className="w-full lg:w-6/12 max-w-3xl flex flex-col items-start justify-start lg:ps-5 lg:pe-10">
-                <Header>Upgrade when the future is ready</Header>
+                <Header>Оновлюйте, коли майбутнє вже тут</Header>
                 <Para>
-                  React approaches changes with care. Every React commit is
-                  tested on business-critical surfaces with over a billion
-                  users. Over 100,000 React components at Meta help validate
-                  every migration strategy.
+                  React обережно реагує на зміни. Кожен коміт у React тестується
+                  на критично важливих для бізнесу рівнях із понад мільярдом
+                  користувачів. Понад 100 000 React-компонентів у Meta
+                  допомагають перевірити кожну стратегію міграції.
                 </Para>
                 <div className="order-last pt-5">
                   <Para>
-                    The React team is always researching how to improve React.
-                    Some research takes years to pay off. React has a high bar
-                    for taking a research idea into production. Only proven
-                    approaches become a part of React.
+                    Команда React постійно шукає, як покращити React. Деякі
+                    дослідження окупляться лише через роки. React має високу
+                    планку для публічного впровадження дослідницької ідеї. Лише
+                    перевірені підходи стають частиною React.
                   </Para>
                   <div className="hidden lg:flex justify-start w-full">
                     <CTA color="gray" icon="news" href="/blog">
@@ -474,13 +479,13 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Header>
-                  Join a community <br className="hidden lg:inline" />
-                  of millions
+                  Приєднуйтеся до <br className="hidden lg:inline" />
+                  спільноти мільйонів
                 </Header>
                 <Para>
-                  You’re not alone. Two million developers from all over the
-                  world visit the React docs every month. React is something
-                  that people and teams can agree on.
+                  Ви не самотні. Щомісяця два мільйони розробників з усього
+                  світу відвідують документацію React. React&nbsp;— це те, про
+                  що домовляються люди та команди.
                 </Para>
               </Center>
             </div>
@@ -488,13 +493,13 @@ export function HomeContent() {
             <div className="mx-auto flex flex-col max-w-4xl">
               <Center>
                 <Para>
-                  This is why React is more than a library, an architecture, or
-                  even an ecosystem. React is a community. It’s a place where
-                  you can ask for help, find opportunities, and meet new
-                  friends. You will meet both developers and designers,
-                  beginners and experts, researchers and artists, teachers and
-                  students. Our backgrounds may be very different, but React
-                  lets us all create user interfaces together.
+                  Ось чому React&nbsp;— це більше, ніж бібліотека, архітектура
+                  чи навіть екосистема. React&nbsp;— це спільнота. Це місце, де
+                  ви можете попросити про допомогу, знайти нові можливості чи
+                  зустріти нових друзів. Ви зустрінете розробників і дизайнерів,
+                  початківців й експертів, дослідників і художників, викладачів
+                  і студентів. Наш досвід може відрізнятися, але але ми разом
+                  створюємо інтерфейси за допомогою React.
                 </Para>
               </Center>
             </div>
@@ -511,15 +516,15 @@ export function HomeContent() {
             </div>
             <Logo className="uwu-hidden text-brand dark:text-brand-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start" />
             <Header>
-              Welcome to the <br className="hidden lg:inline" />
-              React community
+              Ласкаво просимо до <br className="hidden lg:inline" />
+              спільноти React
             </Header>
             <ButtonLink
               href={'/learn'}
               type="primary"
               size="lg"
               label="Take the Tutorial">
-              Ознайомитися
+              Розпочати
             </ButtonLink>
           </div>
         </Section>
@@ -935,8 +940,8 @@ function Example1() {
           <Video
             video={{
               id: 'ex1-0',
-              title: 'My video',
-              description: 'Video description',
+              title: 'Моє відео',
+              description: 'Опис відео',
               image: 'blue',
               url: null,
             }}
@@ -959,20 +964,20 @@ function Example2() {
   const videos = [
     {
       id: 'ex2-0',
-      title: 'First video',
-      description: 'Video description',
+      title: 'Перше відео',
+      description: 'Опис відео',
       image: 'blue',
     },
     {
       id: 'ex2-1',
-      title: 'Second video',
-      description: 'Video description',
+      title: 'Друге відео',
+      description: 'Опис відео',
       image: 'red',
     },
     {
       id: 'ex2-2',
-      title: 'Third video',
-      description: 'Video description',
+      title: 'Третє відео',
+      description: 'Опис відео',
       image: 'green',
     },
   ];
@@ -988,11 +993,10 @@ function Example2() {
           noShadow={true}
           noMargin={true}>
           <div meta={meta}>{`function VideoList({ videos, emptyHeading }) {
-  const count = videos.length;
   let heading = emptyHeading;
+  const count = videos.length;
   if (count > 0) {
-    const noun = count > 1 ? 'Videos' : 'Video';
-    heading = count + ' ' + noun;
+    heading = count + ' відео';
   }
   return (
     <section>
@@ -1090,7 +1094,7 @@ function SearchableVideoList({ videos }) {
         onChange={newText => setSearchText(newText)} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={\`No matches for “\${searchText}”\`} />
+        emptyHeading={\`Нічого не знайдено за запитом “\${searchText}”\`} />
     </>
   );
 }`}</div>
@@ -1107,7 +1111,7 @@ function SearchableVideoList({ videos }) {
               Відео про React
             </h1>
             <p className="mx-4 mb-0 leading-snug text-secondary text-xl">
-              A brief history of React
+              Коротка історія бібліотеки React
             </p>
             <div className="px-4 pb-4">
               <SearchableVideoList videos={videos} />
@@ -1428,7 +1432,7 @@ function SearchableVideoList({videos}) {
       <SearchInput value={searchText} onChange={setSearchText} />
       <VideoList
         videos={foundVideos}
-        emptyHeading={`No matches for “${searchText}”`}
+        emptyHeading={`Нічого не знайдено за запитом “${searchText}”`}
       />
     </div>
   );
@@ -1454,8 +1458,7 @@ function VideoList({videos, emptyHeading}) {
   let heading = emptyHeading;
   const count = videos.length;
   if (count > 0) {
-    const noun = count > 1 ? 'Videos' : 'Video';
-    heading = count + ' ' + noun;
+    heading = count + ' відео';
   }
   return (
     <section className="relative" data-hover="VideoList">
@@ -1491,7 +1494,7 @@ function SearchInput({value, onChange}) {
           type="text"
           id={id}
           className="flex ps-11 py-4 h-10 w-full text-start bg-secondary-button outline-none betterhover:hover:bg-opacity-80 pointer items-center text-primary rounded-full align-middle text-base"
-          placeholder="Search"
+          placeholder="Пошук"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
