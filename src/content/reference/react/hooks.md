@@ -119,4 +119,4 @@ function TodoList({ todos, tab, theme }) {
 
 ## Власні хуки {/*your-own-hooks*/}
 
-Ви також можете [створювати власні кастомні хуки](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component) як звичайні функції JavaScript.
+Ви також можете [створювати власні хуки користувача](/learn/reusing-logic-with-custom-hooks#extracting-your-own-custom-hook-from-a-component) як звичайні функції JavaScript.
