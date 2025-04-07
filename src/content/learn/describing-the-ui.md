@@ -230,7 +230,7 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Прочитайте розділ **["JavaScript у JSX з фігурними дужками"](/learn/javascript-in-jsx-with-curly-braces)**, щоб дізнатися, як отримувати доступ до JavaScript-елементів зсередини JSX.
+Прочитайте розділ **["JavaScript у JSX із фігурними дужками"](/learn/javascript-in-jsx-with-curly-braces)**, щоб дізнатися, як отримувати доступ до JavaScript-елементів зсередини JSX.
 
 </LearnMore>
 
