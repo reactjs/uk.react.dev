@@ -65,7 +65,11 @@ Rsbuild відразу підтримує такі функції React, як ш
 
 #### Metro for React Native {/*react-native*/}
 
+<<<<<<< HEAD
 Якщо ви хочете, щоб ваш фреймворк підтримував React Native, вам потрібно буде використовувати [Metro](https://metrobundler.dev/) — бандлер JavaScript для React Native. Metro створює бандли для iOS та Android, але йому бракує багатьох функцій, як порівняти з наведеними тут інструментами. Ми рекомендуємо почати з Vite, Parcel або Rsbuild, якщо ваш проєкт не потребує підтримування React Native.
+=======
+If you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
+>>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 </Note>
 
@@ -83,7 +87,7 @@ Rsbuild відразу підтримує такі функції React, як ш
 
 Пропонуємо використовувати:
 
-- [React Router](https://reactrouter.com/start/framework/custom)
+- [React Router](https://reactrouter.com/start/data/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
