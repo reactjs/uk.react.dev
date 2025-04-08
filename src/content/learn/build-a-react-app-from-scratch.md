@@ -83,7 +83,7 @@ Rsbuild відразу підтримує такі функції React, як ш
 
 Пропонуємо використовувати:
 
-- [React Router](https://reactrouter.com/start/framework/custom)
+- [React Router](https://reactrouter.com/start/data/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
