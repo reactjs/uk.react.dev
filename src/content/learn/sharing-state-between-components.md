@@ -1,31 +1,31 @@
 ---
-title: Sharing State Between Components
+title: Поширення стану між компонентами
 ---
 
 <Intro>
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
+Іноді вам потрібно, щоб стан двох компонентів завжди змінювався разом. Для цього видаліть стан з обох компонентів, перенесіть його до їхнього найближчого спільного батьківського компонента і потім передайте вниз до них через пропси. Це називається *підняттям стану вгору (lifting state up)*, і це одна з найпоширеніших речей, які ви будете робити під час написання React-коду.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to share state between components by lifting it up
-- What are controlled and uncontrolled components
+- Як поширювати стан між компонентами підняттям його вгору
+- Що таке контрольовані та неконтрольовані компоненти
 
 </YouWillLearn>
 
-## Lifting state up by example {/*lifting-state-up-by-example*/}
+## Підняття стану на прикладі {/*lifting-state-up-by-example*/}
 
-In this example, a parent `Accordion` component renders two separate `Panel`s:
+У цьому прикладі батьківський компонент `Accordion` рендерить два окремих компонента-панелі `Panel`:
 
 * `Accordion`
   - `Panel`
   - `Panel`
 
-Each `Panel` component has a boolean `isActive` state that determines whether its content is visible.
+Кожний компонент `Panel` має булевий стан `isActive`, який визначає, чи його вміст видимий.
 
-Press the Show button for both panels:
+Натисніть кнопку "Показати" для обох панелей: 
 
 <Sandpack>
 
@@ -41,7 +41,7 @@ function Panel({ title, children }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Показати
         </button>
       )}
     </section>
@@ -51,12 +51,12 @@ function Panel({ title, children }) {
 export default function Accordion() {
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About">
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+      <h2>Алмати, Казахстан</h2>
+      <Panel title="Про Алмати">
+        З майже 2-мільйонним населенням Алмати є найбільшим містом в Казахстані. З 1929 до 1997 воно було його столицею.
       </Panel>
-      <Panel title="Etymology">
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+      <Panel title="Етимологія">
+        Назва походить від казахського слова <span lang="kk-KZ">алма</span>, що означає "яблуко" і часто перекладалось як "повний яблук". Насправді регіон, який оточує Алмати, вважається прабатьківщиною яблука, а дика <i lang="la">Malus sieversii</i> — ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
   );
@@ -73,59 +73,59 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Notice how pressing one panel's button does not affect the other panel--they are independent.
+Зверніть увагу, що натискання кнопки однієї панелі не впливає на іншу панель — вони незалежні.
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+<Diagram name="sharing_state_child" height={367} width={477} alt="Діаграма показує дерево з трьох компонентів: один батьківський із міткою Accordion і два дочірні з мітками Panel. Обидва компоненти Panel містять isActive зі значенням false.">
 
-Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
+Спочатку стан `isActive` кожного `Panel` дорівнює `false`, тому обидва мають згорнутий вигляд
 
 </Diagram>
 
-<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="Та сама діаграма, що й попередня, з виділеним isActive першого дочірнього компонента Panel, що вказує на натискання зі значенням isActive, встановленим у true. Другий компонент Panel все ще містить значення false." >
 
-Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone
+Натискання на будь-яку з кнопок `Panel` призведе до оновлення стану `isActive` тільки цієї `Panel`
 
 </Diagram>
 
 </DiagramGroup>
 
-**But now let's say you want to change it so that only one panel is expanded at any given time.** With that design, expanding the second panel should collapse the first one. How would you do that?
+**Але тепер припустимо, що ви хочете змінити це так, щоб тільки одна панель була розгорнута в будь-який момент часу.** За цього дизайну розгортання другої панелі повинно згорнути першу. Як би ви це зробили?
 
-To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
+Щоб скоординувати ці дві панелі, вам потрібно "підняти їхній стан вгору" до батьківського компонента в три кроки:
 
-1. **Remove** state from the child components.
-2. **Pass** hardcoded data from the common parent.
-3. **Add** state to the common parent and pass it down together with the event handlers.
+1. **Видалити** стан із дочірніх компонентів.
+2. **Передати** незмінні дані від спільного батьківського компонента.
+3. **Додати** стан до спільного батька і передати його вниз разом з обробниками подій.
 
-This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
+Це дасть компоненту `Accordion` змогу скоординувати обидва компоненти `Panel` та розгортати тільки один щоразу.
 
-### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
+### Крок 1: Видаліть стан із дочірніх компонентів {/*step-1-remove-state-from-the-child-components*/}
 
-You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
+Ви передасте контроль `isActive` компонента `Panel` його батьківському компоненту. Це означає, що батьківський компонент передасть `isActive` дочірньому `Panel` як проп. Почніть із **видалення цього рядка** з `Panel`:
 
 ```js
 const [isActive, setIsActive] = useState(false);
 ```
 
-And instead, add `isActive` to the `Panel`'s list of props:
+Натомість додайте `isActive` до списку пропсів `Panel`:
 
 ```js
 function Panel({ title, children, isActive }) {
 ```
 
-Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
+Тепер батьківський компонент `Panel` може *контролювати* `isActive`, [передаючи його як проп.](/learn/passing-props-to-a-component) І навпаки: `Panel` тепер *не має контролю* над значенням `isActive` — тепер це залежить від батьківського компонента!
 
-### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
+### Крок 2: Передайте незмінні дані від спільного батьківського компонента {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
-To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
+Щоб підняти стан вгору, ви повинні виявити найближчий спільний батьківський компонент *обох* дочірніх компонентів, які ви хочете скоординувати:
 
-* `Accordion` *(closest common parent)*
+* `Accordion` *(найближчий спільний батько)*
   - `Panel`
   - `Panel`
 
-In this example, it's the `Accordion` component. Since it's above both panels and can control their props, it will become the "source of truth" for which panel is currently active. Make the `Accordion` component pass a hardcoded value of `isActive` (for example, `true`) to both panels:
+У цьому прикладі ним є компонент `Accordion`. Оскільки він знаходиться над обома панелями і може контролювати їхні пропси, він стане "джерелом правди" для визначення того, яка панель є наразі відкритою. Зробіть так, щоб компонент `Accordion` передавав незмінне значення `isActive` (наприклад, `true`) до обох панелей:
 
 <Sandpack>
 
@@ -135,12 +135,12 @@ import { useState } from 'react';
 export default function Accordion() {
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
-      <Panel title="About" isActive={true}>
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+      <h2>Алмати, Казахстан</h2>
+      <Panel title="Про Алмати" isActive={true}>
+        З майже 2-мільйонним населенням Алмати є найбільшим містом в Казахстані. З 1929 до 1997 воно було його столицею.
       </Panel>
-      <Panel title="Etymology" isActive={true}>
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+      <Panel title="Етимологія" isActive={true}>
+        Назва походить від казахського слова <span lang="kk-KZ">алма</span>, що означає "яблуко" і часто перекладалось як "повний яблук". Насправді регіон, який оточує Алмати, вважається прабатьківщиною яблука, а дика <i lang="la">Malus sieversii</i> — ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
   );
@@ -154,7 +154,7 @@ function Panel({ title, children, isActive }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Показати
         </button>
       )}
     </section>
@@ -172,21 +172,21 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Try editing the hardcoded `isActive` values in the `Accordion` component and see the result on the screen.
+Спробуйте відредагувати незмінні значення `isActive` у компоненті `Accordion` та погляньте на результат на екрані.
 
-### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
+### Крок 3: Додайте стан до батьківського компонента {/*step-3-add-state-to-the-common-parent*/}
 
-Lifting state up often changes the nature of what you're storing as state.
+Підйом стану вгору часто змінює природу того, що ви зберігаєте як стан.
 
-In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use a number as the index of the active `Panel` for the state variable:
+У цьому прикладі тільки одна панель має бути активною в будь-який момент часу. Це означає, що спільний батьківський компонент `Accordion` має відстежувати, *яка* панель є активною. Замість значення типу `boolean`, можна використовувати число як індекс активного компонента `Panel` для змінної стану:
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);
 ```
 
-When the `activeIndex` is `0`, the first panel is active, and when it's `1`, it's the second one.
+Коли `activeIndex` дорівнює `0`, перша панель буде активною, а коли `1` — то друга.
 
-Clicking the "Show" button in either `Panel` needs to change the active index in `Accordion`. A `Panel` can't set the `activeIndex` state directly because it's defined inside the `Accordion`. The `Accordion` component needs to *explicitly allow* the `Panel` component to change its state by [passing an event handler down as a prop](/learn/responding-to-events#passing-event-handlers-as-props):
+Натискання кнопки "Показати" на одному із `Panel` має змінити активний індекс в `Accordion`. `Panel` не може встановлювати стан `activeIndex` безпосередньо, оскільки це визначається всередині `Accordion`. Компонент `Accordion` повинен *явно дозволити* компоненту `Panel` змінювати свій стан за допомогою [передавання обробника подій вниз як проп](/learn/responding-to-events#passing-event-handlers-as-props):
 
 ```js
 <>
@@ -205,7 +205,7 @@ Clicking the "Show" button in either `Panel` needs to change the active index in
 </>
 ```
 
-The `<button>` inside the `Panel` will now use the `onShow` prop as its click event handler:
+Кнопка `<button>` всередині `Panel` відтепер буде використовувати проп `onShow` як обробник події клацання:
 
 <Sandpack>
 
@@ -216,20 +216,20 @@ export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
+      <h2>Алмати, Казахстан</h2>
       <Panel
-        title="About"
+        title="Про Алмати"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        З майже 2-мільйонним населенням Алмати є найбільшим містом в Казахстані. З 1929 до 1997 воно було його столицею.
       </Panel>
       <Panel
-        title="Etymology"
+        title="Етимологія"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Назва походить від казахського слова <span lang="kk-KZ">алма</span>, що означає "яблуко" і часто перекладалось як "повний яблук". Насправді регіон, який оточує Алмати, вважається прабатьківщиною яблука, а дика <i lang="la">Malus sieversii</i> — ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
   );
@@ -248,7 +248,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Показати
         </button>
       )}
     </section>
@@ -266,19 +266,19 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-This completes lifting state up! Moving state into the common parent component allowed you to coordinate the two panels. Using the active index instead of two "is shown" flags ensured that only one panel is active at a given time. And passing down the event handler to the child allowed the child to change the parent's state.
+Підняття стану вгору завершено! Переміщення стану до спільного батьківського компонента дозволяє вам скоординувати дві панелі. Використання індексу для активності замість двох прапорців "активно" гарантує, що тільки одна панель буде активною в певний момент. А передавання обробника подій вниз до дочірнього компонента дає йому змогу змінювати батьківський стан.
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
+<Diagram name="sharing_state_parent" height={385} width={487} alt="Діаграма показує дерево з трьох компонентів: один батьківський із міткою Accordion і два дочірні з мітками Panel. Accordion містить activeIndex із нульовим значенням, яке стає isActive зі значенням true, що передається до першого компонента Panel, та isActive зі значенням false для другого.">
 
-Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
+Початково `Accordion` має `activeIndex` зі значенням `0`, тому перший компонент `Panel` отримує `isActive = true`
 
 </Diagram>
 
-<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="The same diagram as the previous, with the activeIndex value of the parent Accordion component highlighted indicating a click with the value changed to one. The flow to both of the children Panel components is also highlighted, and the isActive value passed to each child is set to the opposite: false for the first Panel and true for the second one." >
+<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="Така сама діаграма, що й попередня, тільки підсвічено значення activeIndex батьківського компонента, що вказує на клік із значенням, зміненим на одиницю. Шлях до обох дочірніх компонентів Panel також підсвічений, а значення isActive, передане до кожного дочірнього компонента, є протилежним: false для першого Panel та true для другого." >
 
-When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receives `isActive = true` instead
+Коли в `Accordion` стан `activeIndex` змінюється на `1`, друга `Panel` отримує `isActive = true`
 
 </Diagram>
 
@@ -286,48 +286,48 @@ When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receiv
 
 <DeepDive>
 
-#### Controlled and uncontrolled components {/*controlled-and-uncontrolled-components*/}
+#### Контрольовані та неконтрольовані компоненти {/*controlled-and-uncontrolled-components*/}
 
-It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
+Заведено називати деякий компонент із локальним станом "неконтрольованим". Для прикладу, вихідний компонент `Panel` компонент зі змінною стану `isActive` є неконтрольованим, оскільки його батько не може впливати на те, чи буде панель активною, чи ні.
 
-In contrast, you might say a component is "controlled" when the important information in it is driven by props rather than its own local state. This lets the parent component fully specify its behavior. The final `Panel` component with the `isActive` prop is controlled by the `Accordion` component.
+На противагу, ви можете сказати, що компонент є "контрольованим", коли важлива інформація в ньому керується за допомогою пропсів, а не його власним локальним станом. Це дає батьківському компоненту змогу повністю визначити його поведінку. Останній компонент `Panel` із пропом `isActive` контролюється компонентом `Accordion`.
 
-Uncontrolled components are easier to use within their parents because they require less configuration. But they're less flexible when you want to coordinate them together. Controlled components are maximally flexible, but they require the parent components to fully configure them with props.
+Неконтрольовані компоненти легше використовувати всередині батьківських, оскільки вони вимагають менше налаштувань. Але вони менш гнучкі, коли ви хочете скоординувати їх разом. Контрольовані компоненти є максимально гнучкими, але вони вимагають від батьківських компонентів повного налаштування за допомогою пропсів.
 
-In practice, "controlled" and "uncontrolled" aren't strict technical terms--each component usually has some mix of both local state and props. However, this is a useful way to talk about how components are designed and what capabilities they offer.
+На практиці "контрольований" та "неконтрольований" не є строгими технічними термінами — кожен компонент зазвичай має певну суміш локального стану та пропсів. Однак це корисний спосіб розповісти про те, як компоненти розроблені та які можливості вони пропонують.
 
-When writing a component, consider which information in it should be controlled (via props), and which information should be uncontrolled (via state). But you can always change your mind and refactor later.
+Коли пишите компонент, подумайте, яка інформація в ньому має бути контрольованою (за допомогою пропсів), а яка — неконтрольованою (за допомогою стану). Але ви завжди можете передумати і змінити це пізніше.
 
 </DeepDive>
 
-## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
+## Єдине джерело правди для кожного стану {/*a-single-source-of-truth-for-each-state*/}
 
-In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
+У React-застосунку багато компонентів матимуть їхній власний стан. Деякий стан може "жити" близько до листкових компонентів (компоненти, що знаходяться внизу дерева), як-от поля вводу. Інші стани можуть "жити" ближче до вершини застосунку. Для прикладу, навіть клієнтські бібліотеки маршрутизації зазвичай реалізовані за допомогою зберігання поточного маршруту в стані React та передають його вниз через пропси!
 
-**For each unique piece of state, you will choose the component that "owns" it.** This principle is also known as having a ["single source of truth".](https://en.wikipedia.org/wiki/Single_source_of_truth) It doesn't mean that all state lives in one place--but that for _each_ piece of state, there is a _specific_ component that holds that piece of information. Instead of duplicating shared state between components, *lift it up* to their common shared parent, and *pass it down* to the children that need it.
+**Для кожної унікальної частинки стану ви оберете компонент, який "володіє" ним.** Цей принцип також відомий як ["єдине джерело правди".](https://en.wikipedia.org/wiki/Single_source_of_truth) Це не означає, що весь стан знаходиться в одному місці, це означає, що для _кожної_ частини стану є _певний_ компонент, який утримує ту частину інформації. Замість дублювання спільного стану між компонентами, *підніміть його вгору* до їхнього спільного батька та *передайте його вниз* до дочірніх компонентів, де він потрібний. 
 
-Your app will change as you work on it. It is common that you will move state down or back up while you're still figuring out where each piece of the state "lives". This is all part of the process!
+Ваш застосунок буде змінюватися в міру того, як ви працюєте над ним. Часто буває так, що ви переміщуєте стан вниз або назад вгору, поки намагаєтеся з'ясувати, де кожен шматок стану "живе". Це все частина процесу! 
 
-To see what this feels like in practice with a few more components, read [Thinking in React.](/learn/thinking-in-react)
+Щоб побачити, як це відчувається на практиці з кількома іншими компонентами, прочитайте ["Thinking in React".](/learn/thinking-in-react)
 
 <Recap>
 
-* When you want to coordinate two components, move their state to their common parent.
-* Then pass the information down through props from their common parent.
-* Finally, pass the event handlers down so that the children can change the parent's state.
-* It's useful to consider components as "controlled" (driven by props) or "uncontrolled" (driven by state).
+* Коли ви хочете скоординувати два компоненти, перенесіть їхній стан до їхнього спільного батька.
+* Потім передайте інформацію від їхнього спільного батька вниз через пропси.
+* Нарешті, передайте обробники подій вниз, щоб діти могли змінювати батьківський стан.
+* Корисно розглядати компонент як "контрольований" (керований пропсами) або "неконтрольований" (керований станом).
 
 </Recap>
 
 <Challenges>
 
-#### Synced inputs {/*synced-inputs*/}
+#### Синхронізовані поля вводу {/*synced-inputs*/}
 
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
+Ці два поля вводу є незалежні. Зробіть так, щоб вони були синхронізовані: редагування одного поля вводу має оновлювати інше поле вводу тим самим текстом, і навпаки.
 
 <Hint>
 
-You'll need to lift their state up into the parent component.
+Вам потрібно підняти їхній стан вгору до батьківського компонента.
 
 </Hint>
 
@@ -339,8 +339,8 @@ import { useState } from 'react';
 export default function SyncedInputs() {
   return (
     <>
-      <Input label="First input" />
-      <Input label="Second input" />
+      <Input label="Перше поле вводу" />
+      <Input label="Друге поле вводу" />
     </>
   );
 }
@@ -374,7 +374,7 @@ label { display: block; }
 
 <Solution>
 
-Move the `text` state variable into the parent component along with the `handleChange` handler. Then pass them down as props to both of the `Input` components. This will keep them in sync.
+Перенесіть змінну стану `text` у батьківський компонент разом із обробником `handleChange`. Потім передайте їх вниз як пропси до обох компонентів `Input`. Це забезпечить їхню синхронізацію.
 
 <Sandpack>
 
@@ -391,12 +391,12 @@ export default function SyncedInputs() {
   return (
     <>
       <Input
-        label="First input"
+        label="Перше поле вводу"
         value={text}
         onChange={handleChange}
       />
       <Input
-        label="Second input"
+        label="Друге поле вводу"
         value={text}
         onChange={handleChange}
       />
@@ -427,17 +427,17 @@ label { display: block; }
 
 </Solution>
 
-#### Filtering a list {/*filtering-a-list*/}
+#### Фільтрування списку {/*filtering-a-list*/}
 
-In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
+У цьому прикладі `SearchBar` має власний стан `query`, який контролює текстове поле вводу. Його батьківський компонент `FilterableList` відображає список `List` з елементами, але він не враховує пошуковий запит.
 
-Use the `filterItems(foods, query)` function to filter the list according to the search query. To test your changes, verify that typing "s" into the input filters down the list to "Sushi", "Shish kebab", and "Dim sum".
+Використайте функцію `filterItems(foods, query)`, щоб фільтрувати список відповідно до пошукового запиту. Щоб перевірити ваші зміни, переконайтеся, що введення у поле літери "с" відфільтрує список до "Суші" та "Дімсам".
 
-Note that `filterItems` is already implemented and imported so you don't need to write it yourself!
+Зверніть увагу, що `filterItems` вже реалізовано та імпортовано, тож вам не потрібно писати його самостійно!
 
 <Hint>
 
-You will want to remove the `query` state and the `handleChange` handler from the `SearchBar`, and move them to the `FilterableList`. Then pass them down to `SearchBar` as `query` and `onChange` props.
+Вам потрібно видалити стан `query` й обробник `handleChange`  із `SearchBar` та перенести їх до `FilterableList`. Потім передати їх вниз до `SearchBar` як пропси `query` та `onChange`.
 
 </Hint>
 
@@ -466,7 +466,7 @@ function SearchBar() {
 
   return (
     <label>
-      Search:{' '}
+      Пошук:{' '}
       <input
         value={query}
         onChange={handleChange}
@@ -503,24 +503,24 @@ export function filterItems(items, query) {
 
 export const foods = [{
   id: 0,
-  name: 'Sushi',
-  description: 'Sushi is a traditional Japanese dish of prepared vinegared rice'
+  name: 'Суші',
+  description: 'Суші — традиційна японська страва з готового рису, заправленого оцтом.'
 }, {
   id: 1,
-  name: 'Dal',
-  description: 'The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added'
+  name: 'Дал',
+  description: 'Найпоширеніший спосіб приготування дала — це суп, до якого можуть додавати цибулю, помідори та різні спеції.'
 }, {
   id: 2,
-  name: 'Pierogi',
-  description: 'Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water'
+  name: 'Пироги',
+  description: 'Пироги — це вареники з начинкою, які готуються через обгортання прісного тіста навколо солоної або солодкої начинки і варіння в киплячій воді.'
 }, {
   id: 3,
-  name: 'Shish kebab',
-  description: 'Shish kebab is a popular meal of skewered and grilled cubes of meat.'
+  name: 'Шиш-кебаб',
+  description: 'Шиш-кебаб — популярна страва з кубиків м\'яса, нанизаних на шампур і приготованих на грилі.'
 }, {
   id: 4,
-  name: 'Dim sum',
-  description: 'Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch'
+  name: 'Дімсам',
+  description: 'Дімсам — це великий асортимент невеликих страв, якими кантонці традиційно насолоджуються в ресторанах на сніданок та обід.'
 }];
 ```
 
@@ -528,7 +528,7 @@ export const foods = [{
 
 <Solution>
 
-Lift the `query` state up into the `FilterableList` component. Call `filterItems(foods, query)` to get the filtered list and pass it down to the `List`. Now changing the query input is reflected in the list:
+Підніміть стан `query` вгору в компонент `FilterableList`. Викличте `filterItems(foods, query)`, щоб отримати відфільтрований список і передати його вниз до `List`. Тепер зміна пошукових даних вводу відображається в списку:
 
 <Sandpack>
 
@@ -559,7 +559,7 @@ export default function FilterableList() {
 function SearchBar({ query, onChange }) {
   return (
     <label>
-      Search:{' '}
+      Пошук:{' '}
       <input
         value={query}
         onChange={onChange}
@@ -596,24 +596,24 @@ export function filterItems(items, query) {
 
 export const foods = [{
   id: 0,
-  name: 'Sushi',
-  description: 'Sushi is a traditional Japanese dish of prepared vinegared rice'
+  name: 'Суші',
+  description: 'Суші — традиційна японська страва з готового рису, заправленого оцтом.'
 }, {
   id: 1,
-  name: 'Dal',
-  description: 'The most common way of preparing dal is in the form of a soup to which onions, tomatoes and various spices may be added'
+  name: 'Дал',
+  description: 'Найпоширеніший спосіб приготування дала — це суп, до якого можуть додавати цибулю, помідори та різні спеції.'
 }, {
   id: 2,
-  name: 'Pierogi',
-  description: 'Pierogi are filled dumplings made by wrapping unleavened dough around a savoury or sweet filling and cooking in boiling water'
+  name: 'Пироги',
+  description: 'Пироги — це вареники з начинкою, які готуються через обгортання прісного тіста навколо солоної або солодкої начинки і варіння в киплячій воді.'
 }, {
   id: 3,
-  name: 'Shish kebab',
-  description: 'Shish kebab is a popular meal of skewered and grilled cubes of meat.'
+  name: 'Шиш-кебаб',
+  description: 'Шиш-кебаб — популярна страва з кубиків м\'яса, нанизаних на шампур і приготованих на грилі.'
 }, {
   id: 4,
-  name: 'Dim sum',
-  description: 'Dim sum is a large range of small dishes that Cantonese people traditionally enjoy in restaurants for breakfast and lunch'
+  name: 'Дімсам',
+  description: 'Дімсам — це великий асортимент невеликих страв, якими кантонці традиційно насолоджуються в ресторанах на сніданок та обід.'
 }];
 ```
 
