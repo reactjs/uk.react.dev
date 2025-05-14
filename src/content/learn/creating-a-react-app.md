@@ -32,7 +32,11 @@ title: Створення React-застосунку
 npx create-next-app@latest
 </TerminalBlock>
 
+<<<<<<< HEAD
 Next.js підтримується командою [Vercel](https://vercel.com/). [Розгорнути застосунок Next.js](https://nextjs.org/docs/app/building-your-application/deploying) можна на будь-якому Node.js- або безсерверному хостингу, а також на власному сервері. Також Next.js підтримує [статичне експортування](https://nextjs.org/docs/app/building-your-application/deploying/static-exports), якому не потрібен сервер. На додачу Vercel пропонує необов'язкові платні хмарні послуги.
+=======
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any hosting provider that supports Node.js or Docker containers, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
 
 ### React Router (v7) {/*react-router-v7*/}
 
@@ -106,7 +110,11 @@ App Router від Next.js також інтегрує [отримання дан
 
 Початок роботи з нуля надає вам більше гнучкості, але потребує від вас вибору інструментів для маршрутизації, отримання даних та інших типових патернів використання. Це дуже схоже на створення власного фреймворку замість використання наявного. [Фреймворки, які ми рекомендуємо](#full-stack-frameworks), мають готові вбудовані рішення для цих проблем.
 
+<<<<<<< HEAD
 Якби ви хочете власне рішення, перегляньте наш посібник із [побудови React-застосунку з нуля](/learn/build-a-react-app-from-scratch), щоб отримати інструкції з налаштування нового React-проєкту, починаючи з інструментів збирання, як-от [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) чи [RSbuild](https://rsbuild.dev/).
+=======
+If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a build tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
+>>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
 
 -----
 
