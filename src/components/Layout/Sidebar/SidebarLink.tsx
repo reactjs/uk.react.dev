@@ -9,6 +9,7 @@ import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import {IconCanary} from 'components/Icon/IconCanary';
+import {IconExperimental} from 'components/Icon/IconExperimental';
 import Link from 'next/link';
 
 interface SidebarLinkProps {
@@ -16,7 +17,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
-  version?: 'canary' | 'major';
+  version?: 'canary' | 'major' | 'experimental';
   icon?: React.ReactNode;
   isExpanded?: boolean;
   hideArrow?: boolean;
@@ -84,7 +85,13 @@ export function SidebarLink({
         )}
         {version === 'canary' && (
           <IconCanary
-            title=" - ця функція доступна в останній canary-версії"
+            title=" - ця функція доступна в останній canary-версії React"
+            className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
+          />
+        )}
+        {version === 'experimental' && (
+          <IconExperimental
+            title=" - ця функція доступна в останній експериментальній версії React"
             className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
           />
         )}
