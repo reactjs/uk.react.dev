@@ -85,17 +85,13 @@ export function SidebarLink({
         )}
         {version === 'canary' && (
           <IconCanary
-<<<<<<< HEAD
-            title=" - ця функція доступна в останній canary-версії"
-=======
-            title=" - This feature is available in the latest Canary version of React"
+            title=" - ця функція доступна в останній canary-версії React"
             className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
           />
         )}
         {version === 'experimental' && (
           <IconExperimental
-            title=" - This feature is available in the latest Experimental version of React"
->>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
+            title=" - ця функція доступна в останній експериментальній версії React"
             className="ms-1 text-gray-30 dark:text-gray-60 inline-block w-3.5 h-3.5 align-[-3px]"
           />
         )}

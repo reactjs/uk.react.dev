@@ -36,17 +36,13 @@ function PageHeading({
           {title}
           {version === 'canary' && (
             <IconCanary
-<<<<<<< HEAD
-              title=" - ця функція доступна в останній canary-версії"
-=======
-              title=" - This feature is available in the latest Canary version of React"
+              title=" - ця функція доступна в останній canary-версії React"
               className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
             />
           )}
           {version === 'experimental' && (
             <IconExperimental
-              title=" - This feature is available in the latest Experimental version of React"
->>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
+              title=" - ця функція доступна в останній експериментальній версії React"
               className="ms-4 mt-1 text-gray-50 dark:text-gray-40 inline-block w-6 h-6 align-[-1px]"
             />
           )}
