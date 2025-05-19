@@ -203,8 +203,12 @@ function LearnMore({
 
 function ReadBlogPost({path}: {path: string}) {
   return (
-    <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
-      Переглянути публікацію
+    <ButtonLink
+      className="mt-1"
+      label="Читати допис"
+      href={path}
+      type="primary">
+      Переглянути допис
       <IconNavArrow displayDirection="end" className="inline ms-1" />
     </ButtonLink>
   );

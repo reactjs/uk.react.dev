@@ -4,9 +4,9 @@ title: Блог React
 
 <Intro>
 
-This blog is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted here first.
+Цей блог є офіційним джерелом оновлень від команди React. Все важливе, включно з нотатками релізу або повідомленнями про застарілі функції, буде опубліковано спершу тут.
 
-You can also follow the [@react.dev](https://bsky.app/profile/react.dev) account on Bluesky, or [@reactjs](https://twitter.com/reactjs) account on Twitter, but you won’t miss anything essential if you only read this blog.
+Ви також можете слідкувати за [@react.dev](https://bsky.app/profile/react.dev) на платформі Bluesky або за [@reactjs](https://twitter.com/reactjs) у Twitter, але ви не пропустите нічого суттєвого, якщо читатимете лише цей блог.
 
 </Intro>
 
@@ -112,14 +112,14 @@ The React team is excited to share a few updates:
 
 ---
 
-### All release notes {/*all-release-notes*/}
+### Усі нотатки до релізів {/*all-release-notes*/}
 
-Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/facebook/react/releases) page.
+Не кожен реліз React заслуговує на окремий допис у блозі, проте ви можете знайти детальний список змін для кожного релізу у файлі [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) у репозиторії React, а також на сторінці ["Релізи"](https://github.com/facebook/react/releases).
 
 ---
 
-### Старіші публікації {/*older-posts*/}
+### Старіші дописи {/*older-posts*/}
 
-Перегляньте [старіші публікації.](https://reactjs.org/blog/all.html)
+Перегляньте [старіші дописи.](https://reactjs.org/blog/all.html)
 
 <div className="h-12"></div>
