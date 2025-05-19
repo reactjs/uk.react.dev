@@ -1,0 +1,26 @@
+# Discord notify for a Ukrainian community--UTLC (#react-docs-alert channel)
+name: Discord Notify
+
+on:
+  pull_request_target:
+    types: [closed, opened, reopened, ready_for_review]
+
+permissions: {}
+
+jobs:
+  notify:
+    if: github.repository == 'reactjs/uk.react.dev'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord Webhook Action (UTLC)
+        uses: tsickert/discord-webhook@v6.0.0
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL_UTLC }}
+          embed-author-name: ${{ github.event.sender.login }}
+          embed-author-url: ${{ github.event.sender.html_url }}
+          embed-author-icon-url: ${{ github.event.sender.avatar_url }}
+          embed-title: "${{ github.event.action == 'closed' && github.event.pull_request.merged == true && 'merged' || github.event.action }} #${{ github.event.number }}: ${{ github.event.pull_request.title }}"
+          embed-description: ${{ github.event.pull_request.body }}
+          embed-url: ${{ github.event.pull_request.html_url }}
+          embed-footer-text: >
+            diff: +${{github.event.pull_request.additions}} -${{github.event.pull_request.deletions}}

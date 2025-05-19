@@ -8,15 +8,6 @@ title: Встановлення
 
 </Intro>
 
-<YouWillLearn isChapter={true}>
-
-* [Як почати новий React-проєкт](/learn/start-a-new-react-project)
-* [Як інтегрувати React у наявний проєкт](/learn/add-react-to-an-existing-project)
-* [Як налаштувати редактор коду](/learn/editor-setup)
-* [Як встановити інструменти React розробника](/learn/react-developer-tools)
-
-</YouWillLearn>
-
 ## Спробувати React {/*try-react*/}
 
 Не потрібно нічого встановлювати, щоб погратися з React. Спробуйте відредагувати код у цій пісочниці!
@@ -39,17 +30,28 @@ export default function App() {
 
 Більшість сторінок у документації React містять схожі пісочниці. Водночас існує багато інших онлайн-пісочниць з підтримкою React, наприклад: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) або [CodePen.](https://codepen.io/pen?template=QWYVwWN)
 
-### Спробувати React локально {/*try-react-locally*/}
-
 Щоб спробувати React локально на вашому комп'ютері, [завантажте цю HTML-сторінку.](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) Відкрийте її у редакторі та браузері!
 
-## Почати новий React-проєкт {/*start-a-new-react-project*/}
+## Створення React-застосунку {/*creating-a-react-app*/}
 
-Якщо ви хочете створити застосунок або вебсайт за допомогою React, [почніть новий React-проєкт.](/learn/start-a-new-react-project)
+Якщо ви хочете почати проєкт за допомогою React, [створіть React-застосунок](/learn/creating-a-react-app), використовуючи один із рекомендованих фреймворків.
+
+## Побудувати React-застосунок з нуля {/*build-a-react-app-from-scratch*/}
+
+Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви бажаєте побудувати власний фреймворк чи розібратися в основах, [побудуйте React-застосунок з нуля](/learn/build-a-react-app-from-scratch).
 
 ## Інтегрувати React у наявний проєкт {/*add-react-to-an-existing-project*/}
 
 Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React у наявний проєкт.](/learn/add-react-to-an-existing-project)
+
+
+<Note>
+
+#### Чи слід використовувати Create React App? {/*should-i-use-create-react-app*/}
+
+Ні. Create React App застарів. Дізнайтеся більше у статті ["Sunsetting Create React App"](/blog/2025/02/14/sunsetting-create-react-app).
+
+</Note>
 
 ## Подальші кроки {/*next-steps*/}
 

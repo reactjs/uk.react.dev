@@ -67,11 +67,11 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
         {exit: isSubmitted}
       )}>
       <p className="w-full text-lg font-bold text-primary dark:text-primary-dark me-4">
-        {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
+        {isSubmitted ? 'Дякуємо за відгук!' : 'Ця сторінка корисна?'}
       </p>
       {!isSubmitted && (
         <button
-          aria-label="Yes"
+          aria-label="Так"
           className="px-3 rounded-lg bg-secondary-button dark:bg-secondary-button-dark text-primary dark:text-primary-dark me-2"
           onClick={() => {
             setIsSubmitted(true);
@@ -83,7 +83,7 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
       )}
       {!isSubmitted && (
         <button
-          aria-label="No"
+          aria-label="Ні"
           className="px-3 rounded-lg bg-secondary-button dark:bg-secondary-button-dark text-primary dark:text-primary-dark"
           onClick={() => {
             setIsSubmitted(true);

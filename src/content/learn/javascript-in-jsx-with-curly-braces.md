@@ -1,5 +1,5 @@
 ---
-title: JavaScript у JSX з фігурними дужками
+title: JavaScript у JSX із фігурними дужками
 ---
 
 <Intro>

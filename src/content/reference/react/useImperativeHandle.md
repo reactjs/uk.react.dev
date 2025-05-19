@@ -4,7 +4,7 @@ title: useImperativeHandle
 
 <Intro>
 
-`useImperativeHandle` is a React Hook that lets you customize the handle exposed as a [ref.](/learn/manipulating-the-dom-with-refs)
+`useImperativeHandle` — це хук, який дає змогу налаштовувати дескриптор (handle) публічно доступного [рефа.](/learn/manipulating-the-dom-with-refs)
 
 ```js
 useImperativeHandle(ref, createHandle, dependencies?)
@@ -16,11 +16,11 @@ useImperativeHandle(ref, createHandle, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Опис {/*reference*/}
 
 ### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
 
-Call `useImperativeHandle` at the top level of your component to customize the ref handle it exposes:
+Викличте `useImperativeHandle` на верхньому рівні вашого компонента, щоб налаштувати дескриптор рефа, доступного з нього:
 
 ```js
 import { useImperativeHandle } from 'react';
@@ -28,39 +28,39 @@ import { useImperativeHandle } from 'react';
 function MyInput({ ref }) {
   useImperativeHandle(ref, () => {
     return {
-      // ... your methods ...
+      // ... ваші методи ...
     };
   }, []);
   // ...
 ```
 
-[See more examples below.](#usage)
+[Перегляньте більше прикладів нижче.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Параметри {/*parameters*/}
 
-* `ref`: The `ref` you received as a prop to the `MyInput` component.
+* `ref`: `ref`, який ви отримали як проп у компоненті `MyInput`.
 
-* `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. That ref handle can have any type. Usually, you will return an object with the methods you want to expose.
+* `createHandle`: Функція, яка не приймає аргументів і повертає дескриптор рефа, до якого ви хочете надати доступ. Дескриптор може бути будь-якого типу. Зазвичай, ви повертатимете об'єкт із методами, до яких ви хочете надати доступ.
 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If a re-render resulted in a change to some dependency, or if you omitted this argument, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
+* **Опційний параметр** `dependencies`: Список усіх реактивних значень, на які посилається код `createHandle`. Реактивні значення охоплюють пропси, стан і всі змінні та функції, оголошені безпосередньо в тілі компонента. Якщо ваш лінтер [налаштований для React](/learn/editor-setup#linting), він перевірить, чи кожне реактивне значення вказане як залежність. Список залежностей повинен містити стале число елементів, записаних у рядок як `[залежність1, залежність2, залежність3]`. React порівняє кожну залежність із своїм попереднім значенням, використовуючи функцію [`Object.is`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Якщо повторний рендер призвів до зміни однієї із залежностей або якщо ви пропустили даний аргумент, ваша функція `createHandle` виконуватиметься повторно, і новостворений дескриптор буде призначений рефу.
 
 <Note>
 
-Starting with React 19, [`ref` is available as a prop.](/blog/2024/12/05/react-19#ref-as-a-prop) In React 18 and earlier, it was necessary to get the `ref` from [`forwardRef`.](/reference/react/forwardRef) 
+Починаючи з React 19, [`ref` доступний як проп.](/blog/2024/12/05/react-19#ref-as-a-prop) У React 18 і старіших версіях необхідно було отримувати `ref` із [`forwardRef`.](/reference/react/forwardRef)
 
 </Note>
 
-#### Returns {/*returns*/}
+#### Результат {/*returns*/}
 
-`useImperativeHandle` returns `undefined`.
+`useImperativeHandle` повертає `undefined`.
 
 ---
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
-### Exposing a custom ref handle to the parent component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
+### Доступ батьківського елемента до налаштованого дескриптора рефа {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
 
-To expose a DOM node to the parent element, pass in the `ref` prop to the node.
+Щоб надати доступ до DOM-вузла батьківському елементу, передайте проп `ref` далі до цього вузла.
 
 ```js {2}
 function MyInput({ ref }) {
@@ -68,7 +68,7 @@ function MyInput({ ref }) {
 };
 ```
 
-With the code above, [a ref to `MyInput` will receive the `<input>` DOM node.](/learn/manipulating-the-dom-with-refs) However, you can expose a custom value instead. To customize the exposed handle, call `useImperativeHandle` at the top level of your component:
+У коді вище [реф, переданий компоненту `MyInput`, отримає DOM-вузол `<input>`.](/learn/manipulating-the-dom-with-refs) Однак, замість цього ви можете задати власне значення. Щоб налаштувати публічний дескриптор, викличте `useImperativeHandle` на верхньому рівні вашого компонента:
 
 ```js {4-8}
 import { useImperativeHandle } from 'react';
@@ -76,7 +76,7 @@ import { useImperativeHandle } from 'react';
 function MyInput({ ref }) {
   useImperativeHandle(ref, () => {
     return {
-      // ... your methods ...
+      // ... ваші методи ...
     };
   }, []);
 
@@ -84,9 +84,9 @@ function MyInput({ ref }) {
 };
 ```
 
-Note that in the code above, the `ref` is no longer passed to the `<input>`.
+Зверніть увагу, що в наведеному вище коді `ref` більше не передається елементу `<input>`.
 
-For example, suppose you don't want to expose the entire `<input>` DOM node, but you want to expose two of its methods: `focus` and `scrollIntoView`. To do this, keep the real browser DOM in a separate ref. Then use `useImperativeHandle` to expose a handle with only the methods that you want the parent component to call:
+Наприклад, припустимо, що ви не хочете робити публічним весь DOM-вузол `<input>`, а лише два його методи: `focus` і `scrollIntoView`. У цьому разі зберігайте справжній браузерний DOM в окремому рефі. Потім викличте `useImperativeHandle`, щоб надати доступ до дескриптора, який містить лише методи, необхідні для виклику батьківським компонентом:
 
 ```js {7-14}
 import { useRef, useImperativeHandle } from 'react';
@@ -109,7 +109,7 @@ function MyInput({ ref }) {
 };
 ```
 
-Now, if the parent component gets a ref to `MyInput`, it will be able to call the `focus` and `scrollIntoView` methods on it. However, it will not have full access to the underlying `<input>` DOM node.
+Тепер якщо батьківський компонент передасть реф до `MyInput`, він зможе викликати його методи `focus` і `scrollIntoView`. Однак, він не буде мати повного доступу до справжнього DOM-вузла `<input>`.
 
 <Sandpack>
 
@@ -122,15 +122,15 @@ export default function Form() {
 
   function handleClick() {
     ref.current.focus();
-    // This won't work because the DOM node isn't exposed:
+    // Це не спрацює, бо вузол DOM не публічний:
     // ref.current.style.opacity = 0.5;
   }
 
   return (
     <form>
-      <MyInput placeholder="Enter your name" ref={ref} />
+      <MyInput placeholder="Введіть ваше ім'я" ref={ref} />
       <button type="button" onClick={handleClick}>
-        Edit
+        Редагувати
       </button>
     </form>
   );
@@ -170,9 +170,9 @@ input {
 
 ---
 
-### Exposing your own imperative methods {/*exposing-your-own-imperative-methods*/}
+### Надання доступу до власних імперативних методів {/*exposing-your-own-imperative-methods*/}
 
-The methods you expose via an imperative handle don't have to match the DOM methods exactly. For example, this `Post` component exposes a `scrollAndFocusAddComment` method via an imperative handle. This lets the parent `Page` scroll the list of comments *and* focus the input field when you click the button:
+Методи, які ви передаєте через імперативний дескриптор, не обов'язково мають точно збігатися з DOM-методами. Наприклад, цей компонент `Post` передає метод `scrollAndFocusAddComment` через дескриптор. Це дає батьківському компоненту `Page` змогу прогорнути список коментарів *і* фокусувати поле введення, коли ви натискаєте кнопку:
 
 <Sandpack>
 
@@ -190,7 +190,7 @@ export default function Page() {
   return (
     <>
       <button onClick={handleClick}>
-        Write a comment
+        Написати коментар
       </button>
       <Post ref={postRef} />
     </>
@@ -219,7 +219,7 @@ function Post({ ref }) {
   return (
     <>
       <article>
-        <p>Welcome to my blog!</p>
+        <p>Вітаю в моєму блозі!</p>
       </article>
       <CommentList ref={commentsRef} />
       <AddComment ref={addCommentRef} />
@@ -248,7 +248,7 @@ function CommentList({ ref }) {
 
   let comments = [];
   for (let i = 0; i < 50; i++) {
-    comments.push(<p key={i}>Comment #{i}</p>);
+    comments.push(<p key={i}>Коментар #{i}</p>);
   }
 
   return (
@@ -265,7 +265,7 @@ export default CommentList;
 import { useRef, useImperativeHandle } from 'react';
 
 function AddComment({ ref }) {
-  return <input placeholder="Add comment..." ref={ref} />;
+  return <input placeholder="Додати коментар..." ref={ref} />;
 }
 
 export default AddComment;
@@ -285,8 +285,8 @@ export default AddComment;
 
 <Pitfall>
 
-**Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
+**Не зловживайте рефами.** Використовуйте рефи лише для *імперативної* поведінки, яку ви не можете виразити через пропси: наприклад, прогортування до вузла DOM, фокусування вузла, виклик анімації, виділення тексту тощо.
 
-**If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
+**Якщо ви можете виразити щось як проп, тоді не варто використовувати реф.** Наприклад, замість передавання імперативного дескриптора як `{ open, close }` із компонента `Modal`, краще використати проп `isOpen` як `<Modal isOpen={isOpen} />`. [Ефекти](/learn/synchronizing-with-effects) можуть допомогти вам надати доступ до імперативних частин через пропси.
 
 </Pitfall>

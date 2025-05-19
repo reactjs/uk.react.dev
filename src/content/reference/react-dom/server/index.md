@@ -1,5 +1,5 @@
 ---
-title: Server React DOM APIs
+title: "React DOM: серверні API"
 ---
 
 <Intro>

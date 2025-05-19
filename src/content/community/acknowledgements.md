@@ -1,5 +1,5 @@
 ---
-title: Acknowledgements
+title: Подяки
 ---
 
 <Intro>

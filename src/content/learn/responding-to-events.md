@@ -332,7 +332,7 @@ button { margin-right: 10px; }
 export default function Toolbar() {
   return (
     <div className="Toolbar" onClick={() => {
-      alert('You clicked on the toolbar!');
+      alert('Ви натиснули на панель інструментів!');
     }}>
       <button onClick={() => alert('Відтворюється!')}>
         Відтворити фільм
@@ -386,7 +386,7 @@ function Button({ onClick, children }) {
 export default function Toolbar() {
   return (
     <div className="Toolbar" onClick={() => {
-      alert('You clicked on the toolbar!');
+      alert('Ви натиснули на панель інструментів!');
     }}>
       <Button onClick={() => alert('Відтворюється!')}>
         Відтворити фільм

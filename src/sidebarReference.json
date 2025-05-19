@@ -1,5 +1,5 @@
 {
-  "title": "API Reference",
+  "title": "Довідник API",
   "path": "/reference/react",
   "routes": [
     {
@@ -7,11 +7,11 @@
       "sectionHeader": "react@{{version}}"
     },
     {
-      "title": "Overview",
+      "title": "Вступ",
       "path": "/reference/react"
     },
     {
-      "title": "Hooks",
+      "title": "Хуки",
       "path": "/reference/react/hooks",
       "routes": [
         {
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "Компоненти",
       "path": "/reference/react/components",
       "routes": [
         {
@@ -103,11 +103,21 @@
         {
           "title": "<Suspense>",
           "path": "/reference/react/Suspense"
+        },
+        {
+          "title": "<Activity>",
+          "path": "/reference/react/Activity",
+          "version": "experimental"
+        },
+        {
+          "title": "<ViewTransition>",
+          "path": "/reference/react/ViewTransition",
+          "version": "experimental"
         }
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react/apis",
       "routes": [
         {
@@ -117,6 +127,9 @@
         {
           "title": "cache",
           "path": "/reference/react/cache"
+        },        {
+          "title": "captureOwnerStack",
+          "path": "/reference/react/captureOwnerStack"
         },
         {
           "title": "createContext",
@@ -141,12 +154,17 @@
         {
           "title": "experimental_taintObjectReference",
           "path": "/reference/react/experimental_taintObjectReference",
-          "version": "canary"
+          "version": "experimental"
         },
         {
           "title": "experimental_taintUniqueValue",
           "path": "/reference/react/experimental_taintUniqueValue",
-          "version": "canary"
+          "version": "experimental"
+        },
+        {
+          "title": "unstable_addTransitionType",
+          "path": "/reference/react/addTransitionType",
+          "version": "experimental"
         }
       ]
     },
@@ -155,7 +173,7 @@
       "sectionHeader": "react-dom@{{version}}"
     },
     {
-      "title": "Hooks",
+      "title": "Хуки",
       "path": "/reference/react-dom/hooks",
       "routes": [
         {
@@ -165,7 +183,7 @@
       ]
     },
     {
-      "title": "Components",
+      "title": "Компоненти",
       "path": "/reference/react-dom/components",
       "routes": [
         {
@@ -219,7 +237,7 @@
       ]
     },
     {
-      "title": "APIs",
+      "title": "API",
       "path": "/reference/react-dom",
       "routes": [
         {
@@ -257,7 +275,7 @@
       ]
     },
     {
-      "title": "Client APIs",
+      "title": "Клієнтські API",
       "path": "/reference/react-dom/client",
       "routes": [
         {
@@ -271,7 +289,7 @@
       ]
     },
     {
-      "title": "Server APIs",
+      "title": "Серверні API",
       "path": "/reference/react-dom/server",
       "routes": [
         {
@@ -293,7 +311,7 @@
       ]
     },
     {
-      "title": "Static APIs",
+      "title": "Статичні API",
       "path": "/reference/react-dom/static",
       "routes": [
         {
@@ -304,15 +322,14 @@
           "title": "prerenderToNodeStream",
           "path": "/reference/react-dom/static/prerenderToNodeStream"
         }
-        
       ]
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Rules of React"
+      "sectionHeader": "Правила React"
     },
     {
-      "title": "Overview",
+      "title": "Вступ",
       "path": "/reference/rules",
       "routes": [
         {
@@ -331,7 +348,7 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "React Server Components"
+      "sectionHeader": "Серверні компоненти React"
     },
     {
       "title": "Server Components",
@@ -357,10 +374,10 @@
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "Legacy APIs"
+      "sectionHeader": "Спадкові API"
     },
     {
-      "title": "Legacy React APIs",
+      "title": "Спадкові API в React",
       "path": "/reference/react/legacy",
       "routes": [
         {

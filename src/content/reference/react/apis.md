@@ -1,5 +1,5 @@
 ---
-title: "Built-in React APIs"
+title: "React: вбудовані API"
 ---
 
 <Intro>

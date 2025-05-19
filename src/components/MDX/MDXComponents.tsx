@@ -98,6 +98,10 @@ const Canary = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="canary">{children}</ExpandableCallout>
 );
 
+const Experimental = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="experimental">{children}</ExpandableCallout>
+);
+
 const NextMajor = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="major">{children}</ExpandableCallout>
 );
@@ -116,7 +120,21 @@ const CanaryBadge = ({title}: {title: string}) => (
       size="s"
       className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
     />
-    Canary only
+    Лише сanary
+  </span>
+);
+
+const ExperimentalBadge = ({title}: {title: string}) => (
+  <span
+    title={title}
+    className={
+      'text-base font-display px-1 py-0.5 font-bold bg-gray-10 dark:bg-gray-60 text-gray-60 dark:text-gray-10 rounded'
+    }>
+    <IconCanary
+      size="s"
+      className={'inline me-1 mb-0.5 text-sm text-gray-60 dark:text-gray-10'}
+    />
+    Experimental only
   </span>
 );
 
@@ -163,7 +181,7 @@ function LearnMore({
       <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner-border dark:shadow-inner-border-dark justify-between items-center bg-card dark:bg-card-dark rounded-2xl">
         <div className="flex-col">
           <h2 className="text-primary font-display dark:text-primary-dark font-bold text-2xl leading-tight">
-            Ready to learn this topic?
+            Бажаєте вивчити цю тему?
           </h2>
           {children}
           {path ? (
@@ -172,7 +190,7 @@ function LearnMore({
               label="Read More"
               href={path}
               type="primary">
-              Read More
+              Детальніше
               <IconNavArrow displayDirection="end" className="inline ms-1" />
             </ButtonLink>
           ) : null}
@@ -186,7 +204,7 @@ function LearnMore({
 function ReadBlogPost({path}: {path: string}) {
   return (
     <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
-      Read Post
+      Переглянути публікацію
       <IconNavArrow displayDirection="end" className="inline ms-1" />
     </ButtonLink>
   );
@@ -223,7 +241,7 @@ function YouWillLearn({
   children: any;
   isChapter?: boolean;
 }) {
-  let title = isChapter ? 'In this chapter' : 'You will learn';
+  let title = isChapter ? 'У цьому розділі' : 'Ви вивчите';
   return <SimpleCallout title={title}>{children}</SimpleCallout>;
 }
 
@@ -243,7 +261,7 @@ function AuthorCredit({
     <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
       <p className="bg-card dark:bg-card-dark text-center text-sm text-secondary dark:text-secondary-dark leading-tight p-2 rounded-lg absolute start-1/2 -top-4 -translate-x-1/2 -translate-y-full group-hover:flex group-hover:opacity-100 after:content-[''] after:absolute after:start-1/2 after:top-[95%] after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-card after:dark:border-t-card-dark opacity-0 transition-opacity duration-300">
         <cite>
-          Illustrated by{' '}
+          Ілюстровано{' '}
           {authorLink ? (
             <a
               target="_blank"
@@ -431,7 +449,7 @@ function LanguageList({progress}: {progress: TranslationProgress}) {
             </Link>{' '}
             &mdash;{' '}
             <Link href={`https://github.com/reactjs/${code}.react.dev`}>
-              Contribute
+              Долучитися
             </Link>
           </LI>
         );
@@ -448,7 +466,7 @@ function YouTubeIframe(props: any) {
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
-        title="YouTube video player"
+        title="YouTube-відеоплеєр"
         {...props}
       />
     </div>
@@ -508,6 +526,8 @@ export const MDXComponents = {
   MathI,
   Note,
   Canary,
+  Experimental,
+  ExperimentalBadge,
   CanaryBadge,
   NextMajor,
   NextMajorBadge,

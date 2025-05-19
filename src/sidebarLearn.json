@@ -25,13 +25,23 @@
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Початок нового React-проєкту",
-          "path": "/learn/start-a-new-react-project"
+          "title": "Створення React-застосунку",
+          "path": "/learn/creating-a-react-app"
+        },
+        {
+          "title": "Побудова React-застосунку з нуля",
+          "path": "/learn/build-a-react-app-from-scratch"
         },
         {
           "title": "Інтеграція React у наявний проєкт",
           "path": "/learn/add-react-to-an-existing-project"
-        },
+        }
+      ]
+    },
+    {
+      "title": "Налаштування",
+      "path": "/learn/setup",
+      "routes": [
         {
           "title": "Налаштування редактора",
           "path": "/learn/editor-setup"
@@ -41,7 +51,7 @@
           "path": "/learn/typescript"
         },
         {
-          "title": "Інструменти React розробника",
+          "title": "Інструменти розробника React",
           "path": "/learn/react-developer-tools"
         },
         {
@@ -73,7 +83,7 @@
           "path": "/learn/writing-markup-with-jsx"
         },
         {
-          "title": "JavaScript у JSX з фігурними дужками",
+          "title": "JavaScript у JSX із фігурними дужками",
           "path": "/learn/javascript-in-jsx-with-curly-braces"
         },
         {
@@ -99,7 +109,7 @@
       ]
     },
     {
-      "title": "Adding Interactivity",
+      "title": "Додавання інтерактивності",
       "path": "/learn/adding-interactivity",
       "tags": [],
       "routes": [
@@ -108,7 +118,7 @@
           "path": "/learn/responding-to-events"
         },
         {
-          "title": "State: A Component's Memory",
+          "title": "Стан: пам'ять компонента",
           "path": "/learn/state-a-components-memory"
         },
         {
@@ -147,7 +157,7 @@
           "path": "/learn/choosing-the-state-structure"
         },
         {
-          "title": "Sharing State Between Components",
+          "title": "Поширення стану між компонентами",
           "path": "/learn/sharing-state-between-components"
         },
         {
@@ -163,7 +173,7 @@
           "path": "/learn/passing-data-deeply-with-context"
         },
         {
-          "title": "Scaling Up with Reducer and Context",
+          "title": "Масштабування з використанням контексту та редюсера",
           "path": "/learn/scaling-up-with-reducer-and-context"
         }
       ]

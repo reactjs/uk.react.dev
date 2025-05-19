@@ -1,5 +1,5 @@
 ---
-title: Client React DOM APIs
+title: "React DOM: клієнтські API"
 ---
 
 <Intro>

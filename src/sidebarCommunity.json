@@ -1,13 +1,13 @@
 {
-  "title": "Community",
+  "title": "Спільнота",
   "path": "/community",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "GET INVOLVED"
+      "sectionHeader": "ДОЛУЧИТИСЯ"
     },
     {
-      "title": "Community",
+      "title": "Спільнота",
       "path": "/community",
       "skipBreadcrumb": true,
       "routes": [
@@ -20,23 +20,23 @@
           "path": "/community/meetups"
         },
         {
-          "title": "React Videos",
+          "title": "Відео про React",
           "path": "/community/videos"
         },
         {
-          "title": "Meet the Team",
+          "title": "Команда React",
           "path": "/community/team"
         },
         {
-          "title": "Docs Contributors",
+          "title": "Автори документації",
           "path": "/community/docs-contributors"
         },
         {
-          "title": "Translations",
+          "title": "Переклади",
           "path": "/community/translations"
         },
         {
-          "title": "Acknowledgements",
+          "title": "Подяки",
           "path": "/community/acknowledgements"
         },
         {

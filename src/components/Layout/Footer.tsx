@@ -292,7 +292,7 @@ export function Footer() {
               // @ts-ignore
               window.__setUwu(false);
             }}>
-            no uwu plz
+            без uwu, будь ласка
           </div>
           <div
             className="uwu-hidden text-xs cursor-pointer hover:text-link hover:dark:text-link-dark hover:underline"
@@ -303,7 +303,7 @@ export function Footer() {
             uwu?
           </div>
           <div className="uwu-visible text-xs">
-            Logo by
+            Лого від
             <ExternalLink
               className="ms-1"
               href="https://twitter.com/sawaratsuki1004">
@@ -313,72 +313,68 @@ export function Footer() {
         </div>
         <div className="flex flex-col">
           <FooterLink href="/learn" isHeader={true}>
-            Learn React
+            Вивчення React
           </FooterLink>
-          <FooterLink href="/learn/">Quick Start</FooterLink>
-          <FooterLink href="/learn/installation">Installation</FooterLink>
-          <FooterLink href="/learn/describing-the-ui">
-            Describing the UI
-          </FooterLink>
+          <FooterLink href="/learn/">Швидкий старт</FooterLink>
+          <FooterLink href="/learn/installation">Встановлення</FooterLink>
+          <FooterLink href="/learn/describing-the-ui">Написання UI</FooterLink>
           <FooterLink href="/learn/adding-interactivity">
-            Adding Interactivity
+            Додавання інтерактивності
           </FooterLink>
           <FooterLink href="/learn/managing-state">Managing State</FooterLink>
           <FooterLink href="/learn/escape-hatches">Escape Hatches</FooterLink>
         </div>
         <div className="flex flex-col">
           <FooterLink href="/reference/react" isHeader={true}>
-            API Reference
+            Довідник API
           </FooterLink>
-          <FooterLink href="/reference/react">React APIs</FooterLink>
-          <FooterLink href="/reference/react-dom">React DOM APIs</FooterLink>
+          <FooterLink href="/reference/react">React: API</FooterLink>
+          <FooterLink href="/reference/react-dom">React DOM: API</FooterLink>
         </div>
         <div className="md:col-start-2 xl:col-start-4 flex flex-col">
           <FooterLink href="/community" isHeader={true}>
-            Community
+            Спільнота
           </FooterLink>
           <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
-            Code of Conduct
+            Кодекс поведінки
           </FooterLink>
-          <FooterLink href="/community/team">Meet the Team</FooterLink>
+          <FooterLink href="/community/team">Команда React</FooterLink>
           <FooterLink href="/community/docs-contributors">
-            Docs Contributors
+            Автори документації
           </FooterLink>
-          <FooterLink href="/community/acknowledgements">
-            Acknowledgements
-          </FooterLink>
+          <FooterLink href="/community/acknowledgements">Подяки</FooterLink>
         </div>
         <div className="flex flex-col">
-          <FooterLink isHeader={true}>More</FooterLink>
-          <FooterLink href="/blog">Blog</FooterLink>
+          <FooterLink isHeader={true}>Більше</FooterLink>
+          <FooterLink href="/blog">Блог</FooterLink>
           <FooterLink href="https://reactnative.dev/">React Native</FooterLink>
           <FooterLink href="https://opensource.facebook.com/legal/privacy">
-            Privacy
+            Політика конфіденційності
           </FooterLink>
           <FooterLink href="https://opensource.fb.com/legal/terms/">
-            Terms
+            Умови використання
           </FooterLink>
           <div className="flex flex-row items-center mt-8 gap-x-2">
             <ExternalLink
-              aria-label="React on Facebook"
+              aria-label="React у Facebook"
               href="https://www.facebook.com/react"
               className={socialLinkClasses}>
               <IconFacebookCircle />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Twitter"
+              aria-label="React у Twitter"
               href="https://twitter.com/reactjs"
               className={socialLinkClasses}>
               <IconTwitter />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Bluesky"
+              aria-label="React у Bluesky"
               href="https://bsky.app/profile/react.dev"
               className={socialLinkClasses}>
               <IconBsky />
             </ExternalLink>
             <ExternalLink
-              aria-label="React on Github"
+              aria-label="React у Github"
               href="https://github.com/facebook/react"
               className={socialLinkClasses}>
               <IconGitHub />

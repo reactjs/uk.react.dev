@@ -10,17 +10,16 @@ const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
 export default function NotFound() {
   return (
-    <Page toc={[]} meta={{title: 'Not Found'}} routeTree={sidebarLearn}>
+    <Page toc={[]} meta={{title: 'Не знайдено'}} routeTree={sidebarLearn}>
       <MaxWidth>
         <Intro>
-          <P>This page doesn’t exist.</P>
+          <P>Цієї сторінки немає.</P>
           <P>
-            If this is a mistake{', '}
+            Якщо це помилка{', '}
             <A href="https://github.com/reactjs/react.dev/issues/new">
-              let us know
+              напишіть нам
             </A>
-            {', '}
-            and we will try to fix it!
+            {', '}і ми спробуємо це виправити!
           </P>
         </Intro>
       </MaxWidth>
