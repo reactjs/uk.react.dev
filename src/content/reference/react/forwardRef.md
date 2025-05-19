@@ -483,7 +483,7 @@ input {
 
 ---
 
-## Усунення неполадок {/*troubleshooting*/}
+## Поширені проблеми {/*troubleshooting*/}
 
 ### Мій компонент обгорнутий у `forwardRef`, але `ref` до нього завжди `null` {/*my-component-is-wrapped-in-forwardref-but-the-ref-to-it-is-always-null*/}
 
