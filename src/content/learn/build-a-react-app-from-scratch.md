@@ -115,10 +115,17 @@ Rsbuild відразу підтримує такі функції React, як ш
 
 Розділення коду за маршрутом, інтегроване з бандлером й отриманням даних, може зменшити час початкового завантаження вашого застосунку та рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/articles/lcp)).
 
+<<<<<<< HEAD
 Для інструкцій з розділення коду перегляньте документацію вашого інструменту збирання:
 - [Оптимізації збирання у Vite](https://v3.vitejs.dev/guide/features.html#build-optimizations)
 - [Розділення коду в Parcel](https://parceljs.org/features/code-splitting/)
 - [Розділення коду в Rsbuild](https://rsbuild.dev/guide/optimization/code-splitting)
+=======
+For code-splitting instructions, see your build tool docs:
+- [Vite build optimizations](https://vite.dev/guide/features.html#build-optimizations)
+- [Parcel code splitting](https://parceljs.org/features/code-splitting/)
+- [Rsbuild code splitting](https://rsbuild.dev/guide/optimization/code-splitting)
+>>>>>>> 65d297e93b36be5370e58ab7828d022c741ecbe2
 
 ### Покращення продуктивності застосунку {/*improving-application-performance*/}
 
