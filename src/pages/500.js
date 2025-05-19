@@ -10,18 +10,15 @@ const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
 export default function NotFound() {
   return (
-    <Page
-      toc={[]}
-      routeTree={sidebarLearn}
-      meta={{title: 'Something Went Wrong'}}>
+    <Page toc={[]} routeTree={sidebarLearn} meta={{title: 'Щось не так'}}>
       <MaxWidth>
         <Intro>
-          <P>Something went very wrong.</P>
-          <P>Sorry about that.</P>
+          <P>Щось дуже не так.</P>
+          <P>Вибачте за це.</P>
           <P>
-            If you’d like, please{' '}
+            На бажання, будь ласка{', '}
             <A href="https://github.com/reactjs/react.dev/issues/new">
-              report a bug.
+              повідомте про помилку.
             </A>
           </P>
         </Intro>
