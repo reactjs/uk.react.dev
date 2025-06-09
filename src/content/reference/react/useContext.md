@@ -38,13 +38,23 @@ function MyComponent() {
 
 #### Результат {/*returns*/}
 
+<<<<<<< HEAD
 `useContext` повертає значення контексту для компонента, що викликає цей хук. Це значення визначається як `value`, передане найближчому `SomeContext.Provider`, розташованому вище деревом відносно поточного компонента. Якщо такого провайдера немає, повертається значення `defaultValue`, яке ви передали функції [`createContext`](/reference/react/createContext). Повернуте значення завжди актуальне. React автоматично повторно рендерить усі компоненти, що використовують контекст, якщо значення контексту змінюється.
+=======
+`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/reference/react/createContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 #### Застереження {/*caveats*/}
 
+<<<<<<< HEAD
 * Eлементи-провайдери не впливають на виклик `useContext()` у компоненті, з якого й повертаються. Відповідний `<Context.Provider>` **повинен бути розташований *вище*** компонента, що викликає `useContext()`.
 * React **автоматично оновлює** всі дочірні компоненти, які використовують певний контекст, починаючи з провайдера, що отримує змінене значення `value`. Попереднє та наступне значення порівнюються за допомогою [`Object.is`](https://webdoky.org/uk/docs/Web/JavaScript/Reference/Global_Objects/Object/is/). Пропуск повторних рендерів за допомогою [`memo`](/reference/react/memo) не заважає дочірнім компонентам отримувати оновлене значення контексту.
 * Якщо ваша система збирання створює дублікати модулів у вихідному коді (що може статися через символьні посилання), це може порушити контекст. Передавання через контекст працює тільки у разі, якщо `SomeContext` для надання контексту та `SomeContext` для його зчитування є ***точно* тим самим об'єктом**, що визначається порівнянням `===`.
+=======
+* `useContext()` call in a component is not affected by providers returned from the *same* component. The corresponding `<Context>` **needs to be *above*** the component doing the `useContext()` call.
+* React **automatically re-renders** all the children that use a particular context starting from the provider that receives a different `value`. The previous and the next values are compared with the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Skipping re-renders with [`memo`](/reference/react/memo) does not prevent the children receiving fresh context values.
+* If your build system produces duplicates modules in the output (which can happen with symlinks), this can break context. Passing something via context only works if `SomeContext` that you use to provide context and `SomeContext` that you use to read it are ***exactly* the same object**, as determined by a `===` comparison.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ---
 
@@ -70,9 +80,9 @@ function Button() {
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 
@@ -98,9 +108,9 @@ const ThemeContext = createContext(null);
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -183,14 +193,14 @@ function Button({ children }) {
 function MyPage() {
   const [theme, setTheme] = useState('dark');
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Form />
       <Button onClick={() => {
         setTheme('light');
       }}>
         Увімкнути світлу тему
       </Button>
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
@@ -213,7 +223,7 @@ const ThemeContext = createContext(null);
 export default function MyApp() {
   const [theme, setTheme] = useState('light');
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       <Form />
       <label>
         <input
@@ -225,7 +235,7 @@ export default function MyApp() {
         />
         Темний режим
       </label>
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
@@ -317,14 +327,14 @@ const CurrentUserContext = createContext(null);
 export default function MyApp() {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <CurrentUserContext.Provider
+    <CurrentUserContext
       value={{
         currentUser,
         setCurrentUser
       }}
     >
       <Form />
-    </CurrentUserContext.Provider>
+    </CurrentUserContext>
   );
 }
 
@@ -411,8 +421,8 @@ export default function MyApp() {
   const [theme, setTheme] = useState('light');
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <ThemeContext.Provider value={theme}>
-      <CurrentUserContext.Provider
+    <ThemeContext value={theme}>
+      <CurrentUserContext
         value={{
           currentUser,
           setCurrentUser
@@ -429,8 +439,8 @@ export default function MyApp() {
           />
           Темний режим
         </label>
-      </CurrentUserContext.Provider>
-    </ThemeContext.Provider>
+      </CurrentUserContext>
+    </ThemeContext>
   )
 }
 
@@ -596,16 +606,16 @@ export default function MyApp() {
 function MyProviders({ children, theme, setTheme }) {
   const [currentUser, setCurrentUser] = useState(null);
   return (
-    <ThemeContext.Provider value={theme}>
-      <CurrentUserContext.Provider
+    <ThemeContext value={theme}>
+      <CurrentUserContext
         value={{
           currentUser,
           setCurrentUser
         }}
       >
         {children}
-      </CurrentUserContext.Provider>
-    </ThemeContext.Provider>
+      </CurrentUserContext>
+    </ThemeContext>
   );
 }
 
@@ -775,11 +785,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -978,9 +988,9 @@ export default function MyApp() {
   const [theme, setTheme] = useState('light');
   return (
     <>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext value={theme}>
         <Form />
-      </ThemeContext.Provider>
+      </ThemeContext>
       <Button onClick={() => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
       }}>
@@ -1067,13 +1077,13 @@ function Button({ children, onClick }) {
 Можливо перевизначити контекст для частини дерева компонентів, обгорнувши цю частину у провайдер з іншим значенням.
 
 ```js {3,5}
-<ThemeContext.Provider value="dark">
+<ThemeContext value="dark">
   ...
-  <ThemeContext.Provider value="light">
+  <ThemeContext value="light">
     <Footer />
-  </ThemeContext.Provider>
+  </ThemeContext>
   ...
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 Провайдери можна вкладати і перевизначати без обмежень.
@@ -1093,20 +1103,27 @@ const ThemeContext = createContext(null);
 
 export default function MyApp() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Form />
-    </ThemeContext.Provider>
+    </ThemeContext>
   )
 }
 
 function Form() {
   return (
+<<<<<<< HEAD
     <Panel title="Ласкаво просимо">
       <Button>Зареєструватися</Button>
       <Button>Увійти</Button>
       <ThemeContext.Provider value="light">
+=======
+    <Panel title="Welcome">
+      <Button>Sign up</Button>
+      <Button>Log in</Button>
+      <ThemeContext value="light">
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
         <Footer />
-      </ThemeContext.Provider>
+      </ThemeContext>
     </Panel>
   );
 }
@@ -1230,9 +1247,9 @@ export default function Section({ children }) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
-      <LevelContext.Provider value={level + 1}>
+      <LevelContext value={level + 1}>
         {children}
-      </LevelContext.Provider>
+      </LevelContext>
     </section>
   );
 }
@@ -1302,9 +1319,9 @@ function MyApp() {
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
+    <AuthContext value={{ currentUser, login }}>
       <Page />
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
 ```
@@ -1330,9 +1347,9 @@ function MyApp() {
   }), [currentUser, login]);
 
   return (
-    <AuthContext.Provider value={contextValue}>
+    <AuthContext value={contextValue}>
       <Page />
-    </AuthContext.Provider>
+    </AuthContext>
   );
 }
 ```
@@ -1349,19 +1366,30 @@ function MyApp() {
 
 Існує кілька поширених причин, чому це може статися:
 
+<<<<<<< HEAD
 1. Ви розміщуєте `<SomeContext.Provider>` у тому ж компоненті або нижче, ніж компонент, де викликано `useContext()`. Перемістіть `<SomeContext.Provider>` *вище і зовні* компонента, який викликає `useContext()`.
 2. Можливо, ви забули обгорнути свій компонент у `<SomeContext.Provider>` або розмістили його в іншій, ніж задумали, частині дерева. Переконайтеся за допомогою [React DevTools](/learn/react-developer-tools), що ієрархія компонентів налаштована правильно.
 3. Можливо, ви зіткнулися з проблемою збирання, через яку `SomeContext` із компонента-провайдера і `SomeContext` компонента-читача є різними об'єктами. Це може статися, наприклад, якщо ви використовуєте символьні посилання. Можете перевірити це, присвоївши їх глобальним змінним, як-от `window.SomeContext1` і `window.SomeContext2`, а потім порівняти `window.SomeContext1 === window.SomeContext2` в консолі. Якщо вони не тотожні, виправте цю проблему на рівні збирання.
+=======
+1. You're rendering `<SomeContext>` in the same component (or below) as where you're calling `useContext()`. Move `<SomeContext>` *above and outside* the component calling `useContext()`.
+2. You may have forgotten to wrap your component with `<SomeContext>`, or you might have put it in a different part of the tree than you thought. Check whether the hierarchy is right using [React DevTools.](/learn/react-developer-tools)
+3. You might be running into some build issue with your tooling that causes `SomeContext` as seen from the providing component and `SomeContext` as seen by the reading component to be two different objects. This can happen if you use symlinks, for example. You can verify this by assigning them to globals like `window.SomeContext1` and `window.SomeContext2` and then checking whether `window.SomeContext1 === window.SomeContext2` in the console. If they're not the same, fix that issue on the build tool level.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
 ### Я завжди отримую `undefined` із контексту, хоча початкове значення інше {/*i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different*/}
 
 Можливо, у вас є провайдер без `value` у дереві:
 
 ```js {1,2}
+<<<<<<< HEAD
 // 🚩 Не працює: немає пропа value
 <ThemeContext.Provider>
+=======
+// 🚩 Doesn't work: no value prop
+<ThemeContext>
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 Якщо ви забули вказати `value`, це еквівалентно передаванню `value={undefined}`.
@@ -1369,19 +1397,33 @@ function MyApp() {
 Також, можливо, ви випадково застосували помилкову назву пропа:
 
 ```js {1,2}
+<<<<<<< HEAD
 // 🚩 Не працює: проп має називатися "value"
 <ThemeContext.Provider theme={theme}>
+=======
+// 🚩 Doesn't work: prop should be called "value"
+<ThemeContext theme={theme}>
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
 В обох випадках React покаже попередження у консолі. Щоб виправити це, назвіть проп `value`:
 
 ```js {1,2}
+<<<<<<< HEAD
 // ✅ Передача пропа value
 <ThemeContext.Provider value={theme}>
+=======
+// ✅ Passing the value prop
+<ThemeContext value={theme}>
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
    <Button />
-</ThemeContext.Provider>
+</ThemeContext>
 ```
 
+<<<<<<< HEAD
 Зверніть увагу, що [початкове значення, яке ви передали у `createContext(defaultValue)`](#specifying-a-fallback-default-value), застосовується, **тільки якщо вище в ієрархії не знайдено жодного провайдера.** Якщо в будь-якому місці дерева батьківських компонентів є `<SomeContext.Provider value={undefined}>`, компонент, що викликає `useContext(SomeContext)`, *отримає* `undefined` як значення контексту.
+=======
+Note that the [default value from your `createContext(defaultValue)` call](#specifying-a-fallback-default-value) is only used **if there is no matching provider above at all.** If there is a `<SomeContext value={undefined}>` component somewhere in the parent tree, the component calling `useContext(SomeContext)` *will* receive `undefined` as the context value.
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91

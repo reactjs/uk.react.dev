@@ -6,9 +6,17 @@ on:
     types:
       - completed
 
+<<<<<<< HEAD
 permissions: 
   pull-requests: write
 
+=======
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 jobs:
   comment:
     runs-on: ubuntu-latest

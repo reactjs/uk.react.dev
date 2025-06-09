@@ -461,11 +461,11 @@ export default function TaskApp() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
   // ...
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         ...
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 ```
@@ -509,9 +509,15 @@ export default function TaskApp() {
   }
 
   return (
+<<<<<<< HEAD
     <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider value={dispatch}>
         <h1>Вихідний день у Кіото</h1>
+=======
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
+        <h1>Day off in Kyoto</h1>
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
         <AddTask
           onAddTask={handleAddTask}
         />
@@ -520,8 +526,8 @@ export default function TaskApp() {
           onChangeTask={handleChangeTask}
           onDeleteTask={handleDeleteTask}
         />
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -676,13 +682,19 @@ ul, li { margin: 0; padding: 0; }
 Тепер вам не потрібно передавати перелік завдань або обробники подій скрізь усе дерево компонентів:
 
 ```js {4-5}
+<<<<<<< HEAD
 <TasksContext.Provider value={tasks}>
   <TasksDispatchContext.Provider value={dispatch}>
     <h1>Вихідний день у Кіото</h1>
+=======
+<TasksContext value={tasks}>
+  <TasksDispatchContext value={dispatch}>
+    <h1>Day off in Kyoto</h1>
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
     <AddTask />
     <TaskList />
-  </TasksDispatchContext.Provider>
-</TasksContext.Provider>
+  </TasksDispatchContext>
+</TasksContext>
 ```
 
 Натомість будь-який компонент, якому потрібен перелік завдань, може мати його з `TaskContext`:
@@ -730,13 +742,19 @@ export default function TaskApp() {
   );
 
   return (
+<<<<<<< HEAD
     <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider value={dispatch}>
         <h1>Вихідний день у Кіото</h1>
+=======
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
+        <h1>Day off in Kyoto</h1>
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
         <AddTask />
         <TaskList />
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -921,11 +939,11 @@ export function TasksProvider({ children }) {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 ```
@@ -963,11 +981,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -1174,11 +1192,11 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
+    <TasksContext value={tasks}>
+      <TasksDispatchContext value={dispatch}>
         {children}
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
+      </TasksDispatchContext>
+    </TasksContext>
   );
 }
 
@@ -1363,4 +1381,3 @@ ul, li { margin: 0; padding: 0; }
 - У застосунку може бути багато схожих на цю пар "контекст-редюсер".
 
 </Recap>
-

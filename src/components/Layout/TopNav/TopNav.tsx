@@ -266,7 +266,9 @@ export default function TopNav({
               <BrandMenu>
                 <div className="flex items-center">
                   <div className="uwu-visible flex items-center justify-center h-full">
-                    <NextLink href="/">
+                    <NextLink
+                      href="/"
+                      className="active:scale-95 transition-transform">
                       <Image
                         alt="лого від @sawaratsuki1004"
                         title="лого від @sawaratsuki1004"
