@@ -240,11 +240,7 @@ export default function ModalContent({ onClose }) {
 
 При використанні порталів, важливо впевнитись, що ваш застосунок залишається доступним для користувачів з обмеженими можливостями. Приміром, вам може знадобитись функціонал для управління фокусом клавіатури, щоб користувач міг переміщати фокус клавіатури в та з порталу у звичний спосіб.
 
-<<<<<<< HEAD
-Слідуйте [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) коли створюєте модальні вікна. Якщо ви використовуєте пакет для модальних вікон від спільноти, переконайтеся, що він відповідає цим рекомендація та доступний користувачам з обмеженими можливостями.
-=======
-Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal) when creating modals. If you use a community package, ensure that it is accessible and follows these guidelines.
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+Коли розроблюєте модальні вікна, дотримуйтеся відповідних[практик WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal). Якщо ви використовуєте пакет для модальних вікон від спільноти, переконайтеся, що він керується цими рекомендаціями та є доступним для всіх.
 
 </Pitfall>
 

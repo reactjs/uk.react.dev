@@ -509,15 +509,9 @@ export default function TaskApp() {
   }
 
   return (
-<<<<<<< HEAD
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
-        <h1>Вихідний день у Кіото</h1>
-=======
     <TasksContext value={tasks}>
       <TasksDispatchContext value={dispatch}>
-        <h1>Day off in Kyoto</h1>
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+        <h1>Вихідний день у Кіото</h1>
         <AddTask
           onAddTask={handleAddTask}
         />
@@ -682,15 +676,9 @@ ul, li { margin: 0; padding: 0; }
 Тепер вам не потрібно передавати перелік завдань або обробники подій скрізь усе дерево компонентів:
 
 ```js {4-5}
-<<<<<<< HEAD
-<TasksContext.Provider value={tasks}>
-  <TasksDispatchContext.Provider value={dispatch}>
-    <h1>Вихідний день у Кіото</h1>
-=======
 <TasksContext value={tasks}>
   <TasksDispatchContext value={dispatch}>
-    <h1>Day off in Kyoto</h1>
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+    <h1>Вихідний день у Кіото</h1>
     <AddTask />
     <TaskList />
   </TasksDispatchContext>
@@ -742,15 +730,9 @@ export default function TaskApp() {
   );
 
   return (
-<<<<<<< HEAD
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
-        <h1>Вихідний день у Кіото</h1>
-=======
     <TasksContext value={tasks}>
       <TasksDispatchContext value={dispatch}>
-        <h1>Day off in Kyoto</h1>
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
+        <h1>Вихідний день у Кіото</h1>
         <AddTask />
         <TaskList />
       </TasksDispatchContext>
