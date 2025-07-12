@@ -685,7 +685,7 @@ ul, li { margin: 0; padding: 0; }
 </TasksContext>
 ```
 
-Натомість будь-який компонент, якому потрібен перелік завдань, може мати його з `TaskContext`:
+Натомість будь-який компонент, якому потрібен перелік завдань, може мати його з `TasksContext`:
 
 ```js {2}
 export default function TaskList() {
