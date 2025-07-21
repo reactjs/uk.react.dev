@@ -214,7 +214,11 @@ function Profile() {
 
 Більшість застосунків React використовують компоненти на всій глибині. Це означає, що ви будете використовувати компоненти не тільки для повторно використовуваних елементів, таких як кнопки, але й для більших елементів, таких як бічні панелі, списки та, врешті-решт, цілі сторінки! Компоненти - зручний спосіб організації коду UI та розмітки, навіть якщо деякі з них використовуються лише один раз.
 
+<<<<<<< HEAD
 [Фреймворки на основі React](/learn/start-a-new-react-project) в цьому плані йдуть ще далі. Замість використання порожнього HTML-файлу і дозволу React "перейняти" керування сторінкою за допомогою JavaScript, вони також автоматично генерують HTML з ваших React компонентів. Це дозволяє вашому застосунку показувати деякий контент до завантаження JavaScript коду.
+=======
+[React-based frameworks](/learn/creating-a-react-app) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 Проте, багато сайтів використовують React лише для [додавання інтерактивності до наявних HTML-сторінок.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) Вони мають кілька кореневих компонентів замість одного для всієї сторінки. Ви можете використовувати стільки React, скільки вам потрібно.
 

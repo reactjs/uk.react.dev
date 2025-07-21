@@ -11,16 +11,27 @@ TypeScript — це популярний спосіб додавання виз�
 
 <YouWillLearn>
 
+<<<<<<< HEAD
 * [TypeScript з компонентами React](/learn/typescript#typescript-with-react-components)
 * [Приклади типізації для хуків](/learn/typescript#example-hooks)
 * [Найпоширеніші типи з пакету `@types/react`](/learn/typescript/#useful-types)
 * [Де дізнатись більше](/learn/typescript/#further-learning)
+=======
+* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
+* [Examples of typing with Hooks](/learn/typescript#example-hooks)
+* [Common types from `@types/react`](/learn/typescript#useful-types)
+* [Further learning locations](/learn/typescript#further-learning)
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 </YouWillLearn>
 
 ## Встановлення {/*installation*/}
 
+<<<<<<< HEAD
 Усі [готові для впровадження React-фреймворки](/learn/start-a-new-react-project#production-grade-react-frameworks) підтримують використання TypeScript. Дотримуйтесь інструкції для встановлення у відповідному фреймворку:
+=======
+All [production-grade React frameworks](/learn/creating-a-react-app#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
+>>>>>>> d52b3ec734077fd56f012fc2b30a67928d14cc73
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
