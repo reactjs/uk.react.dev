@@ -11,27 +11,16 @@ TypeScript — це популярний спосіб додавання виз�
 
 <YouWillLearn>
 
-<<<<<<< HEAD
 * [TypeScript з компонентами React](/learn/typescript#typescript-with-react-components)
 * [Приклади типізації для хуків](/learn/typescript#example-hooks)
-* [Найпоширеніші типи з пакету `@types/react`](/learn/typescript/#useful-types)
-* [Де дізнатись більше](/learn/typescript/#further-learning)
-=======
-* [TypeScript with React Components](/learn/typescript#typescript-with-react-components)
-* [Examples of typing with Hooks](/learn/typescript#example-hooks)
-* [Common types from `@types/react`](/learn/typescript#useful-types)
-* [Further learning locations](/learn/typescript#further-learning)
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+* [Найпоширеніші типи з пакету `@types/react`](/learn/typescript#useful-types)
+* [Де дізнатись більше](/learn/typescript#further-learning)
 
 </YouWillLearn>
 
 ## Встановлення {/*installation*/}
 
-<<<<<<< HEAD
-Усі [готові для впровадження React-фреймворки](/learn/start-a-new-react-project#production-grade-react-frameworks) підтримують використання TypeScript. Дотримуйтесь інструкції для встановлення у відповідному фреймворку:
-=======
-All [production-grade React frameworks](/learn/start-a-new-react-project#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+Усі [готові для впровадження React-фреймворки](/learn/start-a-new-react-project#full-stack-frameworks) підтримують використання TypeScript. Дотримуйтесь інструкції для встановлення у відповідному фреймворку:
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
@@ -135,11 +124,7 @@ export default App = AppTSX;
 
 ## Приклади для хуків {/*example-hooks*/}
 
-<<<<<<< HEAD
 Визначення типів з пакету `@types/react` включають типи вбудованих хуків для використання у компонентах без додаткових налаштувань. Вони створені з урахуванням коду у вашому компоненті, тому ви часто отримуватиме [виведені типи (inferred types)](https://www.typescriptlang.org/docs/handbook/type-inference.html) і, в ідеалі, не матимете потреби розбиратися з дрібницями надання типів.
-=======
-The type definitions from `@types/react` include types for the built-in Hooks, so you can use them in your components without any additional setup. They are built to take into account the code you write in your component, so you will get [inferred types](https://www.typescriptlang.org/docs/handbook/type-inference.html) a lot of the time and ideally do not need to handle the minutiae of providing the types.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 Розглянемо кілька прикладів того, як вказати типи для хуків.
 
@@ -154,13 +139,8 @@ const [enabled, setEnabled] = useState(false);
 
 У цьому прикладі тип `boolean` буде заданий для змінної `enabled`, а `setEnabled` буде функцією, яка приймає або аргумент типу `boolean`, або функцію, що повертає `boolean`. Якщо ви хочете явно вказати тип для стану, передайте аргумент типу у виклику `useState`:
 
-<<<<<<< HEAD
 ```ts 
 // Явно задати тип "boolean"
-=======
-```ts
-// Explicitly set the type to "boolean"
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 const [enabled, setEnabled] = useState<boolean>(false);
 ```
 
@@ -304,11 +284,7 @@ export default App = AppTSX;
 
 </Sandpack>
 
-<<<<<<< HEAD
 Ця техніка спрацьовує, коли у вас є початкове значення з певним змістом, але іноді його немає, і тоді `null` може здатися прийнятним початковим значенням. Однак, щоб дозволити системі типізації розуміти ваш код, вам потрібно явно задати `ContextShape | null` для `createContext`.
-=======
-This technique works when you have a default value which makes sense - but there are occasionally cases when you do not, and in those cases `null` can feel reasonable as a default value. However, to allow the type-system to understand your code, you need to explicitly set `ContextShape | null` on the `createContext`.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 Це спричиняє необхідність усунення `| null` з типу для споживачів контексту. Ми рекомендуємо, щоб хук здійснював перевірку під час виконання щодо існування значення та викидав помилку, якщо воно відсутнє:
 
@@ -353,17 +329,13 @@ function MyComponent() {
 
 ### `useMemo` {/*typing-usememo*/}
 
-<<<<<<< HEAD
-Хуки [`useMemo`](/reference/react/useMemo) створять/повторно отримають доступ до збереженого значення після виклику функції і повторно викличуть функцію лише тоді, коли зміняться його залежності, що передані як другий параметр. Результат виклику хука виводиться зі значення, яке повертає функція у першому параметрі. Але також можна явно передати аргумент типу хуку.
-=======
 <Note>
 
-[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useMemo` calls. You can use the compiler to handle memoization automatically.
+[Компілятор React](/learn/react-compiler) автоматично запам'ятовує значення та функції, зменшуючи потребу в ручних викликах `useMemo`. Ви можете використовувати компілятор для автоматичної обробки мемоїзації.
 
 </Note>
 
-The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memorized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+Хуки [`useMemo`](/reference/react/useMemo) створять/повторно отримають доступ до збереженого значення після виклику функції і повторно викличуть функцію лише тоді, коли зміняться його залежності, що передані як другий параметр. Результат виклику хука виводиться зі значення, яке повертає функція у першому параметрі. Але також можна явно передати аргумент типу хуку.
 
 ```ts
 // Тип змінної visibleTodos виведений зі значення, поверненого з функції filterTodos
@@ -373,17 +345,13 @@ const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
 
 ### `useCallback` {/*typing-usecallback*/}
 
-<<<<<<< HEAD
-[Хук `useCallback`](/reference/react/useCallback) надає однакове посилання на функцію, допоки залежності у другому параметрі залишаються тими ж. Як і в `useMemo`, тип функції виводиться зі значення, що повертається функцією у першому параметрі, і також можна явно передати аргумент типу хуку.
-=======
 <Note>
 
-[React Compiler](/learn/react-compiler) automatically memoizes values and functions, reducing the need for manual `useCallback` calls. You can use the compiler to handle memoization automatically.
+[Компілятор React](/learn/react-compiler) автоматично запам'ятовує значення та функції, зменшуючи потребу в ручних викликах `useMemo`. Ви можете використовувати компілятор для автоматичної обробки мемоїзації.
 
 </Note>
 
-The [`useCallback`](/reference/react/useCallback) provide a stable reference to a function as long as the dependencies passed into the second parameter are the same. Like `useMemo`, the function's type is inferred from the return value of the function in the first parameter, and you can be more explicit by providing a type argument to the Hook.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
+[Хук `useCallback`](/reference/react/useCallback) надає однакове посилання на функцію, допоки залежності у другому параметрі залишаються тими ж. Як і в `useMemo`, тип функції виводиться зі значення, що повертається функцією у першому параметрі, і також можна явно передати аргумент типу хуку.
 
 
 ```ts
@@ -394,11 +362,7 @@ const handleClick = useCallback(() => {
 
 Під час роботи TypeScript у строгому режимі (strict mode) `useCallback` вимагає додавання типів для параметрів функції зворотного виклику. Це тому, що тип функції зворотного виклику виводиться зі значення, поверненого з функції, і без знання параметрів його не можливо точно визначити.
 
-<<<<<<< HEAD
 Залежно від уподобань щодо стилю коду ви можете використовувати функції `*EventHandler` з типами React, щоб надати тип обробнику подій одночасно з визначенням функції зворотного виклику:
-=======
-Depending on your code-style preferences, you could use the `*EventHandler` functions from the React types to provide the type for the event handler at the same time as defining the callback:
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 ```ts
 import { useState, useCallback } from 'react';
@@ -481,11 +445,7 @@ interface ModalRendererProps {
 }
 ```
 
-<<<<<<< HEAD
 Важливо зазначити, що ви не можете використовувати TypeScript для опису того, що дочірні елементи є певним типом JSX-елементів, тому ви не можете використовувати систему типів для опису компонента, який приймає лише елементи `<li>`.
-=======
-Note, that you cannot use TypeScript to describe that the children are a certain type of JSX elements, so you cannot use the type-system to describe a component which only accepts `<li>` children.
->>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 Ви можете побачити приклад із використанням `React.ReactNode` і `React.ReactElement` та перевіркою типів у [цій пісочниці TypeScript](https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSB6CxYmAOmXRgDkIATJOdNJMGAZzgwAFpxAR+8YADswAVwGkZMJFEzpOjDKw4AFHGEEBvUnDhphwADZsi0gFw0mDWjqQBuUgF9yaCNMlENzgAXjgACjADfkctFnYkfQhDAEpQgD44AB42YAA3dKMo5P46C2tbJGkvLIpcgt9-QLi3AEEwMFCItJDMrPTTbIQ3dKywdIB5aU4kKyQQKpha8drhhIGzLLWODbNs3b3s8YAxKBQAcwXpAThMaGWDvbH0gFloGbmrgQfBzYpd1YjQZbEYARkB6zMwO2SHSAAlZlYIBCdtCRkZpHIrFYahQYQD8UYYFA5EhcfjyGYqHAXnJAsIUHlOOUbHYhMIIHJzsI0Qk4P9SLUBuRqXEXEwAKKfRZcNA8PiCfxWACecAAUgBlAAacFm80W-CU11U6h4TgwUv11yShjgJjMLMqDnN9Dilq+nh8pD8AXgCHdMrCkWisVoAet0R6fXqhWKhjKllZVVxMcavpd4Zg7U6Qaj+2hmdG4zeRF10uu-Aeq0LBfLMEe-V+T2L7zLVu+FBWLdLeq+lc7DYFf39deFVOotMCACNOCh1dq219a+30uC8YWoZsRyuEdjkevR8uvoVMdjyTWt4WiSSydXD4NqZP4AymeZE072ZzuUeZQKheQgA).
 
