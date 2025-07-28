@@ -24,7 +24,7 @@ title: Інтеграція React у наявний проєкт
 2. **Позначте `/some-app` як *базовий шлях*** у конфігурації вашого фреймворку (ось як: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Налаштуйте свій сервер або проксі**, щоб всі запити під шляхом `/some-app/` оброблялися вашим React-застосунком.
 
-Це надасть React-частині вашого застосунку всі [переваги від найкращих практик](/learn/start-a-new-react-project#can-i-use-react-without-a-framework), вбудованих у ці фреймворки.
+Це надасть React-частині вашого застосунку всі [переваги від найкращих практик](/learn/build-a-react-app-from-scratch#consider-using-a-framework), вбудованих у ці фреймворки.
 
 Багато фреймворків на основі React є повностековими (full-stack) та дають змогу вашому React-застосунку скористатися можливостями сервера. Однак ви можете використовувати цей же підхід, навіть якщо у вас немає змоги або бажання виконувати JavaScript на сервері. У цьому випадку слід надавати експорт HTML/CSS/JS ([результат `next export`](https://nextjs.org/docs/advanced-features/static-html-export) для Next.js, стандартно для Gatsby) за адресою `/some-app/`.
 
