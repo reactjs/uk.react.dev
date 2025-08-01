@@ -1343,7 +1343,7 @@ function MyApp() {
 
 ---
 
-## Усунення несправностей {/*troubleshooting*/}
+## Поширені проблеми {/*troubleshooting*/}
 
 ### Компонент не бачить значення з провайдера {/*my-component-doesnt-see-the-value-from-my-provider*/}
 
