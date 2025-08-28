@@ -10,7 +10,7 @@ title: Встановлення
 
 ## Спробувати React {/*try-react*/}
 
-Не потрібно нічого встановлювати, щоб спробувати  React. Відредагуйте код прямо у цьому онлайн-середовищі!
+Не потрібно нічого встановлювати, щоб погратися з React. Спробуйте відредагувати код у цій пісочниці!
 
 <Sandpack>
 
@@ -28,9 +28,9 @@ export default function App() {
 
 Ви можете редагувати його прямо на цій сторінці або відкрити у новій вкладці, натиснувши кнопку "Fork" у верхньому правому куті.
 
-Більшість сторінок у документації React містять схожі інтерактивні приклади. Водночас існує багато інших онлайн-середовищ з підтримкою React, наприклад: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) або [CodePen](https://codepen.io/pen?template=QWYVwWN).
+Більшість сторінок у документації React містять схожі пісочниці. Водночас існує багато інших онлайн-пісочниць з підтримкою React, наприклад: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) або [CodePen](https://codepen.io/pen?template=QWYVwWN).
 
-Щоб спробувати React локально на вашому комп'ютері, [завантажте цей HTML-файл](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html). Відкрийте його у редакторі та браузері!
+Щоб спробувати React локально на вашому комп'ютері, [завантажте цю HTML-сторінку](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html). Відкрийте її у редакторі та браузері!
 
 ## Створення React-застосунку {/*creating-a-react-app*/}
 
