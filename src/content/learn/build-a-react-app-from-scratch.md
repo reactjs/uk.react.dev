@@ -122,7 +122,11 @@ Rsbuild відразу підтримує такі функції React, як ш
 
 ### Покращення продуктивності застосунку {/*improving-application-performance*/}
 
+<<<<<<< HEAD
 Оскільки вибраний вами інструмент збирання підтримує лише односторінкові застосунки (SPA), вам треба самостійно реалізувати інші [патерни рендерингу](https://www.patterns.dev/vanilla/rendering-patterns), як-от рендеринг із боку сервера (SSR), генерація статичного сайту (SSG) та/або серверні компоненти React (RSC). Хоч спочатку вони рідко потрібні, згодом SSR, SSG або RSC можуть оптимізувати деякі маршрути вашого застосунку.
+=======
+Since the build tool you select only supports single page apps (SPAs), you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+>>>>>>> a5181c291f01896735b65772f156cfde34df20ee
 
 * **Односторінкові застосунки (SPA)** завантажують одну HTML-сторінку та динамічно оновлюють її, коли користувач взаємодіє із застосунком. SPA є швидкими та чуйними, але часто повільніші під час початкового завантаження. SPA є стандартною архітектурою для більшості інструментів збирання.
 
