@@ -32,14 +32,20 @@ TypeScript — це популярний спосіб додавання виз�
 Щоб встановити останню версію визначень типів для React, виконайте команду:
 
 <TerminalBlock>
-npm install @types/react @types/react-dom
+npm install --save-dev @types/react @types/react-dom
 </TerminalBlock>
 
 У вашому `tsconfig.json` потрібно вказати такі параметри компілятора:
 
+<<<<<<< HEAD
 1. `dom` має бути додано до параметру [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Зауважте: якщо параметр `lib` не вказаний, то `dom` вже додано).
 2. Параметр [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) повинен мати одне з допустимих значень. Для більшості застосунків достатньо вказати `preserve`.
   Якщо ви публікуєте бібліотеку, зверніться до [документації `jsx`](https://www.typescriptlang.org/tsconfig/#jsx), щоб вибрати правильне значення.
+=======
+1. `dom` must be included in [`lib`](https://www.typescriptlang.org/tsconfig/#lib) (Note: If no `lib` option is specified, `dom` is included by default).
+2. [`jsx`](https://www.typescriptlang.org/tsconfig/#jsx) must be set to one of the valid options. `preserve` should suffice for most applications.
+  If you're publishing a library, consult the [`jsx` documentation](https://www.typescriptlang.org/tsconfig/#jsx) on what value to choose.
+>>>>>>> 49c2d26722fb1b5865ce0221a4cadc71b615e4cf
 
 ## TypeScript з компонентами React {/*typescript-with-react-components*/}
 
