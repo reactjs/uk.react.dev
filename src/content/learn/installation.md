@@ -4,7 +4,7 @@ title: Встановлення
 
 <Intro>
 
-Від самого початку React був спроєктований для поступового впровадження. Ви можете використовувати стільки React-у, скільки вам потрібно. Бажаєте ознайомитися з React, додати трохи інтерактивності до HTML-сторінки чи створити складний React-застосунок — цей розділ допоможе вам почати роботу.
+Від самого початку React був спроєктований для поступового впровадження. Ви можете використовувати стільки React, скільки вам потрібно. Бажаєте ознайомитися з React, додати трохи інтерактивності до HTML-сторінки чи створити складний React-застосунок — цей розділ допоможе вам почати роботу.
 
 </Intro>
 
@@ -28,9 +28,9 @@ export default function App() {
 
 Ви можете редагувати його прямо на цій сторінці або відкрити у новій вкладці, натиснувши кнопку "Fork" у верхньому правому куті.
 
-Більшість сторінок у документації React містять схожі пісочниці. Водночас існує багато інших онлайн-пісочниць з підтримкою React, наприклад: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) або [CodePen.](https://codepen.io/pen?template=QWYVwWN)
+Більшість сторінок у документації React містять схожі пісочниці. Водночас існує багато інших онлайн-пісочниць з підтримкою React, наприклад: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) або [CodePen](https://codepen.io/pen?template=QWYVwWN).
 
-Щоб спробувати React локально на вашому комп'ютері, [завантажте цю HTML-сторінку.](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html) Відкрийте її у редакторі та браузері!
+Щоб спробувати React локально на вашому комп'ютері, [завантажте цю HTML-сторінку](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html). Відкрийте її у редакторі та браузері!
 
 ## Створення React-застосунку {/*creating-a-react-app*/}
 
@@ -42,7 +42,7 @@ export default function App() {
 
 ## Інтегрувати React у наявний проєкт {/*add-react-to-an-existing-project*/}
 
-Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React у наявний проєкт.](/learn/add-react-to-an-existing-project)
+Якщо ви хочете використати React у власному застосунку або вебсайті, [інтегруйте React у наявний проєкт](/learn/add-react-to-an-existing-project).
 
 
 <Note>
