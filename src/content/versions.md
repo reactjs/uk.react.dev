@@ -11,7 +11,8 @@ title: Версії React
 Ми прагнемо оновлювати документацію в межах мажорних версій і не публікуємо окремо для кожної мінорної або латкової (patch). Коли з'являється нова мажорна версія, ми архівуємо документацію для попередньої за адресою `x.react.dev` _(прим. пер.&nbsp;— у цьому форматі архівується лише першоджерело англійською)_. Перегляньте нашу [політику версіонування](/community/versioning-policy) для більш детальної інформації.
 
 Архів попередніх мажорних версій можна знайти нижче.
-## Остання версія: 19.1 {/*latest-version*/}
+
+## Остання версія: 19.2 {/*latest-version*/}
 
 - [react.dev](https://react.dev) ([uk.react.dev](https://uk.react.dev)) {/*docs-19*/}
 
@@ -40,6 +41,8 @@ title: Версії React
 - [React v19](/blog/2024/12/05/react-19)
 - [React 19 Upgrade Guide](/blog/2024/04/25/react-19-upgrade-guide)
 - [React Compiler Beta Release](/blog/2024/10/21/react-compiler-beta-release)
+- [React Compiler RC](/blog/2025/04/21/react-compiler-rc)
+- [React 19.2](/blog/2025/10/01/react-19-2)
 
 **Доповіді**
 - [React 19 Keynote](https://www.youtube.com/watch?v=lyEKhv8-3n0)
@@ -51,6 +54,7 @@ title: Версії React
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
 
 **Релізи**
+- [v19.2.0 (Жовтень, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1920-october-1st-2025)
 - [v19.1.0 (Березень, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1910-march-28-2025)
 - [v19.0.0 (Грудень, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024)
 
