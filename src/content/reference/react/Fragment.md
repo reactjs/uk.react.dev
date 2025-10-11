@@ -4,13 +4,9 @@ title: <Fragment> (<>...</>)
 
 <Intro>
 
-<<<<<<< HEAD
 `<Fragment>`, часто використовується за допомогою синтаксису `<>...</>`, дозволяє групувати елементи без елементу-обгортки.
-=======
-`<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node. 
 
 <Experimental> Fragments can also accept refs, which enable interacting with underlying DOM nodes without adding wrapper elements. See reference and usage below.</Experimental>
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 ```js
 <>
@@ -33,10 +29,7 @@ title: <Fragment> (<>...</>)
 
 #### Пропси {/*props*/}
 
-<<<<<<< HEAD
 - **опційний** `key`: Фрагменти, оголошені з явним синтаксисом `<Fragment>` можуть мати [ключі.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
-=======
-- **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](/learn/rendering-lists#keeping-list-items-in-order-with-key)
 - <ExperimentalBadge />  **optional** `ref`: A ref object (e.g. from [`useRef`](/reference/react/useRef)) or [callback function](/reference/react-dom/components/common#ref-callback). React provides a `FragmentInstance` as the ref value that implements methods for interacting with the DOM nodes wrapped by the Fragment.
 
 ### <ExperimentalBadge /> FragmentInstance {/*fragmentinstance*/}
@@ -64,7 +57,6 @@ When you pass a ref to a fragment, React provides a `FragmentInstance` object wi
 **Observer methods:**
 - `observeUsing(observer)`: Starts observing the Fragment's DOM children with an IntersectionObserver or ResizeObserver.
 - `unobserveUsing(observer)`: Stops observing the Fragment's DOM children with the specified observer.
->>>>>>> 11cb6b591571caf5fa2a192117b6a6445c3f2027
 
 #### Обмеження {/*caveats*/}
 
