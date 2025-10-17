@@ -87,10 +87,10 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 
 <Note>
 
-`<Profiler>` дає вам змогу збирати показники програмно. Якщо ви шукаєте інтерактивний профілювач, спробуйте вкладку Profiler в [Інструментах React розробника](/learn/react-developer-tools). Вона надає подібний функціонал як розширення для браузера.
+`<Profiler>` дає вам змогу збирати показники програмно. Якщо ви шукаєте інтерактивний профілювач, спробуйте вкладку Profiler в [Інструментах React розробника](/learn/react-developer-tools). Вона надає подібну функціональність як розширення для браузера.
 
-Components wrapped in `<Profiler>` will also be marked in the [Component tracks](/reference/dev-tools/react-performance-tracks#components) of React Performance tracks even in profiling builds.
-In development builds, all components are marked in the Components track regardless of whether they're wrapped in `<Profiler>`.
+Компоненти, обгорнуті компонентом `<Profiler>`, будуть також промарковані в [доріжках компонентів (Component tracks)](/reference/dev-tools/react-performance-tracks#components) серед доріжок продуктивності React у збірці з увімкненим профілюванням.
+Для збірок розробника (development builds) усі компоненти будуть промарковані в доріжках компонентів незалежно від того, чи вони обгорнуті в `<Profiler>`.
 
 </Note>
 
