@@ -6,6 +6,8 @@ title: useId
 
 `useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
 
+`useId` — це хук для генерації унікальних ID, які можуть передаватись як атрибути доступності.
+
 ```js
 const id = useId()
 ```
@@ -20,7 +22,7 @@ const id = useId()
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Викличте `useId` на верхньому рівні вашого компонента, щоб згенерувати унікальне ID:
 
 ```js
 import { useId } from 'react';
@@ -30,37 +32,38 @@ function PasswordField() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Перегляньте більше прикладів нижче.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Параметри {/*parameters*/}
 
-`useId` does not take any parameters.
+`useId` не приймає ніяких параметрів.
 
-#### Returns {/*returns*/}
+#### Результат {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` повертає унікальну ID стрінгу, пов'язану з конкретним запитом `useId` в цьому конкретньому компоненті.
 
-#### Caveats {/*caveats*/}
+#### Застереження {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` — це хук, тож він може бути викликаний тільки **на верхньому рівні вашого компонента** або у вашому власному Хуці. Ви не можете викликати його в циклах або умовах. Якщо ж є така потреба, то витягніть новий компонент та перемістіть в нього стан.
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` **не повинно використовуватись для генерації ключів** у списках. [Ключі повинні генеруватись з ваших даних.](/learn/rendering-lists#where-to-get-your-key)
 
-* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
+* `useId` на данний момент не може бути використано в [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
 
 ---
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
 <Pitfall>
 
-**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+**Не викликайте `useId` для генерації ключів у списку.** [Ключі повинні генеруватись з ваших даних.](/learn/rendering-lists#where-to-get-your-key)
+
 
 </Pitfall>
 
-### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
+### Генеруйте унікальні ID для атрибутів доступності {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Викликайте `useId` на верхньому рівні вашої компоненти для генерації унікального ID:
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -70,7 +73,7 @@ function PasswordField() {
   // ...
 ```
 
-You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different attributes:
+Далі ви можете передати <CodeStep step={1}>generated ID</CodeStep> до різних атрибутів:
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -79,11 +82,11 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 </>
 ```
 
-**Let's walk through an example to see when this is useful.**
+**Давайте розглянемо приклади, коли це може бути корисно.**
 
-[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that an element (like an input) is described by another element (like a paragraph).
+[Атрибути доступності HTML](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) такі як [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) дозволяють зазначити, що два теги пов'язані один з одним. Наприклад, ви можете визначити, що елемент (такий як input) описан іншим компонентом (такий як параграф).
 
-In regular HTML, you would write it like this:
+В звичайному HTML, ви би написали наступне:
 
 ```html {5,8}
 <label>
@@ -98,7 +101,7 @@ In regular HTML, you would write it like this:
 </p>
 ```
 
-However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
+Однак, такий хардкод ID не найкраща практика в React. Компонент може бути зарендерений на сторінці більш ніж один раз — але ID повинні бути унікальні! Замість того, щоб хардкодити ID, зренеруйте унікальне за допомогою  `useId`:
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -115,14 +118,14 @@ function PasswordField() {
         />
       </label>
       <p id={passwordHintId}>
-        The password should contain at least 18 characters
+        Пароль повинен буди довжиною не меньш ніж 18 символів
       </p>
     </>
   );
 }
 ```
 
-Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
+Тож, навіть якщо `PasswordField` з'явиться на сторінці багато разів, згенеровані ID не конфліктуватимуть.
 
 <Sandpack>
 
@@ -141,7 +144,7 @@ function PasswordField() {
         />
       </label>
       <p id={passwordHintId}>
-        The password should contain at least 18 characters
+        Пароль повинен буди довжиною не меньш ніж 18 символів
       </p>
     </>
   );
@@ -150,9 +153,9 @@ function PasswordField() {
 export default function App() {
   return (
     <>
-      <h2>Choose password</h2>
+      <h2>Оберіть пароль</h2>
       <PasswordField />
-      <h2>Confirm password</h2>
+      <h2>Підтвердіть пароль</h2>
       <PasswordField />
     </>
   );
@@ -165,11 +168,12 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Watch this video](https://www.youtube.com/watch?v=0dNzNcuEuOo) to see the difference in the user experience with assistive technologies.
+[Перегляньте відео](https://www.youtube.com/watch?v=0dNzNcuEuOo), щоб побачити різницю користувацького досвіду з дороміжними технологіями.
 
 <Pitfall>
 
 With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+Разом з [серверним рендерінгом](/reference/react-dom/server), **`useId` потребує ідентичного дерева компонент на сервері та на клієнті**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
 
 </Pitfall>
 
