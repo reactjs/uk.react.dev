@@ -299,11 +299,7 @@ title: Версії React
 
 React було опубліковано з відкритим вихідним кодом 29 травня 2013 року. Початковий коміт&nbsp;— це [`75897c`: Initial public release](https://github.com/facebook/react/commit/75897c2dcd1dd3a6ca46284dd37e13d22b4b16b4).
 
-<<<<<<< HEAD
 Перегляньте ["Why did we build React?"](https://uk.legacy.reactjs.org/blog/2013/06/05/why-react.html), перший допис у блозі.
-=======
-See the first blog post: [Why did we build React?](https://legacy.reactjs.org/blog/2013/06/05/why-react.html)
->>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
 
 React було опубліковано з відкритим вихідним кодом в офісі Facebook у Сієтлі у 2013 році:
 

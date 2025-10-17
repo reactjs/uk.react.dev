@@ -37,11 +37,7 @@ title: <Profiler>
 
 #### Застереження {/*caveats*/}
 
-<<<<<<< HEAD
-* Профілювання створює додаткове навантаження, тому **початково воно вимкнене у збірці для впровадження (production).** Щоб профілювати у публічному середовищі, потрібно скористатися [спеціальною збіркою для впровадження з увімкненим профілюванням.](https://fb.me/react-profiling)
-=======
-* Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
->>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
+* Профілювання створює додаткове навантаження, тому **початково воно вимкнене у збірці для впровадження (production).** Щоб профілювати у публічному середовищі, потрібно скористатися [спеціальною збіркою для впровадження з увімкненим профілюванням.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
 
 ---
 
@@ -85,11 +81,7 @@ function onRender(id, phase, actualDuration, baseDuration, startTime, commitTime
 
 <Pitfall>
 
-<<<<<<< HEAD
-* Профілювання створює додаткове навантаження, тому **початково воно вимкнене у збірці для впровадження (production).** Щоб профілювати у публічному середовищі, потрібно скористатися [спеціальною збіркою для впровадження з увімкненим профілюванням.](https://fb.me/react-profiling)
-=======
-Profiling adds some additional overhead, so **it is disabled in the production build by default.** To opt into production profiling, you need to enable a [special production build with profiling enabled.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
->>>>>>> 0d05d9b6ef0f115ec0b96a2726ab0699a9ebafe1
+* Профілювання створює додаткове навантаження, тому **початково воно вимкнене у збірці для впровадження (production).** Щоб профілювати у публічному середовищі, потрібно скористатися [спеціальною збіркою для впровадження з увімкненим профілюванням.](/reference/dev-tools/react-performance-tracks#using-profiling-builds)
 
 </Pitfall>
 
