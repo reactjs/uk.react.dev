@@ -250,12 +250,20 @@ export function HomeContent() {
               повного стеку
             </Header>
             <Para>
+<<<<<<< HEAD
               React&nbsp;— це бібліотека. Він комбінує компоненти, але не
               визначає спосіб маршрутизації чи запиту даних. Щоб побудувати
               цільний застосунок, ми рекомендуємо скористатися React-фреймворком
               повного стеку, як-от{' '}
               <Link href="https://nextjs.org">Next.js</Link> або{' '}
               <Link href="https://remix.run">Remix</Link>.
+=======
+              React is a library. It lets you put components together, but it
+              doesn’t prescribe how to do routing and data fetching. To build an
+              entire app with React, we recommend a full-stack React framework
+              like <Link href="https://nextjs.org">Next.js</Link> or{' '}
+              <Link href="https://reactrouter.com">React Router</Link>.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
             </Para>
           </Center>
           <FullBleed>
