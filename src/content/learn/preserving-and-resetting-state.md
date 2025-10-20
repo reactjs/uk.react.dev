@@ -92,7 +92,7 @@ label {
 
 <Diagram name="preserving_state_tree" height={248} width={395} alt="Діаграма дерева React-компонентів. Кореневий вузол позначений як 'div' та має двоє дочірніх компонентів. Кожний дочірній компонент названий 'Counter' і обидва містять бульбашку стану з назвою 'count' із значенням 0.">
 
-React дерево
+Дерево React
 
 </Diagram>
 
@@ -496,7 +496,7 @@ export default function App() {
   return (
     <div>
       {isPaused ? (
-        <p>Побачимось пізніше!</p> 
+        <p>Побачимось!</p> 
       ) : (
         <Counter /> 
       )}
@@ -611,7 +611,7 @@ export default function App() {
             setIsFancy(e.target.checked)
           }}
         />
-        Використати вишукану стилізацію
+        Використовувати вишукану стилізацію
       </label>
     </div>
   );
@@ -726,7 +726,7 @@ export default function MyComponent() {
       <MyTextField />
       <button onClick={() => {
         setCounter(counter + 1)
-      }}>Натиснуто {counter} разів</button>
+      }}>Клацнуто разів: {counter}</button>
     </>
   );
 }
@@ -753,7 +753,7 @@ export default function Scoreboard() {
   return (
     <div>
       {isPlayerA ? (
-        <Counter person="Тайлера" />
+        <Counter person="Тейлора" />
       ) : (
         <Counter person="Сари" />
       )}
@@ -1084,11 +1084,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Написати до ' + contact.name}
+        placeholder={'Написати до: ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Надіслати до {contact.email}</button>
+      <button>Надіслати на {contact.email}</button>
     </section>
   );
 }
@@ -1425,7 +1425,7 @@ export default function App() {
         checked={reverse}
         onChange={e => setReverse(e.target.checked)}
       />
-      Змінити порядок
+      Зворотний порядок
     </label>
   );
   if (reverse) {
@@ -1873,10 +1873,10 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Далі
+        Наступне
       </button>
       <h3>
-        Зображення {index + 1} of {images.length}
+        Зображення {index + 1} із {images.length}
       </h3>
       <img src={image.src} />
       <p>
@@ -2016,7 +2016,7 @@ export default function ContactList() {
             setReverse(e.target.checked)
           }}
         />{' '}
-        Показати в зворотному порядку
+        Показати у зворотному порядку
       </label>
       <ul>
         {displayedContacts.map((contact, i) =>
@@ -2087,7 +2087,7 @@ button {
   <li key={i}>
 ```
 
-Однак ви хочете, щоб стан був пов'язаний з _кожним конкретним контактом_.
+Однак ви хочете, щоб стан був пов'язаний із _кожним конкретним контактом_.
 
 Використання ідентифікатора контакту як `key` вирішує цю проблему:
 
