@@ -11,6 +11,8 @@ node_modules
 # next.js
 /.next/
 /out/
+.idea/
+
 
 # production
 /build
@@ -39,3 +41,4 @@ public/fonts/**/Optimistic_*.woff2
 
 # rss
 public/rss.xml
+
