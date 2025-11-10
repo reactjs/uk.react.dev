@@ -32,7 +32,7 @@ function AppContainer() {
     state,
     // updateFn
     (currentState, optimisticValue) => {
-      // об’єднайте і поверніть новий стан
+      // об'єднайте і поверніть новий стан
       // з оптимістичним значенням
     }
   );
@@ -50,7 +50,7 @@ function AppContainer() {
 #### Результат {/*returns*/}
 
 * `optimisticState`: розрахований оптимістичний стан. Допоки немає дії, що виконується, він дорівнює `state`, інакше він дорівнює значенню, яке повертає `updateFn`.
-* `addOptimistic`: `addOptimistic` — це функція для надсилання змін, яку потрібно викликати для оптимістичного оновлення. Вона приймає один аргумент `optimisticValue` будь-якого типу та викликає `updateFn` із `state` і `optimisticValue`.
+* `addOptimistic`: `addOptimistic` — це функція для надсилання змін (dispatching function), яку потрібно викликати для оптимістичного оновлення. Вона приймає один аргумент `optimisticValue` будь-якого типу та викликає `updateFn` із `state` і `optimisticValue`.
 
 ---
 
