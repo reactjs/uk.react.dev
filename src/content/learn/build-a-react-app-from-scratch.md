@@ -34,7 +34,7 @@ title: Побудова React-застосунку з нуля
 [Vite](https://vite.dev/) — це інструмент збирання, який має на меті забезпечити швидшу та ефективнішу розробку сучасних вебпроєктів.
 
 <TerminalBlock>
-{`npm create vite@latest my-app -- --template react`}
+{`npm create vite@latest my-app -- --template react-ts`}
 </TerminalBlock>
 
 Vite є досить розсудливим і постачається відразу з виваженими початковими налаштуваннями. Він має багату екосистему плагінів для підтримування швидкого оновлення, JSX, Babel/SWC та інших поширених функцій. Найперше перегляньте [плагін React](https://vite.dev/plugins/#vitejs-plugin-react) або [плагін React SWC](https://vite.dev/plugins/#vitejs-plugin-react-swc) і [приклад проєкту з React SSR](https://vite.dev/guide/ssr.html#example-projects).
@@ -97,7 +97,7 @@ Rsbuild відразу підтримує такі функції React, як ш
 
 Якщо ви отримуєте дані з більшості серверних частин або API у формі REST, пропонуємо використовувати:
 
-- [React Query](https://react-query.tanstack.com/)
+- [TanStack Query](https://tanstack.com/query/)
 - [SWR](https://swr.vercel.app/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
