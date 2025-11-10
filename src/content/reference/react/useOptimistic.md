@@ -4,7 +4,7 @@ title: useOptimistic
 
 <Intro>
 
-`useOptimistic` is a React Hook that lets you optimistically update the UI.
+`useOptimistic` — це хук React, який дає змогу оптимістично (попередньо) оновлювати UI.
 
 ```js
   const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
@@ -16,13 +16,13 @@ title: useOptimistic
 
 ---
 
-## Reference {/*reference*/}
+## Опис {/*reference*/}
 
 ### `useOptimistic(state, updateFn)` {/*use*/}
 
-`useOptimistic` is a React Hook that lets you show a different state while an async action is underway. It accepts some state as an argument and returns a copy of that state that can be different during the duration of an async action such as a network request. You provide a function that takes the current state and the input to the action, and returns the optimistic state to be used while the action is pending.
+Хук `useOptimistic` дає змогу відображати змінений стан під час виконання асинхронної дії. Він приймає певний стан як аргумент і повертає його копію, яка може відрізнятися від переданого стану протягом виконання асинхронної дії, наприклад, мережевого запиту. Ви надаєте функцію, яка отримує поточний стан і вхідні дані для дії, та повертає "оптимістичний" стан, який буде використовуватися, поки дія триває.
 
-This state is called the "optimistic" state because it is usually used to immediately present the user with the result of performing an action, even though the action actually takes time to complete.
+Цей стан називається "оптимістичним", тому що зазвичай використовується, щоб показати користувачеві очікуваний результат одразу, навіть якщо на завершення дії потрібен певний час.
 
 ```js
 import { useOptimistic } from 'react';
@@ -32,35 +32,35 @@ function AppContainer() {
     state,
     // updateFn
     (currentState, optimisticValue) => {
-      // merge and return new state
-      // with optimistic value
+      // об'єднайте і поверніть новий стан
+      // з оптимістичним значенням
     }
   );
 }
 ```
 
-[See more examples below.](#usage)
+[Перегляньте більше прикладів нижче.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Параметри {/*parameters*/}
 
-* `state`: the value to be returned initially and whenever no action is pending.
-* `updateFn(currentState, optimisticValue)`: a function that takes the current state and the optimistic value passed to `addOptimistic` and returns the resulting optimistic state. It must be a pure function. `updateFn` takes in two parameters. The `currentState` and the `optimisticValue`. The return value will be the merged value of the `currentState` and `optimisticValue`.
+* `state`: значення, яке повертається на початку та щоразу, коли немає дії, що виконується.
+* `updateFn(currentState, optimisticValue)`: функція, яка приймає поточний стан і оптимістичне значення, передане до `addOptimistic`, та повертає розрахований оптимістичний стан. Повинна бути чистою функцією. `updateFn` приймає два параметри: `currentState` і `optimisticValue`. Функція повертає значення, створене через об'єднання `currentState` і `optimisticValue`.
 
 
-#### Returns {/*returns*/}
+#### Результат {/*returns*/}
 
-* `optimisticState`: The resulting optimistic state. It is equal to `state` unless an action is pending, in which case it is equal to the value returned by `updateFn`.
-* `addOptimistic`: `addOptimistic` is the dispatching function to call when you have an optimistic update. It takes one argument, `optimisticValue`, of any type and will call the `updateFn` with `state` and `optimisticValue`.
+* `optimisticState`: розрахований оптимістичний стан. Допоки немає дії, що виконується, він дорівнює `state`, інакше він дорівнює значенню, яке повертає `updateFn`.
+* `addOptimistic`: `addOptimistic` — це функція для надсилання змін (dispatching function), яку потрібно викликати для оптимістичного оновлення. Вона приймає один аргумент `optimisticValue` будь-якого типу та викликає `updateFn` із `state` і `optimisticValue`.
 
 ---
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
-### Optimistically updating forms {/*optimistically-updating-with-forms*/}
+### Оптимістичне оновлення форм {/*optimistically-updating-with-forms*/}
 
-The `useOptimistic` Hook provides a way to optimistically update the user interface before a background operation, like a network request, completes. In the context of forms, this technique helps to make apps feel more responsive. When a user submits a form, instead of waiting for the server's response to reflect the changes, the interface is immediately updated with the expected outcome.
+Хук `useOptimistic` дає змогу оптимістично оновлювати інтерфейс, поки завершується фонова операція, наприклад, мережевий запит. У контексті форм такий підхід створює відчуття швидшої реакції застосунків. Коли користувач надсилає форму, замість очікування відповіді від сервера для змін, інтерфейс одразу оновлюється і відображає очікуваний результат.
 
-For example, when a user types a message into the form and hits the "Send" button, the `useOptimistic` Hook allows the message to immediately appear in the list with a "Sending..." label, even before the message is actually sent to a server. This "optimistic" approach gives the impression of speed and responsiveness. The form then attempts to truly send the message in the background. Once the server confirms the message has been received, the "Sending..." label is removed.
+Наприклад, коли користувач вводить повідомлення у форму й натискає кнопку "Надіслати", хук `useOptimistic` дає змогу одразу відобразити це повідомлення у списку з позначкою "Надсилання...", ще до того, як воно реально буде відправлене на сервер. Такий "оптимістичний" підхід створює враження швидкодії та миттєвого відгуку інтерфейсу. Після цього форма справді намагається надіслати повідомлення у фоновому режимі. Коли сервер підтвердить, що повідомлення було отримано, позначка "Надсилання..." зникне.
 
 <Sandpack>
 
@@ -92,13 +92,13 @@ function Thread({ messages, sendMessageAction }) {
   return (
     <>
       <form action={formAction} ref={formRef}>
-        <input type="text" name="message" placeholder="Hello!" />
-        <button type="submit">Send</button>
+        <input type="text" name="message" placeholder="Вітаю!" />
+        <button type="submit">Надіслати</button>
       </form>
       {optimisticMessages.map((message, index) => (
         <div key={index}>
           {message.text}
-          {!!message.sending && <small> (Sending...)</small>}
+          {!!message.sending && <small> (Надсилання...)</small>}
         </div>
       ))}
       
@@ -108,7 +108,7 @@ function Thread({ messages, sendMessageAction }) {
 
 export default function App() {
   const [messages, setMessages] = useState([
-    { text: "Hello there!", sending: false, key: 1 }
+    { text: "Привіт!", sending: false, key: 1 }
   ]);
   async function sendMessageAction(formData) {
     const sentMessage = await deliverMessage(formData.get("message"));
