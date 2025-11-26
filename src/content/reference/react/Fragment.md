@@ -58,7 +58,7 @@ When you pass a ref to a fragment, React provides a `FragmentInstance` object wi
 - `observeUsing(observer)`: Starts observing the Fragment's DOM children with an IntersectionObserver or ResizeObserver.
 - `unobserveUsing(observer)`: Stops observing the Fragment's DOM children with the specified observer.
 
-#### Обмеження {/*caveats*/}
+#### Застереження {/*caveats*/}
 
 - Якщо ви хочете передати `key` для Fragment, ви не можете використовувати синтаксис `<>...</>`. Ви маєте явно імпортувати `Fragment` з `'react'` та рендерити `<Fragment key={yourKey}>...</Fragment>`.
 
