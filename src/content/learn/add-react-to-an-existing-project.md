@@ -20,15 +20,9 @@ title: Інтеграція React у наявний проєкт
 
 Ось як ми рекомендуємо це налаштувати:
 
-<<<<<<< HEAD
-1. **Побудуйте React-частину вашого застосунку**, використовуючи один із [фреймворків на основі React](/learn/start-a-new-react-project).
+1. **Побудуйте React-частину вашого застосунку**, використовуючи один із [фреймворків на основі React](/learn/creating-a-react-app).
 2. **Позначте `/some-app` як *базовий шлях*** у конфігурації вашого фреймворку (ось як: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Налаштуйте свій сервер або проксі**, щоб всі запити під шляхом `/some-app/` оброблялися вашим React-застосунком.
-=======
-1. **Build the React part of your app** using one of the [React-based frameworks](/learn/creating-a-react-app).
-2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
-3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 Це надасть React-частині вашого застосунку всі [переваги від найкращих практик](/learn/build-a-react-app-from-scratch#consider-using-a-framework), вбудованих у ці фреймворки.
 
@@ -155,11 +149,7 @@ root.render(<NavigationBar />);
 
 Зверніть увагу, як оригінальний зміст HTML з `index.html` зберігся, проте ваш власний `NavigationBar` React-компонент тепер зображуються всередині `<nav id="navigation">` із вашого HTML. Читайте [документацію використання `createRoot`](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react), щоб дізнатися більше про рендеринг компонентів React всередині наявної HTML-сторінки.
 
-<<<<<<< HEAD
-Коли ви впроваджуєте React у наявний проєкт, стандартна практика — починати з невеликих інтерактивних компонентів (наприклад, кнопок), а потім поступово "підійматися вгору" до моменту, поки вся ваша сторінка не буде побудована з використанням React. Після цього ми рекомендуємо одразу перейти до [фреймворку React](/learn/start-a-new-react-project), щоб найбільш ефективно його використовувати.
-=======
-When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/creating-a-react-app) right after to get the most out of React.
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
+Коли ви впроваджуєте React у наявний проєкт, стандартна практика — починати з невеликих інтерактивних компонентів (наприклад, кнопок), а потім поступово "підійматися вгору" до моменту, поки вся ваша сторінка не буде побудована з використанням React. Після цього ми рекомендуємо одразу перейти до [фреймворку React](/learn/creating-a-react-app), щоб найбільш ефективно його використовувати.
 
 ## Використання React Native у наявному нативному застосунку {/*using-react-native-in-an-existing-native-mobile-app*/}
 

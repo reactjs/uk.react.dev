@@ -20,11 +20,7 @@ TypeScript — це популярний спосіб додавання виз�
 
 ## Встановлення {/*installation*/}
 
-<<<<<<< HEAD
-Усі [готові для впровадження React-фреймворки](/learn/start-a-new-react-project#full-stack-frameworks) підтримують використання TypeScript. Дотримуйтесь інструкції для встановлення у відповідному фреймворку:
-=======
-All [production-grade React frameworks](/learn/creating-a-react-app#full-stack-frameworks) offer support for using TypeScript. Follow the framework specific guide for installation:
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
+Усі [готові для впровадження React-фреймворки](/learn/creating-a-react-app#full-stack-frameworks) підтримують використання TypeScript. Дотримуйтесь інструкції для встановлення у відповідному фреймворку:
 
 - [Next.js](https://nextjs.org/docs/app/building-your-application/configuring/typescript)
 - [Remix](https://remix.run/docs/en/1.19.2/guides/typescript)
