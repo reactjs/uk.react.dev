@@ -273,7 +273,7 @@ export function HomeContent() {
               <CTA
                 color="gray"
                 icon="framework"
-                href="/learn/start-a-new-react-project">
+                href="/learn/creating-a-react-app">
                 Розпочати з фреймворком
               </CTA>
             </div>
