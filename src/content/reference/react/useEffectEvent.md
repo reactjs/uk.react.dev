@@ -4,7 +4,7 @@ title: useEffectEvent
 
 <Intro>
 
-`useEffectEvent` is a React Hook that lets you extract non-reactive logic from your Effects into a reusable function called an [Effect Event](/learn/separating-events-from-effects#declaring-an-effect-event).
+`useEffectEvent` це Хук React, який дозволяє винести **нереактивну логіку** з ваших Ефектів у функцію, яку можна використовувати повторно, — так звану [**Подію Ефекту**](/learn/separating-events-from-effects#declaring-an-effect-event).
 
 ```js
 const onSomething = useEffectEvent(callback)
@@ -14,11 +14,11 @@ const onSomething = useEffectEvent(callback)
 
 <InlineToc />
 
-## Reference {/*reference*/}
+## Довідка {/*reference*/}
 
 ### `useEffectEvent(callback)` {/*useeffectevent*/}
 
-Call `useEffectEvent` at the top level of your component to declare an Effect Event. Effect Events are functions you can call inside Effects, such as `useEffect`:
+Викликайте `useEffectEvent` на верхньому рівні вашого компонента, щоб оголосити Подію Ефекту. Події Ефекту — це функції, які ви можете викликати всередині Ефектів, таких як `useEffect`:
 
 ```js {4-6,11}
 import { useEffectEvent, useEffect } from 'react';
@@ -41,33 +41,33 @@ function ChatRoom({ roomId, theme }) {
 }
 ```
 
-[See more examples below.](#usage)
+[Дивіться більше прикладів нижче.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Параметри {/*parameters*/}
 
-- `callback`: A function containing the logic for your Effect Event. When you define an Effect Event with `useEffectEvent`, the `callback` always accesses the latest values from props and state when it is invoked. This helps avoid issues with stale closures.
+- `callback`: Функція, що містить логіку для вашої Події Ефекту. Коли ви визначаєте Подію Ефекту за допомогою `useEffectEvent`, `callback` **завжди** матиме доступ до **найновіших** значень із пропсів і стану, коли він викликається. Це допомагає уникнути проблем із "застарілими замиканнями" (stale closures).
 
-#### Returns {/*returns*/}
+#### Повертає {/*returns*/}
 
-Returns an Effect Event function. You can call this function inside `useEffect`, `useLayoutEffect`, or `useInsertionEffect`.
+Повертає функцію Події Ефекту. Ви можете викликати цю функцію всередині `useEffect`, `useLayoutEffect` або `useInsertionEffect`.
 
-#### Caveats {/*caveats*/}
+#### Застереження {/*caveats*/}
 
-- **Only call inside Effects:** Effect Events should only be called within Effects. Define them just before the Effect that uses them. Do not pass them to other components or hooks. The [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) linter (version 6.1.1 or higher) will enforce this restriction to prevent calling Effect Events in the wrong context.
-- **Not a dependency shortcut:** Do not use `useEffectEvent` to avoid specifying dependencies in your Effect's dependency array. This can hide bugs and make your code harder to understand. Prefer explicit dependencies or use refs to compare previous values if needed.
-- **Use for non-reactive logic:** Only use `useEffectEvent` to extract logic that does not depend on changing values.
+- **Викликайте лише всередині Ефектів:** Події Ефекту слід викликати лише в Ефектах. Визначайте їх безпосередньо перед Ефектом, який їх використовує. Не передавайте їх іншим компонентам або Хукам. Лінтер [`eslint-plugin-react-hooks`](/reference/eslint-plugin-react-hooks) (версія 6.1.1 або вище) забезпечить дотримання цього обмеження, щоб запобігти виклику Подій Ефекту в неправильному контексті.
+- **Це не скорочення для залежностей:** Не використовуйте `useEffectEvent`, щоб уникнути зазначення залежностей у масиві залежностей вашого Ефекту. Це може приховати помилки та ускладнити розуміння вашого коду. Віддайте перевагу явним залежностям або використовуйте refs для порівняння попередніх значень, якщо це необхідно.
+- **Використовуйте для нереактивної логіки:** Використовуйте `useEffectEvent` лише для винесення логіки, яка **не залежить** від зміни значень.
 
 ___
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
-### Reading the latest props and state {/*reading-the-latest-props-and-state*/}
+### Зчитування найновіших пропсів і стану {/*reading-the-latest-props-and-state*/}
 
-Typically, when you access a reactive value inside an Effect, you must include it in the dependency array. This makes sure your Effect runs again whenever that value changes, which is usually the desired behavior.
+Зазвичай, коли ви отримуєте доступ до реактивного значення всередині Ефекту, ви повинні включити його до масиву залежностей. Це гарантує, що ваш Ефект знову запуститься, коли це значення зміниться, що зазвичай є бажаною поведінкою.
 
-But in some cases, you may want to read the most recent props or state inside an Effect without causing the Effect to re-run when those values change.
+Але в деяких випадках ви можете захотіти прочитати найновіші пропси або стан всередині Ефекту, не викликаючи повторного запуску Ефекту при зміні цих значень.
 
-To [read the latest props or state](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events) in your Effect, without making those values reactive, include them in an Effect Event.
+Щоб [прочитати найновіші пропси або стан](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events) у вашому Ефекті, не роблячи ці значення реактивними, включіть їх у Подію Ефекту.
 
 ```js {7-9,12}
 import { useEffect, useContext, useEffectEvent } from 'react';
@@ -88,7 +88,6 @@ function Page({ url }) {
 }
 ```
 
-In this example, the Effect should re-run after a render when `url` changes (to log the new page visit), but it should **not** re-run when `numberOfItems` changes. By wrapping the logging logic in an Effect Event, `numberOfItems` becomes non-reactive. It's always read from the latest value without triggering the Effect.
+У цьому прикладі Ефект повинен повторно запуститися після рендерингу, коли змінюється `url` (щоб зафіксувати відвідування нової сторінки), але він **не** повинен повторно запускатися, коли змінюється `numberOfItems`. Загорнувши логіку логування в Подію Ефекту, `numberOfItems` стає **нереактивним**. Він завжди береться з найновішого значення без запуску Ефекту.
 
-You can pass reactive values like `url` as arguments to the Effect Event to keep them reactive while accessing the latest non-reactive values inside the event.
-
+Ви можете передати реактивні значення, як-от `url`, як аргументи до Події Ефекту, щоб зберегти їх реактивними, отримуючи доступ до найновіших нереактивних значень всередині події.
