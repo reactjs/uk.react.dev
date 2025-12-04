@@ -255,7 +255,7 @@ export function HomeContent() {
               цільний застосунок, ми рекомендуємо скористатися React-фреймворком
               повного стеку, як-от{' '}
               <Link href="https://nextjs.org">Next.js</Link> або{' '}
-              <Link href="https://remix.run">Remix</Link>.
+              <Link href="https://reactrouter.com">React Router</Link>.
             </Para>
           </Center>
           <FullBleed>
@@ -273,7 +273,7 @@ export function HomeContent() {
               <CTA
                 color="gray"
                 icon="framework"
-                href="/learn/start-a-new-react-project">
+                href="/learn/creating-a-react-app">
                 Розпочати з фреймворком
               </CTA>
             </div>
