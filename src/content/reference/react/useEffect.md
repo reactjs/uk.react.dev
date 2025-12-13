@@ -4,7 +4,7 @@ title: useEffect
 
 <Intro>
 
-`useEffect` is a React Hook that lets you [synchronize a component with an external system.](/learn/synchronizing-with-effects)
+`useEffect` це хук, який дозволяє [синхронізувати компонент із зовнішньою системою](/learn/synchronizing-with-effects)
 
 ```js
 useEffect(setup, dependencies?)
@@ -16,11 +16,11 @@ useEffect(setup, dependencies?)
 
 ---
 
-## Reference {/*reference*/}
+## Короткий огляд {/*reference*/}
 
 ### `useEffect(setup, dependencies?)` {/*useeffect*/}
 
-Call `useEffect` at the top level of your component to declare an Effect:
+Щоб оголосити Ефект, на верхньому рівні компонента викличте `useEffect`.
 
 ```js
 import { useState, useEffect } from 'react';
@@ -40,45 +40,47 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-[See more examples below.](#usage)
+[Перегляньте більше прикладів нижче.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Параметри {/*parameters*/}
 
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. When your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. After your component is removed from the DOM, React will run your cleanup function.
- 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. If you omit this argument, your Effect will re-run after every re-render of the component. [See the difference between passing an array of dependencies, an empty array, and no dependencies at all.](#examples-dependencies)
+* `setup` (з англ. встановлюючий): Функція з логікою вашого Ефекту. Ваша функція `setup` може додатково повертати *cleanup* функцію (з англ. cleanup - прибирання). Після того, як ваш компонент буде додано в DOM, React виконає функцію `setup`. Потім після кожного наступного рендеру React буде перевіряти чи змінилось значення хоча б однієї із залежностей, і якщо значення хоча б однієї залежності змінилось, то React спочатку виконає *cleanup*-функцію (якщо ви її надали) зі старими значеннями, а потім знову виконає `setup` функцію із новими значеннями. Після видалення компонента з DOM React виконає *cleanup*-функцію.
 
-#### Returns {/*returns*/}
+* **необов’язковий** `dependencies` (з англ. залежності): Список реактивних значень, від яких залежить код всередині `setup`-функції. Під реактивними значеннями мається на увазі `props`, `state`, а також усі змінні та функції, оголошені безпосередньо в тілі вашого компонента. Якщо ваш лінтер [налаштовано для React](/learn/editor-setup#linting), він буде контролювати, що ви не забули додати до списку жодне з необхідних реактивних значень. Список залежностей має містити фіксовану кількість елементів і бути поданий підряд, наприклад `[dep1, dep2, dep3]`. React порівнюватиме кожну залежність із її попереднім значенням, використовуючи порівняння [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is). Якщо ви не передасте масив залежностей, то ваш Effect виконуватиметься після додавання компонента в DOM та після кожного повторного рендеру компонента. І якщо передасте порожній масив, то ваш Effect виконається лише один раз після додавання компонента в DOM. [Подивитись різницю між передачею масиву залежностей, порожнього масиву та не передаванням нічого.](#examples-dependencies)
 
-`useEffect` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Результат {/*returns*/}
 
-* `useEffect` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+`useEffect` повертає `undefined`.
 
-* If you're **not trying to synchronize with some external system,** [you probably don't need an Effect.](/learn/you-might-not-need-an-effect)
+#### Застереження {/*caveats*/}
 
-* When Strict Mode is on, React will **run one extra development-only setup+cleanup cycle** before the first real setup. This is a stress-test that ensures that your cleanup logic "mirrors" your setup logic and that it stops or undoes whatever the setup is doing. If this causes a problem, [implement the cleanup function.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+* `useEffect` — це Hook, тому його можна викликати **лише на верхньому рівні вашого компонента** або у власних Hook'ах. Не можна викликати його всередині циклів чи умов. Якщо вам потрібно використати його в циклах або умовах, то виділіть новий компонент, додайте `useEffect` в ньому і додавайте той компонент по циклу / за умовою.
 
-* If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](#removing-unnecessary-object-dependencies) and [function](#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
+* Якщо ви **не намагаєтеся синхронізуватися із зовнішньою системою,** [вам, ймовірно, не потрібен Effect.](/learn/you-might-not-need-an-effect)
 
-* If your Effect wasn't caused by an interaction (like a click), React will generally let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+* Коли ввімкнено Strict Mode (з англ. Strict Mode - суворий режим), React **запускатиме setup+cleanup один зайвий раз** перед першим запуском `setup` ((але тільки в режимі розробки)). Це стрес-тест, який гарантує, що ваша логіка `cleanup` «відзеркалює» логіку `setup` і зупиняє або скасовує все, що робить `setup`. Якщо Strict Mode викликає проблему, [реалізуйте cleanup-функцію.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
-* If your Effect is caused by an interaction (like a click), **React may run your Effect before the browser paints the updated screen**. This ensures that the result of the Effect can be observed by the event system. Usually, this works as expected. However, if you must defer the work until after paint, such as an `alert()`, you can use `setTimeout`. See [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) for more information.
+* Якщо деякі ваші залежності — це об’єкти або функції, визначені всередині компонента, є ризик, що вони **спричинятимуть повторний запуск Effect частіше, ніж потрібно.** Щоб це виправити, приберіть зайві [залежності-об’єкти](#removing-unnecessary-object-dependencies) і [залежності-функції](#removing-unnecessary-function-dependencies). Також можна [винести оновлення стану](#updating-state-based-on-previous-state-from-an-effect) і [нереактивну логіку](#reading-the-latest-props-and-state-from-an-effect) за межі вашого Effect.
 
-* Even if your Effect was caused by an interaction (like a click), **React may allow the browser to repaint the screen before processing the state updates inside your Effect.** Usually, this works as expected. However, if you must block the browser from repainting the screen, you need to replace `useEffect` with [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+* Якщо ваш Effect не був спричинений взаємодією (наприклад кліком), React зазвичай дозволяє браузеру **спочатку відмалювати оновлений екран, а потім виконати Effect.** Якщо Effect робить щось візуальне (наприклад, зображає підказку), і затримка помітна (наприклад, блимає), замініть `useEffect` на [`useLayoutEffect`.](/reference/react/useLayoutEffect)
 
-* Effects **only run on the client.** They don't run during server rendering.
+* Якщо ваш Effect викликаний взаємодією (наприклад, кліком), **React може виконати ваш Effect до того, як браузер відмалює оновлений екран.** Це гарантує, що результат Effect буде доступний для системи обробки подій. Зазвичай це очікуваний результат. Однак, якщо потрібно відкласти виконання на після малювання (наприклад, `alert()`), можна використати `setTimeout`. Див. [reactwg/react-18/128](https://github.com/reactwg/react-18/discussions/128) щодо деталей.
+
+* Навіть якщо ваш Effect спричинений взаємодією (наприклад, кліком), **React може дозволити браузеру перемалювати екран до обробки оновлень стану всередині Ефекту.** Зазвичай така поведінка працює добре. Але якщо потрібно заблокувати перемалювання, замініть `useEffect` на [`useLayoutEffect`.](/reference/react/useLayoutEffect)
+
+* Ефекти **виконуються лише на клієнті.** Вони не запускаються під час серверного рендерингу.
+
 
 ---
 
-## Usage {/*usage*/}
+## Використання {/*usage*/}
 
-### Connecting to an external system {/*connecting-to-an-external-system*/}
+### З'єднання із зовнішньою системою {/*connecting-to-an-external-system*/}
 
-Some components need to stay connected to the network, some browser API, or a third-party library, while they are displayed on the page. These systems aren't controlled by React, so they are called *external.*
+Деякі компоненти мають залишатися підключеними до мережі, до деякого **API браузера** або до **сторонньої бібліотеки**, доки вони відображаються на сторінці. Ці системи не контролюються React, тому вони називаються **зовнішніми**.
 
-To [connect your component to some external system,](/learn/synchronizing-with-effects) call `useEffect` at the top level of your component:
+Щоб [підключити ваш компонент до зовнішньої системи,](/learn/synchronizing-with-effects) викличте `useEffect` на верхньому рівні вашого компонента:
 
 ```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
 import { useState, useEffect } from 'react';
@@ -88,55 +90,55 @@ function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');
 
   useEffect(() => {
-  	const connection = createConnection(serverUrl, roomId);
+    const connection = createConnection(serverUrl, roomId);
     connection.connect();
-  	return () => {
+    return () => {
       connection.disconnect();
-  	};
+    };
   }, [serverUrl, roomId]);
   // ...
 }
 ```
 
-You need to pass two arguments to `useEffect`:
+Ви маєте передати два аргументи до `useEffect`:
 
-1. A *setup function* with <CodeStep step={1}>setup code</CodeStep> that connects to that system.
-   - It should return a *cleanup function* with <CodeStep step={2}>cleanup code</CodeStep> that disconnects from that system.
-2. A <CodeStep step={3}>list of dependencies</CodeStep> including every value from your component used inside of those functions.
+1. *Функцію установки* з <CodeStep step={1}>кодом установки</CodeStep> що підключається до цієї системи.
+   - Він має повернути *функцію очистки* з <CodeStep step={2}>кодом очистки</CodeStep> який відключається від тієї системи.
+2. <CodeStep step={3}>Масив залежностей</CodeStep>, куди маєте передати всі значення від вашого компонента, які використовуються всередині тих функцій (функції установки та функції очистки).
 
-**React calls your setup and cleanup functions whenever it's necessary, which may happen multiple times:**
+**React викликає ваші функцію установки та та функцію очистки кожен раз, коли це необхідно, а це може ставатись багато разів:**
 
-1. Your <CodeStep step={1}>setup code</CodeStep> runs when your component is added to the page *(mounts)*.
-2. After every re-render of your component where the <CodeStep step={3}>dependencies</CodeStep> have changed:
-   - First, your <CodeStep step={2}>cleanup code</CodeStep> runs with the old props and state.
-   - Then, your <CodeStep step={1}>setup code</CodeStep> runs with the new props and state.
-3. Your <CodeStep step={2}>cleanup code</CodeStep> runs one final time after your component is removed from the page *(unmounts).*
+1. Ваш <CodeStep step={1}>код установки</CodeStep> запускається коли ваш компонента додається на сторінку *(монтується)*.
+2. Після кожного ререндеру, під час якого значення якоїсь із <CodeStep step={3}>залежностей було змінено</CodeStep> :
+   - Спершу ваш <CodeStep step={2}>код очистки</CodeStep> запускається з старими пропсами і станом.
+   - Тоді, ваш <CodeStep step={1}>код установки</CodeStep> запускається з новими пропсами та станом.
+3. Ваш <CodeStep step={2}>код очистки</CodeStep> виконується ще один, останній раз, коли ваш компонент видаляється з сторінки.
 
-**Let's illustrate this sequence for the example above.**  
+**Давайте опишемо цю чергу використовуючи приклад вище**  
 
-When the `ChatRoom` component above gets added to the page, it will connect to the chat room with the initial `serverUrl` and `roomId`. If either `serverUrl` or `roomId` change as a result of a re-render (say, if the user picks a different chat room in a dropdown), your Effect will *disconnect from the previous room, and connect to the next one.* When the `ChatRoom` component is removed from the page, your Effect will disconnect one last time.
+Коли компонент `ChatRoom` додається на сторінку, він підключається до чату використовуючи первинні значення `serverUrl` та `roomId`. Якщо хоча б одне із цих значень, будь то `serverUrl` чи `roomId` мінється в результаті ререндеру (наприклад якщо користувач обрав інший чат з випадаючого списку), наш Ефект *відключиться від попереднього чату, і підключиться до наступного чату.* Після того, як компонент `ChatRoom` буде демонтовано з сторінки, наш Ефект відключиться від чату останній раз.
 
-**To [help you find bugs,](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) in development React runs <CodeStep step={1}>setup</CodeStep> and <CodeStep step={2}>cleanup</CodeStep> one extra time before the <CodeStep step={1}>setup</CodeStep>.** This is a stress-test that verifies your Effect's logic is implemented correctly. If this causes visible issues, your cleanup function is missing some logic. The cleanup function should stop or undo whatever the setup function was doing. The rule of thumb is that the user shouldn't be able to distinguish between the setup being called once (as in production) and a *setup* → *cleanup* → *setup* sequence (as in development). [See common solutions.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**Щоб [допомогти знайти баги,](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) в Strict Mode (з англ. суворий режим) в режимі розробки React умисно зайвий раз запускає <CodeStep step={1}>функцію установки</CodeStep> та <CodeStep step={2}>функцію очистки</CodeStep> перед тим як запустити <CodeStep step={1}>функцію установки</CodeStep>.** Цей стрес-тест допомагає вам або переконатись, що логіка вашого Ефекту реалізована правильно, або ж помітити баг ще на етапі розробки (якщо із-за цього "надлишкового" запуску функції установки та функції очистки ваш компонент працює не так, як він мав би). Функція очистки мусить зупиняти або відміняти все, що запустила функція установки. Показник того, що код працює правильно - код має працювати однаково добре незалежно від того чи було запущено *функцію установки* один раз, чи було запущено *функцію установки*, потім *функцію очистки* і знову *функцію установки*. [Дивитись поширені рішення.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
-**Try to [write every Effect as an independent process](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) and [think about a single setup/cleanup cycle at a time.](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective)** It shouldn't matter whether your component is mounting, updating, or unmounting. When your cleanup logic correctly "mirrors" the setup logic, your Effect is resilient to running setup and cleanup as often as needed.
+**Намагайтесь [писати кожен Ефект як окремий процес](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) і [мисліть про один цикл установки/очистки за раз.](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective)** Не важливо чи ваш компонент монтується, чи оновлюється, чи демонтовується. Якщо ваша логіка очистки правильно "віддзеркалює" логіку установки, тоді ваш компонент працюватиме правильно незалежно від того, скільки разів викликано функції установки та очистки.
 
 <Note>
 
-An Effect lets you [keep your component synchronized](/learn/synchronizing-with-effects) with some external system (like a chat service). Here, *external system* means any piece of code that's not controlled by React, such as:
+**Ефект** дозволяє **синхронізувати ваш компонент** із деякою **зовнішньою системою** (наприклад, службою чату). Тут *зовнішня система* означає будь-яку частину коду, яка не контролюється з React, як-от:
 
-* A timer managed with <CodeStep step={1}>[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)</CodeStep> and <CodeStep step={2}>[`clearInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)</CodeStep>.
-* An event subscription using <CodeStep step={1}>[`window.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)</CodeStep> and <CodeStep step={2}>[`window.removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)</CodeStep>.
-* A third-party animation library with an API like <CodeStep step={1}>`animation.start()`</CodeStep> and <CodeStep step={2}>`animation.reset()`</CodeStep>.
+* Таймер, керований за допомогою <CodeStep step={1}>[`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)</CodeStep> і <CodeStep step={2}>[`clearInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)</CodeStep>.
+* Підписка на подію з використанням <CodeStep step={1}>[`window.addEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)</CodeStep> і <CodeStep step={2}>[`window.removeEventListener()`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)</CodeStep>.
+* Стороння бібліотека анімації з API на кшталт <CodeStep step={1}>`animation.start()`</CodeStep> і <CodeStep step={2}>`animation.reset()`</CodeStep>.
 
-**If you're not connecting to any external system, [you probably don't need an Effect.](/learn/you-might-not-need-an-effect)**
+**Якщо ви не підключаєтеся до жодної зовнішньої системи, [вам, ймовірно, не потрібен Ефект.](/learn/you-might-not-need-an-effect)**
 
 </Note>
 
-<Recipes titleText="Examples of connecting to an external system" titleId="examples-connecting">
+<Recipes titleText="Приклади підключення до зовнішньої системи" titleId="examples-connecting">
 
-#### Connecting to a chat server {/*connecting-to-a-chat-server*/}
+#### Підключення до чат-сервера {/*connecting-to-a-chat-server*/}
 
-In this example, the `ChatRoom` component uses an Effect to stay connected to an external system defined in `chat.js`. Press "Open chat" to make the `ChatRoom` component appear. This sandbox runs in development mode, so there is an extra connect-and-disconnect cycle, as [explained here.](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) Try changing the `roomId` and `serverUrl` using the dropdown and the input, and see how the Effect re-connects to the chat. Press "Close chat" to see the Effect disconnect one last time.
+У цьому прикладі компонент **ChatRoom** використовує **Effect** для підтримки з’єднання із зовнішньою системою, визначеною у файлі `chat.js`. Натисніть **"Open chat"** (Відкрити чат), щоб компонент **ChatRoom** з’явився. Цей застосунок (sandbox) працює в режимі розробки, тому відбувається додатковий цикл підключення та відключення, як [пояснено тут.](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) Спробуйте змінити значення `roomId` та `serverUrl` за допомогою випадаючого списку та поля введення і подивіться, як **Effect** повторно підключається до чату. Натисніть **"Close chat"** (Закрити чат), щоб побачити, як **Effect** відключається востаннє.
 
 <Sandpack>
 
@@ -158,35 +160,35 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL сервера:{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Ласкаво просимо до чату {roomId} !</h1>
     </>
   );
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('загальне');
   const [show, setShow] = useState(false);
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Оберіть чат:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="загальне">загальне</option>
+          <option value="подорожі">подорожі</option>
+          <option value="подорожі">музика</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Закрити чат' : 'Відкрити чат'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -200,10 +202,10 @@ export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Підключаємось до чату "' + roomId + '" на ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Відключаємось від чату"' + roomId + '" на ' + serverUrl);
     }
   };
 }
@@ -218,9 +220,9 @@ button { margin-left: 10px; }
 
 <Solution />
 
-#### Listening to a global browser event {/*listening-to-a-global-browser-event*/}
+#### Відстежування глобальної події браузера {/*listening-to-a-global-browser-event*/}
 
-In this example, the external system is the browser DOM itself. Normally, you'd specify event listeners with JSX, but you can't listen to the global [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window) object this way. An Effect lets you connect to the `window` object and listen to its events. Listening to the `pointermove` event lets you track the cursor (or finger) position and update the red dot to move with it.
+У цьому прикладі зовнішньою системою є сам **DOM браузера**. Зазвичай ви вказуєте слухачі подій за допомогою **JSX**, але таким чином ви **не можете прослуховувати** глобальний об’єкт [`window`](https://developer.mozilla.org/en-US/docs/Web/API/Window). Ефект дозволяє вам підключитися до об’єкта `window` і прослуховувати його події. Прослуховування події `pointermove` дозволяє відстежувати позицію курсора (або пальця) та оновлювати червону точку, щоб вона рухалася разом з ним.
 
 <Sandpack>
 
@@ -267,9 +269,9 @@ body {
 
 <Solution />
 
-#### Triggering an animation {/*triggering-an-animation*/}
+#### Запуск анімацій {/*triggering-an-animation*/}
 
-In this example, the external system is the animation library in `animation.js`. It provides a JavaScript class called `FadeInAnimation` that takes a DOM node as an argument and exposes `start()` and `stop()` methods to control the animation. This component [uses a ref](/learn/manipulating-the-dom-with-refs) to access the underlying DOM node. The Effect reads the DOM node from the ref and automatically starts the animation for that node when the component appears.
+У цьому прикладі зовнішньою системою є **бібліотека з анімаціями** в `animation.js`. Вона надає JavaScript-клас під назвою `FadeInAnimation`, який приймає **DOM-вузол** як аргумент та відкриває методи `start()` та `stop()` для керування анімацією. Цей компонент [використовує реф](/learn/manipulating-the-dom-with-refs), щоб отримати доступ до базового DOM-вузла. Ефект зчитує DOM-вузол з рефу та **автоматично запускає анімацію** для цього вузла, коли компонент з'являється.
 
 <Sandpack>
 
@@ -300,7 +302,7 @@ function Welcome() {
         backgroundImage: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
       }}
     >
-      Welcome
+      Здоровенькі були!
     </h1>
   );
 }
@@ -310,7 +312,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Remove' : 'Show'}
+        {show ? 'Сховати' : 'Показати'}
       </button>
       <hr />
       {show && <Welcome />}
@@ -327,11 +329,11 @@ export class FadeInAnimation {
   start(duration) {
     this.duration = duration;
     if (this.duration === 0) {
-      // Jump to end immediately
+      // Переходить в кінець одразу ж
       this.onProgress(1);
     } else {
       this.onProgress(0);
-      // Start animating
+      // Починає анімування
       this.startTime = performance.now();
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
@@ -341,7 +343,7 @@ export class FadeInAnimation {
     const progress = Math.min(timePassed / this.duration, 1);
     this.onProgress(progress);
     if (progress < 1) {
-      // We still have more frames to paint
+      // В нас все ще багато кадрів для відображення
       this.frameId = requestAnimationFrame(() => this.onFrame());
     }
   }
@@ -366,9 +368,9 @@ html, body { min-height: 300px; }
 
 <Solution />
 
-#### Controlling a modal dialog {/*controlling-a-modal-dialog*/}
+#### Керування модальним діалоговим вікном {/*controlling-a-modal-dialog*/}
 
-In this example, the external system is the browser DOM. The `ModalDialog` component renders a [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element. It uses an Effect to synchronize the `isOpen` prop to the [`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) and [`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close) method calls.
+У цьому прикладі **зовнішньою системою** є **DOM** браузера. Компонент `ModalDialog` відображає елемент [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog). Він використовує **Ефект** для синхронізації пропу `isOpen` із викликами методів [`showModal()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) та [`close()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close).
 
 <Sandpack>
 
@@ -381,14 +383,14 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(true)}>
-        Open dialog
+        Дізнатись корисний факт
       </button>
       <ModalDialog isOpen={show}>
-        Hello there!
+        Ринок React вакансій перегрітий. Краще учити Angular.
         <br />
         <button onClick={() => {
           setShow(false);
-        }}>Close</button>
+        }}>Дякую, кеп!</button>
       </ModalDialog>
     </>
   );
@@ -426,9 +428,9 @@ body {
 
 <Solution />
 
-#### Tracking element visibility {/*tracking-element-visibility*/}
+#### Відстеження видимості елемента {/*tracking-element-visibility*/}
 
-In this example, the external system is again the browser DOM. The `App` component displays a long list, then a `Box` component, and then another long list. Scroll the list down. Notice that when all of the `Box` component is fully visible in the viewport, the background color changes to black. To implement this, the `Box` component uses an Effect to manage an [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This browser API notifies you when the DOM element is visible in the viewport.
+У цьому прикладі зовнішньою системою знову є **DOM браузера**. Компонент `App` відображає довгий список, потім компонент `Box`, а потім ще один довгий список. Прокрутіть список униз. Зверніть увагу, що коли весь компонент `Box` повністю **видимий у вікні перегляду** (**viewport**), колір фону змінюється на чорний. Щоб реалізувати це, компонент `Box` використовує Ефект для керування [`IntersectionObserver`](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). Цей **API браузера** повідомляє вам, коли елемент DOM стає видимим у вікні перегляду.
 
 <Sandpack>
 
@@ -450,7 +452,7 @@ export default function App() {
 function LongSection() {
   const items = [];
   for (let i = 0; i < 50; i++) {
-    items.push(<li key={i}>Item #{i} (keep scrolling)</li>);
+    items.push(<li key={i}>Елемент №{i} (продовжуй скролити)</li>);
   }
   return <ul>{items}</ul>
 }
@@ -502,11 +504,11 @@ export default function Box() {
 
 ---
 
-### Wrapping Effects in custom Hooks {/*wrapping-effects-in-custom-hooks*/}
+### Обгортання Ефектів у користувацькі хуки {/*wrapping-effects-in-custom-hooks*/}
 
-Effects are an ["escape hatch":](/learn/escape-hatches) you use them when you need to "step outside React" and when there is no better built-in solution for your use case. If you find yourself often needing to manually write Effects, it's usually a sign that you need to extract some [custom Hooks](/learn/reusing-logic-with-custom-hooks) for common behaviors your components rely on.
+Ефекти є ["рятівним виходом":](/learn/escape-hatches) використовуйте їх, коли вам потрібно "вийти за межі React" і коли для вашого випадку використання немає кращого вбудованого рішення. Якщо ви помічаєте, що вам часто доводиться вручну писати Ефекти, це зазвичай є ознакою того, що вам потрібно виділити деякі **користувацькі хуки** [/learn/reusing-logic-with-custom-hooks] для поширених дій, на які покладаються ваші компоненти.
 
-For example, this `useChatRoom` custom Hook "hides" the logic of your Effect behind a more declarative API:
+Наприклад, цей власний хук `useChatRoom` "загортає" логіку вашого Ефекту за більш декларативним API:
 
 ```js {1,11}
 function useChatRoom({ serverUrl, roomId }) {
@@ -521,8 +523,7 @@ function useChatRoom({ serverUrl, roomId }) {
   }, [roomId, serverUrl]);
 }
 ```
-
-Then you can use it from any component like this:
+Після цього ви можете бачити це з будь-якого компонента:
 
 ```js {4-7}
 function ChatRoom({ roomId }) {
@@ -535,15 +536,15 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-There are also many excellent custom Hooks for every purpose available in the React ecosystem.
+В екосистемі React також доступно багато чудових **користувацьких Хуків** для будь-якої мети.
 
-[Learn more about wrapping Effects in custom Hooks.](/learn/reusing-logic-with-custom-hooks)
+[Дізнайтися більше про обгортання Ефектів у користувацькі Хуки.](/learn/reusing-logic-with-custom-hooks)
 
-<Recipes titleText="Examples of wrapping Effects in custom Hooks" titleId="examples-custom-hooks">
+<Recipes titleText="Приклади обгортання Ефектів у користувацькі Хуки" titleId="examples-custom-hooks">
 
-#### Custom `useChatRoom` Hook {/*custom-usechatroom-hook*/}
+#### Користувацький Хук `useChatRoom` {/*custom-usechatroom-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is extracted to a custom Hook.
+Цей приклад ідентичний одному з [попередніх прикладів,](#examples-connecting) але логіка винесена в користувацький Хук.
 
 <Sandpack>
 
@@ -562,35 +563,35 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL сервера:{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Ласкаво просимо до чату {roomId} !</h1>
     </>
   );
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('загальне');
   const [show, setShow] = useState(false);
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Оберіть чат:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="загальне">загальне</option>
+          <option value="подорожі">подорожі</option>
+          <option value="музика">музика</option>
         </select>
       </label>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Закрити чат' : 'Відкрити чат'}
       </button>
       {show && <hr />}
       {show && <ChatRoom roomId={roomId} />}
@@ -619,10 +620,10 @@ export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Підключаємось до чату "' + roomId + '" на ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Відключаємось від чату"' + roomId + '" на ' + serverUrl);
     }
   };
 }
@@ -637,9 +638,9 @@ button { margin-left: 10px; }
 
 <Solution />
 
-#### Custom `useWindowListener` Hook {/*custom-usewindowlistener-hook*/}
+#### Користувацький Хук `useWindowListener` {/*custom-usewindowlistener-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is extracted to a custom Hook.
+Цей приклад ідентичний до одного з [попередніх прикладів,](#examples-connecting) але логіка винесена до окремого Хука.
 
 <Sandpack>
 
@@ -694,9 +695,9 @@ body {
 
 <Solution />
 
-#### Custom `useIntersectionObserver` Hook {/*custom-useintersectionobserver-hook*/}
+#### Користувацький Хук `useIntersectionObserver` {/*custom-useintersectionobserver-hook*/}
 
-This example is identical to one of the [earlier examples,](#examples-connecting) but the logic is partially extracted to a custom Hook.
+Цей приклад ідентичний до одного з [попередніх прикладів,](#examples-connecting) але логіка винесена до окремого Хука.
 
 <Sandpack>
 
@@ -718,7 +719,7 @@ export default function App() {
 function LongSection() {
   const items = [];
   for (let i = 0; i < 50; i++) {
-    items.push(<li key={i}>Item #{i} (keep scrolling)</li>);
+    items.push(<li key={i}>Елемент № {i} (продовжуй скролити)</li>);
   }
   return <ul>{items}</ul>
 }
@@ -786,11 +787,11 @@ export function useIntersectionObserver(ref) {
 
 ---
 
-### Controlling a non-React widget {/*controlling-a-non-react-widget*/}
+### Керування не-React віджетом {/*controlling-a-non-react-widget*/}
 
-Sometimes, you want to keep an external system synchronized to some prop or state of your component.
+Іноді ви хочете, щоб **зовнішня система** була синхронізована з деяким пропом чи станом вашого компонента.
 
-For example, if you have a third-party map widget or a video player component written without React, you can use an Effect to call methods on it that make its state match the current state of your React component. This Effect creates an instance of a `MapWidget` class defined in `map-widget.js`. When you change the `zoomLevel` prop of the `Map` component, the Effect calls the `setZoom()` on the class instance to keep it synchronized:
+Наприклад, якщо у вас є сторонній віджет карти або компонент відеопрогравача, написаний без React, ви можете використати **Ефект**, щоб викликати його методи, які змусять його стан відповідати поточному стану вашого React-компонента. Цей Ефект створює екземпляр класу `MapWidget`, визначеного у `map-widget.js`. Коли ви змінюєте проп `zoomLevel` компонента `Map`, Ефект викликає `setZoom()` на екземплярі класу, щоб той був завжди синхронізованим:
 
 <Sandpack>
 
@@ -820,7 +821,7 @@ export default function App() {
   const [zoomLevel, setZoomLevel] = useState(0);
   return (
     <>
-      Zoom level: {zoomLevel}x
+      Масштаб мапи: {zoomLevel}x
       <button onClick={() => setZoomLevel(zoomLevel + 1)}>+</button>
       <button onClick={() => setZoomLevel(zoomLevel - 1)}>-</button>
       <hr />
@@ -890,22 +891,22 @@ button { margin: 5px; }
 
 </Sandpack>
 
-In this example, a cleanup function is not needed because the `MapWidget` class manages only the DOM node that was passed to it. After the `Map` React component is removed from the tree, both the DOM node and the `MapWidget` class instance will be automatically garbage-collected by the browser JavaScript engine.
+У цьому прикладі функція очистки не потрібна, оскільки клас `MapWidget` керує лише DOM-вузлом, який був йому переданий. Після того, як реактівський компонента `Map` буде видалено з документа, то обидва, і DOM-вузол, і екземпляр класу `MapWidget` будуть автоматично прибрані **збирачем сміття** (garbage-collector) браузерного рушія JavaScript.
 
 ---
 
-### Fetching data with Effects {/*fetching-data-with-effects*/}
+### Отримання даних за допомогою Ефектів {/*fetching-data-with-effects*/}
 
-You can use an Effect to fetch data for your component. Note that [if you use a framework,](/learn/creating-a-react-app#full-stack-frameworks) using your framework's data fetching mechanism will be a lot more efficient than writing Effects manually.
+Ви можете використовувати **Ефект** (Effect) для отримання даних для вашого компонента. Зауважте, що [якщо ви використовуєте фреймворк](/learn/start-a-new-react-project#full-stack-frameworks), використання механізму отримання даних вашого фреймворку буде набагато **ефективнішим**, ніж написання Ефектів вручну.
 
-If you want to fetch data from an Effect manually, your code might look like this:
+Якщо ви хочете отримати дані з Ефекту вручну, ваш код може виглядати так:
 
 ```js
 import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
 export default function Page() {
-  const [person, setPerson] = useState('Alice');
+  const [person, setPerson] = useState('Руслан');
   const [bio, setBio] = useState(null);
 
   useEffect(() => {
@@ -924,7 +925,7 @@ export default function Page() {
   // ...
 ```
 
-Note the `ignore` variable which is initialized to `false`, and is set to `true` during cleanup. This ensures [your code doesn't suffer from "race conditions":](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect) network responses may arrive in a different order than you sent them.
+Зверніть увагу на змінну `ignore`, яка спершу має значення `false` і потім змінюється на `true` під час очищення. Це гарантує, що [ваш код не постраждає від "станів гонки" (race conditions):](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect) мережеві відповіді можуть надходити в іншому порядку, ніж ви їх відправили.
 
 <Sandpack>
 
@@ -934,7 +935,7 @@ import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
 export default function Page() {
-  const [person, setPerson] = useState('Alice');
+  const [person, setPerson] = useState('Руслан');
   const [bio, setBio] = useState(null);
   useEffect(() => {
     let ignore = false;
@@ -954,12 +955,12 @@ export default function Page() {
       <select value={person} onChange={e => {
         setPerson(e.target.value);
       }}>
-        <option value="Alice">Alice</option>
-        <option value="Bob">Bob</option>
-        <option value="Taylor">Taylor</option>
+        <option value="Руслан">Руслан</option>
+        <option value="Борис">Борис</option>
+        <option value="Барбарис">Барбарис</option>
       </select>
       <hr />
-      <p><i>{bio ?? 'Loading...'}</i></p>
+      <p><i>{bio ?? 'Завантажуємо...'}</i></p>
     </>
   );
 }
@@ -967,10 +968,10 @@ export default function Page() {
 
 ```js src/api.js hidden
 export async function fetchBio(person) {
-  const delay = person === 'Bob' ? 2000 : 200;
+  const delay = person === 'Борис' ? 2000 : 200;
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('This is ' + person + '’s bio.');
+      resolve('Це біографія ' + person + 'а.');
     }, delay);
   })
 }
@@ -978,7 +979,7 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-You can also rewrite using the [`async` / `await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) syntax, but you still need to provide a cleanup function:
+Ви також можете переписати це, використовуючи синтаксис [`async` / `await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function), але всеодно потрібно надати функцію очищення:
 
 <Sandpack>
 
@@ -987,7 +988,7 @@ import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
 export default function Page() {
-  const [person, setPerson] = useState('Alice');
+  const [person, setPerson] = useState('Руслан');
   const [bio, setBio] = useState(null);
   useEffect(() => {
     async function startFetching() {
@@ -1010,12 +1011,12 @@ export default function Page() {
       <select value={person} onChange={e => {
         setPerson(e.target.value);
       }}>
-        <option value="Alice">Alice</option>
-        <option value="Bob">Bob</option>
-        <option value="Taylor">Taylor</option>
+        <option value="Руслан">Руслан</option>
+        <option value="Борис">Борис</option>
+        <option value="Барбарис">Барбарис</option>
       </select>
       <hr />
-      <p><i>{bio ?? 'Loading...'}</i></p>
+      <p><i>{bio ?? 'Завантажуємо...'}</i></p>
     </>
   );
 }
@@ -1023,10 +1024,10 @@ export default function Page() {
 
 ```js src/api.js hidden
 export async function fetchBio(person) {
-  const delay = person === 'Bob' ? 2000 : 200;
+  const delay = person === 'Борис' ? 2000 : 200;
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve('This is ' + person + '’s bio.');
+      resolve('Це біографія ' + person + 'а.');
     }, delay);
   })
 }
@@ -1034,50 +1035,50 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Writing data fetching directly in Effects gets repetitive and makes it difficult to add optimizations like caching and server rendering later. [It's easier to use a custom Hook--either your own or maintained by the community.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
+Написання логіки отримання даних безпосередньо в Ефектах призводить до повторюваного коду та ускладнює додавання оптимізацій, як-от кешування та рендеринг на стороні сервера, згодом. [Простіше використовувати якийсь із користувацьких хуків (**Custom Hook**) – або свій власний, або той, що підтримується спільнотою.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 
 <DeepDive>
 
-#### What are good alternatives to data fetching in Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
+#### Які є хороші альтернативи отриманню даних в Ефектах? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
-Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
+Написання викликів `fetch` всередині **Ефектів** — це [популярний спосіб отримання даних](https://www.robinwieruch.de/react-hooks-fetch-data/), особливо в додатках, які повністю працюють на стороні клієнта. Однак, це дуже ручний підхід, який має суттєві недоліки:
 
-- **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-- **Fetching directly in Effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
-- **Fetching directly in Effects usually means you don't preload or cache data.** For example, if the component unmounts and then mounts again, it would have to fetch the data again.
-- **It's not very ergonomic.** There's quite a bit of boilerplate code involved when writing `fetch` calls in a way that doesn't suffer from bugs like [race conditions.](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)
+- **Ефекти не запускаються на сервері.** Це означає, що початковий HTML, відрендерений сервером, буде містити лише стан завантаження, але без даних. Клієнтський комп'ютер повинен буде завантажити весь JavaScript і відрендерити ваш додаток, лише щоб виявити, що тепер йому потрібно завантажити дані. Це не дуже ефективно.
+- **Отримання даних безпосередньо в Ефектах полегшує створення "мережевих водоспадів" (network waterfalls).** Ви рендерите батьківський компонент, він отримує деякі дані, рендерить дочірні компоненти, а потім вони починають отримувати *свої* дані. Якщо мережа не дуже швидка, це значно повільніше, ніж отримання всіх даних паралельно.
+- **Отримання даних безпосередньо в Ефектах зазвичай означає, що ви не завантажуєте попередньо і не кешуєте дані.** Наприклад, якщо компонент демонтується, а потім монтується знову, йому доведеться знову отримувати дані.
+- **Це не дуже ергономічно.** Щоб написати виклики fetch так, щоб уникнути багів (наприклад таких, як [стани гонки (race conditions).](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect)) - треба писати дуже багато шаблонного коду. 
 
-This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
+Цей список недоліків не є специфічним для React. Він стосується отримання даних при монтуванні з будь-якою бібліотекою. Як і з маршрутизацією, отримання даних не є тривіальним завданням для якісної реалізації, тому ми рекомендуємо наступні підходи:
 
-- **If you use a [framework](/learn/creating-a-react-app#full-stack-frameworks), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [TanStack Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **Якщо ви використовуєте [фреймворк](/learn/start-a-new-react-project#full-stack-frameworks), використовуйте його вбудований механізм отримання даних.** Сучасні фреймворки React мають інтегровані механізми отримання даних, які є ефективними і не страждають від вищезгаданих недоліків.
+- **В іншому випадку, розгляньте можливість використання або створення клієнтського кешу.** Популярні рішення з відкритим вихідним кодом включають [React Query](https://tanstack.com/query/latest/), [useSWR](https://swr.vercel.app/) та [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) Ви також можете створити власне рішення, і в такому випадку використовувати **Ефекти** "під капотом", але також додати логіку для дедуплікації запитів, кешування відповідей та уникнення мережевих водоспадів (шляхом попереднього завантаження даних або піднесення вимог до даних до маршрутів).
 
-You can continue fetching data directly in Effects if neither of these approaches suit you.
+Ви можете й далі отримувати дані безпосередньо в **Ефектах**, якщо жоден з цих підходів вам не підходить.
 
 </DeepDive>
 
 ---
 
-### Specifying reactive dependencies {/*specifying-reactive-dependencies*/}
+### Зазначення реактивних залежностей {/*specifying-reactive-dependencies*/}
 
-**Notice that you can't "choose" the dependencies of your Effect.** Every <CodeStep step={2}>reactive value</CodeStep> used by your Effect's code must be declared as a dependency. Your Effect's dependency list is determined by the surrounding code:
+**Зверніть увагу, що ви не можете "вибирати" залежності вашого Ефекту.** Кожне <CodeStep step={2}>реактивне значення</CodeStep>, яке використовується кодом вашого Ефекту, має бути оголошено як залежність. Список залежностей вашого Ефекту визначається кодом, який оточує Ефект:
 
 ```js [[2, 1, "roomId"], [2, 2, "serverUrl"], [2, 5, "serverUrl"], [2, 5, "roomId"], [2, 8, "serverUrl"], [2, 8, "roomId"]]
-function ChatRoom({ roomId }) { // This is a reactive value
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // This is a reactive value too
+function ChatRoom({ roomId }) { // Це реактивне значення
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234'); // Це також реактивне значення
 
   useEffect(() => {
-    const connection = createConnection(serverUrl, roomId); // This Effect reads these reactive values
+    const connection = createConnection(serverUrl, roomId); // Цей Ефект читає ці реактивні значення
     connection.connect();
     return () => connection.disconnect();
-  }, [serverUrl, roomId]); // ✅ So you must specify them as dependencies of your Effect
+  }, [serverUrl, roomId]); // ✅ Тож ви повинні вказати їх як залежності вашого Ефекту
   // ...
 }
 ```
 
-If either `serverUrl` or `roomId` change, your Effect will reconnect to the chat using the new values.
+Якщо `serverUrl` або `roomId` зміняться, ваш Ефект повторно підключиться до чату, використовуючи нові значення.
 
-**[Reactive values](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) include props and all variables and functions declared directly inside of your component.** Since `roomId` and `serverUrl` are reactive values, you can't remove them from the dependencies. If you try to omit them and [your linter is correctly configured for React,](/learn/editor-setup#linting) the linter will flag this as a mistake you need to fix:
+**[Реактивними значеннями](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) є як пропси (props), так і всі змінні й функції, оголошені безпосередньо всередині вашого компонента.** Оскільки `roomId` та `serverUrl` є реактивними значеннями, ви не можете видалити їх із залежностей. Якщо ви спробуєте їх проігнорувати і [ваш лінтер правильно налаштований для React,](/learn/editor-setup#linting) лінтер позначить це як помилку, яку вам потрібно виправити:
 
 ```js {8}
 function ChatRoom({ roomId }) {
@@ -1087,73 +1088,73 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, []); // 🔴 React Hook useEffect has missing dependencies: 'roomId' and 'serverUrl'
+  }, []); // 🔴 React Hook useEffect має пропущені залежності: 'roomId' і 'serverUrl'
   // ...
 }
 ```
 
-**To remove a dependency, you need to ["prove" to the linter that it *doesn't need* to be a dependency.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)** For example, you can move `serverUrl` out of your component to prove that it's not reactive and won't change on re-renders:
+**Щоб видалити залежність, вам потрібно ["довести" лінтеру, що вона *не має* бути залежністю.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)** Наприклад, ви можете винести `serverUrl` за межі вашого компонента, щоб довести, що це не реактивне значення і не зміниться при повторних рендерах:
 
 ```js {1,8}
-const serverUrl = 'https://localhost:1234'; // Not a reactive value anymore
+const serverUrl = 'https://localhost:1234'; // Більше не реактивне значення
 
 function ChatRoom({ roomId }) {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ All dependencies declared
+  }, [roomId]); // ✅ Всі залежності оголошено
   // ...
 }
 ```
 
-Now that `serverUrl` is not a reactive value (and can't change on a re-render), it doesn't need to be a dependency. **If your Effect's code doesn't use any reactive values, its dependency list should be empty (`[]`):**
+Тепер, коли `serverUrl` більше не є реактивним значенням (і не може змінитися при повторному рендері), його можна не передавати в список залежностей. **Якщо код вашого Ефекту не використовує жодних реактивних значень, його список залежностей має бути порожнім (`[]`):**
 
 ```js {1,2,9}
-const serverUrl = 'https://localhost:1234'; // Not a reactive value anymore
-const roomId = 'music'; // Not a reactive value anymore
+const serverUrl = 'https://localhost:1234'; // Більше не реактивне значення
+const roomId = 'music'; // Більше не реактивне значення
 
 function ChatRoom() {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();
     return () => connection.disconnect();
-  }, []); // ✅ All dependencies declared
+  }, []); // ✅ Всі залежності оголошено
   // ...
 }
 ```
 
-[An Effect with empty dependencies](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) doesn't re-run when any of your component's props or state change.
+[Ефект з порожніми залежностями](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) не запускається повторно, навіть якщо змінюється якийсь з пропсів або змінних стану вашого компонента.
 
 <Pitfall>
 
-If you have an existing codebase, you might have some Effects that suppress the linter like this:
+Якщо у вас є існуюча кодова база, у вас можуть бути деякі Ефекти, які ігнорують лінтер наступним чином:
 
 ```js {3-4}
 useEffect(() => {
   // ...
-  // 🔴 Avoid suppressing the linter like this:
+  // 🔴 Уникайте ігнорування лінтера таким чином:
   // eslint-ignore-next-line react-hooks/exhaustive-deps
 }, []);
 ```
 
-**When dependencies don't match the code, there is a high risk of introducing bugs.** By suppressing the linter, you "lie" to React about the values your Effect depends on. [Instead, prove they're unnecessary.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)
+**Коли залежності не відповідають коду, існує високий ризик появи помилок.** Ігноруючи лінтер, ви "брешете" React про значення, від яких залежить ваш Ефект. [Замість цього, доведіть, що вони непотрібні.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)
 
 </Pitfall>
 
-<Recipes titleText="Examples of passing reactive dependencies" titleId="examples-dependencies">
+<Recipes titleText="Приклади передачі реактивних залежностей" titleId="examples-dependencies">
 
-#### Passing a dependency array {/*passing-a-dependency-array*/}
+#### Передача масиву залежностей {/*passing-a-dependency-array*/}
 
-If you specify the dependencies, your Effect runs **after the initial render _and_ after re-renders with changed dependencies.**
+Якщо ви вказуєте залежності, ваш Ефект запускається **після початкового рендера _і_ після повторних рендерів зі зміненими залежностями.**
 
 ```js {3}
 useEffect(() => {
   // ...
-}, [a, b]); // Runs again if a or b are different
+}, [a, b]); // Запускається знову, якщо a або b відрізняються
 ```
 
-In the below example, `serverUrl` and `roomId` are [reactive values,](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) so they both must be specified as dependencies. As a result, selecting a different room in the dropdown or editing the server URL input causes the chat to re-connect. However, since `message` isn't used in the Effect (and so it isn't a dependency), editing the message doesn't re-connect to the chat.
+У наведеному нижче прикладі `serverUrl` і `roomId` є [реактивними значеннями,](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) тому обидва повинні бути вказані як залежності. В результаті, вибір іншої кімнати у спадному списку або редагування вводу URL-адреси сервера призводить до повторного підключення чату. Однак, оскільки `message` не використовується в Ефекті (і, отже, не є залежністю), редагування повідомлення не призводить до повторного підключення до чату.
 
 <Sandpack>
 
@@ -1176,15 +1177,15 @@ function ChatRoom({ roomId }) {
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL-адреса сервера:{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Ласкаво просимо до чату {roomId}!</h1>
       <label>
-        Your message:{' '}
+        Ваше повідомлення:{' '}
         <input value={message} onChange={e => setMessage(e.target.value)} />
       </label>
     </>
@@ -1193,21 +1194,21 @@ function ChatRoom({ roomId }) {
 
 export default function App() {
   const [show, setShow] = useState(false);
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('загальне');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Оберіть кімнату чату:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="загальне">загальне</option>
+          <option value="подорожі">подорожі</option>
+          <option value="музика">музика</option>
         </select>
         <button onClick={() => setShow(!show)}>
-          {show ? 'Close chat' : 'Open chat'}
+          {show ? 'Закрити чат' : 'Відкрити чат'}
         </button>
       </label>
       {show && <hr />}
@@ -1219,13 +1220,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Реальна реалізація фактично підключалася б до сервера
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Підключаємось до чату "' + roomId + '" на ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Відключаємось від чату "' + roomId + '" на ' + serverUrl);
     }
   };
 }
@@ -1240,20 +1241,20 @@ button { margin-left: 5px; }
 
 <Solution />
 
-#### Passing an empty dependency array {/*passing-an-empty-dependency-array*/}
+#### Передача порожнього масиву залежностей {/*passing-an-empty-dependency-array*/}
 
-If your Effect truly doesn't use any reactive values, it will only run **after the initial render.**
+Якщо ваш Ефект справді не використовує жодних реактивних значень, він запуститься лише **після початкового рендера.**
 
 ```js {3}
 useEffect(() => {
   // ...
-}, []); // Does not run again (except once in development)
+}, []); // Не запускається знову (крім одного разу в розробці)
 ```
 
-**Even with empty dependencies, setup and cleanup will [run one extra time in development](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) to help you find bugs.**
+**Навіть якщо залежності порожні, в режимі розробки функція установки та функція очистки [запустяться один додатковий раз](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development), щоб допомогти вам виявити помилки.**
 
 
-In this example, both `serverUrl` and `roomId` are hardcoded. Since they're declared outside the component, they are not reactive values, and so they aren't dependencies. The dependency list is empty, so the Effect doesn't re-run on re-renders.
+У цьому прикладі, як `serverUrl`, так і `roomId` вказані вручну. Оскільки вони оголошені поза компонентом, вони не є реактивними значеннями і, отже, не є залежностями. Список залежностей порожній, тому Ефект не запускається повторно при повторних рендерах.
 
 <Sandpack>
 
@@ -1275,9 +1276,9 @@ function ChatRoom() {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Ласкаво просимо до чату {roomId}!</h1>
       <label>
-        Your message:{' '}
+        Ваше повідомлення:{' '}
         <input value={message} onChange={e => setMessage(e.target.value)} />
       </label>
     </>
@@ -1289,7 +1290,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
+        {show ? 'Закрити чат' : 'Відкрити чат'}
       </button>
       {show && <hr />}
       {show && <ChatRoom />}
@@ -1300,13 +1301,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Реальна реалізація фактично підключалася б до сервера
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Підключаємось до чату "' + roomId + '" на ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Відключаємось від чату "' + roomId + '" на ' + serverUrl);
     }
   };
 }
@@ -1317,17 +1318,17 @@ export function createConnection(serverUrl, roomId) {
 <Solution />
 
 
-#### Passing no dependency array at all {/*passing-no-dependency-array-at-all*/}
+#### Передача відсутнього масиву залежностей {/*passing-no-dependency-array-at-all*/}
 
-If you pass no dependency array at all, your Effect runs **after every single render (and re-render)** of your component.
+Якщо ви взагалі не передаєте масив залежностей, ваш Ефект запускається **після кожного рендера (і повторного рендера)** вашого компонента.
 
 ```js {3}
 useEffect(() => {
   // ...
-}); // Always runs again
+}); // Завжди запускається знову
 ```
 
-In this example, the Effect re-runs when you change `serverUrl` and `roomId`, which is sensible. However, it *also* re-runs when you change the `message`, which is probably undesirable. This is why usually you'll specify the dependency array.
+У цьому прикладі Ефект запускається повторно, коли ви змінюєте `serverUrl` та `roomId`, що є логічним. Однак він *також* запускається повторно, коли ви змінюєте `message`, що, ймовірно, небажано. Ось чому зазвичай краще вказувати масив залежностей.
 
 <Sandpack>
 
@@ -1345,20 +1346,20 @@ function ChatRoom({ roomId }) {
     return () => {
       connection.disconnect();
     };
-  }); // No dependency array at all
+  }); // Взагалі немає масиву залежностей
 
   return (
     <>
       <label>
-        Server URL:{' '}
+        URL-адреса сервера:{' '}
         <input
           value={serverUrl}
           onChange={e => setServerUrl(e.target.value)}
         />
       </label>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Ласкаво просимо до чату {roomId}!</h1>
       <label>
-        Your message:{' '}
+        Ваше повідомлення:{' '}
         <input value={message} onChange={e => setMessage(e.target.value)} />
       </label>
     </>
@@ -1367,21 +1368,21 @@ function ChatRoom({ roomId }) {
 
 export default function App() {
   const [show, setShow] = useState(false);
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('загальне');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Оберіть кімнату чату:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="загальне">загальне</option>
+          <option value="подорожі">подорожі</option>
+          <option value="музика">музика</option>
         </select>
         <button onClick={() => setShow(!show)}>
-          {show ? 'Close chat' : 'Open chat'}
+          {show ? 'Закрити чат' : 'Відкрити чат'}
         </button>
       </label>
       {show && <hr />}
@@ -1393,13 +1394,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Реальна реалізація фактично підключалася б до сервера
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Підключаємось до чату "' + roomId + '" на ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Відключаємось від чату "' + roomId + '" на ' + serverUrl);
     }
   };
 }
@@ -1418,9 +1419,9 @@ button { margin-left: 5px; }
 
 ---
 
-### Updating state based on previous state from an Effect {/*updating-state-based-on-previous-state-from-an-effect*/}
+### Оновлення стану на основі попереднього стану з Ефекту {/*updating-state-based-on-previous-state-from-an-effect*/}
 
-When you want to update state based on previous state from an Effect, you might run into a problem:
+Коли ви хочете оновити стан на основі попереднього стану з Ефекту, ви можете зіткнутися з проблемою:
 
 ```js {6,9}
 function Counter() {
@@ -1428,17 +1429,17 @@ function Counter() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCount(count + 1); // You want to increment the counter every second...
+      setCount(count + 1); // Ви хочете збільшувати лічильник щосекунди...
     }, 1000)
     return () => clearInterval(intervalId);
-  }, [count]); // 🚩 ... but specifying `count` as a dependency always resets the interval.
+  }, [count]); // 🚩 ... але вказування `count` як залежності завжди скидає інтервал.
   // ...
 }
 ```
 
-Since `count` is a reactive value, it must be specified in the list of dependencies. However, that causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal. 
+Оскільки `count` є реактивним значенням, воно має бути вказано у списку залежностей. Однак це призводить до того, що Ефект очищується і знову налаштовується щоразу, коли змінюється `count`. Це не ідеально. 
 
-To fix this, [pass the `c => c + 1` state updater](/reference/react/useState#updating-state-based-on-the-previous-state) to `setCount`:
+Щоб виправити це, [передайте функцію оновлення стану `c => c + 1`](/reference/react/useState#updating-state-based-on-the-previous-state) до `setCount`:
 
 <Sandpack>
 
@@ -1450,10 +1451,10 @@ export default function Counter() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCount(c => c + 1); // ✅ Pass a state updater
+      setCount(c => c + 1); // ✅ Передайте функцію оновлення стану
     }, 1000);
     return () => clearInterval(intervalId);
-  }, []); // ✅ Now count is not a dependency
+  }, []); // ✅ Тепер count не є залежністю
 
   return <h1>{count}</h1>;
 }
@@ -1473,14 +1474,14 @@ body {
 
 </Sandpack>
 
-Now that you're passing `c => c + 1` instead of `count + 1`, [your Effect no longer needs to depend on `count`.](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state) As a result of this fix, it won't need to cleanup and setup the interval again every time the `count` changes.
+Тепер, коли ви передаєте `c => c + 1` замість `count + 1`, [вашому Ефекту більше не потрібно залежати від `count`.](/learn/removing-effect-dependencies#are-you-reading-some-state-to-calculate-the-next-state) Внаслідок цього виправлення, йому не доведеться очищати та налаштовувати інтервал знову щоразу, коли змінюється `count`.
 
 ---
 
 
-### Removing unnecessary object dependencies {/*removing-unnecessary-object-dependencies*/}
+### Видалення непотрібних залежностей-об'єктів {/*removing-unnecessary-object-dependencies*/}
 
-If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every render because the `options` object is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+Якщо ваш Ефект залежить від об'єкта або функції, створеної під час рендерингу, він може запускатися занадто часто. Наприклад, цей Ефект повторно підключається після кожного рендера, оскільки об'єкт `options` [є новим об'єктом під час кожного кожного рендера:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
 
 ```js {6-9,12,15}
 const serverUrl = 'https://localhost:1234';
@@ -1488,20 +1489,20 @@ const serverUrl = 'https://localhost:1234';
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
-  const options = { // 🚩 This object is created from scratch on every re-render
+  const options = { // 🚩 Цей об'єкт створюється з нуля при кожному повторному рендері
     serverUrl: serverUrl,
     roomId: roomId
   };
 
   useEffect(() => {
-    const connection = createConnection(options); // It's used inside the Effect
+    const connection = createConnection(options); // Він використовується всередині Ефекту
     connection.connect();
     return () => connection.disconnect();
-  }, [options]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [options]); // 🚩 В результаті, ці залежності завжди відрізняються при повторному рендері
   // ...
 ```
 
-Avoid using an object created during rendering as a dependency. Instead, create the object inside the Effect:
+Уникайте використання об'єкта, створеного під час рендерингу, як залежності. Замість цього, створіть об'єкт всередині Ефекту:
 
 <Sandpack>
 
@@ -1526,25 +1527,25 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Ласкаво просимо до кімнати {roomId}!</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('загальне');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Оберіть кімнату:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="загальне">загальне</option>
+          <option value="подорожі">подорожі</option>
+          <option value="музика">музика</option>
         </select>
       </label>
       <hr />
@@ -1556,13 +1557,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Реальна реалізація фактично підключалася б до сервера
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Підключення до кімнати "' + roomId + '" за адресою ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Відключено від кімнати "' + roomId + '" за адресою ' + serverUrl);
     }
   };
 }
@@ -1575,21 +1576,21 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Now that you create the `options` object inside the Effect, the Effect itself only depends on the `roomId` string.
+Тепер, коли ви створюєте об'єкт `options` всередині Ефекту, сам Ефект залежить лише від рядка `roomId`.
 
-With this fix, typing into the input doesn't reconnect the chat. Unlike an object which gets re-created, a string like `roomId` doesn't change unless you set it to another value. [Read more about removing dependencies.](/learn/removing-effect-dependencies)
+Завдяки цьому виправленню, введення тексту у поле вводу не призводить до повторного підключення чату. На відміну від об'єкта, який перестворюється, рядок, як наприклад `roomId`, не змінюється (звісно ж якщо ви не зміните його значення). [Дізнайтеся більше про видалення залежностей.](/learn/removing-effect-dependencies)
 
 ---
 
-### Removing unnecessary function dependencies {/*removing-unnecessary-function-dependencies*/}
+### Видалення непотрібних залежностей-функцій {/*removing-unnecessary-function-dependencies*/}
 
-If your Effect depends on an object or a function created during rendering, it might run too often. For example, this Effect re-connects after every render because the `createOptions` function is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+Якщо ваш Ефект залежить від об'єкта або функції, створеної під час рендерингу, він може запускатися занадто часто. Наприклад, цей Ефект повторно підключається після кожного рендера, оскільки функція `createOptions` [відрізняється для кожного рендера:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
 
 ```js {4-9,12,16}
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
-  function createOptions() { // 🚩 This function is created from scratch on every re-render
+  function createOptions() { // 🚩 Ця функція створюється з нуля при кожному повторному рендері
     return {
       serverUrl: serverUrl,
       roomId: roomId
@@ -1597,17 +1598,17 @@ function ChatRoom({ roomId }) {
   }
 
   useEffect(() => {
-    const options = createOptions(); // It's used inside the Effect
+    const options = createOptions(); // Вона використовується всередині Ефекту
     const connection = createConnection();
     connection.connect();
     return () => connection.disconnect();
-  }, [createOptions]); // 🚩 As a result, these dependencies are always different on a re-render
+  }, [createOptions]); // 🚩 В результаті, ці залежності завжди відрізняються при повторному рендері
   // ...
 ```
 
-By itself, creating a function from scratch on every re-render is not a problem. You don't need to optimize that. However, if you use it as a dependency of your Effect, it will cause your Effect to re-run after every re-render.
+Саме по собі створення функції з нуля при кожному повторному рендері не є проблемою. Вам не потрібно це оптимізувати. Однак, якщо ви використовуєте її як залежність свого Ефекту, це призведе до повторного запуску Ефекту після кожного повторного рендера.
 
-Avoid using a function created during rendering as a dependency. Instead, declare it inside the Effect:
+Уникайте використання функції, створеної під час рендерингу, як залежності. Замість цього, оголосіть її всередині Ефекту:
 
 <Sandpack>
 
@@ -1636,24 +1637,24 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Ласкаво просимо до чату {roomId}!</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('загальне');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Оберіть кімнату чату:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
+          <option value="загальне">загальне</option>
+          <option value="подорожі">подорожі</option>
           <option value="music">music</option>
         </select>
       </label>
@@ -1666,13 +1667,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Реальна реалізація фактично підключалася б до сервера
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Підключення до кімнати "' + roomId + '" за адресою ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Відключено від кімнати "' + roomId + '" за адресою ' + serverUrl);
     }
   };
 }
@@ -1685,26 +1686,26 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Now that you define the `createOptions` function inside the Effect, the Effect itself only depends on the `roomId` string. With this fix, typing into the input doesn't reconnect the chat. Unlike a function which gets re-created, a string like `roomId` doesn't change unless you set it to another value. [Read more about removing dependencies.](/learn/removing-effect-dependencies)
+Тепер, коли ви визначаєте функцію `createOptions` всередині Ефекту, сам Ефект залежить лише від рядка `roomId`. Завдяки цьому виправленню, введення тексту у поле вводу не призводить до повторного підключення чату. На відміну від функції, яка перестворюється, рядок, як `roomId`, не змінюється, якщо ви не присвоїте йому інше значення. [Дізнайтися більше про видалення залежностей.](/learn/removing-effect-dependencies)
 
 ---
 
-### Reading the latest props and state from an Effect {/*reading-the-latest-props-and-state-from-an-effect*/}
+### Зчитування найновіших пропсів та стану з Ефекту {/*reading-the-latest-props-and-state-from-an-effect*/}
 
-By default, when you read a reactive value from an Effect, you have to add it as a dependency. This ensures that your Effect "reacts" to every change of that value. For most dependencies, that's the behavior you want.
+За замовчуванням, коли ви зчитуєте реактивне значення з Ефекту, ви повинні додати його як залежність. Це гарантує, що ваш Ефект "реагує" на кожну зміну цього значення. Для більшості залежностей це саме та поведінка, яку ви хочете.
 
-**However, sometimes you'll want to read the *latest* props and state from an Effect without "reacting" to them.** For example, imagine you want to log the number of the items in the shopping cart for every page visit:
+**Однак, іноді ви захочете зчитувати *найновіші* пропси та стан з Ефекту, не "реагуючи" на них.** Наприклад, уявіть, що ви хочете реєструвати кількість товарів у кошику для кожного відвідування сторінки:
 
 ```js {3}
 function Page({ url, shoppingCart }) {
   useEffect(() => {
     logVisit(url, shoppingCart.length);
-  }, [url, shoppingCart]); // ✅ All dependencies declared
+  }, [url, shoppingCart]); // ✅ Всі залежності оголошено
   // ...
 }
 ```
 
-**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. [Declare an *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) with the [`useEffectEvent`](/reference/react/useEffectEvent) Hook, and move the code reading `shoppingCart` inside of it:
+**Що робити, якщо ви хочете реєструвати нове відвідування сторінки після кожної зміни `url`, але *не* якщо змінюється лише `shoppingCart`?** Ви не можете виключити `shoppingCart` із залежностей, не порушивши [правил реактивності].(#specifying-reactive-dependencies) Однак ви можете вказати, що *не хочете*, щоб частина коду "реагувала" на зміни, навіть якщо вона викликається зсередини Ефекту. [Оголосіть *Подію Ефекту*](/learn/separating-events-from-effects#declaring-an-effect-event) за допомогою Хука [`useEffectEvent`](/reference/react/useEffectEvent) і перемістіть код, що зчитує `shoppingCart`, всередину неї:
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1714,23 +1715,23 @@ function Page({ url, shoppingCart }) {
 
   useEffect(() => {
     onVisit(url);
-  }, [url]); // ✅ All dependencies declared
+  }, [url]); // ✅ Всі залежності оголошено
   // ...
 }
 ```
 
-**Effect Events are not reactive and must always be omitted from dependencies of your Effect.** This is what lets you put non-reactive code (where you can read the latest value of some props and state) inside of them. By reading `shoppingCart` inside of `onVisit`, you ensure that `shoppingCart` won't re-run your Effect.
+**Події Ефекту не є реактивними і завжди повинні бути виключені із залежностей вашого Ефекту.** Саме це дозволяє вам розміщувати всередині них нереактивний код (де ви можете зчитувати найновіше значення деяких пропсів та стану). Зчитуючи `shoppingCart` всередині `onVisit`, ви гарантуєте, що `shoppingCart` не перезапустить ваш Ефект.
 
-[Read more about how Effect Events let you separate reactive and non-reactive code.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
+[Дізнайтеся більше про те, як Події Ефекту дозволяють розділити реактивний і нереактивний код.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 
 
 ---
 
-### Displaying different content on the server and the client {/*displaying-different-content-on-the-server-and-the-client*/}
+### Відображення різного вмісту на сервері та клієнті {/*displaying-different-content-on-the-server-and-the-client*/}
 
-If your app uses server rendering (either [directly](/reference/react-dom/server) or via a [framework](/learn/creating-a-react-app#full-stack-frameworks)), your component will render in two different environments. On the server, it will render to produce the initial HTML. On the client, React will run the rendering code again so that it can attach your event handlers to that HTML. This is why, for [hydration](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) to work, your initial render output must be identical on the client and the server.
+Якщо ваш додаток використовує рендеринг на стороні сервера (або [напряму](/reference/react-dom/server), або через [фреймворк](/learn/start-a-new-react-project#full-stack-frameworks)), ваш компонент буде рендеритися у двох різних середовищах. На сервері він буде рендеритися для створення початкового HTML. На клієнті React знову запустить код рендерингу, щоб він міг приєднати ваші обробники подій до цього HTML. Саме тому, щоб [гідратація](/reference/react-dom/client/hydrateRoot#hydrating-server-rendered-html) працювала, ваш початковий вивід рендерингу має бути ідентичним на клієнті та сервері.
 
-In rare cases, you might need to display different content on the client. For example, if your app reads some data from [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), it can't possibly do that on the server. Here is how you could implement this:
+У рідкісних випадках вам може знадобитися відображати різний вміст на клієнті. Наприклад, якщо ваш додаток зчитує деякі дані з [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), він не може цього зробити на сервері. Ось як це можна реалізувати:
 
 
 {/* TODO(@poteto) - investigate potential false positives in react compiler validation */}
@@ -1743,44 +1744,44 @@ function MyComponent() {
   }, []);
 
   if (didMount) {
-    // ... return client-only JSX ...
+    // ... повернути JSX, лише для клієнта ...
   }  else {
-    // ... return initial JSX ...
+    // ... повернути початковий JSX ...
   }
 }
 ```
 
-While the app is loading, the user will see the initial render output. Then, when it's loaded and hydrated, your Effect will run and set `didMount` to `true`, triggering a re-render. This will switch to the client-only render output. Effects don't run on the server, so this is why `didMount` was `false` during the initial server render.
+Поки додаток завантажується, користувач побачить початковий вивід рендерингу. Потім, коли він завантажиться та гідратується, ваш Ефект запуститься та змінить значення `didMount` на `true`, викликаючи повторний рендер. Це переключить на вивід рендерингу, який був обчислений лише на клієнті. Ефекти не запускаються на сервері, тому `didMount` був `false` під час початкового рендерингу на сервері.
 
-Use this pattern sparingly. Keep in mind that users with a slow connection will see the initial content for quite a bit of time--potentially, many seconds--so you don't want to make jarring changes to your component's appearance. In many cases, you can avoid the need for this by conditionally showing different things with CSS.
-
----
-
-## Troubleshooting {/*troubleshooting*/}
-
-### My Effect runs twice when the component mounts {/*my-effect-runs-twice-when-the-component-mounts*/}
-
-When Strict Mode is on, in development, React runs setup and cleanup one extra time before the actual setup.
-
-This is a stress-test that verifies your Effect’s logic is implemented correctly. If this causes visible issues, your cleanup function is missing some logic. The cleanup function should stop or undo whatever the setup function was doing. The rule of thumb is that the user shouldn’t be able to distinguish between the setup being called once (as in production) and a setup → cleanup → setup sequence (as in development).
-
-Read more about [how this helps find bugs](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) and [how to fix your logic.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+Використовуйте цей шаблон рідко. Майте на увазі, що користувачі з повільним з'єднанням бачитимуть початковий вміст протягом досить тривалого часу – потенційно, багато секунд – тому ви не хочете робити різких змін у зовнішньому вигляді вашого компонента. У багатьох випадках ви можете уникнути необхідності цього з допомогою CSS, показуючи різні речі за різних умов.
 
 ---
 
-### My Effect runs after every re-render {/*my-effect-runs-after-every-re-render*/}
+## Вирішення проблем {/*troubleshooting*/}
 
-First, check that you haven't forgotten to specify the dependency array:
+### Мій Ефект запускається двічі, коли компонент монтується {/*my-effect-runs-twice-when-the-component-mounts*/}
+
+Коли ввімкнено Суворий режим, у розробці React запускає функції установки та очистки один додатковий раз перед головним запуском функції установки.
+
+Це стрес-тест, який перевіряє, чи правильно реалізована логіка вашого Ефекту. Якщо це викликає видимі проблеми, ваша функція очищення не має деякої логіки. Функція очищення повинна зупиняти або скасовувати те, що робила функція установки. Основне правило полягає в тому, що користувач не повинен мати змоги відрізнити, чи викликається функція установки один раз (як у продакшені), чи в послідовності установка → очищення → установка (як у розробці).
+
+Дізнайтеся більше про те, [як це допомагає знайти помилки](/learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) та [як виправити вашу логіку.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+
+---
+
+### Мій Ефект запускається після кожного повторного рендера {/*my-effect-runs-after-every-re-render*/}
+
+Спочатку перевірте, чи ви не забули вказати масив залежностей:
 
 ```js {3}
 useEffect(() => {
   // ...
-}); // 🚩 No dependency array: re-runs after every render!
+}); // 🚩 Немає масиву залежностей: повторно запускається після кожного рендера!
 ```
 
-If you've specified the dependency array but your Effect still re-runs in a loop, it's because one of your dependencies is different on every re-render.
+Якщо ви вказали масив залежностей, але ваш Ефект все одно повторно запускається в циклі, це тому, що одна з ваших залежностей відрізняється при кожному повторному рендері.
 
-You can debug this problem by manually logging your dependencies to the console:
+Ви можете відлагодити цю проблему, вручну відобразивши ваші залежності в консолі:
 
 ```js {5}
   useEffect(() => {
@@ -1790,58 +1791,58 @@ You can debug this problem by manually logging your dependencies to the console:
   console.log([serverUrl, roomId]);
 ```
 
-You can then right-click on the arrays from different re-renders in the console and select "Store as a global variable" for both of them. Assuming the first one got saved as `temp1` and the second one got saved as `temp2`, you can then use the browser console to check whether each dependency in both arrays is the same:
+Потім ви можете клацнути правою кнопкою миші на масивах з різних повторних рендерів у консолі та вибрати "Store as a global variable" (Зберегти як глобальну змінну) для обох із них. Припускаючи, що перший був збережений як `temp1`, а другий як `temp2`, ви можете використовувати консоль браузера, щоб перевірити, чи кожна залежність в обох масивах однакова:
 
 ```js
-Object.is(temp1[0], temp2[0]); // Is the first dependency the same between the arrays?
-Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the arrays?
-Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
+Object.is(temp1[0], temp2[0]); // Чи перша залежність однакова між масивами?
+Object.is(temp1[1], temp2[1]); // Чи друга залежність однакова між масивами?
+Object.is(temp1[2], temp2[2]); // ... і так далі для кожної залежності ...
 ```
 
-When you find the dependency that is different on every re-render, you can usually fix it in one of these ways:
+Коли ви знайдете залежність, яка відрізняється при кожному повторному рендері, ви зазвичай можете виправити її одним із цих способів:
 
-- [Updating state based on previous state from an Effect](#updating-state-based-on-previous-state-from-an-effect)
-- [Removing unnecessary object dependencies](#removing-unnecessary-object-dependencies)
-- [Removing unnecessary function dependencies](#removing-unnecessary-function-dependencies)
-- [Reading the latest props and state from an Effect](#reading-the-latest-props-and-state-from-an-effect)
+- [Оновлення стану на основі попереднього стану з Ефекту](#updating-state-based-on-previous-state-from-an-effect)
+- [Видалення непотрібних залежностей-об'єктів](#removing-unnecessary-object-dependencies)
+- [Видалення непотрібних залежностей-функцій](#removing-unnecessary-function-dependencies)
+- [Зчитування найновіших пропсів та стану з Ефекту](#reading-the-latest-props-and-state-from-an-effect)
 
-As a last resort (if these methods didn't help), wrap its creation with [`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) or [`useCallback`](/reference/react/useCallback#preventing-an-effect-from-firing-too-often) (for functions).
-
----
-
-### My Effect keeps re-running in an infinite cycle {/*my-effect-keeps-re-running-in-an-infinite-cycle*/}
-
-If your Effect runs in an infinite cycle, these two things must be true:
-
-- Your Effect is updating some state.
-- That state leads to a re-render, which causes the Effect's dependencies to change.
-
-Before you start fixing the problem, ask yourself whether your Effect is connecting to some external system (like DOM, network, a third-party widget, and so on). Why does your Effect need to set state? Does it synchronize with that external system? Or are you trying to manage your application's data flow with it?
-
-If there is no external system, consider whether [removing the Effect altogether](/learn/you-might-not-need-an-effect) would simplify your logic.
-
-If you're genuinely synchronizing with some external system, think about why and under what conditions your Effect should update the state. Has something changed that affects your component's visual output? If you need to keep track of some data that isn't used by rendering, a [ref](/reference/react/useRef#referencing-a-value-with-a-ref) (which doesn't trigger re-renders) might be more appropriate. Verify your Effect doesn't update the state (and trigger re-renders) more than needed.
-
-Finally, if your Effect is updating the state at the right time, but there is still a loop, it's because that state update leads to one of the Effect's dependencies changing. [Read how to debug dependency changes.](/reference/react/useEffect#my-effect-runs-after-every-re-render)
+Як крайній захід (якщо ці методи не допомогли), оберніть її створення за допомогою [`useMemo`](/reference/react/useMemo#memoizing-a-dependency-of-another-hook) або [`useCallback`](/reference/react/useCallback#preventing-an-effect-from-firing-too-often) (для функцій).
 
 ---
 
-### My cleanup logic runs even though my component didn't unmount {/*my-cleanup-logic-runs-even-though-my-component-didnt-unmount*/}
+### Мій Ефект продовжує повторно запускатися у нескінченному циклі {/*my-effect-keeps-re-running-in-an-infinite-cycle*/}
 
-The cleanup function runs not only during unmount, but before every re-render with changed dependencies. Additionally, in development, React [runs setup+cleanup one extra time immediately after component mounts.](#my-effect-runs-twice-when-the-component-mounts)
+Якщо ваш Ефект запускається у нескінченному циклі, значить відбуваються дві речі:
 
-If you have cleanup code without corresponding setup code, it's usually a code smell:
+- Ваш Ефект оновлює якийсь стан.
+- Цей стан призводить до повторного рендера, що спричиняє зміну залежностей Ефекту.
+
+Перш ніж почати виправляти проблему, запитайте себе, чи ваш Ефект підключається до якоїсь зовнішньої системи (наприклад, DOM, мережа, сторонній віджет тощо). Навіщо вашому Ефекту потрібно встановлювати стан? Він синхронізується з цією зовнішньою системою? Чи ви намагаєтеся керувати потоком даних вашого додатка за допомогою нього?
+
+Якщо зовнішньої системи немає, подумайте, чи не спростило б вашу логіку [повне видалення Ефекту](/learn/you-might-not-need-an-effect).
+
+Якщо ви дійсно синхронізуєтеся з якоюсь зовнішньою системою, подумайте, чому і за яких умов ваш Ефект повинен оновлювати стан. Чи змінилося щось, що впливає на візуальний вивід вашого компонента? Якщо вам потрібно відстежувати деякі дані, які не використовуються для рендерингу, більш доречним може бути [реф](/reference/react/useRef#referencing-a-value-with-a-ref) (який не викликає повторних рендерів). Переконайтеся, що ваш Ефект не оновлює стан (і не викликає повторні рендери) більше, ніж потрібно.
+
+В кінці-кінців, якщо ваш Ефект оновлює стан коли слід, але все ще існує цикл, то це тому, що це оновлення стану призводить до зміни однієї з залежностей Ефекту. [Дізнайтеся, як відлагодити зміни залежностей.](/reference/react/useEffect#my-effect-runs-after-every-re-render)
+
+---
+
+### Моя логіка очищення запускається, хоча мій компонент не розмонтовувався {/*my-cleanup-logic-runs-even-though-my-component-didnt-unmount*/}
+
+Функція очистки запускається не лише під час розмонтування, але й перед кожним повторним рендером зі зміненими залежностями. Крім того, у розробці React [запускає установки + очищення один додатковий раз одразу після монтування компонента.](#my-effect-runs-twice-when-the-component-mounts)
+
+Якщо у вас є код очищення без відповідного коду установки, це зазвичай є ознакою поганого коду:
 
 ```js {2-5}
 useEffect(() => {
-  // 🔴 Avoid: Cleanup logic without corresponding setup logic
+  // 🔴 Уникайте: Логіка очищення без відповідної логіки установки
   return () => {
     doSomething();
   };
 }, []);
 ```
 
-Your cleanup logic should be "symmetrical" to the setup logic, and should stop or undo whatever setup did:
+Ваша логіка очищення має бути "симетричною" до логіки установки та має зупиняти або скасовувати те, що робило налаштування:
 
 ```js {2-3,5}
   useEffect(() => {
@@ -1853,10 +1854,10 @@ Your cleanup logic should be "symmetrical" to the setup logic, and should stop o
   }, [serverUrl, roomId]);
 ```
 
-[Learn how the Effect lifecycle is different from the component's lifecycle.](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect)
+[Дізнайтися, чим життєвий цикл Ефекту відрізняється від життєвого циклу компонента.](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect)
 
 ---
 
-### My Effect does something visual, and I see a flicker before it runs {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
+### Мій Ефект робить щось візуальне, і я бачу мерехтіння перед його запуском {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
 
-If your Effect must block the browser from [painting the screen,](/learn/render-and-commit#epilogue-browser-paint) replace `useEffect` with [`useLayoutEffect`](/reference/react/useLayoutEffect). Note that **this shouldn't be needed for the vast majority of Effects.** You'll only need this if it's crucial to run your Effect before the browser paint: for example, to measure and position a tooltip before the user sees it.
+Якщо ваш Ефект повинен блокувати [відображення браузером екрана,](/learn/render-and-commit#epilogue-browser-paint) замініть `useEffect` на [`useLayoutEffect`](/reference/react/useLayoutEffect). Зауважте, що **це не повинно бути потрібним для переважної більшості Ефектів.** Вам це знадобиться лише в тому випадку, якщо критично важливо запустити ваш Ефект до відображення браузером: наприклад, для вимірювання та позиціонування підказки, перш ніж користувач її побачить.
