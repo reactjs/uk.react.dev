@@ -204,7 +204,7 @@ export function createConnection(serverUrl, roomId) {
       console.log('✅ Підключаємось до чату "' + roomId + '" на ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Відключаємось від чату"' + roomId + '" на ' + serverUrl);
+      console.log('❌ Відключаємось від чату "' + roomId + '" на ' + serverUrl);
     }
   };
 }
@@ -622,7 +622,7 @@ export function createConnection(serverUrl, roomId) {
       console.log('✅ Підключаємось до чату "' + roomId + '" на ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Відключаємось від чату"' + roomId + '" на ' + serverUrl);
+      console.log('❌ Відключаємось від чату "' + roomId + '" на ' + serverUrl);
     }
   };
 }
@@ -905,7 +905,7 @@ import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
 export default function Page() {
-  const [person, setPerson] = useState('Руслан');
+  const [person, setPerson] = useState('Аскольд');
   const [bio, setBio] = useState(null);
 
   useEffect(() => {
@@ -934,7 +934,7 @@ import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
 export default function Page() {
-  const [person, setPerson] = useState('Руслан');
+  const [person, setPerson] = useState('Аскольд');
   const [bio, setBio] = useState(null);
   useEffect(() => {
     let ignore = false;
@@ -954,9 +954,9 @@ export default function Page() {
       <select value={person} onChange={e => {
         setPerson(e.target.value);
       }}>
-        <option value="Руслан">Руслан</option>
-        <option value="Борис">Борис</option>
-        <option value="Барбарис">Барбарис</option>
+        <option value="Аскольд">Аскольд</option>
+        <option value="Болеслав">Болеслав</option>
+        <option value="Владислав">Владислав</option>
       </select>
       <hr />
       <p><i>{bio ?? 'Завантажуємо...'}</i></p>
@@ -967,7 +967,7 @@ export default function Page() {
 
 ```js src/api.js hidden
 export async function fetchBio(person) {
-  const delay = person === 'Борис' ? 2000 : 200;
+  const delay = person === 'Болеслав' ? 2000 : 200;
   return new Promise(resolve => {
     setTimeout(() => {
       resolve('Це біографія ' + person + 'а.');
@@ -987,7 +987,7 @@ import { useState, useEffect } from 'react';
 import { fetchBio } from './api.js';
 
 export default function Page() {
-  const [person, setPerson] = useState('Руслан');
+  const [person, setPerson] = useState('Аскольд');
   const [bio, setBio] = useState(null);
   useEffect(() => {
     async function startFetching() {
@@ -1009,9 +1009,9 @@ export default function Page() {
       <select value={person} onChange={e => {
         setPerson(e.target.value);
       }}>
-        <option value="Руслан">Руслан</option>
-        <option value="Борис">Борис</option>
-        <option value="Барбарис">Барбарис</option>
+        <option value="Аскольд">Аскольд</option>
+        <option value="Болеслав">Болеслав</option>
+        <option value="Владислав">Владислав</option>
       </select>
       <hr />
       <p><i>{bio ?? 'Завантажуємо...'}</i></p>
@@ -1022,7 +1022,7 @@ export default function Page() {
 
 ```js src/api.js hidden
 export async function fetchBio(person) {
-  const delay = person === 'Борис' ? 2000 : 200;
+  const delay = person === 'Болеслав' ? 2000 : 200;
   return new Promise(resolve => {
     setTimeout(() => {
       resolve('Це біографія ' + person + 'а.');
