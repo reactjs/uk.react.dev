@@ -16,7 +16,7 @@ useEffect(setup, dependencies?)
 
 ---
 
-## Довідка {/*reference*/}
+## Опис {/*reference*/}
 
 ### `useEffect(setup, dependencies?)` {/*useeffect*/}
 
@@ -1703,7 +1703,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**Що робити, якщо ви хочете реєструвати нове відвідування сторінки після кожної зміни `url`, але *не* якщо змінюється лише `shoppingCart`?** Ви не можете виключити `shoppingCart` із залежностей, не порушивши [правил реактивності].(#specifying-reactive-dependencies) Однак ви можете вказати, що *не хочете*, щоб частина коду "реагувала" на зміни, навіть якщо вона викликається зсередини ефекту. [Оголосіть *Подію ефекту*](/learn/separating-events-from-effects#declaring-an-effect-event) за допомогою хука [`useEffectEvent`](/reference/react/useEffectEvent) і перемістіть код, що зчитує `shoppingCart`, всередину неї:
+**Що робити, якщо ви хочете реєструвати нове відвідування сторінки після кожної зміни `url`, але *не* якщо змінюється лише `shoppingCart`?** Ви не можете виключити `shoppingCart` із залежностей, не порушивши [правил реактивності].(#specifying-reactive-dependencies) Однак ви можете вказати, що *не хочете*, щоб частина коду "реагувала" на зміни, навіть якщо вона викликається зсередини ефекту. [Оголосіть *подію ефекту*](/learn/separating-events-from-effects#declaring-an-effect-event) за допомогою хука [`useEffectEvent`](/reference/react/useEffectEvent) і перемістіть код, що зчитує `shoppingCart`, всередину неї:
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1720,7 +1720,7 @@ function Page({ url, shoppingCart }) {
 
 **Події ефекту не є реактивними і завжди повинні бути виключені із залежностей вашого ефекту.** Саме це дає змогу вам розміщувати всередині них нереактивний код (де ви можете зчитувати найновіше значення деяких пропсів та стану). Зчитуючи `shoppingCart` всередині `onVisit`, ви гарантуєте, що `shoppingCart` не перезапустить ваш ефект.
 
-[Дізнайтеся більше про те, як Події ефекту дають змогу розділити реактивний і нереактивний код.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
+[Дізнайтеся більше про те, як події ефекту дають змогу розділити реактивний і нереактивний код.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 
 
 ---
