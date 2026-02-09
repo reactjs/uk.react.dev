@@ -79,6 +79,9 @@ function ChatRoom({ roomId }) {
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) спрацьовує до того, як браузер перемалює екран. У ньому можна виміряти компонування елементів (layout).
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) спрацьовує до того, як React змінить DOM. Бібліотеки можуть вставляти динамічний CSS саме тут.
 
+You can also separate events from Effects:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) creates a non-reactive event to fire from any Effect hook.
 ---
 
 ## Хуки продуктивності {/*performance-hooks*/}
