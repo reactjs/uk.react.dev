@@ -19,7 +19,16 @@ const contributorMap = new Map(); // Map<anchorId, URL>
 const redirectMap = new Map(); // Map<source, destination>
 let errorCodes = new Set();
 
+function normalizeFilePath(filePath) {
+  // Ensure we use a consistent, OS-native absolute path for Map keys.
+  // globby returns POSIX-style paths on Windows (e.g. C:/...), while path.join
+  // returns Windows-style paths (e.g. C:\...). Without normalization, anchor
+  // lookups fail on Windows.
+  return path.resolve(filePath);
+}
+
 async function readFileWithCache(filePath) {
+  filePath = normalizeFilePath(filePath);
   if (!fileCache.has(filePath)) {
     try {
       const content = await fs.promises.readFile(filePath, 'utf8');
@@ -47,7 +56,7 @@ function getMarkdownFiles() {
     path.posix.join(baseDir, '**/*.md'),
     path.posix.join(baseDir, '**/*.mdx'),
   ];
-  return globby.sync(patterns);
+  return globby.sync(patterns).map(normalizeFilePath);
 }
 
 function extractAnchorsFromContent(content) {
@@ -80,7 +89,7 @@ async function buildAnchorMap(files) {
     const content = await readFileWithCache(filePath);
     const anchors = extractAnchorsFromContent(content);
     if (anchors.size > 0) {
-      anchorMap.set(filePath, anchors);
+      anchorMap.set(normalizeFilePath(filePath), anchors);
     }
   }
 }
@@ -135,7 +144,7 @@ async function findTargetFile(urlPath) {
 
     for (const p of publicPaths) {
       if (await fileExists(p)) {
-        return p;
+        return normalizeFilePath(p);
       }
     }
   }
@@ -154,7 +163,7 @@ async function findTargetFile(urlPath) {
 
   for (const p of possiblePaths) {
     if (await fileExists(p)) {
-      return p;
+      return normalizeFilePath(p);
     }
   }
   return null;
