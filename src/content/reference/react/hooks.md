@@ -79,6 +79,9 @@ function ChatRoom({ roomId }) {
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) спрацьовує до того, як браузер перемалює екран. У ньому можна виміряти компонування елементів (layout).
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) спрацьовує до того, як React змінить DOM. Бібліотеки можуть вставляти динамічний CSS саме тут.
 
+Ви також можете відокремити події від ефектів:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) створює нереактивну подію, що відбувається в будь-якому хуці ефекту.
 ---
 
 ## Хуки продуктивності {/*performance-hooks*/}
