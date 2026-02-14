@@ -20,34 +20,16 @@ const [optimisticState, setOptimistic] = useOptimistic(value, reducer?);
 
 ### `useOptimistic(value, reducer?)` {/*useoptimistic*/}
 
-<<<<<<< HEAD
-Хук `useOptimistic` дає змогу відображати змінений стан під час виконання асинхронної дії. Він приймає певний стан як аргумент і повертає його копію, яка може відрізнятися від переданого стану протягом виконання асинхронної дії, наприклад, мережевого запиту. Ви надаєте функцію, яка отримує поточний стан і вхідні дані для дії, та повертає "оптимістичний" стан, який буде використовуватися, поки дія триває.
-
-Цей стан називається "оптимістичним", тому що зазвичай використовується, щоб показати користувачеві очікуваний результат одразу, навіть якщо на завершення дії потрібен певний час.
-=======
 Call `useOptimistic` at the top level of your component to create optimistic state for a value.
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 ```js
 import { useOptimistic } from 'react';
 
-<<<<<<< HEAD
-function AppContainer() {
-  const [optimisticState, addOptimistic] = useOptimistic(
-    state,
-    // updateFn
-    (currentState, optimisticValue) => {
-      // об'єднайте і поверніть новий стан
-      // з оптимістичним значенням
-    }
-  );
-=======
 function MyComponent({name, todos}) {
   const [optimisticAge, setOptimisticAge] = useOptimistic(28);
   const [optimisticName, setOptimisticName] = useOptimistic(name);
   const [optimisticTodos, setOptimisticTodos] = useOptimistic(todos, todoReducer);
   // ...
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 }
 ```
 
@@ -55,21 +37,11 @@ function MyComponent({name, todos}) {
 
 #### Параметри {/*parameters*/}
 
-<<<<<<< HEAD
-* `state`: значення, яке повертається на початку та щоразу, коли немає дії, що виконується.
-* `updateFn(currentState, optimisticValue)`: функція, яка приймає поточний стан і оптимістичне значення, передане до `addOptimistic`, та повертає розрахований оптимістичний стан. Повинна бути чистою функцією. `updateFn` приймає два параметри: `currentState` і `optimisticValue`. Функція повертає значення, створене через об'єднання `currentState` і `optimisticValue`.
-
-=======
 * `value`: The value returned when there are no pending Actions.
 * **optional** `reducer(currentState, action)`: The reducer function that specifies how the optimistic state gets updated. It must be pure, should take the current state and reducer action arguments, and should return the next optimistic state.
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 #### Результат {/*returns*/}
 
-<<<<<<< HEAD
-* `optimisticState`: розрахований оптимістичний стан. Допоки немає дії, що виконується, він дорівнює `state`, інакше він дорівнює значенню, яке повертає `updateFn`.
-* `addOptimistic`: `addOptimistic` — це функція для надсилання змін (dispatching function), яку потрібно викликати для оптимістичного оновлення. Вона приймає один аргумент `optimisticValue` будь-якого типу та викликає `updateFn` із `state` і `optimisticValue`.
-=======
 `useOptimistic` returns an array with exactly two values:
 
 1. `optimisticState`: The current optimistic state. It is equal to `value` unless an Action is pending, in which case it is equal to the state returned by `reducer` (or the value passed to the set function if no `reducer` was provided).
@@ -167,19 +139,11 @@ The `value` argument to `useOptimistic` determines what displays after the Actio
 If the Action throws an error, the Transition still ends, and React renders with whatever `value` currently is. Since the parent typically only updates `value` on success, a failure means `value` hasn't changed, so the UI shows what it showed before the optimistic update. You can catch the error to show a message to the user.
 
 </DeepDive>
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 ---
 
 ## Використання {/*usage*/}
 
-<<<<<<< HEAD
-### Оптимістичне оновлення форм {/*optimistically-updating-with-forms*/}
-
-Хук `useOptimistic` дає змогу оптимістично оновлювати інтерфейс, поки завершується фонова операція, наприклад, мережевий запит. У контексті форм такий підхід створює відчуття швидшої реакції застосунків. Коли користувач надсилає форму, замість очікування відповіді від сервера для змін, інтерфейс одразу оновлюється і відображає очікуваний результат.
-
-Наприклад, коли користувач вводить повідомлення у форму й натискає кнопку "Надіслати", хук `useOptimistic` дає змогу одразу відобразити це повідомлення у списку з позначкою "Надсилання...", ще до того, як воно реально буде відправлене на сервер. Такий "оптимістичний" підхід створює враження швидкодії та миттєвого відгуку інтерфейсу. Після цього форма справді намагається надіслати повідомлення у фоновому режимі. Коли сервер підтвердить, що повідомлення було отримано, позначка "Надсилання..." зникне.
-=======
 ### Adding optimistic state to a component {/*adding-optimistic-state-to-a-component*/}
 
 Call `useOptimistic` at the top level of your component to declare one or more optimistic states.
@@ -242,7 +206,6 @@ For an example, see: [Using optimistic state in Action props](#using-optimistic-
 In an [Action prop](/reference/react/useTransition#exposing-action-props-from-components), you can call the optimistic setter directly without `startTransition`.
 
 This example sets optimistic state inside a `<form>` `submitAction` prop:
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 
 <Sandpack>
 
@@ -657,36 +620,6 @@ export default function TodoList({ todos, addTodoAction }) {
   }
 
   return (
-<<<<<<< HEAD
-    <>
-      <form action={formAction} ref={formRef}>
-        <input type="text" name="message" placeholder="Вітаю!" />
-        <button type="submit">Надіслати</button>
-      </form>
-      {optimisticMessages.map((message, index) => (
-        <div key={index}>
-          {message.text}
-          {!!message.sending && <small> (Надсилання...)</small>}
-        </div>
-      ))}
-      
-    </>
-  );
-}
-
-export default function App() {
-  const [messages, setMessages] = useState([
-    { text: "Привіт!", sending: false, key: 1 }
-  ]);
-  async function sendMessageAction(formData) {
-    const sentMessage = await deliverMessage(formData.get("message"));
-    startTransition(() => {
-      setMessages((messages) => [{ text: sentMessage }, ...messages]);
-    })
-  }
-  return <Thread messages={messages} sendMessageAction={sendMessageAction} />;
-}
-=======
     <div>
       <button onClick={() => handleAddTodo('New todo')}>Add Todo</button>
       <ul>
@@ -699,7 +632,6 @@ export default function App() {
     </div>
   );
 }
->>>>>>> bd87c394dc1daf0e54759126f847fcfa927e5a75
 ```
 
 ```js src/actions.js hidden
