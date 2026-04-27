@@ -323,7 +323,11 @@ h3, p { margin: 5px 0px; }
 
 #### Синхронізовані поля вводу {/*synced-inputs*/}
 
+<<<<<<< HEAD
 Ці два поля вводу є незалежні. Зробіть так, щоб вони були синхронізовані: редагування одного поля вводу має оновлювати інше поле вводу тим самим текстом, і навпаки.
+=======
+These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Hint>
 
@@ -571,7 +575,7 @@ function SearchBar({ query, onChange }) {
 function List({ items }) {
   return (
     <table>
-      <tbody> 
+      <tbody>
         {items.map(food => (
           <tr key={food.id}>
             <td>{food.name}</td>
