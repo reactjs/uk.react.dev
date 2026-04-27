@@ -193,7 +193,11 @@ input { margin: 5px; }
 
 ### Генерація ID для декількох пов'язаних елементів {/*generating-ids-for-several-related-elements*/}
 
+<<<<<<< HEAD
 Якщо треба додати ID для декількох пов'язаних елементів, ви можете викликати `useId` для генерації спільного префіксу: 
+=======
+If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 

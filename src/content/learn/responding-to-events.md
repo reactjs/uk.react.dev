@@ -169,7 +169,11 @@ button { margin-right: 10px; }
 
 ### Передавання обробників подій як пропсів {/*passing-event-handlers-as-props*/}
 
+<<<<<<< HEAD
 Часто потрібно, щоб батьківський компонент визначав обробник подій для дочірнього. Розгляньте кнопки: залежно від того, де використовується компонент `Button`, ви можете виконати іншу функцію — до прикладу, одна відтворює фільм, а інша завантажує зображення. 
+=======
+Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Для цього передайте проп як обробник подій, який компонент отримає від свого батька, ось так:
 
@@ -312,12 +316,21 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Зверніть увагу, що компоненту `App` не потрібно знати, *що* `Toolbar` робитиме з `onPlayMovie` або `onUploadImage`. То вже частина реалізації `Toolbar`. Тут `Toolbar` передає їх як обробники `onClick` своїм компонентам `Button`, але він також може викликати їх потім у відповідь на певне сполучення клавіш. Іменування пропсів за типом взаємодії з програмою, як-от `onPlayMovie`, дає вам можливість змінити спосіб їх використання пізніше.
   
 <Note>
 
 Переконайтеся, що ви використовуєте відповідні теги HTML для своїх обробників подій. Наприклад, для обробки натискань використовуйте [`<button onClick={handleClick}>`](https://webdoky.org/uk/docs/Web/HTML/Element/button) замість `<div onClick={handleClick}>`. Використання наявного у браузері тегу `<button>` дає змогу використовувати вбудовані функції браузера, як-от навігація за допомогою клавіатури. Якщо вам не до вподоби початкова стилізація кнопки у браузері і ви бажаєте зробити її більше схожою на посилання чи інший елемент UI, використовуйте CSS. [Докладніше про створення доступної розмітки.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
   
+=======
+Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+
+<Note>
+
+Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 </Note>
 
 ## Поширення події {/*event-propagation*/}
@@ -411,12 +424,21 @@ button { margin: 5px; }
 
 Коли ви натискаєте на кнопку:
 
+<<<<<<< HEAD
 1. React викликає обробник `onClick`, переданий до `<button>`.
 2. Той обробник, що визначений у `Button`, спрацьовує так:
    * Викликає `e.stopPropagation()`, запобігаючи подальшому спливанню події.
    * Викликає функцію `onClick`, яка є пропом, переданим із компонента `Toolbar`.
 3. Ця функція, що визначена у компоненті `Toolbar`, відображає відповідне для цієї кнопки сповіщення.
 4. Оскільки поширення було зупинено, обробник `onClick` батьківського `<div>` *не* виконується.
+=======
+1. React calls the `onClick` handler passed to `<button>`.
+2. That handler, defined in `Button`, does the following:
+   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
+3. That function, defined in the `Toolbar` component, displays the button's own alert.
+4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 У результаті виклику `e.stopPropagation()` після натискання на кнопки тепер показується лише одне сповіщення (від `<button>`), а не два (від `<button>` та від `<div>` із батьківської панелі інструментів). Натискання на кнопку — це не те саме, що натискання на панель інструментів довкола, тому для цього UI розумно зупинити поширення.
 
@@ -433,11 +455,19 @@ button { margin: 5px; }
 </div>
 ```
 
+<<<<<<< HEAD
 Поширення кожної події складається із трьох фаз:
 
 1. Вона рухається вниз, викликаючи всі обробники `onClickCapture` — занурення.
 2. Викликає обробник `onClick` елемента, на який натиснули.
 3. Вона рухається вгору, викликаючи всі обробники `onClick` — спливання.
+=======
+Each event propagates in three phases:
+
+1. It travels down, calling all `onClickCapture` handlers.
+2. It runs the clicked element's `onClick` handler.
+3. It travels upwards, calling all `onClick` handlers.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Події у фазі занурення корисні для навігації (routers) чи аналітики, але ви, ймовірно, не будете використовувати їх безпосередньо у застосунку.
 

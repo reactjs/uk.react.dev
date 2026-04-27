@@ -12,7 +12,11 @@ title: Побудова React-застосунку з нуля
 
 #### Зважте використання фреймворку {/*consider-using-a-framework*/}
 
+<<<<<<< HEAD
 Початок з нуля — це простий спосіб використати React, але пам'ятайте, що в обмін цей шлях часто схожий на створення власного спеціалізованого фреймворку. З розвитком вимог вам треба буде вирішувати більше системних проблем, для яких наші рекомендовані фреймворки вже мають якісно розроблені та підтримувані рішення.
+=======
+Starting from scratch is an easy way to get started using React, but a major tradeoff to be aware of is that going this route is often the same as building your own adhoc framework. As your requirements evolve, you may need to solve more framework-like problems that our recommended frameworks already have well developed and supported solutions for.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Наприклад, якщо згодом ваш застосунок потребуватиме рендеринг із боку сервера (SSR), генерацію статичного сайту (SSG) та/або серверні компоненти React (RSC), вам доведеться реалізувати їх самостійно. Так само доведеться самотужки вбудовувати майбутні функції React, які вимагатимуть інтеграції рівня фреймворку, якщо ви захочете їх використовувати.
 
@@ -132,12 +136,22 @@ Rsbuild відразу підтримує такі функції React, як ш
 
 * **Серверні компоненти React (RSC)** дають змогу змішувати компільовані, суто серверні та інтерактивні компоненти в одному React-дереві. RSC може покращити продуктивність, але наразі необхідні глибокі знання для його налаштування та обслуговування. Перегляньте [приклади RSC від Parcel](https://github.com/parcel-bundler/rsc-examples).
 
+<<<<<<< HEAD
 Ваші стратегії рендерингу мають бути інтегровані з вашим маршрутизатором, щоб застосунки, створені за допомогою вашого фреймворку, могли вибирати стратегію рендерингу для кожного маршруту. Це дає змогу використовувати різні стратегії рендерингу без переписування всього застосунку. Наприклад, головна сторінка вашого застосунку може мати користь від статичної генерації (SSG), а сторінка з інформаційною стрічкою — від рендерингу з боку сервера.
+=======
+Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Використання слушної стратегії рендерингу для відповідних маршрутів може зменшити час до завантаження першого байта вмісту ([час до першого байта](https://web.dev/articles/ttfb)), рендерингу першого фрагмента вмісту ([малювання першого вмісту, FCP](https://web.dev/articles/fcp)) і рендерингу найбільшого видимого вмісту застосунку ([малювання найбільшого вмісту, LCP](https://web.dev/articles/lcp)).
 
 ### І більше... {/*and-more*/}
 
+<<<<<<< HEAD
 Це були лише кілька прикладів функцій, які необхідно враховувати фреймворку під час побудови з нуля. Багато обмежень, з якими ви зіткнетеся, можуть стати заскладними, оскільки кожна проблема взаємопов'язана з іншими та може потребувати глибоких знань у сфері, з якою ви часом не будете знайомі.
 
 Якщо ви не хочете вирішувати ці проблеми самотужки, [розпочніть роботу з фреймворком](/learn/creating-a-react-app), який вже надає ці функції. 
+=======
+These are just a few examples of the features a new app will need to consider when building from scratch. Many limitations you'll hit can be difficult to solve as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with.
+
+If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
