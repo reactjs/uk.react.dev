@@ -142,8 +142,13 @@ return (
 
 ```js
 const user = {
+<<<<<<< HEAD
   name: 'Геді Ламар',
   imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+=======
+  name: 'Hedy Lamarr',
+  imageUrl: 'https://react.dev/images/docs/scientists/yXOvdOSs.jpg',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   imageSize: 90,
 };
 

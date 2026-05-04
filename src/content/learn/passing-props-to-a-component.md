@@ -29,8 +29,13 @@ function Avatar() {
   return (
     <img
       className="avatar"
+<<<<<<< HEAD
       src="https://i.imgur.com/1bX5QH6.jpg"
       alt="Лін Ланьїн (Lin Lanying)"
+=======
+      src="https://react.dev/images/docs/scientists/1bX5QH6.jpg"
+      alt="Lin Lanying"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       width={100}
       height={100}
     />
@@ -126,22 +131,36 @@ export default function Profile() {
     <div>
       <Avatar
         size={100}
+<<<<<<< HEAD
         person={{ 
           name: 'Кацуко Сарухаші (Katsuko Saruhashi)', 
+=======
+        person={{
+          name: 'Katsuko Saruhashi',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: 'YfeOqp2'
         }}
       />
       <Avatar
         size={80}
         person={{
+<<<<<<< HEAD
           name: 'Аклілу Лемма (Aklilu Lemma)', 
+=======
+          name: 'Aklilu Lemma',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: 'OKS67lh'
         }}
       />
       <Avatar
         size={50}
+<<<<<<< HEAD
         person={{ 
           name: 'Лін Ланьїн (Lin Lanying)',
+=======
+        person={{
+          name: 'Lin Lanying',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: '1bX5QH6'
         }}
       />
@@ -153,7 +172,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -291,8 +310,13 @@ export default function Profile() {
     <Card>
       <Avatar
         size={100}
+<<<<<<< HEAD
         person={{ 
           name: 'Кацуко Сарухаші (Katsuko Saruhashi)',
+=======
+        person={{
+          name: 'Katsuko Saruhashi',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: 'YfeOqp2'
         }}
       />
@@ -320,7 +344,7 @@ export default function Avatar({ person, size }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -453,12 +477,21 @@ export default function Gallery() {
         />
         <ul>
           <li>
+<<<<<<< HEAD
             <b>Професія: </b> 
             фізик та хімік
           </li>
           <li>
             <b>Нагороди: 4 </b> 
             (Нобелівська премія з фізики, Нобелівська премія з хімії, Медаль Дейві, Медаль Маттеуччі)
+=======
+            <b>Profession: </b>
+            physicist and chemist
+          </li>
+          <li>
+            <b>Awards: 4 </b>
+            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           </li>
           <li>
             <b>Відкрито: </b>
@@ -477,12 +510,21 @@ export default function Gallery() {
         />
         <ul>
           <li>
+<<<<<<< HEAD
             <b>Професія: </b> 
             геохімік
           </li>
           <li>
             <b>Нагороди: 2 </b> 
             (Премія Міяке з геохімії, Премія Танака)
+=======
+            <b>Profession: </b>
+            geochemist
+          </li>
+          <li>
+            <b>Awards: 2 </b>
+            (Miyake Prize for geochemistry, Tanaka Prize)
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           </li>
           <li>
             <b>Відкрито: </b>
@@ -498,7 +540,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     imageId +
     size +
     '.jpg'
@@ -606,7 +648,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(imageId, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     imageId +
     size +
     '.jpg'
@@ -703,7 +745,7 @@ export default function Gallery() {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -758,8 +800,13 @@ export default function Profile() {
   return (
     <Avatar
       size={40}
+<<<<<<< HEAD
       person={{ 
         name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
+=======
+      person={{
+        name: 'Gregorio Y. Zara',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
         imageId: '7vQD0fP'
       }}
     />
@@ -770,7 +817,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -814,15 +861,25 @@ export default function Profile() {
     <>
       <Avatar
         size={40}
+<<<<<<< HEAD
         person={{ 
           name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
+=======
+        person={{
+          name: 'Gregorio Y. Zara',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={120}
+<<<<<<< HEAD
         person={{ 
           name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
+=======
+        person={{
+          name: 'Gregorio Y. Zara',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: '7vQD0fP'
         }}
       />
@@ -834,7 +891,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -878,22 +935,37 @@ export default function Profile() {
     <>
       <Avatar
         size={40}
+<<<<<<< HEAD
         person={{ 
           name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
+=======
+        person={{
+          name: 'Gregorio Y. Zara',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={70}
+<<<<<<< HEAD
         person={{ 
           name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
+=======
+        person={{
+          name: 'Gregorio Y. Zara',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={120}
+<<<<<<< HEAD
         person={{ 
           name: 'Грегоріо І. Зара (Gregorio Y. Zara)', 
+=======
+        person={{
+          name: 'Gregorio Y. Zara',
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           imageId: '7vQD0fP'
         }}
       />
@@ -905,7 +977,7 @@ export default function Profile() {
 ```js src/utils.js
 export function getImageUrl(person, size) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -938,8 +1010,13 @@ export default function Profile() {
           <h1>Фото</h1>
           <img
             className="avatar"
+<<<<<<< HEAD
             src="https://i.imgur.com/OKS67lhm.jpg"
             alt="Аклілу Лемма (Aklilu Lemma)"
+=======
+            src="https://react.dev/images/docs/scientists/OKS67lhm.jpg"
+            alt="Aklilu Lemma"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
             width={70}
             height={70}
           />
@@ -1011,8 +1088,13 @@ export default function Profile() {
         <h1>Фото</h1>
         <img
           className="avatar"
+<<<<<<< HEAD
           src="https://i.imgur.com/OKS67lhm.jpg"
           alt="Аклілу Лемма (Aklilu Lemma)"
+=======
+          src="https://react.dev/images/docs/scientists/OKS67lhm.jpg"
+          alt="Aklilu Lemma"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           width={100}
           height={100}
         />
@@ -1073,8 +1155,13 @@ export default function Profile() {
       <Card title="Фото">
         <img
           className="avatar"
+<<<<<<< HEAD
           src="https://i.imgur.com/OKS67lhm.jpg"
           alt="Аклілу Лемма (Aklilu Lemma)"
+=======
+          src="https://react.dev/images/docs/scientists/OKS67lhm.jpg"
+          alt="Aklilu Lemma"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           width={100}
           height={100}
         />
