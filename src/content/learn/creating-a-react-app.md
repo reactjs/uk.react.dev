@@ -104,7 +104,11 @@ App Router від Next.js також інтегрує [отримання дан
 
 Якщо ваш застосунок містить обмеження, які не спрацюють із наявними фреймворками, або ви бажаєте побудувати власний фреймворк чи розібратися в основах React-застосунку, є інші доступні варіанти для початку React-проєкту з нуля.
 
+<<<<<<< HEAD
 Початок роботи з нуля надає вам більше гнучкості, але потребує від вас вибору інструментів для маршрутизації, отримання даних та інших типових патернів використання. Це дуже схоже на створення власного фреймворку замість використання наявного. [Фреймворки, які ми рекомендуємо](#full-stack-frameworks), мають готові вбудовані рішення для цих проблем.
+=======
+Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#full-stack-frameworks) have built-in solutions for these problems.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Якщо ви хочете власне рішення, перегляньте наш посібник із [побудови React-застосунку з нуля](/learn/build-a-react-app-from-scratch), щоб отримати інструкції з налаштування нового React-проєкту, починаючи з інструментів збирання, як-от [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) чи [RSbuild](https://rsbuild.dev/).
 

@@ -31,7 +31,11 @@ title: Налаштування редактора
 
 ### Статична перевірка коду {/*linting*/}
 
+<<<<<<< HEAD
 Лінтери (інструменти статичної перевірки) знаходять проблеми у вашому коді при його написанні, допомагаючи відразу їх виправити. [ESLint](https://eslint.org/) — популярний лінтер для JavaScript з відкритим кодом.
+=======
+Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 * [Встановіть ESLint із рекомендованими налаштуваннями для React](https://www.npmjs.com/package/eslint-config-react-app) (перевірте, що у вас [встановлено Node!](https://nodejs.org/en/download/current/))
 * [Інтегруйте ESLint у VSCode за допомогою офіційного розширення](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
