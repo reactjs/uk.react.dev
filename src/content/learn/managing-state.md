@@ -1,30 +1,30 @@
 ---
-title: Managing State
+title: Управління станом
 ---
 
 <Intro>
 
-As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant components.
+У міру того, як ваш додаток зростає, варто більш уважно ставитися до того, як організовано ваш стан і як відбувається обмін даними між компонентами. Надлишковий або дублюючий стан є поширеним джерелом помилок. У цій главі ви дізнаєтеся, як добре структурувати свій стан, як підтримувати логіку оновлення стану і як ділитися станом між віддаленими компонентами.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+* [Як сприймати зміни інтерфейсу як зміни стану](/learn/reacting-to-input-with-state)
+* [Як правильно структурувати стан](/learn/choosing-the-state-structure)
+* [Як «підняти стан», щоб поділитися ним між компонентами](/learn/sharing-state-between-components)
+* [Як керувати збереженням або скиданням стану](/learn/preserving-and-resetting-state)
+* [Як звести складну логіку станів у функцію](/learn/extracting-state-logic-into-a-reducer)
+* [Як передавати інформацію без «prop drilling»](/learn/passing-data-deeply-with-context)
+* [Як масштабувати управління станами по мірі зростання вашого додатку](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## Реагування на поле вводу зі станом {/*reacting-to-input-with-state*/}
 
-With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
+З React ви не зможете змінювати інтерфейс безпосередньо з коду. Наприклад, ви не будете писати команди на кшталт «вимкнути кнопку», «увімкнути кнопку», «показати повідомлення про успіх» тощо. Замість цього ви опишете інтерфейс, який хочете бачити для різних візуальних станів вашого компонента («початковий стан», «стан введення», «стан успіху»), а потім запустите зміну стану у відповідь на введення користувачем. Це схоже на те, як дизайнери думають про інтерфейс.
 
-Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
+Ось форма вікторини, створена з використанням React. Зверніть увагу, як вона використовує змінну стану `status` для визначення того, чи вмикати або вимикати кнопку надсилання, і чи показувати замість неї повідомлення про успішне завершення.
 
 <Sandpack>
 
@@ -34,20 +34,20 @@ import { useState } from 'react';
 export default function Form() {
   const [answer, setAnswer] = useState('');
   const [error, setError] = useState(null);
-  const [status, setStatus] = useState('typing');
+  const [status, setStatus] = useState('друкування');
 
-  if (status === 'success') {
+  if (status === 'успіх') {
     return <h1>That's right!</h1>
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setStatus('submitting');
+    setStatus('надсилання');
     try {
       await submitForm(answer);
-      setStatus('success');
+      setStatus('успіх');
     } catch (err) {
-      setStatus('typing');
+      setStatus('друкування');
       setError(err);
     }
   }
@@ -58,20 +58,20 @@ export default function Form() {
 
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Міська вікторина</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+          У якому місті є білборд, що перетворює повітря на питну воду?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
           value={answer}
           onChange={handleTextareaChange}
-          disabled={status === 'submitting'}
+          disabled={status === 'надсилання'}
         />
         <br />
         <button disabled={
           answer.length === 0 ||
-          status === 'submitting'
+          status === 'надсилання'
         }>
           Submit
         </button>
@@ -86,12 +86,12 @@ export default function Form() {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Уявіть що запит надсилається у мережу.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Хороша здогадка, але невірна відповідь. Спробуй ще раз!'));
       } else {
         resolve();
       }
@@ -108,15 +108,15 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to learn how to approach interactions with a state-driven mindset.
+Прочитайте **[Реагування на Поле Вводу зі Станом](/learn/reacting-to-input-with-state)** щоб дізнатися, як підходити до взаємодії з мисленням, керованим станом.
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## Вибір структури стану {/*choosing-the-state-structure*/}
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
+Правильне структурування стану може зробити різницю між компонентом, який приємно модифікувати та налагоджувати, і компонентом, який є постійним джерелом помилок. Найважливіший принцип полягає в тому, що стан не повинен містити надлишкової або дубльованої інформації. Якщо стан непотрібний, його легко забути оновити, що призведе до появи багів!
 
-For example, this form has a **redundant** `fullName` state variable:
+Наприклад, ця форма має **надлишкову** змінну стану `fullName`:
 
 <Sandpack>
 
@@ -140,23 +140,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Давайте зареєструємо вас</h2>
       <label>
-        First name:{' '}
+        Ім'я:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Прізвище:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+         Ваш квиток буде виданий на ім'я: <b>{fullName}</b>
       </p>
     </>
   );
@@ -169,7 +169,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-You can remove it and simplify the code by calculating `fullName` while the component is rendering:
+Ви можете прибрати його і спростити код, обчислюючи `fullName` під час рендерингу компонента:
 
 <Sandpack>
 
@@ -194,21 +194,21 @@ export default function Form() {
     <>
       <h2>Let’s check you in</h2>
       <label>
-        First name:{' '}
+        Ім'я:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Прізвище:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Ваш квиток буде виданий на ім'я: <b>{fullName}</b>
       </p>
     </>
   );
@@ -221,19 +221,19 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This might seem like a small change, but many bugs in React apps are fixed this way.
+Це може здатися невеликою зміною, але багато помилок у React-додатках виправляються саме таким чином.
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
+Прочитайте **[Вибір структури стану](/learn/choosing-the-state-structure)** для того, щоб навчитися проектувати форму стану, щоб уникнути помилок.
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## Спільний доступ до стану між компонентами {/*sharing-state-between-components*/}
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
+Іноді ви хочете, щоб стан двох компонентів завжди змінювався разом. Для цього вилучіть стан з обох компонентів, перемістіть його до їхнього найближчого спільного батька, а потім передайте його їм через пропси. Це називається «підняттям стану вгору», і це одна з найпоширеніших речей, які ви будете робити під час написання React-коду.
 
-In this example, only one panel should be active at a time. To achieve this, instead of keeping the active state inside each individual panel, the parent component holds the state and specifies the props for its children.
+У цьому прикладі лише одна панель має бути активною одночасно. Щоб досягти цього, замість того, щоб тримати активний стан всередині кожної окремої панелі, батьківський компонент тримає стан і визначає пропси для своїх дочірніх компонентів.
 
 <Sandpack>
 
@@ -244,20 +244,20 @@ export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
+      <h2>Алмати, Казахстан</h2>
       <Panel
         title="About"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Алмати з населенням близько 2 мільйонів є найбільшим містом Казахстану. З 1929 по 1997 рік він був його столицею.
       </Panel>
       <Panel
-        title="Etymology"
+        title="Етимологія"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Назва походить від <span lang="kk-KZ">алма</span>, Казахстанського слова "яблоко" і часто перекладається як "повний яблук". Насправді, регіон навколо Алмати вважається прабатьківщиною яблука, а дикий <i lang=«la»>Malus sieversii</i> вважається ймовірним кандидатом на предка сучасного домашнього яблука.
       </Panel>
     </>
   );
@@ -276,7 +276,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Показати
         </button>
       )}
     </section>
@@ -296,15 +296,15 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Read **[Sharing State Between Components](/learn/sharing-state-between-components)** to learn how to lift state up and keep components in sync.
+Прочитайте **[Розподіл стану між компонентами](/learn/sharing-state-between-components)** щоб навчитися піднімати стан і синхронізувати компоненти.
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+##  Збереження та скидання стану {/*preserving-and-resetting-state*/}
 
-When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
+Коли ви повторно рендерите компонент, React має вирішити, які частини дерева зберегти (і оновити), а які відкинути або створити з нуля. У більшості випадків автоматична поведінка React працює досить добре. За замовчуванням React зберігає ті частини дерева, які «збігаються» з попередньо відрендереним деревом компонента.
 
-However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
+Однак іноді це не те, чого ви хочете. У цьому додатку чату введення повідомлення, а потім перемикання одержувача не скидає введене значення. Це може призвести до того, що користувач випадково надішле повідомлення не тій людині:
 
 <Sandpack>
 
@@ -328,9 +328,9 @@ export default function Messenger() {
 }
 
 const contacts = [
-  { name: 'Taylor', email: 'taylor@mail.com' },
-  { name: 'Alice', email: 'alice@mail.com' },
-  { name: 'Bob', email: 'bob@mail.com' }
+  { name: 'Тейлор', email: 'taylor@mail.com' },
+  { name: 'Аліса', email: 'alice@mail.com' },
+  { name: 'Боб', email: 'bob@mail.com' }
 ];
 ```
 
@@ -367,11 +367,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Чат з ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Відправити {contact.email}</button>
     </section>
   );
 }
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
+React дозволяє вам перевизначити поведінку за замовчуванням і *примусити* компонент скинути свій стан, передавши йому інший `ключ`, наприклад, `<Chat key={email} />`. Це повідомляє React, що якщо одержувач інший, його слід вважати *іншим* компонентом `Chat`, який потрібно перестворити з нуля з новими даними (та інтерфейсом користувача, наприклад, входами). Тепер перемикання між одержувачами скидає поле введення - навіть якщо ви рендерите той самий компонент.
 
 <Sandpack>
 
@@ -423,9 +423,9 @@ export default function Messenger() {
 }
 
 const contacts = [
-  { name: 'Taylor', email: 'taylor@mail.com' },
-  { name: 'Alice', email: 'alice@mail.com' },
-  { name: 'Bob', email: 'bob@mail.com' }
+  { name: 'Тейлор', email: 'taylor@mail.com' },
+  { name: 'Аліса', email: 'alice@mail.com' },
+  { name: 'Боб', email: 'bob@mail.com' }
 ];
 ```
 
@@ -462,11 +462,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Чат з ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Відправити {contact.email}</button>
     </section>
   );
 }
@@ -496,13 +496,13 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** to learn the lifetime of state and how to control it.
+Прочитайте **[Збереження та скидання стану](/learn/preserving-and-resetting-state)** щоб дізнатися, як довго живе стан і як його контролювати.
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## Вилучення логіки станів у редуктор {/*extracting-state-logic-into-a-reducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+Компоненти з великою кількістю оновлень стану, розподілених між багатьма обробниками подій, можуть стати перевантаженими. Для таких випадків ви можете консолідувати всю логіку оновлення стану за межами вашого компонента в одній функції, яка називається «редуктор». Ваші обробники подій стають лаконічнішими, оскільки вони визначають лише «дії» користувача. У нижній частині файлу функція-редуктор визначає, як стан повинен оновлюватися у відповідь на кожну дію!
 
 <Sandpack>
 
@@ -519,7 +519,7 @@ export default function TaskApp() {
 
   function handleAddTask(text) {
     dispatch({
-      type: 'added',
+      type: 'доданий',
       id: nextId++,
       text: text,
     });
@@ -527,21 +527,21 @@ export default function TaskApp() {
 
   function handleChangeTask(task) {
     dispatch({
-      type: 'changed',
+      type: 'змінений',
       task: task
     });
   }
 
   function handleDeleteTask(taskId) {
     dispatch({
-      type: 'deleted',
+      type: 'видалений',
       id: taskId
     });
   }
 
   return (
     <>
-      <h1>Prague itinerary</h1>
+      <h1>Празький маршрут</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -556,14 +556,14 @@ export default function TaskApp() {
 
 function tasksReducer(tasks, action) {
   switch (action.type) {
-    case 'added': {
+    case 'доданий': {
       return [...tasks, {
         id: action.id,
         text: action.text,
         done: false
       }];
     }
-    case 'changed': {
+    case 'змінений': {
       return tasks.map(t => {
         if (t.id === action.task.id) {
           return action.task;
@@ -572,20 +572,20 @@ function tasksReducer(tasks, action) {
         }
       });
     }
-    case 'deleted': {
+    case 'видалений': {
       return tasks.filter(t => t.id !== action.id);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Невідома дія: ' + action.type);
     }
   }
 }
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false }
+  { id: 0, text: 'Відвідати музей Кафки', done: true },
+  { id: 1, text: 'Подивитись лялкову виставу', done: false },
+  { id: 2, text: 'Настінне зображення Леннона', done: false }
 ];
 ```
 
@@ -597,14 +597,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Добавити задачу"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Добавити</button>
     </>
   )
 }
@@ -648,7 +648,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Зберегти
         </button>
       </>
     );
@@ -657,7 +657,7 @@ function Task({ task, onChange, onDelete }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Редагувати
         </button>
       </>
     );
@@ -676,7 +676,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Видалити
       </button>
     </label>
   );
@@ -693,15 +693,15 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** to learn how to consolidate logic in the reducer function.
+Прочитайте **[Вилучення логіки станів у редуктор](/learn/extracting-state-logic-into-a-reducer)** щоб навчитися консолідувати логіку у функції редуктора.
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## Глибока передача даних з контекстом {/*passing-data-deeply-with-context*/}
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+Зазвичай, ви передаєте інформацію від батьківського компонента до дочірнього за допомогою пропсів. Але передача пропсів може бути незручною, якщо вам потрібно передати якийсь пропс багатьом компонентам, або якщо багатьом компонентам потрібна однакова інформація. Контекст дозволяє батьківському компоненту зробити певну інформацію доступною для будь-якого компонента у дереві під ним - незалежно від того, наскільки глибоко він знаходиться - без явної передачі її через пропси.
 
-Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
+Тут компонент `Heading` визначає рівень свого заголовка, «запитуючи» найближчий `Section` про його рівень. Кожен `Section` відстежує свій власний рівень, запитуючи батьківський `Section` і додаючи до нього один. Кожен `Section` надає інформацію всім компонентам, розташованим нижче нього, без передачі пропсів - він робить це через контекст.
 
 <Sandpack>
 
@@ -712,19 +712,19 @@ import Section from './Section.js';
 export default function Page() {
   return (
     <Section>
-      <Heading>Title</Heading>
+      <Heading>Назва</Heading>
       <Section>
-        <Heading>Heading</Heading>
-        <Heading>Heading</Heading>
-        <Heading>Heading</Heading>
+        <Heading>Заголовок</Heading>
+        <Heading>Заголовок</Heading>
+        <Heading>Заголовок</Heading>
         <Section>
-          <Heading>Sub-heading</Heading>
-          <Heading>Sub-heading</Heading>
-          <Heading>Sub-heading</Heading>
+          <Heading>Підзаголовок</Heading>
+          <Heading>Підзаголовок</Heading>
+          <Heading>Підзаголовок</Heading>
           <Section>
-            <Heading>Sub-sub-heading</Heading>
-            <Heading>Sub-sub-heading</Heading>
-            <Heading>Sub-sub-heading</Heading>
+            <Heading>Підзаголовок 2 рівня</Heading>
+            <Heading>Підзаголовок 2 рівня</Heading>
+            <Heading>Підзаголовок 2 рівня</Heading>
           </Section>
         </Section>
       </Section>
@@ -757,7 +757,7 @@ export default function Heading({ children }) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
-      throw Error('Heading must be inside a Section!');
+      throw Error('Заголовок має бути всередині Секції!');
     case 1:
       return <h1>{children}</h1>;
     case 2:
@@ -771,7 +771,7 @@ export default function Heading({ children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Невідомий рівень: ' + level);
   }
 }
 ```
@@ -795,15 +795,15 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+Прочитайте **[Глибока передача даних з контекстом](/learn/passing-data-deeply-with-context)** щоб дізнатися про використання контексту як альтернативу передачі пропсів.
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## Масштабування за допомогою редуктора та контексту {/*scaling-up-with-reducer-and-context*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+Редуктори дозволяють консолідувати логіку оновлення стану компонента. Контекст дозволяє передавати інформацію вглиб інших компонентів. Ви можете комбінувати редуктори та контекст для керування станом складного екрану.
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+При такому підході батьківський компонент зі складним станом керує ним за допомогою редуктора. Інші компоненти, що знаходяться в глибині дерева, можуть читати його стан через контекст. Вони також можуть відправляти дії для оновлення цього стану.
 
 <Sandpack>
 
@@ -815,7 +815,7 @@ import { TasksProvider } from './TasksContext.js';
 export default function TaskApp() {
   return (
     <TasksProvider>
-      <h1>Day off in Kyoto</h1>
+      <h1>Вихідний день у Кіото</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -854,14 +854,14 @@ export function useTasksDispatch() {
 
 function tasksReducer(tasks, action) {
   switch (action.type) {
-    case 'added': {
+    case 'доданий': {
       return [...tasks, {
         id: action.id,
         text: action.text,
         done: false
       }];
     }
-    case 'changed': {
+    case 'змінений': {
       return tasks.map(t => {
         if (t.id === action.task.id) {
           return action.task;
@@ -870,19 +870,19 @@ function tasksReducer(tasks, action) {
         }
       });
     }
-    case 'deleted': {
+    case 'видалений': {
       return tasks.filter(t => t.id !== action.id);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Невідома дія: ' + action.type);
     }
   }
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Шлях філософа', done: true },
+  { id: 1, text: 'Відвідати храм', done: false },
+  { id: 2, text: 'Випити матчу', done: false }
 ];
 ```
 
@@ -896,18 +896,18 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Добавити задачу"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         dispatch({
-          type: 'added',
+          type: 'доданий',
           id: nextId++,
           text: text,
         });
-      }}>Add</button>
+      }}>Добавити</button>
     </>
   );
 }
@@ -943,7 +943,7 @@ function Task({ task }) {
           value={task.text}
           onChange={e => {
             dispatch({
-              type: 'changed',
+              type: 'змінений',
               task: {
                 ...task,
                 text: e.target.value
@@ -951,7 +951,7 @@ function Task({ task }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Зберегти
         </button>
       </>
     );
@@ -960,7 +960,7 @@ function Task({ task }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Редагувати
         </button>
       </>
     );
@@ -972,7 +972,7 @@ function Task({ task }) {
         checked={task.done}
         onChange={e => {
           dispatch({
-            type: 'changed',
+            type: 'змінений',
             task: {
               ...task,
               done: e.target.checked
@@ -983,11 +983,11 @@ function Task({ task }) {
       {taskContent}
       <button onClick={() => {
         dispatch({
-          type: 'deleted',
+          type: 'видалений',
           id: task.id
         });
       }}>
-        Delete
+        Видалити
       </button>
     </label>
   );
@@ -1004,12 +1004,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)** to learn how state management scales in a growing app.
+Прочитайте **[Масштабування за допомогою редуктора та контексту](/learn/scaling-up-with-reducer-and-context)** щоб дізнатися, як масштабується управління станом у зростаючому додатку.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Що далі? {/*whats-next*/}
 
-Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
+Перейдіть на сторінку [Реагування на вхід зі станом] (/learn/reacting-to-input-with-state), щоб почати читати цей розділ сторінка за сторінкою!
 
-Or, if you're already familiar with these topics, why not read about [Escape Hatches](/learn/escape-hatches)?
+Або, якщо ви вже знайомі з цими темами, чому б не прочитати про [навмисні витоки в абстрактному шарі.] (/learn/escape-hatches)?
