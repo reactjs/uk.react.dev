@@ -272,6 +272,7 @@ title: Версії React
 
 ### React 0.10 і нижче {/*react-10-and-below*/}
 
+<<<<<<< HEAD
 **Дописи у блозі**
 - [React v0.10](https://uk.legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
 - [React v0.10 RC](https://uk.legacy.reactjs.org/blog/2014/03/19/react-v0.10-rc1.html)
@@ -301,6 +302,37 @@ title: Версії React
 - [v0.3.2 (Травень 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#032-may-31-2013)
 - [v0.3.1 (Травень 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
 - [v0.3.0 (Травень 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
+=======
+**Blog Posts**
+- [React v0.10](https://legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
+- [React v0.10 RC](https://legacy.reactjs.org/blog/2014/03/19/react-v0.10-rc1.html)
+- [React v0.9](https://legacy.reactjs.org/blog/2014/02/20/react-v0.9.html)
+- [React v0.9 RC](https://legacy.reactjs.org/blog/2014/02/16/react-v0.9-rc1.html)
+- [React Chrome Developer Tools](https://legacy.reactjs.org/blog/2014/01/02/react-chrome-developer-tools.html)
+- [React v0.8](https://legacy.reactjs.org/blog/2013/12/19/react-v0.8.0.html)
+- [React v0.5.2, v0.4.2](https://legacy.reactjs.org/blog/2013/12/18/react-v0.5.2-v0.4.2.html)
+- [React v0.5.1](https://legacy.reactjs.org/blog/2013/10/29/react-v0-5-1.html)
+- [React v0.5](https://legacy.reactjs.org/blog/2013/10/16/react-v0.5.0.html)
+- [React v0.4.1](https://legacy.reactjs.org/blog/2013/07/26/react-v0-4-1.html)
+- [React v0.4.0](https://legacy.reactjs.org/blog/2013/07/17/react-v0-4-0.html)
+- [New in React v0.4: Prop Validation and Default Values](https://legacy.reactjs.org/blog/2013/07/11/react-v0-4-prop-validation-and-default-values.html)
+- [New in React v0.4: Autobind by Default](https://legacy.reactjs.org/blog/2013/07/02/react-v0-4-autobind-by-default.html)
+- [React v0.3.3](https://legacy.reactjs.org/blog/2013/06/21/react-v0-3-3.html)
+
+**Releases**
+- [v0.10.0 (March 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0100-march-21-2014)
+- [v0.9.0 (February 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#090-february-20-2014)
+- [v0.8.0 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#080-december-19-2013)
+- [v0.5.2 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#052-042-december-18-2013)
+- [v0.5.1 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#051-october-29-2013)
+- [v0.5.0 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#050-october-16-2013)
+- [v0.4.1 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#041-july-26-2013)
+- [v0.4.0 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#040-july-17-2013)
+- [v0.3.3 (June 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#033-june-20-2013)
+- [v0.3.2 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#032-may-31-2013)
+- [v0.3.1 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
+- [v0.3.0 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#030-may-29-2013)
+>>>>>>> 152a471aa9ac2f6f0f3e64c04f39da790d40cf61
 
 ### Початковий коміт {/*initial-commit*/}
 
