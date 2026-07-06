@@ -53,6 +53,7 @@ title: Версії React
 - [React Compiler Case Studies](https://www.youtube.com/watch?v=lvhPq5chokM)
 - [React 19 Deep Dive: Coordinating HTML](https://www.youtube.com/watch?v=IBBN-s77YSI)
 
+<<<<<<< HEAD
 **Релізи**
 - [v19.2.1 (Грудень, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1922-dec-11-2025)
 - [v19.2.1 (Грудень, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1921-dec-3-2025)
@@ -64,6 +65,34 @@ title: Версії React
 - [v19.0.2 (Грудень, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1902-dec-11-2025)
 - [v19.0.1 (Грудень, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1901-dec-3-2025)
 - [v19.0.0 (Грудень, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024)
+=======
+**Releases**
+- [v19.2.7 (June, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1927-june-1-2026)
+- [v19.2.6 (May, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1926-may-6-2026)
+- [v19.2.5 (March, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1925-march-18-2026)
+- [v19.2.4 (January, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1924-jan-26-2026)
+- [v19.2.3 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1923-dec-11-2025)
+- [v19.2.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1922-dec-11-2025)
+- [v19.2.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1921-dec-3-2025)
+- [v19.2.0 (October, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1920-october-1st-2025)
+- [v19.1.8 (June, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1918-june-1-2026)
+- [v19.1.7 (May, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1917-may-6-2026)
+- [v19.1.6 (March, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1916-march-18-2026)
+- [v19.1.5 (January, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1915-jan-26-2026)
+- [v19.1.4 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1914-dec-11-2025)
+- [v19.1.3 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1913-dec-11-2025)
+- [v19.1.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1912-dec-3-2025)
+- [v19.1.1 (July, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1911-july-28-2025)
+- [v19.1.0 (March, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1910-march-28-2025)
+- [v19.0.7 (June, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1907-june-1-2026)
+- [v19.0.6 (May, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1906-may-6-2026)
+- [v19.0.5 (March, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1905-march-18-2026)
+- [v19.0.4 (January, 2026)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1904-jan-26-2026)
+- [v19.0.3 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1903-dec-11-2025)
+- [v19.0.2 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1902-dec-11-2025)
+- [v19.0.1 (December, 2025)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1901-dec-3-2025)
+- [v19.0.0 (December, 2024)](https://github.com/facebook/react/blob/main/CHANGELOG.md#1900-december-5-2024)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ### React 18 {/*react-18*/}
 
@@ -272,6 +301,7 @@ title: Версії React
 
 ### React 0.10 і нижче {/*react-10-and-below*/}
 
+<<<<<<< HEAD
 **Дописи у блозі**
 - [React v0.10](https://uk.legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
 - [React v0.10 RC](https://uk.legacy.reactjs.org/blog/2014/03/19/react-v0.10-rc1.html)
@@ -301,6 +331,37 @@ title: Версії React
 - [v0.3.2 (Травень 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#032-may-31-2013)
 - [v0.3.1 (Травень 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
 - [v0.3.0 (Травень 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
+=======
+**Blog Posts**
+- [React v0.10](https://legacy.reactjs.org/blog/2014/03/21/react-v0.10.html)
+- [React v0.10 RC](https://legacy.reactjs.org/blog/2014/03/19/react-v0.10-rc1.html)
+- [React v0.9](https://legacy.reactjs.org/blog/2014/02/20/react-v0.9.html)
+- [React v0.9 RC](https://legacy.reactjs.org/blog/2014/02/16/react-v0.9-rc1.html)
+- [React Chrome Developer Tools](https://legacy.reactjs.org/blog/2014/01/02/react-chrome-developer-tools.html)
+- [React v0.8](https://legacy.reactjs.org/blog/2013/12/19/react-v0.8.0.html)
+- [React v0.5.2, v0.4.2](https://legacy.reactjs.org/blog/2013/12/18/react-v0.5.2-v0.4.2.html)
+- [React v0.5.1](https://legacy.reactjs.org/blog/2013/10/29/react-v0-5-1.html)
+- [React v0.5](https://legacy.reactjs.org/blog/2013/10/16/react-v0.5.0.html)
+- [React v0.4.1](https://legacy.reactjs.org/blog/2013/07/26/react-v0-4-1.html)
+- [React v0.4.0](https://legacy.reactjs.org/blog/2013/07/17/react-v0-4-0.html)
+- [New in React v0.4: Prop Validation and Default Values](https://legacy.reactjs.org/blog/2013/07/11/react-v0-4-prop-validation-and-default-values.html)
+- [New in React v0.4: Autobind by Default](https://legacy.reactjs.org/blog/2013/07/02/react-v0-4-autobind-by-default.html)
+- [React v0.3.3](https://legacy.reactjs.org/blog/2013/06/21/react-v0-3-3.html)
+
+**Releases**
+- [v0.10.0 (March 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#0100-march-21-2014)
+- [v0.9.0 (February 2014)](https://github.com/facebook/react/blob/main/CHANGELOG.md#090-february-20-2014)
+- [v0.8.0 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#080-december-19-2013)
+- [v0.5.2 (December 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#052-042-december-18-2013)
+- [v0.5.1 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#051-october-29-2013)
+- [v0.5.0 (October 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#050-october-16-2013)
+- [v0.4.1 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#041-july-26-2013)
+- [v0.4.0 (July 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#040-july-17-2013)
+- [v0.3.3 (June 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#033-june-20-2013)
+- [v0.3.2 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#032-may-31-2013)
+- [v0.3.1 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#031-may-30-2013)
+- [v0.3.0 (May 2013)](https://github.com/facebook/react/blob/main/CHANGELOG.md#030-may-29-2013)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
 
 ### Початковий коміт {/*initial-commit*/}
 
