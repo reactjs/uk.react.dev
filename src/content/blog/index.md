@@ -150,7 +150,11 @@ The React team is excited to share a few updates:
 
 ### Усі нотатки до релізів {/*all-release-notes*/}
 
+<<<<<<< HEAD
 Не кожен реліз React заслуговує на окремий допис у блозі, проте ви можете знайти детальний список змін для кожного релізу у файлі [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) у репозиторії React, а також на сторінці ["Релізи"](https://github.com/facebook/react/releases).
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/react/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/react/react/releases) page.
+>>>>>>> 7b6c3ceb9dd97249e9dce4a8a94e61aed6424698
 
 ---
 
