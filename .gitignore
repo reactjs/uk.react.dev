@@ -47,3 +47,6 @@ public/rss.xml
 
 # worktrees
 .worktrees/
+
+# Generated OG images (scripts/generateOgImages.mjs)
+public/images/og/
