@@ -12,6 +12,12 @@ title: Блог React
 
 <div className="sm:-mx-5 flex flex-col gap-5 mt-12">
 
+<BlogCard title="React 19.3" date="September 9, 2026" url="/blog/2026/09/09/react-19-3">
+
+React 19.3 adds new features like View Transitions, Fragment Refs, browser(), Trusted Types, and more. In this post ...
+
+</BlogCard>
+
 <BlogCard title="The React Foundation: A New Home for React Hosted by the Linux Foundation" date="February 24, 2026" url="/blog/2026/02/24/the-react-foundation">
 
 The React Foundation has officially launched under the Linux Foundation.
@@ -150,7 +156,11 @@ The React team is excited to share a few updates:
 
 ### Усі нотатки до релізів {/*all-release-notes*/}
 
+<<<<<<< HEAD
 Не кожен реліз React заслуговує на окремий допис у блозі, проте ви можете знайти детальний список змін для кожного релізу у файлі [`CHANGELOG.md`](https://github.com/facebook/react/blob/main/CHANGELOG.md) у репозиторії React, а також на сторінці ["Релізи"](https://github.com/facebook/react/releases).
+=======
+Not every React release deserves its own blog post, but you can find a detailed changelog for every release in the [`CHANGELOG.md`](https://github.com/react/react/blob/main/CHANGELOG.md) file in the React repository, as well as on the [Releases](https://github.com/react/react/releases) page.
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
 
 ---
 
