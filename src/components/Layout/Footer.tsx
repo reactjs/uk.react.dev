@@ -342,8 +342,13 @@ export function Footer() {
           <FooterLink href="/community" isHeader={true}>
             Спільнота
           </FooterLink>
+<<<<<<< HEAD
           <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
             Кодекс поведінки
+=======
+          <FooterLink href="https://github.com/react/react/blob/main/CODE_OF_CONDUCT.md">
+            Code of Conduct
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
           </FooterLink>
           <FooterLink href="/community/team">Команда React</FooterLink>
           <FooterLink href="/community/docs-contributors">
@@ -381,8 +386,13 @@ export function Footer() {
               <IconBsky />
             </ExternalLink>
             <ExternalLink
+<<<<<<< HEAD
               aria-label="React у Github"
               href="https://github.com/facebook/react"
+=======
+              aria-label="React on Github"
+              href="https://github.com/react/react"
+>>>>>>> 8c68ae8d2410abe59f351195780c6f8ea9f50904
               className={socialLinkClasses}>
               <IconGitHub />
             </ExternalLink>
