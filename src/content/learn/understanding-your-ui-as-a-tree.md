@@ -135,7 +135,11 @@ React створює *дерево рендерингу* — дерево UI, с
 
 #### Де у дереві рендерингу HTML-теги? {/*where-are-the-html-elements-in-the-render-tree*/}
 
+<<<<<<< HEAD
 У наведеному вище дереві рендерингу не згадуються HTML-теги, які кожен компонент рендерить. Це тому, що дерево рендерингу складається лише з [компонентів](learn/your-first-component#components-ui-building-blocks) React.
+=======
+You'll notice in the above render tree, there is no mention of the HTML tags that each component renders. This is because the render tree is only composed of React [components](/learn/your-first-component#components-ui-building-blocks).
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 React як UI-фреймворк є платформонезалежним. На сайті uk.react.dev ми демонструємо приклади, які рендеряться для вебу, що використовує HTML-розмітку як свої UI-примітиви. Але React-застосунок може так само рендеритися для мобільної або стаціонарної платформи, що може використовувати інші UI-примітиви, як-от [UIView](https://developer.apple.com/documentation/uikit/uiview) або [FrameworkElement](https://learn.microsoft.com/uk-ua/dotnet/api/system.windows.frameworkelement?view=windowsdesktop-7.0).
 
