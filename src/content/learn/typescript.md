@@ -335,7 +335,11 @@ function MyComponent() {
 
 </Note>
 
+<<<<<<< HEAD
 Хуки [`useMemo`](/reference/react/useMemo) створять/повторно отримають доступ до збереженого значення після виклику функції і повторно викличуть функцію лише тоді, коли зміняться його залежності, що передані як другий параметр. Результат виклику хука виводиться зі значення, яке повертає функція у першому параметрі. Але також можна явно передати аргумент типу хуку.
+=======
+The [`useMemo`](/reference/react/useMemo) Hooks will create/re-access a memoized value from a function call, re-running the function only when dependencies passed as the 2nd parameter are changed. The result of calling the Hook is inferred from the return value from the function in the first parameter. You can be more explicit by providing a type argument to the Hook.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```ts
 // Тип змінної visibleTodos виведений зі значення, поверненого з функції filterTodos

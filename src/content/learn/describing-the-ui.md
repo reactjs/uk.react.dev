@@ -530,7 +530,11 @@ React використовує дерева для моделювання зв'�
 
 Дерево рендерингу React — це представлення батьківського та дочірнього зв'язку між компонентами.
 
+<<<<<<< HEAD
 <Diagram name="generic_render_tree" height={250} width={500} alt="Граф дерева із п'ятьма вузлами, де кожен вузол відповідає компоненту. Кореневий вузол розташований у верхній частині графа дерева та позначений як 'Root Component'. Він має дві стрілки, що тягнуться до двох вузлів, позначених як 'Component A' і 'Component C'. Кожна зі стрілок позначена як 'renders'. 'Component A' має одну стрілку з поміткою 'renders' до вузла, позначеного як 'Component B'. 'Component C' має одну стрілку з поміткою 'renders' до вузла, позначеного як 'Component D'.">
+=======
+<Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top of the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Приклад дерева рендерингу React.
 
