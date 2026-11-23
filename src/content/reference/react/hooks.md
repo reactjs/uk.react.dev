@@ -16,8 +16,14 @@ title: "React: вбудовані хуки"
 
 Щоб додати стан до компонента, використовуйте один із цих хуків:
 
+<<<<<<< HEAD
 * [`useState`](/reference/react/useState) оголошує змінну стану, яку ви можете оновлювати безпосередньо.
 * [`useReducer`](/reference/react/useReducer) оголошує змінну стану з логікою оновлення всередині [функції-редюсера.](/learn/extracting-state-logic-into-a-reducer)
+=======
+* [`useState`](/reference/react/useState) declares a state variable that you can update directly.
+* [`useReducer`](/reference/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useOptimistic`](/reference/react/useOptimistic) lets you show a different state while an async action is pending.
+>>>>>>> 46a54e0592729712b7640308b53268e84fdc7c9f
 
 ```js
 function ImageGallery() {
